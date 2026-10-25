@@ -116,8 +116,7 @@ class RaceGame extends FlameGame {
       : proofMode
       ? (_presentationTime % 60 < 18
             ? Biome.city
-            : _presentationTime % (_nextProof ? 90 : 60) <
-                  (_nextProof ? 58 : 39)
+            : _presentationTime % 60 < 39
             ? Biome.forest
             : Biome.mountain)
       : controller.currentEdge.biome;

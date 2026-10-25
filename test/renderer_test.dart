@@ -39,6 +39,35 @@ void main() {
   });
 
   test(
+    'optical presets preserve simulation and avoid mid-run scenery jumps',
+    () {
+      final classicRace = RaceController()..start(_s2000, seed: 731);
+      final fastRace = RaceController()..start(_s2000, seed: 731);
+      final classic = RaceGame(controller: classicRace, proofMode: true)
+        ..setSpeedPreset('classic');
+      final fast = RaceGame(controller: fastRace, proofMode: true);
+      for (var i = 0; i < 600; i++) {
+        classic.update(1 / 60);
+        fast.update(1 / 60);
+      }
+      expect(fastRace.elapsed, classicRace.elapsed);
+      expect(fastRace.worldDistance, classicRace.worldDistance);
+      expect(fastRace.speed, classicRace.speed);
+      expect(
+        fast.presentationDistance,
+        greaterThan(classic.presentationDistance),
+      );
+      final before = fast.presentationDistance;
+      fast.setSpeedPreset('classic');
+      fast.update(1 / 60);
+      expect((fast.presentationDistance - before).abs(), lessThan(60));
+      expect(fast.visualFlowScale, RaceGame.visualSpeedScale);
+      classicRace.dispose();
+      fastRace.dispose();
+    },
+  );
+
+  test(
     'authored pose anchors preserve wheel contact without resizing poses',
     () {
       expect(ProofArt.carGround, [416, 412, 415, 372, 400, 404]);
@@ -47,3 +76,16 @@ void main() {
     },
   );
 }
+
+// A local art-test vehicle avoids altering production car IDs or server rules.
+const _s2000 = CarSpec(
+  id: 's2000',
+  name: 'S2000',
+  year: 2000,
+  description: 'Renderer test',
+  color: 0xffe23426,
+  topSpeed: 155,
+  handling: 1.15,
+  acceleration: 35,
+  unlockHint: '',
+);
