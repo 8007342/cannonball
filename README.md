@@ -81,3 +81,21 @@ Sound starts muted. `/?proof=1&quality=detail` raises the raster budget.
 The normal garage route retains its earlier renderer while this sample is reviewed.
 See [proof notes](docs/proof-platform.md), [sample art and prompts](assets/proof/PROMPTS.md),
 and [recorded measurements](docs/research/visual-proof-metrics.json).
+
+## Second proof: S2000 departure and reactive traffic
+
+`/?proof=1` now opens the painted wooden keybox. Take the keys (or press Enter)
+for the short garage departure, then drive the 90-second study. The fast-forward
+icon skips departure. Controls remain rim drag/Left/Right steering, outside-rim
+hold/Down/Space braking, and P/Escape pause. Sound starts muted; enable it for
+original sample station music and browser speech. Captions are optional.
+
+`?proof=1&motion=classic` and `motion=cruise` compare optical-flow presets against
+the default `arcade`; the car physics remain identical. `quality=detail` raises
+raster detail. New art and prompts live in [assets/proof-next](assets/proof-next/PROMPTS.md).
+
+[Garage/audio](docs/garage-radio-proof.md), [renderer](docs/renderer-next-proof.md),
+[Atrapa-inspired traffic](docs/research/atrapa-traffic.md), and
+[stage-record foundation](docs/stage-progress.md) document the second proof.
+The stage model is a local, tested foundation; city selection, remote stage saves,
+regional voice packs, connected playable ramps and new rankings remain future work.

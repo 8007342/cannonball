@@ -1,0 +1,14 @@
+{
+  "version": "s2000-garage-proof-2",
+  "generatedWith": "built-in image_gen",
+  "generatedDate": "2026-10-25",
+  "status": "moving-review sample; not a production pack",
+  "images": {
+    "garage-wall.png": {"width": 1536, "height": 1024, "alpha": false},
+    "garage-exterior.png": {"width": 1536, "height": 1024, "alpha": false},
+    "s2000-atlas.png": {"width": 1536, "height": 1024, "columns": 3, "rows": 2, "cellWidth": 512, "cellHeight": 512, "alpha": true, "poses": ["flat", "left", "right", "uphill", "downhill", "right-skid"], "measuredGroundY": [449,454,453,422,421,410], "measuredCenterX": [259.5,255.5,258,260.5,274,246]},
+    "entry-atlas.png": {"width": 1536, "height": 1024, "columns": 3, "rows": 2, "cellWidth": 512, "cellHeight": 512, "alpha": true, "cells": ["keys", "hand-with-keys", "hand-at-handle", "open-door", "cabin", "parked-rear"], "runtimeCropNotes": "First two cells trim lower gutters to remove next-row artwork bleed."}
+  },
+  "paint": {"variants": 8, "method": "cached body chroma mask with fixed-detail exclusions", "productionRequirement": "export authored paint masks"},
+  "geography": "Illustrative NYC garage composition; not a verified Red Ball Garage reconstruction."
+}
