@@ -219,8 +219,9 @@ class RaceController extends ChangeNotifier {
   }
 
   double curveAt(double position) {
-    if (testCourseEnabled)
+    if (testCourseEnabled) {
       return ProofCourse.steeringLoadAt(position + courseStartDistance);
+    }
     final phase = _seed % 251 / 40;
     final strength = _edge.biome == Biome.mountain ? 1.0 : .62;
     return (math.sin(position / 1700 + phase) * .36 +

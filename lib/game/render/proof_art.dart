@@ -65,8 +65,9 @@ class ProofArt {
                               rect.left.toInt()) *
                           4 +
                       3] <
-                  100)
+                  100) {
                 continue;
+              }
               left = math.min(left, x);
               right = math.max(right, x);
               bottom = math.max(bottom, y);
@@ -502,8 +503,9 @@ class BillboardBatch {
     int color = 0xffffffff,
     ui.BlendMode blend = ui.BlendMode.modulate,
   }) {
-    if (image != atlas || colorBlend != blend || count >= capacity)
+    if (image != atlas || colorBlend != blend || count >= capacity) {
       flush(canvas);
+    }
     image = atlas;
     colorBlend = blend;
     final i = count * 4;

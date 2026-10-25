@@ -771,13 +771,15 @@ class RaceGame extends FlameGame {
     if (_course) {
       for (final s in [5110.0, 5310.0, 5500.0]) {
         final z = _courseZ(s);
-        if (z > near && z < far)
+        if (z > near && z < far) {
           _objects.add(_Object(_Kind.canopy, z, 0, 3200));
+        }
       }
       for (final s in [6080.0, 6770.0]) {
         final z = _courseZ(s);
-        if (z > near && z < far)
+        if (z > near && z < far) {
           _objects.add(_Object(_Kind.portal, z, 0, 5000));
+        }
       }
     }
     _objects.add(_Object(_Kind.player, _world, _playerX, _course ? 285 : 300));
@@ -949,12 +951,13 @@ class RaceGame extends FlameGame {
 
   VehiclePose _pose(bool player) {
     if (!player) return const VehiclePose(0);
-    if (_course)
+    if (_course) {
       return _steeringArt.pose(
         speed: controller.speed,
         grade: (_elevation(_world + 160) - _elevation(_world - 160)) / 320,
         recovering: controller.recovering,
       );
+    }
     return VehiclePose.select(
       steering: controller.steering,
       speed: controller.speed,
@@ -974,8 +977,9 @@ class RaceGame extends FlameGame {
   ) {
     var pose = _pose(player);
     final useTurn = player && pose.turnSheet && _art.turnAtlas != null;
-    if (pose.turnSheet && !useTurn)
+    if (pose.turnSheet && !useTurn) {
       pose = VehiclePose(pose.frame.isEven ? 1 : 2);
+    }
     final atlas = useTurn
         ? _art.turnAtlas
         : player
