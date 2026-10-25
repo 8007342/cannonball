@@ -74,3 +74,14 @@ The art requirements SHALL link to the [shared reference register](../../../../.
 #### Scenario: reviewing art evidence
 - **WHEN** the implementation is assessed against this capability
 - **THEN** reviewers can follow the register to original references and distinguish historical observations from unverified production acceptance
+
+### Requirement: Responsive grounded chase composition
+The proof SHALL default to the approved wide camera. Speed, braking and turning
+MAY drive bounded damped composition and suspension cues while shared projection
+preserves vehicle contact and hazard positions. Stable and reduced-motion modes
+SHALL suppress optional movement/effects. The central driving corridor SHALL
+remain readable when peripheral speed effects are enabled.
+
+#### Scenario: braking from high speed
+- **WHEN** the player brakes while dynamic chase and suspension cues are active
+- **THEN** the camera and car presentation settle smoothly while controls and contacts remain immediate

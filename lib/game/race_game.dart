@@ -8,6 +8,7 @@ import 'package:flutter/painting.dart';
 import 'race_controller.dart';
 import 'render/proof_art.dart';
 import 'render/proof_camera.dart';
+import 'render/proof_suspension.dart';
 import 'render/road_mesh.dart';
 import 'render/vehicle_pose.dart';
 import 'render/proof_road_module.dart';
@@ -80,7 +81,11 @@ class RaceGame extends FlameGame {
       _speedPreset = preset;
       final interpolatedDistance = (_world - _worldOffset) / previous;
       _worldOffset += interpolatedDistance * (previous - _flowScale);
-      if (_course) controller.proofPresentationScale = _flowScale;
+      if (_course) {
+        controller.proofPresentationScale = _flowScale;
+        controller.proofTrafficPreview =
+            (_segmentLength * (_segmentCount - 2) - 560) / _flowScale;
+      }
     }
   }
 
@@ -101,7 +106,12 @@ class RaceGame extends FlameGame {
                 : 11.0)
           : 1.0);
   bool get _course => _nextProof && controller.testCourseEnabled;
-  String _cameraPreset = 'flow';
+  String _cameraPreset = 'wide';
+  final chase = ProofChaseResponse();
+  final suspension = ProofSuspension();
+  bool suspensionEnabled = true;
+  int _lastConeHits = 0;
+  bool stableChase = false, speedEffects = false;
   String get cameraPreset => _cameraPreset;
   void setCameraPreset(String value) {
     if (const ['baseline', 'wide', 'flow'].contains(value)) {
@@ -111,8 +121,9 @@ class RaceGame extends FlameGame {
 
   double get horizonFraction =>
       _course ? ProofCamera.horizon(_cameraPreset) : .30;
-  double get cameraHeight =>
-      _course ? ProofCamera.height(_cameraPreset, _projection) : 660;
+  double get cameraHeight => _course
+      ? ProofCamera.height(_cameraPreset, _projection, ground: chase.ground)
+      : 660;
   double get _viewPitch =>
       _course ? ProofCamera.pitch(_coursePitch, _cameraPreset) : 0;
   double _objectOpacity = 1;
@@ -246,6 +257,7 @@ class RaceGame extends FlameGame {
       ..reset()
       ..start();
     final oldElapsed = controller.elapsed, oldX = controller.playerX;
+    final previousSpeed = controller.speed, previousPitch = _coursePitch;
     super.update(dt);
     if (controller.seed != _lastSeed || controller.elapsed < _lastElapsed) {
       _lastSeed = controller.seed;
@@ -253,6 +265,9 @@ class RaceGame extends FlameGame {
       _worldOffset = 0;
       _xVelocity = 0;
       _steeringArt.reset();
+      chase.reset();
+      suspension.reset();
+      _lastConeHits = 0;
       _coursePitch = _course
           ? ProofCourse.pitchAt(controller.courseDistance, _flowScale)
           : 0;
@@ -260,16 +275,40 @@ class RaceGame extends FlameGame {
     if (!controller.paused && !controller.finished && dt.isFinite) {
       _presentationTime += dt.clamp(0, .25);
     }
-    if (_course) controller.proofPresentationScale = _flowScale;
+    if (_course) {
+      controller.proofPresentationScale = _flowScale;
+      controller.proofTrafficPreview =
+          (_segmentLength * (_segmentCount - 2) - 560) / _flowScale;
+    }
     controller.tick(dt);
     if (_course && !controller.paused && !controller.finished) {
       _steeringArt.update(controller.effectiveSteering, dt);
+      chase.update(
+        speedRatio: controller.speed / controller.car.topSpeed,
+        steering: controller.effectiveSteering,
+        braking: controller.braking,
+        recovering: controller.recovering,
+        stable: stableChase || controller.comfortMode,
+        dt: dt,
+      );
       final targetPitch = ProofCourse.pitchAt(
         controller.courseDistance,
         _flowScale,
       );
       _coursePitch +=
           (targetPitch - _coursePitch) * (1 - math.exp(-6 * dt.clamp(0, .25)));
+    }
+    if (_course && !controller.paused && !controller.finished) {
+      suspension.update(
+        speedRatio: controller.speed / controller.car.topSpeed,
+        acceleration: (controller.speed - previousSpeed) / dt,
+        steering: controller.effectiveSteering,
+        gradeRate: (_coursePitch - previousPitch) / dt,
+        quiet: controller.comfortMode || !suspensionEnabled,
+        dt: dt,
+        impact: controller.coneHitCount > _lastConeHits,
+      );
+      _lastConeHits = controller.coneHitCount;
     }
     _lastElapsed = controller.elapsed;
     final advanced = controller.elapsed - oldElapsed;
@@ -351,7 +390,9 @@ class RaceGame extends FlameGame {
                 : _nextProof
                 ? 660
                 : 730);
-        _cameraX = _center(_cameraZ);
+        _cameraX =
+            _center(_cameraZ) +
+            (_course ? chase.lateralLook * _roadHalfWidth : 0);
         _tangent = (_center(_cameraZ + 20) - _cameraX) / 20;
         canvas.save();
         canvas.translate(_w / 2, _h * horizonFraction);
@@ -388,6 +429,9 @@ class RaceGame extends FlameGame {
         canvas.restore();
         _weather(canvas);
         if (_course) _courseAtmosphere(canvas);
+        if (_course && speedEffects && !controller.comfortMode) {
+          _speedCues(canvas);
+        }
       }
       canvas.restore();
     }
@@ -396,6 +440,41 @@ class RaceGame extends FlameGame {
     lastRenderMicros = _renderWatch.elapsedMicroseconds;
     renderCpuMicros += lastRenderMicros;
     maxRenderMicros = math.max(maxRenderMicros, lastRenderMicros);
+  }
+
+  void _speedCues(Canvas canvas) {
+    final strength = ((controller.speed / controller.car.topSpeed - .55) / .45)
+        .clamp(0.0, 1.0);
+    if (strength <= 0) return;
+    final center = Offset(_w * .5, _h * .60);
+    final paint = Paint()
+      ..shader = ui.Gradient.radial(
+        center,
+        _w * .68,
+        [
+          const Color(0x00081018),
+          const Color(0x00081018),
+          Color.fromRGBO(8, 16, 24, strength * .14),
+        ],
+        [0, .65, 1],
+      );
+    canvas.drawRect(Rect.fromLTWH(0, 0, _w, _h), paint);
+    paint.shader = null;
+    paint.strokeWidth = 1.5;
+    // Short peripheral streaks, no full-frame blur or obscured central hazards.
+    for (var i = 0; i < 14; i++) {
+      final phase = (_presentationTime * (1.1 + strength) + i * .127) % 1;
+      final side = i.isEven ? -1.0 : 1.0;
+      final x = center.dx + side * (_w * .36 + phase * _w * .16);
+      final y = _h * (.12 + (i % 7) * .13);
+      final length = 12 + strength * 26;
+      paint.color = Color.fromRGBO(224, 236, 225, strength * .11 * (1 - phase));
+      canvas.drawLine(
+        Offset(x, y),
+        Offset(x + side * length, y + (y - center.dy) * .04),
+        paint,
+      );
+    }
   }
 
   int _fogAt(double distance) => Color.fromRGBO(
@@ -1182,9 +1261,13 @@ class RaceGame extends FlameGame {
     final anchorScale = paletteTraffic ? .5 : 1.0;
     final scale = width / (450 * anchorScale);
     final speed = controller.speed / controller.car.topSpeed;
-    final bounce = player
-        ? (math.sin(_world * .021) * 1.1 + math.sin(_world * .057) * .42) *
-              speed
+    final bounce = player && _course
+        ? (controller.comfortMode || !suspensionEnabled
+              ? 0.0
+              : suspension.heave +
+                    math.sin(_presentationTime * 32) * .28 * speed)
+        : player
+        ? math.sin(_world * .021) * speed
         : 0.0;
     final bodyY = y + bounce;
     final groundAnchor =
@@ -1241,17 +1324,37 @@ class RaceGame extends FlameGame {
           controller.protection > 0 &&
           (controller.elapsed * 9).floor().isEven;
       if (!flicker) {
-        _sprite(
-          canvas,
-          atlas,
-          src,
-          x - centerAnchor * scale,
-          bodyY - groundAnchor * scale,
-          scale,
-          clip: clip,
-          tint: 0xffffffff,
-          mirrored: pose.mirrored,
-        );
+        if (player && _course) {
+          _batch.flush(canvas);
+          canvas.save();
+          canvas.translate(x, bodyY);
+          canvas.rotate(suspension.roll);
+          canvas.scale(1, 1 - suspension.pitch);
+          _sprite(
+            canvas,
+            atlas,
+            src,
+            -centerAnchor * scale,
+            -groundAnchor * scale,
+            scale,
+            clip: (clip - bodyY) / (1 - suspension.pitch),
+            mirrored: pose.mirrored,
+          );
+          _batch.flush(canvas);
+          canvas.restore();
+        } else {
+          _sprite(
+            canvas,
+            atlas,
+            src,
+            x - centerAnchor * scale,
+            bodyY - groundAnchor * scale,
+            scale,
+            clip: clip,
+            tint: 0xffffffff,
+            mirrored: pose.mirrored,
+          );
+        }
       }
     }
     if ((player ? controller.braking : object.braking) &&

@@ -120,3 +120,15 @@ painted sprites or turn every exit into visual clutter. Enforce ramp pavement an
 building footprint clearance. Research/reference links are indexed from the main
 and delta specs; audit authorship and applicability rather than citing GameFlow
 as Valve-authored work.
+
+## Wide-camera and rolling-traffic review
+User prefers wide framing; make it the proof default. Increase visible traffic
+with a dedicated dense stream, alternate lane openings and bounded actor count.
+Layer authored smooth irregular elevation rollers onto shared terrain, preserving
+bridge/tunnel structure and consistent prop/collision placement. Chase ground
+composition starts low and advances with speed; damp brake/turn responses without
+moving input or collision coordinates independently of the rendered road.
+Reduced motion and a stable chase comparison retain fixed composition. Optional
+peripheral speed cues must leave the central traffic corridor clear and avoid
+full-frame shader cost until measured. Camera parameters are authored hypotheses,
+not a promise of perceptual benefit or a reconstruction of OutRun geometry.

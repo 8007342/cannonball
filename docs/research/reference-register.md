@@ -58,6 +58,7 @@ context, avoiding detached or misleading authority claims.
 | [Perceived speed: third-proof research and review protocol](../../docs/research/perceived-speed-milestone.md) | Research / source interpretation | 7 |
 | [Renderer rejection, Baja reference and measured limits](../../docs/research/renderer-audit.md) | Research / source interpretation | 10 |
 | [Roadside rhythm, motivation and review](../../docs/research/roadside-flow-review.md) | Research / source interpretation | 3 |
+| [Rolling terrain, traffic and sprung chase cues](../../docs/research/rolling-chase-suspension.md) | Research / source interpretation | 3 |
 | [Speed and score follow-up — 2026-10-25](../../docs/research/speed-and-score-followup.md) | Research / source interpretation | 3 |
 | [Dart JavaScript vs Dart WebAssembly experiment](../../docs/research/wasm-benchmark.md) | Research / source interpretation | 2 |
 | [S2000 departure and reactive-traffic proof](../../docs/second-proof-review.md) | Design / implementation / validation | 0 |

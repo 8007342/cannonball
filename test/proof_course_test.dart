@@ -8,7 +8,7 @@ void main() {
     expect(ProofCourse.curvatureAt(850), greaterThan(.004));
     expect(ProofCourse.curvatureAt(1450), lessThan(-.005));
     expect(ProofCourse.elevationAt(3000), greaterThan(850));
-    expect(ProofCourse.elevationAt(4100), closeTo(0, .01));
+    expect(ProofCourse.elevationAt(4160), closeTo(0, .01));
     expect(ProofCourse.steeringLoadAt(2500).abs(), greaterThan(.05));
     expect(
       ProofCourse.elevationAt(2510),

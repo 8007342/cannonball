@@ -83,6 +83,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       reactiveTraffic: true,
       launchSpeed: _courseStart > 0 ? 95 : 0,
       testCourse: true,
+      denseTraffic: Uri.base.queryParameters['traffic'] != 'light',
       courseStartDistance: _courseStart,
     );
     _race.paused = true;
@@ -95,7 +96,10 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     } else {
       _game = RaceGame(controller: _race, proofMode: true)
         ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'hyperspeed')
-        ..setCameraPreset(Uri.base.queryParameters['camera'] ?? 'flow');
+        ..setCameraPreset(Uri.base.queryParameters['camera'] ?? 'wide')
+        ..stableChase = Uri.base.queryParameters['chase'] == 'stable'
+        ..speedEffects = Uri.base.queryParameters['effects'] == 'on'
+        ..suspensionEnabled = Uri.base.queryParameters['body'] != 'stable';
       _scene = RepaintBoundary(
         child: GameWidget(
           game: _game!,
@@ -177,6 +181,13 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'cameraPreset': _game?.cameraPreset,
     'horizonFraction': _game?.horizonFraction,
     'cameraHeight': _game?.cameraHeight,
+    'chaseGround': _game?.chase.ground,
+    'chaseLook': _game?.chase.lateralLook,
+    'bodyRoll': _game?.suspension.roll,
+    'bodyPitch': _game?.suspension.pitch,
+    'bodyHeave': _game?.suspension.heave,
+    'speedEffects': _game?.speedEffects,
+    'denseTraffic': _race.denseProofTraffic,
     'coursePitch': _game?.coursePitch,
     'courseDistance': _race.courseDistance,
     'courseStartDistance': _race.courseStartDistance,
@@ -240,6 +251,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       reactiveTraffic: true,
       launchSpeed: _courseStart > 0 ? 95 : 0,
       testCourse: true,
+      denseTraffic: Uri.base.queryParameters['traffic'] != 'light',
       courseStartDistance: _courseStart,
     );
     _race.paused = true;
@@ -359,9 +371,16 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     }
   }
 
+  void _toggleSpeedEffects() {
+    final game = _game;
+    if (game == null) return;
+    game.speedEffects = !game.speedEffects;
+    _hud.value++;
+  }
+
   void _cycleCamera() {
     const variants = ['baseline', 'wide', 'flow'];
-    final index = variants.indexOf(_game?.cameraPreset ?? 'flow');
+    final index = variants.indexOf(_game?.cameraPreset ?? 'wide');
     _game?.setCameraPreset(variants[(index + 1) % variants.length]);
     _hud.value++;
   }
@@ -374,6 +393,10 @@ class _VisualProofScreenState extends State<VisualProofScreen>
 
   void _key(KeyEvent event) {
     if (event is KeyDownEvent && _phase.value != _ProofPhase.departing) {
+      if (event.logicalKey == LogicalKeyboardKey.keyV) {
+        _toggleSpeedEffects();
+        return;
+      }
       if (event.logicalKey == LogicalKeyboardKey.keyC) {
         _cycleCamera();
         return;
@@ -547,6 +570,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                                   Icons.camera_alt_outlined,
                                   'Change camera',
                                   _cycleCamera,
+                                ),
+                                _utility(
+                                  Icons.blur_on,
+                                  'Toggle speed effects',
+                                  _toggleSpeedEffects,
+                                  active: _game?.speedEffects ?? false,
                                 ),
                                 _utility(
                                   Icons.screen_rotation,

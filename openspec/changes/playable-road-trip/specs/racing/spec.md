@@ -44,3 +44,13 @@ The racing requirements SHALL link to the [shared reference register](../../../.
 #### Scenario: reviewing racing evidence
 - **WHEN** the implementation is assessed against this capability
 - **THEN** reviewers can follow the register to original references and distinguish historical observations from unverified production acceptance
+
+### Requirement: Rolling dense-traffic comparison
+The next proof SHALL offer irregular continuous rise/dip terrain and a denser
+reactive traffic stream with bounded actor count, same-lane headway and spawn
+openings. Terrain SHALL remain shared by road, props and vehicles. Prior traffic
+and stable-camera comparisons SHALL remain available for review.
+
+#### Scenario: approaching a rolling crest
+- **WHEN** the player approaches a crest with dense traffic ahead
+- **THEN** vehicles and roadside props follow the same terrain and traffic enters from beyond the preview rather than teleporting into the near driving area

@@ -62,7 +62,29 @@ class ProofCourse {
     return t * t * (3 - 2 * t);
   }
 
+  // Compact, smooth rise/dip pairs vary crest timing without a repetitive wave.
+  static const _rollers = <(double, double, double)>[
+    (590, 1090, 1300),
+    (1140, 1620, -1100),
+    (1650, 2140, 1800),
+    (2670, 3140, 950),
+    (3570, 4160, -1200),
+    (4380, 4820, 900),
+    (5010, 5380, 700),
+    (6870, 7460, -1050),
+  ];
+  static double rollingElevationAt(double s) {
+    var height = 0.0;
+    for (final (start, end, amplitude) in _rollers) {
+      if (s <= start || s >= end) continue;
+      final wave = math.sin(math.pi * (s - start) / (end - start));
+      height += amplitude * wave * wave;
+    }
+    return height;
+  }
+
   static double elevationAt(double s) =>
+      rollingElevationAt(s) +
       800 * _rise(s, 100, 260) -
       800 * _rise(s, 340, 520) +
       7000 * _rise(s, 2200, 2850) -

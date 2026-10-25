@@ -70,6 +70,8 @@ class RaceController extends ChangeNotifier {
   bool braking = false, paused = false, motionControl = false;
   bool comfortMode = false;
   bool testCourseEnabled = false;
+  bool denseProofTraffic = false;
+  double proofTrafficPreview = 230;
   double courseStartDistance = 0;
   double get courseDistance => _worldDistance + courseStartDistance;
   double _effectiveSteering = 0;
@@ -157,9 +159,11 @@ class RaceController extends ChangeNotifier {
     bool reactiveTraffic = false,
     double launchSpeed = 0,
     bool testCourse = false,
+    bool denseTraffic = false,
     double courseStartDistance = 0,
   }) {
     testCourseEnabled = testCourse;
+    denseProofTraffic = testCourse && denseTraffic;
     this.courseStartDistance = testCourse && courseStartDistance.isFinite
         ? courseStartDistance.clamp(0, ProofCourse.length)
         : 0;
@@ -233,8 +237,10 @@ class RaceController extends ChangeNotifier {
     }
     if (testCourseEnabled && reactiveTrafficEnabled) {
       _nextSpawn = .8;
-      for (var i = 0; i < 4; i++) {
-        _spawnTraffic(proofOffset: 95 + i * 85.0);
+      for (var i = 0; i < (denseProofTraffic ? 10 : 4); i++) {
+        _spawnTraffic(
+          proofOffset: denseProofTraffic ? 55 + i * 36.0 : 95 + i * 85.0,
+        );
       }
       // A slower lead vehicle stays in view while the player builds speed.
       traffic.first.cruiseSpeed = 55;
@@ -588,15 +594,22 @@ class RaceController extends ChangeNotifier {
         ? {for (final car in traffic) car.id: car.x}
         : <int, double>{};
     if (elapsed >= _nextSpawn) {
-      final interval = testCourseEnabled
+      final interval = denseProofTraffic
+          ? .65
+          : testCourseEnabled
           ? 1.2
           : directorPhase == 'peak'
           ? 2.6
           : directorPhase == 'recovery'
           ? 7.0
           : 4.0;
-      _nextSpawn = elapsed + interval + _trafficRandom.next() * 1.5;
-      if (!approachingFork && traffic.length < 16) _spawnTraffic();
+      _nextSpawn =
+          elapsed +
+          interval +
+          _trafficRandom.next() * (denseProofTraffic ? .25 : 1.5);
+      if (!approachingFork && traffic.length < (denseProofTraffic ? 24 : 16)) {
+        _spawnTraffic();
+      }
     }
     _reactiveTraffic.tick(
       cars: traffic,
@@ -682,10 +695,15 @@ class RaceController extends ChangeNotifier {
     final spawn =
         _worldDistance +
         (testCourseEnabled
-            ? (proofOffset ?? 300)
+            ? (proofOffset ??
+                  (denseProofTraffic ? proofTrafficPreview + 25 : 300))
             : (reactiveTrafficEnabled ? 520 : 1500)) +
         _trafficRandom.next() *
-            (testCourseEnabled ? 25 : (reactiveTrafficEnabled ? 520 : 900));
+            (denseProofTraffic
+                ? 10
+                : (testCourseEnabled
+                      ? 25
+                      : (reactiveTrafficEnabled ? 520 : 900)));
     var lane = [-.65, 0.0, .65][_trafficRandom.index(3)];
     final spawnOnEdge = _edgeDistance + spawn - _worldDistance;
     if (reactiveTrafficEnabled &&
@@ -706,7 +724,18 @@ class RaceController extends ChangeNotifier {
         lane = 0;
       }
     }
-    if (traffic.any(
+    if (denseProofTraffic) {
+      // Two adjacent lanes may pair up; a third car cannot close the whole road.
+      final neighbors = traffic
+          .where((t) => (t.position - spawn).abs() < 64)
+          .toList();
+      if (neighbors.length >= 2 ||
+          traffic.any(
+            (t) => (t.x - lane).abs() < .32 && (t.position - spawn).abs() < 78,
+          )) {
+        return;
+      }
+    } else if (traffic.any(
       (t) => (t.position - spawn).abs() < (testCourseEnabled ? 65 : 320),
     )) {
       return;
