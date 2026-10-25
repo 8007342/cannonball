@@ -293,6 +293,11 @@ class RaceController extends ChangeNotifier {
     _closedLane = _edge.length > 2500 && _conditionRandom.next() < .58
         ? (_conditionRandom.next() < .5 ? -1 : 1)
         : null;
+    // One authored proof taper lets the short sample exercise actual lane
+    // restriction, NPC merging and advance warnings. Legacy seeds are unchanged.
+    if (reactiveTrafficEnabled && _edge.id == graph.edges.first.id) {
+      _closedLane = 1;
+    }
     weather = switch (_edge.biome) {
       Biome.mountain =>
         _conditionRandom.next() < .55 ? RaceWeather.snow : RaceWeather.clear,
@@ -508,7 +513,15 @@ class RaceController extends ChangeNotifier {
         _worldDistance +
         (reactiveTrafficEnabled ? 520 : 1500) +
         _trafficRandom.next() * (reactiveTrafficEnabled ? 520 : 900);
-    final lane = [-.65, 0.0, .65][_trafficRandom.index(3)];
+    var lane = [-.65, 0.0, .65][_trafficRandom.index(3)];
+    final spawnOnEdge = _edgeDistance + spawn - _worldDistance;
+    if (reactiveTrafficEnabled &&
+        _closedLane != null &&
+        spawnOnEdge > closureStart - 200 &&
+        spawnOnEdge < closureEnd + 100 &&
+        (lane - _closedLane! * .65).abs() < .3) {
+      lane = 0;
+    }
     // One car at a time, separated longitudinally; no solid random traffic walls.
     if (traffic.any((t) => (t.position - spawn).abs() < 320)) return;
     final palette = [
