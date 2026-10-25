@@ -12,8 +12,8 @@
   must be evaluated in motion before bulk generation.
 - Landscape, auto acceleration, braking, optional tilt and oversized transparent
   center wheel with cropped translucent rim. Angular wheel gesture confirmed.
-- Right rim up / left rim down = steer left; opposite drags were described as
-  braking. Right-steer mapping is pending clarification. Outside-wheel touch brakes.
+- Right rim up / left rim down = steer left; right rim down / left rim up =
+  steer right. Outside-wheel taps brake; holds sustain braking. Auto accelerate otherwise.
 - Mostly flat horizon with subtle lean, somewhat stronger with motion steering.
 - Multiple stages/gates, different route distances and complexity, construction
   warnings, lane closures, traffic merges and secret-backroad car unlocks.
@@ -23,7 +23,7 @@
   and luck are deliberate. Better unlocked cars yield better future attempts.
 - Qualifying finish: initials screen first, save time/distance/car, then US-map
   road-graph recap with animated fill of the actual path. Other endings go to recap.
-- Google remote saves and a dedicated Cannonball OAuth web client (not provisioned).
+- Google remote saves and the shared Arabiya Google web client (exact Cannonball origin still unverified).
   Cannonball and Arabiya are sibling hosts, each with its own application session.
 - Garage wooden box, starter keys with shabby keychain, car sheets, storyboards,
   cutscenes and contextual hints remain core scope.
@@ -38,7 +38,14 @@
 
 ## Open
 
-See interview.md. Next: opposite wheel drag/right steering, return-to-center,
+See interview.md. Next: return-to-center tuning,
 distance representation, starting car and story, failure recap, minimum devices,
 guest/save policy and pause behavior. Do not reopen equalized competition or
 native release scope as if they were undecided.
+
+## Implementation authorization — 2026-10-25
+
+The user approved motion/art research and requested an Astra fleet. Three Astra
+specialists own engine, backend and browser platform; root owns UI/integration.
+Final unlock: white 2019 Corvette Stingray Coupe, targa roof removed. Production
+asset approval and physical-device validation remain actual acceptance work.

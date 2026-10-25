@@ -6,9 +6,29 @@
   "workers_dev": false,
   "preview_urls": false,
   "routes": [
-    { "pattern": "cannonball.tlatoani.net/api/*", "zone_name": "tlatoani.net" }
+    {
+      "pattern": "cannonball.tlatoani.net/api/*",
+      "zone_name": "tlatoani.net"
+    }
   ],
   "vars": {
-    "APP_ORIGIN": "https://cannonball.tlatoani.net"
-  }
+    "APP_ORIGIN": "https://cannonball.tlatoani.net",
+    "GOOGLE_CLIENT_ID": "490204137466-0ijru4uds6p3hdnfa66t4gti5ffhephm.apps.googleusercontent.com"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CANNONBALL_STORE",
+        "class_name": "CannonballGlobal"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "CannonballGlobal"
+      ]
+    }
+  ]
 }

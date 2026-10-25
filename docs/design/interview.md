@@ -7,17 +7,17 @@ Status: partially answered; confirmed answers below supersede the initial questi
 - Successful coast-to-coast run: **10–15 minutes**.
 - World: **present-day real roads, intersections, cities and landmarks**, with research provenance and compression to playable scale.
 - Art: **mixed pixelated styling with diffused edges**; research motion stability and speed before finalizing sheets. Desktop gets higher-resolution variants; mobile gets appropriate packs.
-- Wheel: oversized transparent center and translucent cropped rim confirmed; angular dragging. Right-edge up / left-edge down steers left. The opposite directions were described as braking, so right-turn mapping is awaiting clarification. Touch outside the wheel brakes.
+- Wheel: oversized transparent center and translucent cropped rim confirmed; angular dragging. Right-edge up / left-edge down steers left. Right-edge down / left-edge up steers right. Tapping outside the wheel brakes; holding sustains it. Auto acceleration is continuous otherwise.
 - Horizon: mostly flat with subtle lean, somewhat stronger with motion controls; tune natural response for both input modes.
 - Hall of Fame: **one luck-driven Top100**; car advantages and differences in distance, traffic, complexity and randomness are deliberate. No equalized competition mode.
 - Finish: qualifying Top100 runs enter initials first and save **time, distance and car**, then a US route-map recap fills progress along the route traveled. Other runs go directly to recap.
 - Flow: minimal loading, continuous driving until the run ends.
 - Delivery: **web only**, mobile first, desktop supported; URL access sufficient, PWA installation optional. No native Android/iOS plan.
-- Identity: a dedicated Cannonball OAuth web client is planned for the sibling host; not provisioned.
+- Identity: reuse Arabiya’s public client ID with an exact authorized Cannonball origin; live registration pending confirmation.
 
 ## Next focused decisions
 
-1. Resolve the opposite wheel drag: right steering or intentional braking? Return-to-center is still open.
+1. Wheel directions are resolved as clockwise/right and counterclockwise/left. Return-to-center tuning is still open.
 2. Distance: show real-world route miles while compressing driving to 10–15 minutes, or count game-world distance? Proposed: real-route miles, clearly presented as arcade compression.
 3. Starter car and keys: what sort of beater, who owned it, and what drives the trip?
 4. Failed run: show reached position on the same recap map, then offer immediate retry?
@@ -44,7 +44,7 @@ through unanswered items; do not re-ask the same design choices.
 Current interpretation: the camera is behind the car. An enormous translucent steering wheel occupies the nearest overlay plane, larger than the screen. Its center is completely invisible; only cropped arcs of the rim are visible around the field of view. Dragging the rim steers the car; it is not a small dashboard wheel.
 
 9. **Resolved:** oversized transparent-center rim overlay confirmed. Exact cropping can be tested visually.
-10. **Partly resolved:** angular wheel-like dragging; left-steer directions confirmed. Opposite-drag braking versus right steering is pending clarification.
+10. **Resolved:** angular wheel-like dragging; clockwise steers right and counterclockwise steers left. Outside taps/holds brake.
 11. When a finger is lifted, does steering spring to center, slowly return, or retain its angle?
 12. **Resolved:** touching outside the wheel brakes. Verify simultaneous input and utility-button exclusions.
 13. Should the brake only reduce speed, or also help induce a controlled slide? Is there a minimum moving speed?
@@ -103,7 +103,7 @@ Current interpretation: the camera is behind the car. An enormous translucent st
 54. Can cars unlock through secrets only, or also finishes, achievements and distance? How many launch cars and secret cars are envisioned?
 55. Should the wooden box gradually fill with distinct keychains, and can touching a key preview the car before starting?
 56. Is Google the sole sign-in method? Should account deletion be available in Profile? Three-letter public labels still leave private account/save data to manage.
-57. **Resolved client choice:** dedicated Cannonball OAuth web client. Shared versus separate Cloud project remains an administrative choice.
+57. **Resolved follow-up:** reuse Arabiya’s public client ID with exact Cannonball origin registration.
 58. Should there be purchases/ads at all? None are assumed. This influences progression and art scope.
 
 ## Round 7 — art bible and asset pipeline
@@ -156,4 +156,4 @@ Current interpretation: the camera is behind the car. An enormous translucent st
 
 ## Decision log
 
-2026-10-25: captured the confirmed answers above in specs for racing, controls, world, art and progress; corrected browser-only scope and the unequal-run Top100 policy throughout project docs. Pixel-art motion and camera lean research requested. Right-steer mapping remains unresolved; no gameplay controls implemented.
+2026-10-25: captured the confirmed answers above in specs for racing, controls, world, art and progress; corrected browser-only scope and the unequal-run Top100 policy throughout project docs. Pixel-art motion and camera lean research requested. Right-steer mapping was subsequently confirmed; implementation now proceeds under playable-road-trip.

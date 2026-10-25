@@ -1,6 +1,6 @@
 # Proposed runtime boundaries
 
-Status: design proposal. Only the Flutter shell and empty Flame game exist.
+Status: architecture implemented in the first playable pass. See the active change checklist for production content and physical-device acceptance still outstanding.
 
 ```mermaid
 flowchart LR

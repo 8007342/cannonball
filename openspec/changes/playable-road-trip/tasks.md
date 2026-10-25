@@ -1,0 +1,31 @@
+# Tasks
+
+## 1. Engine and route stream
+- [x] 1.1 Implement fixed-step auto acceleration/braking/steering, gate timing, traffic/collision/recovery and finish receipts; verify deterministic simulation and gate tests.
+- [x] 1.2 Implement authored route graph, forks, closures, secret unlocks and continuous region changes; verify reachability and recorded route progression tests.
+- [x] 1.3 Render pseudo-3D hills/curves, traffic, roadside regional cues, weather and roof-off white Corvette; verify browser render and document provisional art/data limits.
+
+## 2. Browser platform
+- [x] 2.1 Add permission/calibration/timeout tilt fallback and lifecycle hooks; verify bridge tests and document real-device checks still required.
+- [x] 2.2 Add original note-event synth, regional themes, engine sound and caption-backed radio TTS; verify mute/pause/failure tests and document production sound-bank/voice-pack work still required.
+
+## 3. Identity and durability
+- [x] 3.1 Implement bounded same-origin GIS login, nonce verification, independent sessions and logout; verify invalid-token, origin, expiry and replay tests.
+- [x] 3.2 Implement durable progress, issued runs, validated receipts, idempotent Top100 qualification and initials entry; verify transactional storage tests and Wrangler package check.
+- [x] 3.3 Document API schema, shared-client exact-origin setup, deployment/backup/rollback and verification limits; verify documentation matches actual endpoints.
+
+## 4. Integrated game flow
+- [x] 4.1 Build wooden-box garage, car selection/progression and local storage; verify starter selection and persistent unlock behavior in UI tests.
+- [x] 4.2 Integrate race HUD, angular rim input, outside-wheel tap/hold brakes, keyboard and utility controls; verify gesture-direction and simultaneous-input tests.
+- [x] 4.3 Integrate Google profile, cloud status, tickets and saves with guest-first error handling; verify denied/unavailable API does not block local play.
+- [x] 4.4 Implement Top100 initials wheels before route recap, recorded US map fill, results/retry and Hall of Fame; verify finish-flow and recap data tests.
+- [x] 4.5 Run analyzer, complete unit/widget/API suites, release web build, browser smoke checks and publish local review build; record exact evidence.
+
+## 5. Production acceptance
+- [ ] 5.1 Review and approve final camera and coherent sample car/biome sheet, then produce complete animation/region/landmark packs and provenance manifests; verify moving contact sheets and geographical source review.
+- [ ] 5.2 Complete storyline/storyboard/cutscene/hint writing, original production score and curated radio voice library; review a full uninterrupted run.
+- [ ] 5.3 Verify exact Google origin in live sign-in, provision Cloudflare storage/routes/Pages, deploy and verify HTTPS identity/save/ranking across devices; preserve deployment evidence.
+- [ ] 5.4 Playtest 10–15 minute completions on representative real phones and desktop, tuning lean, frame times, animation, input and difficulty; record results before marking production complete.
+
+## Workflow follow-up
+- Archive only after tracked implementation and acceptance work is complete; do not mark procedural placeholders or desktop checks as final asset/mobile approval.

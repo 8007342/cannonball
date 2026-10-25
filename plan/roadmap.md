@@ -1,27 +1,23 @@
 # Cannonball roadmap
 
-Current phase: web foundation; first interview answers captured, research continuing.
+Current phase: Astra engine/backend/platform and root UI are implemented as a
+playable first pass. Active work and evidence: openspec/changes/playable-road-trip.
 
-1. Resolve right steering versus reverse-drag braking, wheel return behavior,
-   distance representation, starter car/story, failed-run flow and minimum browsers.
-2. Open an OpenSpec change for a mobile-web driving slice targeting a 10–15 minute
-   full journey; measure input latency, frame times, memory and download budgets.
-3. Prove hills/curves, touch/tilt with control-specific camera lean, a fork/closure,
-   bridge occlusion, gate timing, safe crash recovery and uninterrupted streaming.
-4. Compare pixel-art edge treatments and animation at speed on mobile and desktop;
-   approve camera, palette, vehicle sheet and compositing grammar before bulk assets.
-5. Design garage/key progression, storyboards, cutscenes, hints, radio and dynamic
-   synthesized music with browser fallback validation.
-6. Author the present-day road graph with real junctions/cities/landmarks, dated
-   source data, researched regional kits, secret routes and bounded traffic variation.
-7. Implement remote Google progress and one global luck-driven Top100 recording
-   actual times across unequal cars/routes/conditions. Add initials-first qualification,
-   distance/car recording and US-map route-fill recap after every run.
-8. Provision dedicated Google web client and Cloudflare resources; verify Pages +
-   same-origin API routing, save recovery and preview isolation, then deploy.
-9. Expand cars, routes, weather and story after playtests validate perceived speed,
-   repeated-play progression, art coherence and mobile/desktop asset tiers.
+1. Review the moving browser build's camera, wheel rim and procedural car/biome
+   sample. Produce approved final sprite/animation, landmark and region packs with
+   provenance; upgrade schematic junction/flyover geometry after source review.
+2. Finalize starter-car story, garage ownership, storyboard/cutscenes and authored
+   hints; replace provisional radio/score with the approved production voice and
+   instrument library while preserving continuous driving.
+3. Confirm exact Google Authorized JavaScript origin, provision Cloudflare
+   Pages/Worker/SQLite and verify live HTTPS login, logout, queued-save recovery,
+   cross-device progress and Top100. Shared Arabiya client ID is configured.
+4. Real-phone playtesting: tilt permission/calibration, lean direction/amplitude,
+   sustained frame times, touch latency and animation readability. Native apps
+   remain excluded; URL access is sufficient and PWA installation optional.
+5. Tune full 10–15 minute runs across all cars/routes/seeds with people. One
+   deterministic reactive-pilot starter run currently completes in 13:20.700;
+   that is simulation evidence, not a human playtest or universal completion claim.
 
-Checks: OpenSpec strict validation, Dart format/analyzer, widget smoke test and
-release web build; Worker tests and Wrangler dry-run. Browser sensors, camera
-comfort and animation quality require real-device playtests. No native release.
+Do not archive the active change or claim production completion while its final
+content and live/device acceptance tasks remain unchecked.

@@ -21,7 +21,7 @@ The game SHALL offer optional calibrated tilt steering, request any browser sens
 
 ### Requirement: Oversized wheel overlay
 
-Touch steering SHALL use an enlarged wheel with a clear center and cropped translucent rim above the driving view. Angular dragging SHALL turn it: right-edge up / left-edge down steers left. Opposite drags were described as braking; right-steer behavior SHALL remain unresolved until clarified. Return behavior and maximum rotation remain open.
+Touch steering SHALL use an enlarged wheel with a clear center and cropped translucent rim above the driving view. Angular dragging SHALL turn it: right-edge down / left-edge up steers right; right-edge up / left-edge down steers left. Return behavior and maximum rotation remain tunable.
 
 #### Scenario: braking while steering
 - **WHEN** one touch drags the steering region while another holds the brake region

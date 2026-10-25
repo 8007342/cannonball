@@ -1,58 +1,67 @@
 # Cannonball
 
-A fast paced landscape arcade road trip racer from New York's Red Ball Garage
-to The Portofino Hotel & Marina in Redondo Beach, inspired by OutRun's pseudo-3D
-racing. Built with Flutter and Flame.
+A landscape arcade road trip from New York's Red Ball Garage to The Portofino in
+Redondo Beach. Flutter + Flame, web only, mobile first. Successful runs target
+10–15 minutes. Routes, traffic and luck differ; better unlocked cars enable better
+runs on one shared Top100.
 
-The repository currently contains a runnable foundation screen, web scaffold,
-OpenSpec requirements, research and Cloudflare deployment preparation.
-Driving, finished garage artwork, Google login, saves and rankings are not yet
-implemented. Design discovery comes before the gameplay vertical slice.
+## Current build
 
-## Run and check
+The first playable implementation includes a wooden key-box garage, six car slots,
+projected road hills/curves, traffic, construction, route choices, gates, crash
+recovery, secrets, weather, regional radio, original synthesized music and a US
+route recap. The final car is a white 2019 Corvette Stingray Coupe, targa off.
+Touch uses an oversized angular rim; tapping outside brakes, holding sustains it.
+Left/Right or A/D steer, Down/Space brakes, P/Escape pauses. Optional browser tilt
+has permission, calibration and touch fallback. Acceleration is automatic.
 
-Toolchain: Flutter **3.47.7**, Dart **3.13.5**, Flame **1.38.2** (resolved in
-`pubspec.lock`); Node **22+** for the Worker tooling.
+Google sign-in, durable account unlocks and global records are implemented in the
+Worker; live registration/deployment remain unverified. The user selected
+Arabiya's shared public Google client, with an exact Cannonball JavaScript origin
+required. Guest progress stays local. Unavailable cloud services never block play
+or claim that a local result was saved globally.
+
+**This is a playable first pass, not production-complete.** Artwork is original
+procedural composition; exact road/interchange geometry and landmark sightlines
+are not yet a verified atlas. Final sprite/region packs, authored story/cutscenes,
+production sound-bank/voice library and real-phone tuning remain tracked in the
+[implementation checklist](openspec/changes/playable-road-trip/tasks.md).
+
+## Run and verify
+
+Flutter **3.47.7**, Dart **3.13.5**, Flame **1.38.2**; Node **22+** for Worker tools.
 
 ```sh
 flutter pub get
 flutter run -d web-server --web-hostname 0.0.0.0 --web-port 8080
+```
+
+```sh
+dart format --output=none --set-exit-if-changed lib test
 flutter analyze
 flutter test
 flutter build web --release
 openspec validate --all --strict
+node --test web/platform_bridge.test.mjs
 npm --prefix services/api ci
 npm --prefix services/api test
-npm --prefix services/api run check
+npm --prefix services/api run test:runtime
 ```
 
-Web only: mobile browsers first, desktop browsers with higher-resolution asset
-packs, URL access sufficient and optional PWA installation. Successful runs target
-10–15 minutes through present-day, researched US roads and landmarks. Landscape
-is requested through the web manifest; unsupported browser locking needs a rotate
-prompt. Physical browser checks for sensors, audio and performance remain ahead.
-The global Top100 records each run's actual car, route and luck; cars and routes
-are intentionally not equalized.
+The Flutter-only server serves a local game without the API. See the
+[deployment guide](docs/deployment.md) and [API runbook](services/api/README.md)
+for same-origin integration, Google setup, SQLite migration and storage recovery.
+The intended production host is `https://cannonball.tlatoani.net`, with Pages assets
+and a Worker on `/api/*`. No production deployment is claimed.
 
 ## Project memory
 
-- [Requirements](openspec/specs/) — desired behavior, not a completion claim.
-- [Design interview](docs/design/interview.md) — choices to settle together.
-- [Engine research](docs/research/engine.md) — projection, controls and assets.
-- [Motion and art research](docs/research/motion-art.md) — pixel styling, animation and camera lean.
-- [Flow and route research](docs/research/design.md) — pacing and geography.
-- [Identity research](docs/research/auth.md) — Arabiya comparison and Google client.
-- [Deployment guide](docs/deployment.md) — Pages, Worker routing and remaining setup.
-- [Roadmap](plan/roadmap.md) — remaining milestones and validation gates.
-- [Asset contract](assets/README.md) — production pack requirements.
+- [Specifications](openspec/specs/) and [active implementation](openspec/changes/playable-road-trip/)
+- [Decisions](docs/design/decisions.md), [interview](docs/design/interview.md), [roadmap](plan/roadmap.md)
+- [Engine](docs/research/engine.md), [motion/art](docs/research/motion-art.md), [flow/geography](docs/research/design.md)
+- [Browser platform](docs/platform.md), [authentication research](docs/research/auth.md)
+- [Asset contract](assets/README.md)
 
-OpenSpec is initialized for Codex with generated skills in `.agents/skills`.
-Use an OpenSpec change proposal before expanding implementation. Research
-recommendations remain proposals until settled through the interview.
-
-## Intended hosting
-
-Cloudflare Pages serves `https://cannonball.tlatoani.net`; a same-origin Worker
-handles `/api/*`. Only the API health endpoint exists. No live deployment,
-Cloudflare resource, DNS change or OAuth client was created during initialization.
-See the deployment guide before provisioning.
+PWA installation is optional; opening the URL is sufficient. Device sensors,
+audio and landscape behavior require physical-browser checks. Production art
+approval is based on moving gameplay samples, not screenshots alone.

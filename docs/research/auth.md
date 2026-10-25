@@ -1,6 +1,6 @@
 # Google sign-in and Cloudflare research
 
-Researched 2026-10-25. Recommendations below are design decisions; Cannonball currently has no authentication implementation.
+Researched 2026-10-25. Recommendations below are design decisions; Cannonball now has a Worker authentication implementation; live Google sign-in remains unverified.
 
 ## What Arabiya actually does
 
@@ -12,9 +12,9 @@ Reuse the interaction and verification design, adapting account storage and save
 
 ## Is a new OAuth app required?
 
-Cannonball and Arabiya are sibling hostnames: cannonball.tlatoani.net and arabiya.tlatoani.net. Neither is nested under the other; both are subdomains of tlatoani.net and are distinct browser origins. Cannonball will use its own OAuth Web application client. This is the chosen application setup, not a claim that sibling hosts technically require different clients. Google permits explicit origin registration on a web client; Arabiya's origin does not authorize Cannonball automatically. [Google client setup](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
+Cannonball and Arabiya are sibling hostnames: cannonball.tlatoani.net and arabiya.tlatoani.net. Neither is nested under the other; both are subdomains of tlatoani.net and are distinct browser origins. Updated user decision: Cannonball will reuse Arabiya’s public web client ID after exact-origin registration. This is the chosen application setup, not a claim that sibling hosts technically require different clients. Google permits explicit origin registration on a web client; Arabiya's origin does not authorize Cannonball automatically. [Google client setup](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
 
-Confirmed plan: create a **Cannonball-specific Web application OAuth client** (not yet provisioned). It can live in the same Google Cloud project if shared branding/audience configuration is appropriate; a separate project is a choice about app branding, isolation and administration. A separate client gives independent origins and token audience configuration. Sharing a Google client does not automatically share the applications' cookies or saves, and Google sign-in is distinct from building a cross-subdomain application session.
+Superseded recommendation: a separate client was initially proposed. The user chose to reuse Arabiya’s existing public client ID. The implementation follows that choice; exact-origin registration remains a live acceptance check. It can live in the same Google Cloud project if shared branding/audience configuration is appropriate; a separate project is a choice about app branding, isolation and administration. A separate client gives independent origins and token audience configuration. Sharing a Google client does not automatically share the applications' cookies or saves, and Google sign-in is distinct from building a cross-subdomain application session.
 
 For the same GIS popup callback pattern, register the JavaScript origin and no redirect URI is needed. A later redirect-based flow needs its exact callback URL registered; wildcards are not a solution. Origin is scheme + host + optional port, without `/api/...`. Development origins need explicit registration; production-only configuration should not authorize arbitrary preview hosts. [GIS JavaScript reference](https://developers.google.com/identity/gsi/web/reference/js-reference) defines callback and popup/redirect behavior; [Google client management](https://support.google.com/cloud/answer/15549257) defines redirect restrictions.
 

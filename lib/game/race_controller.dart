@@ -1,0 +1,551 @@
+import 'dart:math' as math;
+
+import 'package:flutter/foundation.dart';
+
+import 'models.dart';
+import 'route.dart';
+
+/// Integer arithmetic stays below 2^53 on the web as well as Dart VM.
+class _RandomStream {
+  _RandomStream(int seed) : state = seed.abs() % 2147483646 + 1;
+  int state;
+  double next() {
+    state = state * 48271 % 2147483647;
+    return state / 2147483647;
+  }
+
+  int index(int length) => (next() * length).floor();
+}
+
+class TrafficCar {
+  TrafficCar({
+    required this.id,
+    required this.position,
+    required this.x,
+    required this.cruiseSpeed,
+    required this.color,
+    required this.truck,
+    required this.changeAt,
+  });
+  final int id, color;
+  final bool truck;
+  double position, x, cruiseSpeed, changeAt;
+  double? targetX;
+  double signalTime = 0;
+  bool get signaling => targetX != null && signalTime < 2;
+}
+
+enum CrashPose { driving, spin, flip }
+
+/// The simulation never reads canvas dimensions, browser APIs, network or audio.
+/// A fixed 60 Hz step controls clocks, traffic, branches, and collisions.
+class RaceController extends ChangeNotifier {
+  static const fixedStep = 1 / 60;
+  static const gateSpacingMiles = 155.0;
+  static const gateBonusSeconds = 45.0;
+  final RouteGraph graph = routeGraph;
+  CarSpec _car = cars.first;
+  CarSpec get car => _car;
+  Set<String> unlockedCarIds = {'wagon'};
+  Set<String> get earnedUnlockIds => Set.unmodifiable(_earnedUnlockIds);
+  final Set<String> _earnedUnlockIds = {};
+  final List<RouteVisit> _completedVisits = [];
+  final List<String> _gates = [];
+  final List<TrafficCar> traffic = [];
+  final Map<String, String> _closedBranches = {};
+  late _RandomStream _trafficRandom;
+  late _RandomStream _conditionRandom;
+  RouteEdge _edge = routeGraph.edges.first;
+  RouteEdge get currentEdge => _edge;
+  RaceWeather weather = RaceWeather.clear;
+  Biome? previousBiome;
+  double regionBlend = 1;
+  double steering = 0;
+  bool braking = false, paused = false, motionControl = false;
+  bool comfortMode = false;
+  bool get steadyHorizon => comfortMode;
+  set steadyHorizon(bool value) => comfortMode = value;
+  bool _started = false, _finished = false, _completed = false;
+  bool get started => _started;
+  bool get finished => _finished;
+  bool get completed => _completed;
+  int _seed = 0, _stepCount = 0, _trafficId = 0, _crashes = 0;
+  int get seed => _seed;
+  int get crashes => _crashes;
+  double _accumulator = 0, _notifyAccumulator = 0;
+  double _remaining = 90, _speed = 0, _worldDistance = 0;
+  double _edgeDistance = 0, _completedMiles = 0;
+  double _nextSpawn = 3, _radioUntil = 0, _lastCrashAt = -100;
+  double _recovery = 0, _recoveryDuration = 0, protection = 0;
+  double playerX = 0, cameraLean = 0;
+  int _radioPriority = 0;
+  String _radio = 'The country is waiting. Take your keys.';
+  bool _forkAnnounced = false, _closureAnnounced = false;
+  bool _timeWarning = false;
+  int? _closedLane;
+  CrashPose crashPose = CrashPose.driving;
+  RunReceipt? _receipt;
+  RunReceipt? get receipt => _receipt;
+  double get elapsed => _stepCount * fixedStep;
+  double get remaining => _remaining;
+  double get speed => _speed;
+  double get worldDistance => _worldDistance;
+  double get edgeDistance => _edgeDistance;
+  double get edgeFraction => (_edgeDistance / _edge.length).clamp(0, 1);
+  double get distanceMiles =>
+      _completedMiles + _edgeDistance / RouteGraph.unitsPerMile;
+  double get estimatedTotalMiles =>
+      _completedMiles + _edge.miles + graph.remainingMiles(_edge.to);
+  double get progress =>
+      completed ? 1 : (distanceMiles / estimatedTotalMiles).clamp(0, 1);
+  String get stageName => graph.node(_edge.to).name;
+  String get radio => _radio;
+  bool get recovering => _recovery > 0;
+  double get recoveryProgress =>
+      _recoveryDuration == 0 ? 0 : 1 - _recovery / _recoveryDuration;
+  double get nextGateMiles =>
+      gateSpacingMiles * (_gates.length + 1) - distanceMiles;
+  int get gatesPassed => _gates.length;
+  List<String> get visitedEdges =>
+      routeProgress.map((e) => e.edgeId).toList(growable: false);
+  List<RouteVisit> get routeProgress => List.unmodifiable([
+    ..._completedVisits,
+    if (!_completed) RouteVisit(_edge.id, edgeFraction),
+  ]);
+  List<RouteEdge> get nextChoices => graph.outgoing(_edge.to);
+  String? get closedBranchId => _closedBranches[_edge.to];
+  Map<String, String> get closedBranches => Map.unmodifiable(_closedBranches);
+  bool get approachingFork =>
+      nextChoices.length > 1 && _edge.length - _edgeDistance < 1000;
+  double get distanceToFork => _edge.length - _edgeDistance;
+  int? get closedLane => _closedLane;
+  double get closureStart => _edge.length * .48;
+  double get closureEnd => _edge.length * .59;
+  bool get inLaneClosure =>
+      _closedLane != null &&
+      _edgeDistance > closureStart &&
+      _edgeDistance < closureEnd;
+  String get directorPhase {
+    if (elapsed - _lastCrashAt < 13 || remaining < 15) return 'recovery';
+    final beat = elapsed % 72;
+    return beat < 24
+        ? 'build'
+        : beat < 43
+        ? 'peak'
+        : 'relax';
+  }
+
+  void start(CarSpec car, {int? seed}) {
+    _car = car;
+    _seed = seed ?? DateTime.now().microsecondsSinceEpoch % 1000000000;
+    _trafficRandom = _RandomStream(_seed ^ 0x63d2);
+    _conditionRandom = _RandomStream(_seed ^ 0x48a1);
+    _closedBranches.clear();
+    for (final node in graph.nodes) {
+      final options = graph.outgoing(node.id);
+      if (options.length > 1 && _conditionRandom.next() < .24) {
+        _closedBranches[node.id] =
+            options[_conditionRandom.index(options.length)].id;
+      }
+    }
+    _stepCount = 0;
+    _remaining = 90;
+    _speed = 0;
+    _worldDistance = 0;
+    _edgeDistance = 0;
+    _completedMiles = 0;
+    _accumulator = 0;
+    _notifyAccumulator = 0;
+    _nextSpawn = 5;
+    _trafficId = 0;
+    _crashes = 0;
+    _lastCrashAt = -100;
+    _recovery = 0;
+    _recoveryDuration = 0;
+    protection = 0;
+    playerX = 0;
+    cameraLean = 0;
+    steering = 0;
+    braking = false;
+    paused = false;
+    _started = true;
+    _finished = false;
+    _completed = false;
+    _receipt = null;
+    _earnedUnlockIds.clear();
+    _completedVisits.clear();
+    _gates.clear();
+    traffic.clear();
+    _radioPriority = 0;
+    _radioUntil = 0;
+    _timeWarning = false;
+    crashPose = CrashPose.driving;
+    _edge = graph.edges.first;
+    previousBiome = null;
+    _enterEdge();
+    _say('Red Ball Garage. Westbound. Next stop: the Pacific.', 3, 8);
+    notifyListeners();
+  }
+
+  void tick(double dt) {
+    if (!_started || _finished || paused || !dt.isFinite || dt <= 0) return;
+    // A lost/background frame must not teleport the car into hazards.
+    _accumulator += dt.clamp(0, .25);
+    while (_accumulator + 1e-10 >= fixedStep && !_finished) {
+      _accumulator -= fixedStep;
+      _step();
+    }
+    _notifyAccumulator += dt.clamp(0, .25);
+    if (_notifyAccumulator >= .05 || _finished) {
+      _notifyAccumulator %= .05;
+      notifyListeners();
+    }
+  }
+
+  double curveAt(double position) {
+    final phase = _seed % 251 / 40;
+    final strength = _edge.biome == Biome.mountain ? 1.0 : .62;
+    return (math.sin(position / 1700 + phase) * .36 +
+            math.sin(position / 4100) * .17) *
+        strength;
+  }
+
+  double centerAt(double position) {
+    final phase = _seed % 251 / 40;
+    final strength = _edge.biome == Biome.mountain ? 1.0 : .62;
+    return (1000 * math.sin(position / 1700 + phase) +
+            1800 * math.sin(position / 4100)) *
+        strength;
+  }
+
+  double elevationAt(double position) {
+    final amplitude = switch (_edge.biome) {
+      Biome.mountain => 450.0,
+      Biome.canyon => 270.0,
+      Biome.forest => 150.0,
+      _ => 65.0,
+    };
+    return math.sin(position / 2200) * amplitude +
+        math.sin(position / 900) * amplitude * .14;
+  }
+
+  void _step() {
+    _stepCount++;
+    _remaining -= fixedStep;
+    regionBlend = math.min(1, regionBlend + fixedStep / 4);
+    protection = math.max(0, protection - fixedStep);
+    final ratio = _speed / _car.topSpeed;
+    final safeSteering = steering.isFinite ? steering.clamp(-1.0, 1.0) : 0.0;
+    final leanTarget = comfortMode
+        ? 0.0
+        : -safeSteering * (motionControl ? .026 : .014) * ratio;
+    cameraLean += (leanTarget - cameraLean) * fixedStep * 5;
+    if (recovering) {
+      _recovery -= fixedStep;
+      _speed = math.max(18, _speed - 40 * fixedStep);
+      if (_recovery <= 0) _resetSafely();
+    } else {
+      final grip = weather == RaceWeather.snow
+          ? .82
+          : weather == RaceWeather.rain
+          ? .91
+          : 1.0;
+      _speed = (_speed + (braking ? -82 : _car.acceleration) * fixedStep).clamp(
+        0,
+        _car.topSpeed,
+      );
+      playerX +=
+          (safeSteering * _car.handling * grip * (0.2 + ratio * 1.15) -
+              curveAt(_worldDistance) * ratio * ratio * .23) *
+          fixedStep;
+      playerX = playerX.clamp(-1.65, 1.65);
+      if (playerX.abs() > 1.02) {
+        _speed = math.max(24, _speed - 52 * fixedStep);
+        if (playerX.abs() > 1.52 && protection <= 0) _crash(flip: ratio > .72);
+      }
+      if (inLaneClosure &&
+          (playerX - _closedLane! * .65).abs() < .22 &&
+          protection <= 0) {
+        _crash(flip: ratio > .88);
+      }
+    }
+    final distance = _speed * RouteGraph.speedScale * fixedStep;
+    _worldDistance += distance;
+    _edgeDistance += distance;
+    _advanceTraffic();
+    while (distanceMiles >= (_gates.length + 1) * gateSpacingMiles) {
+      final mile = ((_gates.length + 1) * gateSpacingMiles).round();
+      _gates.add('mile-$mile');
+      _remaining += gateBonusSeconds;
+      _timeWarning = false;
+      _say('TIME EXTENDED +45 · Keep it rolling.', 4, 4);
+    }
+    _advanceRoute();
+    if (_finished) return;
+    _advisories();
+    if (_remaining <= 0) {
+      _remaining = 0;
+      _finish(false);
+    }
+  }
+
+  void _enterEdge() {
+    _forkAnnounced = false;
+    _closureAnnounced = false;
+    _closedLane = _edge.length > 2500 && _conditionRandom.next() < .58
+        ? (_conditionRandom.next() < .5 ? -1 : 1)
+        : null;
+    weather = switch (_edge.biome) {
+      Biome.mountain =>
+        _conditionRandom.next() < .55 ? RaceWeather.snow : RaceWeather.clear,
+      Biome.forest =>
+        _conditionRandom.next() < .32 ? RaceWeather.rain : RaceWeather.clear,
+      Biome.desert || Biome.coast => RaceWeather.sunset,
+      _ => RaceWeather.clear,
+    };
+    regionBlend = 0;
+    final forecast = weather == RaceWeather.snow
+        ? 'Snow ahead. Ease into the curves.'
+        : weather == RaceWeather.rain
+        ? 'Rain on the road. Leave a little space.'
+        : _edge.id == 'nebraska'
+        ? 'Nebraska sunshine. Colorado is waiting beyond the plains.'
+        : '${_edge.landmark}. Keep an eye on the horizon.';
+    _say('${_edge.road}. $forecast', 2, 7);
+  }
+
+  void _advanceRoute() {
+    if (_edgeDistance < _edge.length) return;
+    _edgeDistance -= _edge.length;
+    _completedMiles += _edge.miles;
+    _completedVisits.add(RouteVisit(_edge.id, 1));
+    final unlock = _edge.secretUnlockId;
+    if (unlock != null && !unlockedCarIds.contains(unlock)) {
+      _earnedUnlockIds.add(unlock);
+      _say(
+        'A new key! ${cars.firstWhere((c) => c.id == unlock).name} is waiting in the garage.',
+        5,
+        7,
+      );
+    }
+    final choices = nextChoices;
+    if (choices.isEmpty) {
+      // Clamp the final sub-step to the actual endpoint for receipt accounting.
+      _worldDistance -= _edgeDistance;
+      _edgeDistance = 0;
+      _finish(true);
+      return;
+    }
+    final available = choices.where((e) => e.id != closedBranchId).toList();
+    final intended = playerX > .18 ? choices.last : choices.first;
+    final next = available.contains(intended) ? intended : available.first;
+    if (next != intended) {
+      _say('Construction diversion. Follow the open westbound road.', 4, 5);
+    }
+    previousBiome = _edge.biome;
+    _edge = next;
+    _enterEdge();
+  }
+
+  void _advisories() {
+    if (approachingFork && !_forkAnnounced) {
+      _forkAnnounced = true;
+      final left = nextChoices.first;
+      final right = nextChoices.last;
+      String label(RouteEdge e) => e.id == closedBranchId
+          ? '${e.road}: CLOSED'
+          : e.secret
+          ? '${e.landmark}: old-road key rumor'
+          : '${e.road} to ${graph.node(e.to).name}';
+      _say('Fork ahead. LEFT ${label(left)}. RIGHT ${label(right)}.', 4, 12);
+    }
+    if (_closedLane != null &&
+        !_closureAnnounced &&
+        _edgeDistance > closureStart - 950) {
+      _closureAnnounced = true;
+      _say(
+        'Road work ahead. ${_closedLane == -1 ? 'Left' : 'Right'} lane closes. Center lane stays open.',
+        4,
+        7,
+      );
+    }
+    if (_remaining < 15 && !_timeWarning) {
+      _timeWarning = true;
+      _say(
+        'Fifteen seconds. The next time gate is ${nextGateMiles.ceil()} route miles ahead.',
+        5,
+        6,
+      );
+    }
+    if (elapsed > _radioUntil && _radioPriority > 0) {
+      _radioPriority = 0;
+      _radio = '${_edge.road} · ${_edge.landmark}';
+    }
+  }
+
+  void _advanceTraffic() {
+    if (elapsed >= _nextSpawn) {
+      final phase = directorPhase;
+      final interval = phase == 'peak'
+          ? 3.8
+          : phase == 'recovery'
+          ? 9.0
+          : 6.2;
+      _nextSpawn = elapsed + interval + _trafficRandom.next() * 2;
+      if (!approachingFork && traffic.length < 13) _spawnTraffic();
+    }
+    for (final other in traffic) {
+      other.position += other.cruiseSpeed * RouteGraph.speedScale * fixedStep;
+      final otherEdgeZ = _edgeDistance + other.position - _worldDistance;
+      final nearClosure =
+          _closedLane != null &&
+          otherEdgeZ > closureStart - 400 &&
+          otherEdgeZ < closureEnd + 100;
+      if (nearClosure &&
+          (other.x - _closedLane! * .65).abs() < .3 &&
+          other.targetX == null) {
+        other.targetX = 0;
+        other.signalTime = 0;
+      }
+      if (elapsed > other.changeAt && other.targetX == null && !nearClosure) {
+        final target = [-.65, 0.0, .65][_trafficRandom.index(3)];
+        other.changeAt = elapsed + 8 + _trafficRandom.next() * 9;
+        if ((target - other.x).abs() > .3) {
+          other.targetX = target;
+          other.signalTime = 0;
+        }
+      }
+      final target = other.targetX;
+      if (target != null) {
+        other.signalTime += fixedStep;
+        final gapClear = traffic.every(
+          (t) =>
+              identical(t, other) ||
+              (t.position - other.position).abs() > 190 ||
+              (t.x - target).abs() > .3,
+        );
+        final playerClear =
+            (other.position - _worldDistance).abs() > 240 ||
+            (playerX - target).abs() > .35;
+        if (other.signalTime >= 2 && gapClear && playerClear) {
+          final difference = target - other.x;
+          other.x +=
+              difference.sign * math.min(difference.abs(), fixedStep * .19);
+          if ((other.x - target).abs() < .01) {
+            other.x = target;
+            other.targetX = null;
+          }
+        }
+      }
+      // A vehicle yields before a closed lane if its signaled merge cannot fit.
+      if (nearClosure &&
+          (other.x - _closedLane! * .65).abs() < .25 &&
+          otherEdgeZ >= closureStart - 60) {
+        other.position -= other.cruiseSpeed * RouteGraph.speedScale * fixedStep;
+      }
+      if (!recovering &&
+          protection <= 0 &&
+          (other.position - _worldDistance).abs() < (other.truck ? 30 : 23) &&
+          (other.x - playerX).abs() < (other.truck ? .25 : .20)) {
+        _crash(
+          flip:
+              _speed - other.cruiseSpeed > 69 ||
+              (playerX - other.x).abs() > .15 && _speed > 140,
+        );
+      }
+    }
+    traffic.removeWhere(
+      (t) =>
+          t.position < _worldDistance - 160 ||
+          t.position > _worldDistance + 11000,
+    );
+  }
+
+  void _spawnTraffic() {
+    final spawn = _worldDistance + 1500 + _trafficRandom.next() * 900;
+    final lane = [-.65, 0.0, .65][_trafficRandom.index(3)];
+    // One car at a time, separated longitudinally; no solid random traffic walls.
+    if (traffic.any((t) => (t.position - spawn).abs() < 320)) return;
+    final palette = [
+      0xffe9d9ac,
+      0xffc16554,
+      0xff698a98,
+      0xff7b965d,
+      0xff8e7ea1,
+    ];
+    traffic.add(
+      TrafficCar(
+        id: _trafficId++,
+        position: spawn,
+        x: lane,
+        cruiseSpeed: 67 + _trafficRandom.next() * 27,
+        color: palette[_trafficRandom.index(palette.length)],
+        truck: _trafficRandom.next() < .18,
+        changeAt: elapsed + 4 + _trafficRandom.next() * 8,
+      ),
+    );
+  }
+
+  void _crash({required bool flip}) {
+    _crashes++;
+    _lastCrashAt = elapsed;
+    crashPose = flip ? CrashPose.flip : CrashPose.spin;
+    _recoveryDuration = flip ? 2.1 : 1.25;
+    _recovery = _recoveryDuration;
+    _speed *= flip ? .27 : .42;
+    _say(
+      flip
+          ? 'Easy! Hold on. Finding a clear place to reset.'
+          : 'A scrape. Breathe. We are still heading west.',
+      5,
+      4,
+    );
+  }
+
+  void _resetSafely() {
+    playerX = 0;
+    // Recovery removes nearby traffic before placing the car in the always-open
+    // center corridor, then grants visible temporary collision protection.
+    traffic.removeWhere((t) => (t.position - _worldDistance).abs() < 420);
+    protection = 3;
+    _recovery = 0;
+    crashPose = CrashPose.driving;
+    _speed = math.max(_speed, 43);
+  }
+
+  void _say(String message, int priority, double duration) {
+    if (priority < _radioPriority && elapsed < _radioUntil) return;
+    _radio = message;
+    _radioPriority = priority;
+    _radioUntil = elapsed + duration;
+  }
+
+  void _finish(bool success) {
+    _finished = true;
+    _completed = success;
+    if (success &&
+        cars
+            .take(cars.length - 1)
+            .every(
+              (c) =>
+                  unlockedCarIds.contains(c.id) ||
+                  _earnedUnlockIds.contains(c.id),
+            )) {
+      _earnedUnlockIds.add('corvette');
+    }
+    _radio = success
+        ? 'The Portofino. Pacific air. You made it.'
+        : 'Out of time. The road will be here when you are ready.';
+    _receipt = RunReceipt(
+      seed: _seed,
+      carId: _car.id,
+      elapsedMs: (elapsed * 1000).round(),
+      distanceMiles: distanceMiles,
+      completed: success,
+      route: routeProgress,
+      gates: _gates,
+      crashes: _crashes,
+      earnedUnlockIds: _earnedUnlockIds,
+    );
+  }
+}
