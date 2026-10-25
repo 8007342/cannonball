@@ -5,6 +5,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 
 import 'paint_palette.dart';
+import '../proof_level.dart';
 
 /// One small original art pack. Images are decoded once, never during drawing.
 class ProofArt {
@@ -14,12 +15,25 @@ class ProofArt {
   bool get coursePropsReady => coursePropFrames.isNotEmpty;
   List<double> groundAnchors = List.of(carGround),
       centerAnchors = List.of(carCenter);
-  late ui.Image asphalt, meadow, cloud, shadow, bridge;
+  late ui.Image asphalt, meadow, cloud, shadow, bridge, leafPatch;
   final List<ui.Rect> carFrames = [];
   final List<ui.Rect> environmentFrames = [];
   String? error;
   bool _disposed = false;
   final List<ui.Image> _resources = [];
+  final Map<String, ui.Image> _levelEnvironments = {};
+  int get levelAssetCount => _levelEnvironments.length;
+  int get levelAssetPixels => _levelEnvironments.values.toSet().fold(
+    0,
+    (sum, image) => sum + image.width * image.height,
+  );
+  ui.Image? environmentFor(ProofLevel level) =>
+      _levelEnvironments[level.autumn
+          ? 'autumn'
+          : level.id == 'arizona'
+          ? 'dry'
+          : 'summer'] ??
+      environmentAtlas;
   static const carGround = [416.0, 412.0, 415.0, 372.0, 400.0, 404.0];
   static const carCenter = [262.0, 254.5, 252.0, 262.0, 256.0, 250.5];
   static const markerFrame = ui.Rect.fromLTWH(224, 1068, 64, 458);
@@ -112,6 +126,97 @@ class ProofArt {
     cloud = _cloudTexture();
     shadow = _shadowTexture();
     bridge = _bridgeTexture();
+    leafPatch = _record(256, 128, (canvas) {
+      final random = math.Random(811);
+      final paint = ui.Paint();
+      const colors = [0xff85512c, 0xffb78035, 0xffd1a346, 0xff70482b];
+      for (var i = 0; i < 135; i++) {
+        final x = random.nextDouble() * 256, y = random.nextDouble() * 128;
+        final length = 3 + random.nextDouble() * 7;
+        final leaf = ui.Path()
+          ..moveTo(x - length, y)
+          ..quadraticBezierTo(x, y - length * .6, x + length, y)
+          ..quadraticBezierTo(x, y + length * .6, x - length, y);
+        paint.color = ui.Color(colors[i % colors.length]);
+        canvas.drawPath(leaf, paint);
+        if (i % 5 == 0) {
+          canvas.drawLine(
+            ui.Offset(x - length * .4, y),
+            ui.Offset(x + length * .6, y),
+            ui.Paint()..color = const ui.Color(0x99f4d28d),
+          );
+        }
+      }
+    });
+    if (course) _prepareLevelEnvironments();
+  }
+
+  void _prepareLevelEnvironments() {
+    final source = environmentAtlas!;
+    _levelEnvironments['summer'] = source;
+    // Three shared material sets serve six packs, rather than six full atlases.
+    for (final autumn in [true, false]) {
+      final key = autumn ? 'autumn' : 'dry';
+      _levelEnvironments[key] = _record(source.width, source.height, (canvas) {
+        final paint = ui.Paint();
+        canvas.drawImage(source, ui.Offset.zero, paint);
+        for (var i = 0; i < 3; i++) {
+          final cell = environmentFrames[i];
+          canvas.save();
+          canvas.clipRect(cell);
+          canvas.drawRect(cell, ui.Paint()..blendMode = ui.BlendMode.clear);
+          paint.colorFilter = ui.ColorFilter.matrix(
+            autumn
+                ? [
+                    .65,
+                    .65,
+                    0,
+                    0,
+                    10,
+                    .12,
+                    .72,
+                    0,
+                    0,
+                    2,
+                    .08,
+                    .19,
+                    .35,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                  ]
+                : [
+                    .85,
+                    .24,
+                    0,
+                    0,
+                    0,
+                    .08,
+                    .72,
+                    0,
+                    0,
+                    0,
+                    .05,
+                    .15,
+                    .57,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                  ],
+          );
+          canvas.drawImage(source, ui.Offset.zero, paint);
+          canvas.restore();
+        }
+      });
+    }
   }
 
   void _cacheRoadFurniture(ui.Image? props, ui.Image? businesses) {
@@ -367,6 +472,7 @@ class ProofArt {
             const ui.Color(0x241b3342),
             const ui.Color(0x001b3342),
           ],
+          [0, .5, 1],
         );
         canvas.drawRect(rect, paint);
       }
@@ -520,6 +626,7 @@ class ProofArt {
       image.dispose();
     }
     _resources.clear();
+    _levelEnvironments.clear();
   }
 }
 

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import '../game/race.dart';
 import '../game/proof_car.dart';
 import '../game/proof_course.dart';
+import '../game/proof_level.dart';
 import '../platform/browser_platform.dart';
 import '../platform/proof_telemetry.dart';
 import '../platform/proof_radio.dart';
@@ -30,7 +31,6 @@ class VisualProofScreen extends StatefulWidget {
 
 class _VisualProofScreenState extends State<VisualProofScreen>
     with WidgetsBindingObserver {
-  static const seed = 731;
   static const duration = 120.0;
   static const _chapterStarts = [
     0.0,
@@ -52,6 +52,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   static const cream = Color(0xffffedcc);
   static const accent = Color(0xffffc56c);
   static const dark = Color(0xff14242b);
+  ProofLevel _level = ProofLevel.fromId(Uri.base.queryParameters['level']);
   late final RaceController _race;
   RaceGame? _game;
   late final Widget _scene;
@@ -79,7 +80,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _race = widget.controller ?? RaceController();
     _race.start(
       proofCar,
-      seed: seed,
+      seed: _level.seed,
+      level: _level,
       reactiveTraffic: true,
       launchSpeed: _courseStart > 0 ? 95 : 0,
       testCourse: true,
@@ -161,7 +163,17 @@ class _VisualProofScreenState extends State<VisualProofScreen>
 
   Map<String, Object?> _snapshot() => {
     'compiledToWasm': const bool.fromEnvironment('dart.tool.dart2wasm'),
-    'seed': seed,
+    'seed': _level.seed,
+    'level': _level.id,
+    'levelName': _level.name,
+    'weather': _race.weather.name,
+    'wetness': _level.wet,
+    'canopyCoverage': _level.canopyAt(_race.courseDistance),
+    'levelAssets': _game?.levelAssetCount,
+    'levelAssetPixels': _game?.levelAssetPixels,
+    'night': _game?.nightStrength,
+    'beamAim': _game?.lighting.aim,
+    'lightHistorySources': _game?.lightHistory.sources.length,
     'sceneCar': _race.car.id,
     'simClock': _race.elapsed,
     'durationSeconds': duration,
@@ -259,9 +271,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   void _reset() {
     if (!mounted) return;
     _resetInput();
+    _game?.lighting.reset();
+    _game?.lightHistory.clear();
     _race.start(
       proofCar,
-      seed: seed,
+      seed: _level.seed,
+      level: _level,
       reactiveTraffic: true,
       launchSpeed: _courseStart > 0 ? 95 : 0,
       testCourse: true,
@@ -333,11 +348,11 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _phase.value = _ProofPhase.paused;
   }
 
-  String get _radioStation => switch (_race.currentEdge.biome) {
-    Biome.city => 'City',
-    Biome.mountain || Biome.canyon => 'Mountain',
-    _ => 'Forest',
-  };
+  String get _radioStation => _level.urban
+      ? 'City'
+      : _level.id == 'arizona'
+      ? 'Mountain'
+      : 'Forest';
 
   void _onRace() {
     if (!mounted || _phase.value != _ProofPhase.driving) return;
@@ -405,7 +420,29 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _start();
   }
 
+  void _selectLevel(ProofLevel level) {
+    _level = level;
+    _courseStart = 0;
+    _reset();
+    _start();
+    setState(() {});
+  }
+
   void _key(KeyEvent event) {
+    if (event is KeyDownEvent) {
+      final index = const [
+        LogicalKeyboardKey.keyQ,
+        LogicalKeyboardKey.keyW,
+        LogicalKeyboardKey.keyE,
+        LogicalKeyboardKey.keyR,
+        LogicalKeyboardKey.keyT,
+        LogicalKeyboardKey.keyY,
+      ].indexOf(event.logicalKey);
+      if (index >= 0) {
+        _selectLevel(ProofLevel.all[index]);
+        return;
+      }
+    }
     if (event is KeyDownEvent && _phase.value != _ProofPhase.departing) {
       if (event.logicalKey == LogicalKeyboardKey.keyV) {
         _toggleSpeedEffects();
@@ -415,7 +452,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
         _cycleCamera();
         return;
       }
-      if (event.logicalKey == LogicalKeyboardKey.keyR) {
+      if (event.logicalKey == LogicalKeyboardKey.backspace) {
         _restartCourse();
         return;
       }
@@ -542,33 +579,47 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const IgnorePointer(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'CANNONBALL',
-                                  style: TextStyle(
-                                    color: cream,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 24,
-                                    letterSpacing: 4,
-                                    shadows: [
-                                      Shadow(blurRadius: 12, color: dark),
-                                    ],
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'CANNONBALL',
+                                style: TextStyle(
+                                  color: cream,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 24,
+                                  letterSpacing: 4,
+                                  shadows: [
+                                    Shadow(blurRadius: 12, color: dark),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 3),
+                              PopupMenuButton<String>(
+                                tooltip: 'Choose level (Q W E R T Y)',
+                                onSelected: (id) =>
+                                    _selectLevel(ProofLevel.fromId(id)),
+                                itemBuilder: (_) => [
+                                  for (final l in ProofLevel.all)
+                                    PopupMenuItem(
+                                      value: l.id,
+                                      child: Text('${l.key}  ${l.name}'),
+                                    ),
+                                ],
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 8,
+                                  ),
+                                  child: Text(
+                                    '${_level.key}  ${_level.name.toUpperCase()}  v',
+                                    style: const TextStyle(
+                                      color: accent,
+                                      fontSize: 9,
+                                    ),
                                   ),
                                 ),
-                                SizedBox(height: 3),
-                                Text(
-                                  'THE ROAD IN MOTION',
-                                  style: TextStyle(
-                                    color: accent,
-                                    fontSize: 9,
-                                    letterSpacing: 2.5,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                           const Spacer(),
                           ValueListenableBuilder(

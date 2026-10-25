@@ -26,8 +26,10 @@ class RoadMesh {
     double v1,
     double v2,
     int nearColor,
-    int farColor,
-  ) {
+    int farColor, {
+    int? nearRightColor,
+    int? farRightColor,
+  }) {
     if (count >= maxQuads) return;
     final p = count * 12, c = count * 6;
     positions[p] = x1;
@@ -55,10 +57,10 @@ class RoadMesh {
     coordinates[p + 10] = u1;
     coordinates[p + 11] = v2;
     colors[c] = nearColor;
-    colors[c + 1] = nearColor;
+    colors[c + 1] = nearRightColor ?? nearColor;
     colors[c + 2] = farColor;
-    colors[c + 3] = nearColor;
-    colors[c + 4] = farColor;
+    colors[c + 3] = nearRightColor ?? nearColor;
+    colors[c + 4] = farRightColor ?? farColor;
     colors[c + 5] = farColor;
     count++;
   }

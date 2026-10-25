@@ -35,6 +35,7 @@ context, avoiding detached or misleading authority claims.
 | [Proposed runtime boundaries](../../docs/architecture/runtime.md) | Design / implementation / validation | 0 |
 | [Low horizon, brief radio and contact review](../../docs/camera-radio-contact-review.md) | Design / implementation / validation | 0 |
 | [Steering camera repair and rim finish](../../docs/camera-steering-repair.md) | Design / implementation / validation | 0 |
+| [Six composed road packs — local review, 2026-10-25](../../docs/composed-levels-review.md) | Design / implementation / validation | 0 |
 | [Cloudflare deployment preparation](../../docs/deployment.md) | Design / implementation / validation | 5 |
 | [Design decision register](../../docs/design/decisions.md) | Design / implementation / validation | 1 |
 | [Cannonball design interview](../../docs/design/interview.md) | Design / implementation / validation | 0 |
@@ -57,6 +58,7 @@ context, avoiding detached or misleading authority claims.
 | [Cannonball design research](../../docs/research/design.md) | Research / source interpretation | 15 |
 | [Cannonball engine and platform research](../../docs/research/engine.md) | Research / source interpretation | 14 |
 | [Gentle-road cruising without a lane-center magnet](../../docs/research/lane-following-assist.md) | Research / source interpretation | 3 |
+| [Composed levels, night lighting and autumn canopy research](../../docs/research/level-lighting-scenery.md) | Research / source interpretation | 19 |
 | [Pixel art, smooth movement, and camera lean](../../docs/research/motion-art.md) | Research / source interpretation | 9 |
 | [Next proof: source review and application ledger](../../docs/research/next-proof-source-review.md) | Research / source interpretation | 89 |
 | [Perceived speed: third-proof research and review protocol](../../docs/research/perceived-speed-milestone.md) | Research / source interpretation | 7 |

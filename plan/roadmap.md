@@ -47,3 +47,11 @@ with bounded preview mesh, animated vegetation and admission/release budgets.
 See docs/research/next-proof-source-review.md for every adopted/deferred/excluded
 research direction and docs/grounded-speed-proof.md for local evidence. The
 current angular touch baseline remains default; touch=travel is a comparison.
+
+The next composition phase is `composed-lighting-levels`: six Q–Y selectable
+illustrative road packs, shared generated terrain/metadata, three cached painted
+material variants, local night lighting/emissives/trails and autumn canopy/leaf
+composition. Number keys retain within-level replay; restart moves to Backspace.
+Source applications and deferred full-optics techniques are documented in
+docs/research/level-lighting-scenery.md. User/physical-device acceptance remains
+tracked separately from local implementation and browser evidence.

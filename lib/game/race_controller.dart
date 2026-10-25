@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import 'models.dart';
 import 'proof_course.dart';
+import 'proof_level.dart';
 import 'proof_encounters.dart';
 import 'proof_contacts.dart';
 import 'proof_dynamics.dart';
@@ -30,6 +31,8 @@ enum CrashPose { driving, spin, flip }
 /// The simulation never reads canvas dimensions, browser APIs, network or audio.
 /// A fixed 60 Hz step controls clocks, traffic, branches, and collisions.
 class RaceController extends ChangeNotifier {
+  ProofLevel proofLevel = ProofLevel.all.first;
+  late ProofTerrain proofTerrain = ProofTerrain(proofLevel);
   static const fixedStep = 1 / 60;
   static const gateSpacingMiles = 155.0;
   static const gateBonusSeconds = 45.0;
@@ -162,7 +165,10 @@ class RaceController extends ChangeNotifier {
     bool testCourse = false,
     bool denseTraffic = false,
     double courseStartDistance = 0,
+    ProofLevel? level,
   }) {
+    proofLevel = level ?? ProofLevel.all.first;
+    proofTerrain = ProofTerrain(proofLevel);
     testCourseEnabled = testCourse;
     denseProofTraffic = testCourse && denseTraffic;
     this.courseStartDistance = testCourse && courseStartDistance.isFinite
@@ -224,6 +230,7 @@ class RaceController extends ChangeNotifier {
     previousBiome = null;
     _enterEdge();
     if (testCourseEnabled) {
+      weather = proofLevel.weather;
       for (var id = 0; 4120 + id * 9 < 4920; id++) {
         final distance = 4120 + id * 9.0;
         final taper = ((distance - 4120) / 180).clamp(0.0, 1.0);
@@ -268,7 +275,8 @@ class RaceController extends ChangeNotifier {
 
   double curveAt(double position) {
     if (testCourseEnabled) {
-      return ProofCourse.steeringLoadAt(position + courseStartDistance);
+      return (proofTerrain.curvatureAt(position + courseStartDistance) * 55)
+          .clamp(-.4, .4);
     }
     final phase = _seed % 251 / 40;
     final strength = _edge.biome == Biome.mountain ? 1.0 : .62;
@@ -342,8 +350,8 @@ class RaceController extends ChangeNotifier {
               steering: safeSteering,
               steeringRate: (_effectiveSteering - previousSteering) / fixedStep,
               grade:
-                  (ProofCourse.elevationAt(courseDistance + 5) -
-                      ProofCourse.elevationAt(courseDistance - 5)) /
+                  (proofTerrain.elevationAt(courseDistance + 5) -
+                      proofTerrain.elevationAt(courseDistance - 5)) /
                   840,
             )
           : _car.acceleration;

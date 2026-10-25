@@ -38,6 +38,37 @@ Future<RaceController> mountProof(
 }
 
 void main() {
+  testWidgets(
+    'Q to Y swaps levels, digits retain the pack, Backspace restarts',
+    (tester) async {
+      final race = await mountProof(tester);
+      await startProof(tester);
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.arrowRight);
+      await tester.sendKeyDownEvent(LogicalKeyboardKey.arrowDown);
+      expect(race.steering, 1);
+      await tester.sendKeyEvent(LogicalKeyboardKey.keyW);
+      await tester.pump();
+      expect(race.proofLevel.id, 'indiana');
+      expect(race.steering, 0);
+      expect(race.braking, isFalse);
+      expect(race.elapsed, 0);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.arrowRight);
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.arrowDown);
+      await tester.sendKeyEvent(LogicalKeyboardKey.digit3);
+      await tester.pump();
+      expect(race.proofLevel.id, 'indiana');
+      expect(race.courseStartDistance, 2250);
+      await tester.sendKeyEvent(LogicalKeyboardKey.keyR);
+      await tester.pump();
+      expect(race.proofLevel.id, 'ohio');
+      expect(race.courseStartDistance, 0);
+      await tester.sendKeyEvent(LogicalKeyboardKey.backspace);
+      await tester.pump();
+      expect(race.proofLevel.id, 'ohio');
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('proof starts paused with the seeded S2000 keys in the garage', (
     tester,
   ) async {

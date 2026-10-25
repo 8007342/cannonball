@@ -192,3 +192,23 @@ touch behavior remains angular. [Research application ledger](docs/research/next
 records adopted, deferred and excluded techniques; [proof review](docs/grounded-speed-proof.md)
 records local evidence and limits. Physical-phone comfort and moving art approval
 remain open.
+
+## Six composed review levels
+
+Open `/?proof=1` and use Q/W/E/R/T/Y (or the level-name popup) to select Hudson
+daylight, Indiana golden canopy, Iowa prairie sunset, Ohio wooded night, Chicago
+rain after dark, and Arizona desert dusk. These are illustrative pack compositions,
+not verified real-world roads. Each has a distinct seed/terrain, conditions,
+sky/ground palette, scenery selection and canopy/lamp eligibility.
+
+Keys1–8 replay sections of the selected level; **Backspace** now restarts the
+section because R selects Ohio. Arrow/touch steering and braking stay unchanged.
+Direct links accept `level=indiana`, `level=ohio`, `level=chicago`, etc.
+
+Night materials use local steering/NPC headlights and passing lamps. Running/brake
+lights and scenic signals retain bright cores/halos and short source-only trails;
+wet surfaces have selective reflection cues. Autumn adds warm foliage, conditional
+rooted crowns, dapple and wet shoulder leaves. These are bounded2.5D effects, not
+full PBR/volumetric optics. The [lighting/scenery research](docs/research/level-lighting-scenery.md)
+and [review notes](docs/composed-levels-review.md) record sources, deferrals and
+local verification. Real-phone comfort/performance and final art approval remain open.

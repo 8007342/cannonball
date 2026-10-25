@@ -10,6 +10,8 @@ import 'render/proof_art.dart';
 import 'render/proof_camera.dart';
 import 'render/proof_depth.dart';
 import 'render/proof_foliage.dart';
+import 'render/proof_lighting.dart';
+import 'proof_level.dart';
 import 'render/proof_suspension.dart';
 import 'render/road_mesh.dart';
 import 'render/vehicle_pose.dart';
@@ -51,6 +53,7 @@ class _Object {
   final _Kind kind;
   final double z, lateral, width;
   final int frame;
+  int lightId = -1;
   final bool braking;
   final double incident, reaction, flightAge;
   double fadeFar = double.infinity;
@@ -64,6 +67,23 @@ class RaceGame extends FlameGame {
   final RaceController controller;
   final bool proofMode;
   final ProofArt _art = ProofArt();
+  final lighting = ProofLighting();
+  final lightHistory = LightHistory();
+  final Map<int, double> _lightCache = {};
+  final Map<(double, double), bool> _lightVisibilityCache = {};
+  ProofLevel get level => controller.proofLevel;
+  ProofTerrain get terrain => controller.proofTerrain;
+  int get levelAssetCount => _art.levelAssetCount;
+  int get levelAssetPixels => _art.levelAssetPixels;
+  double get nightStrength => _course
+      ? math.max(
+          level.night,
+          ProofCourse.tunnelAt(controller.courseDistance) * .9,
+        )
+      : 0;
+  ui.Image? get _environment =>
+      _course ? _art.environmentFor(level) : _art.environmentAtlas;
+
   final SteeringPresentation _steeringArt = SteeringPresentation();
   final BillboardBatch _batch = BillboardBatch();
   static const _w = 1000.0, _roadHalfWidth = 1100.0;
@@ -160,7 +180,8 @@ class RaceGame extends FlameGame {
   );
   final RoadMesh _ground = RoadMesh(_segmentCount);
   final RoadMesh _shoulder = RoadMesh(_segmentCount);
-  final RoadMesh _asphalt = RoadMesh(_segmentCount);
+  final RoadMesh _asphalt = RoadMesh(_segmentCount * 3);
+  final RoadMesh _leaves = RoadMesh(_segmentCount * 2);
   final RoadMesh _joiningLane = RoadMesh(_segmentCount);
   final RoadMesh _joiningMarkings = RoadMesh(_segmentCount * 2);
   final RoadMesh _markings = RoadMesh(_segmentCount * 9);
@@ -169,7 +190,7 @@ class RaceGame extends FlameGame {
   final Paint _paint = Paint()
     ..isAntiAlias = true
     ..filterQuality = FilterQuality.low;
-  late Paint _roadPaint, _groundPaint;
+  late Paint _roadPaint, _groundPaint, _leafPaint;
   final Stopwatch _renderWatch = Stopwatch(), _updateWatch = Stopwatch();
   int renderCount = 0, updateCount = 0;
   int renderCpuMicros = 0, updateCpuMicros = 0;
@@ -249,6 +270,14 @@ class RaceGame extends FlameGame {
           filterQuality: FilterQuality.low,
         )
         ..isAntiAlias = false;
+      _leafPaint = Paint()
+        ..shader = ui.ImageShader(
+          _art.leafPatch,
+          TileMode.repeated,
+          TileMode.repeated,
+          identity,
+          filterQuality: FilterQuality.low,
+        );
       _groundPaint = Paint()
         ..shader = ui.ImageShader(
           _art.meadow,
@@ -284,9 +313,11 @@ class RaceGame extends FlameGame {
       chase.reset();
       suspension.reset();
       groundedSlope.reset();
+      lighting.reset();
+      lightHistory.clear();
       _lastConeHits = 0;
       _coursePitch = _course
-          ? ProofCourse.pitchAt(controller.courseDistance, _flowScale)
+          ? terrain.pitchAt(controller.courseDistance, _flowScale)
           : 0;
     }
     if (!controller.paused && !controller.finished && dt.isFinite) {
@@ -299,6 +330,7 @@ class RaceGame extends FlameGame {
     controller.tick(dt);
     if (_course && !controller.paused && !controller.finished) {
       _steeringArt.update(controller.effectiveSteering, dt);
+      lighting.update(controller.effectiveSteering, dt);
       chase.update(
         speedRatio: controller.speed / controller.car.topSpeed,
         steering: controller.effectiveSteering,
@@ -307,7 +339,7 @@ class RaceGame extends FlameGame {
         stable: stableChase || controller.comfortMode,
         dt: dt,
       );
-      final targetPitch = ProofCourse.pitchAt(
+      final targetPitch = terrain.pitchAt(
         controller.courseDistance,
         _flowScale,
       );
@@ -325,7 +357,7 @@ class RaceGame extends FlameGame {
         impact: controller.coneHitCount > _lastConeHits,
       );
       groundedSlope.update(
-        grade: ProofCourse.gradeAt(controller.courseDistance, _flowScale),
+        grade: terrain.gradeAt(controller.courseDistance, _flowScale),
         cameraPitch: math.atan(_viewPitch / (_projection * .70)),
         dt: dt,
         quiet: controller.comfortMode || !suspensionEnabled,
@@ -354,10 +386,10 @@ class RaceGame extends FlameGame {
   }
 
   double _center(double z) => _course
-      ? ProofCourse.centerAt(_courseAt(z))
+      ? terrain.centerAt(_courseAt(z))
       : controller.centerAt((z - _worldOffset) / _flowScale) * 8;
   double _elevation(double z) {
-    if (_course) return ProofCourse.elevationAt(_courseAt(z));
+    if (_course) return terrain.elevationAt(_courseAt(z));
     if (proofMode) {
       return math.sin(z / 5900) * 620 + math.sin(z / 2750) * 115;
     }
@@ -390,6 +422,8 @@ class RaceGame extends FlameGame {
       ..start();
     super.render(canvas);
     _batch.drawCalls = 0;
+    _lightCache.clear();
+    _lightVisibilityCache.clear();
     if (size.x > 0 && size.y > 0) {
       final scale = size.x / _w;
       _h = size.y / scale;
@@ -453,7 +487,6 @@ class RaceGame extends FlameGame {
         _dust(canvas);
         canvas.restore();
         _weather(canvas);
-        if (_course) _courseAtmosphere(canvas);
         if (_course && speedEffects && !controller.comfortMode) {
           _speedCues(canvas);
         }
@@ -506,49 +539,300 @@ class RaceGame extends FlameGame {
     }
   }
 
-  int _fogAt(double distance) => Color.fromRGBO(
-    184,
-    205,
-    207,
-    ((distance - 1800) / 11000).clamp(0.0, .48),
-  ).toARGB32();
+  bool _lightVisible(double from, double to) {
+    return _lightVisibilityCache.putIfAbsent((
+      from,
+      to,
+    ), () => _evaluateLightVisibility(from, to));
+  }
 
-  void _courseAtmosphere(Canvas canvas) {
-    final darkness = ProofCourse.tunnelAt(controller.courseDistance);
-    if (darkness > 0) {
-      canvas.drawRect(
-        Rect.fromLTWH(0, 0, _w, _h),
-        Paint()..color = Color.fromRGBO(16, 23, 31, darkness * .56),
+  bool _evaluateLightVisibility(double from, double to) {
+    final a = _elevation(from) + 140, b = _elevation(to) + 30;
+    for (final t in [.25, .5, .75]) {
+      if (_elevation(from + (to - from) * t) > a + (b - a) * t) return false;
+    }
+    return true;
+  }
+
+  double _illumination(double z, double lateral) {
+    if (!_course || nightStrength < .05) return 0;
+    final key = z.round() * 8192 + (lateral * 256).round();
+    return _lightCache.putIfAbsent(
+      key,
+      () => _evaluateIllumination(z, lateral),
+    );
+  }
+
+  double _evaluateIllumination(double z, double lateral) {
+    final distance = z - _world;
+    final bend =
+        (_center(z) - _center(_world) - _tangent * distance) / _roadHalfWidth;
+    var light = distance > 0 && distance < 26000 && _lightVisible(_world, z)
+        ? ProofLighting.beam(distance, lateral + bend - _playerX, lighting.aim)
+        : 0.0;
+    // Only the nearest three NPC emitters contribute to surfaces.
+    var used = 0;
+    for (final car in controller.traffic) {
+      final origin = car.position * _flowScale + _worldOffset;
+      if ((origin - _world).abs() > 18000) continue;
+      final forward = z - origin;
+      if (forward <= 0 || forward > 14000) continue;
+      if (_lightVisible(origin, z)) {
+        light += ProofLighting.beam(forward * 1.6, lateral - car.x, 0) * .42;
+      }
+      if (++used >= 3) break;
+    }
+    if (level.lampSpacing > 0) {
+      final s = _courseAt(z);
+      final ordinal = ((s - 25) / level.lampSpacing).round();
+      final lampS = 25 + ordinal * level.lampSpacing;
+      final side = ordinal.isEven ? -1.24 : 1.24;
+      final along = (s - lampS) / 25;
+      final across = (lateral - side) / 1.35;
+      if (ProofCourse.tunnelAt(lampS) < .1) {
+        light += .8 / (1 + along * along * 2 + across * across);
+      }
+    }
+    return light.clamp(0.0, 1.0);
+  }
+
+  int _material(int color, double z, double lateral) => !_course
+      ? color
+      : ProofLighting.material(color, nightStrength, _illumination(z, lateral));
+
+  void _glow(
+    Canvas canvas,
+    Offset position,
+    double radius,
+    Color color, {
+    double strength = 1,
+  }) {
+    final paint = Paint()..blendMode = BlendMode.plus;
+    paint.shader = ui.Gradient.radial(position, radius, [
+      color.withValues(alpha: .36 * strength),
+      color.withValues(alpha: 0),
+    ]);
+    canvas.drawCircle(position, radius, paint);
+    paint
+      ..shader = null
+      ..color = color.withValues(alpha: .95 * strength);
+    canvas.drawCircle(position, math.max(.7, radius * .10), paint);
+  }
+
+  void _carLights(
+    Canvas canvas,
+    _Object object,
+    double x,
+    double y,
+    double width,
+    double clip,
+  ) {
+    if (nightStrength < .05 || y - width * .30 >= clip) return;
+    _batch.flush(canvas);
+    canvas.save();
+    canvas.clipRect(
+      Rect.fromLTWH(
+        -200,
+        -200,
+        _w + 400,
+        math.max(0, math.min(_h + 200, clip) + 200),
+      ),
+    );
+    final braking = object.kind == _Kind.player
+        ? controller.braking
+        : object.braking;
+    final radius = (width * (braking ? .16 : .105)).clamp(2.0, 32.0);
+    for (var side = 0; side < 2; side++) {
+      final position = Offset(
+        x + (side == 0 ? -1 : 1) * width * .29,
+        y - width * .34,
       );
-      // A readable headlight pool uses one cached-style gradient, not a blur.
-      final light = ui.Gradient.radial(Offset(_w * .5, _h * .69), _w * .4, [
-        Color.fromRGBO(255, 230, 175, darkness * .14),
-        const Color(0x00ffe6af),
-      ]);
-      canvas.drawRect(
-        Rect.fromLTWH(0, _h * .38, _w, _h * .62),
-        Paint()..shader = light,
+      final id = object.lightId * 2 + side;
+      final history = lightHistory.record(
+        id,
+        controller.elapsed,
+        position,
+        quiet: controller.comfortMode || controller.paused,
+      );
+      for (final sample in history) {
+        final age = controller.elapsed - sample.time;
+        if (age <= .002) continue;
+        final fade = math.pow(1 - age / LightHistory.lifetime, 2).toDouble();
+        final paint = Paint()
+          ..blendMode = BlendMode.plus
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = math.max(1, width * .022)
+          ..color = Color.fromRGBO(255, 34, 12, fade * .32);
+        canvas.drawLine(sample.position, position, paint);
+      }
+      _glow(
+        canvas,
+        position,
+        radius,
+        braking ? const Color(0xffff431e) : const Color(0xffff2812),
+      );
+      if (level.wet > 0) {
+        if (width > 30) {
+          final reflection = Paint()..strokeWidth = math.max(.6, width * .008);
+          for (var ripple = 0; ripple < 8; ripple++) {
+            final t = ripple / 8;
+            final shimmer = math.sin(_world / 200 + ripple * 2.4);
+            final rx = position.dx + shimmer * width * .012;
+            final ry = y + width * (.015 + t * .32);
+            reflection.color = Color.fromRGBO(
+              255,
+              76,
+              30,
+              (1 - t) * .22 * level.wet,
+            );
+            canvas.drawLine(
+              Offset(rx - width * .055 * (1 - t), ry),
+              Offset(rx + width * .055 * (1 - t), ry),
+              reflection,
+            );
+          }
+        }
+      }
+    }
+    canvas.restore();
+  }
+
+  void _lampLight(
+    Canvas canvas,
+    _Object object,
+    _RoadPoint p,
+    double x,
+    double width,
+    double clip,
+  ) {
+    if (nightStrength < .05 || object.kind != _Kind.lamp) return;
+    final y = p.y - width * 1.57;
+    if (y >= clip) return;
+    _batch.flush(canvas);
+    canvas.save();
+    canvas.clipRect(
+      Rect.fromLTWH(
+        -200,
+        -200,
+        _w + 400,
+        math.max(0, math.min(_h + 200, clip) + 200),
+      ),
+    );
+    final position = Offset(x - width * .1, y);
+    for (final sample in lightHistory.record(
+      object.lightId * 2,
+      controller.elapsed,
+      position,
+      quiet: controller.comfortMode || controller.paused,
+    )) {
+      final age = controller.elapsed - sample.time;
+      if (age <= .002) continue;
+      final fade = math.pow(1 - age / LightHistory.lifetime, 2).toDouble();
+      canvas.drawLine(
+        sample.position,
+        position,
+        Paint()
+          ..blendMode = BlendMode.plus
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = math.max(1, width * .035)
+          ..color = Color.fromRGBO(255, 211, 139, fade * .25),
       );
     }
+    _glow(
+      canvas,
+      position,
+      (width * .26).clamp(2.0, 75.0),
+      const Color(0xffffd38b),
+    );
+    if (level.wet > 0) {
+      final paint = Paint()
+        ..shader = ui.Gradient.radial(Offset(x, p.y), math.max(2, width * .8), [
+          const Color(0x55ffcd75),
+          const Color(0x00ffcd75),
+        ]);
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: Offset(x, p.y),
+          width: width * .3,
+          height: width * 1.2,
+        ),
+        paint,
+      );
+    }
+    // Scenic signal sample, outside the travel lane; no stop-rule gameplay.
+    if (level.urban && object.lightId.isEven) {
+      final signal = Offset(x + width * .28, y + width * .4);
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromCenter(
+            center: signal,
+            width: width * .18,
+            height: width * .46,
+          ),
+          const Radius.circular(2),
+        ),
+        Paint()..color = const Color(0xff152326),
+      );
+      _glow(
+        canvas,
+        signal + Offset(0, -width * .12),
+        (width * .11).clamp(1.0, 20.0),
+        const Color(0xffff3b18),
+      );
+    }
+    canvas.restore();
   }
 
   void _sky(Canvas canvas) {
+    _paint
+      ..color = const Color(0xffffffff)
+      ..colorFilter = null
+      ..maskFilter = null
+      ..blendMode = BlendMode.srcOver;
     final sky = Rect.fromLTWH(0, 0, _w, _h);
     _paint.shader = ui.Gradient.linear(
       Offset.zero,
       Offset(0, _h * (horizonFraction + .18)),
       [
-        const Color(0xff80bbd5),
-        const Color(0xffd8e6d4),
-        const Color(0xffffe6ba),
+        _course
+            ? Color.lerp(
+                Color.lerp(
+                  const Color(0xff80bbd5),
+                  const Color(0xff705d86),
+                  level.sunset,
+                )!,
+                const Color(0xff080f24),
+                nightStrength,
+              )!
+            : const Color(0xff80bbd5),
+        _course
+            ? Color.lerp(
+                Color.lerp(
+                  const Color(0xffd8e6d4),
+                  const Color(0xffe0a66f),
+                  level.sunset,
+                )!,
+                const Color(0xff25354b),
+                nightStrength,
+              )!
+            : const Color(0xffd8e6d4),
+        _course
+            ? Color.lerp(
+                const Color(0xffffc178),
+                const Color(0xff35424b),
+                nightStrength,
+              )!
+            : const Color(0xffffe6ba),
       ],
       [0, .72, 1],
     );
     canvas.drawRect(sky, _paint);
     _paint.shader = null;
     final sun = Offset(800, _h * (horizonFraction - .13 + _viewPitch));
-    _paint.color = const Color(0xffffefd0);
-    canvas.drawCircle(sun, 27, _paint);
+    _paint.color = nightStrength > .7
+        ? const Color(0xffd6e3ed)
+        : const Color(0xffffd49b);
+    canvas.drawCircle(sun, nightStrength > .7 ? 15 : 27, _paint);
     if (!_loaded) return;
     final src = Rect.fromLTWH(
       0,
@@ -565,7 +849,12 @@ class RaceGame extends FlameGame {
               1440) -
           240;
       final y = _h * (horizonFraction - .255 + (i % 3) * .065 + _viewPitch);
-      _paint.color = Color.fromRGBO(255, 255, 255, i.isEven ? .88 : .50);
+      _paint.color = Color.fromRGBO(
+        255,
+        255,
+        255,
+        (i.isEven ? .88 : .50) * (1 - nightStrength * .8),
+      );
       canvas.drawImageRect(
         _art.cloud,
         src,
@@ -586,9 +875,40 @@ class RaceGame extends FlameGame {
       backdrop.height.toDouble(),
     );
     final offset = -(_center(_world) * .018) % 1200;
-    final height = _h * .54;
+    final height =
+        _h *
+        (_course && level.id == 'iowa'
+            ? .16
+            : _course && level.id == 'chicago'
+            ? .28
+            : .54);
     final y = _h * (horizonFraction + .09 + _viewPitch) - height;
     _paint.color = const Color(0xffffffff);
+    if (_course) {
+      final n = nightStrength;
+      _paint.colorFilter = ColorFilter.matrix([
+        1 - .82 * n,
+        0,
+        0,
+        0,
+        level.sunset * 12,
+        0,
+        1 - .75 * n,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1 - .55 * n,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+      ]);
+    }
     for (var i = -2; i < 2; i++) {
       canvas.drawImageRect(
         backdrop,
@@ -597,11 +917,15 @@ class RaceGame extends FlameGame {
         _paint,
       );
     }
+    _paint.colorFilter = null;
     // A thin haze unifies the painted distance with the live projected terrain.
     _paint.shader = ui.Gradient.linear(
       Offset(0, _h * (horizonFraction + .02 + _viewPitch)),
       Offset(0, _h * (horizonFraction + .16 + _viewPitch)),
-      [const Color(0x00d6dfbe), const Color(0xffb5c49a)],
+      [
+        const Color(0x00d6dfbe),
+        Color(_course ? _material(0xffb5c49a, _world + 25000, 0) : 0xffb5c49a),
+      ],
     );
     canvas.drawRect(
       Rect.fromLTWH(0, _h * (horizonFraction + .02 + _viewPitch), _w, _h * .19),
@@ -614,6 +938,7 @@ class RaceGame extends FlameGame {
     _ground.clear();
     _shoulder.clear();
     _asphalt.clear();
+    _leaves.clear();
     _joiningLane.clear();
     _joiningMarkings.clear();
     _markings.clear();
@@ -625,7 +950,9 @@ class RaceGame extends FlameGame {
       if (_points[i].y < crestClip) crestClip = _points[i].y;
     }
     final biome = _biome;
-    final green = biome == Biome.city
+    final green = _course
+        ? Color(level.ground)
+        : biome == Biome.city
         ? const Color(0xff9cb77c)
         : biome == Biome.mountain
         ? const Color(0xff8da982)
@@ -654,8 +981,8 @@ class RaceGame extends FlameGame {
         2048,
         worldZ / 900 * 256,
         nextWorldZ / 900 * 256,
-        color,
-        color,
+        _material(color, worldZ, 2),
+        _material(color, nextWorldZ, 2),
       );
       final shoulderColor = biome == Biome.city ? 0xffc9c5aa : 0xffd4c297;
       _shoulder.quad(
@@ -669,15 +996,15 @@ class RaceGame extends FlameGame {
         512,
         worldZ / 480 * 512,
         nextWorldZ / 480 * 512,
-        shoulderColor,
-        shoulderColor,
+        _material(shoulderColor, worldZ, 1.15),
+        _material(shoulderColor, nextWorldZ, 1.15),
       );
       final weatherTint = controller.weather == RaceWeather.rain
           ? const Color(0xffb4c6d0)
           : controller.weather == RaceWeather.snow
           ? const Color(0xffd5dfe0)
           : const Color(0xffffffff);
-      final tint = Color.lerp(
+      var tint = Color.lerp(
         weatherTint,
         const Color(0xffd5dfdf),
         fade * .5,
@@ -722,20 +1049,55 @@ class RaceGame extends FlameGame {
           );
         }
       }
-      _asphalt.quad(
-        a.x - a.halfWidth,
-        a.x + a.halfWidth,
-        yNear,
-        b.x - b.halfWidth,
-        b.x + b.halfWidth,
-        yFar,
-        0,
-        512,
-        worldZ / 480 * 512,
-        nextWorldZ / 480 * 512,
-        tint,
-        tint,
-      );
+      if (_course) {
+        final cover = level.canopyAt(_courseAt(worldZ));
+        final shade =
+            level.wet * .15 +
+            cover * (.05 + .09 * (1 + math.sin(worldZ / 380)));
+        tint = Color.lerp(
+          Color(tint),
+          const Color(0xff493f37),
+          shade,
+        )!.toARGB32();
+      }
+      for (var lane = 0; lane < 3; lane++) {
+        final left = -1 + lane * 2 / 3, right = left + 2 / 3;
+        _asphalt.quad(
+          a.x + a.halfWidth * left,
+          a.x + a.halfWidth * right,
+          yNear,
+          b.x + b.halfWidth * left,
+          b.x + b.halfWidth * right,
+          yFar,
+          (left + 1) * 256,
+          (right + 1) * 256,
+          worldZ / 480 * 512,
+          nextWorldZ / 480 * 512,
+          _material(tint, worldZ, left),
+          _material(tint, nextWorldZ, left),
+          nearRightColor: _material(tint, worldZ, right),
+          farRightColor: _material(tint, nextWorldZ, right),
+        );
+      }
+      if (_course && level.autumn) {
+        for (final side in [-1.0, 1.0]) {
+          final edge = side * .94;
+          _leaves.quad(
+            a.x + a.halfWidth * (edge - .11),
+            a.x + a.halfWidth * (edge + .11),
+            yNear,
+            b.x + b.halfWidth * (edge - .11),
+            b.x + b.halfWidth * (edge + .11),
+            yFar,
+            0,
+            256,
+            worldZ / 600 * 128,
+            nextWorldZ / 600 * 128,
+            _material(0xffc2a17b, worldZ, edge),
+            _material(0xffc2a17b, nextWorldZ, edge),
+          );
+        }
+      }
     }
     // Markings are projected geometry rather than affine tile samples: long
     // straight lane lines must not bend across a textured triangle diagonal.
@@ -762,8 +1124,8 @@ class RaceGame extends FlameGame {
           1,
           0,
           1,
-          color,
-          color,
+          _material(color, worldZ, (left + right) * .5),
+          _material(color, base + _depthAt(i + 2), (left + right) * .5),
         );
       }
 
@@ -796,6 +1158,9 @@ class RaceGame extends FlameGame {
         ..isAntiAlias = false,
     );
     _asphalt.draw(canvas, _roadPaint);
+    if (_course && level.autumn) {
+      _leaves.draw(canvas, _leafPaint);
+    }
     _markings.draw(
       canvas,
       Paint()
@@ -815,7 +1180,11 @@ class RaceGame extends FlameGame {
             Offset(0, y + _h * .05),
             [
               const Color(0x00b5c49a),
-              const Color(0xffb5c49a),
+              Color(
+                _course
+                    ? _material(0xffb5c49a, _world + _farDepth, 0)
+                    : 0xffb5c49a,
+              ),
               const Color(0x00b5c49a),
             ],
             [0, .33, 1],
@@ -831,13 +1200,15 @@ class RaceGame extends FlameGame {
     for (var i = first; i * 330 < far; i++) {
       final z = i * 330.0;
       if (_course && !ProofCourse.vegetationAllowedAt(_courseAt(z))) continue;
-      final side = i.isEven ? -1.0 : 1.0;
+      if (_course && i % level.sceneryStride != 0) continue;
+      final sampleOrdinal = _course ? i ~/ level.sceneryStride : i;
+      final side = sampleOrdinal.isEven ? -1.0 : 1.0;
       final hash = ((i * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
       // Samples are selected spatially, so no popping when a UI stage changes.
       final cityEnd =
           controller.graph.edges.first.length * _flowScale + _worldOffset;
       final biome = _course
-          ? (_courseAt(z) < 600 ? Biome.city : Biome.forest)
+          ? (level.urban ? Biome.city : Biome.forest)
           : _nextProof
           ? (z < cityEnd ? Biome.city : Biome.forest)
           : proofMode
@@ -847,7 +1218,9 @@ class RaceGame extends FlameGame {
                 ? Biome.forest
                 : Biome.mountain)
           : _biome;
-      final tree = biome == Biome.mountain
+      final tree = _course
+          ? level.treeFrame
+          : biome == Biome.mountain
           ? 1
           : biome == Biome.coast
           ? 2
@@ -880,7 +1253,7 @@ class RaceGame extends FlameGame {
             frame: tree,
           ),
         );
-        if (i % 3 == 0) {
+        if (sampleOrdinal % 3 == 0) {
           _objects.add(
             _Object(
               _Kind.scenery,
@@ -914,7 +1287,7 @@ class RaceGame extends FlameGame {
         // upcoming traffic behind a wall of large trees.
         _objects.add(_Object(_Kind.marker, z + 140, side * 1.15, 44));
       }
-      if (biome == Biome.city && i % 3 == 0) {
+      if (!_course && biome == Biome.city && i % 3 == 0) {
         _objects.add(_Object(_Kind.lamp, z - 80, side * 1.20, 550));
       }
       if (_course && i.isOdd) {
@@ -936,7 +1309,7 @@ class RaceGame extends FlameGame {
             braking: car.braking,
             incident: car.incidentSeconds,
             reaction: car.reactionIntensity,
-          ),
+          )..lightId = car.id,
         );
       }
     }
@@ -1025,10 +1398,38 @@ class RaceGame extends FlameGame {
       }
     }
     if (_course) {
-      for (final s in [5110.0, 5310.0, 5500.0]) {
-        final z = _courseZ(s);
-        if (z > near && z < far) {
-          _objects.add(_Object(_Kind.canopy, z, 0, 3200));
+      for (final courseZ in ProofCourse.fixedPositions(
+        origin: 0,
+        spacing: 42,
+        near: _courseAt(near),
+        far: _courseAt(far),
+      )) {
+        final cover = level.canopyAt(courseZ);
+        if (cover <= .1) continue;
+        final z = _courseZ(courseZ);
+        // Roots stay outside pavement; wide crowns share the actual tree art.
+        _objects.add(_Object(_Kind.scenery, z, -2.1, 2450 * cover, frame: 0));
+        _objects.add(
+          _Object(_Kind.scenery, z + 950, 2.15, 2250 * cover, frame: 0),
+        );
+      }
+      if (level.lampSpacing > 0) {
+        for (final courseZ in ProofCourse.fixedPositions(
+          origin: 25,
+          spacing: level.lampSpacing,
+          near: _courseAt(near),
+          far: _courseAt(far),
+        )) {
+          if (ProofCourse.tunnelAt(courseZ) > .1) continue;
+          final ordinal = (courseZ / level.lampSpacing).floor();
+          _objects.add(
+            _Object(
+              _Kind.lamp,
+              _courseZ(courseZ),
+              ordinal.isEven ? -1.24 : 1.24,
+              550,
+            )..lightId = 10000 + ordinal,
+          );
         }
       }
       for (final s in [6080.0, 6230.0, 6380.0, 6530.0, 6680.0, 6770.0]) {
@@ -1038,7 +1439,10 @@ class RaceGame extends FlameGame {
         }
       }
     }
-    _objects.add(_Object(_Kind.player, _world, _playerX, _course ? 285 : 300));
+    _objects.add(
+      _Object(_Kind.player, _world, _playerX, _course ? 285 : 300)
+        ..lightId = -2,
+    );
     if (_nextProof) {
       _objects.removeWhere(
         (object) =>
@@ -1087,7 +1491,7 @@ class RaceGame extends FlameGame {
       if (_objectOpacity <= 0) continue;
       switch (object.kind) {
         case _Kind.scenery:
-          final atlas = _art.environmentAtlas;
+          final atlas = _environment;
           if (atlas == null) continue;
           final source = _art.environmentFrames[object.frame];
           // All environment cells share a ground baseline near their lower edge.
@@ -1100,7 +1504,10 @@ class RaceGame extends FlameGame {
             p.y - ProofArt.sceneryGround[object.frame] * scale,
             scale,
             clip: clip,
-            fog: _course ? _fogAt(p.z) : null,
+            fog: null,
+            tint: _course
+                ? _material(0xffffffff, object.z, object.lateral)
+                : 0xffffffff,
             rotationGround: ProofArt.sceneryGround[object.frame],
             rotation: _course && object.frame < 3
                 ? ProofFoliage.angle(
@@ -1113,8 +1520,10 @@ class RaceGame extends FlameGame {
           );
         case _Kind.traffic:
           _vehicle(canvas, object, x, p.y, width, clip, false);
+          if (_course) _carLights(canvas, object, x, p.y, width, clip);
         case _Kind.player:
           _vehicle(canvas, object, x, p.y, width, clip, true);
+          if (_course) _carLights(canvas, object, x, p.y, width, clip);
         case _Kind.bridge:
           final scale = width / 1024;
           _sprite(
@@ -1125,6 +1534,7 @@ class RaceGame extends FlameGame {
             p.y - 480 * scale,
             scale,
             clip: clip,
+            tint: _material(0xffffffff, object.z, object.lateral),
           );
         case _Kind.flyingCone:
           if (!_art.coursePropsReady) continue;
@@ -1139,7 +1549,7 @@ class RaceGame extends FlameGame {
           canvas.rotate(t * 10 * object.lateral.sign);
           _paint.color = Color.fromRGBO(255, 255, 255, _objectOpacity);
           canvas.drawImageRect(
-            _art.environmentAtlas!,
+            _environment!,
             source,
             Rect.fromLTWH(
               -width * .5,
@@ -1170,13 +1580,16 @@ class RaceGame extends FlameGame {
                 : 0.0;
             _sprite(
               canvas,
-              _art.environmentAtlas!,
+              _environment!,
               source,
               x - width * .5,
               p.y - source.height * scale - overhead,
               scale,
               clip: clip,
-              fog: _course ? _fogAt(p.z) : null,
+              fog: null,
+              tint: _course
+                  ? _material(0xffffffff, object.z, object.lateral)
+                  : 0xffffffff,
             );
           } else {
             final source = object.kind == _Kind.cone
@@ -1192,7 +1605,7 @@ class RaceGame extends FlameGame {
             final scale = width / basis;
             _sprite(
               canvas,
-              _art.environmentAtlas!,
+              _environment!,
               source,
               x - source.width * scale * .5,
               p.y - source.height * scale,
@@ -1200,6 +1613,7 @@ class RaceGame extends FlameGame {
               clip: clip,
             );
           }
+          if (_course) _lampLight(canvas, object, p, x, width, clip);
         case _Kind.sign:
           break;
       }
@@ -1362,7 +1776,7 @@ class RaceGame extends FlameGame {
       } else {
         canvas.rotate(math.sin((2.4 - object.incident) * 2.5) * .22);
       }
-      _paint.color = const Color(0xffffffff);
+      _paint.color = Color(_material(0xffffffff, object.z, object.lateral));
       canvas.drawImageRect(
         atlas,
         src,
@@ -1399,6 +1813,9 @@ class RaceGame extends FlameGame {
             -groundAnchor * scale,
             scale,
             clip: (clip - bodyY) / bodyScale,
+            tint: _course
+                ? _material(0xffffffff, object.z, object.lateral)
+                : 0xffffffff,
             mirrored: pose.mirrored,
           );
           _batch.flush(canvas);
@@ -1412,7 +1829,9 @@ class RaceGame extends FlameGame {
             bodyY - groundAnchor * scale,
             scale,
             clip: clip,
-            tint: 0xffffffff,
+            tint: _course
+                ? _material(0xffffffff, object.z, object.lateral)
+                : 0xffffffff,
             mirrored: pose.mirrored,
           );
         }
