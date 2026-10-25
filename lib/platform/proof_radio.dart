@@ -26,40 +26,40 @@ class ProofRadioDirector {
     if (detourClosed) {
       family = 'closure';
       lines = const [
-        'That shortcut is closed today. Stay on the open road; the scenery is on us.',
-        'Road crews have closed the shortcut. Keep to the open lanes and give the cones some room.',
+        'Shortcut closed. Scenic route it is!',
+        'Shortcut closed. Follow the open road.',
       ];
     } else if (laneClosed) {
       family = 'worksite';
       lines = const [
-        'Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.',
-        'A lane is closed ahead. Give the orange cones some room. They are having a very busy day.',
+        'Narrow lanes ahead. Mind the cones!',
+        'Lane closed. Cones are working overtime!',
       ];
     } else if (weather == 'snow') {
       family = 'snow';
       lines = const [
-        'Snow ahead. Gentle steering, earlier braking. Save the dramatic slides for the parking lot.',
-        'A little mountain snow today. Leave more room than you think, and keep the shiny side up.',
+        'Snow ahead. Easy steering, early brakes.',
+        'Mountain snow! Keep the shiny side up.',
       ];
     } else if (weather == 'rain') {
       family = 'rain';
       lines = const [
-        'Rain on the road. Give the brakes a little more room than your coffee cup.',
-        'Wet pavement ahead. Smooth moves, folks. This is a road trip, not a car wash stunt show.',
+        'Rain ahead. Give those brakes room!',
+        'Wet pavement. Smooth moves, folks!',
       ];
     } else if (trafficCount < 7) {
       family = 'clear';
       lines = const [
-        'Remember, Cannonball is rolling today. Keep the roads clear, and your coffee in the cup.',
-        'Light traffic, open road. Even the delivery vans got the memo. Enjoy it while it lasts.',
-        'Roads are looking lovely. If you are running late, you will need a better excuse today.',
+        'Cannonball today! Keep the roads clear!',
+        'Light traffic. Even the vans got the memo!',
+        'Lovely roads. Terrible day for excuses!',
       ];
     } else {
       family = 'traffic';
       lines = const [
-        'A few little traffic bunches ahead. Leave a gap. Nobody wins an argument with a minivan.',
-        'Busy lanes up ahead. Pick your opening, not a fight. We like our listeners in one piece.',
-        'Traffic is moving. Some drivers have places to be; some are still deciding where those places are.',
+        'Traffic ahead. Never argue with a minivan!',
+        'Busy lanes. Pick a gap, not a fight!',
+        'Traffic moving. Some drivers are still deciding!',
       ];
     }
     var text = lines[_variant++ % lines.length];

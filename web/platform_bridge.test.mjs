@@ -6,10 +6,10 @@ import vm from 'node:vm';
 const source = readFileSync(new URL('./platform_bridge.js', import.meta.url), 'utf8');
 const flush = async () => { for (let i = 0; i < 6; i++) await Promise.resolve(); };
 
-function harness() {
+function harness({prepared = false} = {}) {
   let time = 0, timerId = 0;
   const timers = new Map(), listeners = new Map(), docListeners = new Map();
-  const spoken = [], oscillatorNotes = [], scripts = [];
+  const spoken = [], oscillatorNotes = [], scripts = [], preparedReports = [], snippetCalls = [];
   let cancelled = 0;
   const add = (map) => (name, callback) => map.set(name, callback);
   const remove = (map) => (name, callback) => { if (map.get(name) === callback) map.delete(name); };
@@ -47,6 +47,21 @@ function harness() {
     speechSynthesis: {cancel() { cancelled++; }, speak(value) { spoken.push(value); },
       getVoices() { return []; }, addEventListener() {}, removeEventListener() {}},
   };
+  if (prepared) {
+    audio.decodeAudioData = async () => ({});
+    sandbox.fetch = async () => ({});
+    sandbox.CannonballScorePlayer = function () {
+      this.state = 'idle';
+      this.prepare = async () => true;
+      this.play = async () => false;
+      this.stopMusic = () => {};
+      this.stopVoice = () => {};
+      this.playSnippet = station => {snippetCalls.push(station); return true;};
+      this.report = async (text, complete) => {preparedReports.push({text, complete}); return true;};
+      this.snapshot = () => ({});
+      this.dispose = () => {};
+    };
+  }
   vm.createContext(sandbox);
   vm.runInContext(source, sandbox);
   const tilt = [], statuses = [], hidden = [], orientations = [];
@@ -70,7 +85,7 @@ function harness() {
     audio.currentTime = time / 1000;
   }
   return {bridge, sandbox, math: sandbox.module.exports, tilt, statuses, hidden,
-    orientations, spoken, scripts, oscillatorNotes, audio, timers, advance,
+    orientations, spoken, scripts, oscillatorNotes, audio, timers, advance, preparedReports, snippetCalls,
     get cancelled() { return cancelled; },
     emit(name, event = {}) { listeners.get(name)?.(event); docListeners.get(name)?.(event); }};
 }
@@ -333,4 +348,35 @@ test('hidden departure and disposal cancel prelap instead of leaving a rev behin
   const last = h.oscillatorNotes.slice(first + 2);
   h.bridge.dispose();
   assert.ok(last.every(node => node.stopped === undefined));
+});
+
+test('occasional station surfing is bounded and sandwiches a short report with noise', async () => {
+  const h = harness({prepared: true});
+  h.bridge.setProofAudio(true); await h.bridge.beginAudio(); h.bridge.pause(false);
+  h.bridge.radioBreak('Clear roads!', 'City'); h.advance(180); await flush();
+  assert.equal(h.bridge.audioSnapshot().phase, 'report');
+  h.preparedReports.at(-1).complete();
+  h.bridge.radioBreak('Rain ahead!', 'Forest'); h.advance(180); await flush();
+  assert.equal(h.bridge.audioSnapshot().phase, 'surf-song');
+  assert.deepEqual(h.snippetCalls, ['Forest']);
+  h.advance(680); assert.equal(h.bridge.audioSnapshot().phase, 'tuning');
+  h.advance(180); await flush(); assert.equal(h.bridge.audioSnapshot().phase, 'report');
+  h.preparedReports.at(-1).complete(); assert.equal(h.bridge.audioSnapshot().phase, 'tuning');
+  h.advance(180); assert.equal(h.bridge.audioSnapshot().phase, 'music');
+  h.bridge.radioBreak('Snow ahead!', 'Mountain'); h.advance(180); await flush();
+  assert.equal(h.bridge.audioSnapshot().radioVariant, 'direct');
+  assert.equal(h.bridge.audioSnapshot().surfCount, 1);
+});
+
+test('mute during surfing cancels every pending report and station-resume timer', async () => {
+  const h = harness({prepared: true});
+  h.bridge.setProofAudio(true); await h.bridge.beginAudio(); h.bridge.pause(false);
+  h.bridge.radioBreak('Clear roads!', 'City'); h.advance(180); await flush();
+  h.preparedReports.at(-1).complete();
+  h.bridge.radioBreak('Rain ahead!', 'Forest'); h.advance(180); await flush();
+  assert.equal(h.bridge.audioSnapshot().phase, 'surf-song');
+  h.bridge.setMuted(true); const reports = h.preparedReports.length;
+  h.advance(10000); await flush();
+  assert.equal(h.preparedReports.length, reports);
+  assert.equal(h.bridge.audioSnapshot().phase, 'music');
 });

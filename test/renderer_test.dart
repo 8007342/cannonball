@@ -72,7 +72,8 @@ void main() {
     () {
       expect(ProofArt.carGround, [416, 412, 415, 372, 400, 404]);
       expect(ProofArt.carCenter.length, ProofArt.carGround.length);
-      expect(ProofArt.sceneryGround, [512, 512, 512, 478, 449, 451]);
+      expect(ProofArt.sceneryGround.take(6), [512, 512, 512, 478, 449, 451]);
+      expect(ProofArt.sceneryGround.length, 10);
     },
   );
 }

@@ -26,3 +26,13 @@ Campaign progress SHALL retain successful versioned city-to-city stage attempts,
 #### Scenario: incompatible stage minima
 - **WHEN** the fastest saved stages do not form a connected route
 - **THEN** the composed journey SHALL choose a valid connected alternative or report that the destination is not yet connected
+
+## Research and reference traceability
+
+Use the [shared reference register](../../../../../docs/research/reference-register.md)
+for original research, project interpretation, historical validation and asset
+provenance. Specific current-pass evidence: [camera/flow](../../../../../docs/research/camera-flow-next.md),
+[contacts](../../../../../docs/research/collision-forgiveness.md),
+[lane-following proposal](../../../../../docs/research/lane-following-assist.md),
+[radio](../../../../../docs/radio-surfing-draft.md) and
+[roadside pacing](../../../../../docs/research/roadside-flow-review.md).

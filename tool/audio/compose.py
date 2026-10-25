@@ -165,6 +165,9 @@ def main():
   catalog['tracks'].append({k:s[k] for k in ['id','title','station','style','bpm']}|{'src':s['id']+'.mp3','duration':duration,'bars':64,'events':len(events)})
   print(s['title'],duration,len(events),flush=True)
  old=OUT/'catalog.json'
- if old.exists(): catalog['radio']=json.loads(old.read_text()).get('radio',[])
+ if old.exists():
+  previous=json.loads(old.read_text())
+  catalog['radio']=previous.get('radio',[])
+  catalog['surf']=previous.get('surf',[])
  old.write_text(json.dumps(catalog,indent=2)+'\n')
 if __name__=='__main__': main()

@@ -33,3 +33,10 @@ The game SHALL preload the next region and blend scenery, music and radio while 
 #### Scenario: entering a region
 - **WHEN** the car crosses a stage boundary
 - **THEN** driving continues with brief, nonblocking hints and no compulsory loading screen
+
+## Research and reference traceability
+
+The [project reference register](../../../docs/research/reference-register.md) indexes all research, design,
+validation and asset-provenance documents used by this specification. Follow each
+entry for original sources and applicability limits. Historical proof evidence
+does not imply current production or physical-device acceptance.

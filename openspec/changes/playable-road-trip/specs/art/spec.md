@@ -55,3 +55,25 @@ Steering presentation SHALL pass through gentle/intermediate angles before a sus
 #### Scenario: brief arrow tap
 - **WHEN** a short full-strength steering input begins
 - **THEN** the first visible turn SHALL be gentle rather than an immediate hard/skid pose
+
+### Requirement: Camera and roadside rhythm review
+The proof SHALL compare a lower horizon with prior camera heights while preserving
+player ground contact and readable near traffic. Distant scenery SHALL enter through
+bounded depth fade/haze rather than a hard opaque draw-boundary appearance. Sparse
+pictorial businesses SHALL vary roadside composition without covering ramp pavement
+or overwhelming consequential warnings. Speed sensation SHALL be tunable separately
+from encounter frequency and game timing.
+
+#### Scenario: a roadside business enters view
+- **WHEN** a distinctive business passes from the distance band into the visible road corridor
+- **THEN** it appears progressively, stays outside playable/merging pavement and does not replace a required warning
+
+## Research and reference traceability
+
+Use the [shared reference register](../../../../../docs/research/reference-register.md)
+for original research, project interpretation, historical validation and asset
+provenance. Specific current-pass evidence: [camera/flow](../../../../../docs/research/camera-flow-next.md),
+[contacts](../../../../../docs/research/collision-forgiveness.md),
+[lane-following proposal](../../../../../docs/research/lane-following-assist.md),
+[radio](../../../../../docs/radio-surfing-draft.md) and
+[roadside pacing](../../../../../docs/research/roadside-flow-review.md).

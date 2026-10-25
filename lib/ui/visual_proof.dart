@@ -94,7 +94,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       _ready.value = true;
     } else {
       _game = RaceGame(controller: _race, proofMode: true)
-        ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'afterburn')
+        ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'hyperspeed')
         ..setCameraPreset(Uri.base.queryParameters['camera'] ?? 'flow');
       _scene = RepaintBoundary(
         child: GameWidget(
@@ -200,6 +200,10 @@ class _VisualProofScreenState extends State<VisualProofScreen>
           'profile': car.profile.name,
         },
     ],
+    'crashes': _race.crashes,
+    'coneHitCount': _race.coneHitCount,
+    'coneFlights': _race.coneFlights.length,
+    'presentationScale': _race.proofPresentationScale,
     'trafficReactions': _race.trafficReactionCount,
     'trafficIncidents': _race.trafficIncidentCount,
     'sceneLogicalSize': _game?.hasLayout == true

@@ -22,3 +22,28 @@ The local proof SHALL include readable straights, opposing bends, combined eleva
 #### Scenario: following a gentle bend
 - **WHEN** the player maintains an appropriate small steering input on a long gentle curve
 - **THEN** the car SHALL remain controllable with a gentle visual turn angle
+
+### Requirement: Forgiving visible contacts
+Proof vehicle crashes SHALL require a contact consistent with projected vehicle
+positions and shall permit a small documented overlap and corrective grace.
+Construction-lane designation alone SHALL NOT crash the car. Swept contacts SHALL
+be evaluated during fast crossings. Cosmetic cone impacts SHALL launch bounded
+one-shot flights, never act as an invisible solid lane or trigger a car crash.
+
+#### Scenario: grazing a neighboring vehicle
+- **WHEN** a brief lateral graze clears within the corrective window
+- **THEN** the car continues without a crash
+
+#### Scenario: hitting an orange cone
+- **WHEN** the player crosses a visible cone footprint
+- **THEN** that cone scatters once and cannot trigger a subsequent crash as a ghost obstacle
+
+## Research and reference traceability
+
+Use the [shared reference register](../../../../../docs/research/reference-register.md)
+for original research, project interpretation, historical validation and asset
+provenance. Specific current-pass evidence: [camera/flow](../../../../../docs/research/camera-flow-next.md),
+[contacts](../../../../../docs/research/collision-forgiveness.md),
+[lane-following proposal](../../../../../docs/research/lane-following-assist.md),
+[radio](../../../../../docs/radio-surfing-draft.md) and
+[roadside pacing](../../../../../docs/research/roadside-flow-review.md).

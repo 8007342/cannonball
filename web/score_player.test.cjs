@@ -1,11 +1,11 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const Player = require('./score_player.js');
-function harness() {
+function harness({surf = false} = {}) {
  const sources=[]; let requests=0;
- const catalog={tracks:[{station:'City',title:'City song',src:'city.mp3'},{station:'Forest',title:'Forest song',src:'forest.mp3'}],radio:[{text:'Snow ahead',src:'snow.mp3',voice:'presenter'}]};
+ const catalog={tracks:[{station:'City',title:'City song',src:'city.mp3'},{station:'Forest',title:'Forest song',src:'forest.mp3'}],radio:[{text:'Snow ahead',src:'snow.mp3',voice:'presenter'}],surf:surf ? [{station:'Forest',src:'forest-fragment.mp3',title:'Dial fragment'}, {station:'Mountain',src:'mountain-fragment.mp3',title:'Mountain fragment'}] : []};
  const context={currentTime:10,decodeAudioData:async()=>({duration:100}),createBufferSource(){
-  const n={connect(){},disconnect(){this.disconnected=true;},start(at){this.started=at;},stop(){this.stopped=true;}};sources.push(n);return n;
+  const n={connect(){},disconnect(){this.disconnected=true;},start(at,offset,duration){this.started=at;this.offset=offset;this.duration=duration;},stop(){this.stopped=true;}};sources.push(n);return n;
  }};
  let resolve; let delay=false; let fail=false;
  const fetch=async url=>{requests++;if(delay)await new Promise(r=>resolve=r); if(fail)throw Error('offline');return {ok:true,json:async()=>catalog,arrayBuffer:async()=>new ArrayBuffer(8)};};
@@ -30,4 +30,19 @@ test('dispose while loading prevents voice playback',async()=>{
 });
 test('network failure returns control to fallback',async()=>{
  const h=harness();h.fail();assert.equal(await h.p.play('City'),false);assert.equal(await h.p.report('Snow ahead',()=>{}),false);
+});
+
+test('surfing uses only prewarmed short buffers and an audio-clock duration', async()=>{
+ const h=harness({surf:true});await h.p.prepare();
+ assert.equal(h.p.playSnippet('City'),false);assert.equal(h.sources.length,0);
+ assert.equal(await h.p.warmSnippet('City'),true);
+ assert.equal(h.p.playSnippet('Forest'),true);assert.equal(h.p.snapshot().title,'Mountain fragment');assert.equal(h.sources[0].duration,.68);
+ assert.equal(h.sources[0].loop,undefined);assert.equal(h.p.snapshot().state,'snippet');
+ h.p.stopMusic();assert.equal(h.sources[0].stopped,true);
+});
+test('a late snippet download cannot play after disposal',async()=>{
+ const h=harness({surf:true});await h.p.prepare();h.delay();
+ const warming=h.p.warmSnippet('Forest');await new Promise(setImmediate);
+ h.p.dispose();h.release();assert.equal(await warming,false);
+ assert.equal(h.p.playSnippet('City'),false);assert.equal(h.sources.length,0);
 });

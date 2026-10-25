@@ -97,3 +97,26 @@ not a validated vehicle model. Keep prior flow settings for comparison, and keep
 NPC relative motion consistent with collision coordinates. A dedicated proof
 traffic stream must enter beyond the visible ribbon, seed an initial readable
 stagger and preserve passing gaps. Legacy cloud receipt physics stay unchanged.
+
+## Lower-horizon, roadside rhythm and forgiving-contact pass
+After approving soundtrack/voice improvements, user requests another researched
+agent pass: a horizon near the lower-third boundary, stronger passing-object
+rhythm, hidden far-distance arrivals, short interjections and occasional
+music/static/other-song/static/news/static/music station surfing. Camera placement
+is a testable hypothesis, not an established OutRun camera calibration. Preserve
+prior comparisons and near-road hazard legibility. Terrain pitch and far scenery
+must follow the same projection so the base camera no longer suggests continuous
+climbing. Fade/camouflage the distance boundary without per-frame asset loading.
+
+Proof collisions must correspond to visible solid obstacles. An entire closed
+lane is not a collision object. Contacts should permit slight visual overlap,
+ignore isolated grazing samples, detect high-speed traversals and recover once.
+Soft cones scatter and cannot trigger a car crash. Timing/margins are arcade
+playtest hypotheses; legacy receipt physics remain separate.
+
+Sparse original gas/burger/motel/diner vignettes with pictorial signs add memorable
+beats between quieter repeated foliage. Do not substitute primitive geometry for
+painted sprites or turn every exit into visual clutter. Enforce ramp pavement and
+building footprint clearance. Research/reference links are indexed from the main
+and delta specs; audit authorship and applicability rather than citing GameFlow
+as Valve-authored work.

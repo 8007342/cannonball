@@ -73,3 +73,15 @@ is the requested first draft, not final art approval or production acceptance.
 - [x] 11.1 Add proof-only tapered acceleration and smooth-driving speed retention; test launch, near-limit acceleration and steering losses without changing legacy runs.
 - [x] 11.2 Add stronger flow comparison, emphasized elevation and a camera-scaled visible traffic stream with passing gaps; verify deterministic placement and moving readability.
 - [x] 11.3 Run local checks, publish next draft, document tuning limits and push durable work branch.
+
+## 12. Camera, roadside rhythm, radio and fair contacts
+- [ ] 12.1 Research and implement a much lower horizon comparison, stronger peripheral flow, far-distance camouflage and bounded scenery rhythm; preserve readable near traffic and test projection invariants.
+- [ ] 12.2 Remove proof phantom closure impacts, align contacts with projected cars, add forgiving contact timing and flying cones; verify contact/miss/fast-crossing/recovery cases.
+- [ ] 12.3 Shorten prepared radio interjections and add occasional bounded station-surf snippets/noise with lifecycle/failure tests and regenerated voice provenance.
+- [ ] 12.4 Generate a coherent sparse roadside-business sample with pictorial signs, integrate it with footprint clearances and record prompts/provenance.
+- [ ] 12.5 Link every project research/reference document from the specs through an auditable source register; distinguish Valve pacing from GameFlow authorship and record application/limits.
+- [ ] 12.6 Run relevant local checks, inspect moving comparisons, publish locally and push durable work-branch checkpoints; keep device/production acceptance open.
+- [ ] 12.7 Research and specify gentle-bend cruising assistance, preserving lane offset and deliberate inputs while retaining meaningful curve demand.
+
+## 13. Newly specified driving acceptance
+- [ ] 13.1 Implement and playtest the gentle-bend cruising assist, its transition hysteresis and player-input preservation; the research/specification alone does not complete this behavior.

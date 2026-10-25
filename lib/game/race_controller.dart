@@ -4,11 +4,13 @@ import 'package:flutter/foundation.dart';
 
 import 'models.dart';
 import 'proof_course.dart';
+import 'proof_contacts.dart';
 import 'proof_dynamics.dart';
 import 'route.dart';
 import 'traffic.dart';
 
 export 'traffic.dart' show TrafficCar, TrafficProfile;
+export 'proof_contacts.dart' show ProofCone, ConeFlight;
 
 /// Integer arithmetic stays below 2^53 on the web as well as Dart VM.
 class _RandomStream {
@@ -39,6 +41,18 @@ class RaceController extends ChangeNotifier {
   final List<RouteVisit> _completedVisits = [];
   final List<String> _gates = [];
   final List<TrafficCar> traffic = [];
+  final List<ProofCone> _proofCones = [];
+  final List<ConeFlight> _coneFlights = [];
+  final Set<int> _hitCones = {};
+  final ProofCollisionGate _proofContacts = ProofCollisionGate();
+  List<ProofCone> get proofCones => List.unmodifiable(_proofCones);
+  List<ConeFlight> get coneFlights => List.unmodifiable(_coneFlights);
+  bool isConeHit(int id) => _hitCones.contains(id);
+  int get coneHitCount => _hitCones.length;
+
+  /// Set by the proof renderer, so contact depth tracks sprite projection.
+  double proofPresentationScale = 84;
+  double _stepPlayerStart = 0, _stepPlayerXStart = 0;
   bool reactiveTrafficEnabled = false;
   ReactiveTraffic _reactiveTraffic = ReactiveTraffic();
   double _lastTrafficPlayerX = 0;
@@ -193,6 +207,10 @@ class RaceController extends ChangeNotifier {
     _completedVisits.clear();
     _gates.clear();
     traffic.clear();
+    _proofCones.clear();
+    _coneFlights.clear();
+    _hitCones.clear();
+    _proofContacts.clear();
     _radioPriority = 0;
     _radioUntil = 0;
     _timeWarning = false;
@@ -200,6 +218,19 @@ class RaceController extends ChangeNotifier {
     _edge = graph.edges.first;
     previousBiome = null;
     _enterEdge();
+    if (testCourseEnabled) {
+      for (var id = 0; 4120 + id * 9 < 4920; id++) {
+        final distance = 4120 + id * 9.0;
+        final taper = ((distance - 4120) / 180).clamp(0.0, 1.0);
+        _proofCones.add(
+          ProofCone(
+            id: id,
+            courseDistance: distance,
+            lateral: (_closedLane ?? 1) * (1 - .56 * taper),
+          ),
+        );
+      }
+    }
     if (testCourseEnabled && reactiveTrafficEnabled) {
       _nextSpawn = .8;
       for (var i = 0; i < 4; i++) {
@@ -259,6 +290,12 @@ class RaceController extends ChangeNotifier {
   }
 
   void _step() {
+    _stepPlayerStart = _worldDistance;
+    _stepPlayerXStart = playerX;
+    for (final flight in _coneFlights) {
+      flight.age += fixedStep;
+    }
+    _coneFlights.removeWhere((flight) => flight.age >= ConeFlight.lifetime);
     _stepCount++;
     _remaining -= fixedStep;
     regionBlend = math.min(1, regionBlend + fixedStep / 4);
@@ -316,7 +353,8 @@ class RaceController extends ChangeNotifier {
         _speed = math.max(24, _speed - 52 * fixedStep);
         if (playerX.abs() > 1.52 && protection <= 0) _crash(flip: ratio > .72);
       }
-      if (inLaneClosure &&
+      if (!testCourseEnabled &&
+          inLaneClosure &&
           (playerX - _closedLane! * .65).abs() < .22 &&
           protection <= 0) {
         _crash(flip: ratio > .88);
@@ -326,6 +364,7 @@ class RaceController extends ChangeNotifier {
     _worldDistance += distance;
     _edgeDistance += distance;
     _advanceTraffic();
+    if (testCourseEnabled && !recovering) _advanceProofCones();
     while (distanceMiles >= (_gates.length + 1) * gateSpacingMiles) {
       final mile = ((_gates.length + 1) * gateSpacingMiles).round();
       _gates.add('mile-$mile');
@@ -458,6 +497,7 @@ class RaceController extends ChangeNotifier {
       if (!approachingFork && traffic.length < 13) _spawnTraffic();
     }
     for (final other in traffic) {
+      final previousPosition = other.position, previousX = other.x;
       other.position += other.cruiseSpeed * RouteGraph.speedScale * fixedStep;
       final otherEdgeZ = _edgeDistance + other.position - _worldDistance;
       final nearClosure =
@@ -506,16 +546,32 @@ class RaceController extends ChangeNotifier {
           otherEdgeZ >= closureStart - 60) {
         other.position -= other.cruiseSpeed * RouteGraph.speedScale * fixedStep;
       }
-      if (!recovering &&
-          protection <= 0 &&
-          (other.position - _worldDistance).abs() < (other.truck ? 30 : 23) &&
-          (other.x - playerX).abs() < (other.truck ? .25 : .20)) {
+      final hit = testCourseEnabled
+          ? _proofContacts.update(
+              id: other.id,
+              dt: fixedStep,
+              fromForward: previousPosition - _stepPlayerStart,
+              toForward: other.position - _worldDistance,
+              fromLateral: previousX - _stepPlayerXStart,
+              toLateral: other.x - playerX,
+              halfDepth:
+                  (other.truck ? 350 : 280) /
+                  proofPresentationScale.clamp(12, 240),
+              halfWidth: other.truck ? .22 : .18,
+            )
+          : (other.position - _worldDistance).abs() < (other.truck ? 30 : 23) &&
+                (other.x - playerX).abs() < (other.truck ? .25 : .20);
+      if (!recovering && protection <= 0 && hit) {
         _crash(
           flip:
               _speed - other.cruiseSpeed > 69 ||
               (playerX - other.x).abs() > .15 && _speed > 140,
         );
       }
+    }
+    if (testCourseEnabled) {
+      _proofContacts.retain(traffic.map((car) => car.id).toSet());
+      if (recovering || protection > 0) _proofContacts.clear();
     }
     traffic.removeWhere(
       (t) =>
@@ -525,6 +581,12 @@ class RaceController extends ChangeNotifier {
   }
 
   void _advanceReactiveTraffic() {
+    final previousPositions = testCourseEnabled
+        ? {for (final car in traffic) car.id: car.position}
+        : <int, double>{};
+    final previousLaterals = testCourseEnabled
+        ? {for (final car in traffic) car.id: car.x}
+        : <int, double>{};
     if (elapsed >= _nextSpawn) {
       final interval = testCourseEnabled
           ? 1.2
@@ -552,18 +614,68 @@ class RaceController extends ChangeNotifier {
     );
     _lastTrafficPlayerX = playerX;
     for (final other in traffic) {
-      if (!recovering &&
-          protection <= 0 &&
-          (other.position - _worldDistance).abs() < (other.truck ? 30 : 23) &&
-          (other.x - playerX).abs() < (other.truck ? .25 : .20)) {
+      final hit = testCourseEnabled
+          ? _proofContacts.update(
+              id: other.id,
+              dt: fixedStep,
+              fromForward:
+                  (previousPositions[other.id] ?? other.position) -
+                  _stepPlayerStart,
+              toForward: other.position - _worldDistance,
+              fromLateral:
+                  (previousLaterals[other.id] ?? other.x) - _stepPlayerXStart,
+              toLateral: other.x - playerX,
+              halfDepth:
+                  (other.truck ? 350 : 280) /
+                  proofPresentationScale.clamp(12, 240),
+              halfWidth: other.truck ? .22 : .18,
+            )
+          : (other.position - _worldDistance).abs() < (other.truck ? 30 : 23) &&
+                (other.x - playerX).abs() < (other.truck ? .25 : .20);
+      if (!recovering && protection <= 0 && hit) {
         _crash(flip: _speed - other.currentSpeed > 69);
       }
+    }
+    if (testCourseEnabled) {
+      _proofContacts.retain(traffic.map((car) => car.id).toSet());
+      if (recovering || protection > 0) _proofContacts.clear();
     }
     traffic.removeWhere(
       (t) =>
           t.position < _worldDistance - 180 ||
           t.position > _worldDistance + 11000,
     );
+  }
+
+  void _advanceProofCones() {
+    final scale = proofPresentationScale.clamp(12.0, 240.0);
+    for (final cone in _proofCones) {
+      if (_hitCones.contains(cone.id)) continue;
+      final z = cone.courseDistance - courseStartDistance;
+      final contact = ProofCollisionGate.overlapInterval(
+        fromForward: z - _stepPlayerStart,
+        toForward: z - _worldDistance,
+        fromLateral: cone.lateral - _stepPlayerXStart,
+        toLateral: cone.lateral - playerX,
+        halfDepth: 180 / scale,
+        halfWidth: .13,
+      );
+      if (contact == null) continue;
+      _hitCones.add(cone.id);
+      if (_coneFlights.length >= 24) _coneFlights.removeAt(0);
+      final side = (cone.lateral - playerX).abs() < .01
+          ? (cone.id.isEven ? 1.0 : -1.0)
+          : (cone.lateral - playerX).sign;
+      _coneFlights.add(
+        ConeFlight(
+          cone: cone,
+          lateralVelocity: side * (.8 + _speed / 180),
+          // Keep the first airborne beat beside/ahead of the chase car.
+          forwardVelocity: _speed * RouteGraph.speedScale * .98 + 4,
+        ),
+      );
+      _speed = math.max(0, _speed - .4);
+    }
   }
 
   void _spawnTraffic({double? proofOffset}) {
@@ -642,6 +754,7 @@ class RaceController extends ChangeNotifier {
   }
 
   void _crash({required bool flip}) {
+    _proofContacts.clear();
     _crashes++;
     _lastCrashAt = elapsed;
     crashPose = flip ? CrashPose.flip : CrashPose.spin;

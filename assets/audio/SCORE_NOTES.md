@@ -59,3 +59,13 @@ harmonics and saturation, not a recorded guitar or a Karplus–Strong implementa
 Model download SHA256 values and rendered-file measurements are recorded in
 `verification.json`. Rendered reports are selected by exact source script text;
 unknown/new text falls back to device speech until its prepared pack is rebuilt.
+
+## Short-interjection revision
+
+The next listening draft replaces the14 longer reports with5–9-word versions,
+measured1.99–3.10 seconds each. The same model, voices and speed are used. A gentle compressor and a
+-1dBTP normalization ceiling keep the shorter speech intelligible without
+clipping; encoded levels are verified rather than assuming the target was met. `tool/audio/surf_clips.py` also produces three680ms excerpts from29s into
+the original scores for occasional station surfing. Full mixes/MIDI are unchanged.
+The catalogue records those clips separately under `surf`; only tiny prepared
+fragments are prewarmed, never another full song solely for dial effects.

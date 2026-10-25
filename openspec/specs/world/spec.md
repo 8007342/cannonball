@@ -33,3 +33,10 @@ Region packs SHALL distinguish local terrain, vegetation, city silhouettes, land
 #### Scenario: entering Colorado from Nebraska
 - **WHEN** a run transitions between those approved route regions
 - **THEN** terrain, vegetation, weather messaging and music transition consistently with the authored region pack
+
+## Research and reference traceability
+
+The [project reference register](../../../docs/research/reference-register.md) indexes all research, design,
+validation and asset-provenance documents used by this specification. Follow each
+entry for original sources and applicability limits. Historical proof evidence
+does not imply current production or physical-device acceptance.

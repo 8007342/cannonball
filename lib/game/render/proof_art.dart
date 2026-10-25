@@ -25,7 +25,24 @@ class ProofArt {
   static const markerFrame = ui.Rect.fromLTWH(224, 1068, 64, 458);
   static const coneFrame = ui.Rect.fromLTWH(660, 1162, 216, 364);
   static const lampFrame = ui.Rect.fromLTWH(1230, 1094, 142, 432);
-  static const sceneryGround = [512.0, 512.0, 512.0, 478.0, 449.0, 451.0];
+  static const sceneryGround = [
+    512.0,
+    512.0,
+    512.0,
+    478.0,
+    449.0,
+    451.0,
+    509.0,
+    510.0,
+    503.0,
+    506.0,
+  ];
+  static const businessSources = [
+    ui.Rect.fromLTWH(0, 80, 627, 560),
+    ui.Rect.fromLTWH(627, 80, 627, 560),
+    ui.Rect.fromLTWH(0, 690, 627, 490),
+    ui.Rect.fromLTWH(627, 690, 627, 490),
+  ];
   bool get ready => carAtlas != null && environmentAtlas != null;
 
   Future<void> load({bool s2000 = false, bool course = false}) async {
@@ -42,6 +59,9 @@ class ProofArt {
           : Future<ui.Image?>.value(null),
       course
           ? _load('assets/milestone/turn-atlas.png')
+          : Future<ui.Image?>.value(null),
+      course
+          ? _load('assets/roadside-pass/business-atlas.png', optional: true)
           : Future<ui.Image?>.value(null),
     ]);
     if (_disposed) return;
@@ -85,7 +105,7 @@ class ProofArt {
     }
     if (environmentAtlas != null) {
       environmentFrames.addAll(_cells(environmentAtlas!));
-      _cacheRoadFurniture(results[3]);
+      _cacheRoadFurniture(results[3], results[5]);
     }
     asphalt = _roadTexture();
     meadow = _groundTexture();
@@ -94,66 +114,93 @@ class ProofArt {
     bridge = _bridgeTexture();
   }
 
-  void _cacheRoadFurniture(ui.Image? props) {
+  void _cacheRoadFurniture(ui.Image? props, ui.Image? businesses) {
     final source = environmentAtlas!;
     // Keep the six authored source rectangles unchanged. The third row shares
     // their GPU atlas, allowing depth-ordered scenery/furniture to stay batched.
-    environmentAtlas = _record(1536, props == null ? 1536 : 2048, (canvas) {
-      final paint = ui.Paint()..isAntiAlias = true;
-      canvas.drawImage(source, ui.Offset.zero, paint);
-      if (props != null) {
-        canvas.drawImage(props, const ui.Offset(0, 1024), paint);
-        return;
-      }
-      canvas.save();
-      canvas.translate(0, 1024);
-      // Reflector post: same 120-unit basis as the previous live geometry.
-      const x = 256.0, y = 500.0, w = 120.0;
-      paint.color = const ui.Color(0xfff1e8c9);
-      canvas.drawRRect(
-        ui.RRect.fromRectAndRadius(
-          const ui.Rect.fromLTWH(x - w * .22, y - w * 3.8, w * .44, w * 3.8),
-          const ui.Radius.circular(w * .1),
-        ),
-        paint,
-      );
-      paint.color = const ui.Color(0xff45534b);
-      canvas.drawRect(
-        const ui.Rect.fromLTWH(x - w * .23, y - w * 3.2, w * .46, w * .8),
-        paint,
-      );
-      paint.color = const ui.Color(0xffffb65a);
-      canvas.drawRect(
-        const ui.Rect.fromLTWH(x - w * .17, y - w * 3.05, w * .34, w * .43),
-        paint,
-      );
-      // Cone: 180-unit basis, grounded at local 768,500.
-      final cone = ui.Path()
-        ..moveTo(768, 140)
-        ..lineTo(660, 500)
-        ..lineTo(876, 500)
-        ..close();
-      paint.color = const ui.Color(0xfff39b47);
-      canvas.drawPath(cone, paint);
-      paint.color = const ui.Color(0xffffedcb);
-      canvas.drawRect(const ui.Rect.fromLTWH(714, 338, 108, 45), paint);
-      // Lamp: 150-unit basis, grounded at local 1360,500.
-      final lamp = ui.Path()
-        ..moveTo(1360, 500)
-        ..lineTo(1360, 138.8)
-        ..quadraticBezierTo(1360, 80, 1292.5, 80)
-        ..lineTo(1252, 80);
-      paint
-        ..color = const ui.Color(0xff556b69)
-        ..strokeWidth = 8.25
-        ..style = ui.PaintingStyle.stroke;
-      canvas.drawPath(lamp, paint);
-      paint
-        ..style = ui.PaintingStyle.fill
-        ..color = const ui.Color(0xffe4e6ca);
-      canvas.drawOval(const ui.Rect.fromLTWH(1232.5, 72.5, 48, 15), paint);
-      canvas.restore();
-    });
+    environmentAtlas = _record(
+      1536,
+      businesses != null ? 3072 : (props == null ? 1536 : 2048),
+      (canvas) {
+        final paint = ui.Paint()..isAntiAlias = true;
+        canvas.drawImage(source, ui.Offset.zero, paint);
+        if (businesses != null) {
+          for (var i = 0; i < businessSources.length; i++) {
+            final source = businessSources[i];
+            final height = source.height * 512 / source.width;
+            final target = ui.Rect.fromLTWH(
+              (i % 2) * 512.0,
+              2048 + (i ~/ 2) * 512.0 + 512 - height,
+              512,
+              height,
+            );
+            canvas.drawImageRect(businesses, source, target, paint);
+          }
+        }
+        if (props != null) {
+          canvas.drawImage(props, const ui.Offset(0, 1024), paint);
+          return;
+        }
+        canvas.save();
+        canvas.translate(0, 1024);
+        // Reflector post: same 120-unit basis as the previous live geometry.
+        const x = 256.0, y = 500.0, w = 120.0;
+        paint.color = const ui.Color(0xfff1e8c9);
+        canvas.drawRRect(
+          ui.RRect.fromRectAndRadius(
+            const ui.Rect.fromLTWH(x - w * .22, y - w * 3.8, w * .44, w * 3.8),
+            const ui.Radius.circular(w * .1),
+          ),
+          paint,
+        );
+        paint.color = const ui.Color(0xff45534b);
+        canvas.drawRect(
+          const ui.Rect.fromLTWH(x - w * .23, y - w * 3.2, w * .46, w * .8),
+          paint,
+        );
+        paint.color = const ui.Color(0xffffb65a);
+        canvas.drawRect(
+          const ui.Rect.fromLTWH(x - w * .17, y - w * 3.05, w * .34, w * .43),
+          paint,
+        );
+        // Cone: 180-unit basis, grounded at local 768,500.
+        final cone = ui.Path()
+          ..moveTo(768, 140)
+          ..lineTo(660, 500)
+          ..lineTo(876, 500)
+          ..close();
+        paint.color = const ui.Color(0xfff39b47);
+        canvas.drawPath(cone, paint);
+        paint.color = const ui.Color(0xffffedcb);
+        canvas.drawRect(const ui.Rect.fromLTWH(714, 338, 108, 45), paint);
+        // Lamp: 150-unit basis, grounded at local 1360,500.
+        final lamp = ui.Path()
+          ..moveTo(1360, 500)
+          ..lineTo(1360, 138.8)
+          ..quadraticBezierTo(1360, 80, 1292.5, 80)
+          ..lineTo(1252, 80);
+        paint
+          ..color = const ui.Color(0xff556b69)
+          ..strokeWidth = 8.25
+          ..style = ui.PaintingStyle.stroke;
+        canvas.drawPath(lamp, paint);
+        paint
+          ..style = ui.PaintingStyle.fill
+          ..color = const ui.Color(0xffe4e6ca);
+        canvas.drawOval(const ui.Rect.fromLTWH(1232.5, 72.5, 48, 15), paint);
+        canvas.restore();
+      },
+    );
+    if (businesses != null) {
+      environmentFrames.addAll(const [
+        ui.Rect.fromLTWH(0, 2048, 512, 512),
+        ui.Rect.fromLTWH(512, 2048, 512, 512),
+        ui.Rect.fromLTWH(0, 2560, 512, 512),
+        ui.Rect.fromLTWH(512, 2560, 512, 512),
+      ]);
+      _resources.remove(businesses);
+      businesses.dispose();
+    }
     _resources.remove(source);
     source.dispose();
     if (props != null) {
@@ -489,6 +536,7 @@ class BillboardBatch {
   int count = 0, drawCalls = 0;
   ui.Image? image;
   ui.BlendMode colorBlend = ui.BlendMode.modulate;
+  int batchOpacity = 255;
   final ui.Paint paint = ui.Paint()
     ..filterQuality = ui.FilterQuality.low
     ..isAntiAlias = true;
@@ -502,12 +550,17 @@ class BillboardBatch {
     double scale, {
     int color = 0xffffffff,
     ui.BlendMode blend = ui.BlendMode.modulate,
+    int opacity = 255,
   }) {
-    if (image != atlas || colorBlend != blend || count >= capacity) {
+    if (image != atlas ||
+        colorBlend != blend ||
+        batchOpacity != opacity ||
+        count >= capacity) {
       flush(canvas);
     }
     image = atlas;
     colorBlend = blend;
+    batchOpacity = opacity;
     final i = count * 4;
     transforms[i] = scale;
     transforms[i + 1] = 0;
@@ -524,6 +577,7 @@ class BillboardBatch {
   void flush(ui.Canvas canvas) {
     if (count == 0 || image == null) return;
     drawCalls++;
+    paint.color = ui.Color.fromARGB(batchOpacity, 255, 255, 255);
     canvas.drawRawAtlas(
       image!,
       Float32List.sublistView(transforms, 0, count * 4),

@@ -25,3 +25,10 @@ Sound SHALL begin after an appropriate user interaction, respect mute and pause,
 #### Scenario: audio blocked by browser
 - **WHEN** autoplay is unavailable
 - **THEN** the game remains usable and captions convey critical guidance
+
+## Research and reference traceability
+
+The [project reference register](../../../docs/research/reference-register.md) indexes all research, design,
+validation and asset-provenance documents used by this specification. Follow each
+entry for original sources and applicability limits. Historical proof evidence
+does not imply current production or physical-device acceptance.

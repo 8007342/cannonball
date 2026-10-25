@@ -37,88 +37,108 @@
   ],
   "radio": [
     {
-      "text": "That shortcut is closed today. Stay on the open road; the scenery is on us.",
-      "src": "radio-c7c32cfe2eaf.mp3",
+      "text": "Shortcut closed. Scenic route it is!",
+      "src": "radio-aef534116140.mp3",
       "voice": "am_michael",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Road crews have closed the shortcut. Keep to the open lanes and give the cones some room.",
-      "src": "radio-2fa02bb0c2f2.mp3",
+      "text": "Shortcut closed. Follow the open road.",
+      "src": "radio-5bc0113c2b9d.mp3",
       "voice": "af_heart",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
-      "src": "radio-fc3ca9fed82c.mp3",
+      "text": "Narrow lanes ahead. Mind the cones!",
+      "src": "radio-e30ca9876e2e.mp3",
       "voice": "am_fenrir",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "A lane is closed ahead. Give the orange cones some room. They are having a very busy day.",
-      "src": "radio-85be102cbc7d.mp3",
+      "text": "Lane closed. Cones are working overtime!",
+      "src": "radio-dea411ba038c.mp3",
       "voice": "am_michael",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Snow ahead. Gentle steering, earlier braking. Save the dramatic slides for the parking lot.",
-      "src": "radio-8d4c8a8397eb.mp3",
+      "text": "Snow ahead. Easy steering, early brakes.",
+      "src": "radio-1af541d53806.mp3",
       "voice": "af_heart",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "A little mountain snow today. Leave more room than you think, and keep the shiny side up.",
-      "src": "radio-05024ce3ecfa.mp3",
+      "text": "Mountain snow! Keep the shiny side up.",
+      "src": "radio-b383fc0bf4f5.mp3",
       "voice": "am_fenrir",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Rain on the road. Give the brakes a little more room than your coffee cup.",
-      "src": "radio-f3b8587d05e4.mp3",
+      "text": "Rain ahead. Give those brakes room!",
+      "src": "radio-0aeebdc952a0.mp3",
       "voice": "am_michael",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Wet pavement ahead. Smooth moves, folks. This is a road trip, not a car wash stunt show.",
-      "src": "radio-084bb04d5f57.mp3",
+      "text": "Wet pavement. Smooth moves, folks!",
+      "src": "radio-75550ee16d80.mp3",
       "voice": "af_heart",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Remember, Cannonball is rolling today. Keep the roads clear, and your coffee in the cup.",
-      "src": "radio-f8b005f94b62.mp3",
+      "text": "Cannonball today! Keep the roads clear!",
+      "src": "radio-b6883c5d3e02.mp3",
       "voice": "am_fenrir",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Light traffic, open road. Even the delivery vans got the memo. Enjoy it while it lasts.",
-      "src": "radio-cdcdf43e1a30.mp3",
+      "text": "Light traffic. Even the vans got the memo!",
+      "src": "radio-92fc178ad1cc.mp3",
       "voice": "am_michael",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Roads are looking lovely. If you are running late, you will need a better excuse today.",
-      "src": "radio-38c6a0f760d5.mp3",
+      "text": "Lovely roads. Terrible day for excuses!",
+      "src": "radio-a0d95ab6c3c6.mp3",
       "voice": "af_heart",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "A few little traffic bunches ahead. Leave a gap. Nobody wins an argument with a minivan.",
-      "src": "radio-f1dcd0f6988b.mp3",
+      "text": "Traffic ahead. Never argue with a minivan!",
+      "src": "radio-066281d0d752.mp3",
       "voice": "am_fenrir",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Busy lanes up ahead. Pick your opening, not a fight. We like our listeners in one piece.",
-      "src": "radio-970ea4b2efbb.mp3",
+      "text": "Busy lanes. Pick a gap, not a fight!",
+      "src": "radio-e9d8652547f5.mp3",
       "voice": "am_michael",
       "model": "Kokoro v1.0"
     },
     {
-      "text": "Traffic is moving. Some drivers have places to be; some are still deciding where those places are.",
-      "src": "radio-df0a628c0e35.mp3",
+      "text": "Traffic moving. Some drivers are still deciding!",
+      "src": "radio-4f2e26afcdf1.mp3",
       "voice": "af_heart",
       "model": "Kokoro v1.0"
+    }
+  ],
+  "surf": [
+    {
+      "src": "surf-redline-sunrise.mp3",
+      "station": "City",
+      "title": "Redline Sunrise \u2014 dial fragment",
+      "duration": 0.68
+    },
+    {
+      "src": "surf-orange-cone-cumbia.mp3",
+      "station": "Forest",
+      "title": "Orange Cone Cumbia \u2014 dial fragment",
+      "duration": 0.68
+    },
+    {
+      "src": "surf-overpass-afterburn.mp3",
+      "station": "Mountain",
+      "title": "Overpass Afterburn \u2014 dial fragment",
+      "duration": 0.68
     }
   ]
 }

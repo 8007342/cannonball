@@ -99,6 +99,7 @@
   let scorePlayer = null;
   let proofAudio = false, radioPhase = 'music', radioTimer = null, radioEpoch = 0;
   let radioStation = '', lastRadioText = '', reportCount = 0;
+  let stationChanges = 0, surfCount = 0, radioVariant = 'direct';
   const proofTracks = {
     City: {root: 57, notes: [0, 7, 12, 11, 7, 4, 2, 7], chords: [0, 5, 9, 7], bpm: 146, style: 'synthpop'},
     Forest: {root: 55, notes: [0, 4, 7, 9, 7, 4, 2, 0], chords: [0, 5, 0, 7], bpm: 138, style: 'country'},
@@ -376,33 +377,56 @@
     if (!proofAudio || typeof text !== 'string' || !text.trim()) return;
     cancelRadio();
     cancelSpeech();
-    lastRadioText = text.slice(0, 320);
-    radioStation = typeof station === 'string' ? station : 'City';
+    const nextStation = typeof station === 'string' ? station : 'City';
+    const changed = radioStation !== '' && radioStation !== nextStation;
+    if (changed) stationChanges++;
+    lastRadioText = text.slice(0, 160);
+    radioStation = nextStation;
     reportCount++;
     region = radioStation;
+    const surf = changed && stationChanges % 2 === 1;
+    radioVariant = 'direct';
     if (muted || paused || doc.hidden || !context) return;
     stopMusic();
-    radioPhase = 'tuning';
-    tuningNoise();
     const epoch = radioEpoch;
-    radioTimer = root.setTimeout(() => {
-      radioTimer = null;
-      if (epoch !== radioEpoch || muted || paused || doc.hidden) return;
+    const valid = () => epoch === radioEpoch && !muted && !paused && !doc.hidden;
+    const later = (delay, action) => {
+      radioTimer = root.setTimeout(() => {
+        radioTimer = null;
+        if (valid()) action();
+      }, delay);
+    };
+    const tune = () => { radioPhase = 'tuning'; tuningNoise(); };
+    const resumeMusic = () => {
+      if (!valid()) return;
+      radioPhase = 'music';
+      activeRegion = region;
+      theme = selectTheme(region);
+      step = 0;
+      nextNote = context.currentTime + .025;
+    };
+    const finishReport = () => {
+      if (!valid()) return;
+      if (radioVariant === 'surf') {tune(); later(180, resumeMusic);}
+      else resumeMusic();
+    };
+    const report = () => {
       radioPhase = 'report';
-      const finish = () => {
-        if (epoch !== radioEpoch) return;
-        radioPhase = 'music';
-        activeRegion = region;
-        theme = selectTheme(region);
-        step = 0;
-        if (context) nextNote = context.currentTime + .025;
-      };
       if (scorePlayer) {
-        scorePlayer.report(lastRadioText, finish).then(played => {
-          if (!played && epoch === radioEpoch && !muted && !paused && !doc.hidden) say(lastRadioText, finish);
+        scorePlayer.report(lastRadioText, finishReport).then(played => {
+          if (!played && valid()) say(lastRadioText, finishReport);
         });
-      } else say(lastRadioText, finish);
-    }, 230);
+      } else say(lastRadioText, finishReport);
+    };
+    tune();
+    later(180, () => {
+      if (surf && scorePlayer?.playSnippet(radioStation)) {
+        radioVariant = 'surf'; surfCount++; radioPhase = 'surf-song';
+        later(680, () => {
+          stopMusic(); tune(); later(180, report);
+        });
+      } else report();
+    });
   }
 
   function setProofAudio(value) {
@@ -412,7 +436,8 @@
     activeRegion = '';
     theme = null;
     step = 0;
-    reportCount = 0;
+    reportCount = stationChanges = surfCount = 0;
+    radioVariant = 'direct';
     lastRadioText = radioStation = '';
   }
 
@@ -516,6 +541,7 @@
     setProofAudio, radioBreak, garageCue,
     audioSnapshot() {
       return {proofAudio, phase: radioPhase, station: radioStation, reportCount,
+        radioVariant, surfCount, stationChanges,
         lastRadioText, trackStyle: theme?.style || 'prototype',
         prepared: scorePlayer?.snapshot() || null,
         speechMode: scorePlayer?.voiceMode || 'device TTS fallback; no regional accent guarantee'};

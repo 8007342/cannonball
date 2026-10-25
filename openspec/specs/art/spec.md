@@ -40,3 +40,10 @@ Art SHALL mix pixelated forms with diffused edges. Motion smoothness and readabl
 #### Scenario: reviewing a style sample
 - **WHEN** an art sample is evaluated on mobile and desktop
 - **THEN** reviewers compare moving silhouettes, scaling, pose changes and hazard readability across the proposed resolution tiers
+
+## Research and reference traceability
+
+The [project reference register](../../../docs/research/reference-register.md) indexes all research, design,
+validation and asset-provenance documents used by this specification. Follow each
+entry for original sources and applicability limits. Historical proof evidence
+does not imply current production or physical-device acceptance.

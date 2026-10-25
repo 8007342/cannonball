@@ -61,3 +61,10 @@ The shared Top100 SHALL retain differences in car performance, route distance, t
 #### Scenario: a better car finishes a favorable route
 - **WHEN** a valid completed run qualifies with a faster car or favorable random conditions
 - **THEN** its actual total time counts on the shared board without a fairness adjustment
+
+## Research and reference traceability
+
+The [project reference register](../../../docs/research/reference-register.md) indexes all research, design,
+validation and asset-provenance documents used by this specification. Follow each
+entry for original sources and applicability limits. Historical proof evidence
+does not imply current production or physical-device acceptance.

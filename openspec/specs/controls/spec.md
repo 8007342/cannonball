@@ -33,3 +33,10 @@ Touching and holding outside the wheel SHALL brake; utility controls SHALL consu
 #### Scenario: toggling tilt during play
 - **WHEN** the player disables tilt with the persistent toggle
 - **THEN** touch steering takes over without an abrupt steering discontinuity
+
+## Research and reference traceability
+
+The [project reference register](../../../docs/research/reference-register.md) indexes all research, design,
+validation and asset-provenance documents used by this specification. Follow each
+entry for original sources and applicability limits. Historical proof evidence
+does not imply current production or physical-device acceptance.
