@@ -8,6 +8,7 @@ import 'package:flutter/painting.dart';
 import 'race_controller.dart';
 import 'render/proof_art.dart';
 import 'render/road_mesh.dart';
+import 'render/vehicle_pose.dart';
 import 'route.dart';
 
 class _RoadPoint {
@@ -42,6 +43,25 @@ class RaceGame extends FlameGame {
   final BillboardBatch _batch = BillboardBatch();
   static const _w = 1000.0, _roadHalfWidth = 1100.0;
   static const visualSpeedScale = 12.0;
+  String _speedPreset = 'arcade';
+  String get speedPreset => _speedPreset;
+  void setSpeedPreset(String preset) {
+    if (const ['classic', 'cruise', 'arcade'].contains(preset)) {
+      _speedPreset = preset;
+    }
+  }
+
+  bool get _nextProof => proofMode && controller.car.id == 's2000';
+  double get _flowScale =>
+      visualSpeedScale *
+      (_nextProof
+          ? (_speedPreset == 'classic'
+                ? 1.0
+                : _speedPreset == 'cruise'
+                ? 1.3
+                : 1.7)
+          : 1.0);
+  double get _projection => _nextProof ? .76 : .88;
   static const _segmentLength = 115.0, _segmentCount = 100;
   final List<_RoadPoint> _points = List.generate(
     _segmentCount + 1,
@@ -77,9 +97,10 @@ class RaceGame extends FlameGame {
       ? 'HIGH COUNTRY'
       : 'GREEN COUNTRY';
   Biome get _biome => proofMode
-      ? (_presentationTime % 60 < 18
+      ? (_presentationTime % (_nextProof ? 90 : 60) < (_nextProof ? 27 : 18)
             ? Biome.city
-            : _presentationTime % 60 < 39
+            : _presentationTime % (_nextProof ? 90 : 60) <
+                  (_nextProof ? 58 : 39)
             ? Biome.forest
             : Biome.mountain)
       : controller.currentEdge.biome;
@@ -168,7 +189,7 @@ class RaceGame extends FlameGame {
     _world =
         (controller.worldDistance -
             controller.speed * RouteGraph.speedScale * lag) *
-        visualSpeedScale;
+        _flowScale;
     _playerX = controller.playerX - _xVelocity * lag;
     updateCount++;
     _updateWatch.stop();
@@ -177,16 +198,16 @@ class RaceGame extends FlameGame {
     maxUpdateMicros = math.max(maxUpdateMicros, lastUpdateMicros);
   }
 
-  double _center(double z) => controller.centerAt(z / visualSpeedScale) * 8;
+  double _center(double z) => controller.centerAt(z / _flowScale) * 8;
   double _elevation(double z) {
     if (proofMode) {
       return math.sin(z / 5900) * 620 + math.sin(z / 2750) * 115;
     }
-    return controller.elevationAt(z / visualSpeedScale) * 2.1;
+    return controller.elevationAt(z / _flowScale) * 2.1;
   }
 
   void _project(double worldZ, _RoadPoint out) {
-    final z = math.max(20.0, worldZ - _cameraZ), scale = .88 / z;
+    final z = math.max(20.0, worldZ - _cameraZ), scale = _projection / z;
     out.z = z;
     out.x =
         _w * .5 +
@@ -215,8 +236,8 @@ class RaceGame extends FlameGame {
       canvas.clipRect(Rect.fromLTWH(0, 0, _w, _h));
       _sky(canvas);
       if (_loaded) {
-        _cameraZ = _world - 850;
-        _cameraY = _elevation(_world) + 730;
+        _cameraZ = _world - (_nextProof ? 700 : 850);
+        _cameraY = _elevation(_world) + (_nextProof ? 660 : 730);
         _cameraX = _center(_cameraZ);
         _tangent = (_center(_cameraZ + 20) - _cameraX) / 20;
         canvas.save();
@@ -509,7 +530,7 @@ class RaceGame extends FlameGame {
       }
     }
     for (final car in controller.traffic) {
-      final z = car.position * visualSpeedScale;
+      final z = car.position * _flowScale;
       if (z > near && z < far) {
         _objects.add(
           _Object(
@@ -536,11 +557,10 @@ class RaceGame extends FlameGame {
     if (controller.closedLane != null) {
       final start =
           _world +
-          (controller.closureStart - controller.edgeDistance) *
-              visualSpeedScale;
+          (controller.closureStart - controller.edgeDistance) * _flowScale;
       final end =
           _world +
-          (controller.closureEnd - controller.edgeDistance) * visualSpeedScale;
+          (controller.closureEnd - controller.edgeDistance) * _flowScale;
       for (
         var z = math.max(start - 1800, near);
         z < math.min(end, far);
@@ -633,6 +653,7 @@ class RaceGame extends FlameGame {
     double scale, {
     double clip = double.infinity,
     int tint = 0xffffffff,
+    bool mirrored = false,
   }) {
     if (scale <= 0 || y >= clip) return;
     final visibleHeight = math.min(source.height, (clip - y) / scale);
@@ -645,6 +666,26 @@ class RaceGame extends FlameGame {
       source.width - 1,
       visibleHeight - 1,
     );
+    if (mirrored) {
+      _batch.flush(canvas);
+      canvas.save();
+      canvas.translate(x + source.width * scale, y);
+      canvas.scale(-1, 1);
+      _paint.color = Color(tint);
+      canvas.drawImageRect(
+        image,
+        cropped,
+        Rect.fromLTWH(
+          .5 * scale,
+          .5 * scale,
+          cropped.width * scale,
+          cropped.height * scale,
+        ),
+        _paint,
+      );
+      canvas.restore();
+      return;
+    }
     _batch.add(
       canvas,
       image,
@@ -656,18 +697,14 @@ class RaceGame extends FlameGame {
     );
   }
 
-  int _pose(bool player) {
-    if (!player) return 0;
-    if (controller.recovering ||
-        controller.steering.abs() > .87 && controller.speed > 100) {
-      return 5;
-    }
-    if (controller.steering < -.16) return 1;
-    if (controller.steering > .16) return 2;
-    final grade = (_elevation(_world + 160) - _elevation(_world - 160)) / 320;
-    if (grade > .075) return 3;
-    if (grade < -.075) return 4;
-    return 0;
+  VehiclePose _pose(bool player) {
+    if (!player) return const VehiclePose(0);
+    return VehiclePose.select(
+      steering: controller.steering,
+      speed: controller.speed,
+      grade: (_elevation(_world + 160) - _elevation(_world - 160)) / 320,
+      recovering: controller.recovering,
+    );
   }
 
   void _vehicle(
@@ -681,7 +718,8 @@ class RaceGame extends FlameGame {
   ) {
     final atlas = _art.carAtlas;
     if (atlas == null) return;
-    final frame = _pose(player);
+    final pose = _pose(player);
+    final frame = pose.frame;
     final src = _art.carFrames[frame];
     final scale = width / 450;
     final speed = controller.speed / controller.car.topSpeed;
@@ -691,7 +729,9 @@ class RaceGame extends FlameGame {
         : 0.0;
     final bodyY = y + bounce;
     final groundAnchor = ProofArt.carGround[frame];
-    final centerAnchor = ProofArt.carCenter[frame];
+    final centerAnchor = pose.mirrored
+        ? src.width - ProofArt.carCenter[frame]
+        : ProofArt.carCenter[frame];
     final shadowWidth = width * 1.13;
     _sprite(
       canvas,
@@ -744,6 +784,7 @@ class RaceGame extends FlameGame {
           scale,
           clip: clip,
           tint: object.tint,
+          mirrored: pose.mirrored,
         );
       }
     }
