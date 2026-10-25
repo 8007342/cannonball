@@ -52,7 +52,9 @@ class RaceGame extends FlameGame {
   String get speedPreset => _speedPreset;
   void setSpeedPreset(String preset) {
     if (const ['classic', 'cruise', 'arcade'].contains(preset)) {
+      final previous = _flowScale;
       _speedPreset = preset;
+      _worldOffset += controller.worldDistance * (previous - _flowScale);
     }
   }
 
@@ -96,15 +98,23 @@ class RaceGame extends FlameGame {
   bool get assetsReady => _loaded && _art.ready;
   String? get artError => _art.error;
   double _h = 560, _cameraZ = 0, _cameraY = 0, _cameraX = 0, _tangent = 0;
-  double _world = 0, _playerX = 0, _presentationTime = 0, _xVelocity = 0;
+  double _world = 0,
+      _worldOffset = 0,
+      _playerX = 0,
+      _presentationTime = 0,
+      _xVelocity = 0;
+  double get visualFlowScale => _flowScale;
+  double get presentationDistance => _world;
   int _lastSeed = -1;
   String get proofStage => _biome == Biome.city
       ? 'CITY EDGE'
       : _biome == Biome.mountain
       ? 'HIGH COUNTRY'
       : 'GREEN COUNTRY';
-  Biome get _biome => proofMode
-      ? (_presentationTime % (_nextProof ? 90 : 60) < (_nextProof ? 27 : 18)
+  Biome get _biome => _nextProof
+      ? controller.currentEdge.biome
+      : proofMode
+      ? (_presentationTime % 60 < 18
             ? Biome.city
             : _presentationTime % (_nextProof ? 90 : 60) <
                   (_nextProof ? 58 : 39)
@@ -179,6 +189,7 @@ class RaceGame extends FlameGame {
     if (controller.seed != _lastSeed || controller.elapsed < _lastElapsed) {
       _lastSeed = controller.seed;
       _presentationTime = controller.elapsed;
+      _worldOffset = 0;
       _xVelocity = 0;
     }
     if (!controller.paused && !controller.finished && dt.isFinite) {
@@ -195,8 +206,9 @@ class RaceGame extends FlameGame {
     final lag = controller.paused ? 0.0 : RaceController.fixedStep - remainder;
     _world =
         (controller.worldDistance -
-            controller.speed * RouteGraph.speedScale * lag) *
-        _flowScale;
+                controller.speed * RouteGraph.speedScale * lag) *
+            _flowScale +
+        _worldOffset;
     _playerX = controller.playerX - _xVelocity * lag;
     updateCount++;
     _updateWatch.stop();
@@ -205,12 +217,13 @@ class RaceGame extends FlameGame {
     maxUpdateMicros = math.max(maxUpdateMicros, lastUpdateMicros);
   }
 
-  double _center(double z) => controller.centerAt(z / _flowScale) * 8;
+  double _center(double z) =>
+      controller.centerAt((z - _worldOffset) / _flowScale) * 8;
   double _elevation(double z) {
     if (proofMode) {
       return math.sin(z / 5900) * 620 + math.sin(z / 2750) * 115;
     }
-    return controller.elevationAt(z / _flowScale) * 2.1;
+    return controller.elevationAt((z - _worldOffset) / _flowScale) * 2.1;
   }
 
   void _project(double worldZ, _RoadPoint out) {
@@ -404,8 +417,13 @@ class RaceGame extends FlameGame {
         shoulderColor,
         shoulderColor,
       );
+      final weatherTint = controller.weather == RaceWeather.rain
+          ? const Color(0xffb4c6d0)
+          : controller.weather == RaceWeather.snow
+          ? const Color(0xffd5dfe0)
+          : const Color(0xffffffff);
       final tint = Color.lerp(
-        const Color(0xffffffff),
+        weatherTint,
         const Color(0xffd5dfdf),
         fade * .5,
       )!.toARGB32();
@@ -529,7 +547,11 @@ class RaceGame extends FlameGame {
       final side = i.isEven ? -1.0 : 1.0;
       final hash = ((i * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
       // Samples are selected spatially, so no popping when a UI stage changes.
-      final biome = proofMode
+      final cityEnd =
+          controller.graph.edges.first.length * _flowScale + _worldOffset;
+      final biome = _nextProof
+          ? (z < cityEnd ? Biome.city : Biome.forest)
+          : proofMode
           ? (z < 14500
                 ? Biome.city
                 : z < 36500
@@ -603,7 +625,7 @@ class RaceGame extends FlameGame {
       }
     }
     for (final car in controller.traffic) {
-      final z = car.position * _flowScale;
+      final z = car.position * _flowScale + _worldOffset;
       if (z > near && z < far) {
         _objects.add(
           _Object(
@@ -1003,7 +1025,7 @@ class RaceGame extends FlameGame {
   }
 
   void _weather(Canvas canvas) {
-    if (proofMode) return;
+    if (proofMode && !_nextProof) return;
     final snow = controller.weather == RaceWeather.snow;
     if (!snow && controller.weather != RaceWeather.rain) return;
     _paint
