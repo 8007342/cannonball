@@ -41,3 +41,17 @@ Traffic paint variants SHALL preserve fixed tire, glass, cabin and lighting deta
 #### Scenario: steering right at speed
 - **WHEN** the player steers strongly right above the skid threshold
 - **THEN** the sprite SHALL present rightward motion rather than reusing an uncorrected leftward pose
+
+### Requirement: Continuous departure composition
+The proof departure SHALL preserve car proportions, present a readable reach/grasp/withdraw, coordinate the turn toward the doorway, and bridge cabin/rear/driving views with consistent composition and sound. The clock SHALL remain paused before handoff; skip, reduced motion and mute SHALL remain supported.
+
+#### Scenario: wide landscape cabin
+- **WHEN** a landscape viewport changes aspect ratio
+- **THEN** the cabin SHALL crop or frame proportionally rather than stretching the steering wheel and car interior
+
+### Requirement: Progressive steering poses
+Steering presentation SHALL pass through gentle/intermediate angles before a sustained full turn, preserve small angles for gentle held input, and respond smoothly on reversal. Timing SHALL be frame-rate independent and playtested; full input SHALL NOT automatically imply an immediate skid.
+
+#### Scenario: brief arrow tap
+- **WHEN** a short full-strength steering input begins
+- **THEN** the first visible turn SHALL be gentle rather than an immediate hard/skid pose

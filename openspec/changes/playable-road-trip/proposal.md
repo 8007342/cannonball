@@ -29,5 +29,8 @@ None. Implement the existing capabilities rather than duplicating them.
 ## Approved next proof
 The first moving proof is provisionally accepted as a technology test. The next proof adds an S2000 starter/departure, palette-varied reactive traffic, stronger optical flow, condition-driven radio/music and a local stage-record foundation. Successful campaign stages now target 10–15 minutes; the short proof compresses that experience for review. Rankings remain undecided, preserving the legacy board without new claims.
 
+## Approved driving-and-camera milestone
+The user approved a researched test-course milestone after reviewing the second proof: visibly authored curves and hills, fixed world-anchored cones, sprite road furniture, intentional scenery clearance/occlusion, stronger perceived speed, aspect-correct garage camera continuity and live resize verification. Progressive gentle-to-hard steering presentation is now required for keyboard/touch inputs. Geometry/sound experiments must preserve comparable physics and record measurement limits.
+
 ## Impact
 Flutter game/UI modules, browser sensor/audio/GIS bridge, Worker API and SQLite Durable Object, deployment configuration and validation. Native apps remain excluded. Tests must verify clock/gate/branch logic, UI state transitions and API acceptance failures. Real phone comfort/performance and live Google/Cloudflare setup remain separate observable checks, never inferred from a dry-run. Initial authored visuals and real-road corridor data must be labeled honestly until production asset and exact-junction review is complete.

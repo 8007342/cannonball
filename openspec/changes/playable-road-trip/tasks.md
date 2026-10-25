@@ -52,3 +52,13 @@ is the requested first draft, not final art approval or production acceptance.
 - [x] 8.5 Implement proof station music/report sequencing, humorous condition-matched samples, anti-repeat rules and nonblocking browser audio fallback.
 - [x] 8.6 Implement and test local versioned compatible stage receipts and best connected mixed-car journey foundation without changing legacy cloud ranking contracts.
 - [x] 8.7 Integrate, analyze/test/build, inspect moving browser controls/intro/traffic, record timing and publish the second local proof; push durable checkpoints on work branches.
+
+## 9. Approved driving-and-camera milestone
+- [ ] 9.1 Research perceived speed, steering transitions and cinematic handoff using primary reputable sources; distinguish findings, limitations and timing hypotheses.
+- [ ] 9.2 Implement shared proof-only authored straight, bends, climb/bend, crest/descent and worksite course; verify obvious projected shape and fixed world-anchored cones.
+- [ ] 9.3 Implement camera comparison variants, painted road props, ground clearances, overhead canopy/bridge/tunnel and readable depth/exposure treatment with bounded rendering cost.
+- [ ] 9.4 Improve reach/grasp/withdraw, doorway pan, aspect-correct cabin and audio-supported rear/launch handoff; verify paused intro, skip and lifecycle behavior.
+- [ ] 9.5 Verify live resize, DPR and input geometry; distinguish preview-host sizing from application layout and add justified diagnostics/regression checks.
+- [ ] 9.6 Generate and validate replacement prop, hand, wide-cabin and progressive S2000 turn assets with provenance and coherent anchors.
+- [ ] 9.7 Add time-based progressive steering presentation and meaningful gentle-input/held-input/reversal/timing tests; gentle road curves shall reward gentle steering.
+- [ ] 9.8 Integrate and run relevant tests, analyzer, release build and moving browser review; measure no-capture cadence and publish locally with durable work-branch checkpoints.

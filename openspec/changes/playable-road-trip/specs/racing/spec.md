@@ -15,3 +15,10 @@ Nearby traffic SHALL be able to brake or flinch within its lane in response to a
 #### Scenario: close pass
 - **WHEN** a fast player passes closely enough to trigger a nearby driver's reaction
 - **THEN** that driver can flinch or brake without teleporting across lanes
+
+### Requirement: Authored driving test course
+The local proof SHALL include readable straights, opposing bends, combined elevation/curvature, a crest/descent and an actual worksite. Geometry and steering demand SHALL agree. Camera comparison variants SHALL preserve comparable car physics and stage timing.
+
+#### Scenario: following a gentle bend
+- **WHEN** the player maintains an appropriate small steering input on a long gentle curve
+- **THEN** the car SHALL remain controllable with a gentle visual turn angle
