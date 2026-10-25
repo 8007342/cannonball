@@ -21,7 +21,10 @@ Arabiya's shared public Google client, with an exact Cannonball JavaScript origi
 required. Guest progress stays local. Unavailable cloud services never block play
 or claim that a local result was saved globally.
 
-**This is a playable first pass, not production-complete.** Artwork is original
+**The user rejected this first pass’s graphics and static/slow presentation.**
+The renderer is being replanned around Super Off Road: The Baja’s lively motion
+with a modern cartoon world. See the [renderer audit](docs/research/renderer-audit.md).
+This is not production-complete. Artwork is original
 procedural composition; exact road/interchange geometry and landmark sightlines
 are not yet a verified atlas. Final sprite/region packs, authored story/cutscenes,
 production sound-bank/voice library and real-phone tuning remain tracked in the

@@ -3,7 +3,7 @@
 ## 1. Engine and route stream
 - [x] 1.1 Implement fixed-step auto acceleration/braking/steering, gate timing, traffic/collision/recovery and finish receipts; verify deterministic simulation and gate tests.
 - [x] 1.2 Implement authored route graph, forks, closures, secret unlocks and continuous region changes; verify reachability and recorded route progression tests.
-- [x] 1.3 Render pseudo-3D hills/curves, traffic, roadside regional cues, weather and roof-off white Corvette; verify browser render and document provisional art/data limits.
+- [ ] 1.3 Replace the rejected primitive renderer with the Baja-inspired cartoon visual proof, including hills/curves, traffic, scenery, weather and roof-off Corvette; verify the moving result and measured frame pacing.
 
 ## 2. Browser platform
 - [x] 2.1 Add permission/calibration/timeout tilt fallback and lifecycle hooks; verify bridge tests and document real-device checks still required.
@@ -24,8 +24,14 @@
 ## 5. Production acceptance
 - [ ] 5.1 Review and approve final camera and coherent sample car/biome sheet, then produce complete animation/region/landmark packs and provenance manifests; verify moving contact sheets and geographical source review.
 - [ ] 5.2 Complete storyline/storyboard/cutscene/hint writing, original production score and curated radio voice library; review a full uninterrupted run.
-- [ ] 5.3 Verify exact Google origin in live sign-in, provision Cloudflare storage/routes/Pages, deploy and verify HTTPS identity/save/ranking across devices; preserve deployment evidence.
+- [ ] 5.3 Verify live sign-in using the operator-confirmed exact Google origin, provision Cloudflare storage/routes/Pages, deploy and verify HTTPS identity/save/ranking across devices; preserve deployment evidence.
 - [ ] 5.4 Playtest 10–15 minute completions on representative real phones and desktop, tuning lean, frame times, animation, input and difficulty; record results before marking production complete.
+
+## 6. Renderer correction after user rejection
+- [x] 6.1 Audit the code and original Baja reference; deliver renderer-audit.md plus raw browser cadence/DPR evidence and explicit measurement limits.
+- [ ] 6.2 Build textured road composition, cached parallax layers and batched depth-sorted props with interpolated transforms; verify consistent car/bridge/hill occlusion and compare draw/raster costs.
+- [ ] 6.3 Produce one coherent animated cartoon car/city/vegetation sample with wheel/suspension/turn/slope poses; review a moving30–60s proof before bulk generation.
+- [ ] 6.4 Instrument actual render/update work and scene pixel budget, isolate HUD rebuilds and profile target browsers; report p95/p99 and compare identical seeded runs without capture versus the preview viewer.
 
 ## Workflow follow-up
 - Archive only after tracked implementation and acceptance work is complete; do not mark procedural placeholders or desktop checks as final asset/mobile approval.

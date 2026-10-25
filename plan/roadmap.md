@@ -3,13 +3,14 @@
 Current phase: Astra engine/backend/platform and root UI are implemented as a
 playable first pass. Active work and evidence: openspec/changes/playable-road-trip.
 
-1. Review the moving browser build's camera, wheel rim and procedural car/biome
-   sample. Produce approved final sprite/animation, landmark and region packs with
-   provenance; upgrade schematic junction/flyover geometry after source review.
+1. Replace the rejected primitive renderer with a measured Baja-inspired cartoon
+   proof: textured ground, animated suspension/wheels/poses, cached parallax,
+   depth-correct scenery/bridges and a real scene pixel budget. Review a moving
+  30–60s sample before production packs; see docs/research/renderer-audit.md.
 2. Finalize starter-car story, garage ownership, storyboard/cutscenes and authored
    hints; replace provisional radio/score with the approved production voice and
    instrument library while preserving continuous driving.
-3. Confirm exact Google Authorized JavaScript origin, provision Cloudflare
+3. Use the operator-confirmed Google origin, provision Cloudflare
    Pages/Worker/SQLite and verify live HTTPS login, logout, queued-save recovery,
    cross-device progress and Top100. Shared Arabiya client ID is configured.
 4. Real-phone playtesting: tilt permission/calibration, lean direction/amplitude,

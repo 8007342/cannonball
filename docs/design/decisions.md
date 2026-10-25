@@ -49,3 +49,16 @@ The user approved motion/art research and requested an Astra fleet. Three Astra
 specialists own engine, backend and browser platform; root owns UI/integration.
 Final unlock: white 2019 Corvette Stingray Coupe, targa roof removed. Production
 asset approval and physical-device validation remain actual acceptance work.
+
+## Visual rejection and updated reference — 2026-10-25
+
+The user rejected the rectangle-based preview and reported approximately2fps and
+a static feel. The target is a modern animated-cartoon interpretation of Super
+Off Road: The Baja, with cities, vegetation, clouds, parallax mountains/buildings
+and bridges. Research approval does not approve the current graphics. Reopen
+renderer acceptance; use a moving, measured scene before more content expansion.
+See ../research/renderer-audit.md for measured versus calculated findings.
+
+The user explicitly confirms https://cannonball.tlatoani.net is registered on the
+shared Google client. Origin setup is no longer an unanswered user question;
+actual live login remains an integration check.

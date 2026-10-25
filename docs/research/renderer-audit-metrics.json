@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-25",
+  "build": "dd37c3c",
+  "environment": {
+    "browser": "headless Chromium 156",
+    "viewportCss": [
+      844,
+      390
+    ],
+    "graphics": "ANGLE Vulkan SwiftShader software renderer",
+    "activeDpr2Framebuffer": [
+      1688,
+      780
+    ],
+    "screenshotsDuringSampling": false
+  },
+  "garage": {
+    "value": {
+      "scene": "garage after reload; no GL wrappers",
+      "wallMs": 3005.9000000014894,
+      "callbacks": 182,
+      "rafHz": 60.54758974014765,
+      "p50": 16.700000000000728,
+      "p95": 16.799999999999272,
+      "max": 16.80000000000291,
+      "visibility": "visible",
+      "hasFocus": true
+    }
+  },
+  "activeInitial": {
+    "value": {
+      "scene": "active run after reload; no GL wrappers",
+      "wallMs": 3507.7000000014887,
+      "callbacks": 89,
+      "rafHz": 25.37275137553446,
+      "p50": 33.39999999999782,
+      "p95": 50.099999999998545,
+      "max": 166.60000000000218,
+      "visibility": "visible",
+      "hasFocus": true
+    }
+  },
+  "activeDpr1": {
+    "value": {
+      "scene": "active warm run DPR1; no GL wrappers",
+      "sampleMs": 3016.5,
+      "callbacks": 181,
+      "rafHz": 60.00331510028178,
+      "p50": 16.69999999999709,
+      "p95": 16.799999999995634,
+      "max": 16.80000000000291,
+      "visibility": "visible",
+      "hasFocus": true,
+      "dpr": 1,
+      "canvases": [
+        {
+          "w": 844,
+          "h": 390
+        }
+      ]
+    }
+  },
+  "activeDpr2Repeat": {
+    "value": {
+      "scene": "active warm run DPR2 repeat; no GL wrappers",
+      "sampleMs": 3049.9000000000015,
+      "callbacks": 84,
+      "rafHz": 27.541886619233406,
+      "p50": 33.30000000000291,
+      "p95": 50,
+      "max": 50.099999999998545,
+      "visibility": "visible",
+      "hasFocus": true,
+      "dpr": 2
+    }
+  },
+  "limitations": [
+    "requestAnimationFrame cadence is not presented-frame telemetry or end-to-end input latency",
+    "DPR samples are sequential, not identical replay scenes; results identify a resolution-sensitive effect but do not isolate every rendering cost",
+    "No physical phone measurement; user-reported approximately2fps not independently reproduced in the user's environment"
+  ]
+}

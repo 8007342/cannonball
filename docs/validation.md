@@ -35,9 +35,9 @@ local to the forge host, not the production cannonball.tlatoani.net deployment.
 
 ## Still unverified / incomplete
 
-- Google Console exact-origin registration and actual GIS login on the production
-  host. Registering only the parent host is insufficient. The public Arabiya client
-  ID is configured; credentials are not fabricated or copied.
+- Actual GIS login on the production host. The operator has now confirmed exact
+  Cannonball origin registration on the shared client; no further origin-setting
+  clarification is needed. The public client ID is configured.
 - Live Pages/Worker/SQLite provisioning, HTTPS path routing and cross-device saves.
   Connected Cloudflare tools currently expose read-only access and lack pages.read;
   no production deployment is claimed.
@@ -53,3 +53,13 @@ local to the forge host, not the production cannonball.tlatoani.net deployment.
   validate structure and plausibility; a malicious browser can forge plausible data.
 
 The remaining production acceptance tasks remain unchecked in the active change.
+
+## Subsequent user rejection and performance audit
+
+The user rejected the visual result and reported very low frame rate. The prior
+headless screenshots establish visibility/layout only and are not visual-quality
+approval. Renderer acceptance was reopened. New browser scheduling evidence and
+resolution comparison are in research/renderer-audit.md and its raw metrics JSON;
+those software-rendered measurements do not invalidate the user's device report.
+Exact Google origin registration is now operator-confirmed; live login is still
+not tested. Earlier text describing registration as unconfirmed is superseded.

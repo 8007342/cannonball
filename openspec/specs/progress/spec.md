@@ -6,7 +6,7 @@ Durable unlocks and a globally consistent arcade scoreboard.
 ## Requirements
 
 ### Requirement: Google identity and remote saves
-Signed-in players SHALL persist unlocked cars and approved progress remotely using a verified Google identity. Cookies SHALL remain host-only and HttpOnly; the backend SHALL verify audience, issuer, expiry and nonce and enforce same-origin protections. Cannonball SHALL reuse Arabiya’s Google web client ID with an exact authorized Cannonball origin; live registration is not yet verified. Cannonball and Arabiya are sibling hosts under tlatoani.net, with independent application sessions.
+Signed-in players SHALL persist unlocked cars and approved progress remotely using a verified Google identity. Cookies SHALL remain host-only and HttpOnly; the backend SHALL verify audience, issuer, expiry and nonce and enforce same-origin protections. Cannonball SHALL reuse Arabiya’s Google web client ID; the operator confirms exact Cannonball origin registration. Live sign-in remains unverified. Cannonball and Arabiya are sibling hosts under tlatoani.net, with independent application sessions.
 
 #### Scenario: returning on another device
 - **WHEN** a returning player signs into the same Google account
