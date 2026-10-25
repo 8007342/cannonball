@@ -10,5 +10,5 @@
 - [x] 2.2 Replace detached arch foliage with conditional grounded crowns and compose warm autumn transmission/dapple/wet shoulder leaves; test metadata/clearances and deterministic placement, inspect moving coherence.
 
 ## 3. Local integrated proof
-- [ ] 3.1 Run local format/analyzer/Flutter/browser/API/strict-spec checks and release build; inspect all six packs plus repeated swaps, night emissives and keyboard/touch; record uncaptured timing and evidence limits, publish locally and push a durable branch.
+- [x] 3.1 Run local format/analyzer/Flutter/browser/API/strict-spec checks and release build; inspect all six packs plus repeated swaps, night emissives and keyboard/touch; record uncaptured timing and evidence limits, publish locally and push a durable branch.
 - [ ] 3.2 Obtain physical-phone and user moving review of night visibility, canopy/art coherence, gain/comfort and sustained timing before promoting packs or claiming production acceptance.

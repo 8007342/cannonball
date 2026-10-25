@@ -65,6 +65,11 @@ void main() {
       await tester.sendKeyEvent(LogicalKeyboardKey.backspace);
       await tester.pump();
       expect(race.proofLevel.id, 'ohio');
+      await tester.tap(find.byTooltip('Choose level (Q W E R T Y)'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('E  Iowa prairie sunset'));
+      await tester.pumpAndSettle();
+      expect(race.proofLevel.id, 'iowa');
       expect(tester.takeException(), isNull);
     },
   );
