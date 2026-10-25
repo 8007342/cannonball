@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../game/race.dart';
 import '../game/proof_car.dart';
+import '../game/proof_course.dart';
 import '../platform/browser_platform.dart';
 import '../platform/proof_telemetry.dart';
 import '../platform/proof_radio.dart';
@@ -30,7 +31,7 @@ class VisualProofScreen extends StatefulWidget {
 class _VisualProofScreenState extends State<VisualProofScreen>
     with WidgetsBindingObserver {
   static const seed = 731;
-  static const duration = 90.0;
+  static const duration = 120.0;
   static const cream = Color(0xffffedcc);
   static const accent = Color(0xffffc56c);
   static const dark = Color(0xff14242b);
@@ -59,7 +60,13 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   void initState() {
     super.initState();
     _race = widget.controller ?? RaceController();
-    _race.start(proofCar, seed: seed, reactiveTraffic: true, launchSpeed: 110);
+    _race.start(
+      proofCar,
+      seed: seed,
+      reactiveTraffic: true,
+      launchSpeed: 110,
+      testCourse: true,
+    );
     _race.paused = true;
     _race.comfortMode = _platform.reducedMotion;
     _race.addListener(_onRace);
@@ -145,6 +152,9 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'speedMph': _race.speed,
     'worldDistance': _race.worldDistance,
     'steering': _race.steering,
+    'effectiveSteering': _race.effectiveSteering,
+    'courseSection': ProofCourse.sectionAt(_race.worldDistance),
+    'courseLength': ProofCourse.length,
     'braking': _race.braking,
     'playerX': _race.playerX,
     'speedPreset': _game?.speedPreset,
@@ -193,7 +203,13 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   void _reset() {
     if (!mounted) return;
     _resetInput();
-    _race.start(proofCar, seed: seed, reactiveTraffic: true, launchSpeed: 110);
+    _race.start(
+      proofCar,
+      seed: seed,
+      reactiveTraffic: true,
+      launchSpeed: 110,
+      testCourse: true,
+    );
     _race.paused = true;
     _race.motionControl = _tilt;
     _platform.pause(true);
@@ -214,10 +230,10 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     if (!mounted || !_ready.value || _phase.value != _ProofPhase.ready) return;
     final viewport = MediaQuery.sizeOf(context);
     if (viewport.height > viewport.width) return;
-    unawaited(_platform.beginAudio().then((_) => _platform.garageCue('keys')));
+    unawaited(_platform.beginAudio());
     _race.paused = true;
     _phase.value = _ProofPhase.departing;
-    _departureShot = 'pickup';
+    _departureShot = 'reach';
   }
 
   void _toggleSound() {
@@ -565,7 +581,13 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                             onComplete: _start,
                             onShot: (shot) {
                               _departureShot = shot;
-                              if (shot == 'door' || shot == 'cabin') {
+                              if (shot == 'grasp') _platform.garageCue('keys');
+                              if (const [
+                                'door',
+                                'cabin',
+                                'rear',
+                                'launch',
+                              ].contains(shot)) {
                                 _platform.garageCue(shot);
                               }
                             },

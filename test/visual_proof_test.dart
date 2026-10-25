@@ -124,26 +124,27 @@ void main() {
     },
   );
 
-  testWidgets('the 90-second study stops and retry resets its clock and seed', (
-    tester,
-  ) async {
-    final race = await mountProof(tester);
-    await startProof(tester);
-    race.braking = true;
-    for (var i = 0; i < 365; i++) {
-      race.tick(.25);
-    }
-    await tester.pump();
-    expect(race.elapsed, closeTo(90, .26));
-    expect(race.paused, isTrue);
-    expect(find.text('DRIVE IT AGAIN'), findsOneWidget);
-    await tester.tap(find.text('DRIVE IT AGAIN'));
-    await tester.pump();
-    expect(race.elapsed, 0);
-    expect(race.paused, isFalse);
-    expect(race.seed, 731);
-    expect(race.car.id, 's2000');
-  });
+  testWidgets(
+    'the 120-second study stops and retry resets its clock and seed',
+    (tester) async {
+      final race = await mountProof(tester);
+      await startProof(tester);
+      race.braking = true;
+      for (var i = 0; i < 485; i++) {
+        race.tick(.25);
+      }
+      await tester.pump();
+      expect(race.elapsed, closeTo(120, .26));
+      expect(race.paused, isTrue);
+      expect(find.text('DRIVE IT AGAIN'), findsOneWidget);
+      await tester.tap(find.text('DRIVE IT AGAIN'));
+      await tester.pump();
+      expect(race.elapsed, 0);
+      expect(race.paused, isFalse);
+      expect(race.seed, 731);
+      expect(race.car.id, 's2000');
+    },
+  );
 
   testWidgets('portrait viewport provides a rotate prompt before driving', (
     tester,
