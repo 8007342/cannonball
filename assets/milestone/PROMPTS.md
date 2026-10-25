@@ -1,5 +1,11 @@
 # Driving-and-camera milestone sample prompts
 
+## Long-arm correction
+
+Use case: precise-object-edit. Asset type: corrected FIRST PERSON ARM animation atlas1536x1024 transparent3columns2rows six512squarecells. Use supplied hand atlas as STYLE/IDENTITY reference, but FIX framing: EACH frame must include a LONG FORESHORTENED FOREARM running diagonally from a SMALL HAND at upper-left (palm center x105,y100, hand/fingers fit x40..185,y25..170) to the LOWER RIGHT CORNER of its cell (forearm continues fully through x512,y512, reaching outside the cell, NO VISIBLE CUT STUMP inside the cell). The hand should occupy only about28% of cell width, with natural perspective taper into long forearm approaching viewer. The forearm widens toward lower right, like first-person reaching acrossview, not an enormous fist with tiny forearm. All6poses haveidenticalhand/forearmidentity, light, scale and anchors. Readingorder reachopenfingers(empty), pinchclosing(empty), grasp oldsilverkeyblackfobwornredkeychain, withdrawsamekeys, reachingcardoor(empty), turnkeyignition. Cartoonpainted warm skin matchingreference, gentlepixelatededges. Wholearmexit MUST be atbottom-rightcorner; transparent space aroundarmandfingers. Actual transparentalpha. No backgrounds, outlines ofgrid, captions, logos, text, watermark. No otherobjects exceptkeys. Keep everypose in itsown512cell withoutbleeding toneighbors. Focus on visually correct firstpersonforearm attachment, not isolated severedhands.
+
+Saved as hand-reach-atlas.png using built-in image_gen; the original short-arm sheet is retained for provenance. Runtime anchors keep the wrist exit beyond the viewport.
+
 Built-in image_gen, 2026-10-25. Original generated sample artwork using the existing project paintings and S2000 as continuity references. Selected files are copied here; originals remain in generated_images storage. These are moving-review drafts, not complete production packs. Cabin aspect is 1672x941; prop atlas uses measured irregular source rectangles rather than assuming perfect cells. No third-party game artwork is reused.
 
 ## road-props
