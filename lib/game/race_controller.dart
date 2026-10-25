@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 
 import 'models.dart';
+import 'proof_course.dart';
 import 'route.dart';
 import 'traffic.dart';
 
@@ -53,6 +54,10 @@ class RaceController extends ChangeNotifier {
   double steering = 0;
   bool braking = false, paused = false, motionControl = false;
   bool comfortMode = false;
+  bool testCourseEnabled = false;
+  double _effectiveSteering = 0;
+  double get effectiveSteering =>
+      testCourseEnabled ? _effectiveSteering : steering;
   bool get steadyHorizon => comfortMode;
   set steadyHorizon(bool value) => comfortMode = value;
   bool _started = false, _finished = false, _completed = false;
@@ -130,7 +135,10 @@ class RaceController extends ChangeNotifier {
     int? seed,
     bool reactiveTraffic = false,
     double launchSpeed = 0,
+    bool testCourse = false,
   }) {
+    testCourseEnabled = testCourse;
+    _effectiveSteering = 0;
     reactiveTrafficEnabled = reactiveTraffic;
     _reactiveTraffic = ReactiveTraffic();
     _lastTrafficPlayerX = 0;
@@ -201,6 +209,7 @@ class RaceController extends ChangeNotifier {
   }
 
   double curveAt(double position) {
+    if (testCourseEnabled) return ProofCourse.steeringLoadAt(position);
     final phase = _seed % 251 / 40;
     final strength = _edge.biome == Biome.mountain ? 1.0 : .62;
     return (math.sin(position / 1700 + phase) * .36 +
@@ -233,7 +242,17 @@ class RaceController extends ChangeNotifier {
     regionBlend = math.min(1, regionBlend + fixedStep / 4);
     protection = math.max(0, protection - fixedStep);
     final ratio = _speed / _car.topSpeed;
-    final safeSteering = steering.isFinite ? steering.clamp(-1.0, 1.0) : 0.0;
+    final targetSteering = steering.isFinite ? steering.clamp(-1.0, 1.0) : 0.0;
+    // ~0.2 s to full input is a playtest hypothesis, not a sourced optimum.
+    // Release is quicker and reversals pass through neutral without a queue.
+    final rate = targetSteering == 0 ? 10.0 : 5.5;
+    _effectiveSteering += (targetSteering - _effectiveSteering).clamp(
+      -rate * fixedStep,
+      rate * fixedStep,
+    );
+    final safeSteering = testCourseEnabled
+        ? _effectiveSteering
+        : targetSteering;
     final leanTarget = comfortMode
         ? 0.0
         : -safeSteering * (motionControl ? .026 : .014) * ratio;
