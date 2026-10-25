@@ -66,5 +66,5 @@ is the requested first draft, not final art approval or production acceptance.
 - [x] 10.1 Compose three original sectional scores, render stereo mixes and export editable multitrack MIDI with reproducible sources and provenance.
 - [x] 10.2 Integrate bounded prepared-track playback with station/report sequencing, gesture gating and lifecycle/failure tests; provide a local listening room.
 - [x] 10.3 Produce and integrate prepared synthetic radio presenters, retaining device fallback and explicit regional-performance limitations.
-- [ ] 10.4 Validate locally, publish listening/game previews and push durable work-branch checkpoints; preserve pending driving feedback.
-- [ ] 10.5 Clear joining-road scenery footprints and provide exaggerated flow comparison with stronger hill presentation; verify geometry and inspect locally in motion.
+- [x] 10.4 Validate locally, publish listening/game previews and push durable work-branch checkpoints; preserve pending driving feedback.
+- [x] 10.5 Clear joining-road scenery footprints and provide exaggerated flow comparison with stronger hill presentation; verify geometry and inspect locally in motion.

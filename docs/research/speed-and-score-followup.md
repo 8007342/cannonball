@@ -37,3 +37,20 @@ Encoded loudness, true peaks, hashes and model provenance are recorded in
 assets/audio/verification.json. Local checks verify playback/lifecycle and absence
 of clipped encoded peaks; they do not establish listener preference or regional
 accent authenticity. Headless browser playback has no audible speakers.
+
+## Local validation
+
+96 Flutter tests and28 browser/bootstrap/audio tests passed. Analyzer was clean;
+release web build and8 strict spec checks passed. A headless Chromium user-gesture
+test decoded and played Redline Sunrise plus a prepared am_michael report; the
+report reached its end callback. The game separately played the am_fenrir worksite
+report and resumed the selected score. Pause returned prepared playback to idle.
+No browser console errors were observed. No audible quality judgment is claimed
+from this headless check.
+
+A visible headless/no-screenshot180-rAF sample covered3.092 seconds in the climb,
+advancing8626.18 presentation units with a16.8ms p95 callback interval. Buffer was
+720×405 at CSS1280×720. This is scheduling evidence from the local software-GPU
+preview, not presented-frame FPS, a controlled old/new benchmark, phone validation
+or user acceptance of speed. The moving sample and screenshots exposed the
+stronger pitched hill presentation; final comfort/readability remains review work.
