@@ -22,6 +22,8 @@ class BrowserPlatform {
     required String region,
   }) {}
   void say(String text) {}
+  void setProofAudio(bool enabled) {}
+  void radioBreak({required String text, required String station}) {}
   void pause(bool paused) {}
   Future<bool> requestLandscape() async => false;
   void dispose() {}

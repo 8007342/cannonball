@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../game/race.dart';
+import '../game/proof_car.dart';
 import '../platform/browser_platform.dart';
 import '../platform/proof_telemetry.dart';
+import '../platform/proof_radio.dart';
+import 'proof_garage.dart';
 import 'wheel_control.dart';
 
-enum _ProofPhase { ready, driving, paused, complete }
+enum _ProofPhase { ready, departing, driving, paused, complete }
 
 /// An isolated art/control study: no accounts, unlocks, records or persistence.
 class VisualProofScreen extends StatefulWidget {
@@ -27,7 +30,7 @@ class VisualProofScreen extends StatefulWidget {
 class _VisualProofScreenState extends State<VisualProofScreen>
     with WidgetsBindingObserver {
   static const seed = 731;
-  static const duration = 60.0;
+  static const duration = 90.0;
   static const cream = Color(0xffffedcc);
   static const accent = Color(0xffffc56c);
   static const dark = Color(0xff14242b);
@@ -42,8 +45,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   final _platform = BrowserPlatform.instance;
   Timer? _loadingPoll;
   bool _tilt = false, _muted = true, _touchBrake = false;
+  bool _captions = false;
   double _lastHudTime = -1;
   String _lastRadio = '';
+  String _departureShot = 'keys';
+  String _station = '';
+  final _radioDirector = ProofRadioDirector();
   String? _artError;
   int _renderBaseline = 0, _updateBaseline = 0;
   int _renderUsBaseline = 0, _updateUsBaseline = 0;
@@ -52,7 +59,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   void initState() {
     super.initState();
     _race = widget.controller ?? RaceController();
-    _race.start(cars.last, seed: seed);
+    _race.start(proofCar, seed: seed);
     _race.paused = true;
     _race.comfortMode = _platform.reducedMotion;
     _race.addListener(_onRace);
@@ -104,6 +111,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       },
     );
     _platform.muted = _muted;
+    _platform.setProofAudio(true);
     _platform.pause(true);
     installProofTelemetry(
       snapshot: _snapshot,
@@ -126,6 +134,11 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'durationSeconds': duration,
     'paused': _race.paused,
     'state': _phase.value.name,
+    'departureShot': _departureShot,
+    'radioStation': _station,
+    'radioCaption': _lastRadio,
+    'captionsEnabled': _captions,
+    'speechMode': 'device TTS fallback; regional voice pack pending',
     'assetsReady': _ready.value,
     'artError': _artError,
     'speedMph': _race.speed,
@@ -159,17 +172,37 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   void _reset() {
     if (!mounted) return;
     _resetInput();
-    _race.start(cars.last, seed: seed);
+    _race.start(proofCar, seed: seed);
     _race.paused = true;
     _race.motionControl = _tilt;
     _platform.pause(true);
     _lastHudTime = -1;
     _lastRadio = '';
+    _station = '';
+    _departureShot = 'keys';
+    _radioDirector.reset();
     _renderBaseline = _game?.renderCount ?? 0;
     _updateBaseline = _game?.updateCount ?? 0;
     _renderUsBaseline = _game?.renderCpuMicros ?? 0;
     _updateUsBaseline = _game?.updateCpuMicros ?? 0;
     _phase.value = _ProofPhase.ready;
+    _hud.value++;
+  }
+
+  void _beginDeparture() {
+    if (!mounted || !_ready.value || _phase.value != _ProofPhase.ready) return;
+    final viewport = MediaQuery.sizeOf(context);
+    if (viewport.height > viewport.width) return;
+    unawaited(_platform.beginAudio());
+    _race.paused = true;
+    _phase.value = _ProofPhase.departing;
+    _departureShot = 'pickup';
+  }
+
+  void _toggleSound() {
+    _muted = !_muted;
+    _platform.muted = _muted;
+    if (!_muted) unawaited(_platform.beginAudio());
     _hud.value++;
   }
 
@@ -192,7 +225,9 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       _start();
       return;
     }
-    if (_phase.value != _ProofPhase.driving) return;
+    if (_phase.value != _ProofPhase.driving &&
+        _phase.value != _ProofPhase.departing)
+      return;
     _resetInput();
     _race.paused = true;
     _platform.pause(true);
@@ -212,15 +247,28 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _platform.setAudioState(
       speed: (_race.speed / _race.car.topSpeed).clamp(0, 1),
       intensity: (_race.speed / _race.car.topSpeed).clamp(0, 1),
-      region: _race.elapsed < 20
+      region: _race.elapsed < 27
           ? 'City'
-          : _race.elapsed < 40
+          : _race.elapsed < 58
           ? 'Forest'
           : 'Mountain',
     );
-    if (_race.radio != _lastRadio) {
-      _lastRadio = _race.radio;
-      _platform.say(_lastRadio);
+    final station = _race.elapsed < 27
+        ? 'City'
+        : _race.elapsed < 58
+        ? 'Forest'
+        : 'Mountain';
+    if (station != _station) {
+      _station = station;
+      final report = _radioDirector.choose(
+        station: station,
+        weather: _race.weather.name,
+        trafficCount: _race.traffic.length,
+        detourClosed: _race.approachingFork && _race.closedBranchId != null,
+      );
+      _lastRadio = report.text;
+      _platform.radioBreak(text: report.text, station: report.station);
+      _hud.value++;
     }
     if (_race.elapsed - _lastHudTime >= .1) {
       _lastHudTime = _race.elapsed;
@@ -245,6 +293,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
             event.logicalKey == LogicalKeyboardKey.escape)) {
       if (_phase.value == _ProofPhase.driving) {
         _pause(true);
+      } else if (_phase.value == _ProofPhase.ready) {
+        _beginDeparture();
       } else {
         _start();
       }
@@ -379,20 +429,24 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                                       ? Icons.volume_off_outlined
                                       : Icons.volume_up_outlined,
                                   _muted ? 'Enable sound' : 'Mute sound',
-                                  () {
-                                    _muted = !_muted;
-                                    _platform.muted = _muted;
-                                    if (!_muted) {
-                                      unawaited(_platform.beginAudio());
-                                    }
-                                    _hud.value++;
-                                  },
+                                  _toggleSound,
                                 ),
                                 _utility(
                                   Icons.screen_rotation,
                                   _tilt ? 'Disable tilt' : 'Enable tilt',
                                   _toggleTilt,
                                   active: _tilt,
+                                ),
+                                _utility(
+                                  Icons.closed_caption_outlined,
+                                  _captions
+                                      ? 'Hide radio captions'
+                                      : 'Show radio captions',
+                                  () {
+                                    _captions = !_captions;
+                                    _hud.value++;
+                                  },
+                                  active: _captions,
                                 ),
                                 _utility(
                                   Icons.pause,
@@ -405,6 +459,33 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                         ],
                       ),
                       const Spacer(),
+                      ValueListenableBuilder(
+                        valueListenable: _hud,
+                        builder: (context, _, _) =>
+                            _captions && _lastRadio.isNotEmpty
+                            ? Padding(
+                                padding: const EdgeInsets.only(bottom: 18),
+                                child: Container(
+                                  constraints: const BoxConstraints(
+                                    maxWidth: 600,
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 14,
+                                    vertical: 8,
+                                  ),
+                                  color: dark.withValues(alpha: .8),
+                                  child: Text(
+                                    _lastRadio,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      color: cream,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : const SizedBox.shrink(),
+                      ),
                       ValueListenableBuilder(
                         valueListenable: _hud,
                         builder: (context, _, _) => IgnorePointer(
@@ -444,7 +525,24 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                 builder: (context, phase, _) => ValueListenableBuilder(
                   valueListenable: _ready,
                   builder: (context, ready, _) =>
-                      phase == _ProofPhase.driving && !portrait
+                      (phase == _ProofPhase.ready ||
+                              phase == _ProofPhase.departing) &&
+                          !portrait
+                      ? ValueListenableBuilder(
+                          valueListenable: _hud,
+                          builder: (context, _, _) => ProofGarage(
+                            departing: phase == _ProofPhase.departing,
+                            ready: ready,
+                            reducedMotion: _platform.reducedMotion,
+                            artwork: widget.sceneBuilder == null,
+                            muted: _muted,
+                            onTakeKeys: _beginDeparture,
+                            onComplete: _start,
+                            onShot: (shot) => _departureShot = shot,
+                            onSound: _toggleSound,
+                          ),
+                        )
+                      : phase == _ProofPhase.driving && !portrait
                       ? const SizedBox.shrink()
                       : _curtain(context, phase, ready, portrait),
                 ),
@@ -516,10 +614,10 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                   portrait
                       ? 'TURN THE HORIZON SIDEWAYS'
                       : complete
-                      ? 'ONE MINUTE. A NEW HORIZON.'
+                      ? 'THE NEXT CITY IS WAITING.'
                       : paused
                       ? 'THE ROAD CAN WAIT.'
-                      : 'TARGA OFF.\nHORIZON OPEN.',
+                      : 'YOUR KEYS.\nYOUR ROAD.',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: cream,
@@ -538,7 +636,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                       ? 'Test drive complete. Take another look at the road.'
                       : paused
                       ? 'Your test drive is paused.'
-                      : 'A 60-second drive in the white Corvette.\nCity light, forest roads, mountain air.',
+                      : 'A 90-second drive in your S2000.\nCity light, forest roads, mountain air.',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: cream,
