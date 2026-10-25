@@ -68,7 +68,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       _scene = widget.sceneBuilder!(_race);
       _ready.value = true;
     } else {
-      _game = RaceGame(controller: _race, proofMode: true);
+      _game = RaceGame(controller: _race, proofMode: true)
+        ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'arcade');
       _scene = RepaintBoundary(
         child: GameWidget(
           game: _game!,
@@ -146,6 +147,24 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'steering': _race.steering,
     'braking': _race.braking,
     'playerX': _race.playerX,
+    'speedPreset': _game?.speedPreset,
+    'presentationDistance': _game?.presentationDistance,
+    'roadCurve': _race.curveAt(_race.worldDistance),
+    'closedLane': _race.closedLane,
+    'traffic': [
+      for (final car in _race.traffic)
+        {
+          'id': car.id,
+          'distance': car.position - _race.worldDistance,
+          'x': car.x,
+          'speed': car.currentSpeed,
+          'braking': car.braking,
+          'reaction': car.reactionIntensity,
+          'incident': car.incidentSeconds,
+          'paint': car.paintVariant,
+          'profile': car.profile.name,
+        },
+    ],
     'trafficReactions': _race.trafficReactionCount,
     'trafficIncidents': _race.trafficIncidentCount,
     'sceneLogicalSize': _game?.hasLayout == true
@@ -544,8 +563,9 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                             onComplete: _start,
                             onShot: (shot) {
                               _departureShot = shot;
-                              if (shot == 'door' || shot == 'cabin')
+                              if (shot == 'door' || shot == 'cabin') {
                                 _platform.garageCue(shot);
+                              }
                             },
                             onSound: _toggleSound,
                           ),
