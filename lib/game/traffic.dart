@@ -27,7 +27,10 @@ class TrafficCar {
   double signalTime = 0;
   bool braking = false;
   double reactionIntensity = 0, incidentSeconds = 0;
-  double _flinch = 0, _reactionUntil = 0, _reactionCooldown = 0;
+  double _flinch = 0,
+      _flinchTarget = 0,
+      _reactionUntil = 0,
+      _reactionCooldown = 0;
   double _incidentCooldown = 0, _panicUntil = 0;
   double get reactionOffset => _flinch;
   bool get signaling => usesSignals && targetX != null && signalTime < 2;
@@ -79,7 +82,7 @@ class ReactiveTraffic {
         car.reactionIntensity = intrusion ? 1 : .6;
         car._reactionUntil = time + (intrusion ? 1.8 : 1.1);
         car._reactionCooldown = time + 4.5;
-        car._flinch = lateral.sign * (intrusion ? .11 : .07);
+        car._flinchTarget = lateral.sign * (intrusion ? .11 : .07);
         if (intrusion || car.profile == TrafficProfile.cautious) {
           car._panicUntil = time + (intrusion ? .9 : .35);
         }
@@ -88,7 +91,8 @@ class ReactiveTraffic {
         car.reactionIntensity = math.max(0, car.reactionIntensity - dt * 1.4);
       }
       // A flinch never crosses a lane boundary; it settles back smoothly.
-      car._flinch *= math.exp(-dt * (time < car._reactionUntil ? 1.2 : 5));
+      if (time >= car._reactionUntil) car._flinchTarget = 0;
+      car._flinch += (car._flinchTarget - car._flinch) * math.min(1, dt * 6);
       car._flinch = car._flinch.clamp(-.12, .12);
 
       var desiredSpeed = car.cruiseSpeed;
@@ -100,8 +104,9 @@ class ReactiveTraffic {
       var leaderGap = double.infinity;
       var leaderSpeed = desiredSpeed;
       for (final candidate in observed) {
-        if (candidate.id == self.id || (candidate.x - self.x).abs() > .31)
+        if (candidate.id == self.id || (candidate.x - self.x).abs() > .31) {
           continue;
+        }
         final gap = candidate.position - self.position;
         if (gap > 0 && gap < leaderGap) {
           leaderGap = gap;
@@ -142,9 +147,10 @@ class ReactiveTraffic {
           var bestRoom = leaderGap;
           for (final lane in lanes) {
             if ((lane - car.laneCenter).abs() > .7 ||
-                (lane - car.laneCenter).abs() < .3)
+                (lane - car.laneCenter).abs() < .3) {
               continue;
-            if (nearClosure && (lane - closedLane! * .65).abs() < .25) continue;
+            }
+            if (nearClosure && (lane - closedLane * .65).abs() < .25) continue;
             if (!_laneClear(
               self,
               lane,
@@ -152,8 +158,9 @@ class ReactiveTraffic {
               playerPosition,
               playerX,
               playerSpeed,
-            ))
+            )) {
               continue;
+            }
             var room = 700.0;
             for (final candidate in observed) {
               if (candidate.id != self.id &&
@@ -221,14 +228,16 @@ class ReactiveTraffic {
     for (var i = 0; i < cars.length; i++) {
       for (var j = i + 1; j < cars.length; j++) {
         final a = cars[i], b = cars[j];
-        if ((a.x - b.x).abs() > .20 || (a.position - b.position).abs() > 10)
+        if ((a.x - b.x).abs() > .20 || (a.position - b.position).abs() > 10) {
           continue;
+        }
         final behind = a.position < b.position ? a : b;
         final ahead = identical(behind, a) ? b : a;
         if (behind.currentSpeed - ahead.currentSpeed < 8 ||
             time < behind._incidentCooldown ||
-            time < ahead._incidentCooldown)
+            time < ahead._incidentCooldown) {
           continue;
+        }
         incidents++;
         for (final participant in [behind, ahead]) {
           participant.incidentSeconds = 2.2;
@@ -259,8 +268,9 @@ class ReactiveTraffic {
     }
     if ((playerX - lane).abs() < .36 &&
         (playerPosition - self.position).abs() <
-            170 + math.max(0, playerSpeed - self.speed))
+            170 + math.max(0, playerSpeed - self.speed)) {
       return false;
+    }
     return true;
   }
 }
