@@ -62,3 +62,8 @@ is the requested first draft, not final art approval or production acceptance.
 - [x] 9.6 Generate and validate replacement prop, hand, wide-cabin and progressive S2000 turn assets with provenance and coherent anchors.
 - [x] 9.7 Add time-based progressive steering presentation and meaningful gentle-input/held-input/reversal/timing tests; gentle road curves shall reward gentle steering.
 - [x] 9.8 Integrate and run relevant tests, analyzer, release build and moving browser review; measure no-capture cadence and publish locally with durable work-branch checkpoints.
+## 10. Composed soundtrack proof
+- [ ] 10.1 Compose three original sectional scores, render stereo mixes and export editable multitrack MIDI with reproducible sources and provenance.
+- [ ] 10.2 Integrate bounded prepared-track playback with station/report sequencing, gesture gating and lifecycle/failure tests; provide a local listening room.
+- [ ] 10.3 Produce and integrate prepared synthetic radio presenters, retaining device fallback and explicit regional-performance limitations.
+- [ ] 10.4 Validate locally, publish listening/game previews and push durable work-branch checkpoints; preserve pending driving feedback.

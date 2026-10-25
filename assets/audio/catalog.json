@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "tracks": [
+    {
+      "id": "redline-sunrise",
+      "title": "Redline Sunrise",
+      "station": "City",
+      "style": "synthpop",
+      "bpm": 148,
+      "src": "redline-sunrise.mp3",
+      "duration": 103.784,
+      "bars": 64,
+      "events": 2366
+    },
+    {
+      "id": "orange-cone-cumbia",
+      "title": "Orange Cone Cumbia",
+      "station": "Forest",
+      "style": "electro-cumbia",
+      "bpm": 140,
+      "src": "orange-cone-cumbia.mp3",
+      "duration": 109.714,
+      "bars": 64,
+      "events": 3304
+    },
+    {
+      "id": "overpass-afterburn",
+      "title": "Overpass Afterburn",
+      "station": "Mountain",
+      "style": "arcade-rock",
+      "bpm": 156,
+      "src": "overpass-afterburn.mp3",
+      "duration": 98.462,
+      "bars": 64,
+      "events": 3390
+    }
+  ],
+  "radio": []
+}

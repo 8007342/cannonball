@@ -63,6 +63,8 @@ flutter:
     - assets/proof/
     - assets/proof-next/
     - assets/milestone/
+    - assets/audio/
+    - assets/audio/midi/
   fonts:
     - family: Cannonball
       fonts:

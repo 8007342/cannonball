@@ -114,3 +114,11 @@ See [course/camera research](docs/research/course-camera.md),
 [perceived speed evidence](docs/research/perceived-speed-milestone.md),
 [departure continuity](docs/garage-continuity.md), and
 [new art/prompts](assets/milestone/PROMPTS.md).
+
+## Soundtrack listening draft
+
+Open `/soundtrack.html` in the locally published build to audition three original
+sectional scores and prepared neural radio presenters, and download multitrack
+MIDI. The proof selects scores by station and keeps reports between songs.
+[Composition sources and provenance](assets/audio/SCORE_NOTES.md) distinguish
+these drafts from final regional performances. No voice service runs during play.

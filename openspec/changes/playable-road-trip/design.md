@@ -70,3 +70,19 @@ Painted replacement props are cached with scenery to preserve batching. Building
 Preserve the liked keybox and garage exterior artwork. Improve reach/grasp/withdraw and coordinated pan; use a genuinely wide cabin with aspect-preserving cropping. Door/ignition/rev sound bridges the rear-view handoff; preload live scene behind the cinematic while race time remains paused. Reduced-motion/skip/mute/hidden handling remain available. The last viewport test resized a real browser viewport correctly; preview-host fixed viewport and app metrics must be diagnosed separately before changing a working layout.
 
 Use work/road-feel-milestone for integration, with frequent durable specialist pushes. Root runs mounted Flutter checks and browser review centrally. Native/device and production acceptance remain open.
+
+## Soundtrack proof and next driving review
+Replace the proof's short oscillator motif with original authored sectional music:
+synthpop, cumbia/electronic and hard-driving rock. Store multitrack MIDI and the
+render source alongside compressed stereo mixes. Decode only the selected score,
+keep a bounded cache and preserve song/tuning/report/song sequencing. Prepared
+synthetic presenters improve the default browser voice but do not establish
+reviewed city accents or final performances. Missing files must preserve play.
+
+Next driving review: preserve hand proportions; emphasize crests/dips; connect
+canopies to large supporting tree sections; mild dirt/rumble shoulder drag; solid
+obstacles crash while lightweight cones/mailboxes/cafe furniture scatter. Ramp
+footprints must exclude vegetation across the merging pavement. Compare much
+stronger near-field optical flow and roadside density independently of physics,
+route miles and elapsed time. These requests remain pending implementation and
+moving review rather than being implied complete by soundtrack work.

@@ -96,6 +96,7 @@
   let audioTimer = null, nextNote = 0, step = 0, muted = false, paused = true;
   let speed = 0, intensity = 0, region = 'Atlantic', activeRegion = '';
   let theme = null, voice = null, speechEpoch = 0, speechTimer = null;
+  let scorePlayer = null;
   let proofAudio = false, radioPhase = 'music', radioTimer = null, radioEpoch = 0;
   let radioStation = '', lastRadioText = '', reportCount = 0;
   const proofTracks = {
@@ -153,6 +154,12 @@
 
   function scheduleMusic() {
     if (!context || paused || muted || doc.hidden || context.state !== 'running' || radioPhase !== 'music') return;
+    if (proofAudio && scorePlayer) {
+      if (scorePlayer.state === 'playing') return;
+      scorePlayer.play(region).then(playing => {
+        if (playing) for (const node of [...activeNodes]) { try { node.stop(); } catch (_) {} }
+      });
+    }
     // Timers only queue a short lookahead; audio nodes use the audio clock.
     if (nextNote < context.currentTime) nextNote = context.currentTime + 0.025;
     while (nextNote < context.currentTime + 0.12) {
@@ -189,6 +196,7 @@
 
   function cancelSpeech() {
     speechEpoch++;
+    scorePlayer?.stopVoice();
     root.clearTimeout(speechTimer);
     speechTimer = null;
     root.speechSynthesis?.cancel();
@@ -220,6 +228,10 @@
         filter.frequency.value = 420;
         engine.connect(filter).connect(engineGain).connect(master);
         engine.start();
+        if (root.CannonballScorePlayer && context.decodeAudioData && root.fetch) {
+          scorePlayer = new root.CannonballScorePlayer(context, master);
+          scorePlayer.prepare();
+        }
         audioTimer = root.setInterval(scheduleMusic, 25);
       }
       await context.resume();
@@ -321,6 +333,7 @@
   }
 
   function stopMusic() {
+    scorePlayer?.stopMusic();
     // Engine oscillator is deliberately outside activeNodes and keeps running.
     for (const node of [...activeNodes]) { try { node.stop(); } catch (_) {} }
     activeNodes.clear();
@@ -376,18 +389,24 @@
       radioTimer = null;
       if (epoch !== radioEpoch || muted || paused || doc.hidden) return;
       radioPhase = 'report';
-      say(lastRadioText, () => {
+      const finish = () => {
         if (epoch !== radioEpoch) return;
         radioPhase = 'music';
         activeRegion = region;
         theme = selectTheme(region);
         step = 0;
         if (context) nextNote = context.currentTime + .025;
-      });
+      };
+      if (scorePlayer) {
+        scorePlayer.report(lastRadioText, finish).then(played => {
+          if (!played && epoch === radioEpoch && !muted && !paused && !doc.hidden) say(lastRadioText, finish);
+        });
+      } else say(lastRadioText, finish);
     }, 230);
   }
 
   function setProofAudio(value) {
+    stopMusic();
     proofAudio = Boolean(value);
     cancelRadio();
     activeRegion = '';
@@ -399,7 +418,7 @@
 
   function pause(value) {
     paused = Boolean(value);
-    if (paused) { cancelSpeech(); cancelRadio(); cancelGarage(); }
+    if (paused) { stopMusic(); cancelSpeech(); cancelRadio(); cancelGarage(); }
     updateVolume();
     if (context && !paused) {
       // Resume may still be blocked without a gesture; captions remain usable.
@@ -498,11 +517,12 @@
     audioSnapshot() {
       return {proofAudio, phase: radioPhase, station: radioStation, reportCount,
         lastRadioText, trackStyle: theme?.style || 'prototype',
-        speechMode: 'device TTS fallback; no regional accent guarantee'};
+        prepared: scorePlayer?.snapshot() || null,
+        speechMode: scorePlayer?.voiceMode || 'device TTS fallback; no regional accent guarantee'};
     },
     setMuted(value) {
       muted = Boolean(value);
-      if (muted) { cancelSpeech(); cancelRadio(); cancelGarage(); }
+      if (muted) { stopMusic(); cancelSpeech(); cancelRadio(); cancelGarage(); }
       updateVolume();
     },
     async requestLandscape() {
@@ -515,6 +535,8 @@
       return landscape();
     },
     dispose() {
+      scorePlayer?.dispose();
+      scorePlayer = null;
       cancelGarage();
       lastGarageCue = null;
       lastGarageAt = -100;
