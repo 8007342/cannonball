@@ -231,8 +231,9 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       return;
     }
     if (_phase.value != _ProofPhase.driving &&
-        _phase.value != _ProofPhase.departing)
+        _phase.value != _ProofPhase.departing) {
       return;
+    }
     _resetInput();
     _race.paused = true;
     _platform.pause(true);
