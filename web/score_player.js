@@ -29,7 +29,7 @@
           .then(data => this.context.decodeAudioData(data))
           .then(buffer => {
             if (this.disposed) return null;
-            // At most one long score plus two short reports (~30 MB at 48 kHz).
+            // At most one long score plus two short reports (~45 MB at 48 kHz).
             const isMusic = this.catalog?.tracks.some(t => t.src === src);
             if (isMusic) for (const key of this.cache.keys()) {
               if (this.catalog.tracks.some(t => t.src === key)) this.cache.delete(key);
@@ -43,15 +43,17 @@
     }
     stopMusic() {
       ++this.epoch;
-      if (this.music) {this.music.onended = null; this.music.stop(); this.music.disconnect();}
+      if (this.music) {this.music.onended = null; try {this.music.stop();} catch (_) {} this.music.disconnect();}
       this.music = null; this.track = null; this.state = 'idle';
     }
     async play(station) {
       if (this.disposed || Date.now() < this.failedAt + 5000) return false;
       if (this.track?.station === station && ['loading','playing'].includes(this.state)) return this.state === 'playing';
       this.stopMusic(); const epoch = this.epoch;
+      this.track = {station}; this.state = 'loading';
       const catalog = await this.prepare();
-      if (!catalog || epoch !== this.epoch || this.disposed) return false;
+      if (epoch !== this.epoch || this.disposed) return false;
+      if (!catalog) {this.state = 'failed'; this.failedAt = Date.now(); return false;}
       const track = catalog.tracks.find(t => t.station === station) || catalog.tracks[0];
       this.track = track; this.state = 'loading';
       const buffer = await this.buffer(track.src);
@@ -63,7 +65,7 @@
     }
     stopVoice() {
       ++this.voiceEpoch;
-      if (this.voice) {this.voice.onended = null; this.voice.stop(); this.voice.disconnect();}
+      if (this.voice) {this.voice.onended = null; try {this.voice.stop();} catch (_) {} this.voice.disconnect();}
       this.voice = null;
     }
     async report(text, complete) {
@@ -76,7 +78,7 @@
       const source = this.context.createBufferSource(); source.buffer = buffer;
       source.connect(this.output); this.voice = source; this.voiceMode = entry.voice;
       source.onended = () => {
-        source.disconnect();
+        source.onended = null; source.disconnect();
         if (epoch === this.voiceEpoch && !this.disposed) {this.voice = null; complete();}
       };
       source.start(); return true;

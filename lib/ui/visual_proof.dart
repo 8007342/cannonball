@@ -94,7 +94,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       _ready.value = true;
     } else {
       _game = RaceGame(controller: _race, proofMode: true)
-        ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'arcade')
+        ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'turbo')
         ..setCameraPreset(Uri.base.queryParameters['camera'] ?? 'flow');
       _scene = RepaintBoundary(
         child: GameWidget(
@@ -165,7 +165,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'radioStation': _station,
     'radioCaption': _lastRadio,
     'captionsEnabled': _captions,
-    'speechMode': 'device TTS fallback; regional voice pack pending',
+    'speechMode':
+        'prepared neural reports with device fallback; accents pending',
     'assetsReady': _ready.value,
     'artError': _artError,
     'speedMph': _race.speed,

@@ -1,0 +1,128 @@
+{
+  "modelSha256": {
+    "kokoro-v1.0.onnx": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "radioScripts": 14,
+  "encodedFiles": [
+    {
+      "src": "redline-sunrise.mp3",
+      "bytes": 2077244,
+      "sha256": "16878423fa3dd6d46fedc27440f252b2c681cceacab75abe1792b11838168016",
+      "lufs": -15.97,
+      "truePeakDb": -1.81
+    },
+    {
+      "src": "orange-cone-cumbia.mp3",
+      "bytes": 2196044,
+      "sha256": "08f3dbd3548477d061d27259d285c7387905a13c46d89ec1fecc8886dfa3de60",
+      "lufs": -16.03,
+      "truePeakDb": -3.95
+    },
+    {
+      "src": "overpass-afterburn.mp3",
+      "bytes": 1971404,
+      "sha256": "9a3b84d6310ef5ac092b6f44813e5294708aa3679d70f6ab7328b2db57d6c752",
+      "lufs": -16.11,
+      "truePeakDb": -1.98
+    },
+    {
+      "src": "radio-c7c32cfe2eaf.mp3",
+      "bytes": 61676,
+      "sha256": "5419eb8b99e7b477381385dc98ec0e0a854df8538a9830b2ffce6ae3317d7bb7",
+      "lufs": -17.99,
+      "truePeakDb": -2.3
+    },
+    {
+      "src": "radio-2fa02bb0c2f2.mp3",
+      "bytes": 61964,
+      "sha256": "26ffad1df59ce2cb57a534d7bf0e7a4dff78b4457ffb39d3623bd13862420f24",
+      "lufs": -16.94,
+      "truePeakDb": -2.41
+    },
+    {
+      "src": "radio-fc3ca9fed82c.mp3",
+      "bytes": 60812,
+      "sha256": "9d1878b9c2d5b170f537e8c70e9b1ef7d53f5977a52f3bdbf0693ee4524a1c03",
+      "lufs": -18.21,
+      "truePeakDb": -2.4
+    },
+    {
+      "src": "radio-85be102cbc7d.mp3",
+      "bytes": 72908,
+      "sha256": "f142b8a389226c3f86590c9fa7439bff586ad829d7242246f8d1a959434f4ad8",
+      "lufs": -18.06,
+      "truePeakDb": -2.39
+    },
+    {
+      "src": "radio-8d4c8a8397eb.mp3",
+      "bytes": 67148,
+      "sha256": "7e55afd83d52193f3d13b34b20543addfbe722ffd50f7978f7b373d5a66c4e12",
+      "lufs": -17.48,
+      "truePeakDb": -2.4
+    },
+    {
+      "src": "radio-05024ce3ecfa.mp3",
+      "bytes": 60236,
+      "sha256": "03c4da6c1a779cce87b37d8bfeddc387aabcc62e209921a16b6e7f48e792811a",
+      "lufs": -18.11,
+      "truePeakDb": -2.4
+    },
+    {
+      "src": "radio-f3b8587d05e4.mp3",
+      "bytes": 54188,
+      "sha256": "f05d21e4bda2bdc892280c956038b64f008e1d95c62f8c1165630fb47b82acd6",
+      "lufs": -18.14,
+      "truePeakDb": -2.31
+    },
+    {
+      "src": "radio-084bb04d5f57.mp3",
+      "bytes": 63692,
+      "sha256": "8985ae84fc36a81938663ad11f85b6b0102d6e52865c152352905f76ee0e3a3f",
+      "lufs": -17.09,
+      "truePeakDb": -2.38
+    },
+    {
+      "src": "radio-f8b005f94b62.mp3",
+      "bytes": 58220,
+      "sha256": "2d4002019642f9c9aefcad6ab376d76b3daa45066e930a9e8bcec9e08e9b4358",
+      "lufs": -18.58,
+      "truePeakDb": -2.4
+    },
+    {
+      "src": "radio-cdcdf43e1a30.mp3",
+      "bytes": 74924,
+      "sha256": "03ae8f1718305d2240bfd823273eb452bf56b37c105374442fff8524814e5215",
+      "lufs": -17.55,
+      "truePeakDb": -2.38
+    },
+    {
+      "src": "radio-38c6a0f760d5.mp3",
+      "bytes": 56204,
+      "sha256": "da4233b4c60e93a41a878f7719bebbaea642a2de91984c1d048b2d86768ba5bf",
+      "lufs": -16.81,
+      "truePeakDb": -2.39
+    },
+    {
+      "src": "radio-f1dcd0f6988b.mp3",
+      "bytes": 64556,
+      "sha256": "54262b9902621ea4361bee5afd32af0d461f576d3494c58803fe71cc61920d24",
+      "lufs": -17.6,
+      "truePeakDb": -2.35
+    },
+    {
+      "src": "radio-970ea4b2efbb.mp3",
+      "bytes": 68588,
+      "sha256": "e367c82780055c1198f1d081afece40f6f43a28de2d5caa2635616a2280d8b33",
+      "lufs": -18.54,
+      "truePeakDb": -2.4
+    },
+    {
+      "src": "radio-df0a628c0e35.mp3",
+      "bytes": 70028,
+      "sha256": "b496f11211d3bf1f68ae185e2569ccdce06fe793976416e4816b29aeaa4cb185",
+      "lufs": -18.02,
+      "truePeakDb": -2.42
+    }
+  ]
+}

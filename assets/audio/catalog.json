@@ -35,5 +35,90 @@
       "events": 3390
     }
   ],
-  "radio": []
+  "radio": [
+    {
+      "text": "That shortcut is closed today. Stay on the open road; the scenery is on us.",
+      "src": "radio-c7c32cfe2eaf.mp3",
+      "voice": "am_michael",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Road crews have closed the shortcut. Keep to the open lanes and give the cones some room.",
+      "src": "radio-2fa02bb0c2f2.mp3",
+      "voice": "af_heart",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
+      "src": "radio-fc3ca9fed82c.mp3",
+      "voice": "am_fenrir",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "A lane is closed ahead. Give the orange cones some room. They are having a very busy day.",
+      "src": "radio-85be102cbc7d.mp3",
+      "voice": "am_michael",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Snow ahead. Gentle steering, earlier braking. Save the dramatic slides for the parking lot.",
+      "src": "radio-8d4c8a8397eb.mp3",
+      "voice": "af_heart",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "A little mountain snow today. Leave more room than you think, and keep the shiny side up.",
+      "src": "radio-05024ce3ecfa.mp3",
+      "voice": "am_fenrir",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Rain on the road. Give the brakes a little more room than your coffee cup.",
+      "src": "radio-f3b8587d05e4.mp3",
+      "voice": "am_michael",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Wet pavement ahead. Smooth moves, folks. This is a road trip, not a car wash stunt show.",
+      "src": "radio-084bb04d5f57.mp3",
+      "voice": "af_heart",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Remember, Cannonball is rolling today. Keep the roads clear, and your coffee in the cup.",
+      "src": "radio-f8b005f94b62.mp3",
+      "voice": "am_fenrir",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Light traffic, open road. Even the delivery vans got the memo. Enjoy it while it lasts.",
+      "src": "radio-cdcdf43e1a30.mp3",
+      "voice": "am_michael",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Roads are looking lovely. If you are running late, you will need a better excuse today.",
+      "src": "radio-38c6a0f760d5.mp3",
+      "voice": "af_heart",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "A few little traffic bunches ahead. Leave a gap. Nobody wins an argument with a minivan.",
+      "src": "radio-f1dcd0f6988b.mp3",
+      "voice": "am_fenrir",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Busy lanes up ahead. Pick your opening, not a fight. We like our listeners in one piece.",
+      "src": "radio-970ea4b2efbb.mp3",
+      "voice": "am_michael",
+      "model": "Kokoro v1.0"
+    },
+    {
+      "text": "Traffic is moving. Some drivers have places to be; some are still deciding where those places are.",
+      "src": "radio-df0a628c0e35.mp3",
+      "voice": "af_heart",
+      "model": "Kokoro v1.0"
+    }
+  ]
 }

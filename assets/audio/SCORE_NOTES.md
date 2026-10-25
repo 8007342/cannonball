@@ -55,3 +55,7 @@ Technical references: [W3C AudioBufferSourceNode](https://webaudio.github.io/web
 for audio-clock buffered playback, and [Stanford sound synthesis notes](https://theory.stanford.edu/~blynn/sound/karplusstrong.html)
 for physical-model alternatives considered. Current guitar uses additive decaying
 harmonics and saturation, not a recorded guitar or a Karplus–Strong implementation.
+
+Model download SHA256 values and rendered-file measurements are recorded in
+`verification.json`. Rendered reports are selected by exact source script text;
+unknown/new text falls back to device speech until its prepared pack is rebuilt.

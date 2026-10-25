@@ -63,8 +63,8 @@ class ProofCourse {
   }
 
   static double elevationAt(double s) =>
-      920 * _rise(s, 2200, 2850) -
-      920 * _rise(s, 3250, 4000) +
+      2200 * _rise(s, 2200, 2850) -
+      2200 * _rise(s, 3250, 4000) +
       100 * _rise(s, 5450, 5650) -
       100 * _rise(s, 5800, 6000);
 
@@ -75,7 +75,7 @@ class ProofCourse {
     final grade =
         (elevationAt(distance + 60) - elevationAt(distance - 60)) /
         (120 * flowScale);
-    return (grade * 1.4).clamp(-.14, .14);
+    return (grade * 1.8).clamp(-.18, .18);
   }
 
   static double pitchShift(double pitch, double depth, {double trail = 560}) =>

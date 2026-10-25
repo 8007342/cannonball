@@ -122,3 +122,8 @@ sectional scores and prepared neural radio presenters, and download multitrack
 MIDI. The proof selects scores by station and keeps reports between songs.
 [Composition sources and provenance](assets/audio/SCORE_NOTES.md) distinguish
 these drafts from final regional performances. No voice service runs during play.
+
+The current speed comparison defaults to `motion=turbo` (36 presentation units per
+simulated metre); use `?proof=1&motion=arcade` for the previous20.4 setting. Stage
+timing and car physics are unchanged. Joining-road scenery now clears the entire
+pavement/gore footprint. Hill height/pitch are exaggerated for moving review.

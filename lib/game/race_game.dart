@@ -61,10 +61,10 @@ class RaceGame extends FlameGame {
   final BillboardBatch _batch = BillboardBatch();
   static const _w = 1000.0, _roadHalfWidth = 1100.0;
   static const visualSpeedScale = 12.0;
-  String _speedPreset = 'arcade';
+  String _speedPreset = 'turbo';
   String get speedPreset => _speedPreset;
   void setSpeedPreset(String preset) {
-    if (const ['classic', 'cruise', 'arcade'].contains(preset)) {
+    if (const ['classic', 'cruise', 'arcade', 'turbo'].contains(preset)) {
       final previous = _flowScale;
       _speedPreset = preset;
       _worldOffset += controller.worldDistance * (previous - _flowScale);
@@ -79,7 +79,9 @@ class RaceGame extends FlameGame {
                 ? 1.0
                 : _speedPreset == 'cruise'
                 ? 1.3
-                : 1.7)
+                : _speedPreset == 'arcade'
+                ? 1.7
+                : 3.0)
           : 1.0);
   bool get _course => _nextProof && controller.testCourseEnabled;
   String _cameraPreset = 'flow';
@@ -817,6 +819,19 @@ class RaceGame extends FlameGame {
       }
     }
     _objects.add(_Object(_Kind.player, _world, _playerX, _course ? 285 : 300));
+    if (_nextProof) {
+      _objects.removeWhere(
+        (object) =>
+            (object.kind == _Kind.scenery ||
+                object.kind == _Kind.lamp ||
+                object.kind == _Kind.marker) &&
+            ProofJoiningLane.overlapsScenery(
+              object.z,
+              object.lateral,
+              object.width / _roadHalfWidth * .6 + .15,
+            ),
+      );
+    }
     _objects.sort((a, b) => b.z.compareTo(a.z));
     lastSpriteCount = _objects.length;
   }
