@@ -35,3 +35,23 @@ Use arrows or rim drag, Down/Space to brake, keys1–8 for chapters, R to restar
 The prior optical settings remain query comparisons, but now share the new proof
 acceleration/traffic. This is not a frozen old-build comparison. Pending hand,
 canopy supports and soft-prop impact work remains separate.
+
+## Local verification
+
+99 Flutter tests,28 browser/audio tests, analyzer, release build and8 strict
+OpenSpec checks passed locally. Checks include tapered acceleration, steering
+speed loss, deterministic staggered traffic and optical-setting continuity.
+
+A visible headless Chromium launch sample measured12.1mph at1.03s,67.2mph at6.03s,
+and113.0mph at12.03s. The55mph lead car stayed95–177 simulation units ahead during
+launch and approached59 units by12s; later traffic was observed passing through
+the visible ribbon, with reactive flinches. The early hill moved pitch from
++.129 to−.089 over the first12 seconds. No-input runs drift off curves, so they
+are not completion/balance playtests.
+
+An initial180-rAF scheduling sample had33.3ms p95 on the software-rendered local
+browser. It is not a presented-frame measurement or a controlled regression
+comparison, and does not establish phone performance. The longer ribbon increases
+visible scenery work; human review should judge readability, aliasing and comfort
+before expanding scene complexity. Earlier artwork/composition and phone checks
+remain open. No GitHub Actions or remote build hooks were used.
