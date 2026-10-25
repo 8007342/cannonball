@@ -3,13 +3,99 @@
   "generatedWith": "built-in image_gen",
   "generatedDate": "2026-10-25",
   "status": "moving-review samples",
-  "cabin": {"file": "cabin.png", "width": 1672, "height": 941, "alpha": false, "display": "aspect-preserving cover crop"},
-  "hands": {"file": "hand-atlas.png", "width": 1536, "height": 1024, "columns": 3, "rows": 2, "poses": ["reach", "pinch", "grasp", "withdraw", "door-reach", "ignition"]},
-  "steering": {"file": "turn-atlas.png", "width": 1536, "height": 1024, "columns": 3, "rows": 2, "poses": ["gentle-left", "gentle-right", "medium-left", "medium-right", "firm-left", "firm-right"], "notes": "Runtime measures per-frame ground/center anchors; angles are art targets, not calibrated yaw measurements."},
+  "cabin": {
+    "file": "cabin.png",
+    "width": 1672,
+    "height": 941,
+    "alpha": false,
+    "display": "aspect-preserving cover crop"
+  },
+  "hands": {
+    "file": "hand-reach-atlas.png",
+    "width": 1536,
+    "height": 1024,
+    "columns": 3,
+    "rows": 2,
+    "poses": [
+      "reach",
+      "pinch",
+      "grasp",
+      "withdraw",
+      "door-reach",
+      "ignition"
+    ],
+    "display": "Hook anchored at actual cover-transform source point; hand remains uniformly scaled, distal forearm alone extends beyond viewport."
+  },
+  "steering": {
+    "file": "turn-atlas.png",
+    "width": 1536,
+    "height": 1024,
+    "columns": 3,
+    "rows": 2,
+    "poses": [
+      "gentle-left",
+      "gentle-right",
+      "medium-left",
+      "medium-right",
+      "firm-left",
+      "firm-right"
+    ],
+    "notes": "Runtime measures per-frame ground/center anchors; angles are art targets, not calibrated yaw measurements."
+  },
   "roadProps": {
-    "file": "road-props.png", "width": 1536, "height": 1024,
+    "file": "road-props.png",
+    "width": 1536,
+    "height": 1024,
     "notes": "Generated objects cross nominal grid cells; use observed irregular rectangles, not uniform cropping.",
-    "rectangles": {"cone": [105,38,370,455], "barrier": [588,128,570,355], "reflector": [1280,34,112,452], "canopy": [0,525,575,340], "portal": [588,560,660,405], "lamp": [1270,520,226,480]},
-    "portalHoleAlphaSamples": [[900,850,0],[800,800,0]]
+    "rectangles": {
+      "cone": [
+        105,
+        38,
+        370,
+        455
+      ],
+      "barrier": [
+        588,
+        128,
+        570,
+        355
+      ],
+      "reflector": [
+        1280,
+        34,
+        112,
+        452
+      ],
+      "canopy": [
+        0,
+        525,
+        575,
+        340
+      ],
+      "portal": [
+        588,
+        560,
+        660,
+        405
+      ],
+      "lamp": [
+        1270,
+        520,
+        226,
+        480
+      ]
+    },
+    "portalHoleAlphaSamples": [
+      [
+        900,
+        850,
+        0
+      ],
+      [
+        800,
+        800,
+        0
+      ]
+    ]
   }
 }
