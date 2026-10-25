@@ -19,6 +19,7 @@ class ProofRadioDirector {
     required String weather,
     required int trafficCount,
     bool detourClosed = false,
+    bool laneClosed = false,
   }) {
     final String family;
     final List<String> lines;
@@ -27,6 +28,12 @@ class ProofRadioDirector {
       lines = const [
         'That shortcut is closed today. Stay on the open road; the scenery is on us.',
         'Road crews have closed the shortcut. Keep to the open lanes and give the cones some room.',
+      ];
+    } else if (laneClosed) {
+      family = 'worksite';
+      lines = const [
+        'Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.',
+        'A lane is closed ahead. Give the orange cones some room. They are having a very busy day.',
       ];
     } else if (weather == 'snow') {
       family = 'snow';

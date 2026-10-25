@@ -54,4 +54,14 @@ void main() {
       'traffic',
     );
   });
+  test('authored lane closure gets its own truthful report', () {
+    final report = ProofRadioDirector().choose(
+      station: 'City',
+      weather: 'clear',
+      trafficCount: 0,
+      laneClosed: true,
+    );
+    expect(report.family, 'worksite');
+    expect(report.text.toLowerCase(), contains('lanes'));
+  });
 }

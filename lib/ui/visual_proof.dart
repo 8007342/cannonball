@@ -288,6 +288,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
         weather: _race.weather.name,
         trafficCount: _race.traffic.length,
         detourClosed: _race.approachingFork && _race.closedBranchId != null,
+        laneClosed:
+            _race.closedLane != null && _race.edgeDistance < _race.closureEnd,
       );
       _lastRadio = report.text;
       _platform.radioBreak(text: report.text, station: report.station);
