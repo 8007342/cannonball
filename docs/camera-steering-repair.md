@@ -46,3 +46,19 @@ vertices are disposed per paint. Tests explicitly decode the bundled artwork,
 repaint through several gestures and remount the wheel, exercising the actual
 textured path rather than only the fallback silhouette. Browser verification
 must check console errors as well as the loaded texture request.
+
+## Local acceptance evidence
+
+The final full Flutter suite passed120 tests, including real-art repeat painting;
+32 browser/audio tests,14 Worker tests, analyzer, release build, Worker dry-run
+and8 strict spec checks passed locally. Browser keyboard input reached steering1
+while road heading stayed−.0015151515 before/after the command. Touch steering
+reached−.173 without braking and retained the same road heading to numerical
+precision. The small nonzero heading is the authored road's local sample, not
+steering yaw. The page recorded0 fresh console errors after repaint/restart and
+repeated touch movement. Loaded PNG source is RGBA1254×1254 with transparent center.
+
+The optional A/B uses brighter radial peripheral trails and stronger edge shading
+at high speed. Compare while driving rather than through the pause dimmer, which
+reduces the visible difference. The controls/art/scene were inspected in a desktop
+Chromium preview; real-phone feel and perceptual preference remain playtest work.

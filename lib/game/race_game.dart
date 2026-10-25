@@ -458,7 +458,7 @@ class RaceGame extends FlameGame {
         [
           const Color(0x00081018),
           const Color(0x00081018),
-          Color.fromRGBO(8, 16, 24, strength * .30),
+          Color.fromRGBO(8, 16, 24, strength * .40),
         ],
         [0, .48, 1],
       );
@@ -471,13 +471,17 @@ class RaceGame extends FlameGame {
       final side = i.isEven ? -1.0 : 1.0;
       final x = center.dx + side * (_w * .36 + phase * _w * .16);
       final y = _h * (.12 + (i % 7) * .13);
-      final length = 25 + strength * 65;
-      paint.color = Color.fromRGBO(224, 236, 225, strength * .32 * (1 - phase));
-      canvas.drawLine(
-        Offset(x, y),
-        Offset(x + side * length, y + (y - center.dy) * .04),
-        paint,
-      );
+      final outer = Offset(x, y);
+      final fromHorizon = outer - Offset(_w * .5, _h * .48);
+      final direction = fromHorizon / fromHorizon.distance;
+      final inner = outer - direction * (35 + strength * 120);
+      paint.strokeWidth = 2.2;
+      paint.shader = ui.Gradient.linear(inner, outer, [
+        const Color(0x00e0f3ff),
+        Color.fromRGBO(224, 243, 255, strength * .62 * (1 - phase * .4)),
+      ]);
+      canvas.drawLine(inner, outer, paint);
+      paint.shader = null;
     }
   }
 

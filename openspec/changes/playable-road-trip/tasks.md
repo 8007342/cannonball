@@ -95,7 +95,7 @@ is the requested first draft, not final art approval or production acceptance.
 - [x] 14.6 Reshape the rim into full-height thumb-width inset arcs, expand steering hit targets and add neutral guard/gesture acquisition; verify angular directions, near misses, multi-touch and deliberate braking.
 
 ## 15. Steering-camera repair and rim finish
-- [ ] 15.1 Separate camera translation from road heading, bound steering look and verify keyboard/touch steering no longer swings the view.
-- [ ] 15.2 Make optional peripheral effects visibly distinguishable at driving speed while retaining a clear center and reduced-motion/off fallback.
-- [ ] 15.3 Improve rim finish/artwork while preserving approved geometry, hit bands, guard zones and gesture behavior; record provenance.
-- [ ] 15.4 Run local checks, moving input comparisons, publish and push durable work branch.
+- [x] 15.1 Separate camera translation from road heading, bound steering look and verify keyboard/touch steering no longer swings the view.
+- [x] 15.2 Make optional peripheral effects visibly distinguishable at driving speed while retaining a clear center and reduced-motion/off fallback.
+- [x] 15.3 Improve rim finish/artwork while preserving approved geometry, hit bands, guard zones and gesture behavior; record provenance.
+- [x] 15.4 Run local checks, moving input comparisons, publish and push durable work branch.

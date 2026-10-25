@@ -162,3 +162,12 @@ V or the speed-effect utility toggles optional peripheral streaks/vignette;
 `?proof=1&effects=on` enables them initially. Compare
 `?proof=1&traffic=light&chase=stable&body=stable` for the earlier traffic density
 and steady presentation. [Research, controls and limits](docs/research/rolling-chase-suspension.md).
+
+## Steering-camera repair
+
+The latest proof fixes the steering-dependent camera-heading regression on both
+keyboard and touch. It keeps the approved wide framing and protected steering
+arcs, now with original translucent leather/stitching artwork. V toggles stronger
+optional peripheral trails and vignette; compare at driving speed. Root-cause,
+input-check evidence and art provenance are in
+[the repair notes](docs/camera-steering-repair.md).
