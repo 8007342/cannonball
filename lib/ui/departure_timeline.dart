@@ -9,7 +9,11 @@ class DepartureTimeline {
 
   static double smooth(double value) => value * value * (3 - 2 * value);
 
-  static String shot(double value) => value < .20
+  static String shot(double value) => value < .075
+      ? 'reach'
+      : value < .13
+      ? 'grasp'
+      : value < .20
       ? 'pickup'
       : value < .40
       ? 'reveal'

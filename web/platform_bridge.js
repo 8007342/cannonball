@@ -104,6 +104,8 @@
     Mountain: {root: 52, notes: [0, 0, 7, 10, 0, 12, 10, 7], chords: [0, 3, 5, 7], bpm: 154, style: 'metal'},
   };
   const activeNodes = new Set();
+  const garageNodes = new Set();
+  let lastGarageCue = null, lastGarageAt = -100;
   const themes = [
     {root: 57, notes: [0, 4, 7, 9, 7, 4, 2, 4], chords: [0, 5, 9, 7]},
     {root: 60, notes: [0, 3, 7, 10, 7, 5, 3, 7], chords: [0, 5, 3, 7]},
@@ -272,25 +274,50 @@
   }
 
 
+  function cancelGarage() {
+    for (const node of [...garageNodes]) { try { node.stop(); } catch (_) {} }
+    garageNodes.clear();
+  }
+
   function garageCue(cue) {
     if (!context || muted || doc.hidden || context.state !== 'running') return;
-    const pitches = cue === 'keys' ? [93, 102, 97] : cue === 'door' ? [40, 45] : [31];
-    pitches.forEach((pitch, index) => {
+    if (cue === lastGarageCue && context.currentTime - lastGarageAt < .25) return;
+    lastGarageCue = cue;
+    lastGarageAt = context.currentTime;
+    // The prelap is deliberately outside the paused music bus. Node lifetimes
+    // use the audio clock, and mute/hidden/dispose explicitly stop this bus.
+    function tone(from, to, delay, duration, volume, shape = 'triangle') {
       const oscillator = context.createOscillator(), gain = context.createGain();
-      oscillator.type = cue === 'keys' ? 'sine' : 'triangle';
-      oscillator.frequency.value = frequency(pitch);
-      const at = context.currentTime + index * .045;
-      gain.gain.setValueAtTime(0, at);
-      gain.gain.linearRampToValueAtTime(cue === 'keys' ? .025 : .045, at + .003);
-      gain.gain.exponentialRampToValueAtTime(.0001, at + .13);
-      // The departure is paused gameplay, but its deliberately requested Foley
-      // has its own very quiet output and still obeys mute/visibility.
+      const at = context.currentTime + delay;
+      oscillator.type = shape;
+      oscillator.frequency.setValueAtTime(from, at);
+      oscillator.frequency.exponentialRampToValueAtTime(to, at + duration * .85);
+      gain.gain.setValueAtTime(.0001, at);
+      gain.gain.linearRampToValueAtTime(volume, at + .012);
+      gain.gain.exponentialRampToValueAtTime(.0001, at + duration);
       oscillator.connect(gain).connect(context.destination);
-      activeNodes.add(oscillator);
-      oscillator.onended = () => { activeNodes.delete(oscillator); oscillator.disconnect(); gain.disconnect(); };
+      garageNodes.add(oscillator);
+      oscillator.onended = () => { garageNodes.delete(oscillator); oscillator.disconnect(); gain.disconnect(); };
       oscillator.start(at);
-      oscillator.stop(at + .15);
-    });
+      oscillator.stop(at + duration + .02);
+    }
+    if (cue === 'keys') {
+      [93, 102, 97].forEach((pitch, index) =>
+        tone(frequency(pitch), frequency(pitch - 2), index * .04, .13, .022, 'sine'));
+    } else if (cue === 'door') {
+      tone(115, 43, 0, .17, .04);
+      tone(70, 34, .10, .12, .025);
+    } else if (cue === 'cabin' || cue === 'ignition') {
+      // Three brief starter pulses catch into an idling engine harmonic.
+      for (let i = 0; i < 3; i++) tone(52, 66, i * .12, .13, .017, 'sawtooth');
+      tone(58, 76, .30, .75, .024, 'sawtooth');
+      tone(116, 152, .30, .70, .009, 'triangle');
+    } else if (cue === 'rear') {
+      tone(76, 88, 0, .65, .018, 'sawtooth');
+    } else if (cue === 'launch') {
+      tone(82, 220, 0, .90, .033, 'sawtooth');
+      tone(164, 440, 0, .78, .011, 'triangle');
+    }
   }
 
   function stopMusic() {
@@ -372,7 +399,7 @@
 
   function pause(value) {
     paused = Boolean(value);
-    if (paused) { cancelSpeech(); cancelRadio(); }
+    if (paused) { cancelSpeech(); cancelRadio(); cancelGarage(); }
     updateVolume();
     if (context && !paused) {
       // Resume may still be blocked without a gesture; captions remain usable.
@@ -475,7 +502,7 @@
     },
     setMuted(value) {
       muted = Boolean(value);
-      if (muted) { cancelSpeech(); cancelRadio(); }
+      if (muted) { cancelSpeech(); cancelRadio(); cancelGarage(); }
       updateVolume();
     },
     async requestLandscape() {
@@ -488,6 +515,9 @@
       return landscape();
     },
     dispose() {
+      cancelGarage();
+      lastGarageCue = null;
+      lastGarageAt = -100;
       disableTilt();
       cancelSpeech();
       cancelRadio();
