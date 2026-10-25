@@ -1,0 +1,1160 @@
+{
+  "scope": "Foreground software-GPU browser scheduling, not presented FPS; 1s warmup + 4s samples; no screenshots during samples.",
+  "samples": {
+    "baseline": {
+      "error": null,
+      "label": "baseline-straight",
+      "measurement": "Render calls and rAF scheduling, not presented-frame FPS or physical input latency",
+      "wallMs": 4027.700000001496,
+      "simulationSeconds": 4.016666666666667,
+      "simulationToWallRatio": 0.9972606367567531,
+      "renders": 241,
+      "renderCallsPerSecond": 59.83563820540519,
+      "rafCallbacks": 241,
+      "p50IntervalMs": 16.699999999982538,
+      "p95IntervalMs": 16.79999999998836,
+      "p99IntervalMs": 16.800000000017462,
+      "maxIntervalMs": 16.800000000017462,
+      "renderCommandCpuMs": 116.514,
+      "meanRenderCommandCpuMs": 0.48346058091286304,
+      "sectionBefore": "OPEN STRAIGHT",
+      "sectionAfter": "OPEN STRAIGHT",
+      "sameSection": true,
+      "viewportStable": true,
+      "before": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 1.0166666666666666,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 152.69999999999968,
+        "worldDistance": 69.62539999999998,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "baseline",
+        "coursePitch": 0,
+        "courseDistance": 69.62539999999998,
+        "courseStartDistance": 0,
+        "courseSection": "OPEN STRAIGHT",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 1420.1421811199998,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 62,
+        "updateCount": 62,
+        "renderCommandCpuMicros": 32997,
+        "updateCpuMicros": 4103,
+        "lastRenderMicros": 500,
+        "maxRenderMicros": 4601,
+        "stage": "OPEN STRAIGHT",
+        "lastSpriteCount": 92,
+        "lastRoadQuads": 96,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "after": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 5.033333333333333,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 155,
+        "worldDistance": 393.3453333333305,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "baseline",
+        "coursePitch": 0,
+        "courseDistance": 393.3453333333305,
+        "courseStartDistance": 0,
+        "courseSection": "OPEN STRAIGHT",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 8023.91595199997,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [
+          {
+            "id": 0,
+            "distance": 715.0358106898452,
+            "x": 0.65,
+            "speed": 82.6782168961308,
+            "braking": false,
+            "reaction": 0,
+            "incident": 0,
+            "paint": 1,
+            "profile": "ordinary"
+          }
+        ],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 303,
+        "updateCount": 303,
+        "renderCommandCpuMicros": 149511,
+        "updateCpuMicros": 17612,
+        "lastRenderMicros": 401,
+        "maxRenderMicros": 4601,
+        "stage": "OPEN STRAIGHT",
+        "lastSpriteCount": 70,
+        "lastRoadQuads": 96,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36",
+      "crossOriginIsolated": false
+    },
+    "wide": {
+      "error": null,
+      "label": "wide-straight",
+      "measurement": "Render calls and rAF scheduling, not presented-frame FPS or physical input latency",
+      "wallMs": 4028.5000000029686,
+      "simulationSeconds": 4.016666666666667,
+      "simulationToWallRatio": 0.9970625956717654,
+      "renders": 241,
+      "renderCallsPerSecond": 59.82375574030592,
+      "rafCallbacks": 241,
+      "p50IntervalMs": 16.699999999982538,
+      "p95IntervalMs": 16.70000000001164,
+      "p99IntervalMs": 16.800000000017462,
+      "maxIntervalMs": 16.800000000017462,
+      "renderCommandCpuMs": 115.409,
+      "meanRenderCommandCpuMs": 0.4788755186721992,
+      "sectionBefore": "OPEN STRAIGHT",
+      "sectionAfter": "OPEN STRAIGHT",
+      "sameSection": true,
+      "viewportStable": true,
+      "before": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 1,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 151.9999999999997,
+        "worldDistance": 68.30199999999999,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "wide",
+        "coursePitch": 0,
+        "courseDistance": 68.30199999999999,
+        "courseStartDistance": 0,
+        "courseSection": "OPEN STRAIGHT",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 1393.2533055999997,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 61,
+        "updateCount": 61,
+        "renderCommandCpuMicros": 34199,
+        "updateCpuMicros": 3606,
+        "lastRenderMicros": 599,
+        "maxRenderMicros": 4601,
+        "stage": "OPEN STRAIGHT",
+        "lastSpriteCount": 92,
+        "lastRoadQuads": 98,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "after": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 5.016666666666667,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 155,
+        "worldDistance": 392.00199999999717,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "wide",
+        "coursePitch": 0,
+        "courseDistance": 392.00199999999717,
+        "courseStartDistance": 0,
+        "courseSection": "OPEN STRAIGHT",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 7996.4571439999745,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [
+          {
+            "id": 0,
+            "distance": 715.6625994767453,
+            "x": 0.65,
+            "speed": 82.6782168961308,
+            "braking": false,
+            "reaction": 0,
+            "incident": 0,
+            "paint": 1,
+            "profile": "ordinary"
+          }
+        ],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 302,
+        "updateCount": 302,
+        "renderCommandCpuMicros": 149608,
+        "updateCpuMicros": 15213,
+        "lastRenderMicros": 400,
+        "maxRenderMicros": 4601,
+        "stage": "OPEN STRAIGHT",
+        "lastSpriteCount": 70,
+        "lastRoadQuads": 97,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36",
+      "crossOriginIsolated": false
+    },
+    "flow": {
+      "error": null,
+      "label": "flow-straight",
+      "measurement": "Render calls and rAF scheduling, not presented-frame FPS or physical input latency",
+      "wallMs": 4029.800000001487,
+      "simulationSeconds": 4.016666666666667,
+      "simulationToWallRatio": 0.9967409466140216,
+      "renders": 241,
+      "renderCallsPerSecond": 59.80445679684129,
+      "rafCallbacks": 241,
+      "p50IntervalMs": 16.69999999999709,
+      "p95IntervalMs": 16.70000000001164,
+      "p99IntervalMs": 16.80000000000291,
+      "maxIntervalMs": 16.80000000000291,
+      "renderCommandCpuMs": 122.789,
+      "meanRenderCommandCpuMs": 0.5094979253112033,
+      "sectionBefore": "OPEN STRAIGHT",
+      "sectionAfter": "OPEN STRAIGHT",
+      "sameSection": true,
+      "viewportStable": true,
+      "before": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 1,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 151.9999999999997,
+        "worldDistance": 68.30199999999999,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "flow",
+        "coursePitch": 0,
+        "courseDistance": 68.30199999999999,
+        "courseStartDistance": 0,
+        "courseSection": "OPEN STRAIGHT",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 1393.2533056,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 61,
+        "updateCount": 61,
+        "renderCommandCpuMicros": 32507,
+        "updateCpuMicros": 4997,
+        "lastRenderMicros": 801,
+        "maxRenderMicros": 4601,
+        "stage": "OPEN STRAIGHT",
+        "lastSpriteCount": 126,
+        "lastRoadQuads": 98,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "after": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 5.016666666666667,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 155,
+        "worldDistance": 392.00199999999717,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "flow",
+        "coursePitch": 0,
+        "courseDistance": 392.00199999999717,
+        "courseStartDistance": 0,
+        "courseSection": "OPEN STRAIGHT",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 7996.621567999973,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [
+          {
+            "id": 0,
+            "distance": 715.6625994767453,
+            "x": 0.65,
+            "speed": 82.6782168961308,
+            "braking": false,
+            "reaction": 0,
+            "incident": 0,
+            "paint": 1,
+            "profile": "ordinary"
+          }
+        ],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 302,
+        "updateCount": 302,
+        "renderCommandCpuMicros": 155296,
+        "updateCpuMicros": 23206,
+        "lastRenderMicros": 900,
+        "maxRenderMicros": 4601,
+        "stage": "OPEN STRAIGHT",
+        "lastSpriteCount": 104,
+        "lastRoadQuads": 97,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36",
+      "crossOriginIsolated": false
+    },
+    "worksite": {
+      "error": null,
+      "label": "flow-worksite",
+      "measurement": "Render calls and rAF scheduling, not presented-frame FPS or physical input latency",
+      "wallMs": 4028.199999997043,
+      "simulationSeconds": 4.016666666666667,
+      "simulationToWallRatio": 0.9971368518617783,
+      "renders": 241,
+      "renderCallsPerSecond": 59.82821111170669,
+      "rafCallbacks": 241,
+      "p50IntervalMs": 16.699999999953434,
+      "p95IntervalMs": 16.70000000001164,
+      "p99IntervalMs": 16.800000000046566,
+      "maxIntervalMs": 16.800000000046566,
+      "renderCommandCpuMs": 121.289,
+      "meanRenderCommandCpuMs": 0.5032738589211618,
+      "sectionBefore": "WORKSITE",
+      "sectionAfter": "WORKSITE",
+      "sameSection": true,
+      "viewportStable": true,
+      "before": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 1,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 151.9999999999997,
+        "worldDistance": 68.30199999999999,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "flow",
+        "coursePitch": 0,
+        "courseDistance": 4368.302,
+        "courseStartDistance": 4300,
+        "courseSection": "WORKSITE",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 1393.2533056,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 61,
+        "updateCount": 61,
+        "renderCommandCpuMicros": 31597,
+        "updateCpuMicros": 3404,
+        "lastRenderMicros": 700,
+        "maxRenderMicros": 4601,
+        "stage": "WORKSITE",
+        "lastSpriteCount": 155,
+        "lastRoadQuads": 98,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "after": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 5.016666666666667,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Road crews are narrowing the lanes ahead. Follow the cones; they know where they are going.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 155,
+        "worldDistance": 392.00199999999717,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "flow",
+        "coursePitch": 0,
+        "courseDistance": 4692.001999999997,
+        "courseStartDistance": 4300,
+        "courseSection": "WORKSITE",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 7996.457143999972,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [
+          {
+            "id": 0,
+            "distance": 715.6625994767453,
+            "x": 0.65,
+            "speed": 82.6782168961308,
+            "braking": false,
+            "reaction": 0,
+            "incident": 0,
+            "paint": 1,
+            "profile": "ordinary"
+          }
+        ],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 302,
+        "updateCount": 302,
+        "renderCommandCpuMicros": 152886,
+        "updateCpuMicros": 17291,
+        "lastRenderMicros": 500,
+        "maxRenderMicros": 4601,
+        "stage": "WORKSITE",
+        "lastSpriteCount": 118,
+        "lastRoadQuads": 97,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36",
+      "crossOriginIsolated": false
+    },
+    "tunnel": {
+      "error": null,
+      "label": "flow-tunnel",
+      "measurement": "Render calls and rAF scheduling, not presented-frame FPS or physical input latency",
+      "wallMs": 4034.5999999985215,
+      "simulationSeconds": 4,
+      "simulationToWallRatio": 0.9914241808361339,
+      "renders": 227,
+      "renderCallsPerSecond": 56.2633222624506,
+      "rafCallbacks": 227,
+      "p50IntervalMs": 16.70000000001164,
+      "p95IntervalMs": 33.29999999998836,
+      "p99IntervalMs": 33.40000000002328,
+      "maxIntervalMs": 33.40000000002328,
+      "renderCommandCpuMs": 122.097,
+      "meanRenderCommandCpuMs": 0.5378722466960352,
+      "sectionBefore": "TUNNEL",
+      "sectionAfter": "TUNNEL",
+      "sameSection": true,
+      "viewportStable": true,
+      "before": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 1.0333333333333332,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Remember, Cannonball is rolling today. Keep the roads clear, and your coffee in the cup.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 153.39999999999966,
+        "worldDistance": 70.95486666666665,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "flow",
+        "coursePitch": 0,
+        "courseDistance": 6220.954866666667,
+        "courseStartDistance": 6150,
+        "courseSection": "TUNNEL",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 1420.4666444799993,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 56,
+        "updateCount": 56,
+        "renderCommandCpuMicros": 29796,
+        "updateCpuMicros": 3305,
+        "lastRenderMicros": 500,
+        "maxRenderMicros": 4601,
+        "stage": "TUNNEL",
+        "lastSpriteCount": 5,
+        "lastRoadQuads": 98,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "after": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "sceneCar": "s2000",
+        "simClock": 5.033333333333333,
+        "durationSeconds": 120,
+        "paused": false,
+        "state": "driving",
+        "departureShot": "keys",
+        "radioStation": "City",
+        "radioCaption": "Remember, Cannonball is rolling today. Keep the roads clear, and your coffee in the cup.",
+        "captionsEnabled": false,
+        "speechMode": "device TTS fallback; regional voice pack pending",
+        "assetsReady": true,
+        "artError": null,
+        "speedMph": 155,
+        "worldDistance": 393.3453333333305,
+        "steering": 0,
+        "effectiveSteering": 0,
+        "visualSteering": 0,
+        "cameraPreset": "flow",
+        "coursePitch": 0,
+        "courseDistance": 6543.345333333331,
+        "courseStartDistance": 6150,
+        "courseSection": "TUNNEL",
+        "courseLength": 7600,
+        "braking": false,
+        "playerX": 0,
+        "speedPreset": "arcade",
+        "presentationDistance": 8024.0803759999735,
+        "roadCurve": 0,
+        "closedLane": 1,
+        "traffic": [
+          {
+            "id": 0,
+            "distance": 715.0358106898452,
+            "x": 0.65,
+            "speed": 82.6782168961308,
+            "braking": false,
+            "reaction": 0,
+            "incident": 0,
+            "paint": 1,
+            "profile": "ordinary"
+          }
+        ],
+        "trafficReactions": 0,
+        "trafficIncidents": 0,
+        "sceneLogicalSize": {
+          "width": 1280,
+          "height": 720
+        },
+        "renderCount": 283,
+        "updateCount": 283,
+        "renderCommandCpuMicros": 151893,
+        "updateCpuMicros": 15407,
+        "lastRenderMicros": 500,
+        "maxRenderMicros": 4601,
+        "stage": "TUNNEL",
+        "lastSpriteCount": 46,
+        "lastRoadQuads": 97,
+        "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+        "browser": {
+          "pixelBudget": 291600,
+          "quality": "smooth",
+          "capApplied": true,
+          "capError": null,
+          "capScope": "whole Flutter root including HUD",
+          "nativeDpr": 1,
+          "effectiveDpr": 0.5625,
+          "viewportScale": 1,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "outerWindow": {
+            "width": 1280,
+            "height": 720
+          },
+          "visualViewport": {
+            "width": 1280,
+            "height": 720,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "scale": 1
+          },
+          "documentClient": {
+            "width": 1280,
+            "height": 720
+          },
+          "surfaceCoverage": {
+            "layoutAreaRatio": 1,
+            "sizeMatchesLayout": true,
+            "originMatchesLayout": true
+          },
+          "canvases": [
+            {
+              "width": 720,
+              "height": 405,
+              "cssWidth": 1280,
+              "cssHeight": 720,
+              "cssLeft": 0,
+              "cssTop": 0,
+              "pixels": 291600
+            }
+          ],
+          "largestCanvasPixels": 291600,
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36",
+      "crossOriginIsolated": false
+    }
+  }
+}
