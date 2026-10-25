@@ -26,6 +26,7 @@ context, avoiding detached or misleading authority claims.
 | --- | --- | ---: |
 | [Asset production](../../assets/README.md) | Asset provenance | 0 |
 | [Cannonball original soundtrack studies — 2026-10-25](../../assets/audio/SCORE_NOTES.md) | Asset provenance | 4 |
+| [Steering rim finish](../../assets/controls/PROMPTS.md) | Asset provenance | 0 |
 | [Driving-and-camera milestone sample prompts](../../assets/milestone/PROMPTS.md) | Asset provenance | 0 |
 | [Draft asset prompt set](../../assets/proof/PROMPTS.md) | Asset provenance | 0 |
 | [Second proof sample art](../../assets/proof-next/PROMPTS.md) | Asset provenance | 0 |
@@ -33,6 +34,7 @@ context, avoiding detached or misleading authority claims.
 | [Afterburn speed/traffic draft](../../docs/afterburn-draft.md) | Design / implementation / validation | 0 |
 | [Proposed runtime boundaries](../../docs/architecture/runtime.md) | Design / implementation / validation | 0 |
 | [Low horizon, brief radio and contact review](../../docs/camera-radio-contact-review.md) | Design / implementation / validation | 0 |
+| [Steering camera repair and rim finish](../../docs/camera-steering-repair.md) | Design / implementation / validation | 0 |
 | [Cloudflare deployment preparation](../../docs/deployment.md) | Design / implementation / validation | 5 |
 | [Design decision register](../../docs/design/decisions.md) | Design / implementation / validation | 1 |
 | [Cannonball design interview](../../docs/design/interview.md) | Design / implementation / validation | 0 |

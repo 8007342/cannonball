@@ -1,6 +1,10 @@
 import 'dart:async';
+import 'dart:math' as math;
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../app/wheel_input.dart';
 
@@ -25,6 +29,28 @@ class _WheelControlState extends State<WheelControl> {
   final Set<int> _neutral = {};
   Timer? _brakeRelease;
   double _turn = 0;
+  ui.Image? _skin;
+  static Future<ui.Image?>? _skinLoad;
+  static Future<ui.Image?> _loadSkin() async {
+    try {
+      final data = await rootBundle.load('assets/controls/leather-rim.png');
+      final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
+      final frame = await codec.getNextFrame();
+      codec.dispose();
+      return frame.image;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    (_skinLoad ??= _loadSkin()).then((image) {
+      if (mounted && image != null) setState(() => _skin = image);
+    });
+  }
+
   void _down(PointerDownEvent e, WheelGeometry g) {
     if (widget.visible && g.onRim(e.localPosition)) {
       _angles[e.pointer] = g.angle(e.localPosition);
@@ -120,7 +146,7 @@ class _WheelControlState extends State<WheelControl> {
         onPointerUp: (e) => _up(e.pointer),
         onPointerCancel: (e) => _up(e.pointer),
         child: CustomPaint(
-          painter: _WheelPainter(g, _turn, widget.visible),
+          painter: _WheelPainter(g, _turn, widget.visible, _skin),
           size: c.biggest,
         ),
       );
@@ -129,7 +155,8 @@ class _WheelControlState extends State<WheelControl> {
 }
 
 class _WheelPainter extends CustomPainter {
-  _WheelPainter(this.geometry, this.turn, this.visible);
+  _WheelPainter(this.geometry, this.turn, this.visible, this.skin);
+  final ui.Image? skin;
   final WheelGeometry geometry;
   final double turn;
   final bool visible;
@@ -154,6 +181,7 @@ class _WheelPainter extends CustomPainter {
         ..style = PaintingStyle.stroke
         ..strokeWidth = geometry.strokeWidth * .65,
     );
+    if (skin != null) _paintSkin(c, skin!);
     c.drawCircle(
       geometry.center,
       geometry.radius - geometry.strokeWidth * .40,
@@ -164,8 +192,62 @@ class _WheelPainter extends CustomPainter {
     );
   }
 
+  void _paintSkin(Canvas canvas, ui.Image image) {
+    const segments = 96;
+    final positions = <Offset>[], textures = <Offset>[], indices = <int>[];
+    final colors = <Color>[];
+    final sourceCenter = Offset(image.width / 2, image.height / 2);
+    // Radially map leather, stitching and trim into the approved touch silhouette.
+    for (var i = 0; i <= segments; i++) {
+      final angle = i / segments * math.pi * 2;
+      final grip = math.pow(math.cos(angle).abs(), 18).toDouble();
+      for (var edge = 0; edge < 2; edge++) {
+        final radius =
+            geometry.radius +
+            (edge == 0 ? -.5 : .5) * geometry.strokeWidth +
+            grip * geometry.strokeWidth * (edge == 0 ? -.04 : .10);
+        positions.add(
+          geometry.center + Offset(math.cos(angle), math.sin(angle)) * radius,
+        );
+        final sourceAngle = angle - turn * .85;
+        final sourceRadius = image.width * (edge == 0 ? .397 : .488);
+        textures.add(
+          sourceCenter +
+              Offset(math.cos(sourceAngle), math.sin(sourceAngle)) *
+                  sourceRadius,
+        );
+        colors.add(const Color(0x4fffffff));
+      }
+      if (i < segments) {
+        final n = i * 2;
+        indices.addAll([n, n + 1, n + 2, n + 1, n + 3, n + 2]);
+      }
+    }
+    final vertices = ui.Vertices(
+      ui.VertexMode.triangles,
+      positions,
+      textureCoordinates: textures,
+      colors: colors,
+      indices: indices,
+    );
+    final shader = ui.ImageShader(
+      image,
+      ui.TileMode.clamp,
+      ui.TileMode.clamp,
+      Float64List.fromList([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]),
+    );
+    canvas.drawVertices(
+      vertices,
+      ui.BlendMode.modulate,
+      Paint()..shader = shader,
+    );
+    vertices.dispose();
+    shader.dispose();
+  }
+
   @override
   bool shouldRepaint(covariant _WheelPainter old) =>
+      old.skin != skin ||
       old.turn != turn ||
       old.visible != visible ||
       old.geometry.size != geometry.size;

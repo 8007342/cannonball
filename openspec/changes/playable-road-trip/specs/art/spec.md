@@ -85,3 +85,13 @@ remain readable when peripheral speed effects are enabled.
 #### Scenario: braking from high speed
 - **WHEN** the player brakes while dynamic chase and suspension cues are active
 - **THEN** the camera and car presentation settle smoothly while controls and contacts remain immediate
+
+### Requirement: Camera look preserves road heading
+Camera look translation SHALL remain independent of road-tangent estimation.
+Steering-dependent camera offsets SHALL diminish in projection with depth rather
+than introduce false road heading. Rim art changes SHALL preserve the approved
+input geometry and central visibility.
+
+#### Scenario: steering look on a straight road
+- **WHEN** steering changes the camera's lateral look offset
+- **THEN** the road heading remains geometry-derived and the distant vanishing direction does not swing with the offset

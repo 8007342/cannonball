@@ -2,6 +2,31 @@ import 'package:cannonball/game/render/proof_camera.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  test('steering look translates the camera without changing straight or curved road heading', () {
+    for (final slope in [0.0, .2, -.3]) {
+      final centered = ProofRoadFrame(
+        roadCenter: 500,
+        roadAhead: 500 + 20 * slope,
+        lookOffset: 0,
+      );
+      final shifted = ProofRoadFrame(
+        roadCenter: 500,
+        roadAhead: 500 + 20 * slope,
+        lookOffset: 20,
+      );
+      expect(shifted.heading, centered.heading);
+      double screenShift(double depth) =>
+          .64 /
+          depth *
+          (shifted.lateralOffset(500 + slope * depth, depth) -
+              centered.lateralOffset(500 + slope * depth, depth)) *
+          500;
+      expect(screenShift(560).abs(), lessThan(12));
+      expect(screenShift(20000).abs(), lessThan(1));
+      expect(screenShift(20000).abs(), lessThan(screenShift(560).abs() / 30));
+    }
+  });
+
   test(
     'lower horizon preserves the player ground contact at every camera preset',
     () {

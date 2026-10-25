@@ -180,6 +180,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'visualSteering': _game?.visualSteering,
     'cameraPreset': _game?.cameraPreset,
     'horizonFraction': _game?.horizonFraction,
+    'roadHeading': _game?.roadHeading,
     'cameraHeight': _game?.cameraHeight,
     'chaseGround': _game?.chase.ground,
     'chaseLook': _game?.chase.lateralLook,

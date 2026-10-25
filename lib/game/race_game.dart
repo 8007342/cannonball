@@ -119,6 +119,7 @@ class RaceGame extends FlameGame {
     }
   }
 
+  double get roadHeading => _tangent;
   double get horizonFraction =>
       _course ? ProofCamera.horizon(_cameraPreset) : .30;
   double get cameraHeight => _course
@@ -390,10 +391,13 @@ class RaceGame extends FlameGame {
                 : _nextProof
                 ? 660
                 : 730);
-        _cameraX =
-            _center(_cameraZ) +
-            (_course ? chase.lateralLook * _roadHalfWidth : 0);
-        _tangent = (_center(_cameraZ + 20) - _cameraX) / 20;
+        final roadFrame = ProofRoadFrame(
+          roadCenter: _center(_cameraZ),
+          roadAhead: _center(_cameraZ + 20),
+          lookOffset: _course ? chase.lateralLook * _roadHalfWidth : 0,
+        );
+        _cameraX = roadFrame.origin;
+        _tangent = roadFrame.heading;
         canvas.save();
         canvas.translate(_w / 2, _h * horizonFraction);
         canvas.rotate(controller.cameraLean * .65);
@@ -443,7 +447,7 @@ class RaceGame extends FlameGame {
   }
 
   void _speedCues(Canvas canvas) {
-    final strength = ((controller.speed / controller.car.topSpeed - .55) / .45)
+    final strength = ((controller.speed / controller.car.topSpeed - .35) / .65)
         .clamp(0.0, 1.0);
     if (strength <= 0) return;
     final center = Offset(_w * .5, _h * .60);
@@ -454,21 +458,21 @@ class RaceGame extends FlameGame {
         [
           const Color(0x00081018),
           const Color(0x00081018),
-          Color.fromRGBO(8, 16, 24, strength * .14),
+          Color.fromRGBO(8, 16, 24, strength * .30),
         ],
-        [0, .65, 1],
+        [0, .48, 1],
       );
     canvas.drawRect(Rect.fromLTWH(0, 0, _w, _h), paint);
     paint.shader = null;
     paint.strokeWidth = 1.5;
     // Short peripheral streaks, no full-frame blur or obscured central hazards.
-    for (var i = 0; i < 14; i++) {
+    for (var i = 0; i < 20; i++) {
       final phase = (_presentationTime * (1.1 + strength) + i * .127) % 1;
       final side = i.isEven ? -1.0 : 1.0;
       final x = center.dx + side * (_w * .36 + phase * _w * .16);
       final y = _h * (.12 + (i % 7) * .13);
-      final length = 12 + strength * 26;
-      paint.color = Color.fromRGBO(224, 236, 225, strength * .11 * (1 - phase));
+      final length = 25 + strength * 65;
+      paint.color = Color.fromRGBO(224, 236, 225, strength * .32 * (1 - phase));
       canvas.drawLine(
         Offset(x, y),
         Offset(x + side * length, y + (y - center.dy) * .04),

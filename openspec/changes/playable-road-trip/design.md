@@ -132,3 +132,12 @@ Reduced motion and a stable chase comparison retain fixed composition. Optional
 peripheral speed cues must leave the central traffic corridor clear and avoid
 full-frame shader cost until measured. Camera parameters are authored hypotheses,
 not a promise of perceptual benefit or a reconstruction of OutRun geometry.
+
+## Steering-camera repair
+User reports steering camera pulls as unplayable on keyboard and touch. Root
+cause: shifted camera origin entered the20-unit road-heading derivative. Separate
+translation from road tangent, reduce bounded look, test depth attenuation and
+validate actual keyboard/touch input. Increase optional speed-effect contrast for
+an observable A/B. Texture the accepted rim geometry without reducing its target
+or neutral guard. Details and art provenance: docs/camera-steering-repair.md and
+assets/controls/PROMPTS.md.

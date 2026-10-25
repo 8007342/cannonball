@@ -62,9 +62,24 @@ class ProofChaseResponse {
                   (braking ? .018 * speed : 0) +
                   (recovering ? .025 : 0))
               .clamp(.838, .93);
-    final targetLook = stable ? 0.0 : steering.clamp(-1.0, 1.0) * speed * .045;
+    final targetLook = stable ? 0.0 : steering.clamp(-1.0, 1.0) * speed * .018;
     final blend = 1 - math.exp(-5 * dt.clamp(0.0, .25));
     ground += (targetGround - ground) * blend;
     lateralLook += (targetLook - lateralLook) * blend;
   }
+}
+
+/// Road heading is sampled only from road geometry. Camera look translation
+/// must never enter the derivative or it becomes a steering-driven yaw.
+class ProofRoadFrame {
+  ProofRoadFrame({
+    required double roadCenter,
+    required double roadAhead,
+    required double lookOffset,
+    double sampleDistance = 20,
+  }) : origin = roadCenter + lookOffset,
+       heading = (roadAhead - roadCenter) / sampleDistance;
+  final double origin, heading;
+  double lateralOffset(double worldX, double depth) =>
+      worldX - origin - heading * depth;
 }
