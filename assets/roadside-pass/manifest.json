@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "roadside-business-review-2026-10-25",
+  "file": "business-atlas.png",
+  "sha256": "f7b9fae9c83e93d290552bdd401efedd75dd05a3da0b01cbfaad14ea6021cc2b",
+  "dimensions": [1254, 1254],
+  "alpha": "RGBA transparent background",
+  "generation": "built-in image_gen; original project designs; exact prompt in PROMPTS.md",
+  "sourceRects": [[0,80,627,560],[627,80,627,560],[0,690,627,490],[627,690,627,490]],
+  "runtimeCellSize": [512,512],
+  "runtimeGroundAnchors": [509,510,503,506],
+  "frames": ["fuel","burger","motel","diner-bed-and-breakfast"],
+  "scope": "coherent review sample; not a verified regional atlas"
+}

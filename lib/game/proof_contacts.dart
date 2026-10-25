@@ -92,6 +92,13 @@ class ProofCollisionGate {
     } else {
       _contactSeconds[id] = seconds;
     }
-    return seconds + 1e-9 >= graceSeconds;
+    // At very high closing speeds, 50ms can span the entire projected car.
+    // Keep time to correct a graze, but commit a full rear impact by its center
+    // crossing rather than after both sprites have already passed through.
+    final closingPerStep = (toForward - fromForward).abs();
+    final grace = closingPerStep < 1e-10
+        ? graceSeconds
+        : math.min(graceSeconds, halfDepth * dt / closingPerStep);
+    return seconds + 1e-9 >= grace;
   }
 }

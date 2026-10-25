@@ -32,6 +32,7 @@ context, avoiding detached or misleading authority claims.
 | [Sparse roadside-business sample](../../assets/roadside-pass/PROMPTS.md) | Asset provenance | 0 |
 | [Afterburn speed/traffic draft](../../docs/afterburn-draft.md) | Design / implementation / validation | 0 |
 | [Proposed runtime boundaries](../../docs/architecture/runtime.md) | Design / implementation / validation | 0 |
+| [Low horizon, brief radio and contact review](../../docs/camera-radio-contact-review.md) | Design / implementation / validation | 0 |
 | [Cloudflare deployment preparation](../../docs/deployment.md) | Design / implementation / validation | 5 |
 | [Design decision register](../../docs/design/decisions.md) | Design / implementation / validation | 1 |
 | [Cannonball design interview](../../docs/design/interview.md) | Design / implementation / validation | 0 |

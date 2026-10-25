@@ -137,3 +137,16 @@ scenery flow; `motion=turbo` retains that previous visual rate with the new
 physics. Stronger hills, an early rise/dip and staggered reactive traffic are
 ready for review. [Tuning notes](docs/afterburn-draft.md) explain the arcade
 exaggeration and remaining validation. Keys1–8 still jump to course chapters.
+
+
+## Low-horizon, radio and forgiving-contact draft
+
+`/?proof=1` defaults to `motion=hyperspeed` and `camera=flow`, putting the flat
+horizon two-thirds down the frame. C cycles the `.30`/`.48`/`2/3` camera comparisons;
+`camera=wide` selects the middle view. Distant sprites fade into haze, new roadside
+businesses appear sparingly, cones scatter, and NPC contact follows projected
+bodies with corrective grace. Reports are now2–3 seconds with occasional station
+surfing. [Review/evidence](docs/camera-radio-contact-review.md) and the
+[spec-linked source register](docs/research/reference-register.md) record provenance
+and limitations. Gentle-bend cruising assist is researched/spec'd, still pending
+implementation; current curves retain prior steering demand.

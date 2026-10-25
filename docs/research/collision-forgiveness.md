@@ -19,7 +19,10 @@ pixel-to-metres relationship. Fixed-step snapshots are swept through forward and
 lateral slabs jointly, so different-axis overlaps at different times cannot
 produce a false collision.
 
-A continuous50ms overlap commits the crash. A shorter graze can be corrected and
+A continuous overlap of up to50ms commits the crash. At high relative speed,
+the window is capped by the time to traverse one contact half-depth: a full
+same-lane rear impact must commit around body-center crossing rather than become
+intangible or trigger a crash after separation. A shorter graze can be corrected and
 is discarded when contact ends; it never triggers a delayed crash after escape.
 Time actually inside the swept slab counts, rather than rounding partial contact
 to a whole frame. Sustained rear impacts still crash. Recovery/protection clears
@@ -70,3 +73,15 @@ lane, no broad distant NPC hit, one-shot cone flight and flight expiration.
 Legacy/game/reactive-traffic suites also pass locally. Human moving review must
 still tune collider overlap,50ms grace, cue clarity and clip/occlusion. This does
 not add pixel-perfect collision against arbitrary trees, lamps or buildings.
+
+## Hyperspeed follow-up
+
+End-to-end tests run155mph against0/5/30mph NPCs at132presentation scale and
+several initial distance/frame phases. The original fixed50ms window nearly
+covered the entire53ms stopped-car contact interval; one phase produced a
+late crash after the end-of-step snapshots had separated. The adaptive cap
+reduces that maximum-closing case to about26ms. Sustained low-relative-speed
+contacts retain50ms, corrective grazes still clear their pending timer, and
+full fast rear overlaps crash while the end-of-step bodies still overlap.
+The cap is another arcade hypothesis; no new claim of realistic collision
+response or validated comfort follows from these automated tests.

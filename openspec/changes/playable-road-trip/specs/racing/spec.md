@@ -38,12 +38,9 @@ one-shot flights, never act as an invisible solid lane or trigger a car crash.
 - **WHEN** the player crosses a visible cone footprint
 - **THEN** that cone scatters once and cannot trigger a subsequent crash as a ghost obstacle
 
-## Research and reference traceability
+### Requirement: Racing reference traceability
+The racing requirements SHALL link to the [shared reference register](../../../../../docs/research/reference-register.md), retaining original sources, historical validation and asset provenance with their applicability limits.
 
-Use the [shared reference register](../../../../../docs/research/reference-register.md)
-for original research, project interpretation, historical validation and asset
-provenance. Specific current-pass evidence: [camera/flow](../../../../../docs/research/camera-flow-next.md),
-[contacts](../../../../../docs/research/collision-forgiveness.md),
-[lane-following proposal](../../../../../docs/research/lane-following-assist.md),
-[radio](../../../../../docs/radio-surfing-draft.md) and
-[roadside pacing](../../../../../docs/research/roadside-flow-review.md).
+#### Scenario: reviewing racing evidence
+- **WHEN** the implementation is assessed against this capability
+- **THEN** reviewers can follow the register to original references and distinguish historical observations from unverified production acceptance

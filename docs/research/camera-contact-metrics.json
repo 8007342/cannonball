@@ -1,0 +1,25 @@
+{
+  "scope": "visible headless Chromium rAF and CPU command recording; no screenshot during sample; not presented FPS",
+  "frames": 180,
+  "p50Ms": 16.699999999982538,
+  "p95Ms": 16.800000000017462,
+  "p99Ms": 33.39999999999418,
+  "wallSeconds": 3.0915000000014845,
+  "simulationSeconds": 3.1333333333333333,
+  "renderCalls": 180,
+  "meanCommandCpuMicros": 1073.861111111111,
+  "objects": 227,
+  "backing": [
+    {
+      "width": 720,
+      "height": 405,
+      "cssWidth": 1280,
+      "cssHeight": 720,
+      "cssLeft": 0,
+      "cssTop": 0,
+      "pixels": 291600
+    }
+  ],
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "section": "WORKSITE"
+}

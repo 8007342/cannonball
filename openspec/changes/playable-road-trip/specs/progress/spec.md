@@ -27,12 +27,9 @@ Campaign progress SHALL retain successful versioned city-to-city stage attempts,
 - **WHEN** the fastest saved stages do not form a connected route
 - **THEN** the composed journey SHALL choose a valid connected alternative or report that the destination is not yet connected
 
-## Research and reference traceability
+### Requirement: Progress reference traceability
+The progress requirements SHALL link to the [shared reference register](../../../../../docs/research/reference-register.md), retaining original sources, historical validation and asset provenance with their applicability limits.
 
-Use the [shared reference register](../../../../../docs/research/reference-register.md)
-for original research, project interpretation, historical validation and asset
-provenance. Specific current-pass evidence: [camera/flow](../../../../../docs/research/camera-flow-next.md),
-[contacts](../../../../../docs/research/collision-forgiveness.md),
-[lane-following proposal](../../../../../docs/research/lane-following-assist.md),
-[radio](../../../../../docs/radio-surfing-draft.md) and
-[roadside pacing](../../../../../docs/research/roadside-flow-review.md).
+#### Scenario: reviewing progress evidence
+- **WHEN** the implementation is assessed against this capability
+- **THEN** reviewers can follow the register to original references and distinguish historical observations from unverified production acceptance

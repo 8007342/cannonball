@@ -26,3 +26,11 @@ The current proof is an illustrative two-minute course. Its moving review does
 not approve the nationwide art pack, geographical atlas, physical-device comfort
 or live staged saves. Camera presets hold physics constant. Research and review
 evidence are under docs/research/course-camera.md and docs/driving-milestone-review.md.
+
+
+Latest review: low-horizon camera comparisons, depth fades, sparse pictorial
+businesses, shorter radio/station surfing and forgiving visible contacts/flying
+cones are implemented in the local proof. See docs/camera-radio-contact-review.md.
+Gentle-bend cruising assist is now researched/spec'd and tracked separately for
+implementation, with no lane-center magnet. All research/provenance documents
+are inventoried in docs/research/reference-register.md and linked from the specs.

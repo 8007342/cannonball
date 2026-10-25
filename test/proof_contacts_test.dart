@@ -85,11 +85,15 @@ void main() {
   );
   test('partial-step contact uses actual overlap time, not whole frames', () {
     final gate = ProofCollisionGate();
-    expect(touch(gate, z: 6, toZ: 0, dt: .04), isFalse); // .02s inside
-    expect(touch(gate, dt: .02), isFalse); // .04s total
-    expect(touch(gate, dt: .01), isTrue); // .05s total
+    expect(touch(gate, z: 6, toZ: 2, dt: .04), isFalse); // .01s inside
+    expect(touch(gate, z: 2, toZ: 2, dt: .02), isFalse); // .03s total
+    expect(touch(gate, z: 2, toZ: 2, dt: .02), isTrue); // .05s total
     gate.clear();
-    expect(touch(gate, z: 10, toZ: -10, dt: .1), isFalse); // complete .03s pass
+    expect(
+      touch(gate, z: 10, toZ: -10, dt: .1),
+      isTrue,
+      reason: 'a full fast body crossing must not become intangible',
+    );
     expect(touch(gate), isFalse);
   });
   test('a car visibly ahead does not trigger the old broad ghost collider', () {
@@ -111,6 +115,27 @@ void main() {
     expect(race.recovering, isTrue);
     expect(race.crashes, 1);
     race.dispose();
+  });
+  test('hyperspeed full rear impacts survive frame-phase changes', () {
+    for (final gap in [8.0, 12.37, 30.2]) {
+      for (final npcSpeed in [0.0, 5.0, 30.0]) {
+        final race = proof(speed: 155)..proofPresentationScale = 132;
+        final other = npc(gap, npcSpeed);
+        race.traffic.add(other);
+        for (var frame = 0; frame < 90 && !race.recovering; frame++) {
+          race.tick(1 / 60);
+        }
+        expect(race.crashes, 1, reason: 'gap=$gap NPC=$npcSpeed');
+        expect(race.recovering, isTrue);
+        expect(
+          other.position - race.worldDistance,
+          greaterThan(-280 / 132),
+          reason:
+              'commit while the bodies still overlap, not after a clean pass',
+        );
+        race.dispose();
+      }
+    }
   });
   test('marked closed lane is not an invisible solid obstacle in proof', () {
     final race = proof(start: 4400);

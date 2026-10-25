@@ -25,13 +25,10 @@ Outside-wheel taps SHALL briefly brake, and holding SHALL sustain braking. Holdi
 ## ADDED Requirements
 
 ### Requirement: Gentle bend cruising assist
-The driving model SHALL carry the car naturally through insignificant road-heading
-changes without requiring continuous corrective steering. Assist SHALL cancel only
-road-induced lateral drift; it SHALL preserve arbitrary lane position and deliberate
-player steering. Meaningful curves SHALL retain steering demand. Transition thresholds,
-hysteresis and blending SHALL be documented and playtested, rather than claiming an
-exact historical OutRun calibration. This newly specified behavior remains pending
-implementation and acceptance in the proof.
+The driving model SHALL carry the car through insignificant heading changes
+without corrective steering. Assist SHALL cancel only road-induced drift, preserve
+lane position and deliberate input, and blend out on meaningful curves. Thresholds
+and hysteresis SHALL be documented and playtested.
 
 #### Scenario: cruising through a gentle bend
 - **WHEN** the player releases steering on a subtle sustained bend
@@ -45,12 +42,9 @@ implementation and acceptance in the proof.
 - **WHEN** curvature exceeds the documented assist exit threshold
 - **THEN** assistance blends out and the player must steer without an abrupt lateral jump
 
-## Research and reference traceability
+### Requirement: Controls reference traceability
+The controls requirements SHALL link to the [shared reference register](../../../../../docs/research/reference-register.md), retaining original sources, historical validation and asset provenance with their applicability limits.
 
-Use the [shared reference register](../../../../../docs/research/reference-register.md)
-for original research, project interpretation, historical validation and asset
-provenance. Specific current-pass evidence: [camera/flow](../../../../../docs/research/camera-flow-next.md),
-[contacts](../../../../../docs/research/collision-forgiveness.md),
-[lane-following proposal](../../../../../docs/research/lane-following-assist.md),
-[radio](../../../../../docs/radio-surfing-draft.md) and
-[roadside pacing](../../../../../docs/research/roadside-flow-review.md).
+#### Scenario: reviewing controls evidence
+- **WHEN** the implementation is assessed against this capability
+- **THEN** reviewers can follow the register to original references and distinguish historical observations from unverified production acceptance

@@ -175,6 +175,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'effectiveSteering': _race.effectiveSteering,
     'visualSteering': _game?.visualSteering,
     'cameraPreset': _game?.cameraPreset,
+    'horizonFraction': _game?.horizonFraction,
+    'cameraHeight': _game?.cameraHeight,
     'coursePitch': _game?.coursePitch,
     'courseDistance': _race.courseDistance,
     'courseStartDistance': _race.courseStartDistance,
