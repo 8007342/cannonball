@@ -51,4 +51,4 @@ is the requested first draft, not final art approval or production acceptance.
 - [x] 8.4 Implement opt-in deterministic neighboring traffic reactions, following/braking, lane-change motives and bounded secondary incidents; document Atrapa source and verify scenarios.
 - [x] 8.5 Implement proof station music/report sequencing, humorous condition-matched samples, anti-repeat rules and nonblocking browser audio fallback.
 - [x] 8.6 Implement and test local versioned compatible stage receipts and best connected mixed-car journey foundation without changing legacy cloud ranking contracts.
-- [ ] 8.7 Integrate, analyze/test/build, inspect moving browser controls/intro/traffic, record timing and publish the second local proof; push durable checkpoints on work branches.
+- [x] 8.7 Integrate, analyze/test/build, inspect moving browser controls/intro/traffic, record timing and publish the second local proof; push durable checkpoints on work branches.
