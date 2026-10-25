@@ -8,7 +8,10 @@ import 'paint_palette.dart';
 
 /// One small original art pack. Images are decoded once, never during drawing.
 class ProofArt {
-  ui.Image? carAtlas, environmentAtlas, backdrop, trafficAtlas;
+  ui.Image? carAtlas, environmentAtlas, backdrop, trafficAtlas, turnAtlas;
+  final List<ui.Rect> turnFrames = [], coursePropFrames = [];
+  final List<double> turnGround = [], turnCenter = [];
+  bool get coursePropsReady => coursePropFrames.isNotEmpty;
   List<double> groundAnchors = List.of(carGround),
       centerAnchors = List.of(carCenter);
   late ui.Image asphalt, meadow, cloud, shadow, bridge;
@@ -25,7 +28,7 @@ class ProofArt {
   static const sceneryGround = [512.0, 512.0, 512.0, 478.0, 449.0, 451.0];
   bool get ready => carAtlas != null && environmentAtlas != null;
 
-  Future<void> load({bool s2000 = false}) async {
+  Future<void> load({bool s2000 = false, bool course = false}) async {
     final results = await Future.wait([
       _load(
         s2000
@@ -34,11 +37,46 @@ class ProofArt {
       ),
       _load('assets/proof/scenery-atlas.png'),
       _load('assets/proof/hills.png', optional: true),
+      course
+          ? _load('assets/milestone/road-props.png')
+          : Future<ui.Image?>.value(null),
+      course
+          ? _load('assets/milestone/turn-atlas.png')
+          : Future<ui.Image?>.value(null),
     ]);
     if (_disposed) return;
     carAtlas = results[0];
     environmentAtlas = results[1];
     backdrop = results[2];
+    turnAtlas = results[4];
+    if (turnAtlas != null) {
+      turnFrames.addAll(_cells(turnAtlas!));
+      final data = await turnAtlas!.toByteData(
+        format: ui.ImageByteFormat.rawRgba,
+      );
+      if (data != null) {
+        final bytes = data.buffer.asUint8List();
+        for (final rect in turnFrames) {
+          var left = 512, right = 0, bottom = 0;
+          for (var y = 0; y < 512; y++) {
+            for (var x = 0; x < 512; x++) {
+              if (bytes[((y + rect.top.toInt()) * turnAtlas!.width +
+                              x +
+                              rect.left.toInt()) *
+                          4 +
+                      3] <
+                  100)
+                continue;
+              left = math.min(left, x);
+              right = math.max(right, x);
+              bottom = math.max(bottom, y);
+            }
+          }
+          turnGround.add(bottom.toDouble());
+          turnCenter.add((left + right) / 2);
+        }
+      }
+    }
     if (carAtlas != null) {
       carFrames.addAll(_cells(carAtlas!));
       if (s2000) await _measureAnchors();
@@ -46,7 +84,7 @@ class ProofArt {
     }
     if (environmentAtlas != null) {
       environmentFrames.addAll(_cells(environmentAtlas!));
-      _cacheRoadFurniture();
+      _cacheRoadFurniture(results[3]);
     }
     asphalt = _roadTexture();
     meadow = _groundTexture();
@@ -55,13 +93,17 @@ class ProofArt {
     bridge = _bridgeTexture();
   }
 
-  void _cacheRoadFurniture() {
+  void _cacheRoadFurniture(ui.Image? props) {
     final source = environmentAtlas!;
     // Keep the six authored source rectangles unchanged. The third row shares
     // their GPU atlas, allowing depth-ordered scenery/furniture to stay batched.
-    environmentAtlas = _record(1536, 1536, (canvas) {
+    environmentAtlas = _record(1536, props == null ? 1536 : 2048, (canvas) {
       final paint = ui.Paint()..isAntiAlias = true;
       canvas.drawImage(source, ui.Offset.zero, paint);
+      if (props != null) {
+        canvas.drawImage(props, const ui.Offset(0, 1024), paint);
+        return;
+      }
       canvas.save();
       canvas.translate(0, 1024);
       // Reflector post: same 120-unit basis as the previous live geometry.
@@ -113,6 +155,19 @@ class ProofArt {
     });
     _resources.remove(source);
     source.dispose();
+    if (props != null) {
+      // Explicit nonuniform source bounds from the actual generated sheet.
+      coursePropFrames.addAll(const [
+        ui.Rect.fromLTWH(105, 1064, 365, 450),
+        ui.Rect.fromLTWH(590, 1154, 565, 355),
+        ui.Rect.fromLTWH(1280, 1059, 110, 450),
+        ui.Rect.fromLTWH(0, 1549, 575, 335),
+        ui.Rect.fromLTWH(590, 1584, 655, 400),
+        ui.Rect.fromLTWH(1270, 1544, 225, 475),
+      ]);
+      _resources.remove(props);
+      props.dispose();
+    }
   }
 
   Future<void> _measureAnchors() async {
@@ -432,6 +487,7 @@ class BillboardBatch {
   final Int32List colors;
   int count = 0, drawCalls = 0;
   ui.Image? image;
+  ui.BlendMode colorBlend = ui.BlendMode.modulate;
   final ui.Paint paint = ui.Paint()
     ..filterQuality = ui.FilterQuality.low
     ..isAntiAlias = true;
@@ -444,9 +500,12 @@ class BillboardBatch {
     double y,
     double scale, {
     int color = 0xffffffff,
+    ui.BlendMode blend = ui.BlendMode.modulate,
   }) {
-    if (image != atlas || count >= capacity) flush(canvas);
+    if (image != atlas || colorBlend != blend || count >= capacity)
+      flush(canvas);
     image = atlas;
+    colorBlend = blend;
     final i = count * 4;
     transforms[i] = scale;
     transforms[i + 1] = 0;
@@ -468,7 +527,7 @@ class BillboardBatch {
       Float32List.sublistView(transforms, 0, count * 4),
       Float32List.sublistView(rects, 0, count * 4),
       Int32List.sublistView(colors, 0, count),
-      ui.BlendMode.modulate,
+      colorBlend,
       null,
       paint,
     );
