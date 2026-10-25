@@ -112,7 +112,7 @@ class RaceGame extends FlameGame {
   Future<void> onLoad() async {
     await super.onLoad();
     try {
-      await _art.load();
+      await _art.load(s2000: _nextProof);
       if (_removed) {
         _art.dispose();
         return;
@@ -538,11 +538,7 @@ class RaceGame extends FlameGame {
             z,
             car.x,
             car.truck ? 370 : 300,
-            tint: Color.lerp(
-              Color(car.color),
-              const Color(0xffffffff),
-              .45,
-            )!.toARGB32(),
+            frame: car.id % 8,
           ),
         );
       }
@@ -716,22 +712,26 @@ class RaceGame extends FlameGame {
     double clip,
     bool player,
   ) {
-    final atlas = _art.carAtlas;
+    final atlas = player ? _art.carAtlas : (_art.trafficAtlas ?? _art.carAtlas);
     if (atlas == null) return;
     final pose = _pose(player);
     final frame = pose.frame;
-    final src = _art.carFrames[frame];
-    final scale = width / 450;
+    final paletteTraffic = !player && _art.trafficAtlas != null;
+    final src = paletteTraffic
+        ? Rect.fromLTWH((object.frame % 8) * 256.0, 0, 256, 256)
+        : _art.carFrames[frame];
+    final anchorScale = paletteTraffic ? .5 : 1.0;
+    final scale = width / (450 * anchorScale);
     final speed = controller.speed / controller.car.topSpeed;
     final bounce = player
         ? (math.sin(_world * .021) * 1.1 + math.sin(_world * .057) * .42) *
               speed
         : 0.0;
     final bodyY = y + bounce;
-    final groundAnchor = ProofArt.carGround[frame];
+    final groundAnchor = _art.groundAnchors[frame] * anchorScale;
     final centerAnchor = pose.mirrored
-        ? src.width - ProofArt.carCenter[frame]
-        : ProofArt.carCenter[frame];
+        ? src.width - _art.centerAnchors[frame] * anchorScale
+        : _art.centerAnchors[frame] * anchorScale;
     final shadowWidth = width * 1.13;
     _sprite(
       canvas,

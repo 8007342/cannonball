@@ -4,9 +4,13 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/services.dart';
 
+import 'paint_palette.dart';
+
 /// One small original art pack. Images are decoded once, never during drawing.
 class ProofArt {
-  ui.Image? carAtlas, environmentAtlas, backdrop;
+  ui.Image? carAtlas, environmentAtlas, backdrop, trafficAtlas;
+  List<double> groundAnchors = List.of(carGround),
+      centerAnchors = List.of(carCenter);
   late ui.Image asphalt, meadow, cloud, shadow, bridge;
   final List<ui.Rect> carFrames = [];
   final List<ui.Rect> environmentFrames = [];
@@ -18,9 +22,13 @@ class ProofArt {
   static const sceneryGround = [512.0, 512.0, 512.0, 478.0, 449.0, 451.0];
   bool get ready => carAtlas != null && environmentAtlas != null;
 
-  Future<void> load() async {
+  Future<void> load({bool s2000 = false}) async {
     final results = await Future.wait([
-      _load('assets/proof/car-atlas.png'),
+      _load(
+        s2000
+            ? 'assets/proof-next/s2000-atlas.png'
+            : 'assets/proof/car-atlas.png',
+      ),
       _load('assets/proof/scenery-atlas.png'),
       _load('assets/proof/hills.png', optional: true),
     ]);
@@ -28,7 +36,11 @@ class ProofArt {
     carAtlas = results[0];
     environmentAtlas = results[1];
     backdrop = results[2];
-    if (carAtlas != null) carFrames.addAll(_cells(carAtlas!));
+    if (carAtlas != null) {
+      carFrames.addAll(_cells(carAtlas!));
+      if (s2000) await _measureAnchors();
+      await _trafficPalette(redBody: s2000);
+    }
     if (environmentAtlas != null) {
       environmentFrames.addAll(_cells(environmentAtlas!));
     }
@@ -37,6 +49,88 @@ class ProofArt {
     cloud = _cloudTexture();
     shadow = _shadowTexture();
     bridge = _bridgeTexture();
+  }
+
+  Future<void> _measureAnchors() async {
+    final image = carAtlas!;
+    final data = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+    if (data == null) return;
+    final bytes = data.buffer.asUint8List();
+    groundAnchors = [];
+    centerAnchors = [];
+    for (final rect in carFrames) {
+      var left = rect.width.toInt(), right = 0, bottom = 0;
+      for (var y = 0; y < rect.height.toInt(); y++) {
+        for (var x = 0; x < rect.width.toInt(); x++) {
+          final alpha =
+              bytes[((y + rect.top.toInt()) * image.width +
+                          x +
+                          rect.left.toInt()) *
+                      4 +
+                  3];
+          if (alpha < 100) continue;
+          left = math.min(left, x);
+          right = math.max(right, x);
+          bottom = math.max(bottom, y);
+        }
+      }
+      groundAnchors.add(bottom.toDouble());
+      centerAnchors.add((left + right) / 2);
+    }
+  }
+
+  Future<void> _trafficPalette({required bool redBody}) async {
+    if (_disposed || carAtlas == null) return;
+    // Traffic sprites only need a 256px source cell. Eight paint variants share
+    // one 2048x256 atlas, avoiding eight full six-pose GPU sheets and state churn.
+    final flat = _record(256, 256, (canvas) {
+      canvas.drawImageRect(
+        carAtlas!,
+        carFrames.first,
+        const ui.Rect.fromLTWH(0, 0, 256, 256),
+        ui.Paint()..filterQuality = ui.FilterQuality.low,
+      );
+    });
+    final data = await flat.toByteData(format: ui.ImageByteFormat.rawRgba);
+    if (data == null || _disposed) return;
+    final source = data.buffer.asUint8List();
+    final pixels = Uint8List(2048 * 256 * 4);
+    for (var variant = 0; variant < PaintPalette.colors.length; variant++) {
+      final colored = Uint8List.fromList(source);
+      PaintPalette.recolor(
+        colored,
+        256,
+        256,
+        PaintPalette.colors[variant],
+        redBody: redBody,
+      );
+      for (var row = 0; row < 256; row++) {
+        pixels.setRange(
+          (row * 2048 + variant * 256) * 4,
+          (row * 2048 + (variant + 1) * 256) * 4,
+          colored,
+          row * 256 * 4,
+        );
+      }
+    }
+    final buffer = await ui.ImmutableBuffer.fromUint8List(pixels);
+    final descriptor = ui.ImageDescriptor.raw(
+      buffer,
+      width: 2048,
+      height: 256,
+      pixelFormat: ui.PixelFormat.rgba8888,
+    );
+    final codec = await descriptor.instantiateCodec();
+    final frame = await codec.getNextFrame();
+    codec.dispose();
+    descriptor.dispose();
+    buffer.dispose();
+    if (_disposed) {
+      frame.image.dispose();
+      return;
+    }
+    trafficAtlas = frame.image;
+    _resources.add(frame.image);
   }
 
   Future<ui.Image?> _load(String path, {bool optional = false}) async {
