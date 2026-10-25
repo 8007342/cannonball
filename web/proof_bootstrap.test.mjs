@@ -35,3 +35,47 @@ test('no upsampling on a lower native DPR and safe missing visual viewport',()=>
   const w=browser('?proof=1',.4);delete w.visualViewport;
   assert.equal(w.devicePixelRatio,.4);assert.equal(w.CannonballProofBootstrap.snapshot().viewportScale,1);
 });
+
+test('surface diagnostics distinguish displayed extent from capped backing pixels',()=>{
+  const w=browser();
+  let cssWidth=1280,cssHeight=720;
+  const canvas={tagName:'CANVAS',width:720,height:405,
+    getBoundingClientRect:()=>({width:cssWidth,height:cssHeight,left:0,top:0})};
+  w.document.querySelectorAll=()=>[canvas];
+  let s=w.CannonballProofBootstrap.snapshot();
+  assert.equal(s.surfaceCoverage.sizeMatchesLayout,true);
+  assert.equal(s.surfaceCoverage.layoutAreaRatio,1);
+  w.innerWidth=1920;w.innerHeight=1080;
+  s=w.CannonballProofBootstrap.snapshot();
+  assert.equal(s.surfaceCoverage.sizeMatchesLayout,false);
+  assert.equal(s.surfaceCoverage.layoutAreaRatio,4/9);
+  cssWidth=1920;cssHeight=1080;
+  s=w.CannonballProofBootstrap.snapshot();
+  assert.equal(s.surfaceCoverage.sizeMatchesLayout,true);
+  assert.equal(s.largestCanvasPixels,720*405);
+  assert.equal(canvas.width,720); // Diagnostics must not mutate the engine surface.
+});
+test('surface offset and visual pinch viewport remain separately observable',()=>{
+  const w=browser();
+  w.outerWidth=1440;w.outerHeight=900;
+  w.visualViewport={scale:2,width:640,height:360,offsetLeft:30,offsetTop:10};
+  w.document.documentElement={clientWidth:1280,clientHeight:720};
+  w.document.querySelectorAll=()=>[{tagName:'CANVAS',width:720,height:405,
+    getBoundingClientRect:()=>({width:1280,height:720,left:100,top:0})}];
+  const s=w.CannonballProofBootstrap.snapshot();
+  assert.equal(s.surfaceCoverage.sizeMatchesLayout,true);
+  assert.equal(s.surfaceCoverage.originMatchesLayout,false);
+  assert.equal(s.surfaceCoverage.layoutAreaRatio,1180/1280);
+  assert.equal(s.visualViewport.width,640);
+  assert.equal(s.viewport.width,1280);
+  assert.equal(s.outerWindow.width,1440);
+  assert.equal(s.documentClient.width,1280);
+});
+test('invalid native metrics do not poison the proof pixel budget',()=>{
+  const w=browser('?proof=1',NaN);
+  assert.equal(w.CannonballProofBootstrap.snapshot().nativeDpr,1);
+  w.visualViewport.scale=Infinity;
+  assert.equal(w.devicePixelRatio,.5625);
+  w.innerWidth=0;w.innerHeight=0;
+  assert.equal(w.devicePixelRatio,1);
+});

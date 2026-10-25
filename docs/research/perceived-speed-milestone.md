@@ -18,7 +18,7 @@ selected speeds in some active-driving conditions, but the direction differed
 between tasks. It supports testing coherent engine/road sound alongside visual
 flow, not a claim that louder audio universally feels faster.
 
-[Schlöter et al. (2025), Transportation Research F](https://www.sciencedirect.com/science/article/pii/S1369847825000543)
+[2025 Transportation Research F paper](https://www.sciencedirect.com/science/article/pii/S1369847825000543)
 investigates visual and matching acoustic flow. The publisher abstract was found,
 but full-text access was blocked in this run, so no detailed parameters or numerical
 claims from it are used to prescribe implementation.
@@ -68,3 +68,41 @@ Keep the proof-only DPR override documented as a prototype workaround affecting
 the whole Flutter root; it is not a supported scene-only Flutter render-scale API.
 No forced CSS or canvas-width mutation is justified by the passing live-resize
 case. Add geometry evidence first, then fix a reproducible layout mismatch.
+
+## Digital steering and visible pose transitions
+
+[Autodesk's official vehicle-physics reference](https://help.autodesk.com/cloudhelp/ENU/Stingray-Help/stingray_help/creating_gameplay/physics/vehicle_physics_properties.html)
+provides separate steering rise/fall rates and speed-dependent steering limits.
+That establishes an implemented vehicle-control technique, not correct numeric
+rates for Cannonball. A digital full press can begin responding immediately while
+ramping through a gentle pose; a held gentle analog intent should remain gentle.
+
+Our proposed80–140ms intermediate-pose interval is an animation/playtest hypothesis,
+not a research-prescribed duration. Do not add that interval as dead time before
+responding. Separate raw intent, applied steering and presentation pose in debug
+telemetry so input filtering and image-state hysteresis can be assessed separately.
+An early input response, progressive turn and bounded release/reversal should be
+checked on both keyboard and touch at multiple fixed-step schedules.
+
+## Implemented diagnostics and review tool
+
+The proof bootstrap now reports CSS canvas position/extent and viewport coverage,
+outer-window dimensions, visual viewport and document-client size separately from
+backing pixels. It never forces canvas/CSS sizes. Tests distinguish a filled large
+viewport with a small buffer from a stale-size or offset surface. Invalid native
+DPR/visual scale values fall back to finite positive metrics rather than poisoning
+the budget. This is defensive diagnostic work, not a claimed maximize fix.
+
+An independent live browser check repeated1280x720→1920x1080 with no reload:
+scene logical size and CSS surface both followed the new viewport; buffer720x405
+remained correctly capped. The agent test window was then closed. The remote
+viewer's maximize behavior is outside that reproduction and remains unverified.
+
+`tool/milestone_sample.js` samples a chosen course window without screenshots.
+Use `CannonballMilestoneSampleOptions={start:false,sampleMs:4000,label:'crest'}`
+after reaching or selecting the desired section, then evaluate the script
+asynchronously. The result marks section crossings and viewport changes; do not
+interpret a mixed-section window as one isolated chapter. Snapshots occur only
+at sample bookends, avoiding a full DOM/traffic telemetry scan on every frame.
+Render counts/rAF are not display FPS. CPU command recording excludes GPU work.
+Run samples after builds/tests finish, and keep other preview windows closed.
