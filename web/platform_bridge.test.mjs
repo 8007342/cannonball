@@ -226,3 +226,62 @@ test('cached Google script waits for Flutter to attach the platform-view host', 
   assert.equal(renders, 1);
   h.bridge.dispose();
 });
+
+test('proof station break cuts music, tunes, reports, then resumes a new arrangement', async () => {
+  const h = harness();
+  h.bridge.setProofAudio(true);
+  await h.bridge.beginAudio();
+  h.bridge.pause(false);
+  await flush();
+  h.bridge.setAudioState(.8, .8, 'City');
+  h.advance(400);
+  h.bridge.radioBreak('A clear road and a little local humor.', 'Forest');
+  assert.equal(h.bridge.audioSnapshot().phase, 'tuning');
+  assert.equal(h.spoken.length, 0);
+  h.advance(230);
+  assert.equal(h.spoken.length, 1);
+  assert.equal(h.bridge.audioSnapshot().phase, 'report');
+  const duringReport = h.oscillatorNotes.length;
+  h.advance(400);
+  assert.equal(h.oscillatorNotes.length, duringReport);
+  h.spoken[0].onend();
+  assert.equal(h.bridge.audioSnapshot().phase, 'music');
+  h.advance(200);
+  assert.equal(h.bridge.audioSnapshot().trackStyle, 'country');
+  assert.ok(h.oscillatorNotes.length > duringReport);
+  h.bridge.dispose();
+  assert.equal(h.timers.size, 0);
+});
+
+test('proof radio is cancellable and missing speech resumes music without blocking', async () => {
+  const h = harness();
+  h.bridge.setProofAudio(true);
+  await h.bridge.beginAudio();
+  h.bridge.pause(false);
+  await flush();
+  h.bridge.radioBreak('This report will be cancelled.', 'City');
+  h.bridge.setMuted(true);
+  h.advance(500);
+  assert.equal(h.spoken.length, 0);
+  assert.equal(h.bridge.audioSnapshot().phase, 'music');
+  h.bridge.setMuted(false);
+  delete h.sandbox.speechSynthesis;
+  h.bridge.radioBreak('Caption remains available.', 'Mountain');
+  h.advance(300);
+  assert.equal(h.bridge.audioSnapshot().phase, 'music');
+  assert.equal(h.bridge.audioSnapshot().trackStyle, 'metal');
+  h.bridge.dispose();
+  assert.equal(h.timers.size, 0);
+});
+
+test('garage Foley obeys mute while its race remains paused', async () => {
+  const h = harness();
+  await h.bridge.beginAudio();
+  const initial = h.oscillatorNotes.length;
+  h.bridge.garageCue('keys');
+  assert.equal(h.oscillatorNotes.length, initial + 3);
+  h.bridge.setMuted(true);
+  h.bridge.garageCue('door');
+  assert.equal(h.oscillatorNotes.length, initial + 3);
+  h.bridge.dispose();
+});

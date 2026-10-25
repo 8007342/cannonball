@@ -272,6 +272,27 @@
   }
 
 
+  function garageCue(cue) {
+    if (!context || muted || doc.hidden || context.state !== 'running') return;
+    const pitches = cue === 'keys' ? [93, 102, 97] : cue === 'door' ? [40, 45] : [31];
+    pitches.forEach((pitch, index) => {
+      const oscillator = context.createOscillator(), gain = context.createGain();
+      oscillator.type = cue === 'keys' ? 'sine' : 'triangle';
+      oscillator.frequency.value = frequency(pitch);
+      const at = context.currentTime + index * .045;
+      gain.gain.setValueAtTime(0, at);
+      gain.gain.linearRampToValueAtTime(cue === 'keys' ? .025 : .045, at + .003);
+      gain.gain.exponentialRampToValueAtTime(.0001, at + .13);
+      // The departure is paused gameplay, but its deliberately requested Foley
+      // has its own very quiet output and still obeys mute/visibility.
+      oscillator.connect(gain).connect(context.destination);
+      activeNodes.add(oscillator);
+      oscillator.onended = () => { activeNodes.delete(oscillator); oscillator.disconnect(); gain.disconnect(); };
+      oscillator.start(at);
+      oscillator.stop(at + .15);
+    });
+  }
+
   function stopMusic() {
     // Engine oscillator is deliberately outside activeNodes and keeps running.
     for (const node of [...activeNodes]) { try { node.stop(); } catch (_) {} }
@@ -446,7 +467,7 @@
       chooseVoice();
     },
     enableTilt, disableTilt, beginAudio, setAudioState, say, pause, renderGoogleButton,
-    setProofAudio, radioBreak,
+    setProofAudio, radioBreak, garageCue,
     audioSnapshot() {
       return {proofAudio, phase: radioPhase, station: radioStation, reportCount,
         lastRadioText, trackStyle: theme?.style || 'prototype',

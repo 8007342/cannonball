@@ -59,7 +59,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   void initState() {
     super.initState();
     _race = widget.controller ?? RaceController();
-    _race.start(proofCar, seed: seed);
+    _race.start(proofCar, seed: seed, reactiveTraffic: true, launchSpeed: 110);
     _race.paused = true;
     _race.comfortMode = _platform.reducedMotion;
     _race.addListener(_onRace);
@@ -146,6 +146,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'steering': _race.steering,
     'braking': _race.braking,
     'playerX': _race.playerX,
+    'trafficReactions': _race.trafficReactionCount,
+    'trafficIncidents': _race.trafficIncidentCount,
     'sceneLogicalSize': _game?.hasLayout == true
         ? {'width': _game!.size.x, 'height': _game!.size.y}
         : null,
@@ -172,7 +174,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   void _reset() {
     if (!mounted) return;
     _resetInput();
-    _race.start(proofCar, seed: seed);
+    _race.start(proofCar, seed: seed, reactiveTraffic: true, launchSpeed: 110);
     _race.paused = true;
     _race.motionControl = _tilt;
     _platform.pause(true);
@@ -193,7 +195,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     if (!mounted || !_ready.value || _phase.value != _ProofPhase.ready) return;
     final viewport = MediaQuery.sizeOf(context);
     if (viewport.height > viewport.width) return;
-    unawaited(_platform.beginAudio());
+    unawaited(_platform.beginAudio().then((_) => _platform.garageCue('keys')));
     _race.paused = true;
     _phase.value = _ProofPhase.departing;
     _departureShot = 'pickup';
@@ -202,7 +204,10 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   void _toggleSound() {
     _muted = !_muted;
     _platform.muted = _muted;
-    if (!_muted) unawaited(_platform.beginAudio());
+    if (!_muted) {
+      _station = '';
+      unawaited(_platform.beginAudio());
+    }
     _hud.value++;
   }
 
@@ -538,7 +543,11 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                             muted: _muted,
                             onTakeKeys: _beginDeparture,
                             onComplete: _start,
-                            onShot: (shot) => _departureShot = shot,
+                            onShot: (shot) {
+                              _departureShot = shot;
+                              if (shot == 'door' || shot == 'cabin')
+                                _platform.garageCue(shot);
+                            },
                             onSound: _toggleSound,
                           ),
                         )
