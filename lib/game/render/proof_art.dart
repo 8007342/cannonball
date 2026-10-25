@@ -19,6 +19,9 @@ class ProofArt {
   final List<ui.Image> _resources = [];
   static const carGround = [416.0, 412.0, 415.0, 372.0, 400.0, 404.0];
   static const carCenter = [262.0, 254.5, 252.0, 262.0, 256.0, 250.5];
+  static const markerFrame = ui.Rect.fromLTWH(224, 1068, 64, 458);
+  static const coneFrame = ui.Rect.fromLTWH(660, 1162, 216, 364);
+  static const lampFrame = ui.Rect.fromLTWH(1230, 1094, 142, 432);
   static const sceneryGround = [512.0, 512.0, 512.0, 478.0, 449.0, 451.0];
   bool get ready => carAtlas != null && environmentAtlas != null;
 
@@ -43,12 +46,73 @@ class ProofArt {
     }
     if (environmentAtlas != null) {
       environmentFrames.addAll(_cells(environmentAtlas!));
+      _cacheRoadFurniture();
     }
     asphalt = _roadTexture();
     meadow = _groundTexture();
     cloud = _cloudTexture();
     shadow = _shadowTexture();
     bridge = _bridgeTexture();
+  }
+
+  void _cacheRoadFurniture() {
+    final source = environmentAtlas!;
+    // Keep the six authored source rectangles unchanged. The third row shares
+    // their GPU atlas, allowing depth-ordered scenery/furniture to stay batched.
+    environmentAtlas = _record(1536, 1536, (canvas) {
+      final paint = ui.Paint()..isAntiAlias = true;
+      canvas.drawImage(source, ui.Offset.zero, paint);
+      canvas.save();
+      canvas.translate(0, 1024);
+      // Reflector post: same 120-unit basis as the previous live geometry.
+      const x = 256.0, y = 500.0, w = 120.0;
+      paint.color = const ui.Color(0xfff1e8c9);
+      canvas.drawRRect(
+        ui.RRect.fromRectAndRadius(
+          const ui.Rect.fromLTWH(x - w * .22, y - w * 3.8, w * .44, w * 3.8),
+          const ui.Radius.circular(w * .1),
+        ),
+        paint,
+      );
+      paint.color = const ui.Color(0xff45534b);
+      canvas.drawRect(
+        const ui.Rect.fromLTWH(x - w * .23, y - w * 3.2, w * .46, w * .8),
+        paint,
+      );
+      paint.color = const ui.Color(0xffffb65a);
+      canvas.drawRect(
+        const ui.Rect.fromLTWH(x - w * .17, y - w * 3.05, w * .34, w * .43),
+        paint,
+      );
+      // Cone: 180-unit basis, grounded at local 768,500.
+      final cone = ui.Path()
+        ..moveTo(768, 140)
+        ..lineTo(660, 500)
+        ..lineTo(876, 500)
+        ..close();
+      paint.color = const ui.Color(0xfff39b47);
+      canvas.drawPath(cone, paint);
+      paint.color = const ui.Color(0xffffedcb);
+      canvas.drawRect(const ui.Rect.fromLTWH(714, 338, 108, 45), paint);
+      // Lamp: 150-unit basis, grounded at local 1360,500.
+      final lamp = ui.Path()
+        ..moveTo(1360, 500)
+        ..lineTo(1360, 138.8)
+        ..quadraticBezierTo(1360, 80, 1292.5, 80)
+        ..lineTo(1252, 80);
+      paint
+        ..color = const ui.Color(0xff556b69)
+        ..strokeWidth = 8.25
+        ..style = ui.PaintingStyle.stroke;
+      canvas.drawPath(lamp, paint);
+      paint
+        ..style = ui.PaintingStyle.fill
+        ..color = const ui.Color(0xffe4e6ca);
+      canvas.drawOval(const ui.Rect.fromLTWH(1232.5, 72.5, 48, 15), paint);
+      canvas.restore();
+    });
+    _resources.remove(source);
+    source.dispose();
   }
 
   Future<void> _measureAnchors() async {
@@ -366,7 +430,7 @@ class BillboardBatch {
   final int capacity;
   final Float32List transforms, rects;
   final Int32List colors;
-  int count = 0;
+  int count = 0, drawCalls = 0;
   ui.Image? image;
   final ui.Paint paint = ui.Paint()
     ..filterQuality = ui.FilterQuality.low
@@ -398,6 +462,7 @@ class BillboardBatch {
 
   void flush(ui.Canvas canvas) {
     if (count == 0 || image == null) return;
+    drawCalls++;
     canvas.drawRawAtlas(
       image!,
       Float32List.sublistView(transforms, 0, count * 4),

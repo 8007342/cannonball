@@ -93,6 +93,7 @@ class RaceGame extends FlameGame {
       lastUpdateMicros = 0,
       maxUpdateMicros = 0;
   int lastSpriteCount = 0, lastRoadQuads = 0;
+  int get lastBillboardBatches => _batch.drawCalls;
   bool _loaded = false, _removed = false;
   double _lastElapsed = 0;
   bool get assetsReady => _loaded && _art.ready;
@@ -247,6 +248,7 @@ class RaceGame extends FlameGame {
       ..reset()
       ..start();
     super.render(canvas);
+    _batch.drawCalls = 0;
     if (size.x > 0 && size.y > 0) {
       final scale = size.x / _w;
       _h = size.y / scale;
@@ -725,14 +727,38 @@ class RaceGame extends FlameGame {
             clip: clip,
           );
         case _Kind.lamp:
-          _batch.flush(canvas);
-          _lamp(canvas, x, p.y, width);
+          final scale = width / 150;
+          _sprite(
+            canvas,
+            _art.environmentAtlas!,
+            ProofArt.lampFrame,
+            x - 130 * scale,
+            p.y - 430 * scale,
+            scale,
+            clip: clip,
+          );
         case _Kind.cone:
-          _batch.flush(canvas);
-          _cone(canvas, x, p.y, width);
+          final scale = width / 180;
+          _sprite(
+            canvas,
+            _art.environmentAtlas!,
+            ProofArt.coneFrame,
+            x - 108 * scale,
+            p.y - 362 * scale,
+            scale,
+            clip: clip,
+          );
         case _Kind.marker:
-          _batch.flush(canvas);
-          _marker(canvas, x, p.y, width);
+          final scale = width / 120;
+          _sprite(
+            canvas,
+            _art.environmentAtlas!,
+            ProofArt.markerFrame,
+            x - 32 * scale,
+            p.y - 456 * scale,
+            scale,
+            clip: clip,
+          );
         case _Kind.sign:
           break;
       }
@@ -926,77 +952,6 @@ class RaceGame extends FlameGame {
         );
       }
     }
-  }
-
-  void _marker(Canvas canvas, double x, double y, double width) {
-    _paint.color = const Color(0xfff1e8c9);
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(
-          x - width * .22,
-          y - width * 3.8,
-          width * .44,
-          width * 3.8,
-        ),
-        Radius.circular(width * .1),
-      ),
-      _paint,
-    );
-    _paint.color = const Color(0xff45534b);
-    canvas.drawRect(
-      Rect.fromLTWH(x - width * .23, y - width * 3.2, width * .46, width * .8),
-      _paint,
-    );
-    _paint.color = const Color(0xffffb65a);
-    canvas.drawRect(
-      Rect.fromLTWH(
-        x - width * .17,
-        y - width * 3.05,
-        width * .34,
-        width * .43,
-      ),
-      _paint,
-    );
-  }
-
-  void _lamp(Canvas canvas, double x, double y, double width) {
-    final h = width * 2.8;
-    final path = Path()
-      ..moveTo(x, y)
-      ..lineTo(x, y - h * .86)
-      ..quadraticBezierTo(x, y - h, x - width * .45, y - h)
-      ..lineTo(x - width * .72, y - h);
-    _paint
-      ..color = const Color(0xff556b69)
-      ..strokeWidth = math.max(1.1, width * .055)
-      ..style = PaintingStyle.stroke;
-    canvas.drawPath(path, _paint);
-    _paint
-      ..style = PaintingStyle.fill
-      ..color = const Color(0xffe4e6ca);
-    canvas.drawOval(
-      Rect.fromCenter(
-        center: Offset(x - width * .69, y - h),
-        width: width * .32,
-        height: width * .10,
-      ),
-      _paint,
-    );
-  }
-
-  void _cone(Canvas canvas, double x, double y, double width) {
-    final path = Path()
-      ..moveTo(x, y - width * 2)
-      ..lineTo(x - width * .6, y)
-      ..lineTo(x + width * .6, y)
-      ..close();
-    _paint.color = const Color(0xfff39b47);
-    canvas.drawPath(path, _paint);
-    _paint.color = const Color(0xffffedcb);
-    canvas.drawRect(
-      Rect.fromLTWH(x - width * .3, y - width * .9, width * .6, width * .25),
-      _paint,
-    );
   }
 
   void _dust(Canvas canvas) {
