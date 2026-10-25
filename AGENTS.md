@@ -25,3 +25,7 @@ The Top100 intentionally mixes different cars, routes and random conditions; do
 not add equalized competitive modes or partition boards to impose fairness.
 Live Google/Cloudflare configuration requires separate verification. Do not
 describe dry-runs as live deployment.
+
+Build and test locally in the forge. Do not add or enable GitHub Actions workflows
+or remote build hooks. Frequent work-branch pushes are for durability and must
+not trigger GitHub builds. This is an explicit user requirement.
