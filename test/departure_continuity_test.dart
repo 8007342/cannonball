@@ -33,6 +33,7 @@ void main() {
       const Size(1280, 577),
       const Size(844, 390),
       const Size(1920, 1080),
+      const Size(2560, 720),
     ]) {
       final bounds = GarageHandPlacement.bounds(
         size,
@@ -49,9 +50,14 @@ void main() {
       expect(finger.dx, closeTo(GarageHandPlacement.hook(size).dx, .001));
       expect(finger.dy, closeTo(GarageHandPlacement.hook(size).dy, .001));
       expect(
-        bounds.bottom,
+        bounds.width,
+        lessThan(size.height * .5),
+        reason: 'hand itself stays small',
+      );
+      expect(
+        GarageHandPlacement.extendedTail(size, bounds).dy,
         greaterThan(size.height),
-        reason: 'source wrist edge must be offscreen',
+        reason: 'distal wrist edge must be offscreen',
       );
     }
   });

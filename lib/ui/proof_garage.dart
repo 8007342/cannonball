@@ -140,8 +140,52 @@ class _ProofGarageState extends State<ProofGarage>
         : null,
   );
 
-  Widget _hand(int frame, double extent) =>
-      _cell(frame, extent: extent, path: 'assets/milestone/hand-atlas.png');
+  Widget _hand(int frame, double extent, double armStretch) {
+    Widget picture() => _cell(
+      frame,
+      extent: extent,
+      path: 'assets/milestone/hand-reach-atlas.png',
+    );
+    final pivot = extent * GarageHandPlacement.wristPivot;
+    return SizedBox.square(
+      dimension: extent,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          // Extend only the distal, already-painted forearm along its diagonal.
+          // The fingers, key and proximal wrist keep one uniform scale. Both
+          // halves share an exact diagonal seam and the same decoded artwork.
+          Transform.translate(
+            offset: Offset(pivot, pivot),
+            child: Transform.rotate(
+              angle: math.pi / 4,
+              alignment: Alignment.topLeft,
+              child: Transform.scale(
+                scaleX: armStretch,
+                scaleY: 1,
+                alignment: Alignment.topLeft,
+                child: Transform.rotate(
+                  angle: -math.pi / 4,
+                  alignment: Alignment.topLeft,
+                  child: Transform.translate(
+                    offset: Offset(-pivot, -pivot),
+                    child: ClipPath(
+                      clipper: const _WristPlaneClip(distal: true),
+                      child: picture(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          ClipPath(
+            clipper: const _WristPlaneClip(distal: false),
+            child: picture(),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
@@ -185,6 +229,10 @@ class _ProofGarageState extends State<ProofGarage>
         final handExtent = handBounds.width;
         final handLeft = handBounds.left;
         final handTop = handBounds.top;
+        final armStretch = GarageHandPlacement.distalStretch(
+          Size(w, h),
+          handBounds,
+        );
         final showKey = !moving || pickup < .55;
         final exterior = _picture('assets/proof-next/garage-exterior.png');
         final wall = _picture('assets/proof-next/garage-wall.png');
@@ -248,6 +296,7 @@ class _ProofGarageState extends State<ProofGarage>
                           child: _hand(
                             DepartureTimeline.handFrame(pickup),
                             handExtent,
+                            armStretch,
                           ),
                         ),
                       ),
@@ -390,11 +439,12 @@ class _ProofGarageState extends State<ProofGarage>
   );
 }
 
-/// The art source has a small hand at its contact pivot and a long forearm
-/// reaching to the opposite cell edge. Keep contact on the key hook while the
-/// forearm exits below the viewport; never enlarge the old short-arm image.
+/// Keep the fingers and keys at a modest uniform scale. Only the distal painted
+/// forearm is extended along its own axis to leave the viewport; enlarging an
+/// entire cell would turn the held key and hand into oversized props.
 class GarageHandPlacement {
   static const contact = Offset(.16, .17);
+  static const wristPivot = .64;
   static const wallSize = Size(1536, 1024);
   static const sourceHook = Offset(.43, .385);
 
@@ -413,13 +463,28 @@ class GarageHandPlacement {
     );
   }
 
+  static double distalStretch(Size viewport, Rect hand) {
+    final pivotY = hand.top + hand.height * wristPivot;
+    final originalTailY = hand.height * (.98 - wristPivot);
+    return math.max(1.0, (viewport.height * 1.16 - pivotY) / originalTailY);
+  }
+
+  static Offset extendedTail(Size viewport, Rect hand) {
+    final pivot =
+        hand.topLeft +
+        Offset(hand.width * wristPivot, hand.height * wristPivot);
+    final delta =
+        hand.width * (.98 - wristPivot) * distalStretch(viewport, hand);
+    return pivot + Offset(delta, delta);
+  }
+
   static Rect bounds(
     Size viewport, {
     required double reach,
     required double withdrawal,
     required bool reducedMotion,
   }) {
-    final extent = viewport.height * .94;
+    final extent = viewport.height * .40;
     final dx = reducedMotion
         ? 0.0
         : (1 - reach) * viewport.width * .28 +
@@ -435,6 +500,32 @@ class GarageHandPlacement {
       extent,
     );
   }
+}
+
+class _WristPlaneClip extends CustomClipper<Path> {
+  const _WristPlaneClip({required this.distal});
+  final bool distal;
+
+  @override
+  Path getClip(Size size) {
+    final intercept = GarageHandPlacement.wristPivot * 2 - 1;
+    if (distal) {
+      return Path()
+        ..moveTo(size.width, size.height * intercept)
+        ..lineTo(size.width, size.height)
+        ..lineTo(size.width * intercept, size.height)
+        ..close();
+    }
+    return Path()
+      ..lineTo(size.width, 0)
+      ..lineTo(size.width, size.height * intercept)
+      ..lineTo(size.width * intercept, size.height)
+      ..lineTo(0, size.height)
+      ..close();
+  }
+
+  @override
+  bool shouldReclip(_WristPlaneClip oldClipper) => distal != oldClipper.distal;
 }
 
 class _AtlasGutterClip extends CustomClipper<Rect> {
