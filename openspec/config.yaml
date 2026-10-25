@@ -2,13 +2,18 @@ schema: spec-driven
 context: |
   Cannonball is a landscape arcade pseudo-3D road trip racer, Flutter + Flame,
   inspired by OutRun and New York to Redondo Beach Cannonball lore.
-  Target mobile web first at cannonball.tlatoani.net, with Android/iOS scaffolds.
+  Web only, mobile browsers first at cannonball.tlatoani.net; optional PWA install.
+  Desktop browsers should support higher-resolution asset packs. No native apps.
+  Successful runs target 10–15 minutes on present-day researched US roads.
   Cloudflare Pages hosts Flutter; a same-origin Worker handles identity and data.
   The current scope is foundation, research and design discovery, not a finished game.
   User requirements are captured in openspec/specs; unresolved choices live in
   docs/design/interview.md. Do not silently promote proposals into confirmed decisions.
-  Preserve continuous driving across stages, readable speed, fair warning and
-  comparable ranked runs. Original art and music require engine-compatible guides.
+  Preserve continuous driving, readable speed and advance hazard warnings.
+  One global Top100 intentionally mixes car advantages, route distances, traffic
+  and random conditions. Do not impose equalized competitive modes or car parity.
+  Art uses pixelated forms with diffused edges, pending motion tests and style guide.
+  Original art and music require engine-compatible guides.
 rules:
   proposal:
     - Identify user decisions and measurable device/performance acceptance criteria.

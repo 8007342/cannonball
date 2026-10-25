@@ -1,31 +1,44 @@
 # Design decision register
 
-## Confirmed by the initial brief
+## Confirmed
 
 - Cannonball; arcade speed; NY Red Ball Garage → Portofino in Redondo Beach.
-- Flutter, Flame, OpenSpec; prepare Cloudflare Pages + Workers on cannonball.tlatoani.net.
-- Landscape mobile, auto acceleration, hold-to-brake, optional tilt and an oversized
-  translucent wheel-rim touch fallback; persistent small utility controls.
-- Multiple stages, several timed gates, alternate roads, advance construction
-  guidance, lane closures, traffic merges and secret-backroad car unlocks.
-- Region-specific scenery, landmarks, weather, radio and synthesized musical themes.
-- Google sign-in with durable unlocks; global Top100 by total completion time,
-  three-wheel initials entry, car and time displayed.
-- Garage wooden box with starter keys and a shabby keychain; car animation sheets;
-  storyboards, story, hints and cutscenes; uninterrupted driving between stages.
+- Successful run target: **10–15 minutes**.
+- Flutter + Flame + OpenSpec; **web only**, mobile first, desktop with higher
+  resolution asset packs. URL access sufficient; PWA optional. No native apps.
+- Current-day real road network, cities, interchanges and landmarks; compressed
+  gameplay with dated geographic sources. A live weather/traffic service is not implied.
+- Pixelated art with diffused edges and mixed styling; animation flow and speed
+  must be evaluated in motion before bulk generation.
+- Landscape, auto acceleration, braking, optional tilt and oversized transparent
+  center wheel with cropped translucent rim. Angular wheel gesture confirmed.
+- Right rim up / left rim down = steer left; opposite drags were described as
+  braking. Right-steer mapping is pending clarification. Outside-wheel touch brakes.
+- Mostly flat horizon with subtle lean, somewhat stronger with motion steering.
+- Multiple stages/gates, different route distances and complexity, construction
+  warnings, lane closures, traffic merges and secret-backroad car unlocks.
+- Continuous driving with minimal loading until the run ends; regional scenery,
+  radio, music, weather, hints and transitions sustain the journey.
+- One global Top100 by actual total time: car advantages, route distance, traffic
+  and luck are deliberate. Better unlocked cars yield better future attempts.
+- Qualifying finish: initials screen first, save time/distance/car, then US-map
+  road-graph recap with animated fill of the actual path. Other endings go to recap.
+- Google remote saves and a dedicated Cannonball OAuth web client (not provisioned).
+  Cannonball and Arabiya are sibling hosts, each with its own application session.
+- Garage wooden box, starter keys with shabby keychain, car sheets, storyboards,
+  cutscenes and contextual hints remain core scope.
 
-## Proposed, awaiting design confirmation
+## Proposed
 
-- Projected road strips + billboard sprites with explicit elevation and occlusion.
-- Stable horizon default with optional subtle cornering roll.
-- Moving transition corridors rather than compulsory loading panels.
-- Dedicated Cannonball Google web client, optionally in the same Cloud project.
-- Same-origin API Worker + Pages; SQLite Durable Objects for authoritative records.
-- Fixed-step seeded simulation and bounded director; ranking verification approach
-  still needs a determinism and cost proof.
+- Projected road strips and billboard sprites with explicit elevation/occlusion.
+- Same-origin API Worker + Pages; SQLite Durable Objects for durable records.
+- Fixed-step simulation, separate random streams and bounded pacing director.
+- Damped camera lean with a zero-roll comfort setting; tune using browser devices.
+- Real-world route miles recorded separately from compressed game coordinates.
 
 ## Open
 
-The interview is in interview.md. Highest-impact decisions: style/era and audience,
-full-run duration, exact wheel gesture, camera, ranked fairness, car balance,
-route compression, native launch scope, guest mode and story tone.
+See interview.md. Next: opposite wheel drag/right steering, return-to-center,
+distance representation, starting car and story, failure recap, minimum devices,
+guest/save policy and pause behavior. Do not reopen equalized competition or
+native release scope as if they were undecided.

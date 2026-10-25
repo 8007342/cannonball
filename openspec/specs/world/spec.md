@@ -6,7 +6,8 @@ Recognizable American regions and meaningful route choices.
 ## Requirements
 
 ### Requirement: Cross-country route graph
-Runs SHALL start at New York's Red Ball Garage and finish at The Portofino Hotel & Marina in Redondo Beach. A geographically coherent, compressed route graph SHALL combine recognizable freeways, state roads, major cities, interchanges and occasional secret backroads. Exact corridors and stage count await approval.
+
+Runs SHALL start at New York's Red Ball Garage and finish at The Portofino Hotel & Marina in Redondo Beach. Present-day real freeways, state roads, cities, interchanges, landmarks and secret backroads SHALL form a coherent graph compressed to the 10–15 minute play target. Source dates and connectivity SHALL be recorded. Current geography does not imply live traffic/weather feeds. Exact corridors and stage count await approval.
 
 #### Scenario: choosing a branch
 - **WHEN** a player reaches a playable fork

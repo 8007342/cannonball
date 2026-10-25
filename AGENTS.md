@@ -18,5 +18,10 @@ Arabiya or expose Google identity in public rankings.
 Checks: dart format --output=none --set-exit-if-changed lib test; flutter analyze;
 flutter test; flutter build web --release; openspec validate --all --strict;
 npm --prefix services/api test; npm --prefix services/api run check.
-Native builds/signing and live Google/Cloudflare configuration require separate
-verification. Do not describe dry-runs as live deployment.
+Web only: no native Android/iOS application is planned. Mobile URL access is the
+primary delivery; PWA installation is optional. Use 10–15 minute successful runs,
+present-day real geography, soft-edged pixel styling and continuous transitions.
+The Top100 intentionally mixes different cars, routes and random conditions; do
+not add equalized competitive modes or partition boards to impose fairness.
+Live Google/Cloudflare configuration requires separate verification. Do not
+describe dry-runs as live deployment.

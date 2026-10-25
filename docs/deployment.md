@@ -7,7 +7,7 @@ Status: configuration and a tested health-only Worker are prepared. No Cloudflar
 - Cloudflare Pages project `cannonball` serves Flutter's `build/web` at `https://cannonball.tlatoani.net`.
 - Separate Worker `cannonball-api` intercepts `cannonball.tlatoani.net/api/*` through a zone route. This keeps browser requests and eventual session cookies on one origin. The Pages custom domain must have a proxied DNS record in the Cloudflare zone for the route to apply.
 - Do not attach a Worker **Custom Domain** to the same entire hostname: it would compete with Pages. Use the API path route in `services/api/wrangler.jsonc`.
-- Eventual SQLite Durable Objects: per-user account/progress objects and one named global Hall of Fame object per competitive ruleset. This is a proposed architecture, not a binding or migration currently deployed. Durable storage, transactional insertion and idempotency are required; an in-memory list or eventually consistent KV is insufficient for ranking authority.
+- Eventual SQLite Durable Objects: per-user account/progress objects and one named global Hall of Fame object. This is a proposed architecture, not a binding or migration currently deployed. Durable storage, transactional insertion and idempotency are required; an in-memory list or eventually consistent KV is insufficient for ranking authority.
 
 Cloudflare documents [Pages custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/) and [Worker routes](https://developers.cloudflare.com/workers/configuration/routing/routes/). New Durable Objects should use [SQLite-backed storage](https://developers.cloudflare.com/durable-objects/best-practices/access-durable-objects-storage/).
 
@@ -39,11 +39,11 @@ For a local API server use `npm --prefix services/api run dev`. It does not impl
 
 The configs deliberately contain no account ID, Google client ID, secrets, database binding or fake resource identifier. Production and preview data must be isolated when storage is introduced; preview deployments should never write production ranking records.
 
-## Competitive persistence acceptance criteria
+## Run persistence acceptance criteria
 
-Before enabling global rankings: authenticated run ticket, versioned ruleset/seed/car selection, deterministic run verification or server authority, bounded replay upload, idempotent finish, monotonic elapsed simulation time, transactional rank insertion, tie rule, Top100 qualification/recheck at initials submission, and sanitized three-letter display names. Three letters are a public display label and may collide; run/account IDs must remain globally unique. Do not expose Google names, email addresses, subject IDs or tokens in rankings. Three-letter names reduce public identification but do not eliminate personal-data obligations for authentication, logs and saves.
+Before enabling global rankings: authenticated run ticket, recorded run version/seed/car selection, appropriately scoped result validation, idempotent finish, monotonic elapsed simulation time, transactional rank insertion, tie rule, Top100 qualification/recheck at initials submission, and sanitized three-letter display names. Three letters are a public display label and may collide; run/account IDs must remain globally unique. Do not expose Google names, email addresses, subject IDs or tokens in rankings. Three-letter names reduce public identification but do not eliminate personal-data obligations for authentication, logs and saves.
 
-Decide how adaptive difficulty and randomized closures compare fairly before implementing an all-time global board. A fixed competitive ruleset or separate boards can preserve comparable times while practice/story runs remain adaptive.
+Confirmed: the global Top100 records actual run outcomes across unequal cars, distances, traffic and luck. No equalized mode or fairness partition is planned. Preserve those conditions in records, save total time, distance and car, and keep the finish flow as qualifying initials entry followed by a US route-map recap.
 
 ## Toolchain note
 

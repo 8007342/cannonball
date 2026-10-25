@@ -14,7 +14,7 @@ Crossing stacked roads needs explicit elevation, occlusion masks, and collision 
 
 ## Runtime model
 
-- Fixed simulation step with interpolated presentation; seed all ranked randomness. Do not advance physics by arbitrary frame deltas or use wall-clock changes as race time.
+- Fixed simulation step with interpolated presentation; record run seeds for reproduction/debugging without forcing all players to share conditions. Do not advance physics by arbitrary frame deltas or use wall-clock changes as race time.
 - Separate route graph, current road stream, traffic simulation, collision/recovery, race clock, input adapters, pacing director, presentation, audio, and persistence.
 - Version route data, physics, vehicle balance, content manifests, and seeds together. A run receipt should record those versions and its route decisions.
 - Generate bounded road/scenery chunks ahead of the player. Preload both candidate branches before the decision point, discard safely after commitment, and retain enough history for crash recovery.
@@ -36,11 +36,11 @@ Tune crash slowdown, flip duration, timer penalty, checkpoint allowance, and rec
 
 Device orientation access requires HTTPS and may require a permission request triggered directly by a user action ([W3C Device Orientation and Motion](https://www.w3.org/TR/orientation-event/)). Implement feature detection, explicit enable/recalibrate, a dead zone, low-pass filtering, adjustable sensitivity, landscape-axis normalization, and a no-events timeout that offers touch steering. Test real iPhone and Android devices; desktop emulation cannot establish sensor reliability.
 
-Interpretation of the requested touch control: a giant steering wheel lies in the screen plane, closer to the viewer than the game camera. Most of its circle sits outside the display, so the player sees translucent rim arcs at the left/right edges and an unobstructed transparent center. Dragging the rim steers. This is an overlay, independent of the player-car sprite and road camera. Keep the input capture area generous even if the visible rim is thin. Confirm whether drags should rotate the virtual wheel around an off-screen hub, or simply map horizontal movement to steering. Two simultaneous contacts must allow braking and steering without either gesture stealing the other.
+Interpretation of the requested touch control: a giant steering wheel lies in the screen plane, closer to the viewer than the game camera. Most of its circle sits outside the display, so the player sees translucent rim arcs at the left/right edges and an unobstructed transparent center. Dragging the rim steers. This is an overlay, independent of the player-car sprite and road camera. Keep the input capture area generous even if the visible rim is thin. Angular wheel-like dragging is confirmed. Right-side up / left-side down means left steering. The user described opposite drags as braking, leaving right steering pending clarification. Touch outside the wheel brakes. Two simultaneous contacts must allow braking and steering without either gesture stealing the other.
 
-Keep horizon roll independent of physical steering input. Default proposal: stable horizon; optional subtle, capped, damped roll based on simulated cornering with a reduced-motion setting. Phone roll should not directly rotate the whole canvas, HUD, or sensor coordinate frame. Confirm the intended roll direction with a short prototype because “head resisting force” can be interpreted in opposite ways.
+Keep horizon roll independent of physical steering input. Confirmed direction: mostly flat horizon with subtle, capped, damped lean, somewhat stronger under motion steering, plus a zero-roll comfort option. Phone roll should not directly rotate the whole canvas, HUD, or sensor coordinate frame. Confirm the intended roll direction with a short prototype because “head resisting force” can be interpreted in opposite ways.
 
-Landscape is an essential gameplay layout. Request it in native platform configuration and the web manifest, attempt fullscreen/landscape lock from a user gesture where supported, and show a rotate-device screen if the browser remains portrait. Browser orientation lock can impose fullscreen/installed-app conditions and can reject; a web app cannot guarantee system-level landscape on every device ([W3C Screen Orientation](https://www.w3.org/TR/screen-orientation/)). Pause simulation and clock when gameplay loses visibility or becomes unplayable; define separately whether such a run remains eligible for ranked play.
+Landscape is an essential gameplay layout. Request it in the web manifest, attempt fullscreen/landscape lock from a user gesture where supported, and show a rotate-device screen if the browser remains portrait. Browser orientation lock can impose fullscreen/installed-app conditions and can reject; a web app cannot guarantee system-level landscape on every device ([W3C Screen Orientation](https://www.w3.org/TR/screen-orientation/)). Pause simulation and clock when gameplay loses visibility or becomes unplayable; define separately whether such a run remains eligible for ranked play.
 
 Small top controls can look subtle while retaining large touch targets and readable focus/active states. Steering toggle, mute, profile, and pause must not depend on tiny low-opacity hit regions. Profile must not unexpectedly steal control during a race.
 
@@ -79,13 +79,13 @@ The first driving spike should demonstrate: a hill and curve; traffic overtaking
 
 ## Design interview questions
 
-- Pixel art, clean illustrated sprites, or painted retro realism? What reference images define acceptable detail and saturation?
-- What decade/world is this: period 1980s, modern, or a playful mixture? Fictional car brands or recognizable models?
+- Confirmed: pixelated mixed styling with diffused edges. Reference palette, detail, saturation and softness still need motion samples; see motion-art.md.
+- Confirmed: present-day world and real roads/cities/landmarks. Still open: fictional car brands versus recognizable models.
 - Chase-camera height and car size? Visible interior/wheel with an external rear-view car intentionally stylized, or should the rim be understood purely as a control overlay?
-- Should the touch rim rotate geometrically or behave as a horizontal drag control? Spring-to-center or persistent wheel angle? Which finger/region brakes?
-- Stable horizon by default, optional small roll, or roll as the default? Which direction should it feel when turning left?
-- Full-run duration and shortest session? Number/length of stages, time allowance, crash penalties, and whether retry preserves a seed?
+- Confirmed angular rim drag and outside-wheel braking. Right-steer/reverse-drag clarification and spring-to-center behavior remain open.
+- Confirmed subtle lean, somewhat stronger with motion control. Test lean direction, gain and recovery in the same corners.
+- Confirmed successful full run: 10–15 minutes. Still open: stage count/length, time allowance, crash penalties, and retry seed policy.
 - Should a route choice affect distance, traffic, weather, difficulty, discoveries, or all of these? Can every car reach every secret?
 - Are cutscenes skippable; can they happen during racing? Are transitions always player-driven, or is short autodrive acceptable?
 - Is the music an actual synthesizer requirement or is a MIDI-authored soundtrack with layered rendered stems acceptable? Voice identity, accent, languages, subtitles, and radio humor boundaries?
-- Which devices/browsers must launch support, and is installation/native packaging planned alongside the website?
+- Which devices/browsers must launch support, within the confirmed web-only delivery? PWA installation is optional.

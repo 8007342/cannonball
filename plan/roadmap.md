@@ -1,27 +1,27 @@
 # Cannonball roadmap
 
-Current phase: foundation initialized; research and design interview prepared.
+Current phase: web foundation; first interview answers captured, research continuing.
 
-1. Resolve the first design interview: style/era, audience, session length, wheel
-   gestures/horizon, route scale, ranked fairness and launch devices.
-2. Open an OpenSpec change for the driving vertical slice and define performance,
-   input latency, memory and download budgets on representative physical devices.
-3. Prove segmented road hills/curves, traffic, brakes/steering, a fork/closure,
-   bridge occlusion, gate timing, safe crash/reset and seamless prefetch.
-4. Approve camera, palette, first vehicle turnaround, tile and compositing grammar;
-   produce contact sheets and one reviewed regional pack before bulk generation.
-5. Design story bible, garage/key progression, storyboard/cutscene rules, hints,
-   radio templates and synthesized music with audio/device fallback validation.
-6. Author and validate the route graph, regional research packs, lane/merge rules,
-   seeded closures, secret backroads and bounded pacing director.
-7. Implement Google sign-in, durable progress, guest policy, versioned run receipts,
-   result verification, transactional Hall of Fame and three-wheel initials entry.
-8. Provision dedicated Google web client and Cloudflare resources; stage the Pages
-   + Worker topology, test same-origin routing, recovery and preview isolation,
-   then deploy to cannonball.tlatoani.net.
-9. Expand content after playtesting readable speed, difficulty flow, alternate
-   routes and asset coherence; validate native Android/iOS builds separately.
+1. Resolve right steering versus reverse-drag braking, wheel return behavior,
+   distance representation, starter car/story, failed-run flow and minimum browsers.
+2. Open an OpenSpec change for a mobile-web driving slice targeting a 10–15 minute
+   full journey; measure input latency, frame times, memory and download budgets.
+3. Prove hills/curves, touch/tilt with control-specific camera lean, a fork/closure,
+   bridge occlusion, gate timing, safe crash recovery and uninterrupted streaming.
+4. Compare pixel-art edge treatments and animation at speed on mobile and desktop;
+   approve camera, palette, vehicle sheet and compositing grammar before bulk assets.
+5. Design garage/key progression, storyboards, cutscenes, hints, radio and dynamic
+   synthesized music with browser fallback validation.
+6. Author the present-day road graph with real junctions/cities/landmarks, dated
+   source data, researched regional kits, secret routes and bounded traffic variation.
+7. Implement remote Google progress and one global luck-driven Top100 recording
+   actual times across unequal cars/routes/conditions. Add initials-first qualification,
+   distance/car recording and US-map route-fill recap after every run.
+8. Provision dedicated Google web client and Cloudflare resources; verify Pages +
+   same-origin API routing, save recovery and preview isolation, then deploy.
+9. Expand cars, routes, weather and story after playtests validate perceived speed,
+   repeated-play progression, art coherence and mobile/desktop asset tiers.
 
-Foundation checks: OpenSpec strict validation, Dart formatting/analyzer, Flutter
-widget smoke test and release web build; Worker handler tests and Wrangler dry-run.
-These do not establish gameplay performance, working identity or live deployment.
+Checks: OpenSpec strict validation, Dart format/analyzer, widget smoke test and
+release web build; Worker tests and Wrangler dry-run. Browser sensors, camera
+comfort and animation quality require real-device playtests. No native release.

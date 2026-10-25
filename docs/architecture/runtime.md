@@ -30,8 +30,8 @@ and their assets before a fork; hold enough prior content for safe recovery.
 
 The director operates within authored difficulty envelopes. It schedules build-up,
 peaks and recovery; it cannot bypass warning distances or create impossible
-closures. Competitive rules must settle whether adaptation is disabled, seeded,
-or otherwise accounted for before the global board is enabled.
+closures. The global board deliberately mixes actual outcomes under varied cars,
+routes and conditions. Do not disable adaptation or equalize cars for competition.
 
 Flutter owns menus and accessible overlays. The wheel rim belongs above the game
 view; utility buttons must remain reachable above its gesture surface. Sensor,
@@ -45,3 +45,18 @@ backgrounding, portrait rotation and explicit pause need clock/eligibility polic
 Next proof: one hill/curve, a single fork, a bridge occlusion, a lane closure,
 a traffic merge, a timed gate and safe crash recovery. Only then fix asset budgets
 and commission final production sprite sheets.
+
+## Finish state and geography
+
+Persist the actual ordered edge traversal plus partial final edge, real-route
+meters, simulated road coordinates, time, car and completion state. Real-route
+distance and compressed gameplay distance must be separate fields; how to display
+and count them awaits the distance decision. Never infer distance from screen
+pixels or the duration of the recap animation.
+
+At run end, freeze the receipt. A qualifying finish enters three-letter initials
+first, then the US-map recap; other runs go directly to recap. The map displays
+the possible game-route network as context and fills the actual traversed edges
+in order, stopping at the failure endpoint for incomplete runs. Do not interpret
+"all possible roads" as every road in the US. Route-choice timing, selected edges
+and closure state must come from that run, not regenerate randomly for the recap.

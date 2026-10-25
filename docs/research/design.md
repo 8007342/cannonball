@@ -21,7 +21,7 @@ These are design inferences and measurable project requirements, not quotations 
 | Control | Auto-accelerate; brake deliberately; calibrate tilt; preserve an immediate touch fallback. | Input latency, missed touch counts, steering error by device. |
 | Goals and feedback | Show countdown, next gate, route commitment, added time, and crash penalty clearly. | Players distinguish remaining time from total elapsed leaderboard time. |
 | Immersion | Regional scenery, radio, weather and music form one coherent stage identity. | Players recognize region changes without opening a map. |
-| Social interaction | The initial social loop is the worldwide Hall of Fame; no multiplayer is assumed. | Players understand ranks and fairness rules. |
+| Social interaction | The initial social loop is the worldwide Hall of Fame; no multiplayer is assumed. | Players understand ranks and the role of cars, routes and luck. |
 | Menus | Wooden key box is the garage/car selection metaphor; starting a run remains immediate. | First-session start time, discoverability of locked and unlocked keys. |
 | Interactive elements | Steering rim, braking, pause and top toggles have distinct hit regions. | Two-thumb testing, edge gestures, and simultaneous steering/braking. |
 
@@ -31,11 +31,9 @@ Proposed director inputs: recent collision severity, time-to-collision distribut
 
 Complexity progression should be authored by stage: gentle curves → traffic overtakes → merges → hills → lane closures → forks → combined hazards/weather. The pacing director schedules optional encounters within the approved stage envelope. It must not alter physics, grant invisible time, or suddenly close the player's chosen route. Difficulty changes should be communicated through the radio before they matter.
 
-## Randomness, fairness and the Hall of Fame
+## Randomness and the Hall of Fame — resolved direction
 
-A global table ordered by total elapsed finish time conflicts with arbitrary route closures, random weather, adaptive difficulty, and differently powerful unlockable cars. This needs an explicit user decision before ranked implementation.
-
-Recommended proposal: an adaptable exploration mode plus a published/versioned ranked ruleset with reproducible seed, route availability, conditions and assistance rules. Keep a global Top100 finish-time board as requested, but attach ruleset/season metadata; decide whether cars are balanced or whether secondary car boards are needed. User approval is needed before adding separate modes or boards.
+User decision, 2026-10-25: unequal runs are the intended arcade experience. Record whichever route, car, traffic and random conditions the player receives. Better unlocked cars should improve future attempts; routes deliberately differ in distance and complexity. The earlier proposal for an equalized ranked mode is withdrawn. Keep one global Top100 ordered by actual elapsed time. No common seed, car parity, route normalization or separate competition mode is required.
 
 Record a run's ruleset version, content version, seed, car, route edge sequence, gate sequence, elapsed time, penalties, completion status and verification result. Use a monotonic simulation clock; countdown extensions must never subtract elapsed time. Consider one best result per account, deterministic tie order, and whether a new three-letter entry replaces that user's old entry. Three-letter labels are display names, not globally unique identities.
 
@@ -79,7 +77,7 @@ Proposed invariants:
 
 ## Narrative, sound and asset dependencies
 
-The requested opening is a wooden garage box with only one old key set and a cheap keychain. Its owner, meaning, era, starting car and tone are unanswered. A proposed storyboard sequence is: box/keys → take key → reveal starter car → garage departure → first gate → first route choice → first regional radio handoff → finish reveal → possible Top100 initials → return to box with new key. These are candidate beats, not approved scenes.
+The requested opening is a wooden garage box with only one old key set and a cheap keychain. The world is now confirmed as present-day; the keys’ owner, meaning, starting car and tone remain unanswered. A proposed storyboard sequence is: box/keys → take key → reveal starter car → garage departure → first gate → first route choice → first regional radio handoff → finish reveal → possible Top100 initials → return to box with new key. These are candidate beats, not approved scenes.
 
 During a run, a stage boundary should be a streamed transition: audio/radio, a brief readable title, scenery blend and advance route advice while driving continues. A loading screen that stops the car conflicts with “never interrupt gameplay”; ask whether actual loading screens belong only before/after runs. Preload the next possible branches before the decision; reserve a graceful fallback corridor if data is late.
 
@@ -94,5 +92,31 @@ Before generating a large asset set, approve one engine-compatible style sheet a
 3. Approve a starter-car/road/biome sample at gameplay scale before batch asset generation.
 4. Observe novices without coaching; measure first-run comprehension, crash causes, route-sign recognition and motion comfort.
 5. Test whether a recovery interval still feels fast; tune hazard frequency independently of vehicle speed.
-6. Resolve ranked fairness, run timing and persistence before remotely accepting competitive results.
+6. Preserve the intentional unequal-run policy while resolving timing, persistence and duplicate-safe result recording.
 7. Verify chosen roads, ecology and landmarks per region before finalizing the route atlas.
+
+## Present-day data and 10–15 minute compression — confirmed follow-up
+
+The world now uses present-day geography, not period-1980s roads. As checked on
+2026-10-25, the FHWA route log explicitly describes Interstate status as of January
+2025. CDOT OTIS announces an October 2026 update with roadway/traffic data for
+calendar 2025. "Current" must therefore mean the latest reviewed source snapshot,
+with its data year recorded; it must not imply that every exit is verified today.
+Use state DOT maps/road inventories and official landmark pages for production
+corridors, recording retrieval date, dataset year, license and connector checks.
+The route candidates above remain research candidates, not a completed road atlas.
+
+Compress uneventful distance while retaining actual connectivity, junction order,
+city order, recognizable approach silhouettes and selected landmarks. Each edge
+needs source geometry, real-world distance, simplified display geometry, simulated
+driving length, stage budget, lane/connectivity metadata and placement references.
+A route's real miles must not be mistaken for the distance the car literally
+travels at its displayed speed over 10–15 minutes. Distance presentation is an
+open question; do not silently choose an odometer model.
+
+The post-run map contains the game's possible route network, highlights the
+actual edge sequence and fills progress along it. Repeated/partial edges must
+follow the recorded traversal; a failed run stops at the actual reached point.
+Top100 qualification sends the player to initials first, then this recap. Store
+time, distance and car with the result. Whether the table also displays distance
+is separate from the requirement to save it.

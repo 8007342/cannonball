@@ -4,8 +4,8 @@ A fast paced landscape arcade road trip racer from New York's Red Ball Garage
 to The Portofino Hotel & Marina in Redondo Beach, inspired by OutRun's pseudo-3D
 racing. Built with Flutter and Flame.
 
-The repository currently contains a runnable foundation screen, web/Android/iOS
-scaffolds, OpenSpec requirements, research and Cloudflare deployment preparation.
+The repository currently contains a runnable foundation screen, web scaffold,
+OpenSpec requirements, research and Cloudflare deployment preparation.
 Driving, finished garage artwork, Google login, saves and rankings are not yet
 implemented. Design discovery comes before the gameplay vertical slice.
 
@@ -26,16 +26,20 @@ npm --prefix services/api test
 npm --prefix services/api run check
 ```
 
-Gameplay targets landscape. Native orientation preferences and the web manifest
-request landscape; unsupported browser locking needs a rotate prompt. Physical
-device checks for sensors, browser orientation, audio and performance remain ahead.
-Native release signing/builds are not configured or verified here.
+Web only: mobile browsers first, desktop browsers with higher-resolution asset
+packs, URL access sufficient and optional PWA installation. Successful runs target
+10–15 minutes through present-day, researched US roads and landmarks. Landscape
+is requested through the web manifest; unsupported browser locking needs a rotate
+prompt. Physical browser checks for sensors, audio and performance remain ahead.
+The global Top100 records each run's actual car, route and luck; cars and routes
+are intentionally not equalized.
 
 ## Project memory
 
 - [Requirements](openspec/specs/) — desired behavior, not a completion claim.
 - [Design interview](docs/design/interview.md) — choices to settle together.
 - [Engine research](docs/research/engine.md) — projection, controls and assets.
+- [Motion and art research](docs/research/motion-art.md) — pixel styling, animation and camera lean.
 - [Flow and route research](docs/research/design.md) — pacing and geography.
 - [Identity research](docs/research/auth.md) — Arabiya comparison and Google client.
 - [Deployment guide](docs/deployment.md) — Pages, Worker routing and remaining setup.

@@ -13,14 +13,15 @@ The finished landing scene SHALL show a wooden garage box with only the first ol
 - **THEN** only the starter key set is available in the garage box
 
 ### Requirement: Engine-compatible style guides
-Before bulk generation, the team SHALL agree on pixel density, palette, lighting, camera geometry, sprite pivots, angle conventions, scales and layer ordering. Car sheets SHALL include rear views across slopes, turn strengths, slides and crash/flip frames with consistent identity. Atlases SHALL include metadata and approved reference assets.
+
+Before bulk generation, the team SHALL agree on pixel density, palette, edge treatment, lighting, camera geometry, sprite pivots, angles, scale and layers. Car sheets SHALL include rear views across slopes, turn strengths, slides and crash/flip frames with consistent identity. Atlases SHALL include metadata and approved references.
 
 #### Scenario: importing a car
 - **WHEN** a car sheet enters the asset pipeline
 - **THEN** dimensions, pivots, states and scale are checked before use
 
 ### Requirement: Storyboards and uninterrupted story
-Storyline, storyboards, cutscenes, transition treatments and contextual hints SHALL be designed as a coherent journey. Active driving SHALL not be interrupted by compulsory scenes. Tone, characters, era and narrative stakes remain interview topics.
+Storyline, storyboards, cutscenes, transition treatments and contextual hints SHALL be designed as a coherent journey. Active driving SHALL not be interrupted by compulsory scenes. The world is present-day; tone, characters and narrative stakes remain interview topics.
 
 #### Scenario: optional story content
 - **WHEN** a player starts a run after seeing an intro
@@ -32,3 +33,10 @@ Production art, music, fonts and voice assets SHALL record provenance, rights an
 #### Scenario: approving a generated pack
 - **WHEN** a pack is promoted to production
 - **THEN** its source references, usage rights and engine validation are recorded
+
+### Requirement: Diffused pixel art in motion
+Art SHALL mix pixelated forms with diffused edges. Motion smoothness and readable speed SHALL be evaluated in moving scenes, not assumed from blur alone. Desktop SHALL support higher-resolution variants of the same style; mobile SHALL load suitable packs within measured download and memory budgets.
+
+#### Scenario: reviewing a style sample
+- **WHEN** an art sample is evaluated on mobile and desktop
+- **THEN** reviewers compare moving silhouettes, scaling, pose changes and hazard readability across the proposed resolution tiers
