@@ -13,9 +13,15 @@ function harness() {
   let cancelled = 0;
   const add = (map) => (name, callback) => map.set(name, callback);
   const remove = (map) => (name, callback) => { if (map.get(name) === callback) map.delete(name); };
-  const parameter = () => ({value: 0, setValueAtTime() {}, linearRampToValueAtTime() {},
-    exponentialRampToValueAtTime() {}, setTargetAtTime() {}, cancelScheduledValues() {}});
-  const node = () => ({connect() { return this; }, disconnect() {}, start() {}, stop() { this.onended?.(); }});
+  const parameter = () => ({value: 0, events: [],
+    setValueAtTime(value, at) { this.value = value; this.events.push({method: 'set', value, at}); },
+    linearRampToValueAtTime(value, at) { this.events.push({method: 'linear', value, at}); },
+    exponentialRampToValueAtTime(value, at) { this.events.push({method: 'exponential', value, at}); },
+    setTargetAtTime(value, at) { this.events.push({method: 'target', value, at}); },
+    cancelScheduledValues() {}});
+  const node = () => ({connect() { return this; }, disconnect() {},
+    start(when) { this.started = when; },
+    stop(when) { this.stopped = when; if (when == null || when <= audio.currentTime) this.onended?.(); }});
   const audio = {state: 'running', currentTime: 0, destination: {},
     createGain() { return {...node(), gain: parameter()}; },
     createOscillator() { const oscillator = {...node(), frequency: parameter()}; oscillatorNotes.push(oscillator); return oscillator; },
@@ -284,4 +290,47 @@ test('garage Foley obeys mute while its race remains paused', async () => {
   h.bridge.garageCue('door');
   assert.equal(h.oscillatorNotes.length, initial + 3);
   h.bridge.dispose();
+});
+
+
+test('ignition prelap and launch rev use bounded audio-clock envelopes', async () => {
+  const h = harness();
+  h.bridge.pause(true);
+  h.bridge.setMuted(false);
+  await h.bridge.beginAudio();
+  const first = h.oscillatorNotes.length;
+  h.bridge.garageCue('cabin');
+  const starter = h.oscillatorNotes.slice(first);
+  assert.equal(starter.length, 5);
+  assert.ok(starter.every(node => node.stopped > node.started && node.stopped - node.started <= 1.1));
+  h.bridge.garageCue('cabin');
+  assert.equal(h.oscillatorNotes.length, first + 5, 'duplicate shot notification is bounded');
+  h.advance(300);
+  const next = h.oscillatorNotes.length;
+  h.bridge.garageCue('launch');
+  const rev = h.oscillatorNotes.slice(next);
+  assert.equal(rev.length, 2);
+  assert.ok(rev[0].frequency.events.some(event => event.method === 'exponential' && event.value === 220));
+  assert.ok(rev.every(node => node.started >= h.audio.currentTime && node.stopped - node.started <= 1));
+  h.bridge.setMuted(true);
+  assert.ok(rev.every(node => node.stopped === undefined), 'mute immediately stops the separate garage bus');
+  h.bridge.dispose();
+});
+
+test('hidden departure and disposal cancel prelap instead of leaving a rev behind', async () => {
+  const h = harness();
+  await h.bridge.beginAudio();
+  h.bridge.pause(true);
+  h.bridge.setMuted(false);
+  const first = h.oscillatorNotes.length;
+  h.bridge.garageCue('launch');
+  const rev = h.oscillatorNotes.slice(first);
+  h.sandbox.document.hidden = true;
+  h.emit('visibilitychange');
+  assert.ok(rev.every(node => node.stopped === undefined));
+  h.sandbox.document.hidden = false;
+  h.bridge.garageCue('cabin');
+  const last = h.oscillatorNotes.slice(first + 2);
+  h.bridge.dispose();
+  assert.ok(last.every(node => node.stopped === undefined));
 });

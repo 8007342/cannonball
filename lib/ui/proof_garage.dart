@@ -187,7 +187,7 @@ class _ProofGarageState extends State<ProofGarage>
                         offset: Offset(widget.reducedMotion ? 0 : w * pan, 0),
                         child: Opacity(
                           opacity: widget.reducedMotion ? 1 - pan : 1,
-                          child: wall,
+                          child: Opacity(opacity: 1 - rear, child: wall),
                         ),
                       ),
                     if (pan > 0)
@@ -202,7 +202,7 @@ class _ProofGarageState extends State<ProofGarage>
                           scale: widget.reducedMotion ? 1 : 1 + walk * .19,
                           child: Opacity(
                             opacity: widget.reducedMotion ? pan : 1,
-                            child: exterior,
+                            child: Opacity(opacity: 1 - rear, child: exterior),
                           ),
                         ),
                       ),
