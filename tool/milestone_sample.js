@@ -4,8 +4,10 @@
 (async () => {
   const proof = window.CannonballProof;
   const options = window.CannonballMilestoneSampleOptions || {};
-  const sampleMs = Math.max(500, Math.min(30000, Number(options.sampleMs) || 4000));
-  const warmupMs = Math.max(0, Math.min(5000, Number(options.warmupMs) || 1000));
+  const milliseconds = (value, fallback, min, max) => value == null || !Number.isFinite(Number(value))
+    ? fallback : Math.max(min, Math.min(max, Number(value)));
+  const sampleMs = milliseconds(options.sampleMs, 4000, 500, 30000);
+  const warmupMs = milliseconds(options.warmupMs, 1000, 0, 5000);
   if (!proof?.snapshot().assetsReady) return {error: 'Proof artwork is not ready'};
   if (options.start !== false) { proof.reset(); proof.start(); }
   if (proof.snapshot().state !== 'driving') return {error: 'Start or resume driving before sampling'};

@@ -84,6 +84,12 @@ telemetry so input filtering and image-state hysteresis can be assessed separate
 An early input response, progressive turn and bounded release/reversal should be
 checked on both keyboard and touch at multiple fixed-step schedules.
 
+[Friston, Karlstrom and Steed's low-latency study](https://discovery.ucl.ac.uk/id/eprint/1471049/)
+found latency effects on pointing and path-steering tasks at low delays. Those are
+not racing tasks; the useful caution is to distinguish a progressive vehicle
+response from extra dead time before any response. It does not prescribe our
+sprite transition duration.
+
 ## Implemented diagnostics and review tool
 
 The proof bootstrap now reports CSS canvas position/extent and viewport coverage,
