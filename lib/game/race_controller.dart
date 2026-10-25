@@ -4,6 +4,9 @@ import 'package:flutter/foundation.dart';
 
 import 'models.dart';
 import 'route.dart';
+import 'traffic.dart';
+
+export 'traffic.dart' show TrafficCar, TrafficProfile;
 
 /// Integer arithmetic stays below 2^53 on the web as well as Dart VM.
 class _RandomStream {
@@ -15,24 +18,6 @@ class _RandomStream {
   }
 
   int index(int length) => (next() * length).floor();
-}
-
-class TrafficCar {
-  TrafficCar({
-    required this.id,
-    required this.position,
-    required this.x,
-    required this.cruiseSpeed,
-    required this.color,
-    required this.truck,
-    required this.changeAt,
-  });
-  final int id, color;
-  final bool truck;
-  double position, x, cruiseSpeed, changeAt;
-  double? targetX;
-  double signalTime = 0;
-  bool get signaling => targetX != null && signalTime < 2;
 }
 
 enum CrashPose { driving, spin, flip }
@@ -52,6 +37,11 @@ class RaceController extends ChangeNotifier {
   final List<RouteVisit> _completedVisits = [];
   final List<String> _gates = [];
   final List<TrafficCar> traffic = [];
+  bool reactiveTrafficEnabled = false;
+  ReactiveTraffic _reactiveTraffic = ReactiveTraffic();
+  double _lastTrafficPlayerX = 0;
+  int get trafficReactionCount => _reactiveTraffic.reactions;
+  int get trafficIncidentCount => _reactiveTraffic.incidents;
   final Map<String, String> _closedBranches = {};
   late _RandomStream _trafficRandom;
   late _RandomStream _conditionRandom;
@@ -135,7 +125,15 @@ class RaceController extends ChangeNotifier {
         : 'relax';
   }
 
-  void start(CarSpec car, {int? seed}) {
+  void start(
+    CarSpec car, {
+    int? seed,
+    bool reactiveTraffic = false,
+    double launchSpeed = 0,
+  }) {
+    reactiveTrafficEnabled = reactiveTraffic;
+    _reactiveTraffic = ReactiveTraffic();
+    _lastTrafficPlayerX = 0;
     _car = car;
     _seed = seed ?? DateTime.now().microsecondsSinceEpoch % 1000000000;
     _trafficRandom = _RandomStream(_seed ^ 0x63d2);
@@ -150,7 +148,7 @@ class RaceController extends ChangeNotifier {
     }
     _stepCount = 0;
     _remaining = 90;
-    _speed = 0;
+    _speed = launchSpeed.isFinite ? launchSpeed.clamp(0, car.topSpeed) : 0;
     _worldDistance = 0;
     _edgeDistance = 0;
     _completedMiles = 0;
@@ -384,6 +382,10 @@ class RaceController extends ChangeNotifier {
   }
 
   void _advanceTraffic() {
+    if (reactiveTrafficEnabled) {
+      _advanceReactiveTraffic();
+      return;
+    }
     if (elapsed >= _nextSpawn) {
       final phase = directorPhase;
       final interval = phase == 'peak'
@@ -461,8 +463,51 @@ class RaceController extends ChangeNotifier {
     );
   }
 
+  void _advanceReactiveTraffic() {
+    if (elapsed >= _nextSpawn) {
+      final interval = directorPhase == 'peak'
+          ? 2.6
+          : directorPhase == 'recovery'
+          ? 7.0
+          : 4.0;
+      _nextSpawn = elapsed + interval + _trafficRandom.next() * 1.5;
+      if (!approachingFork && traffic.length < 16) _spawnTraffic();
+    }
+    _reactiveTraffic.tick(
+      cars: traffic,
+      dt: fixedStep,
+      time: elapsed,
+      playerPosition: _worldDistance,
+      playerX: playerX,
+      playerLateralSpeed: (playerX - _lastTrafficPlayerX) / fixedStep,
+      playerSpeed: _speed,
+      distanceScale: RouteGraph.speedScale,
+      curve: curveAt(_worldDistance),
+      closedLane: _closedLane,
+      closureStart: _worldDistance - _edgeDistance + closureStart,
+      closureEnd: _worldDistance - _edgeDistance + closureEnd,
+    );
+    _lastTrafficPlayerX = playerX;
+    for (final other in traffic) {
+      if (!recovering &&
+          protection <= 0 &&
+          (other.position - _worldDistance).abs() < (other.truck ? 30 : 23) &&
+          (other.x - playerX).abs() < (other.truck ? .25 : .20)) {
+        _crash(flip: _speed - other.currentSpeed > 69);
+      }
+    }
+    traffic.removeWhere(
+      (t) =>
+          t.position < _worldDistance - 180 ||
+          t.position > _worldDistance + 11000,
+    );
+  }
+
   void _spawnTraffic() {
-    final spawn = _worldDistance + 1500 + _trafficRandom.next() * 900;
+    final spawn =
+        _worldDistance +
+        (reactiveTrafficEnabled ? 520 : 1500) +
+        _trafficRandom.next() * (reactiveTrafficEnabled ? 520 : 900);
     final lane = [-.65, 0.0, .65][_trafficRandom.index(3)];
     // One car at a time, separated longitudinally; no solid random traffic walls.
     if (traffic.any((t) => (t.position - spawn).abs() < 320)) return;
@@ -473,6 +518,16 @@ class RaceController extends ChangeNotifier {
       0xff7b965d,
       0xff8e7ea1,
     ];
+    final profileRoll = _trafficId % 20;
+    final profile = !reactiveTrafficEnabled
+        ? TrafficProfile.ordinary
+        : profileRoll < 13
+        ? TrafficProfile.ordinary
+        : profileRoll < 17
+        ? TrafficProfile.cautious
+        : profileRoll < 19
+        ? TrafficProfile.brisk
+        : TrafficProfile.pushy;
     traffic.add(
       TrafficCar(
         id: _trafficId++,
@@ -482,6 +537,9 @@ class RaceController extends ChangeNotifier {
         color: palette[_trafficRandom.index(palette.length)],
         truck: _trafficRandom.next() < .18,
         changeAt: elapsed + 4 + _trafficRandom.next() * 8,
+        profile: profile,
+        paintVariant: _trafficId % 8,
+        usesSignals: !reactiveTrafficEnabled || profile != TrafficProfile.pushy,
       ),
     );
   }
