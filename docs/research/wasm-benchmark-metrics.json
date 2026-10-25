@@ -1,0 +1,382 @@
+{
+  "date": "2026-10-25",
+  "sourceEngineBuild": "05cbc99 (game source unchanged from dd37c3c)",
+  "harness": "tool/renderer_benchmark.dart",
+  "sample": "tool/benchmark_sample.js",
+  "environment": {
+    "browser": "headless Chromium 156",
+    "graphics": "SwiftShader software rendering",
+    "cssViewport": [
+      844,
+      390
+    ],
+    "crossOriginIsolated": false,
+    "skwasmMultithreading": false,
+    "screenshotsDuringSampling": false,
+    "seed": 731
+  },
+  "validFullReloadSamples": {
+    "jsDpr1": {
+      "value": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "cssViewport": [
+          844,
+          390
+        ],
+        "dpr": 1,
+        "crossOriginIsolated": false,
+        "visibility": "visible",
+        "wallMs": 3016.7000000000007,
+        "rafIntervals": 180,
+        "rafHz": 59.667848974044475,
+        "renders": 180,
+        "rendersPerSecond": 59.667848974044475,
+        "updates": 180,
+        "p50IntervalMs": 16.69999999999891,
+        "p95IntervalMs": 16.800000000000182,
+        "p99IntervalMs": 16.80000000000109,
+        "maxIntervalMs": 33.29999999999927,
+        "simulationSeconds": 3.0166666666666666,
+        "updateCpuMs": 11,
+        "renderCommandCpuMs": 735.3,
+        "before": {
+          "compiledToWasm": false,
+          "seed": 731,
+          "updates": 32,
+          "renders": 32,
+          "updateCpuUs": 1700,
+          "renderCommandCpuUs": 128300,
+          "simulationSeconds": 0.5166666666666666,
+          "worldDistance": 1.5761777777777772,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "after": {
+          "compiledToWasm": false,
+          "seed": 731,
+          "updates": 212,
+          "renders": 212,
+          "updateCpuUs": 12700,
+          "renderCommandCpuUs": 863600,
+          "simulationSeconds": 3.533333333333333,
+          "worldDistance": 71.7478666666667,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "wasmResources": [
+          "https://www.cannonball.localhost:18443/bench/js/canvaskit/chromium/canvaskit.wasm"
+        ],
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36"
+      }
+    },
+    "wasmDpr1": {
+      "value": {
+        "compiledToWasm": true,
+        "seed": 731,
+        "cssViewport": [
+          844,
+          390
+        ],
+        "dpr": 1,
+        "crossOriginIsolated": false,
+        "visibility": "visible",
+        "wallMs": 3016.5,
+        "rafIntervals": 157,
+        "rafHz": 52.04707442400132,
+        "renders": 157,
+        "rendersPerSecond": 52.04707442400132,
+        "updates": 157,
+        "p50IntervalMs": 16.700000000000728,
+        "p95IntervalMs": 33.400000000001455,
+        "p99IntervalMs": 33.400000000001455,
+        "maxIntervalMs": 33.5,
+        "simulationSeconds": 3,
+        "updateCpuMs": 8.1,
+        "renderCommandCpuMs": 171.093,
+        "before": {
+          "compiledToWasm": true,
+          "seed": 731,
+          "updates": 28,
+          "renders": 28,
+          "updateCpuUs": 997,
+          "renderCommandCpuUs": 30202,
+          "simulationSeconds": 0.55,
+          "worldDistance": 1.7827333333333328,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "after": {
+          "compiledToWasm": true,
+          "seed": 731,
+          "updates": 185,
+          "renders": 185,
+          "updateCpuUs": 9097,
+          "renderCommandCpuUs": 201295,
+          "simulationSeconds": 3.55,
+          "worldDistance": 72.42473333333336,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "wasmResources": [
+          "https://www.cannonball.localhost:18443/bench/wasm/canvaskit/skwasm.wasm",
+          "https://www.cannonball.localhost:18443/bench/wasm/main.dart.wasm"
+        ],
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36"
+      }
+    },
+    "jsDpr2": {
+      "value": {
+        "compiledToWasm": false,
+        "seed": 731,
+        "cssViewport": [
+          844,
+          390
+        ],
+        "dpr": 2,
+        "crossOriginIsolated": false,
+        "visibility": "visible",
+        "wallMs": 3016.600000000002,
+        "rafIntervals": 88,
+        "rafHz": 29.171915401445315,
+        "renders": 88,
+        "rendersPerSecond": 29.171915401445315,
+        "updates": 88,
+        "p50IntervalMs": 33.30000000000291,
+        "p95IntervalMs": 49.89999999999782,
+        "p99IntervalMs": 50.10000000000218,
+        "maxIntervalMs": 50.10000000000218,
+        "simulationSeconds": 3,
+        "updateCpuMs": 3.101,
+        "renderCommandCpuMs": 385.798,
+        "before": {
+          "compiledToWasm": false,
+          "seed": 731,
+          "updates": 17,
+          "renders": 17,
+          "updateCpuUs": 499,
+          "renderCommandCpuUs": 71796,
+          "simulationSeconds": 0.5666666666666667,
+          "worldDistance": 1.8907777777777772,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "after": {
+          "compiledToWasm": false,
+          "seed": 731,
+          "updates": 105,
+          "renders": 105,
+          "updateCpuUs": 3600,
+          "renderCommandCpuUs": 457594,
+          "simulationSeconds": 3.5666666666666664,
+          "worldDistance": 73.10477777777781,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "wasmResources": [
+          "https://www.cannonball.localhost:18443/bench/js/canvaskit/chromium/canvaskit.wasm"
+        ],
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36"
+      }
+    },
+    "wasmDpr2": {
+      "value": {
+        "compiledToWasm": true,
+        "seed": 731,
+        "cssViewport": [
+          844,
+          390
+        ],
+        "dpr": 2,
+        "crossOriginIsolated": false,
+        "visibility": "visible",
+        "wallMs": 3016.6000000000004,
+        "rafIntervals": 83,
+        "rafHz": 27.51442020818139,
+        "renders": 83,
+        "rendersPerSecond": 27.51442020818139,
+        "updates": 83,
+        "p50IntervalMs": 33.30000000000109,
+        "p95IntervalMs": 50,
+        "p99IntervalMs": 50.100000000000364,
+        "maxIntervalMs": 50.100000000000364,
+        "simulationSeconds": 3.0166666666666666,
+        "updateCpuMs": 4.002,
+        "renderCommandCpuMs": 81.094,
+        "before": {
+          "compiledToWasm": true,
+          "seed": 731,
+          "updates": 16,
+          "renders": 16,
+          "updateCpuUs": 1001,
+          "renderCommandCpuUs": 16400,
+          "simulationSeconds": 0.55,
+          "worldDistance": 1.7827333333333328,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "after": {
+          "compiledToWasm": true,
+          "seed": 731,
+          "updates": 99,
+          "renders": 99,
+          "updateCpuUs": 5003,
+          "renderCommandCpuUs": 97494,
+          "simulationSeconds": 3.5666666666666664,
+          "worldDistance": 73.10477777777781,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "wasmResources": [
+          "https://www.cannonball.localhost:18443/bench/wasm/canvaskit/skwasm.wasm",
+          "https://www.cannonball.localhost:18443/bench/wasm/main.dart.wasm"
+        ],
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36"
+      }
+    }
+  },
+  "excludedResizeSamples": {
+    "wasmDpr2": {
+      "value": {
+        "compiledToWasm": true,
+        "seed": 731,
+        "cssViewport": [
+          844,
+          390
+        ],
+        "dpr": 2,
+        "crossOriginIsolated": false,
+        "visibility": "visible",
+        "wallMs": 3016.5,
+        "rafIntervals": 127,
+        "rafHz": 42.10177357865076,
+        "renders": 127,
+        "rendersPerSecond": 42.10177357865076,
+        "updates": 127,
+        "p50IntervalMs": 16.700000000000728,
+        "p95IntervalMs": 33.399999999999636,
+        "p99IntervalMs": 33.400000000001455,
+        "maxIntervalMs": 33.400000000001455,
+        "simulationSeconds": 3.0166666666666666,
+        "updateCpuMs": 6.095,
+        "renderCommandCpuMs": 117.806,
+        "before": {
+          "compiledToWasm": true,
+          "seed": 731,
+          "updates": 22,
+          "renders": 22,
+          "updateCpuUs": 1099,
+          "renderCommandCpuUs": 24297,
+          "simulationSeconds": 0.55,
+          "worldDistance": 1.7827333333333328,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "after": {
+          "compiledToWasm": true,
+          "seed": 731,
+          "updates": 149,
+          "renders": 149,
+          "updateCpuUs": 7194,
+          "renderCommandCpuUs": 142103,
+          "simulationSeconds": 3.5666666666666664,
+          "worldDistance": 73.10477777777781,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "wasmResources": [
+          "https://www.cannonball.localhost:18443/bench/wasm/canvaskit/skwasm.wasm",
+          "https://www.cannonball.localhost:18443/bench/wasm/main.dart.wasm"
+        ],
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36"
+      }
+    },
+    "wasmDpr2Repeat": {
+      "value": {
+        "compiledToWasm": true,
+        "seed": 731,
+        "cssViewport": [
+          844,
+          390
+        ],
+        "dpr": 2,
+        "crossOriginIsolated": false,
+        "visibility": "visible",
+        "wallMs": 3016.5999999999985,
+        "rafIntervals": 127,
+        "rafHz": 42.100377908904086,
+        "renders": 127,
+        "rendersPerSecond": 42.100377908904086,
+        "updates": 127,
+        "p50IntervalMs": 16.69999999999709,
+        "p95IntervalMs": 33.400000000001455,
+        "p99IntervalMs": 33.5,
+        "maxIntervalMs": 33.5,
+        "simulationSeconds": 3.0166666666666666,
+        "updateCpuMs": 4.802,
+        "renderCommandCpuMs": 139.297,
+        "before": {
+          "compiledToWasm": true,
+          "seed": 731,
+          "updates": 23,
+          "renders": 23,
+          "updateCpuUs": 800,
+          "renderCommandCpuUs": 23200,
+          "simulationSeconds": 0.5166666666666666,
+          "worldDistance": 1.5761777777777772,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "after": {
+          "compiledToWasm": true,
+          "seed": 731,
+          "updates": 150,
+          "renders": 150,
+          "updateCpuUs": 5602,
+          "renderCommandCpuUs": 162497,
+          "simulationSeconds": 3.533333333333333,
+          "worldDistance": 71.7478666666667,
+          "car": "wagon",
+          "edge": "hudson",
+          "finished": false,
+          "paused": false
+        },
+        "wasmResources": [
+          "https://www.cannonball.localhost:18443/bench/wasm/canvaskit/skwasm.wasm",
+          "https://www.cannonball.localhost:18443/bench/wasm/main.dart.wasm"
+        ],
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36"
+      }
+    },
+    "reason": "Changing DPR in-place produced visibly clipped/scaled output in the Wasm experiment; not comparable. Valid samples reload after setting DPR."
+  },
+  "notes": [
+    "Isolated engine renderer, excluding root HUD/session/audio/API work.",
+    "Render calls and rAF intervals are not proof of presented frames.",
+    "Render CPU is command-recording time; it excludes asynchronous raster/presentation.",
+    "Targets change both application compiler and Flutter renderer: not a pure language-only experiment.",
+    "Short sequential samples, not a hardware-browser/phone performance guarantee."
+  ]
+}

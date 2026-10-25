@@ -62,6 +62,7 @@ and a Worker on `/api/*`. No production deployment is claimed.
 - [Specifications](openspec/specs/) and [active implementation](openspec/changes/playable-road-trip/)
 - [Decisions](docs/design/decisions.md), [interview](docs/design/interview.md), [roadmap](plan/roadmap.md)
 - [Engine](docs/research/engine.md), [motion/art](docs/research/motion-art.md), [flow/geography](docs/research/design.md)
+- [Renderer audit](docs/research/renderer-audit.md) and [Dart/Wasm benchmark](docs/research/wasm-benchmark.md)
 - [Browser platform](docs/platform.md), [authentication research](docs/research/auth.md)
 - [Asset contract](assets/README.md)
 

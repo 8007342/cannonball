@@ -62,3 +62,12 @@ See ../research/renderer-audit.md for measured versus calculated findings.
 The user explicitly confirms https://cannonball.tlatoani.net is registered on the
 shared Google client. Origin setup is no longer an unanswered user question;
 actual live login remains an integration check.
+
+## Wasm experiment — 2026-10-25
+
+Dart already compiles to Wasm, so no language rewrite is required to evaluate it.
+An isolated same-seed release comparison verified real Wasm execution. On the
+headless software renderer, command-recording CPU cost improved while overall
+cadence did not; DPR mattered strongly. Keep both pipelines available for the
+new scene; do not change the shipping default based on this narrow experiment.
+See ../research/wasm-benchmark.md for evidence and limitations.

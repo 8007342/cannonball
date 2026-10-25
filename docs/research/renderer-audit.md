@@ -128,3 +128,12 @@ current achievements. Compare the same seeded scene at multiple render scales,
 without screenshots first, then through the preview viewer. Final style and
 production asset expansion follow the moving proof. No more region/car expansion
 should be justified merely by existing unit tests passing.
+
+## Follow-up: Wasm comparison
+
+The same seeded isolated renderer was subsequently built with dart2js/CanvasKit
+and dart2wasm/Skwasm. See wasm-benchmark.md and its raw metrics. In the tested
+software graphics environment, lower drawing-command CPU cost did not translate
+into higher render cadence; both pipelines remained sensitive to actual surface
+pixel count. Wasm remains an option to test on the replacement scene, not a
+substitute for the renderer/art work identified above.
