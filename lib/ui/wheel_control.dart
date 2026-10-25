@@ -18,6 +18,10 @@ class WheelControl extends StatefulWidget {
   final ValueChanged<double> onSteer;
   final ValueChanged<bool> onBrake;
   final bool visible;
+  @visibleForTesting
+  static Future<bool> prepareRimArtwork() async =>
+      await (_WheelControlState._skinLoad ??= _WheelControlState._loadSkin()) !=
+      null;
   @override
   State<WheelControl> createState() => _WheelControlState();
 }
@@ -157,6 +161,10 @@ class _WheelControlState extends State<WheelControl> {
 class _WheelPainter extends CustomPainter {
   _WheelPainter(this.geometry, this.turn, this.visible, this.skin);
   final ui.Image? skin;
+  // The shader and decoded image share app lifetime. Disposing a short-lived
+  // shader invalidates its image handle on the web renderer.
+  static ui.Image? _shaderImage;
+  static ui.ImageShader? _cachedShader;
   final WheelGeometry geometry;
   final double turn;
   final bool visible;
@@ -230,19 +238,21 @@ class _WheelPainter extends CustomPainter {
       colors: colors,
       indices: indices,
     );
-    final shader = ui.ImageShader(
-      image,
-      ui.TileMode.clamp,
-      ui.TileMode.clamp,
-      Float64List.fromList([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]),
-    );
+    if (_shaderImage != image) {
+      _cachedShader = ui.ImageShader(
+        image,
+        ui.TileMode.clamp,
+        ui.TileMode.clamp,
+        Float64List.fromList([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]),
+      );
+      _shaderImage = image;
+    }
     canvas.drawVertices(
       vertices,
       ui.BlendMode.modulate,
-      Paint()..shader = shader,
+      Paint()..shader = _cachedShader,
     );
     vertices.dispose();
-    shader.dispose();
   }
 
   @override

@@ -30,6 +30,28 @@ Future<Offset> mountWheel(
 }
 
 void main() {
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    expect(await WheelControl.prepareRimArtwork(), isTrue);
+  });
+  testWidgets('loaded rim artwork survives repeated painting and remounting', (
+    tester,
+  ) async {
+    final steer = <double>[], brake = <bool>[];
+    final origin = await mountWheel(tester, steer, brake);
+    final thumb = await tester.startGesture(origin + const Offset(100, 200));
+    for (var i = 0; i < 8; i++) {
+      await thumb.moveTo(origin + Offset(100, 200 - i * 8));
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    }
+    await thumb.up();
+    await tester.pumpWidget(const SizedBox());
+    await mountWheel(tester, steer, brake);
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
+
   test('rim stays visibly inset and spans landscape height with a generous thumb target', () {
     for (final size in [
       const Size(800, 400),

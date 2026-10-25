@@ -36,3 +36,13 @@ This document corrects the implementation described by the previous
 [rolling chase study](research/rolling-chase-suspension.md). Human touch reach,
 comfort and challenge remain moving-review work; tests do not establish that a
 new camera treatment is universally preferred.
+
+## Artwork lifetime regression check
+
+The first web art integration also exposed an image/shader lifetime bug: disposing
+a per-paint ImageShader invalidated the shared rim image handle on the web
+renderer. The shader now shares the app-lifetime image cache, while transient
+vertices are disposed per paint. Tests explicitly decode the bundled artwork,
+repaint through several gestures and remount the wheel, exercising the actual
+textured path rather than only the fallback silhouette. Browser verification
+must check console errors as well as the loaded texture request.
