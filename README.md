@@ -127,3 +127,13 @@ The current speed comparison defaults to `motion=turbo` (36 presentation units p
 simulated metre); use `?proof=1&motion=arcade` for the previous20.4 setting. Stage
 timing and car physics are unchanged. Joining-road scenery now clears the entire
 pavement/gore footprint. Hill height/pitch are exaggerated for moving review.
+
+
+## Afterburn traffic draft
+
+`/?proof=1` now starts from rest with tapered acceleration and steering speed
+losses. The default `motion=afterburn` more than doubles the previous draft's
+scenery flow; `motion=turbo` retains that previous visual rate with the new
+physics. Stronger hills, an early rise/dip and staggered reactive traffic are
+ready for review. [Tuning notes](docs/afterburn-draft.md) explain the arcade
+exaggeration and remaining validation. Keys1–8 still jump to course chapters.

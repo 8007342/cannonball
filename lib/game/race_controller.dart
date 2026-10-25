@@ -205,6 +205,9 @@ class RaceController extends ChangeNotifier {
       for (var i = 0; i < 4; i++) {
         _spawnTraffic(proofOffset: 95 + i * 85.0);
       }
+      // A slower lead vehicle stays in view while the player builds speed.
+      traffic.first.cruiseSpeed = 55;
+      traffic.first.currentSpeed = 55;
     }
     _say('Red Ball Garage. Westbound. Next stop: the Pacific.', 3, 8);
     notifyListeners();
@@ -587,13 +590,15 @@ class RaceController extends ChangeNotifier {
       if (_closedLane != null &&
           spawnOnEdge > closureStart - 200 &&
           spawnOnEdge < closureEnd + 100 &&
-          (lane - _closedLane! * .65).abs() < .3)
+          (lane - _closedLane! * .65).abs() < .3) {
         lane = 0;
+      }
     }
     if (traffic.any(
       (t) => (t.position - spawn).abs() < (testCourseEnabled ? 65 : 320),
-    ))
+    )) {
       return;
+    }
     final palette = [
       0xffe9d9ac,
       0xffc16554,
