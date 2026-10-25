@@ -71,3 +71,26 @@ headless software renderer, command-recording CPU cost improved while overall
 cadence did not; DPR mattered strongly. Keep both pipelines available for the
 new scene; do not change the shipping default based on this narrow experiment.
 See ../research/wasm-benchmark.md for evidence and limitations.
+
+## Moving proof review — 2026-10-25
+
+The user considers the one-minute cartoon proof a successful-ish technology test:
+arrow steering works and animation feels smooth. This is not approval of final
+balance or asset packs. Forward motion still feels extremely slow, independently
+of frame cadence. High-speed steering appears to use the same left-facing sprite
+in either direction. Source inspection finds that both steering signs select the
+same skid frame above 100 mph and steering magnitude .87; this is the likely
+cause, pending a corrected moving comparison.
+
+New content direction: design palette-remappable car paint so shared vehicle
+sheets can supply varied traffic. Keep glass, tires, lights, cabin and shading
+independent of paint. Regional news should use local accents. Add cute local
+incidental details throughout development. These directions still need sample
+and runtime design; they are not implemented capabilities.
+
+Proposed next slice: a continuous 90-second playable departure corridor, with a
+short repeatable speed/handling test first. Compare optical-flow/camera settings
+without changing route time or distance rules; correct directional skid poses;
+then review one palette-remappable traffic family and a small regional radio/
+roadside-detail sample before expanding production content. Exact route, starter
+car and radio personality remain interview choices rather than approved defaults.

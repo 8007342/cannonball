@@ -157,3 +157,18 @@ Current interpretation: the camera is behind the car. An enormous translucent st
 ## Decision log
 
 2026-10-25: captured the confirmed answers above in specs for racing, controls, world, art and progress; corrected browser-only scope and the unequal-run Top100 policy throughout project docs. Pixel-art motion and camera lean research requested. Right-steer mapping was subsequently confirmed; implementation now proceeds under playable-road-trip.
+
+## Next slice after the smooth cartoon proof
+
+Confirmed feedback: technology provisionally accepted; forward movement feels too
+slow; high-speed turn pose is wrong; palette-varied traffic, local radio accents
+and cute incidental details are desired.
+
+Focused next choices (recommendations, not decisions):
+- Begin the authored vertical slice at Red Ball Garage, with a brief NYC escape
+  into open road, or tune on an open-highway test corridor first? Recommend the
+  highway handling test before adding dense city departure geometry.
+- What is the starter car: battered compact, old station wagon, or something
+  specific? Final Corvette remains unchanged.
+- Radio tone: affectionate local humor, straight traffic reporting with occasional
+  jokes, or heightened arcade comedy? Recommend warm local humor with clear advice.
