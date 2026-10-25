@@ -1,0 +1,20 @@
+# Second proof sample art
+
+Generated with the built-in image_gen tool on 2026-10-25. These four original sample images are for moving review, not a full production pack. Runtime crops/remaps retain source images. Garage geography is illustrative, not a verified Red Ball Garage reconstruction. No supplied third-party game artwork was copied.
+
+## s2000
+
+Use case: stylized-concept. Asset type: animated arcade racing sprite atlas. Create one transparent PNG exactly1536x1024, precise3columns2rows of six512x512 cells. In every cell the SAME desirable older Honda S2000 roadster, roof down, saturated red paint (body will be palette remapped), rear chase-camera view, dark open cockpit, silver wheels, black tires, recognizable proportions, small oval red tail lamps. Original lively painted cartoon racing art with gently diffused pixel edges, matching a modern remake of SNES Super Off Road The Baja. No text, badges, numbers, ground or ground shadows. Each vehicle fits inside cell margins, centered x256, tire contact y420, width390px height260px. Equal scale and anchors. Six reading-order poses: straight flat rear, turning left12degrees rear, turning right12degrees rear, uphill rear, downhill rear, rightward skid rear. Never front facing. Clean genuine transparent background around each car, no checkerboard, no captions.
+
+## garage-wall
+
+Use case: illustration-story. Asset type: landscape game landing screen background1536x1024. First person close view of an old desirable NYC automotive garage interior wall. Main subject is an OPEN weathered wooden keybox mounted on wall, empty, containing six small brass key hooks arranged3columns2rows. Keybox occupies central x30%-70%,y20%-80%, hooks at x40%,50%,60%,y40%,65%. NO KEYS (runtime overlay will add them). Warm wood grain, soft afternoon light, little dust motes, surrounding glimpses of garage tools, red tool cabinet edge, rag and subtle lived-in details. Painted lively cartoon with diffused pixel-like edges, coherent racing game style, appealing rather than spooky. Straight-on camera, functional clearly visible hooks. Absolutely no text, lettering, logos, numbers or watermark. No UI.
+
+## garage-exterior
+
+Use case: illustration-story. Asset type: landscape game cinematic background1536x1024. First person view from INSIDE a cozy older NYC automotive garage through open wide doorway onto daylight brick courtyard/street. A desirable red Honda S2000 convertible roof down is parked just outside at frame x63%,y61%, three-quarter driver-side/rear view, driver door closed, no people. Warm sunlight on car, open garage darker framing with tool cabinet, wooden post and hanging garage clutter in foreground left; brick city buildings and distant urban character outside. Camera at standing eye level aimed toward the car. Painted lively animated cartoon, gently diffused pixel-like edges, convincing sculpted car same coherent style as modern SNES racing remake. No lettering, signs, logos, watermark, interface. S2000 recognizable silhouette, not a generic rectangle.
+
+## entry-atlas
+
+Use case: stylized-concept. Asset type: transparent game transition asset atlas1536x1024, precise3columns2rows six512x512 cells no grid. Painterly animated cartoon, softly pixelated edges. Reading order: cell1 one old silver metal car key with small black fob, worn red keychain, hanging vertically; cell2 one human hand entering from lower right holding that same key/fob/keychain; cell3 hand reaching forward from lower right to open a car door; cell4 red Honda S2000 driver door OPEN viewed close from outside, dark inner door panel, angled red door frame as a foreground occluder; cell5 first person compact dark S2000 cabin dashboard and steering wheel with windshield rim (no text or legible instruments), cropped wide interior insert; cell6 same red roof-down Honda S2000 rear view parked, dark cockpit, matching cartoon racing car. Separate each asset with generous transparent margin. No ground, no shadows outsideobjects, no captions, logos, letters, watermark or checkerboard. Actual transparent background.
+
