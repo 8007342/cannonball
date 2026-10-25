@@ -1,0 +1,6 @@
+{
+  "$schema": "../../services/api/node_modules/wrangler/config-schema.json",
+  "name": "cannonball",
+  "pages_build_output_dir": "../../build/web",
+  "compatibility_date": "2026-10-25"
+}

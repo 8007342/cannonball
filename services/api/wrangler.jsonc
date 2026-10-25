@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cannonball-api",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-10-25",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "cannonball.tlatoani.net/api/*", "zone_name": "tlatoani.net" }
+  ],
+  "vars": {
+    "APP_ORIGIN": "https://cannonball.tlatoani.net"
+  }
+}
