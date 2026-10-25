@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class _ProofGarageState extends State<ProofGarage>
   late final AnimationController _clock;
   String _shot = 'keys';
   bool _completed = false;
+  bool _precacheStarted = false;
 
   @override
   void initState() {
@@ -46,6 +48,25 @@ class _ProofGarageState extends State<ProofGarage>
       ),
     )..addListener(_advance);
     if (widget.departing) _clock.forward();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!widget.artwork || _precacheStarted) return;
+    _precacheStarted = true;
+    // Decode the complete directed sequence while the road is preparing. Each
+    // panel then uses the same ImageCache entry on its first animated frame.
+    for (final path in const [
+      'assets/proof-next/garage-wall.png',
+      'assets/proof-next/garage-exterior.png',
+      'assets/proof-next/entry-atlas.png',
+      'assets/proof-next/s2000-atlas.png',
+      'assets/milestone/hand-reach-atlas.png',
+      'assets/milestone/cabin.png',
+    ]) {
+      unawaited(precacheImage(AssetImage(path), context, onError: (_, _) {}));
+    }
   }
 
   @override
@@ -154,19 +175,16 @@ class _ProofGarageState extends State<ProofGarage>
             ? 0.0
             : math.sin(walk * math.pi * 4) * 2.0 * math.sin(walk * math.pi);
         final keyExtent = h * .21;
-        final handExtent = h * .44;
-        final handLeft =
-            w * .43 -
-            handExtent * .32 +
-            (widget.reducedMotion
-                ? 0
-                : (1 - handReach) * w * .28 + withdraw * w * .20);
-        final handTop =
-            h * .36 -
-            handExtent * .34 +
-            (widget.reducedMotion
-                ? 0
-                : (1 - handReach) * h * .27 + withdraw * h * .34);
+        final hook = GarageHandPlacement.hook(Size(w, h));
+        final handBounds = GarageHandPlacement.bounds(
+          Size(w, h),
+          reach: handReach,
+          withdrawal: withdraw,
+          reducedMotion: widget.reducedMotion,
+        );
+        final handExtent = handBounds.width;
+        final handLeft = handBounds.left;
+        final handTop = handBounds.top;
         final showKey = !moving || pickup < .55;
         final exterior = _picture('assets/proof-next/garage-exterior.png');
         final wall = _picture('assets/proof-next/garage-wall.png');
@@ -209,10 +227,10 @@ class _ProofGarageState extends State<ProofGarage>
                     if (pan < 1 && showKey)
                       Positioned(
                         left:
-                            w * .43 -
+                            hook.dx -
                             keyExtent * .5 +
                             (widget.reducedMotion ? 0 : w * pan),
-                        top: h * .36 - keyExtent * .10,
+                        top: hook.dy - keyExtent * .10,
                         child: _cell(
                           0,
                           extent: keyExtent,
@@ -370,6 +388,53 @@ class _ProofGarageState extends State<ProofGarage>
     onPressed: onTap,
     icon: Icon(icon, color: const Color(0xffffdf9c)),
   );
+}
+
+/// The art source has a small hand at its contact pivot and a long forearm
+/// reaching to the opposite cell edge. Keep contact on the key hook while the
+/// forearm exits below the viewport; never enlarge the old short-arm image.
+class GarageHandPlacement {
+  static const contact = Offset(.16, .17);
+  static const wallSize = Size(1536, 1024);
+  static const sourceHook = Offset(.43, .385);
+
+  /// Same centered cover transform as the preserved wall painting. The hook is
+  /// a point in that painting, not a fixed percentage of every viewport shape.
+  static Offset hook(Size viewport) {
+    final scale = math.max(
+      viewport.width / wallSize.width,
+      viewport.height / wallSize.height,
+    );
+    return Offset(
+      (viewport.width - wallSize.width * scale) * .5 +
+          wallSize.width * sourceHook.dx * scale,
+      (viewport.height - wallSize.height * scale) * .5 +
+          wallSize.height * sourceHook.dy * scale,
+    );
+  }
+
+  static Rect bounds(
+    Size viewport, {
+    required double reach,
+    required double withdrawal,
+    required bool reducedMotion,
+  }) {
+    final extent = viewport.height * .94;
+    final dx = reducedMotion
+        ? 0.0
+        : (1 - reach) * viewport.width * .28 +
+              withdrawal * viewport.width * .20;
+    final dy = reducedMotion
+        ? 0.0
+        : (1 - reach) * viewport.height * .27 +
+              withdrawal * viewport.height * .34;
+    return Rect.fromLTWH(
+      hook(viewport).dx - extent * contact.dx + dx,
+      hook(viewport).dy - extent * contact.dy + dy,
+      extent,
+      extent,
+    );
+  }
 }
 
 class _AtlasGutterClip extends CustomClipper<Rect> {

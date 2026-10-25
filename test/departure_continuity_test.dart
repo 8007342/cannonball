@@ -28,6 +28,34 @@ void main() {
     expect(DepartureTimeline.overlayOpacity(1), 0);
   });
 
+  test('long forearm leaves the screen while fingers meet the key hook', () {
+    for (final size in [
+      const Size(1280, 577),
+      const Size(844, 390),
+      const Size(1920, 1080),
+    ]) {
+      final bounds = GarageHandPlacement.bounds(
+        size,
+        reach: 1,
+        withdrawal: 0,
+        reducedMotion: false,
+      );
+      final finger =
+          bounds.topLeft +
+          Offset(
+            bounds.width * GarageHandPlacement.contact.dx,
+            bounds.height * GarageHandPlacement.contact.dy,
+          );
+      expect(finger.dx, closeTo(GarageHandPlacement.hook(size).dx, .001));
+      expect(finger.dy, closeTo(GarageHandPlacement.hook(size).dy, .001));
+      expect(
+        bounds.bottom,
+        greaterThan(size.height),
+        reason: 'source wrist edge must be offscreen',
+      );
+    }
+  });
+
   testWidgets('departure emits ordered beats and completes only once', (
     tester,
   ) async {
