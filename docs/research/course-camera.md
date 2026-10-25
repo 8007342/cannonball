@@ -136,3 +136,27 @@ analysis/tests/build and browser inspection after cherry-picking these checkpoin
 No screenshot or passing unit test establishes perceived speed, physical input
 latency or presented-frame rate. Root records actual backing size, update/render
 counts, scheduling percentiles and moving feedback separately.
+
+## Moving-review correction
+
+The first numeric bend test passed while the projected curve still looked too
+straight. Root's moving review also found that a fixed horizon hid the climb.
+The final pass therefore multiplies the authored curvature by8 relative to the
+initial profile while keeping steering load bounded. This is deliberate arcade
+exaggeration for review, not a measured real-road radius. The initial501-unit
+smoke deviation above describes the first version; the same point in the revised
+profile deviates by approximately4,006presentation units.
+
+Grade now contributes smoothed view pitch up to±.14of viewport height. Its
+projection term is zero at the player's560-unit camera depth, keeping tire
+contact anchored while the far horizon moves. Backdrop, clouds and haze move
+consistently with pitch. Tests assert grade sign, visible far shift and invariant
+player anchor. This is camera pitch on a hill, independent of comfort-mode roll.
+
+The tunnel has six fixed arches rather than only distant entry/exit facades.
+Its portals are wider so the actual transparent opening fits the playable road.
+Outdoor vegetation and street lamps are excluded within the tunnel module;
+edge shading and the existing ceiling/headlight treatment establish the interior.
+A bright outdoor exit remains visible beyond the arches. Root also corrected
+the atlas fog blend direction and added a pixel regression so transparent texels
+stay transparent. That correction is maintained on the integration branch.
