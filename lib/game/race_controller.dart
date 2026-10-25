@@ -55,6 +55,8 @@ class RaceController extends ChangeNotifier {
   bool braking = false, paused = false, motionControl = false;
   bool comfortMode = false;
   bool testCourseEnabled = false;
+  double courseStartDistance = 0;
+  double get courseDistance => _worldDistance + courseStartDistance;
   double _effectiveSteering = 0;
   double get effectiveSteering =>
       testCourseEnabled ? _effectiveSteering : steering;
@@ -114,8 +116,12 @@ class RaceController extends ChangeNotifier {
       nextChoices.length > 1 && _edge.length - _edgeDistance < 1000;
   double get distanceToFork => _edge.length - _edgeDistance;
   int? get closedLane => _closedLane;
-  double get closureStart => _edge.length * .48;
-  double get closureEnd => _edge.length * .59;
+  double get closureStart => testCourseEnabled
+      ? 4300 - courseStartDistance - (_worldDistance - _edgeDistance)
+      : _edge.length * .48;
+  double get closureEnd => testCourseEnabled
+      ? 4920 - courseStartDistance - (_worldDistance - _edgeDistance)
+      : _edge.length * .59;
   bool get inLaneClosure =>
       _closedLane != null &&
       _edgeDistance > closureStart &&
@@ -136,8 +142,12 @@ class RaceController extends ChangeNotifier {
     bool reactiveTraffic = false,
     double launchSpeed = 0,
     bool testCourse = false,
+    double courseStartDistance = 0,
   }) {
     testCourseEnabled = testCourse;
+    this.courseStartDistance = testCourse && courseStartDistance.isFinite
+        ? courseStartDistance.clamp(0, ProofCourse.length)
+        : 0;
     _effectiveSteering = 0;
     reactiveTrafficEnabled = reactiveTraffic;
     _reactiveTraffic = ReactiveTraffic();
@@ -155,7 +165,7 @@ class RaceController extends ChangeNotifier {
       }
     }
     _stepCount = 0;
-    _remaining = 90;
+    _remaining = testCourseEnabled ? 300 : 90;
     _speed = launchSpeed.isFinite ? launchSpeed.clamp(0, car.topSpeed) : 0;
     _worldDistance = 0;
     _edgeDistance = 0;
@@ -209,7 +219,8 @@ class RaceController extends ChangeNotifier {
   }
 
   double curveAt(double position) {
-    if (testCourseEnabled) return ProofCourse.steeringLoadAt(position);
+    if (testCourseEnabled)
+      return ProofCourse.steeringLoadAt(position + courseStartDistance);
     final phase = _seed % 251 / 40;
     final strength = _edge.biome == Biome.mountain ? 1.0 : .62;
     return (math.sin(position / 1700 + phase) * .36 +
@@ -314,7 +325,8 @@ class RaceController extends ChangeNotifier {
         : null;
     // One authored proof taper lets the short sample exercise actual lane
     // restriction, NPC merging and advance warnings. Legacy seeds are unchanged.
-    if (reactiveTrafficEnabled && _edge.id == graph.edges.first.id) {
+    if (testCourseEnabled ||
+        (reactiveTrafficEnabled && _edge.id == graph.edges.first.id)) {
       _closedLane = 1;
     }
     weather = switch (_edge.biome) {
