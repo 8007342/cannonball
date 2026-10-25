@@ -518,7 +518,7 @@ class RaceController extends ChangeNotifier {
       0xff7b965d,
       0xff8e7ea1,
     ];
-    final profileRoll = _trafficId % 20;
+    final profileRoll = (_trafficId * 7 + _seed) % 20;
     final profile = !reactiveTrafficEnabled
         ? TrafficProfile.ordinary
         : profileRoll < 13
@@ -533,7 +533,16 @@ class RaceController extends ChangeNotifier {
         id: _trafficId++,
         position: spawn,
         x: lane,
-        cruiseSpeed: 67 + _trafficRandom.next() * 27,
+        cruiseSpeed:
+            (67 + _trafficRandom.next() * 27) *
+            (reactiveTrafficEnabled
+                ? switch (profile) {
+                    TrafficProfile.cautious => .88,
+                    TrafficProfile.brisk => 1.24,
+                    TrafficProfile.pushy => 1.16,
+                    TrafficProfile.ordinary => 1.06,
+                  }
+                : 1),
         color: palette[_trafficRandom.index(palette.length)],
         truck: _trafficRandom.next() < .18,
         changeAt: elapsed + 4 + _trafficRandom.next() * 8,
