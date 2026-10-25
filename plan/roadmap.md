@@ -1,7 +1,6 @@
 # Cannonball roadmap
 
-Current phase: Astra engine/backend/platform and root UI are implemented as a
-playable first pass. Active work and evidence: openspec/changes/playable-road-trip.
+Current phase: the painted S2000 driving-and-camera test course is implemented for review. It adds authored hills/bends, progressive steering and departure continuity. Active work and evidence: openspec/changes/playable-road-trip. Campaign stages, rather than the entire country, now target10–15minutes.
 
 1. Replace the rejected primitive renderer with a measured Baja-inspired cartoon
    proof: textured ground, animated suspension/wheels/poses, cached parallax,
@@ -16,9 +15,14 @@ playable first pass. Active work and evidence: openspec/changes/playable-road-tr
 4. Real-phone playtesting: tilt permission/calibration, lean direction/amplitude,
    sustained frame times, touch latency and animation readability. Native apps
    remain excluded; URL access is sufficient and PWA installation optional.
-5. Tune full 10–15 minute runs across all cars/routes/seeds with people. One
+5. Tune10–15minute city-to-city campaign stages across cars/routes/seeds with people. One
    deterministic reactive-pilot starter run currently completes in 13:20.700;
    that is simulation evidence, not a human playtest or universal completion claim.
 
 Do not archive the active change or claim production completion while its final
 content and live/device acceptance tasks remain unchecked.
+
+The current proof is an illustrative two-minute course. Its moving review does
+not approve the nationwide art pack, geographical atlas, physical-device comfort
+or live staged saves. Camera presets hold physics constant. Research and review
+evidence are under docs/research/course-camera.md and docs/driving-milestone-review.md.

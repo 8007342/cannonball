@@ -78,9 +78,9 @@ baseline. Its [timing record](docs/research/visual-proof-metrics.json) and
 `/?proof=1` route runs the second S2000 proof below. The regular garage route
 still retains the earlier full-run prototype while staged progression is designed.
 
-## Second proof: S2000 departure and reactive traffic
+## Second proof (historical): S2000 departure and reactive traffic
 
-`/?proof=1` now opens the painted wooden keybox. Take the keys (or press Enter)
+The second proof introduced the painted wooden keybox. The current route runs the milestone below. Take the keys (or press Enter)
 for the short garage departure, then drive the 90-second study. The fast-forward
 icon skips departure. Controls remain rim drag/Left/Right steering, outside-rim
 hold/Down/Space braking, and P/Escape pause. Sound starts muted; enable it for
@@ -95,3 +95,22 @@ raster detail. New art and prompts live in [assets/proof-next](assets/proof-next
 [stage-record foundation](docs/stage-progress.md) document the second proof.
 The stage model is a local, tested foundation; city selection, remote stage saves,
 regional voice packs, connected playable ramps and new rankings remain future work.
+
+## Driving-and-camera milestone
+
+Open `/?proof=1` for the current two-minute authored test course. Take the keys
+or press Enter for the revised departure. Sound starts with that gesture; the
+speaker button mutes it. Steering progresses through gentle/medium/firm poses.
+
+- Arrows or rim drag steer; Down/Space/outside-rim hold brakes.
+- C or the camera icon cycles baseline / wide / flow (flow starts selected).
+- R restarts the selected section without replaying the garage.
+- Keys1–8 jump to straight, S-bends, climb, descent, worksite, canopy, bridge, tunnel.
+- `?proof=1&chapter=5` starts the worksite review; `camera=baseline` or `camera=wide`
+  selects a camera comparison. All camera variants retain the same physics.
+
+This is an illustrative test course, not the verified real-world campaign.
+See [course/camera research](docs/research/course-camera.md),
+[perceived speed evidence](docs/research/perceived-speed-milestone.md),
+[departure continuity](docs/garage-continuity.md), and
+[new art/prompts](assets/milestone/PROMPTS.md).
