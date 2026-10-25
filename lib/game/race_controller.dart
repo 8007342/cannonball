@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import 'models.dart';
 import 'proof_course.dart';
+import 'proof_dynamics.dart';
 import 'route.dart';
 import 'traffic.dart';
 
@@ -199,6 +200,12 @@ class RaceController extends ChangeNotifier {
     _edge = graph.edges.first;
     previousBiome = null;
     _enterEdge();
+    if (testCourseEnabled && reactiveTrafficEnabled) {
+      _nextSpawn = .8;
+      for (var i = 0; i < 4; i++) {
+        _spawnTraffic(proofOffset: 95 + i * 85.0);
+      }
+    }
     _say('Red Ball Garage. Westbound. Next stop: the Pacific.', 3, 8);
     notifyListeners();
   }
@@ -257,6 +264,7 @@ class RaceController extends ChangeNotifier {
     final targetSteering = steering.isFinite ? steering.clamp(-1.0, 1.0) : 0.0;
     // ~0.2 s to full input is a playtest hypothesis, not a sourced optimum.
     // Release is quicker and reversals pass through neutral without a queue.
+    final previousSteering = _effectiveSteering;
     final rate = targetSteering == 0 ? 10.0 : 5.5;
     _effectiveSteering += (targetSteering - _effectiveSteering).clamp(
       -rate * fixedStep,
@@ -279,7 +287,20 @@ class RaceController extends ChangeNotifier {
           : weather == RaceWeather.rain
           ? .91
           : 1.0;
-      _speed = (_speed + (braking ? -82 : _car.acceleration) * fixedStep).clamp(
+      final acceleration = testCourseEnabled
+          ? ProofDynamics.acceleration(
+              speed: _speed,
+              topSpeed: _car.topSpeed,
+              engineAcceleration: _car.acceleration,
+              steering: safeSteering,
+              steeringRate: (_effectiveSteering - previousSteering) / fixedStep,
+              grade:
+                  (ProofCourse.elevationAt(courseDistance + 5) -
+                      ProofCourse.elevationAt(courseDistance - 5)) /
+                  840,
+            )
+          : _car.acceleration;
+      _speed = (_speed + (braking ? -82 : acceleration) * fixedStep).clamp(
         0,
         _car.topSpeed,
       );
@@ -502,7 +523,9 @@ class RaceController extends ChangeNotifier {
 
   void _advanceReactiveTraffic() {
     if (elapsed >= _nextSpawn) {
-      final interval = directorPhase == 'peak'
+      final interval = testCourseEnabled
+          ? 1.2
+          : directorPhase == 'peak'
           ? 2.6
           : directorPhase == 'recovery'
           ? 7.0
@@ -540,11 +563,14 @@ class RaceController extends ChangeNotifier {
     );
   }
 
-  void _spawnTraffic() {
+  void _spawnTraffic({double? proofOffset}) {
     final spawn =
         _worldDistance +
-        (reactiveTrafficEnabled ? 520 : 1500) +
-        _trafficRandom.next() * (reactiveTrafficEnabled ? 520 : 900);
+        (testCourseEnabled
+            ? (proofOffset ?? 300)
+            : (reactiveTrafficEnabled ? 520 : 1500)) +
+        _trafficRandom.next() *
+            (testCourseEnabled ? 25 : (reactiveTrafficEnabled ? 520 : 900));
     var lane = [-.65, 0.0, .65][_trafficRandom.index(3)];
     final spawnOnEdge = _edgeDistance + spawn - _worldDistance;
     if (reactiveTrafficEnabled &&
@@ -555,7 +581,19 @@ class RaceController extends ChangeNotifier {
       lane = 0;
     }
     // One car at a time, separated longitudinally; no solid random traffic walls.
-    if (traffic.any((t) => (t.position - spawn).abs() < 320)) return;
+    if (testCourseEnabled) {
+      // Stagger lanes and preserve a longitudinal opening rather than walls.
+      lane = [-.65, .65, 0.0][_trafficId % 3];
+      if (_closedLane != null &&
+          spawnOnEdge > closureStart - 200 &&
+          spawnOnEdge < closureEnd + 100 &&
+          (lane - _closedLane! * .65).abs() < .3)
+        lane = 0;
+    }
+    if (traffic.any(
+      (t) => (t.position - spawn).abs() < (testCourseEnabled ? 65 : 320),
+    ))
+      return;
     final palette = [
       0xffe9d9ac,
       0xffc16554,

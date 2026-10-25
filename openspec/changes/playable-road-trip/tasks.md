@@ -68,3 +68,8 @@ is the requested first draft, not final art approval or production acceptance.
 - [x] 10.3 Produce and integrate prepared synthetic radio presenters, retaining device fallback and explicit regional-performance limitations.
 - [x] 10.4 Validate locally, publish listening/game previews and push durable work-branch checkpoints; preserve pending driving feedback.
 - [x] 10.5 Clear joining-road scenery footprints and provide exaggerated flow comparison with stronger hill presentation; verify geometry and inspect locally in motion.
+
+## 11. Speed, hill and traffic tuning draft
+- [ ] 11.1 Add proof-only tapered acceleration and smooth-driving speed retention; test launch, near-limit acceleration and steering losses without changing legacy runs.
+- [ ] 11.2 Add stronger flow comparison, emphasized elevation and a camera-scaled visible traffic stream with passing gaps; verify deterministic placement and moving readability.
+- [ ] 11.3 Run local checks, publish next draft, document tuning limits and push durable work branch.

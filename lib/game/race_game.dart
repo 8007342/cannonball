@@ -61,13 +61,20 @@ class RaceGame extends FlameGame {
   final BillboardBatch _batch = BillboardBatch();
   static const _w = 1000.0, _roadHalfWidth = 1100.0;
   static const visualSpeedScale = 12.0;
-  String _speedPreset = 'turbo';
+  String _speedPreset = 'afterburn';
   String get speedPreset => _speedPreset;
   void setSpeedPreset(String preset) {
-    if (const ['classic', 'cruise', 'arcade', 'turbo'].contains(preset)) {
+    if (const [
+      'classic',
+      'cruise',
+      'arcade',
+      'turbo',
+      'afterburn',
+    ].contains(preset)) {
       final previous = _flowScale;
       _speedPreset = preset;
-      _worldOffset += controller.worldDistance * (previous - _flowScale);
+      final interpolatedDistance = (_world - _worldOffset) / previous;
+      _worldOffset += interpolatedDistance * (previous - _flowScale);
     }
   }
 
@@ -81,7 +88,9 @@ class RaceGame extends FlameGame {
                 ? 1.3
                 : _speedPreset == 'arcade'
                 ? 1.7
-                : 3.0)
+                : _speedPreset == 'turbo'
+                ? 3.0
+                : 7.0)
           : 1.0);
   bool get _course => _nextProof && controller.testCourseEnabled;
   String _cameraPreset = 'flow';
@@ -103,7 +112,7 @@ class RaceGame extends FlameGame {
   double _courseZ(double s) =>
       (s - controller.courseStartDistance) * _flowScale + _worldOffset;
 
-  static const _segmentLength = 115.0, _segmentCount = 100;
+  static const _segmentLength = 115.0, _segmentCount = 180;
   final List<_RoadPoint> _points = List.generate(
     _segmentCount + 1,
     (_) => _RoadPoint(),

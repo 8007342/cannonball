@@ -86,3 +86,14 @@ footprints must exclude vegetation across the merging pavement. Compare much
 stronger near-field optical flow and roadside density independently of physics,
 route miles and elapsed time. These requests remain pending implementation and
 moving review rather than being implied complete by soundtrack work.
+
+## Speed/traffic draft after soundtrack review
+User approves improved music/voices and requests substantially faster apparent
+motion, stronger hills, slower launch with diminishing high-speed acceleration,
+and traffic. Proof-only acceleration uses a speed-dependent available thrust
+curve, steering scrub and grade load. Small sustained steering remains economical;
+hard steering/rapid reversals bleed speed. These are arcade tuning hypotheses,
+not a validated vehicle model. Keep prior flow settings for comparison, and keep
+NPC relative motion consistent with collision coordinates. A dedicated proof
+traffic stream must enter beyond the visible ribbon, seed an initial readable
+stagger and preserve passing gaps. Legacy cloud receipt physics stay unchanged.

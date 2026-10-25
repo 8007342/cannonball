@@ -49,7 +49,7 @@ void main() {
     expect(find.byTooltip('Take the S2000 keys'), findsOneWidget);
     expect(find.text('THE KEY BOX'), findsNothing);
     expect(race.elapsed, 0);
-    expect(race.speed, 110);
+    expect(race.speed, 0);
     expect(tester.takeException(), isNull);
   });
 
