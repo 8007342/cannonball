@@ -71,3 +71,9 @@ worktree because the forge Flutter wrapper only mounts the primary checkout.
 The pure traffic file passes local Dart analysis. Integrated Flutter validation
 is run from the primary checkout after merging this work branch; it is not
 inferred from the pure-Dart smoke checks.
+
+The short reactive proof additionally authors a right-lane construction taper on
+its initial NY corridor at the existing 48–59% road interval. It uses actual
+controller closure flags, collision boundaries, radio advice and NPC merge/stop
+logic. Traffic is not spawned inside that restricted lane. Legacy runs keep
+their original seeded closure decisions unchanged.
