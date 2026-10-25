@@ -85,8 +85,9 @@ class RaceGame extends FlameGame {
   String _cameraPreset = 'flow';
   String get cameraPreset => _cameraPreset;
   void setCameraPreset(String value) {
-    if (const ['baseline', 'wide', 'flow'].contains(value))
+    if (const ['baseline', 'wide', 'flow'].contains(value)) {
       _cameraPreset = value;
+    }
   }
 
   double get visualSteering => _steeringArt.value;
@@ -738,11 +739,17 @@ class RaceGame extends FlameGame {
     }
     if (controller.closedLane != null) {
       final start =
-          _world +
-          (controller.closureStart - controller.edgeDistance) * _flowScale;
+          (controller.worldDistance +
+                  controller.closureStart -
+                  controller.edgeDistance) *
+              _flowScale +
+          _worldOffset;
       final end =
-          _world +
-          (controller.closureEnd - controller.edgeDistance) * _flowScale;
+          (controller.worldDistance +
+                  controller.closureEnd -
+                  controller.edgeDistance) *
+              _flowScale +
+          _worldOffset;
       for (final z in ProofCourse.fixedPositions(
         origin: start - 1800,
         spacing: 230,
