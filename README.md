@@ -150,3 +150,15 @@ surfing. [Review/evidence](docs/camera-radio-contact-review.md) and the
 [spec-linked source register](docs/research/reference-register.md) record provenance
 and limitations. Gentle-bend cruising assist is researched/spec'd, still pending
 implementation; current curves retain prior steering demand.
+
+## Rolling traffic and touch draft
+
+The proof now defaults to the approved wide camera, denser traffic, irregular
+rollers, speed-responsive chase framing and small sprung pitch/roll/heave cues.
+The translucent wheel arcs span the screen height with generous touch bands and
+neutral side guards. Center touches still brake deliberately.
+
+V or the speed-effect utility toggles optional peripheral streaks/vignette;
+`?proof=1&effects=on` enables them initially. Compare
+`?proof=1&traffic=light&chase=stable&body=stable` for the earlier traffic density
+and steady presentation. [Research, controls and limits](docs/research/rolling-chase-suspension.md).

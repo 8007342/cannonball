@@ -34,3 +34,9 @@ cones are implemented in the local proof. See docs/camera-radio-contact-review.m
 Gentle-bend cruising assist is now researched/spec'd and tracked separately for
 implementation, with no lane-center magnet. All research/provenance documents
 are inventoried in docs/research/reference-register.md and linked from the specs.
+
+Current local comparison adopts wide framing, rolling terrain, dense traffic,
+damped chase/suspension cues and protected thumb-wide rim controls. Optional
+peripheral effects are reviewable separately. Research and local evidence are in
+docs/research/rolling-chase-suspension.md; lane-follow assist and physical-phone
+acceptance remain open.

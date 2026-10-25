@@ -30,6 +30,50 @@ Future<Offset> mountWheel(
 }
 
 void main() {
+  test('rim stays visibly inset and spans landscape height with a generous thumb target', () {
+    for (final size in [
+      const Size(800, 400),
+      const Size(844, 390),
+      const Size(1280, 720),
+    ]) {
+      final g = WheelGeometry(size);
+      expect(g.radius, greaterThan(size.height / 2));
+      expect(g.center.dx - g.radius, inInclusiveRange(40, 75));
+      expect(g.strokeWidth, greaterThanOrEqualTo(40));
+      expect(g.onRim(Offset(g.center.dx - g.radius + 45, g.center.dy)), isTrue);
+      expect(g.onRim(Offset(size.width - 8, size.height / 2)), isTrue);
+      expect(g.inSteeringGuard(g.center), isFalse);
+    }
+  });
+  testWidgets(
+    'inner edge near misses do not brake and can slide onto steering',
+    (tester) async {
+      final steer = <double>[], brake = <bool>[];
+      final origin = await mountWheel(tester, steer, brake);
+      final thumb = await tester.startGesture(origin + const Offset(140, 200));
+      expect(brake, isEmpty);
+      await thumb.moveTo(origin + const Offset(100, 200));
+      await thumb.moveTo(origin + const Offset(100, 120));
+      expect(steer.last, greaterThan(0));
+      expect(brake, isEmpty);
+      await thumb.up();
+      expect(steer.last, 0);
+    },
+  );
+  testWidgets(
+    'a protected side touch stays neutral even when dragged toward the brake area',
+    (tester) async {
+      final steer = <double>[], brake = <bool>[];
+      final origin = await mountWheel(tester, steer, brake);
+      final touch = await tester.startGesture(origin + const Offset(1, 1));
+      await touch.moveTo(origin + const Offset(400, 200));
+      await touch.up();
+      await tester.pump(const Duration(milliseconds: 160));
+      expect(brake, isEmpty);
+      expect(steer, isEmpty);
+    },
+  );
+
   test('angular wrap takes the short path across the left rim', () {
     expect(
       WheelGeometry.angleDelta(math.pi - .1, -math.pi + .1),

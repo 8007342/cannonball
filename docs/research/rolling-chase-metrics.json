@@ -1,0 +1,41 @@
+{
+  "scope": "visible headless Chromium scheduling with dense traffic, rolling terrain and optional edge effects; not presented FPS",
+  "frames": 240,
+  "p95Ms": 33.30000000001746,
+  "p99Ms": 33.39999999999418,
+  "meanCommandCpuMicros": 873.75,
+  "wallSeconds": 4.2429999999940335,
+  "simulationSeconds": 4.283333333333333,
+  "pitchRange": [
+    -0.05122758736417639,
+    0.10050989778808167
+  ],
+  "groundRange": [
+    0.8795935569792463,
+    0.9150645404162329
+  ],
+  "bodyPitchRange": [
+    0.003098797169667955,
+    0.010062740003951567
+  ],
+  "heaveRange": [
+    0.17931120710771534,
+    0.48479337539329626
+  ],
+  "trafficRange": [
+    10,
+    10
+  ],
+  "camera": "wide",
+  "backing": [
+    {
+      "width": 720,
+      "height": 405,
+      "cssWidth": 1280,
+      "cssHeight": 720,
+      "cssLeft": 0,
+      "cssTop": 0,
+      "pixels": 291600
+    }
+  ]
+}

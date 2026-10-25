@@ -87,8 +87,9 @@ is the requested first draft, not final art approval or production acceptance.
 - [ ] 13.1 Implement and playtest the gentle-bend cruising assist, its transition hysteresis and player-input preservation; the research/specification alone does not complete this behavior.
 
 ## 14. Wide camera, rolling terrain and dense traffic
-- [ ] 14.1 Make approved wide framing default and add speed/brake/turn-responsive damped chase composition with stable/reduced-motion fallback; test temporal behavior and shared projection.
-- [ ] 14.2 Add irregular shared elevation rollers and a denser staggered traffic stream with bounded visibility-aware spawns; verify terrain slopes, determinism and spawn openings.
-- [ ] 14.3 Research camera/speed cues and add optional bounded peripheral streak/vignette comparison preserving central hazard readability; record limits and update reference coverage.
-- [ ] 14.4 Validate locally, inspect moving traffic/terrain/camera options, publish and push durable work-branch checkpoints; retain physical-device and production acceptance work.
-- [ ] 14.5 Add bounded sprung roll/pitch/heave and crest/impact settling proxies with stable/reduced-motion fallback; test load response, settling and temporal consistency.
+- [x] 14.1 Make approved wide framing default and add speed/brake/turn-responsive damped chase composition with stable/reduced-motion fallback; test temporal behavior and shared projection.
+- [x] 14.2 Add irregular shared elevation rollers and a denser staggered traffic stream with bounded visibility-aware spawns; verify terrain slopes, determinism and spawn openings.
+- [x] 14.3 Research camera/speed cues and add optional bounded peripheral streak/vignette comparison preserving central hazard readability; record limits and update reference coverage.
+- [x] 14.4 Validate locally, inspect moving traffic/terrain/camera options, publish and push durable work-branch checkpoints; retain physical-device and production acceptance work.
+- [x] 14.5 Add bounded sprung roll/pitch/heave and crest/impact settling proxies with stable/reduced-motion fallback; test load response, settling and temporal consistency.
+- [x] 14.6 Reshape the rim into full-height thumb-width inset arcs, expand steering hit targets and add neutral guard/gesture acquisition; verify angular directions, near misses, multi-touch and deliberate braking.

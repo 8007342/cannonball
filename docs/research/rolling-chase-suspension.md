@@ -65,3 +65,38 @@ Human challenge, readability, comfort and actual mobile costs remain acceptance
 work. GameFlow/Valve pacing guidance continues to separate speed cues from
 required-decision density; increasing traffic is an experiment, not a reason to
 fill every second with unavoidable lane changes.
+
+## Touch-control correction
+
+The previous radius exceeded half the screen width, hiding the rim at mid-height.
+The new radius places the middle of each visible side arc55–65 CSS pixels inside
+the edge in typical landscape sizes. The painted silhouette is40–52 pixels wide,
+with low-alpha shading. Steering accepts a64–68px radial half-band, considerably
+beyond the paint. A32px neutral buffer and protected outer margins prevent edge
+misses from braking. Neutral gestures can slide onto steering with a fresh angle
+baseline; they never become brakes mid-drag. Deliberate center touches retain
+independent tap/hold braking. Tilt-hidden input keeps its prior touch-brake fallback.
+
+These dimensions follow the user's requested geometry, not a claim of universal
+physical thumb size. Unit/widget checks cover landscape arc placement, angular
+signs, neutral acquisition, near misses, two-pointer ownership and brake release.
+Real-phone reach and sensitivity still require the user's next moving review.
+
+## Local integration evidence
+
+118 Flutter tests,32 browser/audio tests and14 Worker tests passed locally, with
+clean analyzer, release web build, Worker dry-run and8 strict spec checks. This
+includes the sprung response tests and10 touch-control tests. In a real browser
+input-injection check, a guard touch dragged to the center remained non-braking;
+a left-rim upward drag produced positive steering without braking; adding a
+separate center finger applied braking while retaining the steering value.
+The new arcs were inspected across the full landscape height. This is emulated
+input/desktop evidence, not a claim of real-phone comfort.
+
+A240-rAF uncaptured dense/roller sample with edge effects enabled recorded33.3ms
+p95 and33.4ms p99 intervals, with about0.87ms mean CPU command recording at
+720×405 backing/CSS1280×720. Grade pitch crossed from−.051 to+.101, dynamic ground
+composition changed from.915 to.880 and ten traffic actors remained present.
+[Raw scope/metadata](rolling-chase-metrics.json) distinguishes callback scheduling
+from displayed-frame performance. This short software-browser sample is not a
+controlled performance comparison or a physical-phone result.

@@ -59,8 +59,8 @@ class SteeringPresentation {
       return VehiclePose(5, mirrored: value < 0);
     }
     if (value.abs() < .08) {
-      if (grade > .075) return const VehiclePose(3);
-      if (grade < -.075) return const VehiclePose(4);
+      if (grade > .045) return const VehiclePose(3);
+      if (grade < -.045) return const VehiclePose(4);
       return const VehiclePose(0);
     }
     final strength = value.abs() < .42

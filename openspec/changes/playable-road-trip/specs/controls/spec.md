@@ -12,7 +12,7 @@ Touch steering SHALL use an enlarged wheel with a clear center and cropped trans
 - **THEN** the car steers right without applying the brake
 
 ### Requirement: Brake and utility controls
-Outside-wheel taps SHALL briefly brake, and holding SHALL sustain braking. Holding Down arrow SHALL also brake. The car SHALL otherwise auto accelerate continuously. Left/Right SHALL support desktop steering. Tilt, mute, profile and pause SHALL remain visible and reachable above gameplay, consuming their own touches rather than braking.
+Taps outside the protected steering band and neutral guard SHALL briefly brake, and holding SHALL sustain braking. Holding Down arrow SHALL also brake. The car SHALL otherwise auto accelerate continuously. Left/Right SHALL support desktop steering. Tilt, mute, profile and pause SHALL remain visible and reachable above gameplay, consuming their own touches rather than braking.
 
 #### Scenario: toggling tilt during play
 - **WHEN** the player disables tilt with the persistent toggle
@@ -48,3 +48,14 @@ The controls requirements SHALL link to the [shared reference register](../../..
 #### Scenario: reviewing controls evidence
 - **WHEN** the implementation is assessed against this capability
 - **THEN** reviewers can follow the register to original references and distinguish historical observations from unverified production acceptance
+
+### Requirement: Forgiving thumb-sized steering arcs
+The wheel SHALL present full-height inset translucent side arcs with a generous
+touch band beyond the visible rim. A neutral guard around the band and outer side
+margins SHALL prevent missed rim touches from becoming accidental brake taps.
+Neutral touches MAY acquire steering when dragged onto the band without a jump.
+Deliberate central braking and independent multi-pointer controls SHALL remain.
+
+#### Scenario: missing the inner rim edge
+- **WHEN** a touch begins inside the protected steering guard
+- **THEN** it applies no brake, can move onto the rim to steer, and never converts into a brake gesture mid-drag

@@ -22,12 +22,15 @@ class _WheelControlState extends State<WheelControl> {
   final Map<int, double> _angles = {};
   final Map<int, double> _turns = {};
   final Set<int> _brakes = {};
+  final Set<int> _neutral = {};
   Timer? _brakeRelease;
   double _turn = 0;
   void _down(PointerDownEvent e, WheelGeometry g) {
     if (widget.visible && g.onRim(e.localPosition)) {
       _angles[e.pointer] = g.angle(e.localPosition);
       _turns[e.pointer] = _turn;
+    } else if (widget.visible && g.inSteeringGuard(e.localPosition)) {
+      _neutral.add(e.pointer);
     } else {
       _brakeRelease?.cancel();
       _brakes.add(e.pointer);
@@ -36,6 +39,14 @@ class _WheelControlState extends State<WheelControl> {
   }
 
   void _move(PointerMoveEvent e, WheelGeometry g) {
+    if (_neutral.contains(e.pointer) &&
+        widget.visible &&
+        g.onRim(e.localPosition)) {
+      _neutral.remove(e.pointer);
+      _angles[e.pointer] = g.angle(e.localPosition);
+      _turns[e.pointer] = _turn;
+      return;
+    }
     final previous = _angles[e.pointer];
     if (previous == null) {
       return;
@@ -53,6 +64,7 @@ class _WheelControlState extends State<WheelControl> {
   }
 
   void _up(int pointer) {
+    _neutral.remove(pointer);
     final wasSteering = _angles.remove(pointer) != null;
     if (wasSteering) {
       _turns.remove(pointer);
@@ -82,6 +94,7 @@ class _WheelControlState extends State<WheelControl> {
   void didUpdateWidget(covariant WheelControl oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.visible && !widget.visible) {
+      _neutral.clear();
       _angles.clear();
       _turns.clear();
       _turn = 0;
@@ -129,21 +142,21 @@ class _WheelPainter extends CustomPainter {
       geometry.center,
       geometry.radius,
       Paint()
-        ..color = Colors.black.withValues(alpha: .20)
+        ..color = Colors.black.withValues(alpha: .16)
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 23,
+        ..strokeWidth = geometry.strokeWidth,
     );
     c.drawCircle(
       geometry.center,
       geometry.radius,
       Paint()
-        ..color = Colors.white.withValues(alpha: .22)
+        ..color = Colors.white.withValues(alpha: .075)
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 13,
+        ..strokeWidth = geometry.strokeWidth * .65,
     );
     c.drawCircle(
       geometry.center,
-      geometry.radius - 7,
+      geometry.radius - geometry.strokeWidth * .40,
       Paint()
         ..color = Colors.white.withValues(alpha: .13)
         ..style = PaintingStyle.stroke
