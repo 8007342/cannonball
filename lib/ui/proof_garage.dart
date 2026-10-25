@@ -139,8 +139,8 @@ class _ProofGarageState extends State<ProofGarage>
             ),
             if (!exterior)
               Positioned(
-                left: w * .40 - h * .105,
-                top: h * .40 - h * .10,
+                left: w * .43 - h * .105,
+                top: h * .36 - h * .021,
                 child: Transform.translate(
                   offset: Offset(
                     moving ? -w * t * 2 : 0,

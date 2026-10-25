@@ -16,6 +16,8 @@ extension type _PlatformBridge(JSObject _) implements JSObject {
   external JSPromise<JSBoolean> beginAudio();
   external void setAudioState(double speed, double intensity, String region);
   external void say(String text);
+  external void setProofAudio(bool enabled);
+  external void radioBreak(String text, String station);
   external void setMuted(bool muted);
   external void pause(bool paused);
   external JSPromise<JSBoolean> requestLandscape();
@@ -83,6 +85,9 @@ class BrowserPlatform {
   }) => _bridge?.setAudioState(speed, intensity, region);
 
   void say(String text) => _bridge?.say(text);
+  void setProofAudio(bool enabled) => _bridge?.setProofAudio(enabled);
+  void radioBreak({required String text, required String station}) =>
+      _bridge?.radioBreak(text, station);
   void pause(bool paused) => _bridge?.pause(paused);
 
   Future<bool> requestLandscape() async {

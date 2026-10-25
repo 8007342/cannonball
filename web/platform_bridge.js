@@ -96,6 +96,13 @@
   let audioTimer = null, nextNote = 0, step = 0, muted = false, paused = true;
   let speed = 0, intensity = 0, region = 'Atlantic', activeRegion = '';
   let theme = null, voice = null, speechEpoch = 0, speechTimer = null;
+  let proofAudio = false, radioPhase = 'music', radioTimer = null, radioEpoch = 0;
+  let radioStation = '', lastRadioText = '', reportCount = 0;
+  const proofTracks = {
+    City: {root: 57, notes: [0, 7, 12, 11, 7, 4, 2, 7], chords: [0, 5, 9, 7], bpm: 146, style: 'synthpop'},
+    Forest: {root: 55, notes: [0, 4, 7, 9, 7, 4, 2, 0], chords: [0, 5, 0, 7], bpm: 138, style: 'country'},
+    Mountain: {root: 52, notes: [0, 0, 7, 10, 0, 12, 10, 7], chords: [0, 3, 5, 7], bpm: 154, style: 'metal'},
+  };
   const activeNodes = new Set();
   const themes = [
     {root: 57, notes: [0, 4, 7, 9, 7, 4, 2, 4], chords: [0, 5, 9, 7]},
@@ -106,6 +113,7 @@
   const frequency = (note) => 440 * 2 ** ((note - 69) / 12);
 
   function selectTheme(name) {
+    if (proofAudio) return proofTracks[name] || proofTracks.City;
     const index = Array.from(name).reduce((sum, c) => (sum * 31 + c.charCodeAt(0)) >>> 0, 0);
     return themes[index % themes.length];
   }
@@ -142,7 +150,7 @@
   }
 
   function scheduleMusic() {
-    if (!context || paused || muted || doc.hidden || context.state !== 'running') return;
+    if (!context || paused || muted || doc.hidden || context.state !== 'running' || radioPhase !== 'music') return;
     // Timers only queue a short lookahead; audio nodes use the audio clock.
     if (nextNote < context.currentTime) nextNote = context.currentTime + 0.025;
     while (nextNote < context.currentTime + 0.12) {
@@ -153,7 +161,7 @@
       theme ??= selectTheme(region);
       const chord = theme.chords[Math.floor(step / 16) % 4];
       if (step % 4 === 0) {
-        note(theme.root - 12 + chord, nextNote, 0.25, 0.11, 'triangle');
+        note(theme.root - 12 + chord, nextNote, 0.25, 0.11, theme.style === 'metal' ? 'sawtooth' : 'triangle');
         kick(nextNote);
       }
       if (step % 2 === 0) {
@@ -163,10 +171,16 @@
       if (intensity > 0.45 && step % 2 === 1) {
         note(theme.root + 24 + theme.notes[Math.floor(step / 2) % 8], nextNote, 0.07, 0.018, 'square');
       }
+      if (proofAudio && theme.style === 'country' && step % 4 === 2) {
+        note(theme.root + chord + 7, nextNote, 0.10, 0.065, 'triangle');
+      }
+      if (proofAudio && theme.style === 'metal' && step % 2 === 0) {
+        note(theme.root - 12 + chord + 7, nextNote, 0.09, 0.055, 'sawtooth');
+      }
       if (step % 16 === 0) {
         for (const interval of [0, 7, 12]) note(theme.root + chord + interval, nextNote, 1.6, 0.026, 'sine');
       }
-      nextNote += 60 / (116 + intensity * 20) / 4;
+      nextNote += 60 / (theme.bpm || (116 + intensity * 20)) / 4;
       step = (step + 1) % 64;
     }
   }
@@ -229,9 +243,9 @@
       voices.find((entry) => entry.lang?.startsWith('en')) || null;
   }
 
-  function say(text) {
-    if (muted || paused || doc.hidden || !root.speechSynthesis || !root.SpeechSynthesisUtterance) return;
-    if (typeof text !== 'string' || !text.trim()) return;
+  function say(text, complete = () => {}) {
+    if (muted || paused || doc.hidden || !root.speechSynthesis || !root.SpeechSynthesisUtterance) { complete(); return; }
+    if (typeof text !== 'string' || !text.trim()) { complete(); return; }
     cancelSpeech(); // Latest state-derived instruction wins; no blocking queue.
     chooseVoice(); // Voices may arrive after page initialization.
     const utterance = new root.SpeechSynthesisUtterance(text.slice(0, 320));
@@ -239,18 +253,105 @@
     utterance.lang = 'en-US';
     utterance.rate = 1.06;
     utterance.volume = 0.8;
+    const epoch = speechEpoch;
+    let finished = false;
+    const finish = () => {
+      if (finished || epoch !== speechEpoch) return;
+      finished = true;
+      root.clearTimeout(speechTimer);
+      speechTimer = null;
+      complete();
+    };
+    utterance.onend = utterance.onerror = finish;
     try {
       root.speechSynthesis.speak(utterance);
-      const epoch = speechEpoch;
       speechTimer = root.setTimeout(() => {
-        if (epoch === speechEpoch) cancelSpeech();
+        if (epoch === speechEpoch) { finish(); cancelSpeech(); }
       }, 12000);
-    } catch (_) { /* Captions remain authoritative when speech fails. */ }
+    } catch (_) { finish(); /* Captions remain authoritative when speech fails. */ }
+  }
+
+
+  function stopMusic() {
+    // Engine oscillator is deliberately outside activeNodes and keeps running.
+    for (const node of [...activeNodes]) { try { node.stop(); } catch (_) {} }
+    activeNodes.clear();
+  }
+
+  function cancelRadio() {
+    radioEpoch++;
+    root.clearTimeout(radioTimer);
+    radioTimer = null;
+    radioPhase = 'music';
+  }
+
+  function tuningNoise() {
+    if (!context || !master || muted || paused) return;
+    if (context.createBuffer && context.createBufferSource) {
+      const length = Math.floor(context.sampleRate * .18);
+      const buffer = context.createBuffer(1, length, context.sampleRate);
+      const data = buffer.getChannelData(0);
+      let state = 731;
+      for (let i = 0; i < data.length; i++) {
+        state = (state * 48271) % 2147483647;
+        data[i] = (state / 2147483647 * 2 - 1) * .16;
+      }
+      const source = context.createBufferSource(), filter = context.createBiquadFilter();
+      source.buffer = buffer;
+      filter.type = 'bandpass';
+      filter.frequency.value = 1700;
+      source.connect(filter).connect(master);
+      activeNodes.add(source);
+      source.onended = () => { activeNodes.delete(source); source.disconnect(); filter.disconnect(); };
+      source.start();
+    } else {
+      // Audio test harnesses/older adapters can still produce the tuning chirp.
+      note(96, context.currentTime, .045, .03, 'sawtooth');
+      note(81, context.currentTime + .07, .05, .025, 'square');
+    }
+  }
+
+  function radioBreak(text, station) {
+    if (!proofAudio || typeof text !== 'string' || !text.trim()) return;
+    cancelRadio();
+    cancelSpeech();
+    lastRadioText = text.slice(0, 320);
+    radioStation = typeof station === 'string' ? station : 'City';
+    reportCount++;
+    region = radioStation;
+    if (muted || paused || doc.hidden || !context) return;
+    stopMusic();
+    radioPhase = 'tuning';
+    tuningNoise();
+    const epoch = radioEpoch;
+    radioTimer = root.setTimeout(() => {
+      radioTimer = null;
+      if (epoch !== radioEpoch || muted || paused || doc.hidden) return;
+      radioPhase = 'report';
+      say(lastRadioText, () => {
+        if (epoch !== radioEpoch) return;
+        radioPhase = 'music';
+        activeRegion = region;
+        theme = selectTheme(region);
+        step = 0;
+        if (context) nextNote = context.currentTime + .025;
+      });
+    }, 230);
+  }
+
+  function setProofAudio(value) {
+    proofAudio = Boolean(value);
+    cancelRadio();
+    activeRegion = '';
+    theme = null;
+    step = 0;
+    reportCount = 0;
+    lastRadioText = radioStation = '';
   }
 
   function pause(value) {
     paused = Boolean(value);
-    if (paused) cancelSpeech();
+    if (paused) { cancelSpeech(); cancelRadio(); }
     updateVolume();
     if (context && !paused) {
       // Resume may still be blocked without a gesture; captions remain usable.
@@ -345,9 +446,15 @@
       chooseVoice();
     },
     enableTilt, disableTilt, beginAudio, setAudioState, say, pause, renderGoogleButton,
+    setProofAudio, radioBreak,
+    audioSnapshot() {
+      return {proofAudio, phase: radioPhase, station: radioStation, reportCount,
+        lastRadioText, trackStyle: theme?.style || 'prototype',
+        speechMode: 'device TTS fallback; no regional accent guarantee'};
+    },
     setMuted(value) {
       muted = Boolean(value);
-      if (muted) cancelSpeech();
+      if (muted) { cancelSpeech(); cancelRadio(); }
       updateVolume();
     },
     async requestLandscape() {
@@ -362,6 +469,8 @@
     dispose() {
       disableTilt();
       cancelSpeech();
+      cancelRadio();
+      proofAudio = false;
       googleRenderGeneration++;
       doc.removeEventListener('visibilitychange', onVisibility);
       root.removeEventListener('resize', onOrientation);
