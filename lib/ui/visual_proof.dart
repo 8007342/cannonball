@@ -32,6 +32,23 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     with WidgetsBindingObserver {
   static const seed = 731;
   static const duration = 120.0;
+  static const _chapterStarts = [
+    0.0,
+    650.0,
+    2250.0,
+    3250.0,
+    4300.0,
+    5100.0,
+    5700.0,
+    6150.0,
+  ];
+  late double _courseStart =
+      _chapterStarts[((int.tryParse(
+                    Uri.base.queryParameters['chapter'] ?? '',
+                  ) ??
+                  1) -
+              1)
+          .clamp(0, 7)];
   static const cream = Color(0xffffedcc);
   static const accent = Color(0xffffc56c);
   static const dark = Color(0xff14242b);
@@ -66,6 +83,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       reactiveTraffic: true,
       launchSpeed: 110,
       testCourse: true,
+      courseStartDistance: _courseStart,
     );
     _race.paused = true;
     _race.comfortMode = _platform.reducedMotion;
@@ -76,7 +94,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       _ready.value = true;
     } else {
       _game = RaceGame(controller: _race, proofMode: true)
-        ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'arcade');
+        ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'arcade')
+        ..setCameraPreset(Uri.base.queryParameters['camera'] ?? 'flow');
       _scene = RepaintBoundary(
         child: GameWidget(
           game: _game!,
@@ -153,7 +172,11 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'worldDistance': _race.worldDistance,
     'steering': _race.steering,
     'effectiveSteering': _race.effectiveSteering,
-    'courseSection': ProofCourse.sectionAt(_race.worldDistance),
+    'visualSteering': _game?.visualSteering,
+    'cameraPreset': _game?.cameraPreset,
+    'courseDistance': _race.courseDistance,
+    'courseStartDistance': _race.courseStartDistance,
+    'courseSection': ProofCourse.sectionAt(_race.courseDistance),
     'courseLength': ProofCourse.length,
     'braking': _race.braking,
     'playerX': _race.playerX,
@@ -209,6 +232,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       reactiveTraffic: true,
       launchSpeed: 110,
       testCourse: true,
+      courseStartDistance: _courseStart,
     );
     _race.paused = true;
     _race.motionControl = _tilt;
@@ -327,7 +351,46 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     }
   }
 
+  void _cycleCamera() {
+    const variants = ['baseline', 'wide', 'flow'];
+    final index = variants.indexOf(_game?.cameraPreset ?? 'flow');
+    _game?.setCameraPreset(variants[(index + 1) % variants.length]);
+    _hud.value++;
+  }
+
+  void _restartCourse([int? chapter]) {
+    if (chapter != null) _courseStart = _chapterStarts[chapter.clamp(0, 7)];
+    _reset();
+    _start();
+  }
+
   void _key(KeyEvent event) {
+    if (event is KeyDownEvent && _phase.value != _ProofPhase.departing) {
+      if (event.logicalKey == LogicalKeyboardKey.keyC) {
+        _cycleCamera();
+        return;
+      }
+      if (event.logicalKey == LogicalKeyboardKey.keyR) {
+        _restartCourse();
+        return;
+      }
+      const digits = [
+        LogicalKeyboardKey.digit1,
+        LogicalKeyboardKey.digit2,
+        LogicalKeyboardKey.digit3,
+        LogicalKeyboardKey.digit4,
+        LogicalKeyboardKey.digit5,
+        LogicalKeyboardKey.digit6,
+        LogicalKeyboardKey.digit7,
+        LogicalKeyboardKey.digit8,
+      ];
+      final chapter = digits.indexOf(event.logicalKey);
+      if (chapter >= 0) {
+        _restartCourse(chapter);
+        return;
+      }
+    }
+
     if (event is KeyDownEvent &&
         (event.logicalKey == LogicalKeyboardKey.enter ||
             event.logicalKey == LogicalKeyboardKey.keyP ||
@@ -471,6 +534,11 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                                       : Icons.volume_up_outlined,
                                   _muted ? 'Enable sound' : 'Mute sound',
                                   _toggleSound,
+                                ),
+                                _utility(
+                                  Icons.camera_alt_outlined,
+                                  'Change camera',
+                                  _cycleCamera,
                                 ),
                                 _utility(
                                   Icons.screen_rotation,

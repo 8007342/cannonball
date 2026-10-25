@@ -50,8 +50,10 @@ void main() {
               var opaque = 0;
               for (var y = 0; y < 512; y += 8) {
                 for (var x = 0; x < 512; x += 8) {
-                  if (alpha((cell % 3) * 512 + x, (cell ~/ 3) * 512 + y) >= 100)
+                  if (alpha((cell % 3) * 512 + x, (cell ~/ 3) * 512 + y) >=
+                      100) {
                     opaque++;
+                  }
                 }
               }
               expect(opaque, greaterThan(200));
