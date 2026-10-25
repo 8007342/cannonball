@@ -89,6 +89,13 @@ class _ProofGarageState extends State<ProofGarage>
           width: width,
           height: height,
           child: ClipRect(
+            // Generated top-row frames overlap the next row near their lower
+            // gutter. Clip display coverage without rescaling the cell/pivot.
+            clipper: index == 0
+                ? const _AtlasGutterClip(.90)
+                : index == 1
+                ? const _AtlasGutterClip(.94)
+                : null,
             child: OverflowBox(
               alignment: Alignment.topLeft,
               maxWidth: width * 3,
@@ -258,4 +265,17 @@ class _ProofGarageState extends State<ProofGarage>
     onPressed: onTap,
     icon: Icon(icon, color: const Color(0xffffdf9c)),
   );
+}
+
+class _AtlasGutterClip extends CustomClipper<Rect> {
+  const _AtlasGutterClip(this.visibleFraction);
+  final double visibleFraction;
+
+  @override
+  Rect getClip(Size size) =>
+      Rect.fromLTWH(0, 0, size.width, size.height * visibleFraction);
+
+  @override
+  bool shouldReclip(_AtlasGutterClip oldClipper) =>
+      visibleFraction != oldClipper.visibleFraction;
 }

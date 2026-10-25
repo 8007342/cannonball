@@ -17,7 +17,9 @@ The sample lasts 90 simulated seconds. It does not issue cloud run receipts or
 change saved production unlocks. The model year 2001 and red sample paint are
 working art choices, not a completed production car specification.
 
-The radio director chooses short original script variants from actual supplied
+Station selection follows the current corridor biome (city, mountain/canyon,
+or the remaining forest/plains/coast kit), rather than elapsed-time scenery
+changes. The radio director chooses short original script variants from actual supplied
 weather, closure and traffic state. A closure report does not invent flooding
 when only construction is known. Variant rotation prevents immediate repeats;
 reset restores repeatable selection. Optional captions are controlled separately
