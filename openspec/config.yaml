@@ -4,14 +4,13 @@ context: |
   inspired by OutRun and New York to Redondo Beach Cannonball lore.
   Web only, mobile browsers first at cannonball.tlatoani.net; optional PWA install.
   Desktop browsers should support higher-resolution asset packs. No native apps.
-  Successful runs target 10–15 minutes on present-day researched US roads.
+  City-to-city campaign stages target 10–15 minutes; coast-to-coast progress composes connected stages.
   Cloudflare Pages hosts Flutter; a same-origin Worker handles identity and data.
   Implementation is now authorized under playable-road-trip; production assets and real-device acceptance remain tracked.
   User requirements are captured in openspec/specs; unresolved choices live in
   docs/design/interview.md. Do not silently promote proposals into confirmed decisions.
   Preserve continuous driving, readable speed and advance hazard warnings.
-  One global Top100 intentionally mixes car advantages, route distances, traffic
-  and random conditions. Do not impose equalized competitive modes or car parity.
+  Car advantages, route distances, traffic and luck remain intentional. New stage rankings are undecided; retain the legacy board until migration is designed. Do not impose equalized competitive modes or car parity.
   Motion/art research is approved; apply diffused pixel edges with coherent animation.
   Original art and music require engine-compatible guides.
 rules:

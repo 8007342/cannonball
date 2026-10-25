@@ -21,6 +21,9 @@ None. Implement the existing capabilities rather than duplicating them.
 ### Modified Capabilities
 - `controls`: resolve angular direction and outside-wheel braking.
 - `progress`: shared Google client, concrete browser-first save and run lifecycle.
+- `racing`: city-to-city timing and reactive traffic.
+- `world`: heterogeneous local traffic and consistent road conditions.
+- `audio`: hard-cut station breaks and honest speech fallback.
 - `art`: approved research, rejected primitive preview, Baja-inspired animated cartoon presentation, measured rendering proof and final Corvette unlock.
 
 ## Approved next proof
