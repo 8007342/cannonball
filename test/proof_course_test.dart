@@ -91,4 +91,25 @@ void main() {
     expect(race.effectiveSteering, 1, reason: 'legacy behavior stays direct');
     race.dispose();
   });
+  test(
+    'grade pitches the horizon while leaving the player ground anchor fixed',
+    () {
+      final climb = ProofCourse.pitchAt(2500, 20.4);
+      final descent = ProofCourse.pitchAt(3600, 20.4);
+      expect(climb, greaterThan(.1));
+      expect(descent, lessThan(-.1));
+      expect(ProofCourse.pitchShift(climb, 560), 0);
+      expect(ProofCourse.pitchShift(descent, 560), 0);
+      expect(ProofCourse.pitchShift(climb, 100000), greaterThan(.1));
+      expect(ProofCourse.pitchShift(descent, 100000), lessThan(-.1));
+    },
+  );
+
+  test('tunnel modules suppress outdoor vegetation until the exit', () {
+    expect(ProofCourse.vegetationAllowedAt(6000), isTrue);
+    expect(ProofCourse.vegetationAllowedAt(6100), isFalse);
+    expect(ProofCourse.vegetationAllowedAt(6400), isFalse);
+    expect(ProofCourse.vegetationAllowedAt(6810), isFalse);
+    expect(ProofCourse.vegetationAllowedAt(6900), isTrue);
+  });
 }

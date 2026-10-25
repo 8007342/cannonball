@@ -127,7 +127,8 @@ class RaceGame extends FlameGame {
   int lastSpriteCount = 0, lastRoadQuads = 0;
   int get lastBillboardBatches => _batch.drawCalls;
   bool _loaded = false, _removed = false;
-  double _lastElapsed = 0;
+  double _lastElapsed = 0, _coursePitch = 0;
+  double get coursePitch => _coursePitch;
   bool get assetsReady => _loaded && _art.ready;
   String? get artError => _art.error;
   double _h = 560, _cameraZ = 0, _cameraY = 0, _cameraX = 0, _tangent = 0;
@@ -226,6 +227,9 @@ class RaceGame extends FlameGame {
       _worldOffset = 0;
       _xVelocity = 0;
       _steeringArt.reset();
+      _coursePitch = _course
+          ? ProofCourse.pitchAt(controller.courseDistance, _flowScale)
+          : 0;
     }
     if (!controller.paused && !controller.finished && dt.isFinite) {
       _presentationTime += dt.clamp(0, .25);
@@ -233,6 +237,12 @@ class RaceGame extends FlameGame {
     controller.tick(dt);
     if (_course && !controller.paused && !controller.finished) {
       _steeringArt.update(controller.effectiveSteering, dt);
+      final targetPitch = ProofCourse.pitchAt(
+        controller.courseDistance,
+        _flowScale,
+      );
+      _coursePitch +=
+          (targetPitch - _coursePitch) * (1 - math.exp(-6 * dt.clamp(0, .25)));
     }
     _lastElapsed = controller.elapsed;
     final advanced = controller.elapsed - oldElapsed;
@@ -279,6 +289,7 @@ class RaceGame extends FlameGame {
             _w *
             .5;
     out.y = _h * .30 + scale * (_cameraY - _elevation(worldZ)) * _h * .70;
+    if (_course) out.y += _h * ProofCourse.pitchShift(_coursePitch, z);
     out.halfWidth = scale * _roadHalfWidth * _w * .5;
   }
 
@@ -326,6 +337,22 @@ class RaceGame extends FlameGame {
           );
         }
         _road(canvas);
+        if (_course && ProofCourse.tunnelAt(controller.courseDistance) > 0) {
+          final shade = ProofCourse.tunnelAt(controller.courseDistance);
+          final wallPaint = Paint()
+            ..shader = ui.Gradient.linear(
+              Offset.zero,
+              const Offset(_w, 0),
+              [
+                Color.fromRGBO(9, 14, 20, shade * .82),
+                const Color(0x00101620),
+                const Color(0x00101620),
+                Color.fromRGBO(9, 14, 20, shade * .82),
+              ],
+              [.0, .24, .76, 1],
+            );
+          canvas.drawRect(Rect.fromLTWH(0, 0, _w, _h), wallPaint);
+        }
         _composeObjects();
         _drawObjects(canvas);
         _dust(canvas);
@@ -382,7 +409,7 @@ class RaceGame extends FlameGame {
     );
     canvas.drawRect(sky, _paint);
     _paint.shader = null;
-    final sun = Offset(800, _h * .17);
+    final sun = Offset(800, _h * (.17 + _coursePitch));
     _paint.color = const Color(0xffffefd0);
     canvas.drawCircle(sun, 27, _paint);
     if (!_loaded) return;
@@ -400,7 +427,7 @@ class RaceGame extends FlameGame {
                   _center(_world) * .003) %
               1440) -
           240;
-      final y = _h * (.045 + (i % 3) * .065);
+      final y = _h * (.045 + (i % 3) * .065 + _coursePitch);
       _paint.color = Color.fromRGBO(255, 255, 255, i.isEven ? .88 : .50);
       canvas.drawImageRect(
         _art.cloud,
@@ -423,7 +450,7 @@ class RaceGame extends FlameGame {
     );
     final offset = -(_center(_world) * .018) % 1200;
     final height = _h * .54;
-    final y = _h * .39 - height;
+    final y = _h * (.39 + _coursePitch) - height;
     _paint.color = const Color(0xffffffff);
     for (var i = -2; i < 2; i++) {
       canvas.drawImageRect(
@@ -435,11 +462,14 @@ class RaceGame extends FlameGame {
     }
     // A thin haze unifies the painted distance with the live projected terrain.
     _paint.shader = ui.Gradient.linear(
-      Offset(0, _h * .32),
-      Offset(0, _h * .46),
+      Offset(0, _h * (.32 + _coursePitch)),
+      Offset(0, _h * (.46 + _coursePitch)),
       [const Color(0x00d6dfbe), const Color(0xffb5c49a)],
     );
-    canvas.drawRect(Rect.fromLTWH(0, _h * .32, _w, _h * .19), _paint);
+    canvas.drawRect(
+      Rect.fromLTWH(0, _h * (.32 + _coursePitch), _w, _h * .19),
+      _paint,
+    );
     _paint.shader = null;
   }
 
@@ -631,6 +661,7 @@ class RaceGame extends FlameGame {
     final first = (near / 330).floor();
     for (var i = first; i * 330 < far; i++) {
       final z = i * 330.0;
+      if (_course && !ProofCourse.vegetationAllowedAt(_courseAt(z))) continue;
       final side = i.isEven ? -1.0 : 1.0;
       final hash = ((i * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
       // Samples are selected spatially, so no popping when a UI stage changes.
@@ -732,7 +763,10 @@ class RaceGame extends FlameGame {
     }
     // Two scenic spans within the proof, using the same depth ordering as cars.
     final firstBridge = (_world / 25000).floor() * 25000.0 + 11500;
-    for (final z in [firstBridge, firstBridge + 25000]) {
+    final bridgeSpans = _course
+        ? [_courseZ(5660)]
+        : [firstBridge, firstBridge + 25000];
+    for (final z in bridgeSpans) {
       if (z > _cameraZ + 280 && z < far) {
         _objects.add(_Object(_Kind.bridge, z, 0, 4100));
       }
@@ -774,10 +808,10 @@ class RaceGame extends FlameGame {
         if (z > near && z < far)
           _objects.add(_Object(_Kind.canopy, z, 0, 3200));
       }
-      for (final s in [6080.0, 6770.0]) {
+      for (final s in [6080.0, 6230.0, 6380.0, 6530.0, 6680.0, 6770.0]) {
         final z = _courseZ(s);
         if (z > near && z < far)
-          _objects.add(_Object(_Kind.portal, z, 0, 5000));
+          _objects.add(_Object(_Kind.portal, z, 0, 6400));
       }
     }
     _objects.add(_Object(_Kind.player, _world, _playerX, _course ? 285 : 300));

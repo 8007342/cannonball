@@ -43,7 +43,7 @@ class ProofCourse {
       if (s <= b.$1) {
         final t = (s - a.$1) / (b.$1 - a.$1);
         final smooth = t * t * (3 - 2 * t);
-        return a.$2 + (b.$2 - a.$2) * smooth;
+        return (a.$2 + (b.$2 - a.$2) * smooth) * 8;
       }
     }
     return 0;
@@ -66,6 +66,21 @@ class ProofCourse {
       920 * _rise(s, 3250, 4000) +
       100 * _rise(s, 5450, 5650) -
       100 * _rise(s, 5800, 6000);
+
+  /// View pitch follows road grade. The camera trail remains the player's
+  /// invariant ground point while the far horizon moves visibly on grades.
+  static double pitchAt(double distance, double flowScale) {
+    if (!flowScale.isFinite || flowScale <= 0) return 0;
+    final grade =
+        (elevationAt(distance + 60) - elevationAt(distance - 60)) /
+        (120 * flowScale);
+    return (grade * 1.4).clamp(-.14, .14);
+  }
+
+  static double pitchShift(double pitch, double depth, {double trail = 560}) =>
+      depth > 0 ? pitch * (1 - trail / depth) : 0;
+  static bool vegetationAllowedAt(double distance) =>
+      distance < 6050 || distance > 6820;
 
   /// Bounded steering load comes from the same authored curve as projection.
   static double steeringLoadAt(double s) =>
