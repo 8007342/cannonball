@@ -735,7 +735,7 @@ class RaceGame extends FlameGame {
           ),
         );
       }
-      if (_nextProof && (!_course || _cameraPreset != 'baseline')) {
+      if (_nextProof && (!_course || _cameraPreset == 'flow')) {
         // Small near-road references carry fast peripheral flow without hiding
         // upcoming traffic behind a wall of large trees.
         _objects.add(_Object(_Kind.marker, z + 140, side * 1.15, 34));

@@ -62,7 +62,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   final _keys = <LogicalKeyboardKey>{};
   final _platform = BrowserPlatform.instance;
   Timer? _loadingPoll;
-  bool _tilt = false, _muted = true, _touchBrake = false;
+  bool _tilt = false, _muted = false, _touchBrake = false;
   bool _captions = false;
   double _lastHudTime = -1;
   String _lastRadio = '';
@@ -174,6 +174,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'effectiveSteering': _race.effectiveSteering,
     'visualSteering': _game?.visualSteering,
     'cameraPreset': _game?.cameraPreset,
+    'coursePitch': _game?.coursePitch,
     'courseDistance': _race.courseDistance,
     'courseStartDistance': _race.courseStartDistance,
     'courseSection': ProofCourse.sectionAt(_race.courseDistance),
