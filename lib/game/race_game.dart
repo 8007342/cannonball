@@ -945,7 +945,8 @@ class RaceGame extends FlameGame {
       y + .5 * scale,
       scale,
       color: fog ?? tint,
-      blend: fog == null ? BlendMode.modulate : BlendMode.srcATop,
+      // Atlas image is source and tint is destination; keep image alpha.
+      blend: fog == null ? BlendMode.modulate : BlendMode.dstATop,
     );
   }
 

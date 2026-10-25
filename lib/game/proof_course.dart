@@ -43,7 +43,8 @@ class ProofCourse {
       if (s <= b.$1) {
         final t = (s - a.$1) / (b.$1 - a.$1);
         final smooth = t * t * (3 - 2 * t);
-        return a.$2 + (b.$2 - a.$2) * smooth;
+        // Arcade emphasis makes bends readable within the short projected view.
+        return (a.$2 + (b.$2 - a.$2) * smooth) * 2.5;
       }
     }
     return 0;

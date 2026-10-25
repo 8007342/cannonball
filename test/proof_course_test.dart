@@ -27,7 +27,7 @@ void main() {
         ProofCourse.centerAt(s + ahead) -
         ProofCourse.centerAt(s) -
         heading * ahead;
-    expect(deviation.abs(), greaterThan(400));
+    expect(deviation.abs(), greaterThan(1000));
   });
 
   test('cone culling preserves world identities while camera advances', () {
