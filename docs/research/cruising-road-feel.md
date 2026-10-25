@@ -58,5 +58,8 @@ validation pass; browser scripts32/32 and API14/14 pass. Worker check is a dry
 run, not a deployment. Root browser inspection confirmed the painted garage
 without a proof parameter and a291,600-pixel backing surface. Keyboard inspection
 showed raw-1 progressing to applied/visual-.574 instead of snapping to full lock;
-no asset error or console exception. Final curve-scale release is inspected
-separately before publication. Physical-phone and user moving review remain open.
+no asset error or console exception. Final curve-scale release built successfully and rendered at course690.65
+with playerX-.025, bounded relative pitch-.064 and no asset error. Root was
+reopened without a proof parameter after merging; ready state and291,600
+backing pixels were verified. Main push was durably accepted by the upstream
+GitHub relay. Physical-phone and user moving review remain open.

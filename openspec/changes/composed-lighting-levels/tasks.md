@@ -17,4 +17,4 @@
 - [x] 4.1 Make the painted prototype the default URL; retain injected legacy sessions for receipt tests.
 - [x] 4.2 Add early bends, stronger alternating turns and additional signed rolling gradients, retaining readable gentle recovery sweeps and shared terrain coordinates.
 - [x] 4.3 Implement bounded gentle-curve force cancellation without targeting lanes; smooth high-speed steering and show applied steering on the wheel; verify offset preservation, active turns and scheduling consistency.
-- [ ] 4.4 Record sources and limits, run local checks/browser review, update forge diagnostics, merge accumulated work to main and push without remote builds.
+- [x] 4.4 Record sources and limits, run local checks/browser review, update forge diagnostics, merge accumulated work to main and push without remote builds.
