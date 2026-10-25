@@ -61,4 +61,4 @@ is the requested first draft, not final art approval or production acceptance.
 - [x] 9.5 Verify live resize, DPR and input geometry; distinguish preview-host sizing from application layout and add justified diagnostics/regression checks.
 - [x] 9.6 Generate and validate replacement prop, hand, wide-cabin and progressive S2000 turn assets with provenance and coherent anchors.
 - [x] 9.7 Add time-based progressive steering presentation and meaningful gentle-input/held-input/reversal/timing tests; gentle road curves shall reward gentle steering.
-- [ ] 9.8 Integrate and run relevant tests, analyzer, release build and moving browser review; measure no-capture cadence and publish locally with durable work-branch checkpoints.
+- [x] 9.8 Integrate and run relevant tests, analyzer, release build and moving browser review; measure no-capture cadence and publish locally with durable work-branch checkpoints.

@@ -3,7 +3,7 @@
 Local route: `/?proof=1`, two-minute study. Integration branch:
 `work/road-feel-milestone`; specialist branches `work/course-camera`,
 `work/departure-continuity`, `work/viewport-speed-research`. Source/art checkpoints
-were pushed throughout; main and production deployment are unchanged.
+were pushed throughout. Game implementation stays on work branches; main received only the workflow-removal/local-build-policy correction. No production deployment was made.
 
 ## Implemented
 
@@ -30,7 +30,7 @@ were pushed throughout; main and production deployment are unchanged.
 
 ## Verification
 
-The integrated full Flutter suite passed94tests, plus23browser-script tests and
+The integrated full Flutter suite passed95tests, plus23browser-script tests and
 14Worker tests. Static analysis and package dry-run passed. The final geometry,
 fog and UI changes received focused regression checks and a release build.
 A pixel test verifies haze cannot reveal transparent sprite rectangles.
@@ -75,3 +75,14 @@ subjective speed, complete driver/crash animation, verified real geography,
 production regional voices, remote staged saves or rankings. All eight broader
 production tasks from the previous change remain open. Test camera/steering feel
 on real phones before bulk asset production. Art/prompts: `assets/milestone/`.
+
+Final departure review corrected a detached wrist by keeping hand/key scale modest
+and extending only the painted distal forearm offscreen. The hanging key and
+fingers share the actual cover-transformed hook anchor. Departure panels preload
+before their first shot. Final source hashes are in driving-milestone-final.sha256;
+the earlier measurement hashes are retained. The forearm-only correction does not
+change the driving renderer used for the timing samples.
+
+GitHub builds were explicitly removed from all nine published branches after the
+user clarified local-only validation. See github-build-audit.md. Local checks
+continue; no workflow was restored by the final integration.
