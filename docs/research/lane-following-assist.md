@@ -66,3 +66,5 @@ remain proof-only until user moving review, leaving legacy run receipts stable.
 
 Implementation status: collision/cone work is implemented separately; this
 lane-following behavior is a researched design proposal awaiting integration.
+
+Implemented in the painted default prototype on2026-10-25; see [current tuning and evidence](cruising-road-feel.md). Earlier proposal/status above preserves discovery history. Human/physical-phone acceptance remains open.

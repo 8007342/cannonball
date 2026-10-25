@@ -1,11 +1,10 @@
-/* Proof-only browser pixel budget. Load synchronously before Flutter bootstrap.
+/* Painted app browser pixel budget. Load synchronously before Flutter bootstrap.
  * Flutter 3.47 reads window.devicePixelRatio; it has no public loader DPR option.
  * This prototype caps the whole Flutter root, including its HUD. Browser input
- * stays in CSS pixels. Production gameplay without ?proof=1 is unaffected.
+ * stays in CSS pixels. The painted prototype is now the default app.
  */
 (() => {
   'use strict';
-  if (new URLSearchParams(location.search).get('proof') !== '1') return;
   if (window.CannonballProofBootstrap) return;
   const quality = new URLSearchParams(location.search).get('quality') === 'detail' ? 'detail' : 'smooth';
   const pixelBudget = quality === 'detail' ? 960 * 540 : 720 * 405;

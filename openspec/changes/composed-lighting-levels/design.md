@@ -59,3 +59,18 @@ atlas, online weather, new race receipts or wholesale art generation.
 ## Migration Plan
 Proof-only changes on a durable work branch; local build/preview only. Keep
 legacy runs/receipts and the previous commit available for comparison/rollback.
+
+## Default app and cruising road feel
+The painted prototype becomes the public root; injected GameSession tests retain
+the legacy receipt pipeline. Curve load now uses raw shared terrain curvature
+times8, capped at.4, instead of saturating almost every bend with times55.
+Gentle assistance enters at.018 and exits at.026 raw curvature, blending over.2s.
+It cancels outward curve force with a small equivalent steering correction, never
+reading a lane target. Both signs of intentional input remain additive. The wheel
+and car receive the actual applied steering, including correction. Digital rise
+is5.5 to4 units/s as speed rises; release7 units/s. These are local tuning values.
+Earlier bends, stronger alternating peaks and more rollers alternate with longer
+gentle sweeps; structural chapter distances remain fixed. Research/dispositions:
+[cruising-road-feel](../../../docs/research/cruising-road-feel.md).
+
+Road center integration uses a shared6x lateral presentation scale so strong bends remain visible at velocity framing; normalized curvature supplies bounded arcade steering load. Camera tangent, scenery and traffic use those same centers.

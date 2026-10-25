@@ -6,34 +6,40 @@ import 'dart:math' as math;
 class ProofCourse {
   static const length = 7600.0;
   static const sampleStep = 5.0;
+  // Lateral presentation units differ from course-distance units. Keep bends
+  // readable at the velocity preset without increasing steering-force saturation.
+  static const lateralScale = 6.0;
   // Gentle sweeps, tightening bends and reversals are deliberately interleaved.
   // The bridge, worksite and tunnel retain their existing chapter positions.
   static const _curves = <(double, double)>[
     (0, 0),
-    (420, 0),
+    (100, .001),
+    (240, .001),
+    (340, -.0025),
+    (420, -.0025),
     (540, .00075),
-    (650, .002),
-    (850, .005),
+    (650, .006),
+    (850, .009),
     (1040, .0025),
     (1220, -.001),
-    (1450, -.006),
+    (1450, -.010),
     (1650, -.0035),
     (1850, .001),
-    (2050, .004),
+    (2050, .008),
     (2250, .001),
     (2420, -.0025),
     (2660, .002),
-    (2850, .0045),
+    (2850, .0085),
     (3080, -.0015),
-    (3330, -.005),
+    (3330, -.009),
     (3550, -.002),
     (3750, .001),
-    (3980, .003),
+    (3980, .006),
     (4200, 0),
     (4430, -.001),
     (4670, -.0025),
     (4900, 0),
-    (5140, .0035),
+    (5140, .007),
     (5420, .001),
     (5600, -.0015),
     (5860, -.0015),
@@ -42,7 +48,7 @@ class ProofCourse {
     (6520, -.002),
     (6780, -.00075),
     (6960, .001),
-    (7210, .004),
+    (7210, .008),
     (7420, -.0015),
     (7600, 0),
     (12000, 0),
@@ -53,7 +59,7 @@ class ProofCourse {
     final result = <double>[0];
     var heading = 0.0, center = 0.0;
     for (var i = 1; i <= 2400; i++) {
-      final bend = curvatureAt((i - .5) * sampleStep);
+      final bend = curvatureAt((i - .5) * sampleStep) * lateralScale;
       center += heading * sampleStep + bend * sampleStep * sampleStep * .5;
       heading += bend * sampleStep;
       result.add(center);
@@ -100,7 +106,13 @@ class ProofCourse {
     (4430, 4820, 900),
     (4830, 5000, -250),
     (5010, 5380, 700),
-    (6870, 7160, -380),
+    (2150, 2430, -450),
+    (3180, 3490, 650),
+    (5410, 5700, 450),
+    (5740, 6020, -500),
+    (6120, 6360, 300),
+    (6450, 6730, -350),
+    (6870, 7160, -680),
     (7160, 7500, 1050),
   ];
   static double rollingElevationAt(double s) {
@@ -149,8 +161,7 @@ class ProofCourse {
       distance < 6050 || distance > 6820;
 
   /// Bounded steering load comes from the same authored curve as projection.
-  static double steeringLoadAt(double s) =>
-      (curvatureAt(s) * 55).clamp(-.4, .4);
+  static double steeringLoadAt(double s) => (curvatureAt(s) * 8).clamp(-.4, .4);
   static double tunnelAt(double s) =>
       (_rise(s, 6050, 6160) - _rise(s, 6660, 6820)).clamp(0.0, 1.0);
   static String sectionAt(double s) => switch (s) {

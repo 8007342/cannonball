@@ -71,6 +71,7 @@ class RaceController extends ChangeNotifier {
   Biome? previousBiome;
   double regionBlend = 1;
   double steering = 0;
+  bool digitalSteering = false;
   bool braking = false, paused = false, motionControl = false;
   bool comfortMode = false;
   bool testCourseEnabled = false;
@@ -79,8 +80,11 @@ class RaceController extends ChangeNotifier {
   double courseStartDistance = 0;
   double get courseDistance => _worldDistance + courseStartDistance;
   double _effectiveSteering = 0;
+  double _roadCorrection = 0;
+  double _cruiseBlend = 1;
+  bool _gentleRoad = true;
   double get effectiveSteering =>
-      testCourseEnabled ? _effectiveSteering : steering;
+      testCourseEnabled ? _effectiveSteering + _roadCorrection : steering;
   bool get steadyHorizon => comfortMode;
   set steadyHorizon(bool value) => comfortMode = value;
   bool _started = false, _finished = false, _completed = false;
@@ -175,6 +179,9 @@ class RaceController extends ChangeNotifier {
         ? courseStartDistance.clamp(0, ProofCourse.length)
         : 0;
     _effectiveSteering = 0;
+    _roadCorrection = 0;
+    _cruiseBlend = 1;
+    _gentleRoad = true;
     reactiveTrafficEnabled = reactiveTraffic;
     _reactiveTraffic = ReactiveTraffic();
     _lastTrafficPlayerX = 0;
@@ -275,7 +282,7 @@ class RaceController extends ChangeNotifier {
 
   double curveAt(double position) {
     if (testCourseEnabled) {
-      return (proofTerrain.curvatureAt(position + courseStartDistance) * 55)
+      return (proofTerrain.curvatureAt(position + courseStartDistance) * 8)
           .clamp(-.4, .4);
     }
     final phase = _seed % 251 / 40;
@@ -317,10 +324,14 @@ class RaceController extends ChangeNotifier {
     protection = math.max(0, protection - fixedStep);
     final ratio = _speed / _car.topSpeed;
     final targetSteering = steering.isFinite ? steering.clamp(-1.0, 1.0) : 0.0;
-    // ~0.2 s to full input is a playtest hypothesis, not a sourced optimum.
+    // Speed-aware digital rise and faster release are local tuning hypotheses.
     // Release is quicker and reversals pass through neutral without a queue.
     final previousSteering = _effectiveSteering;
-    final rate = targetSteering == 0 ? 10.0 : 5.5;
+    final rate = !digitalSteering
+        ? (targetSteering == 0 ? 10.0 : 5.5)
+        : targetSteering == 0
+        ? 7.0
+        : 5.5 - ratio.clamp(0, 1) * 1.5;
     _effectiveSteering += (targetSteering - _effectiveSteering).clamp(
       -rate * fixedStep,
       rate * fixedStep,
@@ -342,6 +353,23 @@ class RaceController extends ChangeNotifier {
           : weather == RaceWeather.rain
           ? .91
           : 1.0;
+      if (testCourseEnabled) {
+        final curvature = proofTerrain.curvatureAt(courseDistance).abs();
+        if (curvature <= .018) _gentleRoad = true;
+        if (curvature >= .026) _gentleRoad = false;
+        _cruiseBlend += ((_gentleRoad ? 1.0 : 0.0) - _cruiseBlend).clamp(
+          -fixedStep / .2,
+          fixedStep / .2,
+        );
+        final authority = _car.handling * grip * (0.2 + ratio * 1.15);
+        _roadCorrection =
+            curveAt(_worldDistance) *
+            ratio *
+            ratio *
+            .23 *
+            _cruiseBlend /
+            authority;
+      }
       final acceleration = testCourseEnabled
           ? ProofDynamics.acceleration(
               speed: _speed,
@@ -360,7 +388,10 @@ class RaceController extends ChangeNotifier {
         _car.topSpeed,
       );
       playerX +=
-          (safeSteering * _car.handling * grip * (0.2 + ratio * 1.15) -
+          ((safeSteering + _roadCorrection) *
+                  _car.handling *
+                  grip *
+                  (0.2 + ratio * 1.15) -
               curveAt(_worldDistance) * ratio * ratio * .23) *
           fixedStep;
       playerX = playerX.clamp(-1.65, 1.65);

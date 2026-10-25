@@ -12,3 +12,9 @@
 ## 3. Local integrated proof
 - [x] 3.1 Run local format/analyzer/Flutter/browser/API/strict-spec checks and release build; inspect all six packs plus repeated swaps, night emissives and keyboard/touch; record uncaptured timing and evidence limits, publish locally and push a durable branch.
 - [ ] 3.2 Obtain physical-phone and user moving review of night visibility, canopy/art coherence, gain/comfort and sustained timing before promoting packs or claiming production acceptance.
+
+## 4. Default app and cruising road feel (user requested)
+- [x] 4.1 Make the painted prototype the default URL; retain injected legacy sessions for receipt tests.
+- [x] 4.2 Add early bends, stronger alternating turns and additional signed rolling gradients, retaining readable gentle recovery sweeps and shared terrain coordinates.
+- [x] 4.3 Implement bounded gentle-curve force cancellation without targeting lanes; smooth high-speed steering and show applied steering on the wheel; verify offset preservation, active turns and scheduling consistency.
+- [ ] 4.4 Record sources and limits, run local checks/browser review, update forge diagnostics, merge accumulated work to main and push without remote builds.

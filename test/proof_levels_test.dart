@@ -34,7 +34,7 @@ void main() {
         expect(race.proofLevel.id, level.id);
         expect(
           race.curveAt(1500),
-          closeTo((a.curvatureAt(1500) * 55).clamp(-.4, .4), 1e-12),
+          closeTo((a.curvatureAt(1500) * 8).clamp(-.4, .4), 1e-12),
         );
         for (var s = 2.0; s < 7600; s += 5) {
           expect(

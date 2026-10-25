@@ -1,4 +1,5 @@
 import 'package:cannonball/game/race.dart';
+import 'package:cannonball/ui/wheel_control.dart';
 import 'package:cannonball/ui/visual_proof.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,6 +39,22 @@ Future<RaceController> mountProof(
 }
 
 void main() {
+  testWidgets('keyboard wheel displays the applied simulation steering', (
+    tester,
+  ) async {
+    final race = await mountProof(tester);
+    await startProof(tester);
+    await tester.sendKeyDownEvent(LogicalKeyboardKey.arrowRight);
+    race.tick(.1);
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(
+      tester.widget<WheelControl>(find.byType(WheelControl)).appliedSteering,
+      race.effectiveSteering,
+    );
+    expect(race.effectiveSteering, inExclusiveRange(0, 1));
+    await tester.sendKeyUpEvent(LogicalKeyboardKey.arrowRight);
+  });
+
   testWidgets(
     'Q to Y swaps levels, digits retain the pack, Backspace restarts',
     (tester) async {
@@ -66,9 +83,13 @@ void main() {
       await tester.pump();
       expect(race.proofLevel.id, 'ohio');
       await tester.tap(find.byTooltip('Choose level (Q W E R T Y)'));
-      await tester.pumpAndSettle();
+      // Driving feedback continuously schedules frames; begin then finish the popup.
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
       await tester.tap(find.text('E  Iowa prairie sunset'));
-      await tester.pumpAndSettle();
+      // Driving feedback continuously schedules frames; begin then finish the popup.
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
       expect(race.proofLevel.id, 'iowa');
       expect(tester.takeException(), isNull);
     },

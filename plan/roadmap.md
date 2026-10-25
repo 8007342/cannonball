@@ -55,3 +55,5 @@ composition. Number keys retain within-level replay; restart moves to Backspace.
 Source applications and deferred full-optics techniques are documented in
 docs/research/level-lighting-scenery.md. User/physical-device acceptance remains
 tracked separately from local implementation and browser evidence.
+
+2026-10-25 session: painted prototype is the default app; gentle-road assist and applied-angle wheel feedback are implemented alongside denser dramatic road rhythm. See docs/research/cruising-road-feel.md. Physical-phone and user handling acceptance remain open; historical pending notes above describe earlier checkpoints.

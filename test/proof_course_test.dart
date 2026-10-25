@@ -4,6 +4,22 @@ import 'package:cannonball/game/race.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  test('strong bend remains legible at velocity presentation depth', () {
+    const s = 750.0, ahead = 200.0, flow = 168.0;
+    final tangent =
+        (ProofCourse.centerAt(s + 1) - ProofCourse.centerAt(s - 1)) / 2;
+    final deviation =
+        ProofCourse.centerAt(s + ahead) -
+        ProofCourse.centerAt(s) -
+        tangent * ahead;
+    final screenOffset = .64 * 500 * deviation / (ahead * flow);
+    expect(
+      screenOffset.abs(),
+      greaterThan(60),
+      reason: 'strong turns need visible screen displacement, not only a force',
+    );
+  });
+
   test('authored sample exposes both bend directions and a climb/descent', () {
     expect(ProofCourse.curvatureAt(850), greaterThan(.004));
     expect(ProofCourse.curvatureAt(1450), lessThan(-.005));
@@ -136,7 +152,7 @@ void main() {
     expect(race.effectiveSteering, greaterThan(0));
     expect(race.effectiveSteering, lessThan(.12));
     final first = race.playerX;
-    race.tick(.15);
+    race.tick(.22);
     expect(race.effectiveSteering, greaterThan(.8));
     expect(race.playerX, greaterThan(first));
     race.start(proofCar, seed: 731);

@@ -1,5 +1,7 @@
 # Cannonball
 
+The painted driving prototype is now the default app at `/` (the old `?proof=1` link remains compatible). Q–Y select levels,1–8 replay chapters, arrows steer, Down/Space brake, Backspace restarts.
+
 A landscape arcade road trip from New York's Red Ball Garage to The Portofino in
 Redondo Beach. Flutter + Flame, web only, mobile first. Successful runs target
 10–15 minutes. Routes, traffic and luck differ; better unlocked cars enable better

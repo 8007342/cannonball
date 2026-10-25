@@ -133,7 +133,7 @@ class ProofTerrain {
     var heading = 0.0, center = 0.0;
     centers.add(0);
     for (var i = 1; i <= 2400; i++) {
-      final curvature = curvatureAt((i - .5) * 5);
+      final curvature = curvatureAt((i - .5) * 5) * ProofCourse.lateralScale;
       center += heading * 5 + curvature * 12.5;
       heading += curvature * 5;
       centers.add(center);

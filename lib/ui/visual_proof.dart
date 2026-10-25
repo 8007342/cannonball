@@ -128,6 +128,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _platform.initialize(
       onTilt: (value) {
         if (_tilt && _phase.value == _ProofPhase.driving) {
+          _race.digitalSteering = false;
           _race.steering = value;
         }
       },
@@ -493,6 +494,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       _keys.add(event.logicalKey);
     }
     if (!_tilt) {
+      _race.digitalSteering = true;
       _race.steering =
           (_keys.contains(LogicalKeyboardKey.arrowRight) ? 1.0 : 0) -
           (_keys.contains(LogicalKeyboardKey.arrowLeft) ? 1.0 : 0);
@@ -552,10 +554,15 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                         valueListenable: _hud,
                         builder: (context, _, _) => WheelControl(
                           visible: !_tilt,
+                          appliedSteering: _race.effectiveSteering,
+                          steeringReader: () => _race.effectiveSteering,
                           travelSteering:
                               Uri.base.queryParameters['touch'] == 'travel',
                           onSteer: (value) {
-                            if (!_tilt) _race.steering = value;
+                            if (!_tilt) {
+                              _race.digitalSteering = false;
+                              _race.steering = value;
+                            }
                           },
                           onBrake: (value) {
                             _touchBrake = value;

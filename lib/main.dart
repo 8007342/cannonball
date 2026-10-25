@@ -43,7 +43,7 @@ class CannonballApp extends StatelessWidget {
         ),
       ),
     ),
-    home: Uri.base.queryParameters['proof'] == '1' && session == null
+    home: session == null
         ? const VisualProofScreen()
         : GameShell(session: session),
   );

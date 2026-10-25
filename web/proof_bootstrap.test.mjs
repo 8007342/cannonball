@@ -11,8 +11,8 @@ function browser(search='?proof=1',native=3){
   vm.runInNewContext(source,context);
   return w;
 }
-test('normal game route retains its native pixel ratio',()=>{
-  const w=browser('');assert.equal(w.devicePixelRatio,3);assert.equal(w.CannonballProofBootstrap,undefined);
+test('default app gets the same bounded backing pixels as the proof link',()=>{
+  const w=browser('');assert.equal(w.devicePixelRatio,.5625);assert.equal(w.CannonballProofBootstrap.snapshot().pixelBudget,720*405);
 });
 test('smooth proof caps reported root pixels even on high DPI',()=>{
   const w=browser();const s=w.CannonballProofBootstrap.snapshot();

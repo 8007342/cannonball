@@ -42,3 +42,33 @@ and local versus physical-device evidence.
 - **WHEN** a lighting or canopy technique is added
 - **THEN** the ledger names its source and distinguishes an adaptation from a
   calibrated physical model or measured phone result
+
+### Requirement: Default painted app and readable driving rhythm
+The default URL SHALL open the painted prototype. Roads SHALL combine early
+bends, sustained gentle sweeps, demanding direction changes, and repeated signed
+gradients without changing shared collision/projection coordinates.
+
+#### Scenario: opening the public root
+- **WHEN** a player opens the root without a proof query
+- **THEN** the painted prototype garage and driving course are available
+
+### Requirement: Progressive steering and gentle-road cruising
+Gentle-road assistance SHALL cancel only curve-induced outward force, preserve
+arbitrary road-relative offsets, and permit intentional steering in both signs.
+Strong bends SHALL retain active steering demand. Hysteresis and bounded blending
+SHALL avoid abrupt correction transitions. Keyboard steering SHALL build smoothly
+and release promptly at speed. The overlay SHALL show applied steering including
+automatic corrections, independently of touch demand.
+
+#### Scenario: cruising then entering a strong curve
+- **WHEN** a player releases steering on a gentle sweep then reaches a tight bend
+- **THEN** the gentle sweep preserves their offset, the wheel shows small
+  corrections, and the tighter bend requires active steering
+
+#### Scenario: intentional lane change
+- **WHEN** a player steers in either direction while assistance is active
+- **THEN** their command moves the car without a lane-center attraction
+
+Research, rejected alternatives and tuning limits SHALL remain recorded in the
+[cruising ledger](../../../../../docs/research/cruising-road-feel.md) and the
+[reference register](../../../../../docs/research/reference-register.md).

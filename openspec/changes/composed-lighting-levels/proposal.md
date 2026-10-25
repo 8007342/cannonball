@@ -7,6 +7,7 @@ levels will exercise reusable assets/metadata, terrain variation, conditions and
 night lighting, including the user's Indiana/Iowa autumn-road memory.
 
 ## What Changes
+- Promote the painted prototype to the default app with its bounded backing-pixel budget, richer road rhythm, gentle-road cruising correction and applied-angle keyboard/touch wheel feedback.
 - Q/W/E/R/T/Y select six distinct illustrative levels;1–8 retain within-level
   chapter replay. Move restart to Backspace because R now selects a level.
 - Data-driven level packs select geometry seed/shape, scenery palette/materials,

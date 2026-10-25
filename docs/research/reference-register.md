@@ -55,6 +55,7 @@ context, avoiding detached or misleading authority claims.
 | [Lower-horizon camera and flow pass — 2026-10-25](../../docs/research/camera-flow-next.md) | Research / source interpretation | 3 |
 | [Proof collision forgiveness and soft construction props](../../docs/research/collision-forgiveness.md) | Research / source interpretation | 3 |
 | [Authored road-feel milestone: evidence and implementation](../../docs/research/course-camera.md) | Research / source interpretation | 5 |
+| [Cruising road feel — 2026-10-25](../../docs/research/cruising-road-feel.md) | Research / source interpretation | 7 |
 | [Cannonball design research](../../docs/research/design.md) | Research / source interpretation | 15 |
 | [Cannonball engine and platform research](../../docs/research/engine.md) | Research / source interpretation | 14 |
 | [Gentle-road cruising without a lane-center magnet](../../docs/research/lane-following-assist.md) | Research / source interpretation | 3 |

@@ -5,6 +5,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../app/wheel_input.dart';
 
@@ -15,6 +16,8 @@ class WheelControl extends StatefulWidget {
     required this.onBrake,
     required this.visible,
     this.travelSteering = false,
+    this.appliedSteering,
+    this.steeringReader,
   });
   final ValueChanged<double> onSteer;
   final ValueChanged<bool> onBrake;
@@ -22,6 +25,12 @@ class WheelControl extends StatefulWidget {
 
   /// Opt-in comparison; keep the already refined angular behavior by default.
   final bool travelSteering;
+
+  /// Applied simulation angle, including road-following correction.
+  final double? appliedSteering;
+
+  /// Read once per animation frame, independently of the slower text HUD.
+  final ValueGetter<double>? steeringReader;
   @visibleForTesting
   static Future<bool> prepareRimArtwork() async =>
       await (_WheelControlState._skinLoad ??= _WheelControlState._loadSkin()) !=
@@ -30,7 +39,10 @@ class WheelControl extends StatefulWidget {
   State<WheelControl> createState() => _WheelControlState();
 }
 
-class _WheelControlState extends State<WheelControl> {
+class _WheelControlState extends State<WheelControl>
+    with SingleTickerProviderStateMixin {
+  late final Ticker _feedback;
+  double? _displayedSteering;
   final Map<int, double> _angles = {};
   final Map<int, double> _turns = {};
   final Set<int> _brakes = {};
@@ -54,6 +66,13 @@ class _WheelControlState extends State<WheelControl> {
   @override
   void initState() {
     super.initState();
+    _feedback = createTicker((_) {
+      final value = widget.steeringReader?.call();
+      if (widget.visible && value != _displayedSteering) {
+        setState(() => _displayedSteering = value);
+      }
+    });
+    if (widget.steeringReader != null) _feedback.start();
     (_skinLoad ??= _loadSkin()).then((image) {
       if (mounted && image != null) setState(() => _skin = image);
     });
@@ -127,6 +146,12 @@ class _WheelControlState extends State<WheelControl> {
   @override
   void didUpdateWidget(covariant WheelControl oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (widget.steeringReader == null) {
+      _feedback.stop();
+      _displayedSteering = null;
+    } else if (!_feedback.isActive) {
+      _feedback.start();
+    }
     if (oldWidget.visible && !widget.visible) {
       _neutral.clear();
       _angles.clear();
@@ -139,6 +164,7 @@ class _WheelControlState extends State<WheelControl> {
 
   @override
   void dispose() {
+    _feedback.dispose();
     _brakeRelease?.cancel();
     super.dispose();
   }
@@ -154,7 +180,12 @@ class _WheelControlState extends State<WheelControl> {
         onPointerUp: (e) => _up(e.pointer),
         onPointerCancel: (e) => _up(e.pointer),
         child: CustomPaint(
-          painter: _WheelPainter(g, _turn, widget.visible, _skin),
+          painter: _WheelPainter(
+            g,
+            widget.steeringReader?.call() ?? widget.appliedSteering ?? _turn,
+            widget.visible,
+            _skin,
+          ),
           size: c.biggest,
         ),
       );
