@@ -55,8 +55,9 @@ class PaintPalette {
         final i = (y * width + x) * 4;
         final r = rgba[i], g = rgba[i + 1], b = rgba[i + 2];
         if (rgba[i + 3] < 12 ||
-            !isPaint(r, g, b, x / width, y / height, redBody: redBody))
+            !isPaint(r, g, b, x / width, y / height, redBody: redBody)) {
           continue;
+        }
         final light = redBody ? r / 210 : (r + g + b) / (3 * 220);
         rgba[i] = (tr * light).round().clamp(0, rgba[i + 3]);
         rgba[i + 1] = (tg * light).round().clamp(0, rgba[i + 3]);
