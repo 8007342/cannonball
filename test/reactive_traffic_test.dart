@@ -41,6 +41,20 @@ void step(
 }
 
 void main() {
+  test(
+    'only the reactive proof authors the initial actual lane restriction',
+    () {
+      final legacy = RaceController()..start(cars.last, seed: 731);
+      final proof = RaceController()
+        ..start(cars.last, seed: 731, reactiveTraffic: true, launchSpeed: 110);
+      expect(legacy.closedLane, isNull);
+      expect(proof.closedLane, 1);
+      expect(proof.closureStart, greaterThan(0));
+      expect(proof.closureEnd, greaterThan(proof.closureStart));
+      legacy.dispose();
+      proof.dispose();
+    },
+  );
   test('a close lateral pass makes a bounded smooth flinch then recovers', () {
     final policy = ReactiveTraffic();
     final npc = car(1, 20, .55, 85);
