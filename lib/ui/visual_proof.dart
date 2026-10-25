@@ -240,6 +240,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _phase.value = _ProofPhase.paused;
   }
 
+  String get _radioStation => switch (_race.currentEdge.biome) {
+    Biome.city => 'City',
+    Biome.mountain || Biome.canyon => 'Mountain',
+    _ => 'Forest',
+  };
+
   void _onRace() {
     if (!mounted || _phase.value != _ProofPhase.driving) return;
     if (_race.elapsed >= duration || _race.finished) {
@@ -250,20 +256,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       _hud.value++;
       return;
     }
+    final station = _radioStation;
     _platform.setAudioState(
       speed: (_race.speed / _race.car.topSpeed).clamp(0, 1),
       intensity: (_race.speed / _race.car.topSpeed).clamp(0, 1),
-      region: _race.elapsed < 27
-          ? 'City'
-          : _race.elapsed < 58
-          ? 'Forest'
-          : 'Mountain',
+      region: station,
     );
-    final station = _race.elapsed < 27
-        ? 'City'
-        : _race.elapsed < 58
-        ? 'Forest'
-        : 'Mountain';
     if (station != _station) {
       _station = station;
       final report = _radioDirector.choose(
