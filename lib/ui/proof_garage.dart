@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'departure_timeline.dart';
+
 /// A directed 2.5D departure. Its clock is independent of the race clock.
 /// Whole painted views are exchanged behind foreground occlusion, rather than
 /// pretending a single painting supports an arbitrary camera orbit.
@@ -30,13 +32,18 @@ class _ProofGarageState extends State<ProofGarage>
     with SingleTickerProviderStateMixin {
   late final AnimationController _clock;
   String _shot = 'keys';
+  bool _completed = false;
 
   @override
   void initState() {
     super.initState();
     _clock = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: widget.reducedMotion ? 1800 : 7600),
+      duration: Duration(
+        milliseconds: widget.reducedMotion
+            ? DepartureTimeline.reducedDurationMilliseconds
+            : DepartureTimeline.durationMilliseconds,
+      ),
     )..addListener(_advance);
     if (widget.departing) _clock.forward();
   }
@@ -44,28 +51,24 @@ class _ProofGarageState extends State<ProofGarage>
   @override
   void didUpdateWidget(ProofGarage oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.departing && !oldWidget.departing) _clock.forward(from: 0);
+    if (widget.departing && !oldWidget.departing) {
+      _completed = false;
+      _clock.forward(from: 0);
+    }
     if (!widget.departing && oldWidget.departing) _clock.reset();
   }
 
   void _advance() {
     final t = _clock.value;
-    final next = t < .12
-        ? 'pickup'
-        : t < .36
-        ? 'reveal'
-        : t < .68
-        ? 'walk'
-        : t < .83
-        ? 'door'
-        : t < .94
-        ? 'cabin'
-        : 'launch';
+    final next = DepartureTimeline.shot(t);
     if (next != _shot) {
       _shot = next;
       widget.onShot(next);
     }
-    if (_clock.isCompleted) widget.onComplete();
+    if (_clock.isCompleted && !_completed) {
+      _completed = true;
+      widget.onComplete();
+    }
   }
 
   @override
@@ -74,47 +77,50 @@ class _ProofGarageState extends State<ProofGarage>
     super.dispose();
   }
 
-  Widget _picture(String name) => widget.artwork
+  Widget _picture(String path, {Alignment alignment = Alignment.center}) =>
+      widget.artwork
       ? Image.asset(
-          'assets/proof-next/$name.png',
+          path,
           fit: BoxFit.cover,
+          alignment: alignment,
           filterQuality: FilterQuality.low,
           errorBuilder: (_, _, _) => const ColoredBox(color: Color(0xff302822)),
         )
       : const ColoredBox(color: Color(0xff302822));
 
-  Widget _cell(int index, {double width = 230, double height = 230}) =>
-      widget.artwork
-      ? SizedBox(
-          width: width,
-          height: height,
-          child: ClipRect(
-            // Generated top-row frames overlap the next row near their lower
-            // gutter. Clip display coverage without rescaling the cell/pivot.
-            clipper: index == 0
-                ? const _AtlasGutterClip(.90)
-                : index == 1
-                ? const _AtlasGutterClip(.94)
-                : null,
+  Widget _cell(
+    int index, {
+    required double extent,
+    String path = 'assets/proof-next/entry-atlas.png',
+    double visibleFraction = 1,
+  }) => SizedBox.square(
+    dimension: extent,
+    child: widget.artwork
+        ? ClipRect(
+            clipper: _AtlasGutterClip(visibleFraction),
             child: OverflowBox(
               alignment: Alignment.topLeft,
-              maxWidth: width * 3,
-              maxHeight: height * 2,
+              maxWidth: extent * 3,
+              maxHeight: extent * 2,
               child: Transform.translate(
-                offset: Offset(-(index % 3) * width, -(index ~/ 3) * height),
+                offset: Offset(-(index % 3) * extent, -(index ~/ 3) * extent),
                 child: Image.asset(
-                  'assets/proof-next/entry-atlas.png',
-                  width: width * 3,
-                  height: height * 2,
-                  fit: BoxFit.fill,
+                  path,
+                  width: extent * 3,
+                  height: extent * 2,
+                  fit:
+                      BoxFit.fill, // Uniform square cells; never viewport fill.
                   filterQuality: FilterQuality.low,
                   errorBuilder: (_, _, _) => const SizedBox.shrink(),
                 ),
               ),
             ),
-          ),
-        )
-      : SizedBox(width: width, height: height);
+          )
+        : null,
+  );
+
+  Widget _hand(int frame, double extent) =>
+      _cell(frame, extent: extent, path: 'assets/milestone/hand-atlas.png');
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
@@ -124,67 +130,166 @@ class _ProofGarageState extends State<ProofGarage>
         final t = _clock.value;
         final w = bounds.maxWidth, h = bounds.maxHeight;
         final moving = widget.departing;
-        final reveal = ((t - .12) / .24).clamp(0.0, 1.0);
-        final walk = ((t - .36) / .32).clamp(0.0, 1.0);
-        final entry = ((t - .68) / .26).clamp(0.0, 1.0);
-        final exterior = t >= .245;
+        final pickup = DepartureTimeline.progress(t, 0, .20);
+        final pan = DepartureTimeline.smooth(
+          DepartureTimeline.progress(t, .20, .40),
+        );
+        final walk = DepartureTimeline.smooth(
+          DepartureTimeline.progress(t, .40, .60),
+        );
+        final door = DepartureTimeline.progress(t, .60, .70);
+        final cabin = DepartureTimeline.smooth(
+          DepartureTimeline.progress(t, .70, .82),
+        );
+        final rear = DepartureTimeline.smooth(
+          DepartureTimeline.progress(t, .82, .93),
+        );
+        final handReach = DepartureTimeline.smooth(
+          DepartureTimeline.progress(pickup, 0, .48),
+        );
+        final withdraw = DepartureTimeline.smooth(
+          DepartureTimeline.progress(pickup, .70, 1),
+        );
         final sway = widget.reducedMotion
             ? 0.0
-            : math.sin(walk * math.pi * 5) * 3;
+            : math.sin(walk * math.pi * 4) * 2.0 * math.sin(walk * math.pi);
+        final keyExtent = h * .21;
+        final handExtent = h * .44;
+        final handLeft =
+            w * .43 -
+            handExtent * .32 +
+            (widget.reducedMotion
+                ? 0
+                : (1 - handReach) * w * .28 + withdraw * w * .20);
+        final handTop =
+            h * .36 -
+            handExtent * .34 +
+            (widget.reducedMotion
+                ? 0
+                : (1 - handReach) * h * .27 + withdraw * h * .34);
+        final showKey = !moving || pickup < .55;
+        final exterior = _picture('assets/proof-next/garage-exterior.png');
+        final wall = _picture('assets/proof-next/garage-wall.png');
         return Stack(
           fit: StackFit.expand,
           children: [
-            Transform.translate(
-              offset: Offset(
-                exterior ? -walk * w * .075 : reveal * w * .1,
-                sway,
-              ),
-              child: Transform.scale(
-                scale: exterior ? 1 + walk * .23 : 1.05 - reveal * .05,
-                child: _picture(exterior ? 'garage-exterior' : 'garage-wall'),
+            // A continuous leftward camera move: the wall retreats right and
+            // the existing doorway painting enters from the left. Their dark
+            // garage edges meet without a full-screen opaque wipe.
+            Opacity(
+              opacity: moving ? DepartureTimeline.overlayOpacity(t) : 1,
+              child: ClipRect(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    if (pan < 1)
+                      Transform.translate(
+                        offset: Offset(widget.reducedMotion ? 0 : w * pan, 0),
+                        child: Opacity(
+                          opacity: widget.reducedMotion ? 1 - pan : 1,
+                          child: wall,
+                        ),
+                      ),
+                    if (pan > 0)
+                      Transform.translate(
+                        offset: Offset(
+                          widget.reducedMotion
+                              ? 0
+                              : w * (pan - 1) - walk * w * .045,
+                          sway,
+                        ),
+                        child: Transform.scale(
+                          scale: widget.reducedMotion ? 1 : 1 + walk * .19,
+                          child: Opacity(
+                            opacity: widget.reducedMotion ? pan : 1,
+                            child: exterior,
+                          ),
+                        ),
+                      ),
+                    if (pan < 1 && showKey)
+                      Positioned(
+                        left:
+                            w * .43 -
+                            keyExtent * .5 +
+                            (widget.reducedMotion ? 0 : w * pan),
+                        top: h * .36 - keyExtent * .10,
+                        child: _cell(
+                          0,
+                          extent: keyExtent,
+                          visibleFraction: .90,
+                        ),
+                      ),
+                    if (moving && pickup > 0 && t < .20)
+                      Positioned(
+                        left: handLeft,
+                        top: handTop,
+                        child: Opacity(
+                          opacity: widget.reducedMotion
+                              ? math.sin(pickup * math.pi)
+                              : 1,
+                          child: _hand(
+                            DepartureTimeline.handFrame(pickup),
+                            handExtent,
+                          ),
+                        ),
+                      ),
+                    if (moving && t >= .60 && t < .74)
+                      Positioned(
+                        left: w * (.72 - door * .42),
+                        top: h * .08,
+                        child: Transform.rotate(
+                          angle: widget.reducedMotion ? 0 : -door * .10,
+                          child: _cell(3, extent: h * 1.10),
+                        ),
+                      ),
+                    if (moving && t >= .70 && t < .85)
+                      Opacity(
+                        opacity: cabin,
+                        child: Transform.scale(
+                          scale: widget.reducedMotion
+                              ? 1
+                              : 1.025 - cabin * .025,
+                          child: _picture(
+                            'assets/milestone/cabin.png',
+                            alignment: const Alignment(0, -.15),
+                          ),
+                        ),
+                      ),
+                    if (moving && t >= .82)
+                      Opacity(
+                        opacity: 1 - rear,
+                        child: _picture('assets/milestone/cabin.png'),
+                      ),
+                    if (moving && t >= .82)
+                      // The live game is underneath this overlay. A rear sprite
+                      // settles toward its chase-camera position during the cut.
+                      Opacity(
+                        opacity: rear,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            ColoredBox(
+                              color: const Color(0xff1d2b34)
+                                  .withValues(alpha: (1 - rear) * .45),
+                            ),
+                            Positioned(
+                              left: w * .5 - h * (.43 - rear * .08) * .5,
+                              top:
+                                  h * .80 -
+                                  h * (.43 - rear * .08) * (449 / 512),
+                              child: _cell(
+                                0,
+                                extent: h * (.43 - rear * .08),
+                                path: 'assets/proof-next/s2000-atlas.png',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
-            if (!exterior)
-              Positioned(
-                left: w * .43 - h * .105,
-                top: h * .36 - h * .021,
-                child: Transform.translate(
-                  offset: Offset(
-                    moving ? -w * t * 2 : 0,
-                    moving ? h * t * 2 : 0,
-                  ),
-                  child: _cell(moving ? 1 : 0, width: h * .21, height: h * .21),
-                ),
-              ),
-            // A foreground post masks the change of painted camera view.
-            if (moving && t > .17 && t < .33)
-              Transform.translate(
-                offset: Offset(w * (1 - (t - .17) / .16 * 2), 0),
-                child: ColoredBox(
-                  color: const Color(0xff291e18).withValues(alpha: .98),
-                ),
-              ),
-            if (moving && t >= .68 && t < .83)
-              Align(
-                alignment: Alignment(1.4 - entry * 1.1, .5),
-                child: _cell(3, width: w * .9, height: h * 1.2),
-              ),
-            if (moving && t >= .80)
-              Opacity(
-                opacity: ((t - .80) / .05).clamp(0.0, 1.0),
-                child: Transform.scale(
-                  scale: 1 + entry * .1,
-                  child: Center(
-                    child: _cell(4, width: w, height: h),
-                  ),
-                ),
-              ),
-            if (moving && t > .92)
-              ColoredBox(
-                color: Colors.black.withValues(
-                  alpha: ((t - .92) / .08).clamp(0.0, 1.0),
-                ),
-              ),
             if (!moving)
               Positioned(
                 left: w * .29,
