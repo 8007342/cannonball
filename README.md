@@ -171,3 +171,24 @@ arcs, now with original translucent leather/stitching artwork. V toggles stronge
 optional peripheral trails and vignette; compare at driving speed. Root-cause,
 input-check evidence and art provenance are in
 [the repair notes](docs/camera-steering-repair.md).
+
+## Fast, grounded and controllable proof
+
+`/?proof=1` now opens the revised two-minute S2000 course, with more than ten
+left/right curve reversals and a range of shallow/medium/steep climbs, descents,
+crests and dips. The wheel fills outward from the accepted inner opening. Subtle
+camera-relative slope cues retain the rear silhouette instead of snapping into
+the old wheelie-like uphill cells. Ground-pivoted vegetation responds gently.
+
+Default `motion=velocity` raises presentation flow from132 to168 while extending
+the fixed180-segment mesh's far range to retain over320 course units of geometric
+preview. Actual speed physics is unchanged; hills can still conceal the road.
+Traffic admission has bounded build/overtake/release beats. Keys1–8 replay the
+existing chapters, R restarts, C cycles camera, V toggles optional edge effects.
+
+Compare `motion=hyperspeed`, `slope=legacy`, `touch=travel` (optional160 CSS-pixel
+tangential steering comparison), or `foliage=still` independently. The default
+touch behavior remains angular. [Research application ledger](docs/research/next-proof-source-review.md)
+records adopted, deferred and excluded techniques; [proof review](docs/grounded-speed-proof.md)
+records local evidence and limits. Physical-phone comfort and moving art approval
+remain open.

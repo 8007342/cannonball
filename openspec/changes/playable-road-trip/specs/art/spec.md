@@ -95,3 +95,29 @@ input geometry and central visibility.
 #### Scenario: steering look on a straight road
 - **WHEN** steering changes the camera's lateral look offset
 - **THEN** the road heading remains geometry-derived and the distant vanishing direction does not swing with the offset
+
+### Requirement: Research application and exclusion ledger
+The next proof SHALL link every research item found in the cross-project review
+through the [source application ledger](../../../../../docs/research/next-proof-source-review.md).
+Each entry SHALL identify the source, adopted technique or reason for deferral or
+exclusion, applicability limits and the distinction between evidence and authored
+tuning. Ranitas and Demon Attack documents SHALL be distinguished from their
+underlying primary sources and from verified Cannonball behavior.
+
+#### Scenario: reviewing a discovered technique
+- **WHEN** a reviewer follows an adopted or unused research item from this specification
+- **THEN** the ledger explains its application or exclusion and does not represent project tuning, an inaccessible paper or automated tests as validated human results
+
+### Requirement: Subtle grounded slope presentation
+The next proof SHALL separate ground contact, camera-relative slope and secondary
+body motion. Mild slopes SHALL NOT abruptly select strongly pitched wheelie-like
+artwork. Slope presentation SHALL use bounded response and stable transitions,
+retain coherent tire/shadow anchors and provide a labeled prior comparison.
+
+#### Scenario: driving a shallow rise into a steeper crest
+- **WHEN** the player crosses shallow and stronger grades while the camera follows the road
+- **THEN** the vehicle remains grounded and changes its visible pitch subtly relative to the camera without abrupt sprite-angle jumps
+
+#### Scenario: reviewing an old steep pose
+- **WHEN** a comparison enables prior slope artwork
+- **THEN** the mode is identifiable and its appearance is not silently promoted as the accepted grounded result

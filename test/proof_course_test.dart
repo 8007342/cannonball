@@ -19,6 +19,59 @@ void main() {
     expect(ProofCourse.tunnelAt(6900), 0);
   });
 
+  test('review course offers repeated bends and varied signed gradients', () {
+    final curves = <double>[];
+    final grades = <double>[];
+    for (var distance = 100.0; distance < ProofCourse.length; distance += 25) {
+      curves.add(ProofCourse.curvatureAt(distance));
+      grades.add(ProofCourse.gradeAt(distance, 132));
+    }
+    for (final sign in [-1, 1]) {
+      expect(curves.where((c) => c * sign > .004).length, greaterThan(30));
+      expect(curves.where((c) => c * sign > .02).length, greaterThan(8));
+      expect(grades.where((g) => g * sign > .01).length, greaterThan(30));
+      expect(grades.where((g) => g * sign > .035).length, greaterThan(8));
+      expect(grades.where((g) => g * sign > .075).length, greaterThan(3));
+    }
+    final signs = curves
+        .where((c) => c.abs() > .002)
+        .map((c) => c.sign)
+        .toList();
+    var reversals = 0;
+    for (var i = 1; i < signs.length; i++) {
+      if (signs[i] != signs[i - 1]) reversals++;
+    }
+    expect(reversals, greaterThanOrEqualTo(10));
+    // More than the original bend chapters: canopy, bridge and tunnel have
+    // gentle steering changes too, while retaining their authored positions.
+    for (final distance in [4500.0, 5200.0, 5700.0, 6350.0, 7200.0]) {
+      expect(ProofCourse.curvatureAt(distance).abs(), greaterThan(.004));
+    }
+  });
+
+  test(
+    'terrain slope is continuous, finite and scales with projected distance',
+    () {
+      for (
+        var distance = 0.0;
+        distance <= ProofCourse.length;
+        distance += 2.5
+      ) {
+        final grade = ProofCourse.gradeAt(distance, 132);
+        expect(grade.isFinite, isTrue);
+        expect(grade.abs(), lessThan(.2));
+        expect(
+          (grade - ProofCourse.gradeAt(distance + .1, 132)).abs(),
+          lessThan(.001),
+        );
+        expect(ProofCourse.gradeAt(distance, 264), closeTo(grade / 2, 1e-12));
+      }
+      expect(ProofCourse.gradeAt(500, 0), 0);
+      expect(ProofCourse.gradeAt(double.nan, 132), 0);
+      expect(ProofCourse.gradeAt(500, double.infinity), 0);
+    },
+  );
+
   test('visible bend does not collapse to a straight local tangent', () {
     const s = 700.0, ahead = 450.0;
     final heading =

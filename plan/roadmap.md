@@ -40,3 +40,10 @@ damped chase/suspension cues and protected thumb-wide rim controls. Optional
 peripheral effects are reviewable separately. Research and local evidence are in
 docs/research/rolling-chase-suspension.md; lane-follow assist and physical-phone
 acceptance remain open.
+
+Next local review uses the fast/grounded proof: outward-filled rim, subtle
+camera-relative slope cues, varied gradient/curve course, velocity presentation
+with bounded preview mesh, animated vegetation and admission/release budgets.
+See docs/research/next-proof-source-review.md for every adopted/deferred/excluded
+research direction and docs/grounded-speed-proof.md for local evidence. The
+current angular touch baseline remains default; touch=travel is a comparison.

@@ -34,3 +34,20 @@ The user approved a researched test-course milestone after reviewing the second 
 
 ## Impact
 Flutter game/UI modules, browser sensor/audio/GIS bridge, Worker API and SQLite Durable Object, deployment configuration and validation. Native apps remain excluded. Tests must verify clock/gate/branch logic, UI state transitions and API acceptance failures. Real phone comfort/performance and live Google/Cloudflare setup remain separate observable checks, never inferred from a dry-run. Initial authored visuals and real-road corridor data must be labeled honestly until production asset and exact-junction review is complete.
+
+## Approved fast, grounded and controllable proof
+The user requests another implemented local proof using researched techniques from
+Ranitas and Demon Attack, with every discovered research item's application or
+reason for exclusion/deferment recorded in the specification. Preserve the accepted
+inner wheel opening while extending the rim outward. Correct exaggerated uphill
+poses, retain precise angular touch as baseline with an explicit travel-normalized
+comparison, and strengthen speed without collapsing road preview. The authored
+course shall contain numerous opposing curves and shallow/medium/steep rises,
+dips and combined bends so subtle grounding and response can be reviewed.
+
+Use the [source application ledger](../../../docs/research/next-proof-source-review.md)
+for adopted techniques, deferred alternatives and evidence limits. The proof adds
+bounded encounter admission/recovery beats and a small animated roadside sample.
+Actual vehicle-speed physics increases and full IDM/MOBIL replacement are deferred
+to keep presentation comparisons attributable. Production art approval, geography,
+live services and physical-device acceptance remain open.

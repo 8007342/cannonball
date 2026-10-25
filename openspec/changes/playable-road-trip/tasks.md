@@ -99,3 +99,12 @@ is the requested first draft, not final art approval or production acceptance.
 - [x] 15.2 Make optional peripheral effects visibly distinguishable at driving speed while retaining a clear center and reduced-motion/off fallback.
 - [x] 15.3 Improve rim finish/artwork while preserving approved geometry, hit bands, guard zones and gesture behavior; record provenance.
 - [x] 15.4 Run local checks, moving input comparisons, publish and push durable work branch.
+
+## 16. Fast, grounded and controllable proof
+- [x] 16.1 Record all research found in the Ranitas/Demon Attack exploration and direct follow-up, linking adopted techniques, deferred/excluded alternatives and evidence limits from the active specifications; regenerate and check the reference register.
+- [x] 16.2 Preserve the accepted inner wheel opening, extend rim art outward to the viewport, retain angular touch baseline and add an explicit travel-normalized comparison with independent brake/guard/pointer verification.
+- [x] 16.3 Implement bounded camera-relative grounded slope presentation without abrupt wheelie-like uphill artwork; verify contacts, hysteresis, settling and schedule consistency, keeping the prior comparison identifiable.
+- [x] 16.4 Enrich the replayable authored course with repeated left/right bends and shallow/medium/steep rises/descents, crests/dips and combined transitions; verify continuity and meaningful gradient/curvature coverage.
+- [x] 16.5 Add stronger presentation flow while preserving an explicit geometric preview and fixed render budget; verify coherent traffic/contact coordinates and retain earlier motion presets without changing actual speed physics.
+- [x] 16.6 Add bounded encounter admission/release beats and a coherent animated roadside sample with stable/reduced-motion fallback; verify deterministic arrivals, existing-actor retention and readable central gaps.
+- [ ] 16.7 Integrate specialist changes; run local format/analyzer/Flutter/browser/API/spec checks, release build and uncaptured timing, inspect the moving result, publish the local next proof and preserve durable work-branch checkpoints; keep real-phone and production acceptance open.

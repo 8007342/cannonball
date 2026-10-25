@@ -6,20 +6,45 @@ import 'dart:math' as math;
 class ProofCourse {
   static const length = 7600.0;
   static const sampleStep = 5.0;
+  // Gentle sweeps, tightening bends and reversals are deliberately interleaved.
+  // The bridge, worksite and tunnel retain their existing chapter positions.
   static const _curves = <(double, double)>[
     (0, 0),
-    (500, 0),
-    (650, .005),
-    (1050, .005),
-    (1250, -.006),
-    (1650, -.006),
-    (1900, .004),
-    (2150, .004),
-    (2400, .002),
-    (2800, .002),
-    (3100, -.004),
-    (3450, -.004),
-    (3700, 0),
+    (420, 0),
+    (540, .00075),
+    (650, .002),
+    (850, .005),
+    (1040, .0025),
+    (1220, -.001),
+    (1450, -.006),
+    (1650, -.0035),
+    (1850, .001),
+    (2050, .004),
+    (2250, .001),
+    (2420, -.0025),
+    (2660, .002),
+    (2850, .0045),
+    (3080, -.0015),
+    (3330, -.005),
+    (3550, -.002),
+    (3750, .001),
+    (3980, .003),
+    (4200, 0),
+    (4430, -.001),
+    (4670, -.0025),
+    (4900, 0),
+    (5140, .0035),
+    (5420, .001),
+    (5600, -.0015),
+    (5860, -.0015),
+    (6060, .00075),
+    (6300, .002),
+    (6520, -.002),
+    (6780, -.00075),
+    (6960, .001),
+    (7210, .004),
+    (7420, -.0015),
+    (7600, 0),
     (12000, 0),
   ];
   static final List<double> _centers = _integrate();
@@ -64,14 +89,19 @@ class ProofCourse {
 
   // Compact, smooth rise/dip pairs vary crest timing without a repetitive wave.
   static const _rollers = <(double, double, double)>[
+    (40, 290, 140),
+    (310, 570, -220),
     (590, 1090, 1300),
     (1140, 1620, -1100),
     (1650, 2140, 1800),
     (2670, 3140, 950),
     (3570, 4160, -1200),
-    (4380, 4820, 900),
+    (4210, 4430, -190),
+    (4430, 4820, 900),
+    (4830, 5000, -250),
     (5010, 5380, 700),
-    (6870, 7460, -1050),
+    (6870, 7160, -380),
+    (7160, 7500, 1050),
   ];
   static double rollingElevationAt(double s) {
     var height = 0.0;
@@ -91,6 +121,17 @@ class ProofCourse {
       7000 * _rise(s, 3250, 4000) +
       100 * _rise(s, 5450, 5650) -
       100 * _rise(s, 5800, 6000);
+
+  /// Local slope in projected-world units. The same flow scale expands road
+  /// distance, so it must also be present in this derivative. This is a slope,
+  /// not an angle; use atan(grade) before comparing it with camera pitch.
+  static double gradeAt(double distance, double flowScale) {
+    if (!distance.isFinite || !flowScale.isFinite || flowScale <= 0) return 0;
+    const halfSpan = 2.5;
+    return (elevationAt(distance + halfSpan) -
+            elevationAt(distance - halfSpan)) /
+        (2 * halfSpan * flowScale);
+  }
 
   /// View pitch follows road grade. The camera trail remains the player's
   /// invariant ground point while the far horizon moves visibly on grades.

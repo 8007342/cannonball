@@ -22,3 +22,15 @@ The world requirements SHALL link to the [shared reference register](../../../..
 #### Scenario: reviewing world evidence
 - **WHEN** the implementation is assessed against this capability
 - **THEN** reviewers can follow the register to original references and distinguish historical observations from unverified production acceptance
+
+### Requirement: Coherent bounded roadside animation
+The next proof SHALL demonstrate a bounded sample of world-anchored vegetation or
+roadside secondary motion inspired by Ranitas's batching and GPU Gems's coarse
+and detailed wind response. Animation SHALL preserve road clearance, depth order
+and the central traffic corridor, and stable/reduced-motion comparisons SHALL
+suppress optional decoration. Full independent physical vegetation simulation
+SHALL NOT be implied by a small atlas-based sample.
+
+#### Scenario: passing animated roadside vegetation
+- **WHEN** wind or phase variation animates visible roadside scenery
+- **THEN** its roots remain attached to shared terrain, motion stays bounded, and consequential traffic cues remain readable

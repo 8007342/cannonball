@@ -10,6 +10,7 @@ Future<Offset> mountWheel(
   List<double> steer,
   List<bool> brake, {
   bool visible = true,
+  bool travelSteering = false,
 }) async {
   await tester.pumpWidget(
     MaterialApp(
@@ -19,6 +20,7 @@ Future<Offset> mountWheel(
           height: 400,
           child: WheelControl(
             visible: visible,
+            travelSteering: travelSteering,
             onSteer: steer.add,
             onBrake: brake.add,
           ),
@@ -93,6 +95,79 @@ void main() {
       await tester.pump(const Duration(milliseconds: 160));
       expect(brake, isEmpty);
       expect(steer, isEmpty);
+    },
+  );
+
+  test('outward leather preserves its opening and encloses every corner', () {
+    for (final size in [
+      const Size(667, 375),
+      const Size(844, 390),
+      const Size(1280, 720),
+      const Size(1920, 720),
+      const Size(1024, 768),
+    ]) {
+      final g = WheelGeometry(size);
+      for (var i = 0; i < 360; i++) {
+        final a = i * math.pi / 180;
+        final oldInner =
+            g.radius -
+            g.strokeWidth * .5 -
+            math.pow(math.cos(a).abs(), 18) * g.strokeWidth * .04;
+        expect(g.innerPaintRadius(a), closeTo(oldInner, 1e-9));
+      }
+      for (final corner in [
+        Offset.zero,
+        Offset(size.width, 0),
+        Offset(0, size.height),
+        Offset(size.width, size.height),
+      ]) {
+        expect(g.outerPaintRadius, greaterThan((corner - g.center).distance));
+      }
+      // Painting out to the edges must not turn the opening into a hit target.
+      expect(g.onRim(g.center), isFalse);
+      expect(g.inSteeringGuard(g.center), isFalse);
+    }
+  });
+
+  test('travel comparison has the same tangential gain across wheel sizes', () {
+    for (final size in [const Size(844, 390), const Size(1280, 720)]) {
+      final g = WheelGeometry(size);
+      final angleFor40Pixels = 40 / g.radius;
+      expect(
+        g.steeringDelta(0, angleFor40Pixels, travel: true),
+        closeTo(.25, 1e-9),
+      );
+      expect(
+        g.steeringDelta(0, angleFor40Pixels),
+        closeTo(angleFor40Pixels / .85, 1e-9),
+      );
+      expect(
+        g.steeringDelta(angleFor40Pixels, 0, travel: true),
+        closeTo(-.25, 1e-9),
+      );
+    }
+  });
+
+  testWidgets(
+    'travel comparison is opt-in and cancellation releases steering',
+    (tester) async {
+      final steer = <double>[], brake = <bool>[];
+      final origin = await mountWheel(
+        tester,
+        steer,
+        brake,
+        travelSteering: true,
+      );
+      final g = WheelGeometry(const Size(800, 400));
+      final touch = await tester.startGesture(origin + const Offset(750, 200));
+      await touch.moveTo(origin + const Offset(750, 240));
+      expect(
+        steer.last,
+        closeTo(g.steeringDelta(0, math.atan2(40, 350), travel: true), 1e-6),
+      );
+      expect(brake, isEmpty);
+      await touch.cancel();
+      expect(steer.last, 0);
     },
   );
 

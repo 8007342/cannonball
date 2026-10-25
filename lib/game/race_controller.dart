@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import 'models.dart';
 import 'proof_course.dart';
+import 'proof_encounters.dart';
 import 'proof_contacts.dart';
 import 'proof_dynamics.dart';
 import 'route.dart';
@@ -586,6 +587,10 @@ class RaceController extends ChangeNotifier {
     );
   }
 
+  String get proofEncounterPhase => testCourseEnabled
+      ? ProofEncounterBudget.at(courseDistance).phase
+      : directorPhase;
+
   void _advanceReactiveTraffic() {
     final previousPositions = testCourseEnabled
         ? {for (final car in traffic) car.id: car.position}
@@ -594,8 +599,9 @@ class RaceController extends ChangeNotifier {
         ? {for (final car in traffic) car.id: car.x}
         : <int, double>{};
     if (elapsed >= _nextSpawn) {
+      final budget = ProofEncounterBudget.at(courseDistance);
       final interval = denseProofTraffic
-          ? .65
+          ? budget.interval
           : testCourseEnabled
           ? 1.2
           : directorPhase == 'peak'
@@ -607,7 +613,8 @@ class RaceController extends ChangeNotifier {
           elapsed +
           interval +
           _trafficRandom.next() * (denseProofTraffic ? .25 : 1.5);
-      if (!approachingFork && traffic.length < (denseProofTraffic ? 24 : 16)) {
+      if (!approachingFork &&
+          traffic.length < (denseProofTraffic ? budget.capacity : 16)) {
         _spawnTraffic();
       }
     }

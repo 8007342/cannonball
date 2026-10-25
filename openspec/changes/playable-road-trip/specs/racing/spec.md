@@ -54,3 +54,40 @@ and stable-camera comparisons SHALL remain available for review.
 #### Scenario: approaching a rolling crest
 - **WHEN** the player approaches a crest with dense traffic ahead
 - **THEN** vehicles and roadside props follow the same terrain and traffic enters from beyond the preview rather than teleporting into the near driving area
+
+### Requirement: Gradient and curvature review coverage
+The next local proof SHALL contain numerous left/right curves at gentle, medium
+and stronger demand and shallow, medium and steep climbs and descents. Crests,
+dips, repeated reversals and combined slope/curve sections SHALL exercise the
+subtleties of grounded poses and steering. Course geometry SHALL remain continuous,
+shared by traffic/props and replayable by chapter.
+
+#### Scenario: inspecting hill and curve subtleties
+- **WHEN** the reviewer traverses or replays the course sections
+- **THEN** both slope signs and multiple gradient/curvature magnitudes are exercised, including compound transitions rather than only one exaggerated hill and bend
+
+### Requirement: Faster flow preserves preview
+The new stronger-speed presentation SHALL preserve an explicitly budgeted useful
+geometric road preview across motion comparisons. Road sampling MAY redistribute
+a fixed mesh budget toward the distance. Traffic admission, contact positions and
+projected motion SHALL use the same coordinates. Faster presentation SHALL NOT
+silently change vehicle physics, campaign timing or the available draw range.
+
+#### Scenario: switching to the stronger flow comparison
+- **WHEN** the reviewer selects the new motion preset
+- **THEN** scenery flow increases while the road preview budget and traffic admission remain coherent, and telemetry identifies scale and preview separately
+
+#### Scenario: traffic behind a crest
+- **WHEN** terrain occludes a traffic actor within the geometric preview range
+- **THEN** the review distinguishes terrain occlusion from draw-boundary clipping rather than claiming the full preview is guaranteed visible reaction time
+
+### Requirement: Bounded encounter admission beats
+The next proof SHALL separate speed sensation from new traffic admission and
+provide repeatable build, overtaking and release beats. A lower phase capacity
+SHALL restrict new arrivals without deleting visible actors. Existing local driver
+responses and passable spawn gaps SHALL remain bounded and deterministic. Actual
+car, route and random-condition advantages SHALL remain intact.
+
+#### Scenario: entering a release phase with traffic present
+- **WHEN** the encounter beat changes from overtaking to release
+- **THEN** admission eases without teleporting existing vehicles away or imposing score compensation

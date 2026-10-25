@@ -551,6 +551,9 @@ class BillboardBatch {
     int color = 0xffffffff,
     ui.BlendMode blend = ui.BlendMode.modulate,
     int opacity = 255,
+    double rotation = 0,
+    double pivotX = 0,
+    double pivotY = 0,
   }) {
     if (image != atlas ||
         colorBlend != blend ||
@@ -562,10 +565,11 @@ class BillboardBatch {
     colorBlend = blend;
     batchOpacity = opacity;
     final i = count * 4;
-    transforms[i] = scale;
-    transforms[i + 1] = 0;
-    transforms[i + 2] = x;
-    transforms[i + 3] = y;
+    final cosine = math.cos(rotation), sine = math.sin(rotation);
+    transforms[i] = scale * cosine;
+    transforms[i + 1] = scale * sine;
+    transforms[i + 2] = x + pivotX - cosine * pivotX + sine * pivotY;
+    transforms[i + 3] = y + pivotY - sine * pivotX - cosine * pivotY;
     rects[i] = source.left;
     rects[i + 1] = source.top;
     rects[i + 2] = source.right;

@@ -141,3 +141,78 @@ validate actual keyboard/touch input. Increase optional speed-effect contrast fo
 an observable A/B. Texture the accepted rim geometry without reducing its target
 or neutral guard. Details and art provenance: docs/camera-steering-repair.md and
 assets/controls/PROMPTS.md.
+
+## Fast, grounded and controllable proof (2026-10-25)
+
+The user approved implementation by agents after the cross-project review and
+requested plenty of curves and hills of differing gradients. This refines the
+existing proof rather than authorizing production acceptance. The normative
+[source application ledger](../../../docs/research/next-proof-source-review.md)
+records Ranitas/Demon Attack research, primary explanations, decisions and limits.
+Use it to trace each technique and each deliberate exclusion.
+
+### Separate geometry, pose and secondary motion
+Keep road/vehicle/prop contacts in one authored course coordinate system. Evaluate
+local grade in presentation-space distance units and compare `atan(grade)` with
+camera pitch before selecting a subtle body cue. Use a critically damped response
+and distinct entry/exit thresholds so small changes do not abruptly select the
+existing steep uphill/downhill artwork. Preserve flat rear art as the grounded
+baseline where those old cells imply wheelies; do not claim that vertical scale
+is a physically complete pitch rotation. Keep contact pivots/shadow grounded and
+limit secondary load motion. Expose relative slope, response and comparison mode
+for review. Preserve old behavior only as the labeled `slope=legacy` comparison. Camera pitch
+is inferred with `atan(viewPitch/(projection*.70))` from this pseudo-projection,
+not measured as a full 3D camera rotation.
+
+The course includes repeated left/right mild, medium and stronger bends,
+shallow/medium/steep positive and negative grades, irregular rollers, crests,
+dips and combinations around canopy, bridge and tunnel sections. Maintain eased
+continuity and replayable chapters. Gradient categories are authored test coverage,
+not a real freeway survey or a claim about road legality.
+
+### Rim and touch
+Freeze the accepted inner opening and extend the textured translucent rim outward
+to the viewport boundary. Separate visible fill, gesture angle center/radius and
+input ownership. Preserve neutral guards, deliberate center brake and multi-touch
+release behavior. The angular baseline remains default; `touch=travel` compares
+normalized tangential thumb travel with a 160 CSS-pixel full-scale range. That
+range is a hypothesis rather than a physical millimetre guarantee. Changing art
+thickness must not silently change gain. Report the active mapping in telemetry.
+
+### Faster presentation with useful preview
+`motion=velocity` is the new default: presentation scale168 versus previous
+`hyperspeed`132 (about27% stronger flow). Preserve the previous presets and
+vehicle physics. A fixed180-segment mesh uses near step170 with a quadratic far
+extension targeting330 course units; use conservative preview at least320 units
+for traffic admission across comparison scales. This avoids the old fixed-depth
+preview shrinking inversely with the motion multiplier. Measure actual visible
+hazard opportunity separately: a crest may still occlude vehicles even inside
+the geometric preview. Extend ground-only near-flow references without cluttering
+central hazards or adding full-frame blur. Independent actual speed/acceleration
+increases are deferred to a subsequent physical challenge comparison.
+
+### Pacing and animated world
+Apply Demon Attack's bounded-admission lesson to seeded course-distance beats,
+not enemy HP or hidden score compensation. Initial policy repeats every1100
+course units: release0–240, build240–560, overtaking560–850, release850–1100.
+New admission uses release/build/overtake intervals1.8/1/.7 seconds and capacities
+12/18/22. Existing actors are never deleted merely to meet a lower phase budget.
+These are review settings, not literature-established difficulty thresholds.
+Preserve local following, motivated lane changes, openings and actual unequal
+outcomes. Full IDM/MOBIL is deferred; cite it accurately as an audited alternative.
+
+Adapt the Ranitas/GPU Gems coarse-bending principle as seeded, position-phased,
+bounded whole-tree sway about the authored ground pivot in the existing atlas
+batch. `foliage=still` and reduced motion suppress optional sway. World anchors
+keep scenery attached to terrain. Separate leaf flutter, multi-segment branches
+and painted detail animation are deferred because the current art has no separated
+leaf/branch layers; do not imply a complete physical or hierarchical foliage rig.
+
+### Verification and delivery
+Keep correctness, browser render timing and user perception separate. Check
+contact invariants, subtle slope transitions, timestep consistency, rim opening,
+input ownership, independent brake, graded course coverage, deterministic admission
+and constant preview across speed comparisons. Record backing size, cadence and
+p95/p99 in an uncaptured foreground sample. Inspect motion separately after timing.
+Run builds/tests locally; no GitHub Actions or remote build hooks. Publish only a
+local review preview and retain physical-phone and production tasks uncompleted.

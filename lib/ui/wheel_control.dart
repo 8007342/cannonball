@@ -14,10 +14,14 @@ class WheelControl extends StatefulWidget {
     required this.onSteer,
     required this.onBrake,
     required this.visible,
+    this.travelSteering = false,
   });
   final ValueChanged<double> onSteer;
   final ValueChanged<bool> onBrake;
   final bool visible;
+
+  /// Opt-in comparison; keep the already refined angular behavior by default.
+  final bool travelSteering;
   @visibleForTesting
   static Future<bool> prepareRimArtwork() async =>
       await (_WheelControlState._skinLoad ??= _WheelControlState._loadSkin()) !=
@@ -84,7 +88,7 @@ class _WheelControlState extends State<WheelControl> {
     final next = g.angle(e.localPosition);
     _turns[e.pointer] =
         ((_turns[e.pointer] ?? 0) +
-                WheelGeometry.angleDelta(previous, next) / .85)
+                g.steeringDelta(previous, next, travel: widget.travelSteering))
             .clamp(-1, 1);
     _angles[e.pointer] = next;
     setState(
@@ -173,31 +177,48 @@ class _WheelPainter extends CustomPainter {
     if (!visible) {
       return;
     }
-    c.drawCircle(
-      geometry.center,
-      geometry.radius,
+    // Paint is intentionally much wider than the hit band. Keep the approved
+    // opening fixed and let leather continue all the way offscreen.
+    final opening = Path();
+    const segments = 96;
+    for (var i = 0; i <= segments; i++) {
+      final angle = i / segments * math.pi * 2;
+      final point =
+          geometry.center +
+          Offset(math.cos(angle), math.sin(angle)) *
+              geometry.innerPaintRadius(angle);
+      if (i == 0) {
+        opening.moveTo(point.dx, point.dy);
+      } else {
+        opening.lineTo(point.dx, point.dy);
+      }
+    }
+    opening.close();
+    final leather = Path()
+      ..fillType = PathFillType.evenOdd
+      ..addRect(Offset.zero & size)
+      ..addPath(opening, Offset.zero);
+    c.save();
+    c.clipRect(Offset.zero & size);
+    c.drawPath(
+      leather,
       Paint()
-        ..color = Colors.black.withValues(alpha: .16)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = geometry.strokeWidth,
-    );
-    c.drawCircle(
-      geometry.center,
-      geometry.radius,
-      Paint()
-        ..color = Colors.white.withValues(alpha: .075)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = geometry.strokeWidth * .65,
+        ..shader = ui.Gradient.radial(
+          geometry.center,
+          geometry.outerPaintRadius,
+          const [Color(0x25332a25), Color(0x9950473d), Color(0xc7191716)],
+          const [0, .72, 1],
+        ),
     );
     if (skin != null) _paintSkin(c, skin!);
-    c.drawCircle(
-      geometry.center,
-      geometry.radius - geometry.strokeWidth * .40,
+    c.drawPath(
+      opening,
       Paint()
-        ..color = Colors.white.withValues(alpha: .13)
+        ..color = Colors.white.withValues(alpha: .17)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.2,
     );
+    c.restore();
   }
 
   void _paintSkin(Canvas canvas, ui.Image image) {
@@ -205,15 +226,14 @@ class _WheelPainter extends CustomPainter {
     final positions = <Offset>[], textures = <Offset>[], indices = <int>[];
     final colors = <Color>[];
     final sourceCenter = Offset(image.width / 2, image.height / 2);
-    // Radially map leather, stitching and trim into the approved touch silhouette.
+    // The original leather strip fills the exterior while its inner stitching
+    // follows exactly the previous opening; input geometry is never expanded.
     for (var i = 0; i <= segments; i++) {
       final angle = i / segments * math.pi * 2;
-      final grip = math.pow(math.cos(angle).abs(), 18).toDouble();
       for (var edge = 0; edge < 2; edge++) {
-        final radius =
-            geometry.radius +
-            (edge == 0 ? -.5 : .5) * geometry.strokeWidth +
-            grip * geometry.strokeWidth * (edge == 0 ? -.04 : .10);
+        final radius = edge == 0
+            ? geometry.innerPaintRadius(angle)
+            : geometry.outerPaintRadius;
         positions.add(
           geometry.center + Offset(math.cos(angle), math.sin(angle)) * radius,
         );
@@ -224,7 +244,7 @@ class _WheelPainter extends CustomPainter {
               Offset(math.cos(sourceAngle), math.sin(sourceAngle)) *
                   sourceRadius,
         );
-        colors.add(const Color(0x4fffffff));
+        colors.add(Color(edge == 0 ? 0x77ffffff : 0xaaffffff));
       }
       if (i < segments) {
         final n = i * 2;

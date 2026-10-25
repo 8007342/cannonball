@@ -95,10 +95,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       _ready.value = true;
     } else {
       _game = RaceGame(controller: _race, proofMode: true)
-        ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'hyperspeed')
+        ..setSpeedPreset(Uri.base.queryParameters['motion'] ?? 'velocity')
         ..setCameraPreset(Uri.base.queryParameters['camera'] ?? 'wide')
         ..stableChase = Uri.base.queryParameters['chase'] == 'stable'
         ..speedEffects = Uri.base.queryParameters['effects'] == 'on'
+        ..animatedFoliage = Uri.base.queryParameters['foliage'] != 'still'
+        ..legacySlopePoses = Uri.base.queryParameters['slope'] == 'legacy'
         ..suspensionEnabled = Uri.base.queryParameters['body'] != 'stable';
       _scene = RepaintBoundary(
         child: GameWidget(
@@ -187,6 +189,11 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'bodyRoll': _game?.suspension.roll,
     'bodyPitch': _game?.suspension.pitch,
     'bodyHeave': _game?.suspension.heave,
+    'relativeSlopePitch': _game?.groundedSlope.relativePitch,
+    'slopeCue': _game?.groundedSlope.visualPitch,
+    'slopeBand': _game?.groundedSlope.slopeBand,
+    'legacySlopePoses': _game?.legacySlopePoses,
+    'animatedFoliage': _game?.animatedFoliage,
     'speedEffects': _game?.speedEffects,
     'denseTraffic': _race.denseProofTraffic,
     'coursePitch': _game?.coursePitch,
@@ -197,6 +204,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'braking': _race.braking,
     'playerX': _race.playerX,
     'speedPreset': _game?.speedPreset,
+    'trafficPreviewDistance': _game?.trafficPreviewDistance,
+    'previewSeconds': _game?.previewSeconds,
+    'touchPreset': Uri.base.queryParameters['touch'] == 'travel'
+        ? 'travel'
+        : 'angular',
+    'encounterPhase': _race.proofEncounterPhase,
     'presentationDistance': _game?.presentationDistance,
     'roadCurve': _race.curveAt(_race.worldDistance),
     'closedLane': _race.closedLane,
@@ -502,6 +515,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                         valueListenable: _hud,
                         builder: (context, _, _) => WheelControl(
                           visible: !_tilt,
+                          travelSteering:
+                              Uri.base.queryParameters['touch'] == 'travel',
                           onSteer: (value) {
                             if (!_tilt) _race.steering = value;
                           },

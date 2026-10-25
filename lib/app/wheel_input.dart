@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/painting.dart';
 
-/// A transparent-center wheel with full-height, inset thumb-sized side arcs.
+/// Input geometry stays independent of the outward-filled painted rim.
 class WheelGeometry {
   WheelGeometry(this.size);
   final Size size;
@@ -12,6 +12,21 @@ class WheelGeometry {
   double get radius => math.max(size.height * .56, size.width / 2 - inset);
   double get touchHalfWidth => math.max(64.0, strokeWidth / 2 + 42);
   static const guardWidth = 32.0;
+
+  /// Preserve the previous leather rim's inner edge, including its slight grip.
+  /// Increasing paint coverage never moves this opening or any input target.
+  double innerPaintRadius(double angle) {
+    final grip = math.pow(math.cos(angle).abs(), 18).toDouble();
+    return radius - strokeWidth * (.5 + grip * .04);
+  }
+
+  /// Enclose every viewport corner so the rim has no visible outer edge.
+  double get outerPaintRadius => size.center(Offset.zero).distance + 2;
+
+  /// The optional travel comparison uses a 160 logical-pixel tangential stroke
+  /// to full steering. This is a playtest hypothesis, not a physical thumb size.
+  double steeringDelta(double from, double to, {bool travel = false}) =>
+      angleDelta(from, to) * (travel ? radius / 160 : 1 / .85);
   bool onRim(Offset point) =>
       ((point - center).distance - radius).abs() <= touchHalfWidth;
   bool inSteeringGuard(Offset point) {

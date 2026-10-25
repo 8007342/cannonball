@@ -43,6 +43,7 @@ context, avoiding detached or misleading authority claims.
 | [Departure continuity: directed 2.5D sample](../../docs/garage-continuity.md) | Design / implementation / validation | 3 |
 | [Garage and radio proof](../../docs/garage-radio-proof.md) | Design / implementation / validation | 0 |
 | [GitHub build trigger audit — 2026-10-25](../../docs/github-build-audit.md) | Design / implementation / validation | 1 |
+| [Fast, grounded and controllable proof — 2026-10-25](../../docs/grounded-speed-proof.md) | Design / implementation / validation | 0 |
 | [Browser controls and sound](../../docs/platform.md) | Design / implementation / validation | 3 |
 | [Visual proof asset validation](../../docs/proof-assets-validation.md) | Design / implementation / validation | 0 |
 | [Visual proof: browser surface and controls](../../docs/proof-platform.md) | Design / implementation / validation | 2 |
@@ -57,6 +58,7 @@ context, avoiding detached or misleading authority claims.
 | [Cannonball engine and platform research](../../docs/research/engine.md) | Research / source interpretation | 14 |
 | [Gentle-road cruising without a lane-center magnet](../../docs/research/lane-following-assist.md) | Research / source interpretation | 3 |
 | [Pixel art, smooth movement, and camera lean](../../docs/research/motion-art.md) | Research / source interpretation | 9 |
+| [Next proof: source review and application ledger](../../docs/research/next-proof-source-review.md) | Research / source interpretation | 89 |
 | [Perceived speed: third-proof research and review protocol](../../docs/research/perceived-speed-milestone.md) | Research / source interpretation | 7 |
 | [Renderer rejection, Baja reference and measured limits](../../docs/research/renderer-audit.md) | Research / source interpretation | 10 |
 | [Roadside rhythm, motivation and review](../../docs/research/roadside-flow-review.md) | Research / source interpretation | 3 |

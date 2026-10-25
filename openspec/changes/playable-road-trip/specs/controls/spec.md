@@ -59,3 +59,29 @@ Deliberate central braking and independent multi-pointer controls SHALL remain.
 #### Scenario: missing the inner rim edge
 - **WHEN** a touch begins inside the protected steering guard
 - **THEN** it applies no brake, can move onto the rim to steer, and never converts into a brake gesture mid-drag
+
+### Requirement: Outward-filled rim preserves the accepted opening
+The next proof SHALL preserve the current inner wheel contour while extending the
+translucent textured rim outward across the peripheral viewport. Artwork thickness
+SHALL remain independent of steering gain and gesture ownership. Utility controls,
+neutral acquisition, deliberate central braking and independent pointers SHALL
+remain usable.
+
+#### Scenario: widening the visible rim
+- **WHEN** the thicker wheel is rendered at phone or desktop landscape dimensions
+- **THEN** its existing clear inner opening remains in place and the added rim occupies outward peripheral space rather than obscuring more of the central driving corridor
+
+### Requirement: Explicit touch response comparison
+The accepted angular mapping SHALL remain the baseline. A travel-normalized touch
+comparison MAY map tangential travel to documented normalized steering demand;
+if delivered, its selection and gain SHALL be observable and it SHALL preserve
+signed steering, cancellation, neutral guards and simultaneous braking. Neither
+mode SHALL introduce a deliberate delay before responding to input.
+
+#### Scenario: comparing travel on differently sized wheels
+- **WHEN** the travel-normalized comparison is selected on two landscape viewports
+- **THEN** equivalent tangential thumb travel produces comparable normalized steering while the angular baseline remains separately available
+
+#### Scenario: reversing with a second brake finger
+- **WHEN** a steering finger reverses direction while another finger holds and releases the brake
+- **THEN** the two input roles remain independent and releasing either finger does not cause a steering jump
