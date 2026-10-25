@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+Future<void> startProof(WidgetTester tester) async {
+  await tester.tap(find.byKey(const ValueKey('take-keys')));
+  await tester.pump();
+  await tester.tap(find.byTooltip('Skip departure'));
+  await tester.pump();
+}
+
 Future<RaceController> mountProof(
   WidgetTester tester, {
   VoidCallback? onSceneBuild,
@@ -31,16 +38,34 @@ Future<RaceController> mountProof(
 }
 
 void main() {
+  testWidgets('proof starts paused with the seeded S2000 keys in the garage', (
+    tester,
+  ) async {
+    final race = await mountProof(tester);
+    expect(race.car.id, 's2000');
+    expect(race.seed, 731);
+    expect(race.paused, isTrue);
+    expect(find.byKey(const ValueKey('take-keys')), findsOneWidget);
+    expect(find.byTooltip('Take the S2000 keys'), findsOneWidget);
+    expect(find.text('THE KEY BOX'), findsNothing);
+    expect(race.elapsed, 0);
+    expect(race.speed, 110);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets(
-    'proof starts paused in the seeded white Corvette without garage flow',
+    'departure holds race clock until the painted sequence finishes',
     (tester) async {
       final race = await mountProof(tester);
-      expect(race.car.id, 'corvette');
-      expect(race.seed, 731);
+      await tester.tap(find.byKey(const ValueKey('take-keys')));
+      await tester.pump();
+      expect(find.byTooltip('Skip departure'), findsOneWidget);
+      race.tick(.2);
+      expect(race.elapsed, 0);
       expect(race.paused, isTrue);
-      expect(find.text('START TEST DRIVE'), findsOneWidget);
-      expect(find.text('THE KEY BOX'), findsNothing);
-      expect(find.text('VISUAL STUDY  ·  NO SCORES OR SAVES'), findsOneWidget);
+      await tester.pump(const Duration(seconds: 8));
+      expect(race.paused, isFalse);
+      expect(find.byTooltip('Skip departure'), findsNothing);
       expect(tester.takeException(), isNull);
     },
   );
@@ -49,8 +74,7 @@ void main() {
     var builds = 0;
     final race = await mountProof(tester, onSceneBuild: () => builds++);
     expect(builds, 1);
-    await tester.tap(find.text('START TEST DRIVE'));
-    await tester.pump();
+    await startProof(tester);
     for (var i = 0; i < 20; i++) {
       race.tick(.05);
       await tester.pump();
@@ -65,8 +89,7 @@ void main() {
     'keyboard steering and braking remain independent and pause clears them',
     (tester) async {
       final race = await mountProof(tester);
-      await tester.tap(find.text('START TEST DRIVE'));
-      await tester.pump();
+      await startProof(tester);
       await tester.sendKeyDownEvent(LogicalKeyboardKey.arrowRight);
       await tester.sendKeyDownEvent(LogicalKeyboardKey.arrowDown);
       expect(race.steering, 1);
@@ -87,8 +110,7 @@ void main() {
     'focus loss alone keeps moving; hidden lifecycle needs explicit resume',
     (tester) async {
       final race = await mountProof(tester);
-      await tester.tap(find.text('START TEST DRIVE'));
-      await tester.pump();
+      await startProof(tester);
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
       expect(race.paused, isFalse);
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
@@ -102,18 +124,17 @@ void main() {
     },
   );
 
-  testWidgets('the 60-second study stops and retry resets its clock and seed', (
+  testWidgets('the 90-second study stops and retry resets its clock and seed', (
     tester,
   ) async {
     final race = await mountProof(tester);
-    await tester.tap(find.text('START TEST DRIVE'));
-    await tester.pump();
+    await startProof(tester);
     race.braking = true;
-    for (var i = 0; i < 245; i++) {
+    for (var i = 0; i < 365; i++) {
       race.tick(.25);
     }
     await tester.pump();
-    expect(race.elapsed, closeTo(60, .26));
+    expect(race.elapsed, closeTo(90, .26));
     expect(race.paused, isTrue);
     expect(find.text('DRIVE IT AGAIN'), findsOneWidget);
     await tester.tap(find.text('DRIVE IT AGAIN'));
@@ -121,7 +142,7 @@ void main() {
     expect(race.elapsed, 0);
     expect(race.paused, isFalse);
     expect(race.seed, 731);
-    expect(race.car.id, 'corvette');
+    expect(race.car.id, 's2000');
   });
 
   testWidgets('portrait viewport provides a rotate prompt before driving', (
@@ -131,7 +152,7 @@ void main() {
     tester.view.physicalSize = const Size(720, 1280);
     await tester.pump();
     expect(find.text('Rotate to landscape to drive.'), findsOneWidget);
-    expect(find.text('START TEST DRIVE'), findsNothing);
+    expect(find.byKey(const ValueKey('take-keys')), findsNothing);
     await tester.sendKeyEvent(LogicalKeyboardKey.enter);
     expect(race.paused, isTrue);
     expect(tester.takeException(), isNull);
