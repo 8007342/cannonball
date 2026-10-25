@@ -27,6 +27,7 @@ class PaintPalette {
     // Rear lamps stay independent of the selected paint. These are normalized
     // authoring-mask exclusion boxes for the straight-rear sample cell.
     if (y > .47 && y < .64 && (x < .34 || x > .66)) return false;
+    if (y > .48 && y < .54 && x > .39 && x < .61) return false;
     if (redBody) {
       return red > 65 && red > green * 1.3 && red > blue * 1.25;
     }
@@ -57,9 +58,9 @@ class PaintPalette {
             !isPaint(r, g, b, x / width, y / height, redBody: redBody))
           continue;
         final light = redBody ? r / 210 : (r + g + b) / (3 * 220);
-        rgba[i] = (tr * light).round().clamp(0, 255);
-        rgba[i + 1] = (tg * light).round().clamp(0, 255);
-        rgba[i + 2] = (tb * light).round().clamp(0, 255);
+        rgba[i] = (tr * light).round().clamp(0, rgba[i + 3]);
+        rgba[i + 1] = (tg * light).round().clamp(0, rgba[i + 3]);
+        rgba[i + 2] = (tb * light).round().clamp(0, rgba[i + 3]);
       }
     }
   }

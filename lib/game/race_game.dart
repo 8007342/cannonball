@@ -9,6 +9,7 @@ import 'race_controller.dart';
 import 'render/proof_art.dart';
 import 'render/road_mesh.dart';
 import 'render/vehicle_pose.dart';
+import 'render/proof_road_module.dart';
 import 'route.dart';
 
 class _RoadPoint {
@@ -16,7 +17,7 @@ class _RoadPoint {
   bool visible = false;
 }
 
-enum _Kind { scenery, traffic, player, bridge, lamp, sign, cone }
+enum _Kind { scenery, traffic, player, bridge, lamp, sign, cone, marker }
 
 class _Object {
   _Object(
@@ -25,11 +26,15 @@ class _Object {
     this.lateral,
     this.width, {
     this.frame = 0,
-    this.tint = 0xffffffff,
+    this.braking = false,
+    this.incident = 0,
+    this.reaction = 0,
   });
   final _Kind kind;
   final double z, lateral, width;
-  final int frame, tint;
+  final int frame;
+  final bool braking;
+  final double incident, reaction;
 }
 
 /// Original cartoon art proof with independent simulation and presentation.
@@ -70,6 +75,8 @@ class RaceGame extends FlameGame {
   final RoadMesh _ground = RoadMesh(_segmentCount);
   final RoadMesh _shoulder = RoadMesh(_segmentCount);
   final RoadMesh _asphalt = RoadMesh(_segmentCount);
+  final RoadMesh _joiningLane = RoadMesh(_segmentCount);
+  final RoadMesh _joiningMarkings = RoadMesh(_segmentCount * 2);
   final RoadMesh _markings = RoadMesh(_segmentCount * 5);
   final List<_Object> _objects = [];
   final Paint _paint = Paint()
@@ -340,6 +347,8 @@ class RaceGame extends FlameGame {
     _ground.clear();
     _shoulder.clear();
     _asphalt.clear();
+    _joiningLane.clear();
+    _joiningMarkings.clear();
     _markings.clear();
     final base = (_cameraZ / _segmentLength).floor() * _segmentLength;
     var crestClip = _h + 200;
@@ -400,6 +409,46 @@ class RaceGame extends FlameGame {
         const Color(0xffd5dfdf),
         fade * .5,
       )!.toARGB32();
+      if (_nextProof &&
+          ProofJoiningLane.visible(worldZ) &&
+          ProofJoiningLane.visible(worldZ + _segmentLength)) {
+        final ac = ProofJoiningLane.center(worldZ);
+        final bc = ProofJoiningLane.center(worldZ + _segmentLength);
+        final aw = ProofJoiningLane.halfWidth(worldZ);
+        final bw = ProofJoiningLane.halfWidth(worldZ + _segmentLength);
+        _joiningLane.quad(
+          a.x + a.halfWidth * (ac - aw),
+          a.x + a.halfWidth * (ac + aw),
+          yNear,
+          b.x + b.halfWidth * (bc - bw),
+          b.x + b.halfWidth * (bc + bw),
+          yFar,
+          0,
+          512,
+          worldZ / 480 * 512,
+          (worldZ + _segmentLength) / 480 * 512,
+          tint,
+          tint,
+        );
+        // A continuous outer edge and a dashed inner edge make the merge legible.
+        for (final side in [-1.0, 1.0]) {
+          if (side < 0 && (worldZ / _segmentLength).floor() % 4 > 1) continue;
+          _joiningMarkings.quad(
+            a.x + a.halfWidth * (ac + side * aw - .006),
+            a.x + a.halfWidth * (ac + side * aw + .006),
+            yNear,
+            b.x + b.halfWidth * (bc + side * bw - .006),
+            b.x + b.halfWidth * (bc + side * bw + .006),
+            yFar,
+            0,
+            1,
+            0,
+            1,
+            0xfff5efd8,
+            0xfff5efd8,
+          );
+        }
+      }
       _asphalt.quad(
         a.x - a.halfWidth,
         a.x + a.halfWidth,
@@ -448,6 +497,13 @@ class RaceGame extends FlameGame {
     }
     _ground.draw(canvas, _groundPaint);
     _shoulder.draw(
+      canvas,
+      Paint()
+        ..color = const Color(0xffffffff)
+        ..isAntiAlias = false,
+    );
+    _joiningLane.draw(canvas, _roadPaint);
+    _joiningMarkings.draw(
       canvas,
       Paint()
         ..color = const Color(0xffffffff)
@@ -525,6 +581,23 @@ class RaceGame extends FlameGame {
           _Object(_Kind.scenery, z + 90, -side * 1.28, 430, frame: 5),
         );
       }
+      if (_nextProof &&
+          ProofJoiningLane.visible(z) &&
+          ProofJoiningLane.progress(z) < .6) {
+        _objects.add(
+          _Object(
+            _Kind.cone,
+            z,
+            ProofJoiningLane.center(z) - ProofJoiningLane.halfWidth(z) - .05,
+            48,
+          ),
+        );
+      }
+      if (_nextProof) {
+        // Small near-road references carry fast peripheral flow without hiding
+        // upcoming traffic behind a wall of large trees.
+        _objects.add(_Object(_Kind.marker, z + 140, side * 1.15, 34));
+      }
       if (biome == Biome.city && i % 3 == 0) {
         _objects.add(_Object(_Kind.lamp, z - 80, side * 1.20, 550));
       }
@@ -538,7 +611,10 @@ class RaceGame extends FlameGame {
             z,
             car.x,
             car.truck ? 370 : 300,
-            frame: car.id % 8,
+            frame: car.paintVariant,
+            braking: car.braking,
+            incident: car.incidentSeconds,
+            reaction: car.reactionIntensity,
           ),
         );
       }
@@ -633,6 +709,9 @@ class RaceGame extends FlameGame {
         case _Kind.cone:
           _batch.flush(canvas);
           _cone(canvas, x, p.y, width);
+        case _Kind.marker:
+          _batch.flush(canvas);
+          _marker(canvas, x, p.y, width);
         case _Kind.sign:
           break;
       }
@@ -743,19 +822,23 @@ class RaceGame extends FlameGame {
       clip: clip,
       tint: 0xffffffff,
     );
-    if (player && controller.recovering) {
+    if ((player && controller.recovering) || (!player && object.incident > 0)) {
       _batch.flush(canvas);
       canvas.save();
       canvas.translate(x, bodyY);
-      canvas.translate(
-        0,
-        -math.sin(controller.recoveryProgress * math.pi) * 62,
-      );
-      canvas.rotate(
-        controller.recoveryProgress *
-            math.pi *
-            (controller.crashPose == CrashPose.flip ? 2 : .6),
-      );
+      if (player) {
+        canvas.translate(
+          0,
+          -math.sin(controller.recoveryProgress * math.pi) * 62,
+        );
+        canvas.rotate(
+          controller.recoveryProgress *
+              math.pi *
+              (controller.crashPose == CrashPose.flip ? 2 : .6),
+        );
+      } else {
+        canvas.rotate(math.sin((2.4 - object.incident) * 2.5) * .22);
+      }
       _paint.color = const Color(0xffffffff);
       canvas.drawImageRect(
         atlas,
@@ -783,12 +866,13 @@ class RaceGame extends FlameGame {
           bodyY - groundAnchor * scale,
           scale,
           clip: clip,
-          tint: object.tint,
+          tint: 0xffffffff,
           mirrored: pose.mirrored,
         );
       }
     }
-    if (player && controller.braking) {
+    if ((player ? controller.braking : object.braking) &&
+        bodyY - width * .39 < clip) {
       _batch.flush(canvas);
       for (final side in [-1.0, 1.0]) {
         _paint
@@ -821,6 +905,37 @@ class RaceGame extends FlameGame {
         );
       }
     }
+  }
+
+  void _marker(Canvas canvas, double x, double y, double width) {
+    _paint.color = const Color(0xfff1e8c9);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(
+          x - width * .22,
+          y - width * 3.8,
+          width * .44,
+          width * 3.8,
+        ),
+        Radius.circular(width * .1),
+      ),
+      _paint,
+    );
+    _paint.color = const Color(0xff45534b);
+    canvas.drawRect(
+      Rect.fromLTWH(x - width * .23, y - width * 3.2, width * .46, width * .8),
+      _paint,
+    );
+    _paint.color = const Color(0xffffb65a);
+    canvas.drawRect(
+      Rect.fromLTWH(
+        x - width * .17,
+        y - width * 3.05,
+        width * .34,
+        width * .43,
+      ),
+      _paint,
+    );
   }
 
   void _lamp(Canvas canvas, double x, double y, double width) {
