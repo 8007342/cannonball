@@ -46,3 +46,16 @@ The next deliverable is one30–60s city-edge/vegetation/hill/bridge scene with 
 animated car and traffic, not bulk placeholder expansion. Compare CanvasKit and
 Wasm as measured options. Do not promise a framework/renderer migration will fix
 performance until that scene demonstrates the desired result.
+
+## Approved second proof — 2026-10-25
+User approved the researched garage, traffic, palette and station design and requested implementation plus frequent remote work-branch checkpoints. Root integrates work/next-driving-proof; isolated agents push work/reactive-traffic, work/s2000-render and work/garage-radio. No production deployment is implied.
+
+The next short local proof uses an S2000-specific CarSpec without mutating the legacy server rules or old full-run receipts. Layered garage paintings, a key/hand atlas and occlusion cuts sell pickup, reveal, walking, entry and chase launch. Simulation stays paused until handoff. Repeat/skip remains available.
+
+Reactive traffic is opt-in so prior receipt fixtures remain stable. It observes bounded neighboring gaps and player motion; persistent profiles choose following, passing, braking and within-lane flinches. Secondary braking/incident states stay local and time-bounded. Atrapa is a design reference, not a supplied trained policy. Original rules and source attribution are documented.
+
+Car source art uses saturated paint separated from fixed details. Cached body-only recoloring preserves lights, glass and tires. Signed turn/skid selection fixes the one-direction high-speed pose. Camera, roadside reference density and relative motion are tuned separately from route miles and elapsed time. Auxiliary ramps are explicitly NPC-only until true playable branch topology is implemented.
+
+The station sequence is song, tuning burst, condition-relevant report, next song. Runtime browser speech is a fallback sample and does not establish regional accent quality. Prepared regional voices remain a production task. Text-free artwork is confirmed; optional captions/UI remain available pending a stricter interpretation.
+
+Campaign direction supersedes the old whole-country 10–15-minute target: major city checkpoints form connected city-to-city stages, with mixed cars allowed across saved stage bests. A local versioned model retains compatible successful receipts and computes a connected best journey. This proof does not submit experimental stage receipts to the old full-run leaderboard. Remote stage migration, full city selector, new rankings and nationwide content are later acceptance work.

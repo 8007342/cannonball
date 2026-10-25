@@ -23,5 +23,8 @@ None. Implement the existing capabilities rather than duplicating them.
 - `progress`: shared Google client, concrete browser-first save and run lifecycle.
 - `art`: approved research, rejected primitive preview, Baja-inspired animated cartoon presentation, measured rendering proof and final Corvette unlock.
 
+## Approved next proof
+The first moving proof is provisionally accepted as a technology test. The next proof adds an S2000 starter/departure, palette-varied reactive traffic, stronger optical flow, condition-driven radio/music and a local stage-record foundation. Successful campaign stages now target 10–15 minutes; the short proof compresses that experience for review. Rankings remain undecided, preserving the legacy board without new claims.
+
 ## Impact
 Flutter game/UI modules, browser sensor/audio/GIS bridge, Worker API and SQLite Durable Object, deployment configuration and validation. Native apps remain excluded. Tests must verify clock/gate/branch logic, UI state transitions and API acceptance failures. Real phone comfort/performance and live Google/Cloudflare setup remain separate observable checks, never inferred from a dry-run. Initial authored visuals and real-road corridor data must be labeled honestly until production asset and exact-junction review is complete.

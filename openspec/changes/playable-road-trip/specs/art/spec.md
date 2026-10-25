@@ -27,3 +27,17 @@ Before expanding production packs, the team SHALL deliver a moving sample and re
 #### Scenario: comparing render quality tiers
 - **WHEN** the same sample is tested at different scene pixel budgets
 - **THEN** the report records visual quality and timing for each actual buffer size while preserving physics and sharp HUD controls
+
+### Requirement: Starter departure ritual
+The next proof SHALL offer an older desirable S2000 starter from a wooden garage wall keybox. Key pickup, garage reveal, approach, implied entry and chase launch SHALL form a reusable sequence. Empty hooks SHALL suggest unlocks. The race clock SHALL remain paused during the departure; repeat players SHALL be able to skip it.
+
+#### Scenario: taking the first keys
+- **WHEN** the player selects the available key set
+- **THEN** the hand collects it and the departure leads into controllable auto-accelerating driving
+
+### Requirement: Palette-varied traffic
+Traffic paint variants SHALL preserve fixed tire, glass, cabin and lighting details. Directional steering and skid presentation SHALL reflect signed motion at high and low speeds.
+
+#### Scenario: steering right at speed
+- **WHEN** the player steers strongly right above the skid threshold
+- **THEN** the sprite SHALL present rightward motion rather than reusing an uncorrected leftward pose

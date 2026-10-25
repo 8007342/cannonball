@@ -19,3 +19,10 @@ Players SHALL be able to start locally without signing in. Global submissions SH
 #### Scenario: API unavailable
 - **WHEN** a player starts a local run while the API cannot be reached
 - **THEN** driving proceeds and the UI clearly distinguishes local progress from cloud-saved records
+
+### Requirement: Connected staged journey foundation
+Campaign progress SHALL retain successful versioned city-to-city stage attempts, with car, time, distance, path and conditions. A composed best journey SHALL connect compatible endpoints and versions; different stages MAY use different cars. Experimental local proof records SHALL remain distinct from accepted cloud rankings. New ranking scope remains undecided.
+
+#### Scenario: incompatible stage minima
+- **WHEN** the fastest saved stages do not form a connected route
+- **THEN** the composed journey SHALL choose a valid connected alternative or report that the destination is not yet connected
