@@ -98,8 +98,9 @@ class ProofCourse {
         spacing <= 0 ||
         !near.isFinite ||
         !far.isFinite ||
-        far <= near)
+        far <= near) {
       return;
+    }
     final first = math.max(0, ((near - origin) / spacing).ceil());
     final limit = math.min(far, end ?? far);
     for (var index = first; origin + index * spacing < limit; index++) {
