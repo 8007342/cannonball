@@ -26,7 +26,7 @@ class ProofRadioDirector {
       family = 'closure';
       lines = const [
         'That shortcut is closed today. Stay on the open road; the scenery is on us.',
-        'Road crews have the shortcut. Keep to the open lanes and give the cones some room.',
+        'Road crews have closed the shortcut. Keep to the open lanes and give the cones some room.',
       ];
     } else if (weather == 'snow') {
       family = 'snow';
