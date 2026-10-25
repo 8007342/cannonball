@@ -45,10 +45,10 @@ review, occlusion/performance comparisons and target-device acceptance. This del
 is the requested first draft, not final art approval or production acceptance.
 
 ## 8. Approved next proof
-- [ ] 8.1 Generate and validate coherent S2000, garage and entry sample assets with saved prompts and provenance.
-- [ ] 8.2 Implement key pickup, garage reveal/walk/entry and chase handoff with paused intro clock and repeat/skip controls.
-- [ ] 8.3 Correct signed skid poses, strengthen optical flow, add cached paint variants and a readable NPC-ramp/cone-taper sample.
-- [ ] 8.4 Implement opt-in deterministic neighboring traffic reactions, following/braking, lane-change motives and bounded secondary incidents; document Atrapa source and verify scenarios.
-- [ ] 8.5 Implement proof station music/report sequencing, humorous condition-matched samples, anti-repeat rules and nonblocking browser audio fallback.
-- [ ] 8.6 Implement and test local versioned compatible stage receipts and best connected mixed-car journey foundation without changing legacy cloud ranking contracts.
+- [x] 8.1 Generate and validate coherent S2000, garage and entry sample assets with saved prompts and provenance.
+- [x] 8.2 Implement key pickup, garage reveal/walk/entry and chase handoff with paused intro clock and repeat/skip controls.
+- [x] 8.3 Correct signed skid poses, strengthen optical flow, add cached paint variants and a readable NPC-ramp/cone-taper sample.
+- [x] 8.4 Implement opt-in deterministic neighboring traffic reactions, following/braking, lane-change motives and bounded secondary incidents; document Atrapa source and verify scenarios.
+- [x] 8.5 Implement proof station music/report sequencing, humorous condition-matched samples, anti-repeat rules and nonblocking browser audio fallback.
+- [x] 8.6 Implement and test local versioned compatible stage receipts and best connected mixed-car journey foundation without changing legacy cloud ranking contracts.
 - [ ] 8.7 Integrate, analyze/test/build, inspect moving browser controls/intro/traffic, record timing and publish the second local proof; push durable checkpoints on work branches.
