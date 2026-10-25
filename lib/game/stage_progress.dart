@@ -207,7 +207,7 @@ class StageProgress {
         if (edge.from != current || visited.contains(edge.to)) continue;
         final candidate = distance[current]! + edge.elapsedMs;
         if (candidate <= _maxSafeInteger &&
-            candidate < (distance[edge.to] ?? _maxSafeInteger)) {
+            (distance[edge.to] == null || candidate < distance[edge.to]!)) {
           distance[edge.to] = candidate;
           previous[edge.to] = edge;
         }
