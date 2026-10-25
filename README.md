@@ -69,3 +69,15 @@ and a Worker on `/api/*`. No production deployment is claimed.
 PWA installation is optional; opening the URL is sufficient. Device sensors,
 audio and landscape behavior require physical-browser checks. Production art
 approval is based on moving gameplay samples, not screenshots alone.
+
+## One-minute visual proof
+
+Open `/?proof=1` on a release web build for the isolated, seed-731 test drive.
+It showcases the new painted Corvette/scenery renderer without changing saves or
+unlocks. Auto acceleration is always on: left/right arrows or drag the oversized
+wheel rim to steer; Down/Space or touching outside the rim brakes. P pauses.
+Sound starts muted. `/?proof=1&quality=detail` raises the raster budget.
+
+The normal garage route retains its earlier renderer while this sample is reviewed.
+See [proof notes](docs/proof-platform.md), [sample art and prompts](assets/proof/PROMPTS.md),
+and [recorded measurements](docs/research/visual-proof-metrics.json).

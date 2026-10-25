@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test web/platform_bridge.test.mjs
+      - run: node --test web/*.test.mjs
       - run: npx --yes @fission-ai/openspec@1.15.0 validate --all --strict
       - run: flutter build web --release
   worker:

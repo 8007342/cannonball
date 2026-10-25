@@ -6,9 +6,11 @@ import 'package:flutter/services.dart';
 
 import 'app/session.dart';
 import 'game/race.dart';
+import 'game/legacy_race_game.dart';
 import 'ui/google_button.dart';
 import 'ui/painters.dart';
 import 'ui/wheel_control.dart';
+import 'ui/visual_proof.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +43,9 @@ class CannonballApp extends StatelessWidget {
         ),
       ),
     ),
-    home: GameShell(session: session),
+    home: Uri.base.queryParameters['proof'] == '1' && session == null
+        ? const VisualProofScreen()
+        : GameShell(session: session),
   );
 }
 
@@ -56,7 +60,7 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
   late final GameSession s;
   final FocusNode _keyboard = FocusNode();
   final Set<LogicalKeyboardKey> _keys = {};
-  RaceGame? _game;
+  LegacyRaceGame? _game;
   int _gameSerial = -1;
   bool _touchBrake = false;
   @override
@@ -514,7 +518,7 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
   );
   Widget _race() {
     if (_gameSerial != s.runSerial) {
-      _game = RaceGame(controller: s.race);
+      _game = LegacyRaceGame(controller: s.race);
       _gameSerial = s.runSerial;
     }
     return Stack(

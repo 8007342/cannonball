@@ -1,0 +1,98 @@
+{
+  "version": "cartoon-proof-1",
+  "status": "generated draft sample, not final production approval",
+  "generator": "built-in image_gen",
+  "created": "2026-10-25",
+  "style": "hand-painted cartoon sprites, upper-left warm light, softly diffused edges",
+  "car": {
+    "file": "car-atlas.png",
+    "width": 1536,
+    "height": 1024,
+    "columns": 3,
+    "rows": 2,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "vehicle": "white 2019 Corvette Stingray Coupe, removable targa panel off",
+    "poses": [
+      "rear-flat",
+      "rear-left",
+      "rear-right",
+      "rear-uphill",
+      "rear-downhill",
+      "rear-skid"
+    ],
+    "transparentPixels": 877342,
+    "notes": "Observed alpha>=100 bottom anchors require per-pose compensation. Preserve common world scale; generated requested baseline was not obeyed exactly.",
+    "requestedAnchorInCell": [
+      256,
+      420
+    ],
+    "observedGroundYPerPose": [
+      416,
+      412,
+      415,
+      372,
+      400,
+      404
+    ],
+    "observedAnchorsPerPose": [
+      [
+        262,
+        416
+      ],
+      [
+        254.5,
+        412
+      ],
+      [
+        252,
+        415
+      ],
+      [
+        262,
+        372
+      ],
+      [
+        256,
+        400
+      ],
+      [
+        250.5,
+        404
+      ]
+    ]
+  },
+  "scenery": {
+    "file": "scenery-atlas.png",
+    "width": 1536,
+    "height": 1024,
+    "columns": 3,
+    "rows": 2,
+    "cellWidth": 512,
+    "cellHeight": 512,
+    "anchorInCell": [
+      256,
+      470
+    ],
+    "cells": [
+      "broadleaf-tree",
+      "pine",
+      "palm",
+      "brick-apartment",
+      "roadside-shop",
+      "flowering-shrub"
+    ],
+    "transparentPixels": 593457,
+    "notes": "Scenery mix is a visual sample, not a geographically approved region pack."
+  },
+  "backdrop": {
+    "file": "hills.png",
+    "width": 2172,
+    "height": 724,
+    "layers": "single panoramic ridge/city/foothill composite with transparent sky",
+    "transparentPixels": 803939,
+    "notes": "Generated at 3:1 ratio; width differs from requested 1536. Seam repeat and alpha edges require scene review."
+  },
+  "sourcePolicy": "Generated original art; reference car selected by user. No SNES game art or ROM assets used. No legal exclusivity guarantee is inferred from generation.",
+  "prompts": "PROMPTS.md"
+}

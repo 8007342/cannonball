@@ -36,18 +36,36 @@ opaque targa panel. Starter/intermediate designs are original working designs.
 The initial procedural car drawings provide steering, skid, impact/flip, brake
 lights and recovery presentation; they are not finished production sprite sheets.
 
-The renderer projects road strips with elevation, curvature and hill occlusion.
-Trees, farms, wind turbines, city silhouettes, desert vegetation, mountain snow,
-coastal palms, signs, weather and traffic are composed procedurally. An overpass
-has separate support/deck drawing; it is a scenic occlusion proof, not a playable
-multi-level road interchange. Fork graphics are schematic divergent shoulders
-with signs and lateral commitment, not surveyed junction geometry. Region colors
-blend continuously and no region change waits on a network request. The comfort
-setting damps camera lean to zero.
+The replacement renderer uses original generated cartoon atlases and a painted
+panoramic backdrop. `lib/game/render/proof_art.dart` loads images once and creates
+cached asphalt, ground, cloud, shadow and stone-bridge textures. Four reused
+triangle buffers draw ground, shoulder, textured asphalt and geometric lane
+markings; lane lines are separate from the texture to avoid affine UV distortion.
+Depth-sorted billboard batches share a crest-occlusion model for scenery, traffic,
+the player and a scenic bridge. Moving clouds, foreground vegetation, distance-
+driven tire highlights, suspension bob and six car poses supply motion. Per-pose
+anchors compensate for the generated sheet's uneven cell framing.
+
+The first replacement pack is a **single-car visual proof**, not the finished
+six-car garage/region library. The scenery proof traverses city-edge, forest and
+high-country composition within roughly a minute. Road coordinates are mapped
+into presentation coordinates at 12 times simulation distance; this changes
+optical flow without changing receipt miles or race timing. Rendering interpolates
+between fixed simulation boundaries. The bridge is a scenic span, not a navigable
+multi-level interchange, and full authored branch-junction geometry remains ahead.
+
+`RaceGame(controller: ..., proofMode: true)` exposes render/update counts and
+cumulative/last/max CPU submission durations. These counters do not measure GPU
+completion or display presentation. The proof's browser bootstrap separately caps
+actual backing pixels; Canvas coordinate scaling itself does not do that. See
+`docs/proof-platform.md` for the whole-view cap and its HUD tradeoff, and
+`docs/proof-assets-validation.md` for decoding and atlas evidence. Asset failures
+are exposed rather than silently replaced with primitive artwork.
 
 ## Evidence and remaining review
 
-`test/game_test.dart` contains 11 tests covering graph reachability, deterministic
+`test/renderer_test.dart` adds presentation-reset, zero-delta telemetry, safe
+early disposal and pose-anchor checks. `test/game_test.dart` contains 11 tests covering graph reachability, deterministic
 30/120 Hz frame schedules, auto-acceleration/braking/pause, bounded notifications,
 gate accounting, safe flip recovery, partial failure receipts, seeded closures,
 full trips, secret/final unlocks and steady-horizon behavior. A reactive test

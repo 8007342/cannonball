@@ -1,0 +1,131 @@
+{
+  "error": null,
+  "measurement": "Render invocations and browser scheduling; not presented-frame FPS",
+  "wallMs": 8060.20000000298,
+  "renders": 426,
+  "renderCallsPerSecond": 52.85228654373868,
+  "updates": 426,
+  "simulationSeconds": 8.033333333333335,
+  "rafCallbacks": 426,
+  "rafCallbacksPerSecond": 52.85228654373868,
+  "p50IntervalMs": 16.69999999999891,
+  "p95IntervalMs": 33.30000000000109,
+  "p99IntervalMs": 33.399999999999636,
+  "maxIntervalMs": 50,
+  "renderCommandCpuMs": 317.337,
+  "updateCpuMs": 38.102,
+  "before": {
+    "compiledToWasm": false,
+    "seed": 731,
+    "sceneCar": "corvette",
+    "simClock": 1.5166666666666666,
+    "durationSeconds": 60,
+    "paused": false,
+    "state": "driving",
+    "assetsReady": true,
+    "artError": null,
+    "speedMph": 57.6333333333333,
+    "worldDistance": 22.976488888888877,
+    "steering": 0,
+    "braking": false,
+    "playerX": 0.0015292529135465616,
+    "sceneLogicalSize": {
+      "width": 1280,
+      "height": 720
+    },
+    "renderCount": 73,
+    "updateCount": 73,
+    "renderCommandCpuMicros": 60403,
+    "updateCpuMicros": 9404,
+    "lastRenderMicros": 901,
+    "maxRenderMicros": 6801,
+    "stage": "CITY EDGE",
+    "lastSpriteCount": 80,
+    "lastRoadQuads": 69,
+    "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+    "browser": {
+      "pixelBudget": 291600,
+      "quality": "smooth",
+      "capApplied": true,
+      "capError": null,
+      "capScope": "whole Flutter root including HUD",
+      "nativeDpr": 1,
+      "effectiveDpr": 0.5625,
+      "viewportScale": 1,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "canvases": [
+        {
+          "width": 720,
+          "height": 405,
+          "cssWidth": 1280,
+          "cssHeight": 720,
+          "pixels": 291600
+        }
+      ],
+      "largestCanvasPixels": 291600,
+      "visibility": "visible",
+      "focused": true
+    }
+  },
+  "after": {
+    "compiledToWasm": false,
+    "seed": 731,
+    "sceneCar": "corvette",
+    "simClock": 9.55,
+    "durationSeconds": 60,
+    "paused": false,
+    "state": "driving",
+    "assetsReady": true,
+    "artError": null,
+    "speedMph": 170,
+    "worldDistance": 647.2191555555622,
+    "steering": 0,
+    "braking": false,
+    "playerX": 0.10125495411791029,
+    "sceneLogicalSize": {
+      "width": 1280,
+      "height": 720
+    },
+    "renderCount": 499,
+    "updateCount": 499,
+    "renderCommandCpuMicros": 377740,
+    "updateCpuMicros": 47506,
+    "lastRenderMicros": 1100,
+    "maxRenderMicros": 6801,
+    "stage": "CITY EDGE",
+    "lastSpriteCount": 74,
+    "lastRoadQuads": 97,
+    "timingScope": "CPU command recording and loop calls, not presented-frame FPS",
+    "browser": {
+      "pixelBudget": 291600,
+      "quality": "smooth",
+      "capApplied": true,
+      "capError": null,
+      "capScope": "whole Flutter root including HUD",
+      "nativeDpr": 1,
+      "effectiveDpr": 0.5625,
+      "viewportScale": 1,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "canvases": [
+        {
+          "width": 720,
+          "height": 405,
+          "cssWidth": 1280,
+          "cssHeight": 720,
+          "pixels": 291600
+        }
+      ],
+      "largestCanvasPixels": 291600,
+      "visibility": "visible",
+      "focused": true
+    }
+  },
+  "crossOriginIsolated": false,
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.12 Safari/537.36"
+}

@@ -35,3 +35,11 @@
 
 ## Workflow follow-up
 - Archive only after tracked implementation and acceptance work is complete; do not mark procedural placeholders or desktop checks as final asset/mobile approval.
+
+## Local visual-proof delivery (2026-10-25)
+- [x] 7.1 Deliver an isolated 60-second seed-731 Corvette test drive, generated sample atlases, cached textured composition, browser pixel presets and timing tools; publish locally and verify the moving sample and controls.
+
+The proof is available at `/?proof=1`; regular garage runs keep the legacy renderer.
+Tasks 1.3 and 6.2–6.4 remain open for complete replacement, fuller animation,
+review, occlusion/performance comparisons and target-device acceptance. This delivery
+is the requested first draft, not final art approval or production acceptance.
