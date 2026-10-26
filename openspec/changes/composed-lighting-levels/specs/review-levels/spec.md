@@ -72,3 +72,30 @@ automatic corrections, independently of touch demand.
 Research, rejected alternatives and tuning limits SHALL remain recorded in the
 [cruising ledger](../../../../../docs/research/cruising-road-feel.md) and the
 [reference register](../../../../../docs/research/reference-register.md).
+
+### Requirement: Sequential mobile review
+The default app SHALL play all six levels in Q–Y order, advancing after each
+two-minute stage without a garage or departure interruption. Stage changes SHALL
+clear stale input/lighting history, preserve prepared assets and carry speed.
+The final stage SHALL show completion; replay SHALL begin from Hudson. Manual
+level/chapter selection SHALL remain available.
+
+#### Scenario: completing a daytime stage
+- **WHEN** a stage reaches its time limit before the final level
+- **THEN** the next stage begins with its matching scenery/weather and no new
+  gesture required for departure
+
+#### Scenario: completing the sequence
+- **WHEN** Arizona finishes
+- **THEN** the sequence pauses with a completion action that restarts Hudson
+
+### Requirement: Discoverable manual Cloudflare publication
+The repository root SHALL declare an npm build entry point and Wrangler build,
+static-asset output and cannonball.tlatoani.net target metadata. Explicit
+publication SHALL build the current Flutter release. No Git-triggered remote
+builds SHALL be enabled. Dry-run success SHALL NOT be called live deployment.
+
+#### Scenario: publisher discovers the repository
+- **WHEN** the publisher runs npm ci and npx wrangler deploy from the root
+- **THEN** Wrangler discovers the build command, builds build/web and targets
+  the declared custom domain

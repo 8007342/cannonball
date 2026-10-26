@@ -35,3 +35,9 @@ or ranking changes. Use existing approved art and cached material variants for
 this sample, without bulk asset generation. Validate geometry/lighting formulas,
 repeated pack swaps, release build and browser night/input behavior; record actual
 backing pixels and timing separately from visual/user/physical-phone approval.
+
+## Mobile sequence publication
+Expose a root npm build and root Wrangler static-assets config targeting
+cannonball.tlatoani.net for explicit publisher discovery. Play six two-minute
+review levels in order with no intervening garage; preserve manual selection.
+No Git-triggered builds/hooks are enabled and no live authentication is claimed.

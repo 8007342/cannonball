@@ -5,16 +5,51 @@ are available in source. Worker tests, a Wrangler package dry-run and local
 workerd SQLite checks pass. **No live Cloudflare deployment, DNS configuration,
 Google origin registration or cross-device acceptance has been verified.**
 
-## Intended topology
+## Default prototype publisher (root config)
 
-- Cloudflare Pages project `cannonball` serves Flutter's `build/web` at `https://cannonball.tlatoani.net`.
-- Worker `cannonball-api` intercepts `cannonball.tlatoani.net/api/*` through the path route in `services/api/wrangler.jsonc`. This keeps browser requests and host-only session cookies on one origin. Pages needs a proxied DNS record in the Cloudflare zone for the route to apply.
-- Do not attach a Worker Custom Domain to the same entire hostname: it would compete with Pages. Use the API path route.
-- The `CANNONBALL_STORE` binding targets the `CannonballGlobal` class; migration `v1` declares it as SQLite-backed. One named object, `cannonball-global-v1`, holds private identity mappings, hashed sessions, progress, issued runs and canonical ranking records. This is the implemented v1 architecture; it has not yet been provisioned live. SQL transactions and unique run IDs provide consistency and idempotency.
+The root now has a package.json, lockfile and wrangler.jsonc so the publisher
+can discover the Flutter build and static output. Explicit publication:
 
-Cloudflare documents [Pages custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/),
-[Worker routes](https://developers.cloudflare.com/workers/configuration/routing/routes/)
-and [SQLite Durable Object storage](https://developers.cloudflare.com/durable-objects/api/sqlite-storage-api/).
+```sh
+npm ci
+npm run build                   # Flutter release → build/web
+npm run check:deploy            # build + Wrangler dry-run, no upload
+npx wrangler deploy             # explicit live upload + custom-domain binding
+```
+
+`npm run deploy` is equivalent to the last command. Wrangler's build.command
+runs `npm run build` automatically, so the separate build is optional for deploy.
+The root Worker is named `cannonball`; it serves static assets with SPA fallback
+and declares `cannonball.tlatoani.net` as a custom domain. No account/token is
+committed. Publishing must use an account authorized for tlatoani.net. No
+GitHub Actions, Cloudflare Git builds or remote build hooks are enabled.
+
+The build uses installed Flutter, or downloads Flutter3.47.7 on a clean Linux
+host from the official release manifest, verifying SHA256 before extraction.
+Set FLUTTER_BIN to an installed SDK executable when preferred. Node22+, tar
+and the standard Flutter Linux build prerequisites are required.
+
+This is the painted mobile review app: six consecutive two-minute stages.
+Accounts, rankings and cloud saves are not part of this default prototype.
+Opening the HTTPS URL is sufficient; no app installation is required. Rotate
+to landscape, take the keys, and play Hudson→Indiana→Iowa→Ohio→Chicago→Arizona.
+Q–Y or the level menu jump between stages;1–8 replay chapters; Backspace restarts.
+Backgrounding pauses play; resume explicitly. Test audio after the first gesture,
+night readability, touch steering/braking, orientation and sustained temperature/
+frame rate on physical phones. A desktop browser check is not phone acceptance.
+
+See Cloudflare's [Wrangler configuration](https://developers.cloudflare.com/workers/wrangler/configuration/)
+and [custom domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/).
+
+## Legacy API / Pages alternative
+
+The older full-run pipeline is retained for receipt tests. Its API Worker is
+configured separately in services/api/wrangler.jsonc with a SQLite Durable
+Object and an /api/* route. Do not deploy it as a side effect of a static mobile
+review publication. It still needs live Google-origin/storage verification.
+The nested deploy/pages/wrangler.jsonc remains an explicit Pages alternative;
+do not attach Pages and the root static Worker to the same hostname. The
+checklist below describes that alternative topology, not the default publisher.
 
 ## Verify locally
 
@@ -51,7 +86,7 @@ API proxy, so it intentionally falls back to local play when `/api/*` is absent.
 
 1. Authenticate Wrangler to the intended Cloudflare account; verify ownership/access to `tlatoani.net`. Do not commit API tokens or local credentials.
 2. Verify the existing shared Google web client authorizes **`https://cannonball.tlatoani.net` exactly**. The public client ID is configured in `services/api/wrangler.jsonc`; no client secret is needed for GIS popup identity. Registering `https://tlatoani.net` or Arabiya alone does not authorize Cannonball. See [auth research](research/auth.md) and the [API operations guide](../services/api/README.md).
-3. Create Pages project `cannonball` with its production branch. Build Flutter in CI with the pinned SDK and upload `build/web`; a Cloudflare build environment must explicitly install Flutter if building there.
+3. For the Pages alternative only, create Pages project `cannonball` for direct upload. Build locally with `npm run build`; do not enable Git builds or deploy hooks.
 4. Deploy static output from the root with `services/api/node_modules/.bin/wrangler pages deploy build/web --project-name cannonball --config deploy/pages/wrangler.jsonc`.
 5. Add `cannonball.tlatoani.net` as a Pages custom domain and wait for certificate/DNS activation. A manually created CNAME alone does not replace Pages custom-domain activation.
 6. Run `npm --prefix services/api run deploy` to publish the Worker, SQLite migration and API path route. This changes the live Cloudflare account. Record the deployment version, namespace and global object ID in the private operations log; verify storage recovery access before accepting important records.

@@ -36,7 +36,7 @@ context, avoiding detached or misleading authority claims.
 | [Low horizon, brief radio and contact review](../../docs/camera-radio-contact-review.md) | Design / implementation / validation | 0 |
 | [Steering camera repair and rim finish](../../docs/camera-steering-repair.md) | Design / implementation / validation | 0 |
 | [Six composed road packs — local review, 2026-10-25](../../docs/composed-levels-review.md) | Design / implementation / validation | 0 |
-| [Cloudflare deployment preparation](../../docs/deployment.md) | Design / implementation / validation | 5 |
+| [Cloudflare deployment preparation](../../docs/deployment.md) | Design / implementation / validation | 4 |
 | [Design decision register](../../docs/design/decisions.md) | Design / implementation / validation | 1 |
 | [Cannonball design interview](../../docs/design/interview.md) | Design / implementation / validation | 0 |
 | [Driving-and-camera milestone review](../../docs/driving-milestone-review.md) | Design / implementation / validation | 0 |

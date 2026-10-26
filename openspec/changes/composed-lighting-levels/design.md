@@ -74,3 +74,18 @@ gentle sweeps; structural chapter distances remain fixed. Research/dispositions:
 [cruising-road-feel](../../../docs/research/cruising-road-feel.md).
 
 Road center integration uses a shared6x lateral presentation scale so strong bends remain visible at velocity framing; normalized curvature supplies bounded arcade steering load. Camera tangent, scenery and traffic use those same centers.
+
+## Sequential mobile review and discoverable deployment
+The default prototype advances Hudson→Indiana→Iowa→Ohio→Chicago→Arizona at
+each120-second boundary. Reset outside the controller notification stack; clear
+inputs and light histories, carry speed, retain prepared atlas variants, and
+skip garage/departure. Stop after Arizona; replay restarts Hudson. Manual keys
+and touch selection retain stage-local resets. This remains illustrative stage
+playback rather than a surveyed campaign; physical-device review is still open.
+
+Root package.json supplies npm run build, npm run deploy and a dry-run check.
+Root wrangler.jsonc declares build.command, build/web assets, SPA routing and
+the custom domain. Use an installed Flutter or a checksum-verified official
+pinned Linux SDK when absent. Build locally/manual-publish; never enable push
+hooks. Existing nested Pages config is a documented alternative, not the root
+publisher target. API deployment remains separate and unverified.

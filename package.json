@@ -1,0 +1,15 @@
+{
+  "name": "cannonball",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node tool/build_web.mjs",
+    "check:deploy": "wrangler deploy --dry-run --outdir build/deploy-check",
+    "deploy": "wrangler deploy",
+    "test:web": "node --test web/*.test.mjs web/*.test.cjs"
+  },
+  "devDependencies": { "wrangler": "4.152.0" },
+  "overrides": { "undici": "7.30.1" }
+}

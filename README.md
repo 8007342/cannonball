@@ -1,6 +1,6 @@
 # Cannonball
 
-The painted driving prototype is now the default app at `/` (the old `?proof=1` link remains compatible). Q–Y select levels,1–8 replay chapters, arrows steer, Down/Space brake, Backspace restarts.
+The painted driving prototype is now the default app at `/`, playing all six two-minute levels in sequence (the old `?proof=1` link remains compatible). Q–Y select levels,1–8 replay chapters, arrows steer, Down/Space brake, Backspace restarts.
 
 A landscape arcade road trip from New York's Red Ball Garage to The Portofino in
 Redondo Beach. Flutter + Flame, web only, mobile first. Successful runs target
@@ -31,6 +31,13 @@ procedural composition; exact road/interchange geometry and landmark sightlines
 are not yet a verified atlas. Final sprite/region packs, authored story/cutscenes,
 production sound-bank/voice library and real-phone tuning remain tracked in the
 [implementation checklist](openspec/changes/playable-road-trip/tasks.md).
+
+## Publish for mobile testing
+
+From the root, `npm ci` then `npx wrangler deploy` discovers the Flutter build,
+static assets and `cannonball.tlatoani.net` domain. `npm run check:deploy` builds
+and validates without uploading. Publication remains manual; pushes do not
+start remote builds. See [deployment instructions](docs/deployment.md).
 
 ## Run and verify
 

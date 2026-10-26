@@ -15,6 +15,7 @@ Future<void> startProof(WidgetTester tester) async {
 Future<RaceController> mountProof(
   WidgetTester tester, {
   VoidCallback? onSceneBuild,
+  bool sequence = false,
 }) async {
   tester.view.physicalSize = const Size(1280, 720);
   tester.view.devicePixelRatio = 1;
@@ -25,6 +26,7 @@ Future<RaceController> mountProof(
   await tester.pumpWidget(
     MaterialApp(
       home: VisualProofScreen(
+        sequence: sequence,
         controller: controller,
         sceneBuilder: (_) => Builder(
           builder: (context) {
@@ -39,6 +41,70 @@ Future<RaceController> mountProof(
 }
 
 void main() {
+  testWidgets(
+    'stage advance carries speed and a restart cancels queued advance',
+    (tester) async {
+      final race = await mountProof(tester, sequence: true);
+      await startProof(tester);
+      for (var i = 0; i < 481; i++) {
+        race.tick(.25);
+      }
+      final carriedSpeed = race.speed;
+      expect(carriedSpeed, greaterThan(0));
+      await tester.pump();
+      expect(race.proofLevel.id, 'indiana');
+      expect(race.speed, carriedSpeed);
+      for (var i = 0; i < 481; i++) {
+        race.tick(.25);
+      }
+      // A manual restart before the queued advance must win.
+      await tester.sendKeyEvent(LogicalKeyboardKey.backspace);
+      await tester.pump();
+      expect(race.proofLevel.id, 'indiana');
+      expect(race.elapsed, 0);
+    },
+  );
+
+  testWidgets(
+    'six stages advance in order without garage and stop after Arizona',
+    (tester) async {
+      final race = await mountProof(tester, sequence: true);
+      await startProof(tester);
+      for (final id in [
+        'hudson',
+        'indiana',
+        'iowa',
+        'ohio',
+        'chicago',
+        'arizona',
+      ]) {
+        expect(race.proofLevel.id, id);
+        expect(race.paused, isFalse);
+        expect(find.byKey(const ValueKey('take-keys')), findsNothing);
+        race.braking = true;
+        for (var i = 0; i < 485; i++) {
+          race.tick(.25);
+        }
+        await tester.pump();
+        if (id != 'arizona') {
+          expect(race.elapsed, 0);
+          expect(race.courseStartDistance, 0);
+          expect(race.steering, 0);
+          expect(race.braking, isFalse);
+        }
+      }
+      expect(race.paused, isTrue);
+      expect(
+        find.text('Road trip complete. Six levels explored.'),
+        findsOneWidget,
+      );
+      await tester.tap(find.text('DRIVE IT AGAIN'));
+      await tester.pump();
+      expect(race.proofLevel.id, 'hudson');
+      expect(race.paused, isFalse);
+    },
+  );
+
   testWidgets('keyboard wheel displays the applied simulation steering', (
     tester,
   ) async {

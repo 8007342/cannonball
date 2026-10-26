@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cannonball",
+  "compatibility_date": "2026-10-26",
+  "workers_dev": true,
+  "build": { "command": "npm run build" },
+  "assets": {
+    "directory": "./build/web",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    { "pattern": "cannonball.tlatoani.net", "custom_domain": true }
+  ]
+}

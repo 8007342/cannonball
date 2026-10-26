@@ -18,3 +18,8 @@
 - [x] 4.2 Add early bends, stronger alternating turns and additional signed rolling gradients, retaining readable gentle recovery sweeps and shared terrain coordinates.
 - [x] 4.3 Implement bounded gentle-curve force cancellation without targeting lanes; smooth high-speed steering and show applied steering on the wheel; verify offset preservation, active turns and scheduling consistency.
 - [x] 4.4 Record sources and limits, run local checks/browser review, update forge diagnostics, merge accumulated work to main and push without remote builds.
+
+## 5. Mobile sequence and manual publication
+- [x] 5.1 Add root npm/lockfile and discoverable Wrangler build/assets/domain metadata; verify the real build through a deployment dry-run without enabling remote build hooks.
+- [x] 5.2 Play all six levels sequentially, with input/history reset, speed carry, final completion/replay and retained manual controls; test full sequence.
+- [ ] 5.3 Update publication/phone instructions and forge diagnostics, run local checks, merge and push main.

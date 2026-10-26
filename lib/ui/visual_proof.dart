@@ -18,8 +18,15 @@ enum _ProofPhase { ready, departing, driving, paused, complete }
 
 /// An isolated art/control study: no accounts, unlocks, records or persistence.
 class VisualProofScreen extends StatefulWidget {
-  const VisualProofScreen({super.key, this.controller, this.sceneBuilder});
+  const VisualProofScreen({
+    super.key,
+    this.controller,
+    this.sceneBuilder,
+    this.sequence = true,
+  });
 
+  /// Set false to review one isolated two-minute stage.
+  final bool sequence;
   @visibleForTesting
   final RaceController? controller;
   @visibleForTesting
@@ -65,6 +72,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   Timer? _loadingPoll;
   bool _tilt = false, _muted = false, _touchBrake = false;
   bool _captions = false;
+  bool _advancePending = false;
   double _lastHudTime = -1;
   String _lastRadio = '';
   String _departureShot = 'keys';
@@ -178,6 +186,9 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'sceneCar': _race.car.id,
     'simClock': _race.elapsed,
     'durationSeconds': duration,
+    'sequenceEnabled': widget.sequence,
+    'sequenceStage': ProofLevel.all.indexOf(_level) + 1,
+    'sequenceStages': ProofLevel.all.length,
     'paused': _race.paused,
     'state': _phase.value.name,
     'departureShot': _departureShot,
@@ -269,7 +280,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _race.braking = false;
   }
 
-  void _reset() {
+  void _reset({double? launchSpeed}) {
     if (!mounted) return;
     _resetInput();
     _game?.lighting.reset();
@@ -279,7 +290,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       seed: _level.seed,
       level: _level,
       reactiveTraffic: true,
-      launchSpeed: _courseStart > 0 ? 95 : 0,
+      launchSpeed: launchSpeed ?? (_courseStart > 0 ? 95 : 0),
       testCourse: true,
       denseTraffic: Uri.base.queryParameters['traffic'] != 'light',
       courseStartDistance: _courseStart,
@@ -324,7 +335,13 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     if (!mounted || !_ready.value) return;
     final viewport = MediaQuery.sizeOf(context);
     if (viewport.height > viewport.width) return;
-    if (_phase.value == _ProofPhase.complete) _reset();
+    if (_phase.value == _ProofPhase.complete) {
+      if (widget.sequence) {
+        _level = ProofLevel.all.first;
+        _courseStart = 0;
+      }
+      _reset();
+    }
     _resetInput();
     unawaited(_platform.beginAudio());
     _race.paused = false;
@@ -358,6 +375,26 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   void _onRace() {
     if (!mounted || _phase.value != _ProofPhase.driving) return;
     if (_race.elapsed >= duration || _race.finished) {
+      final index = ProofLevel.all.indexOf(_level);
+      if (widget.sequence && index < ProofLevel.all.length - 1) {
+        if (!_advancePending) {
+          _advancePending = true;
+          final next = ProofLevel.all[index + 1];
+          final speed = _race.speed;
+          // Reset outside the controller notification/update stack.
+          scheduleMicrotask(() {
+            _advancePending = false;
+            if (!mounted ||
+                _phase.value != _ProofPhase.driving ||
+                _level != ProofLevel.all[index] ||
+                (_race.elapsed < duration && !_race.finished)) {
+              return;
+            }
+            _selectLevel(next, launchSpeed: speed);
+          });
+        }
+        return;
+      }
       _resetInput();
       _race.paused = true;
       _platform.pause(true);
@@ -421,10 +458,10 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _start();
   }
 
-  void _selectLevel(ProofLevel level) {
+  void _selectLevel(ProofLevel level, {double? launchSpeed}) {
     _level = level;
     _courseStart = 0;
-    _reset();
+    _reset(launchSpeed: launchSpeed);
     _start();
     setState(() {});
   }
@@ -618,7 +655,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                                     vertical: 8,
                                   ),
                                   child: Text(
-                                    '${_level.key}  ${_level.name.toUpperCase()}  v',
+                                    '${widget.sequence ? '${ProofLevel.all.indexOf(_level) + 1}/6  ' : ''}${_level.key}  ${_level.name.toUpperCase()}  v',
                                     style: const TextStyle(
                                       color: accent,
                                       fontSize: 9,
@@ -864,10 +901,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                   portrait
                       ? 'Rotate to landscape to drive.'
                       : complete
-                      ? 'Test drive complete. Take another look at the road.'
+                      ? (widget.sequence
+                            ? 'Road trip complete. Six levels explored.'
+                            : 'Test drive complete. Take another look at the road.')
                       : paused
                       ? 'Your test drive is paused.'
-                      : 'A 90-second drive in your S2000.\nCity light, forest roads, mountain air.',
+                      : 'Six roads in your S2000.\nDaylight, autumn, night rain and desert dusk.',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: cream,
