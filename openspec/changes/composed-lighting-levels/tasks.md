@@ -22,4 +22,4 @@
 ## 5. Mobile sequence and manual publication
 - [x] 5.1 Add root npm/lockfile and discoverable Wrangler build/assets/domain metadata; verify the real build through a deployment dry-run without enabling remote build hooks.
 - [x] 5.2 Play all six levels sequentially, with input/history reset, speed carry, final completion/replay and retained manual controls; test full sequence.
-- [ ] 5.3 Update publication/phone instructions and forge diagnostics, run local checks, merge and push main.
+- [x] 5.3 Update publication/phone instructions and forge diagnostics, run local checks, merge and push main.
