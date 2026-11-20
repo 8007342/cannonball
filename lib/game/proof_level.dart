@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'proof_course.dart';
 import 'route.dart';
+import 'terrain/level_profiles.dart';
 
 /// Illustrative review packs, not surveyed road corridors or final campaign art.
 class ProofLevel {
@@ -27,6 +28,9 @@ class ProofLevel {
   });
   final String id, name, key;
   final int seed, treeFrame, sceneryStride, ground;
+
+  /// `hills`/`curves` describe the level's relative character for review
+  /// metadata; geometry now comes from its own `LevelProfile`.
   final double night, sunset, wet, hills, curves, variation, lampSpacing;
   final bool autumn, canopy, urban;
   final RaceWeather weather;
@@ -128,8 +132,10 @@ class ProofLevel {
 }
 
 /// One source for controller demand and renderer elevation/center coordinates.
+/// Each level owns its authored profile (see [LevelProfile]); Hudson keeps
+/// the reviewed shared course exactly.
 class ProofTerrain {
-  ProofTerrain(this.level) {
+  ProofTerrain(this.level) : profile = LevelProfile.forId(level.id) {
     var heading = 0.0, center = 0.0;
     centers.add(0);
     for (var i = 1; i <= 2400; i++) {
@@ -140,14 +146,9 @@ class ProofTerrain {
     }
   }
   final ProofLevel level;
+  final LevelProfile profile;
   final List<double> centers = [];
-  double curvatureAt(double s) =>
-      ProofCourse.curvatureAt(s) * level.curves +
-      (level.variation == 0 || s < 420
-          ? 0
-          : math.sin((s - 420) / (310 + level.variation * 23)) *
-                .003 *
-                math.min(1, (s - 420) / 200));
+  double curvatureAt(double s) => profile.curvatureAt(s);
   double centerAt(double s) {
     if (s <= 0) return 0;
     final index = (s / 5).floor().clamp(0, centers.length - 2);
@@ -155,14 +156,11 @@ class ProofTerrain {
     return centers[index] + (centers[index + 1] - centers[index]) * fraction;
   }
 
-  double elevationAt(double s) =>
-      ProofCourse.elevationAt(s) * level.hills +
-      (level.variation == 0
-          ? 0
-          : math.sin(s / (180 + level.variation * 41)) *
-                math.sin(s / 850) *
-                180 *
-                level.hills);
+  double elevationAt(double s) => profile.elevationAt(s);
+
+  /// Extra centrifugal demand of hairpins (half-widths/s at top speed).
+  double cornerDemandAt(double s) => profile.cornerDemandAt(s);
+  String sectionAt(double s) => profile.sectionAt(s);
   double gradeAt(double s, double scale) =>
       (elevationAt(s + 5) - elevationAt(s - 5)) / (10 * scale);
   double pitchAt(double s, double scale) =>

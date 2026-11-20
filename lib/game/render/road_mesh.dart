@@ -65,6 +65,36 @@ class RoadMesh {
     count++;
   }
 
+  /// An arbitrary quad (near-a, near-b, far-a, far-b), e.g. a vertical
+  /// parapet ribbon whose edges are not horizontal on screen.
+  void quadPoints(
+    double nax,
+    double nay,
+    double nbx,
+    double nby,
+    double fax,
+    double fay,
+    double fbx,
+    double fby,
+    int nearColor,
+    int farColor,
+  ) {
+    if (count >= maxQuads) return;
+    final p = count * 12, c = count * 6;
+    final xy = [nax, nay, nbx, nby, fax, fay, nbx, nby, fbx, fby, fax, fay];
+    for (var i = 0; i < 12; i++) {
+      positions[p + i] = xy[i];
+      coordinates[p + i] = 0;
+    }
+    colors[c] = nearColor;
+    colors[c + 1] = nearColor;
+    colors[c + 2] = farColor;
+    colors[c + 3] = nearColor;
+    colors[c + 4] = farColor;
+    colors[c + 5] = farColor;
+    count++;
+  }
+
   void draw(ui.Canvas canvas, ui.Paint paint) {
     if (count == 0) return;
     final vertices = ui.Vertices.raw(
