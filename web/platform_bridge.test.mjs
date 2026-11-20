@@ -6,11 +6,19 @@ import vm from 'node:vm';
 const source = readFileSync(new URL('./platform_bridge.js', import.meta.url), 'utf8');
 const flush = async () => { for (let i = 0; i < 6; i++) await Promise.resolve(); };
 
-function harness({prepared = false} = {}) {
+const programmeSource = readFileSync(new URL('./radio_programme.js', import.meta.url), 'utf8');
+const radioCatalog = {programme: {
+  stations: [{id: 'pop', name: 'Pop FM', frequency: '101', regions: ['City']}, {id: 'rock', name: 'Rock', frequency: '97', regions: ['Mountain', 'City']}],
+  songs: ['pop-a', 'pop-b', 'rock-a', 'rock-b'].map(id => ({id, title: id, station: id.split('-')[0], genre: 'x', src: `music/${id}.mp3`, duration: 90})),
+  interjections: [{id: 'pop-id', station: 'pop', kind: 'ident', text: 'Pop FM!', src: 'music/dj-pop.mp3'}, {id: 'rock-id', station: 'rock', kind: 'ident', text: 'Rock!', src: 'music/dj-rock.mp3'}],
+  buzz: [{id: 'b1', src: 'music/buzz-1.mp3'}, {id: 'b2', src: 'music/buzz-2.mp3'}]}};
+
+function harness({prepared = false, radio = false} = {}) {
   let time = 0, timerId = 0;
   const timers = new Map(), listeners = new Map(), docListeners = new Map();
   const spoken = [], oscillatorNotes = [], scripts = [], preparedReports = [], snippetCalls = [];
   let cancelled = 0;
+  const bufferSources = [];
   const add = (map) => (name, callback) => map.set(name, callback);
   const remove = (map) => (name, callback) => { if (map.get(name) === callback) map.delete(name); };
   const parameter = () => ({value: 0, events: [],
@@ -52,7 +60,7 @@ function harness({prepared = false} = {}) {
     sandbox.fetch = async () => ({});
     sandbox.CannonballScorePlayer = function () {
       this.state = 'idle';
-      this.prepare = async () => true;
+      this.prepare = async () => radio ? radioCatalog : true;
       this.play = async () => false;
       this.stopMusic = () => {};
       this.stopVoice = () => {};
@@ -63,6 +71,19 @@ function harness({prepared = false} = {}) {
     };
   }
   vm.createContext(sandbox);
+  const media = {readyState: 4, src: '', paused: true, plays: 0, listeners: {},
+    addEventListener(name, fn) { this.listeners[name] = fn; }, setAttribute() {},
+    play() { this.plays++; this.paused = false; return Promise.resolve(); }, pause() { this.paused = true; }, load() {}};
+  if (radio) {
+    sandbox.Audio = function () { return media; };
+    audio.createBufferSource = () => { const n = {...node(), buffer: null}; bufferSources.push(n); return n; };
+    audio.createBuffer = (ch, length, rate) => ({duration: length / rate, getChannelData: () => new Float32Array(length)});
+    audio.sampleRate = 48000;
+    audio.decodeAudioData = async () => ({duration: .4});
+    sandbox.fetch = async () => ({ok: true, arrayBuffer: async () => new ArrayBuffer(4)});
+    vm.runInContext(programmeSource, sandbox);
+    vm.runInContext(`{ let s = ${Number(process.env.RADIO_SEED || 7)}; Math.random = () => { s = (s * 48271) % 2147483647; return s / 2147483647; }; }`, sandbox);
+  }
   vm.runInContext(source, sandbox);
   const tilt = [], statuses = [], hidden = [], orientations = [];
   const bridge = sandbox.CannonballPlatform;
@@ -84,7 +105,7 @@ function harness({prepared = false} = {}) {
     time = end;
     audio.currentTime = time / 1000;
   }
-  return {bridge, sandbox, math: sandbox.module.exports, tilt, statuses, hidden,
+  return {bridge, sandbox, media, bufferSources, math: sandbox.module.exports, tilt, statuses, hidden,
     orientations, spoken, scripts, oscillatorNotes, audio, timers, advance, preparedReports, snippetCalls,
     get cancelled() { return cancelled; },
     emit(name, event = {}) { listeners.get(name)?.(event); docListeners.get(name)?.(event); }};
@@ -379,4 +400,40 @@ test('mute during surfing cancels every pending report and station-resume timer'
   h.advance(10000); await flush();
   assert.equal(h.preparedReports.length, reports);
   assert.equal(h.bridge.audioSnapshot().phase, 'music');
+});
+
+test('radio programme replaces the oscillator score and survives a level change', async () => {
+  const h = harness({prepared: true, radio: true});
+  h.bridge.setProofAudio(true); await h.bridge.beginAudio(); h.bridge.pause(false);
+  await flush(); await new Promise(setImmediate);
+  h.bridge.setAudioState(.5, .5, 'City');
+  const before = h.oscillatorNotes.length;
+  h.advance(30); await new Promise(setImmediate);
+  assert.equal(h.bridge.audioSnapshot().programme.state, 'buzz-in');
+  assert.equal(h.oscillatorNotes.length, before, 'no oscillator music while the programme runs');
+  const end = () => { const s = h.bufferSources.filter(x => x.onended && !x.loop).at(-1); s.onended(); };
+  end(); await new Promise(setImmediate);
+  assert.equal(h.bridge.audioSnapshot().programme.state, 'line');
+  assert.match(h.bridge.radioCaption(), /Pop FM|Rock/);
+  end(); h.advance(1000);
+  assert.equal(h.bridge.audioSnapshot().programme.state, 'song');
+  assert.equal(h.media.paused, false);
+  // A level change pauses and resumes in one task: the song keeps playing.
+  h.bridge.pause(true); h.bridge.pause(false); h.advance(200);
+  assert.equal(h.media.paused, false);
+  assert.equal(h.bridge.audioSnapshot().programme.state, 'song');
+  // Urgent report: hard cut, buzz, prepared/device speech, buzz, next song.
+  h.bridge.radioBreak('Snow ahead!', 'Mountain', true);
+  assert.equal(h.media.paused, true);
+  end(); await flush();
+  assert.equal(h.bridge.audioSnapshot().programme.state, 'report');
+  assert.equal(h.preparedReports.at(-1).text, 'Snow ahead!');
+  h.preparedReports.at(-1).complete(); h.advance(1000);
+  assert.equal(h.bridge.audioSnapshot().programme.station, 'rock');
+  // Skip and mute.
+  assert.equal(h.bridge.radioSkip(), true);
+  h.bridge.setMuted(true);
+  assert.equal(h.media.paused, true);
+  h.bridge.dispose();
+  assert.equal(h.timers.size, 0);
 });

@@ -1,0 +1,47 @@
+{
+  "schema": "cannonball.radio-interjections/v1",
+  "about": "Original short presenter lines played between songs: song -> tuning buzz -> interjection -> tuning buzz -> next song. Station idents and banter are rendered with stock Kokoro v1.0 voices (no cloning) by tool/audio/interjections.py, then radio-band processed and mastered by tool/audio/radiokit. Lines are humour and station identity only; state-derived traffic/weather guidance stays in lib/platform/proof_radio.dart.",
+  "model": "Kokoro v1.0 (hexgrad/Kokoro-82M, Apache-2.0) via kokoro-onnx 0.4.7 (MIT)",
+  "speed": 1.04,
+  "lines": [
+    {"id": "sunroof-ident-1", "station": "sunroof", "kind": "ident", "voice": "af_heart", "lang": "en-us", "text": "Sunroof FM, one oh one point three. Windows down, volume up!"},
+    {"id": "sunroof-ident-2", "station": "sunroof", "kind": "ident", "voice": "af_heart", "lang": "en-us", "text": "You're cruising with Sunroof FM. Bright songs for bright roads."},
+    {"id": "sunroof-banter-1", "station": "sunroof", "kind": "banter", "voice": "af_heart", "lang": "en-us", "text": "Road trip rule number one: the driver picks the station."},
+    {"id": "sunroof-banter-2", "station": "sunroof", "kind": "banter", "voice": "af_heart", "lang": "en-us", "text": "Bumper sticker of the day: I brake for good songs."},
+
+    {"id": "redline-ident-1", "station": "redline", "kind": "ident", "voice": "am_fenrir", "lang": "en-us", "text": "Redline Rock, ninety seven point seven. Keep it loud, keep it moving!"},
+    {"id": "redline-ident-2", "station": "redline", "kind": "ident", "voice": "am_fenrir", "lang": "en-us", "text": "This is Redline Rock. Guitars up, eyes on the road."},
+    {"id": "redline-banter-1", "station": "redline", "kind": "banter", "voice": "am_fenrir", "lang": "en-us", "text": "Our traffic chopper is a pigeon. He says: keep rolling."},
+    {"id": "redline-banter-2", "station": "redline", "kind": "banter", "voice": "am_fenrir", "lang": "en-us", "text": "Shout out to the air guitar in the left lane. Both hands on the wheel, please."},
+
+    {"id": "ironmile-ident-1", "station": "ironmile", "kind": "ident", "voice": "am_onyx", "lang": "en-us", "text": "Iron Mile, one oh six point six. Heavy riffs for heavy feet."},
+    {"id": "ironmile-ident-2", "station": "ironmile", "kind": "ident", "voice": "am_onyx", "lang": "en-us", "text": "You're locked on Iron Mile. Hold the line."},
+    {"id": "ironmile-banter-1", "station": "ironmile", "kind": "banter", "voice": "am_onyx", "lang": "en-us", "text": "Mountain report: the hills are steep, the riffs are steeper."},
+    {"id": "ironmile-banter-2", "station": "ironmile", "kind": "banter", "voice": "am_onyx", "lang": "en-us", "text": "Headbanging is fine. Keep your eyes on the road anyway."},
+
+    {"id": "bluelane-ident-1", "station": "bluelane", "kind": "ident", "voice": "bm_george", "lang": "en-gb", "text": "Blue Lane, eighty eight point one. Smooth grooves for the fast lane."},
+    {"id": "bluelane-ident-2", "station": "bluelane", "kind": "ident", "voice": "bm_george", "lang": "en-gb", "text": "Blue Lane radio. Swing a little, steer a lot."},
+    {"id": "bluelane-banter-1", "station": "bluelane", "kind": "banter", "voice": "bm_george", "lang": "en-gb", "text": "A little horn section never hurt anybody. Unless it's in traffic."},
+    {"id": "bluelane-banter-2", "station": "bluelane", "kind": "banter", "voice": "bm_george", "lang": "en-gb", "text": "Snap your fingers on two and four. Keep your hands on ten and two."},
+
+    {"id": "caliente-ident-1", "station": "caliente", "kind": "ident", "voice": "em_alex", "lang": "es", "text": "Ruta Caliente, noventa y cuatro punto cinco. ¡Ritmo para la carretera!", "caption": "Ruta Caliente, 94.5. Rhythm for the road!"},
+    {"id": "caliente-ident-2", "station": "caliente", "kind": "ident", "voice": "em_alex", "lang": "es", "text": "Estás en Ruta Caliente. ¡Que siga la fiesta en el camino!", "caption": "You're on Ruta Caliente. Keep the party rolling!"},
+    {"id": "caliente-banter-1", "station": "caliente", "kind": "banter", "voice": "em_alex", "lang": "es", "text": "Ventanas abajo, volumen arriba, y las manos en el volante.", "caption": "Windows down, volume up, and hands on the wheel."},
+    {"id": "caliente-banter-2", "station": "caliente", "kind": "banter", "voice": "em_alex", "lang": "es", "text": "¿Un atajo? No hace falta. Con esta música, el camino vuela.", "caption": "A shortcut? No need. With this music the road flies by."},
+
+    {"id": "backroads-ident-1", "station": "backroads", "kind": "ident", "voice": "af_nicole", "lang": "en-us", "text": "Back Roads, ninety point three. Fiddles, banjos and open sky."},
+    {"id": "backroads-ident-2", "station": "backroads", "kind": "ident", "voice": "af_nicole", "lang": "en-us", "text": "Back Roads radio. Take the long way, but take it quick."},
+    {"id": "backroads-banter-1", "station": "backroads", "kind": "banter", "voice": "af_nicole", "lang": "en-us", "text": "Snack report: the gas station jerky is holding steady."},
+    {"id": "backroads-banter-2", "station": "backroads", "kind": "banter", "voice": "af_nicole", "lang": "en-us", "text": "Callers say the scenic route is lovely. They also say it's longer."},
+
+    {"id": "neon-ident-1", "station": "neon", "kind": "ident", "voice": "am_puck", "lang": "en-us", "text": "Neon Overdrive, one oh three point nine. Synths on, headlights on."},
+    {"id": "neon-ident-2", "station": "neon", "kind": "ident", "voice": "am_puck", "lang": "en-us", "text": "You're riding Neon Overdrive. Next exit: the future."},
+    {"id": "neon-banter-1", "station": "neon", "kind": "banter", "voice": "am_puck", "lang": "en-us", "text": "Fun fact: every mile you drive is a mile you don't have to walk."},
+    {"id": "neon-banter-2", "station": "neon", "kind": "banter", "voice": "am_puck", "lang": "en-us", "text": "Phones down, eyes up, music loud."},
+
+    {"id": "network-1", "station": "*", "kind": "network", "voice": "af_sarah", "lang": "en-us", "text": "Cannonball Radio Network. More songs, more road, fewer red lights."},
+    {"id": "network-2", "station": "*", "kind": "network", "voice": "af_sarah", "lang": "en-us", "text": "Traffic update: everybody's going somewhere. Probably somewhere fun."},
+    {"id": "network-3", "station": "*", "kind": "network", "voice": "am_michael", "lang": "en-us", "text": "Weather desk says sunglasses or wipers. Whatever the sky decides."},
+    {"id": "network-4", "station": "*", "kind": "network", "voice": "am_michael", "lang": "en-us", "text": "Long drive? Roll those shoulders at the next stop. Then floor it."}
+  ]
+}

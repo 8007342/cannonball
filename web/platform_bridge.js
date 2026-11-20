@@ -96,7 +96,7 @@
   let audioTimer = null, nextNote = 0, step = 0, muted = false, paused = true;
   let speed = 0, intensity = 0, region = 'Atlantic', activeRegion = '';
   let theme = null, voice = null, speechEpoch = 0, speechTimer = null;
-  let scorePlayer = null;
+  let scorePlayer = null, programme = null;
   let proofAudio = false, radioPhase = 'music', radioTimer = null, radioEpoch = 0;
   let radioStation = '', lastRadioText = '', reportCount = 0;
   let stationChanges = 0, surfCount = 0, radioVariant = 'direct';
@@ -153,8 +153,22 @@
     oscillator.stop(time + 0.19);
   }
 
+  // The streamed radio programme owns music once its catalog is ready. Until
+  // the catalog answers nothing else starts; if it fails the legacy prepared
+  // score / oscillator fallback below plays instead.
+  function programmeActive() { return proofAudio && Boolean(programme) && (programme.ready || programme.pending); }
+
   function scheduleMusic() {
-    if (!context || paused || muted || doc.hidden || context.state !== 'running' || radioPhase !== 'music') return;
+    if (!context || paused || muted || doc.hidden || context.state !== 'running') return;
+    if (programmeActive()) {
+      if (programme.ready) {
+        programme.setRegion(region);
+        programme.play(region);
+        for (const node of [...activeNodes]) { try { node.stop(); } catch (_) {} }
+      }
+      return;
+    }
+    if (radioPhase !== 'music') return;
     if (proofAudio && scorePlayer) {
       if (scorePlayer.state === 'playing') return;
       scorePlayer.play(region).then(playing => {
@@ -233,9 +247,19 @@
           scorePlayer = new root.CannonballScorePlayer(context, master);
           scorePlayer.prepare();
         }
+        if (root.CannonballRadioProgramme && context.decodeAudioData && root.fetch) {
+          programme = new root.CannonballRadioProgramme(context, master, {
+            loadCatalog: () => scorePlayer ? scorePlayer.prepare() : null,
+            speak: speakReport,
+            onHalt: cancelSpeech,
+          });
+          programme.prepare();
+        }
         audioTimer = root.setInterval(scheduleMusic, 25);
       }
+      programme?.unlock(); // Inside the gesture: unlock the reused media element.
       await context.resume();
+      programme?.setPaused(paused || muted || doc.hidden);
       nextNote = context.currentTime + 0.035;
       updateVolume();
       return context.state === 'running';
@@ -373,8 +397,27 @@
     }
   }
 
-  function radioBreak(text, station) {
+  // Prepared Kokoro report when its exact text exists, device speech otherwise.
+  function speakReport(text, done) {
+    if (scorePlayer) {
+      scorePlayer.report(text, done).then(played => { if (!played) say(text, done); })
+        .catch(() => say(text, done));
+    } else say(text, done);
+  }
+
+  function radioBreak(text, station, urgent = true) {
     if (!proofAudio || typeof text !== 'string' || !text.trim()) return;
+    if (programmeActive()) {
+      const nextStation = typeof station === 'string' ? station : 'City';
+      if (radioStation !== '' && radioStation !== nextStation) stationChanges++;
+      lastRadioText = text.slice(0, 160);
+      radioStation = region = nextStation;
+      reportCount++;
+      radioVariant = urgent === false ? 'queued' : 'programme';
+      if (programme.ready) programme.interject(lastRadioText, nextStation, urgent !== false);
+      else programme.prepare().then(ok => { if (ok) programme.interject(lastRadioText, nextStation, urgent !== false); });
+      return;
+    }
     cancelRadio();
     cancelSpeech();
     const nextStation = typeof station === 'string' ? station : 'City';
@@ -431,6 +474,8 @@
 
   function setProofAudio(value) {
     stopMusic();
+    programme?.reset();
+    programme?.setPaused(paused || muted || doc.hidden);
     proofAudio = Boolean(value);
     cancelRadio();
     activeRegion = '';
@@ -443,7 +488,11 @@
 
   function pause(value) {
     paused = Boolean(value);
-    if (paused) { stopMusic(); cancelSpeech(); cancelRadio(); cancelGarage(); }
+    // The programme defers its pause so pause(true); pause(false) within one
+    // task (a level change) keeps the current song playing without a gap.
+    programme?.setPaused(paused || muted || doc.hidden);
+    if (paused && programmeActive()) cancelGarage(); // speech stops when the programme does
+    else if (paused) { stopMusic(); cancelSpeech(); cancelRadio(); cancelGarage(); }
     updateVolume();
     if (context && !paused) {
       // Resume may still be blocked without a gesture; captions remain usable.
@@ -539,16 +588,22 @@
     },
     enableTilt, disableTilt, beginAudio, setAudioState, say, pause, renderGoogleButton,
     setProofAudio, radioBreak, garageCue,
+    /** User station skip; false when the programme is not playing. */
+    radioSkip() { return programmeActive() && programme.ready ? programme.skip() : false; },
+    /** Now-playing / presenter caption, or '' when nothing is on air. */
+    radioCaption() { return programmeActive() && programme.ready ? programme.label() : ''; },
     audioSnapshot() {
       return {proofAudio, phase: radioPhase, station: radioStation, reportCount,
         radioVariant, surfCount, stationChanges,
         lastRadioText, trackStyle: theme?.style || 'prototype',
         prepared: scorePlayer?.snapshot() || null,
+        programme: programme?.snapshot() || null,
         speechMode: scorePlayer?.voiceMode || 'device TTS fallback; no regional accent guarantee'};
     },
     setMuted(value) {
       muted = Boolean(value);
-      if (muted) { stopMusic(); cancelSpeech(); cancelRadio(); cancelGarage(); }
+      if (muted) { programme?.halt(); stopMusic(); cancelSpeech(); cancelRadio(); cancelGarage(); }
+      else programme?.setPaused(paused || doc.hidden);
       updateVolume();
     },
     async requestLandscape() {
@@ -563,6 +618,8 @@
     dispose() {
       scorePlayer?.dispose();
       scorePlayer = null;
+      programme?.dispose();
+      programme = null;
       cancelGarage();
       lastGarageCue = null;
       lastGarageAt = -100;

@@ -18,7 +18,9 @@ extension type _PlatformBridge(JSObject _) implements JSObject {
   external void say(String text);
   external void setProofAudio(bool enabled);
   external void garageCue(String cue);
-  external void radioBreak(String text, String station);
+  external void radioBreak(String text, String station, bool urgent);
+  external bool radioSkip();
+  external String radioCaption();
   external void setMuted(bool muted);
   external void pause(bool paused);
   external JSPromise<JSBoolean> requestLandscape();
@@ -88,8 +90,30 @@ class BrowserPlatform {
   void say(String text) => _bridge?.say(text);
   void setProofAudio(bool enabled) => _bridge?.setProofAudio(enabled);
   void garageCue(String cue) => _bridge?.garageCue(cue);
-  void radioBreak({required String text, required String station}) =>
-      _bridge?.radioBreak(text, station);
+  void radioBreak({
+    required String text,
+    required String station,
+    bool urgent = true,
+  }) => _bridge?.radioBreak(text, station, urgent);
+
+  /// Listener station skip (hard cut, buzz, ident, new station).
+  bool radioSkip() {
+    try {
+      return _bridge?.radioSkip() ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Current presenter caption or "Station · Song"; empty when off air.
+  String radioCaption() {
+    try {
+      return _bridge?.radioCaption() ?? '';
+    } catch (_) {
+      return '';
+    }
+  }
+
   void pause(bool paused) => _bridge?.pause(paused);
 
   Future<bool> requestLandscape() async {

@@ -1,6 +1,10 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cannonball — soundtrack studies</title>
 <style>body{background:#152433;color:#fff4d5;font:17px system-ui;max-width:850px;margin:40px auto;padding:0 24px}h1{color:#ffbc65}article{background:#223849;padding:22px;margin:22px 0;border-radius:12px}audio{width:100%}a{color:#ffcb7d}p{line-height:1.5}small{color:#c1d1d9}button{padding:12px;background:#ffc070;border:0;border-radius:8px;cursor:pointer}</style>
-<h1>Cannonball radio lab</h1><p>Three original soundtrack studies. Full arrangements, synthesised instruments, and editable MIDI. These are listening drafts for your review.</p><p><a href="/?proof=1">Take the keys and drive →</a></p><main id="tracks">Loading…</main><h2>Meet the draft presenters</h2><p>Prepared neural voices with light radio EQ. These are stock synthetic presenters; city accents and final performances still need review.</p><section id="radio"></section><p id="status" role="status"></p>
+<h1>Cannonball radio lab</h1><p>Three original soundtrack studies. Full arrangements, synthesised instruments, and editable MIDI. These are listening drafts for your review.</p><p><a href="/?proof=1">Take the keys and drive →</a></p><main id="tracks">Loading…</main><h2>Meet the draft presenters</h2><p>Prepared neural voices with light radio EQ. These are stock synthetic presenters; city accents and final performances still need review.</p><section id="radio"></section>
+<h2>Radio programme</h2><p>Wordless station songs joined by hard radio cuts: song, tuning buzz, presenter, buzz, next song. Use this to audition picks before they are approved.</p>
+<p><button id="radio-on">Turn the radio on</button> <button id="radio-skip" disabled>Change station</button> <button id="radio-off" disabled>Off</button></p><p id="now" aria-live="polite"></p><section id="stations"></section>
+<p id="status" role="status"></p>
+<script src="radio_programme.js"></script>
 <script>
 const base=new URL('assets/assets/audio/',location.href);
 fetch(new URL('catalog.json',base)).then(r=>{if(!r.ok)throw Error('Catalog unavailable');return r.json()}).then(c=>{
@@ -10,6 +14,11 @@ fetch(new URL('catalog.json',base)).then(r=>{if(!r.ok)throw Error('Catalog unava
  const a=document.createElement('audio');a.controls=true;a.preload='none';a.src=new URL(t.src,base);box.append(a);
  const link=document.createElement('a');link.href=new URL('midi/'+t.id+'.mid',base);link.download=t.id+'.mid';link.textContent='Download multitrack MIDI';box.append(document.createElement('p').appendChild(link).parentNode);tracks.append(box);}
  for(const report of c.radio.slice(0,3)){const box=document.createElement('article');const p=document.createElement('p');p.textContent=report.text;box.append(p);const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=new URL(report.src,base);box.append(audio);document.querySelector('#radio').append(box);}
+ const st=document.querySelector('#stations');for(const s of c.programme?.stations||[]){const box=document.createElement('article');const h=document.createElement('h3');h.textContent=`${s.name} ${s.frequency} · ${s.genres.join(', ')}`;box.append(h);
+ for(const song of c.programme.songs.filter(x=>x.station===s.id)){const p=document.createElement('p');p.textContent=`${song.title} — ${song.genre}, ${song.bpm} BPM, ${song.key}, ${Math.round(song.duration)} s`;box.append(p);const a=document.createElement('audio');a.controls=true;a.preload='none';a.src=new URL(song.src,base);box.append(a);}st.append(box);}
+ let ctx=null,radio=null,timer=null;const on=document.querySelector('#radio-on'),skip=document.querySelector('#radio-skip'),off=document.querySelector('#radio-off'),now=document.querySelector('#now');
+ on.onclick=async()=>{document.querySelectorAll('audio').forEach(a=>a.pause());ctx??=new (window.AudioContext||window.webkitAudioContext)();radio??=new CannonballRadioProgramme(ctx,ctx.destination,{base:base.href,loadCatalog:async()=>c,speak:(t,done)=>done()});radio.unlock();await ctx.resume();await radio.prepare();radio.setPaused(false);radio.play('City');skip.disabled=off.disabled=false;timer??=setInterval(()=>{now.textContent=radio.label()||radio.state},250);};
+ skip.onclick=()=>radio?.skip();off.onclick=()=>{radio?.reset();skip.disabled=off.disabled=true;};
  document.querySelectorAll('audio').forEach(audio=>audio.addEventListener('play',()=>document.querySelectorAll('audio').forEach(other=>{if(other!==audio)other.pause()})));
 }).catch(e=>document.querySelector('#status').textContent=e.message);
 </script></html>

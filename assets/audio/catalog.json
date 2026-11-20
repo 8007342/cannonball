@@ -140,5 +140,866 @@
       "title": "Overpass Afterburn \u2014 dial fragment",
       "duration": 0.68
     }
-  ]
+  ],
+  "programme": {
+    "about": "Wordless ACE-Step radio songs joined by hard radio cuts: song -\u003e buzz -\u003e interjection -\u003e buzz -\u003e another song. See art/music/README.md.",
+    "buzz": [
+      {
+        "duration": 0.85,
+        "id": "buzz-1",
+        "src": "music/buzz-1.mp3"
+      },
+      {
+        "duration": 1.1,
+        "id": "buzz-2",
+        "src": "music/buzz-2.mp3"
+      },
+      {
+        "duration": 0.7,
+        "id": "buzz-3",
+        "src": "music/buzz-3.mp3"
+      },
+      {
+        "duration": 1.35,
+        "id": "buzz-4",
+        "src": "music/buzz-4.mp3"
+      },
+      {
+        "duration": 0.95,
+        "id": "buzz-5",
+        "src": "music/buzz-5.mp3"
+      },
+      {
+        "duration": 1.2,
+        "id": "buzz-6",
+        "src": "music/buzz-6.mp3"
+      },
+      {
+        "duration": 0.8,
+        "id": "buzz-7",
+        "src": "music/buzz-7.mp3"
+      },
+      {
+        "duration": 1.5,
+        "id": "buzz-8",
+        "src": "music/buzz-8.mp3"
+      }
+    ],
+    "interjections": [
+      {
+        "caption": "Sunroof FM, one oh one point three. Windows down, volume up!",
+        "duration": 4.313,
+        "id": "sunroof-ident-1",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-sunroof-ident-1.mp3",
+        "station": "sunroof",
+        "text": "Sunroof FM, one oh one point three. Windows down, volume up!",
+        "voice": "af_heart"
+      },
+      {
+        "caption": "You're cruising with Sunroof FM. Bright songs for bright roads.",
+        "duration": 3.929,
+        "id": "sunroof-ident-2",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-sunroof-ident-2.mp3",
+        "station": "sunroof",
+        "text": "You're cruising with Sunroof FM. Bright songs for bright roads.",
+        "voice": "af_heart"
+      },
+      {
+        "caption": "Road trip rule number one: the driver picks the station.",
+        "duration": 3.545,
+        "id": "sunroof-banter-1",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-sunroof-banter-1.mp3",
+        "station": "sunroof",
+        "text": "Road trip rule number one: the driver picks the station.",
+        "voice": "af_heart"
+      },
+      {
+        "caption": "Bumper sticker of the day: I brake for good songs.",
+        "duration": 3.076,
+        "id": "sunroof-banter-2",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-sunroof-banter-2.mp3",
+        "station": "sunroof",
+        "text": "Bumper sticker of the day: I brake for good songs.",
+        "voice": "af_heart"
+      },
+      {
+        "caption": "Redline Rock, ninety seven point seven. Keep it loud, keep it moving!",
+        "duration": 4.377,
+        "id": "redline-ident-1",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-redline-ident-1.mp3",
+        "station": "redline",
+        "text": "Redline Rock, ninety seven point seven. Keep it loud, keep it moving!",
+        "voice": "am_fenrir"
+      },
+      {
+        "caption": "This is Redline Rock. Guitars up, eyes on the road.",
+        "duration": 3.225,
+        "id": "redline-ident-2",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-redline-ident-2.mp3",
+        "station": "redline",
+        "text": "This is Redline Rock. Guitars up, eyes on the road.",
+        "voice": "am_fenrir"
+      },
+      {
+        "caption": "Our traffic chopper is a pigeon. He says: keep rolling.",
+        "duration": 3.311,
+        "id": "redline-banter-1",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-redline-banter-1.mp3",
+        "station": "redline",
+        "text": "Our traffic chopper is a pigeon. He says: keep rolling.",
+        "voice": "am_fenrir"
+      },
+      {
+        "caption": "Shout out to the air guitar in the left lane. Both hands on the wheel, please.",
+        "duration": 4.591,
+        "id": "redline-banter-2",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-redline-banter-2.mp3",
+        "station": "redline",
+        "text": "Shout out to the air guitar in the left lane. Both hands on the wheel, please.",
+        "voice": "am_fenrir"
+      },
+      {
+        "caption": "Iron Mile, one oh six point six. Heavy riffs for heavy feet.",
+        "duration": 4.484,
+        "id": "ironmile-ident-1",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-ironmile-ident-1.mp3",
+        "station": "ironmile",
+        "text": "Iron Mile, one oh six point six. Heavy riffs for heavy feet.",
+        "voice": "am_onyx"
+      },
+      {
+        "caption": "You're locked on Iron Mile. Hold the line.",
+        "duration": 3.076,
+        "id": "ironmile-ident-2",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-ironmile-ident-2.mp3",
+        "station": "ironmile",
+        "text": "You're locked on Iron Mile. Hold the line.",
+        "voice": "am_onyx"
+      },
+      {
+        "caption": "Mountain report: the hills are steep, the riffs are steeper.",
+        "duration": 3.844,
+        "id": "ironmile-banter-1",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-ironmile-banter-1.mp3",
+        "station": "ironmile",
+        "text": "Mountain report: the hills are steep, the riffs are steeper.",
+        "voice": "am_onyx"
+      },
+      {
+        "caption": "Headbanging is fine. Keep your eyes on the road anyway.",
+        "duration": 3.865,
+        "id": "ironmile-banter-2",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-ironmile-banter-2.mp3",
+        "station": "ironmile",
+        "text": "Headbanging is fine. Keep your eyes on the road anyway.",
+        "voice": "am_onyx"
+      },
+      {
+        "caption": "Blue Lane, eighty eight point one. Smooth grooves for the fast lane.",
+        "duration": 4.697,
+        "id": "bluelane-ident-1",
+        "kind": "ident",
+        "lang": "en-gb",
+        "src": "music/dj-bluelane-ident-1.mp3",
+        "station": "bluelane",
+        "text": "Blue Lane, eighty eight point one. Smooth grooves for the fast lane.",
+        "voice": "bm_george"
+      },
+      {
+        "caption": "Blue Lane radio. Swing a little, steer a lot.",
+        "duration": 3.375,
+        "id": "bluelane-ident-2",
+        "kind": "ident",
+        "lang": "en-gb",
+        "src": "music/dj-bluelane-ident-2.mp3",
+        "station": "bluelane",
+        "text": "Blue Lane radio. Swing a little, steer a lot.",
+        "voice": "bm_george"
+      },
+      {
+        "caption": "A little horn section never hurt anybody. Unless it's in traffic.",
+        "duration": 4.74,
+        "id": "bluelane-banter-1",
+        "kind": "banter",
+        "lang": "en-gb",
+        "src": "music/dj-bluelane-banter-1.mp3",
+        "station": "bluelane",
+        "text": "A little horn section never hurt anybody. Unless it's in traffic.",
+        "voice": "bm_george"
+      },
+      {
+        "caption": "Snap your fingers on two and four. Keep your hands on ten and two.",
+        "duration": 4.463,
+        "id": "bluelane-banter-2",
+        "kind": "banter",
+        "lang": "en-gb",
+        "src": "music/dj-bluelane-banter-2.mp3",
+        "station": "bluelane",
+        "text": "Snap your fingers on two and four. Keep your hands on ten and two.",
+        "voice": "bm_george"
+      },
+      {
+        "caption": "Ruta Caliente, 94.5. Rhythm for the road!",
+        "duration": 4.356,
+        "id": "caliente-ident-1",
+        "kind": "ident",
+        "lang": "es",
+        "src": "music/dj-caliente-ident-1.mp3",
+        "station": "caliente",
+        "text": "Ruta Caliente, noventa y cuatro punto cinco. ¡Ritmo para la carretera!",
+        "voice": "em_alex"
+      },
+      {
+        "caption": "You're on Ruta Caliente. Keep the party rolling!",
+        "duration": 3.46,
+        "id": "caliente-ident-2",
+        "kind": "ident",
+        "lang": "es",
+        "src": "music/dj-caliente-ident-2.mp3",
+        "station": "caliente",
+        "text": "Estás en Ruta Caliente. ¡Que siga la fiesta en el camino!",
+        "voice": "em_alex"
+      },
+      {
+        "caption": "Windows down, volume up, and hands on the wheel.",
+        "duration": 3.631,
+        "id": "caliente-banter-1",
+        "kind": "banter",
+        "lang": "es",
+        "src": "music/dj-caliente-banter-1.mp3",
+        "station": "caliente",
+        "text": "Ventanas abajo, volumen arriba, y las manos en el volante.",
+        "voice": "em_alex"
+      },
+      {
+        "caption": "A shortcut? No need. With this music the road flies by.",
+        "duration": 3.652,
+        "id": "caliente-banter-2",
+        "kind": "banter",
+        "lang": "es",
+        "src": "music/dj-caliente-banter-2.mp3",
+        "station": "caliente",
+        "text": "¿Un atajo? No hace falta. Con esta música, el camino vuela.",
+        "voice": "em_alex"
+      },
+      {
+        "caption": "Back Roads, ninety point three. Fiddles, banjos and open sky.",
+        "duration": 6.383,
+        "id": "backroads-ident-1",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-backroads-ident-1.mp3",
+        "station": "backroads",
+        "text": "Back Roads, ninety point three. Fiddles, banjos and open sky.",
+        "voice": "af_nicole"
+      },
+      {
+        "caption": "Back Roads radio. Take the long way, but take it quick.",
+        "duration": 5.06,
+        "id": "backroads-ident-2",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-backroads-ident-2.mp3",
+        "station": "backroads",
+        "text": "Back Roads radio. Take the long way, but take it quick.",
+        "voice": "af_nicole"
+      },
+      {
+        "caption": "Snack report: the gas station jerky is holding steady.",
+        "duration": 5.273,
+        "id": "backroads-banter-1",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-backroads-banter-1.mp3",
+        "station": "backroads",
+        "text": "Snack report: the gas station jerky is holding steady.",
+        "voice": "af_nicole"
+      },
+      {
+        "caption": "Callers say the scenic route is lovely. They also say it's longer.",
+        "duration": 5.913,
+        "id": "backroads-banter-2",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-backroads-banter-2.mp3",
+        "station": "backroads",
+        "text": "Callers say the scenic route is lovely. They also say it's longer.",
+        "voice": "af_nicole"
+      },
+      {
+        "caption": "Neon Overdrive, one oh three point nine. Synths on, headlights on.",
+        "duration": 4.655,
+        "id": "neon-ident-1",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-neon-ident-1.mp3",
+        "station": "neon",
+        "text": "Neon Overdrive, one oh three point nine. Synths on, headlights on.",
+        "voice": "am_puck"
+      },
+      {
+        "caption": "You're riding Neon Overdrive. Next exit: the future.",
+        "duration": 3.609,
+        "id": "neon-ident-2",
+        "kind": "ident",
+        "lang": "en-us",
+        "src": "music/dj-neon-ident-2.mp3",
+        "station": "neon",
+        "text": "You're riding Neon Overdrive. Next exit: the future.",
+        "voice": "am_puck"
+      },
+      {
+        "caption": "Fun fact: every mile you drive is a mile you don't have to walk.",
+        "duration": 3.908,
+        "id": "neon-banter-1",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-neon-banter-1.mp3",
+        "station": "neon",
+        "text": "Fun fact: every mile you drive is a mile you don't have to walk.",
+        "voice": "am_puck"
+      },
+      {
+        "caption": "Phones down, eyes up, music loud.",
+        "duration": 2.265,
+        "id": "neon-banter-2",
+        "kind": "banter",
+        "lang": "en-us",
+        "src": "music/dj-neon-banter-2.mp3",
+        "station": "neon",
+        "text": "Phones down, eyes up, music loud.",
+        "voice": "am_puck"
+      },
+      {
+        "caption": "Cannonball Radio Network. More songs, more road, fewer red lights.",
+        "duration": 4.292,
+        "id": "network-1",
+        "kind": "network",
+        "lang": "en-us",
+        "src": "music/dj-network-1.mp3",
+        "station": "*",
+        "text": "Cannonball Radio Network. More songs, more road, fewer red lights.",
+        "voice": "af_sarah"
+      },
+      {
+        "caption": "Traffic update: everybody's going somewhere. Probably somewhere fun.",
+        "duration": 4.228,
+        "id": "network-2",
+        "kind": "network",
+        "lang": "en-us",
+        "src": "music/dj-network-2.mp3",
+        "station": "*",
+        "text": "Traffic update: everybody's going somewhere. Probably somewhere fun.",
+        "voice": "af_sarah"
+      },
+      {
+        "caption": "Weather desk says sunglasses or wipers. Whatever the sky decides.",
+        "duration": 4.783,
+        "id": "network-3",
+        "kind": "network",
+        "lang": "en-us",
+        "src": "music/dj-network-3.mp3",
+        "station": "*",
+        "text": "Weather desk says sunglasses or wipers. Whatever the sky decides.",
+        "voice": "am_michael"
+      },
+      {
+        "caption": "Long drive? Roll those shoulders at the next stop. Then floor it.",
+        "duration": 4.655,
+        "id": "network-4",
+        "kind": "network",
+        "lang": "en-us",
+        "src": "music/dj-network-4.mp3",
+        "station": "*",
+        "text": "Long drive? Roll those shoulders at the next stop. Then floor it.",
+        "voice": "am_michael"
+      }
+    ],
+    "rules": {
+      "identEvery": 2,
+      "recentLines": 8,
+      "recentSongs": 10,
+      "stayOnStation": 0.55
+    },
+    "songs": [
+      {
+        "bpm": 124,
+        "duration": 88.85,
+        "genre": "pop",
+        "id": "sunroof-open",
+        "key": "D major",
+        "lufs": -16.2,
+        "mood": "sunny, carefree",
+        "seed": 7000,
+        "src": "music/sunroof-open.mp3",
+        "station": "sunroof",
+        "title": "Sunroof Open"
+      },
+      {
+        "bpm": 118,
+        "duration": 80.15,
+        "genre": "pop",
+        "id": "green-light-streak",
+        "key": "A major",
+        "lufs": -16.2,
+        "mood": "playful, bouncy",
+        "seed": 7011,
+        "src": "music/green-light-streak.mp3",
+        "station": "sunroof",
+        "title": "Green Light Streak"
+      },
+      {
+        "bpm": 128,
+        "duration": 97.65,
+        "genre": "pop",
+        "id": "mile-marker-confetti",
+        "key": "E major",
+        "lufs": -16.2,
+        "mood": "euphoric, celebratory",
+        "seed": 7021,
+        "src": "music/mile-marker-confetti.mp3",
+        "station": "sunroof",
+        "title": "Mile Marker Confetti"
+      },
+      {
+        "bpm": 140,
+        "duration": 94.5,
+        "genre": "rock",
+        "id": "shoulder-lane-thunder",
+        "key": "E minor",
+        "lufs": -16.2,
+        "mood": "gritty, confident",
+        "seed": 7030,
+        "src": "music/shoulder-lane-thunder.mp3",
+        "station": "redline",
+        "title": "Shoulder Lane Thunder"
+      },
+      {
+        "bpm": 132,
+        "duration": 87.4,
+        "genre": "rock",
+        "id": "tailwind-anthem",
+        "key": "G major",
+        "lufs": -16.2,
+        "mood": "triumphant, open road",
+        "seed": 7040,
+        "src": "music/tailwind-anthem.mp3",
+        "station": "redline",
+        "title": "Tailwind Anthem"
+      },
+      {
+        "bpm": 158,
+        "duration": 79.1,
+        "genre": "rock",
+        "id": "odometer-rollover",
+        "key": "A major",
+        "lufs": -16.2,
+        "mood": "reckless, fun",
+        "seed": 7051,
+        "src": "music/odometer-rollover.mp3",
+        "station": "redline",
+        "title": "Odometer Rollover"
+      },
+      {
+        "bpm": 168,
+        "duration": 87.2,
+        "genre": "metal",
+        "id": "iron-overpass",
+        "key": "E minor",
+        "lufs": -16.2,
+        "mood": "heroic, relentless",
+        "seed": 7061,
+        "src": "music/iron-overpass.mp3",
+        "station": "ironmile",
+        "title": "Iron Overpass"
+      },
+      {
+        "bpm": 180,
+        "duration": 79.2,
+        "genre": "metal",
+        "id": "redline-gallop",
+        "key": "D minor",
+        "lufs": -16.2,
+        "mood": "fast, exhilarating",
+        "seed": 7071,
+        "src": "music/redline-gallop.mp3",
+        "station": "ironmile",
+        "title": "Redline Gallop"
+      },
+      {
+        "bpm": 120,
+        "duration": 92.15,
+        "genre": "metal",
+        "id": "granite-grade",
+        "key": "C# minor",
+        "lufs": -16.2,
+        "mood": "heavy, head-nodding",
+        "seed": 7081,
+        "src": "music/granite-grade.mp3",
+        "station": "ironmile",
+        "title": "Granite Grade"
+      },
+      {
+        "bpm": 160,
+        "duration": 88.4,
+        "genre": "jazz",
+        "id": "blue-lane-shuffle",
+        "key": "Bb major",
+        "lufs": -16.2,
+        "mood": "swinging, cheerful",
+        "seed": 7091,
+        "src": "music/blue-lane-shuffle.mp3",
+        "station": "bluelane",
+        "title": "Blue Lane Shuffle"
+      },
+      {
+        "bpm": 200,
+        "duration": 76.25,
+        "genre": "jazz",
+        "id": "cruise-control-bop",
+        "key": "F major",
+        "lufs": -16.2,
+        "mood": "nimble, quick",
+        "seed": 7100,
+        "src": "music/cruise-control-bop.mp3",
+        "station": "bluelane",
+        "title": "Cruise Control Bop"
+      },
+      {
+        "bpm": 112,
+        "duration": 93.5,
+        "genre": "jazz",
+        "id": "toll-booth-strut",
+        "key": "Eb major",
+        "lufs": -16.3,
+        "mood": "cool, strutting",
+        "seed": 7110,
+        "src": "music/toll-booth-strut.mp3",
+        "station": "bluelane",
+        "title": "Toll Booth Strut"
+      },
+      {
+        "bpm": 180,
+        "duration": 89.85,
+        "genre": "latin",
+        "id": "ruta-del-sol",
+        "key": "G minor",
+        "lufs": -16.2,
+        "mood": "festive, hot",
+        "seed": 7120,
+        "src": "music/ruta-del-sol.mp3",
+        "station": "caliente",
+        "title": "Ruta del Sol"
+      },
+      {
+        "bpm": 100,
+        "duration": 89.4,
+        "genre": "latin",
+        "id": "cumbia-de-la-carretera",
+        "key": "A minor",
+        "lufs": -16.2,
+        "mood": "swaying, joyful",
+        "seed": 7131,
+        "src": "music/cumbia-de-la-carretera.mp3",
+        "station": "caliente",
+        "title": "Cumbia de la Carretera"
+      },
+      {
+        "bpm": 104,
+        "duration": 83,
+        "genre": "latin",
+        "id": "samba-shortcut",
+        "key": "D major",
+        "lufs": -16.2,
+        "mood": "carnival, sunny",
+        "seed": 7141,
+        "src": "music/samba-shortcut.mp3",
+        "station": "caliente",
+        "title": "Samba Shortcut"
+      },
+      {
+        "bpm": 140,
+        "duration": 83.05,
+        "genre": "folk",
+        "id": "back-road-hoedown",
+        "key": "G major",
+        "lufs": -16.2,
+        "mood": "rollicking, rustic",
+        "seed": 7151,
+        "src": "music/back-road-hoedown.mp3",
+        "station": "backroads",
+        "title": "Back Road Hoedown"
+      },
+      {
+        "bpm": 150,
+        "duration": 80.95,
+        "genre": "folk",
+        "id": "lantern-pass-reel",
+        "key": "D major",
+        "lufs": -16.2,
+        "mood": "spirited, dancing",
+        "seed": 7160,
+        "src": "music/lantern-pass-reel.mp3",
+        "station": "backroads",
+        "title": "Lantern Pass Reel"
+      },
+      {
+        "bpm": 120,
+        "duration": 94.4,
+        "genre": "folk",
+        "id": "porchlight-stomp",
+        "key": "C major",
+        "lufs": -16.2,
+        "mood": "warm, foot-stomping",
+        "seed": 7170,
+        "src": "music/porchlight-stomp.mp3",
+        "station": "backroads",
+        "title": "Porchlight Stomp"
+      },
+      {
+        "bpm": 108,
+        "duration": 90.5,
+        "genre": "funk",
+        "id": "overdrive-groove",
+        "key": "E minor",
+        "lufs": -16.2,
+        "mood": "tight, funky",
+        "seed": 7182,
+        "src": "music/overdrive-groove.mp3",
+        "station": "bluelane",
+        "title": "Overdrive Groove"
+      },
+      {
+        "bpm": 116,
+        "duration": 82.9,
+        "genre": "funk",
+        "id": "carpool-get-down",
+        "key": "A minor",
+        "lufs": -16.2,
+        "mood": "glittering, dancing",
+        "seed": 7191,
+        "src": "music/carpool-get-down.mp3",
+        "station": "bluelane",
+        "title": "Carpool Get-Down"
+      },
+      {
+        "bpm": 118,
+        "duration": 89.8,
+        "genre": "synthwave",
+        "id": "neon-interstate",
+        "key": "F# minor",
+        "lufs": -16.3,
+        "mood": "nostalgic, propulsive",
+        "seed": 7201,
+        "src": "music/neon-interstate.mp3",
+        "station": "neon",
+        "title": "Neon Interstate"
+      },
+      {
+        "bpm": 128,
+        "duration": 83.75,
+        "genre": "synthwave",
+        "id": "afterglow-overtake",
+        "key": "C minor",
+        "lufs": -16.2,
+        "mood": "fast night drive",
+        "seed": 7211,
+        "src": "music/afterglow-overtake.mp3",
+        "station": "neon",
+        "title": "Afterglow Overtake"
+      },
+      {
+        "bpm": 168,
+        "duration": 75.45,
+        "genre": "surf",
+        "id": "breakwater-run",
+        "key": "E minor",
+        "lufs": -16.2,
+        "mood": "splashy, thrilling",
+        "seed": 7221,
+        "src": "music/breakwater-run.mp3",
+        "station": "redline",
+        "title": "Breakwater Run"
+      },
+      {
+        "bpm": 150,
+        "duration": 73.35,
+        "genre": "surf",
+        "id": "coastline-tremolo",
+        "key": "A minor",
+        "lufs": -16.2,
+        "mood": "sunny, twangy",
+        "seed": 7230,
+        "src": "music/coastline-tremolo.mp3",
+        "station": "redline",
+        "title": "Coastline Tremolo"
+      },
+      {
+        "bpm": 130,
+        "duration": 88.3,
+        "genre": "country",
+        "id": "highway-two-step",
+        "key": "A major",
+        "lufs": -16.2,
+        "mood": "rolling, friendly",
+        "seed": 7241,
+        "src": "music/highway-two-step.mp3",
+        "station": "backroads",
+        "title": "Highway Two-Step"
+      },
+      {
+        "bpm": 164,
+        "duration": 80.5,
+        "genre": "country",
+        "id": "gravel-shoulder-boogie",
+        "key": "E major",
+        "lufs": -16.2,
+        "mood": "bouncy, rowdy",
+        "seed": 7251,
+        "src": "music/gravel-shoulder-boogie.mp3",
+        "station": "backroads",
+        "title": "Gravel Shoulder Boogie"
+      },
+      {
+        "bpm": 126,
+        "duration": 92.6,
+        "genre": "electronic",
+        "id": "kilometer-pulse",
+        "key": "G minor",
+        "lufs": -16.2,
+        "mood": "hypnotic, forward",
+        "seed": 7260,
+        "src": "music/kilometer-pulse.mp3",
+        "station": "neon",
+        "title": "Kilometer Pulse"
+      },
+      {
+        "bpm": 174,
+        "duration": 87.45,
+        "genre": "electronic",
+        "id": "signal-boost",
+        "key": "F minor",
+        "lufs": -16.2,
+        "mood": "rushing, bright",
+        "seed": 7270,
+        "src": "music/signal-boost.mp3",
+        "station": "neon",
+        "title": "Signal Boost"
+      }
+    ],
+    "stations": [
+      {
+        "frequency": "101.3",
+        "genres": [
+          "pop"
+        ],
+        "id": "sunroof",
+        "name": "Sunroof FM",
+        "regions": [
+          "City",
+          "Forest"
+        ]
+      },
+      {
+        "frequency": "97.7",
+        "genres": [
+          "rock",
+          "surf"
+        ],
+        "id": "redline",
+        "name": "Redline Rock",
+        "regions": [
+          "Mountain",
+          "Forest",
+          "City"
+        ]
+      },
+      {
+        "frequency": "106.6",
+        "genres": [
+          "metal"
+        ],
+        "id": "ironmile",
+        "name": "Iron Mile",
+        "regions": [
+          "Mountain"
+        ]
+      },
+      {
+        "frequency": "88.1",
+        "genres": [
+          "jazz",
+          "funk"
+        ],
+        "id": "bluelane",
+        "name": "Blue Lane",
+        "regions": [
+          "City"
+        ]
+      },
+      {
+        "frequency": "94.5",
+        "genres": [
+          "latin"
+        ],
+        "id": "caliente",
+        "name": "Ruta Caliente",
+        "regions": [
+          "City",
+          "Forest"
+        ]
+      },
+      {
+        "frequency": "90.3",
+        "genres": [
+          "folk",
+          "country"
+        ],
+        "id": "backroads",
+        "name": "Back Roads",
+        "regions": [
+          "Forest",
+          "Mountain"
+        ]
+      },
+      {
+        "frequency": "103.9",
+        "genres": [
+          "synthwave",
+          "electronic"
+        ],
+        "id": "neon",
+        "name": "Neon Overdrive",
+        "regions": [
+          "City",
+          "Mountain"
+        ]
+      }
+    ],
+    "version": 1
+  }
 }

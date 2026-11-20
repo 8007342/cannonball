@@ -3,6 +3,12 @@
 class ProofRadioReport {
   const ProofRadioReport(this.station, this.text, this.family);
   final String station, text, family;
+
+  /// Safety-relevant reports cut into the radio programme immediately; the
+  /// rest wait for the next song break (and expire if it is far away).
+  bool get urgent => urgentFamilies.contains(family);
+
+  static const urgentFamilies = {'closure', 'worksite', 'snow', 'rain'};
 }
 
 class ProofRadioDirector {

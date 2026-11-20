@@ -1,0 +1,1769 @@
+{
+  "schema": "cannonball.radio-renders/v1",
+  "about": "Render, pick and master log for art/music/radio-songs.json. Candidate FLACs live in the forge cache (raw/\u003csong\u003e/\u003cseed\u003e.flac) and are identified by sha256; picks are metric-based until a listening pass pins `pick` in the song spec.",
+  "models": [
+    {
+      "file": "acestep_v1.5_xl_turbo_bf16.safetensors",
+      "repo": "Comfy-Org/ACE-Step-1.5",
+      "revision": "371bb1680f8c88d8c1083f6ffb6330d3d55bff76",
+      "sha256": "86a1afb0a1f711f0e3304ff65d874df3ae6783db683dcf982513fb9b6d14ae71",
+      "licence": "apache-2.0"
+    },
+    {
+      "file": "qwen_0.6b_ace15.safetensors",
+      "repo": "Comfy-Org/ACE-Step-1.5",
+      "revision": "371bb1680f8c88d8c1083f6ffb6330d3d55bff76",
+      "sha256": "fd4590c82153b8ddb67e15a2e7aaa8afa8b83a858c8a9b82a4831063156aa7a7",
+      "licence": "apache-2.0"
+    },
+    {
+      "file": "qwen_4b_ace15.safetensors",
+      "repo": "Comfy-Org/ACE-Step-1.5",
+      "revision": "371bb1680f8c88d8c1083f6ffb6330d3d55bff76",
+      "sha256": "ffe5ffb855086c2ab55e467e9859fb01894781020a0376484dd19de166b79873",
+      "licence": "apache-2.0"
+    },
+    {
+      "file": "ace_1.5_vae.safetensors",
+      "repo": "Comfy-Org/ACE-Step-1.5",
+      "revision": "371bb1680f8c88d8c1083f6ffb6330d3d55bff76",
+      "sha256": "6de92e3a862acd287e08b024ac90f0783a8635451b728721a33ff03565bcb2bb",
+      "licence": "apache-2.0"
+    }
+  ],
+  "engine": {
+    "name": "comfyui",
+    "ref": "v0.40.0",
+    "sha": "3541246a9c997f4b8c32f9f88f3c985d02021c79"
+  },
+  "songs": {
+    "afterglow-overtake": {
+      "job": "st-1795138568130-151",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, outrun synthwave, driving sixteenth note bass, electric guitar lead over synths, big snare, shimmering arpeggios, fast night drive, 128 bpm",
+      "key": "C minor",
+      "bpm": 128,
+      "duration": 88,
+      "candidates": [
+        {
+          "seed": 7210,
+          "sha256": "9dadc459999f28863f44c89165295c4b2e1434fa3faf6ce0de8b9777e6acadb6",
+          "metrics": {
+            "duration": 88,
+            "lufs": -11.1,
+            "lra": 2.6,
+            "true_peak_db": 1,
+            "clipped_runs": 1,
+            "lead_silence_s": 0,
+            "tail_silence_s": 5.4,
+            "max_dropout_s": 1.4,
+            "energy_cv": 0.082,
+            "quiet_share": 0.018,
+            "stereo_width": 0.222,
+            "brightness": 0.067
+          },
+          "score": 3.205
+        },
+        {
+          "seed": 7211,
+          "sha256": "fb27119a085b9e19b8033bc5d9531c2985d83ecf7e007bb503351d8a5b411f58",
+          "metrics": {
+            "duration": 88,
+            "lufs": -11,
+            "lra": 4.4,
+            "true_peak_db": -0.2,
+            "clipped_runs": 0,
+            "lead_silence_s": 0.05,
+            "tail_silence_s": 4.35,
+            "max_dropout_s": 0.6,
+            "energy_cv": 0.207,
+            "quiet_share": 0.008,
+            "stereo_width": 0.493,
+            "brightness": 0.126
+          },
+          "score": 0.68
+        }
+      ],
+      "pick": 7211,
+      "reason": "metric pick, listening pending; seed 7210 rejected (score 3.21: 1 clipped runs +0.03, dropout 1.40s +3.00, quiet share 1.8% +0.18); seed 7211 kept (score 0.68: dropout 0.60s +0.60, quiet share 0.8% +0.08)",
+      "master": {
+        "src": "music/afterglow-overtake.mp3",
+        "bytes": 2011392,
+        "sha256": "4b057fc617c4330747f6628523cd34523d91f4ffc06573cd3e2f79ec9d7b05a4",
+        "duration": 83.75,
+        "lufs": -16.2,
+        "true_peak_db": -5.4
+      }
+    },
+    "back-road-hoedown": {
+      "job": "st-1795138262178-149",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, up-tempo bluegrass folk, rolling banjo, lively fiddle melody, acoustic guitar flatpicking, upright bass, foot stomps, rollicking, rustic, 140 bpm",
+      "key": "G major",
+      "bpm": 140,
+      "duration": 88,
+      "candidates": [
+        {
+          "seed": 7150,
+          "sha256": "c81b5e85e26d62b97f16cd66a3bbf73f43ec73c41cfae2d9af5c5a837776bd0c",
+          "metrics": {
+            "duration": 88,
+            "lufs": -11.8,
+            "lra": 3.9,
+            "true_peak_db": 0.7,
+            "clipped_runs": 16,
+            "lead_silence_s": 0,
+            "tail_silence_s": 5.8,
+            "max_dropout_s": 1.85,
+            "energy_cv": 0.124,
+            "quiet_share": 0.028,
+            "stereo_width": 0.17,
+            "brightness": 0.025
+          },
+          "score": 5.03
+        },
+        {
+          "seed": 7151,
+          "sha256": "2046e3397d1f3d92a01bc4c5e8c8f2142494e2a8e736b96650a62964a2cc4a25",
+          "metrics": {
+            "duration": 88,
+            "lufs": -11.2,
+            "lra": 4.1,
+            "true_peak_db": 0.7,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 5.05,
+            "max_dropout_s": 1.25,
+            "energy_cv": 0.132,
+            "quiet_share": 0.016,
+            "stereo_width": 0.354,
+            "brightness": 0.023
+          },
+          "score": 2.71
+        }
+      ],
+      "pick": 7151,
+      "reason": "metric pick, listening pending; seed 7150 rejected (score 5.03: 16 clipped runs +0.40, dropout 1.85s +4.35, quiet share 2.8% +0.28); seed 7151 kept (score 2.71: dropout 1.25s +2.55, quiet share 1.6% +0.16)",
+      "master": {
+        "src": "music/back-road-hoedown.mp3",
+        "bytes": 1994688,
+        "sha256": "dde81ef68457388373ca0f2c36bef4eb4ffe7073952c8e9bfd4acf9b67673160",
+        "duration": 83.05,
+        "lufs": -16.2,
+        "true_peak_db": -4.2
+      }
+    },
+    "blue-lane-shuffle": {
+      "job": "st-1795135208219-8",
+      "workflow": "art/music/workflows/acestep15-radio-song.json",
+      "workflow_sha256": "c997f7af48a349bcba38fd001fd006280a9ace848fbb50e89b781a28cca5d8c2",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, up-tempo big band swing, walking upright bass, ride cymbal swing, punchy brass section, tenor saxophone lead, piano comping, swinging, cheerful, 160 bpm",
+      "key": "Bb major",
+      "bpm": 160,
+      "duration": 92,
+      "candidates": [
+        {
+          "seed": 7090,
+          "sha256": "1c3ad381cc8d60d90e84288c5fa9de412aee683a6b9dac3c52df8382e28268f2",
+          "metrics": {
+            "duration": 92,
+            "lufs": -11.8,
+            "lra": 0.5,
+            "true_peak_db": 0.3,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.35,
+            "max_dropout_s": 0,
+            "energy_cv": 0.033,
+            "quiet_share": 0,
+            "stereo_width": 0.109,
+            "brightness": 0.014
+          },
+          "score": 0.75
+        },
+        {
+          "seed": 7091,
+          "sha256": "c30f5976760571f2e2f07d345983b717ad83f51fa8cc574fd60cc1c67626564e",
+          "metrics": {
+            "duration": 92,
+            "lufs": -11.7,
+            "lra": 1.7,
+            "true_peak_db": 0.4,
+            "clipped_runs": 4,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.7,
+            "max_dropout_s": 0,
+            "energy_cv": 0.038,
+            "quiet_share": 0,
+            "stereo_width": 0.091,
+            "brightness": 0.037
+          },
+          "score": 0.25
+        }
+      ],
+      "pick": 7091,
+      "reason": "metric pick, listening pending; seed 7090 rejected (score 0.75: squashed LRA 0.5 +0.75); seed 7091 kept (score 0.25: 4 clipped runs +0.10, squashed LRA 1.7 +0.15)",
+      "master": {
+        "src": "music/blue-lane-shuffle.mp3",
+        "bytes": 2123136,
+        "sha256": "ca652809675f5a856495d59b9c6cf99a91178aa291ac5a669a97ae676d038f43",
+        "duration": 88.4,
+        "lufs": -16.2,
+        "true_peak_db": -3.8
+      }
+    },
+    "breakwater-run": {
+      "job": "st-1795138568130-151",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, instrumental surf rock, reverb drenched twangy guitar, fast tremolo picking, galloping drums, spring reverb, electric bass, splashy, thrilling, 168 bpm",
+      "key": "E minor",
+      "bpm": 168,
+      "duration": 80,
+      "candidates": [
+        {
+          "seed": 7220,
+          "sha256": "944a404c28f6efb2860d810d3c5a11b565e7248f9ce07f5210535b9049387516",
+          "metrics": {
+            "duration": 80,
+            "lufs": -11.3,
+            "lra": 1,
+            "true_peak_db": 0,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 5.25,
+            "max_dropout_s": 1.25,
+            "energy_cv": 0.102,
+            "quiet_share": 0.017,
+            "stereo_width": 0.067,
+            "brightness": 0.03
+          },
+          "score": 3.22
+        },
+        {
+          "seed": 7221,
+          "sha256": "e4555113c41a033d5caf3618ea906de02d0f9b86de074d5f50df4ef2b4cf65d7",
+          "metrics": {
+            "duration": 80,
+            "lufs": -11.1,
+            "lra": 2.9,
+            "true_peak_db": -1.4,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 4.65,
+            "max_dropout_s": 0.85,
+            "energy_cv": 0.128,
+            "quiet_share": 0.012,
+            "stereo_width": 0.186,
+            "brightness": 0.022
+          },
+          "score": 1.47
+        }
+      ],
+      "pick": 7221,
+      "reason": "metric pick, listening pending; seed 7220 rejected (score 3.22: dropout 1.25s +2.55, quiet share 1.7% +0.17, squashed LRA 1.0 +0.50); seed 7221 kept (score 1.47: dropout 0.85s +1.35, quiet share 1.2% +0.12)",
+      "master": {
+        "src": "music/breakwater-run.mp3",
+        "bytes": 1812096,
+        "sha256": "518d1833fb7c16e0433cac61917222d8fd8fe06a96ad0e922f95c07be1e50593",
+        "duration": 75.45,
+        "lufs": -16.2,
+        "true_peak_db": -6.5
+      }
+    },
+    "carpool-get-down": {
+      "job": "st-1795138568130-151",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, disco funk, four on the floor, octave bass line, lush string swells, chicken scratch guitar, brass hits, glittering, dancing, 116 bpm",
+      "key": "A minor",
+      "bpm": 116,
+      "duration": 84,
+      "candidates": [
+        {
+          "seed": 7190,
+          "sha256": "0d630e094573fd8cddd308496202caeec9b45fd58d2ca0e35d1bca1356832d02",
+          "metrics": {
+            "duration": 84,
+            "lufs": -11.6,
+            "lra": 1.1,
+            "true_peak_db": 0.7,
+            "clipped_runs": 81,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.4,
+            "max_dropout_s": 0,
+            "energy_cv": 0.042,
+            "quiet_share": 0,
+            "stereo_width": 0.084,
+            "brightness": 0.054
+          },
+          "score": 2.475
+        },
+        {
+          "seed": 7191,
+          "sha256": "7738d20a16903a70b1237ddc3f5cb9a7359d0f523c547e602511ad3899be0d19",
+          "metrics": {
+            "duration": 84,
+            "lufs": -11.5,
+            "lra": 2.6,
+            "true_peak_db": 0.6,
+            "clipped_runs": 1,
+            "lead_silence_s": 0,
+            "tail_silence_s": 1.2,
+            "max_dropout_s": 0.1,
+            "energy_cv": 0.193,
+            "quiet_share": 0.043,
+            "stereo_width": 0.207,
+            "brightness": 0.054
+          },
+          "score": 0.455
+        }
+      ],
+      "pick": 7191,
+      "reason": "metric pick, listening pending; seed 7190 rejected (score 2.48: 81 clipped runs +2.02, squashed LRA 1.1 +0.45); seed 7191 kept (score 0.46: 1 clipped runs +0.03, quiet share 4.3% +0.43)",
+      "master": {
+        "src": "music/carpool-get-down.mp3",
+        "bytes": 1991232,
+        "sha256": "8a3d2e72394106b4001e69c8b17acfa3bed0eb186d099ae335fdaab92a4161a8",
+        "duration": 82.9,
+        "lufs": -16.2,
+        "true_peak_db": -3.2
+      }
+    },
+    "coastline-tremolo": {
+      "job": "st-1795138568130-151",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, surf rock instrumental, twangy baritone guitar melody, tremolo bar dips, combo organ, energetic tom beat, sunny, twangy, 150 bpm",
+      "key": "A minor",
+      "bpm": 150,
+      "duration": 76,
+      "candidates": [
+        {
+          "seed": 7230,
+          "sha256": "6877af539663157e30615d951ae59f3add47b384c0ecffc278cc724a88c0b695",
+          "metrics": {
+            "duration": 76,
+            "lufs": -10.9,
+            "lra": 5,
+            "true_peak_db": -1,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.75,
+            "max_dropout_s": 0,
+            "energy_cv": 0.178,
+            "quiet_share": 0,
+            "stereo_width": 0.23,
+            "brightness": 0.034
+          },
+          "score": 0
+        },
+        {
+          "seed": 7231,
+          "sha256": "645d5519d1b449a89e6b9cf43e4808400ca94f39f0bf18acc41a4fbc8586fc9f",
+          "metrics": {
+            "duration": 76,
+            "lufs": -11.4,
+            "lra": 2,
+            "true_peak_db": -2,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.2,
+            "max_dropout_s": 0,
+            "energy_cv": 0.083,
+            "quiet_share": 0,
+            "stereo_width": 0.158,
+            "brightness": 0.019
+          },
+          "score": 0
+        }
+      ],
+      "pick": 7230,
+      "reason": "metric pick, listening pending; seed 7230 kept (score 0.00: no penalties); seed 7231 rejected (score 0.00: no penalties)",
+      "master": {
+        "src": "music/coastline-tremolo.mp3",
+        "bytes": 1761984,
+        "sha256": "476b72d3ba27293dbf780f4ad5ab290883c2e76e7adfa168dc45dd6891dd5d9d",
+        "duration": 73.35,
+        "lufs": -16.2,
+        "true_peak_db": -6.1
+      }
+    },
+    "cruise-control-bop": {
+      "job": "st-1795137740060-147",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, fast bebop jazz quartet, alto saxophone melody, brisk piano comping, walking upright bass, brushed snare and ride cymbal, nimble, quick, 200 bpm",
+      "key": "F major",
+      "bpm": 200,
+      "duration": 80,
+      "candidates": [
+        {
+          "seed": 7100,
+          "sha256": "5c9bfc546848bdeda1854808f1f3b4d78083b5c26141b55c6868a9f15ac7dac7",
+          "metrics": {
+            "duration": 80,
+            "lufs": -11.6,
+            "lra": 2.2,
+            "true_peak_db": 0.1,
+            "clipped_runs": 0,
+            "lead_silence_s": 0.05,
+            "tail_silence_s": 3.85,
+            "max_dropout_s": 0,
+            "energy_cv": 0.075,
+            "quiet_share": 0,
+            "stereo_width": 0.084,
+            "brightness": 0.028
+          },
+          "score": 0
+        },
+        {
+          "seed": 7101,
+          "sha256": "2013d3922afac9eb90d3d3c124bff57e85a2c1acd0a2344e4e376ca6fd07c9c0",
+          "metrics": {
+            "duration": 80,
+            "lufs": -12,
+            "lra": 0.7,
+            "true_peak_db": -0.7,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.9,
+            "max_dropout_s": 0,
+            "energy_cv": 0.028,
+            "quiet_share": 0,
+            "stereo_width": 0.057,
+            "brightness": 0.017
+          },
+          "score": 0.65
+        }
+      ],
+      "pick": 7100,
+      "reason": "metric pick, listening pending; seed 7100 kept (score 0.00: no penalties); seed 7101 rejected (score 0.65: squashed LRA 0.7 +0.65)",
+      "master": {
+        "src": "music/cruise-control-bop.mp3",
+        "bytes": 1831680,
+        "sha256": "e01bad24fa3c183dc31cd64f64075298329b61f863aede5c4ebec4a95756eac7",
+        "duration": 76.25,
+        "lufs": -16.2,
+        "true_peak_db": -4.3
+      }
+    },
+    "cumbia-de-la-carretera": {
+      "job": "st-1795138262178-149",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, upbeat cumbia, button accordion melody, guira scraper, congas, bouncy bass, offbeat guitar, swaying, joyful, 100 bpm",
+      "key": "A minor",
+      "bpm": 100,
+      "duration": 90,
+      "candidates": [
+        {
+          "seed": 7130,
+          "sha256": "4323903c56d5256bcb88b25494b31282f0d102eb9bda76d8d21969dce5e6b39e",
+          "metrics": {
+            "duration": 90,
+            "lufs": -10.4,
+            "lra": 5.2,
+            "true_peak_db": 2.4,
+            "clipped_runs": 4,
+            "lead_silence_s": 0,
+            "tail_silence_s": 1.6,
+            "max_dropout_s": 0,
+            "energy_cv": 0.184,
+            "quiet_share": 0,
+            "stereo_width": 0.222,
+            "brightness": 0.126
+          },
+          "score": 0.1
+        },
+        {
+          "seed": 7131,
+          "sha256": "028f4e181689861bba9e87438acd7e5cc16d1f6e2341dc938b4cafa66142fcb7",
+          "metrics": {
+            "duration": 90,
+            "lufs": -11.6,
+            "lra": 2.7,
+            "true_peak_db": 0.9,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 0.7,
+            "max_dropout_s": 0,
+            "energy_cv": 0.118,
+            "quiet_share": 0,
+            "stereo_width": 0.128,
+            "brightness": 0.043
+          },
+          "score": 0
+        }
+      ],
+      "pick": 7131,
+      "reason": "metric pick, listening pending; seed 7130 rejected (score 0.10: 4 clipped runs +0.10); seed 7131 kept (score 0.00: no penalties)",
+      "master": {
+        "src": "music/cumbia-de-la-carretera.mp3",
+        "bytes": 2146752,
+        "sha256": "40c455fbacb01dd00734d253309b24ab03e0920d130418a742f6d739d011ebfd",
+        "duration": 89.4,
+        "lufs": -16.2,
+        "true_peak_db": -3.7
+      }
+    },
+    "granite-grade": {
+      "job": "st-1795137740060-147",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, groove metal, chunky low tuned riffs, syncopated stop-start groove, punchy drums, squealing lead guitar fills, heavy, head-nodding, 120 bpm",
+      "key": "C# minor",
+      "bpm": 120,
+      "duration": 96,
+      "candidates": [
+        {
+          "seed": 7080,
+          "sha256": "b07b03729c08e7782c71f3e773c6516c2a072f77fdbbcd9404f7fbf87a388044",
+          "metrics": {
+            "duration": 96,
+            "lufs": -11.6,
+            "lra": 0.2,
+            "true_peak_db": -0.5,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.1,
+            "max_dropout_s": 0,
+            "energy_cv": 0.009,
+            "quiet_share": 0,
+            "stereo_width": 0.151,
+            "brightness": 0.04
+          },
+          "score": 0.9
+        },
+        {
+          "seed": 7081,
+          "sha256": "50c084eb805766ee78114b4be78e5f05df0d0eef466ba442c597ff9a7980c89a",
+          "metrics": {
+            "duration": 96,
+            "lufs": -12.1,
+            "lra": 1.5,
+            "true_peak_db": -0.4,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.95,
+            "max_dropout_s": 0,
+            "energy_cv": 0.104,
+            "quiet_share": 0,
+            "stereo_width": 0.047,
+            "brightness": 0.013
+          },
+          "score": 0.25
+        }
+      ],
+      "pick": 7081,
+      "reason": "metric pick, listening pending; seed 7080 rejected (score 0.90: squashed LRA 0.2 +0.90); seed 7081 kept (score 0.25: squashed LRA 1.5 +0.25)",
+      "master": {
+        "src": "music/granite-grade.mp3",
+        "bytes": 2212992,
+        "sha256": "5b7113274d01211cbcd2676b5d0479f779e191732e3474756abbabc4dfb35264",
+        "duration": 92.15,
+        "lufs": -16.2,
+        "true_peak_db": -4.6
+      }
+    },
+    "gravel-shoulder-boogie": {
+      "job": "st-1795138934999-153",
+      "workflow": "art/music/workflows/acestep15-radio-batch4.json",
+      "workflow_sha256": "2eccada107f4eb303f1f1306711bfa614b0865cee59ef09857428f034983b40a",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, rockabilly, slapback echo electric guitar, slapped upright bass, snare shuffle, boogie woogie piano, bouncy, rowdy, 164 bpm",
+      "key": "E major",
+      "bpm": 164,
+      "duration": 84,
+      "candidates": [
+        {
+          "seed": 7250,
+          "sha256": "bc411a1e07ec089fe3e1ffad737a3505bfb6d9fdad99bb775c18e9b139ade705",
+          "metrics": {
+            "duration": 84,
+            "lufs": -11.2,
+            "lra": 0.9,
+            "true_peak_db": 0.5,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 6.1,
+            "max_dropout_s": 2.65,
+            "energy_cv": 0.197,
+            "quiet_share": 0.035,
+            "stereo_width": 0.235,
+            "brightness": 0.047
+          },
+          "score": 7.65
+        },
+        {
+          "seed": 7251,
+          "sha256": "df39ab1bdf3d4fde4115d203297a6847251f0cb4615265e72bdd57fa9efbe5bd",
+          "metrics": {
+            "duration": 84,
+            "lufs": -11.1,
+            "lra": 3.7,
+            "true_peak_db": 0.3,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.6,
+            "max_dropout_s": 0,
+            "energy_cv": 0.111,
+            "quiet_share": 0,
+            "stereo_width": 0.192,
+            "brightness": 0.034
+          },
+          "score": 0
+        }
+      ],
+      "pick": 7251,
+      "reason": "metric pick, listening pending; seed 7250 rejected (score 7.65: dropout 2.65s +6.75, quiet share 3.5% +0.35, squashed LRA 0.9 +0.55); seed 7251 kept (score 0.00: no penalties)",
+      "master": {
+        "src": "music/gravel-shoulder-boogie.mp3",
+        "bytes": 1933632,
+        "sha256": "ccc55b68b4b4e2f9284eca728d08d4f602b86efb66ff474b81f0e09dae3fedad",
+        "duration": 80.5,
+        "lufs": -16.2,
+        "true_peak_db": -4.5
+      }
+    },
+    "green-light-streak": {
+      "job": "st-1795135289233-11",
+      "workflow": "art/music/workflows/acestep15-radio-song.json",
+      "workflow_sha256": "c997f7af48a349bcba38fd001fd006280a9ace848fbb50e89b781a28cca5d8c2",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, dance pop, funky clean guitar strums, snappy claps, warm sub bass, catchy synth lead hook, bright tambourine, playful, bouncy, 118 bpm",
+      "key": "A major",
+      "bpm": 118,
+      "duration": 84,
+      "candidates": [
+        {
+          "seed": 7010,
+          "sha256": "e7a049a5b49c2bdbd8b3300bc22b631162fc2ae46f30c89aac820df5283146fc",
+          "metrics": {
+            "duration": 84,
+            "lufs": -11.2,
+            "lra": 3.8,
+            "true_peak_db": 1.7,
+            "clipped_runs": 21,
+            "lead_silence_s": 0,
+            "tail_silence_s": 1.8,
+            "max_dropout_s": 0.4,
+            "energy_cv": 0.173,
+            "quiet_share": 0.013,
+            "stereo_width": 0.157,
+            "brightness": 0.049
+          },
+          "score": 0.655
+        },
+        {
+          "seed": 7011,
+          "sha256": "29b8cda21a3c3eddfe111559cd190432daffbf5f82ce4f5f3421bc4593d018f2",
+          "metrics": {
+            "duration": 84,
+            "lufs": -11,
+            "lra": 2.8,
+            "true_peak_db": 1.2,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.95,
+            "max_dropout_s": 0,
+            "energy_cv": 0.165,
+            "quiet_share": 0,
+            "stereo_width": 0.164,
+            "brightness": 0.087
+          },
+          "score": 0
+        }
+      ],
+      "pick": 7011,
+      "reason": "metric pick, listening pending; seed 7010 rejected (score 0.66: 21 clipped runs +0.53, quiet share 1.3% +0.13); seed 7011 kept (score 0.00: no penalties)",
+      "master": {
+        "src": "music/green-light-streak.mp3",
+        "bytes": 1924992,
+        "sha256": "4064e399d4cdf43079c9e933096425e057d7b846322c75b53f9739449df7eaab",
+        "duration": 80.15,
+        "lufs": -16.2,
+        "true_peak_db": -3.2
+      }
+    },
+    "highway-two-step": {
+      "job": "st-1795138934999-153",
+      "workflow": "art/music/workflows/acestep15-radio-batch4.json",
+      "workflow_sha256": "2eccada107f4eb303f1f1306711bfa614b0865cee59ef09857428f034983b40a",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, upbeat country, twangy telecaster guitar, pedal steel, train beat drums, chicken picking, honky tonk piano, rolling, friendly, 130 bpm",
+      "key": "A major",
+      "bpm": 130,
+      "duration": 90,
+      "candidates": [
+        {
+          "seed": 7240,
+          "sha256": "c47bd13f49e9ff06029c76deab281e8403dbc7fef16b1dacc568c3e2f5f7abb7",
+          "metrics": {
+            "duration": 90,
+            "lufs": -11.3,
+            "lra": 2.5,
+            "true_peak_db": 0.7,
+            "clipped_runs": 11,
+            "lead_silence_s": 0.3,
+            "tail_silence_s": 5.55,
+            "max_dropout_s": 1.7,
+            "energy_cv": 0.118,
+            "quiet_share": 0.021,
+            "stereo_width": 0.129,
+            "brightness": 0.063
+          },
+          "score": 4.385
+        },
+        {
+          "seed": 7241,
+          "sha256": "06be0fa8a1b2e6abbb5650164e3f2b399169f1e15103643f6aace789303db28f",
+          "metrics": {
+            "duration": 90,
+            "lufs": -11.1,
+            "lra": 3.5,
+            "true_peak_db": 0.1,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 1.8,
+            "max_dropout_s": 0,
+            "energy_cv": 0.12,
+            "quiet_share": 0,
+            "stereo_width": 0.256,
+            "brightness": 0.056
+          },
+          "score": 0
+        }
+      ],
+      "pick": 7241,
+      "reason": "metric pick, listening pending; seed 7240 rejected (score 4.38: 11 clipped runs +0.28, dropout 1.70s +3.90, quiet share 2.1% +0.21); seed 7241 kept (score 0.00: no penalties)",
+      "master": {
+        "src": "music/highway-two-step.mp3",
+        "bytes": 2120832,
+        "sha256": "95d73018888bfbb1642074ceeeab694cf4be05ae0413bcb403e36b54c0b9ec06",
+        "duration": 88.3,
+        "lufs": -16.2,
+        "true_peak_db": -5.1
+      }
+    },
+    "iron-overpass": {
+      "job": "st-1795137740060-147",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, classic heavy metal, galloping palm-muted riffs, double kick drums, harmonized twin lead guitar melody, crunchy bass, heroic, relentless, 168 bpm",
+      "key": "E minor",
+      "bpm": 168,
+      "duration": 90,
+      "candidates": [
+        {
+          "seed": 7060,
+          "sha256": "9dc6b60b7b40f4aae9d9fad5d31b930640da28f5ebcdc66ee6dc35786fc29445",
+          "metrics": {
+            "duration": 90,
+            "lufs": -11.1,
+            "lra": 1.1,
+            "true_peak_db": -0.7,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.3,
+            "max_dropout_s": 0,
+            "energy_cv": 0.139,
+            "quiet_share": 0,
+            "stereo_width": 0.169,
+            "brightness": 0.039
+          },
+          "score": 0.45
+        },
+        {
+          "seed": 7061,
+          "sha256": "8df68bb4ad35befc31a47e0caecb3caf89eeedb773750273239697d5ebc4294f",
+          "metrics": {
+            "duration": 90,
+            "lufs": -11.4,
+            "lra": 3.7,
+            "true_peak_db": -1.7,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.9,
+            "max_dropout_s": 0,
+            "energy_cv": 0.114,
+            "quiet_share": 0,
+            "stereo_width": 0.212,
+            "brightness": 0.025
+          },
+          "score": 0
+        }
+      ],
+      "pick": 7061,
+      "reason": "metric pick, listening pending; seed 7060 rejected (score 0.45: squashed LRA 1.1 +0.45); seed 7061 kept (score 0.00: no penalties)",
+      "master": {
+        "src": "music/iron-overpass.mp3",
+        "bytes": 2094336,
+        "sha256": "3e822e715cf4a0df4c8178daca337dcaeaa34dc81649fc28173155e80b52bdb9",
+        "duration": 87.2,
+        "lufs": -16.2,
+        "true_peak_db": -6.5
+      }
+    },
+    "kilometer-pulse": {
+      "job": "st-1795138934999-153",
+      "workflow": "art/music/workflows/acestep15-radio-batch4.json",
+      "workflow_sha256": "2eccada107f4eb303f1f1306711bfa614b0865cee59ef09857428f034983b40a",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, progressive house, rolling bassline, crisp hi hats, filtered chord stabs, uplifting synth lead, big build and drop, hypnotic, forward, 126 bpm",
+      "key": "G minor",
+      "bpm": 126,
+      "duration": 96,
+      "candidates": [
+        {
+          "seed": 7260,
+          "sha256": "3f4e9f4befe6c337e5ef3f4bb8f1140ac1cbbc33423d9a5cf65b7cdafd7ac99a",
+          "metrics": {
+            "duration": 96,
+            "lufs": -12.6,
+            "lra": 1.3,
+            "true_peak_db": 0.1,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.5,
+            "max_dropout_s": 0,
+            "energy_cv": 0.101,
+            "quiet_share": 0,
+            "stereo_width": 0.064,
+            "brightness": 0.024
+          },
+          "score": 0.35
+        },
+        {
+          "seed": 7261,
+          "sha256": "376d69e48ff93b24555dfa9cd67e4781a35a6ab02b279adb799295a751f87f0a",
+          "metrics": {
+            "duration": 96,
+            "lufs": -13.2,
+            "lra": 0.5,
+            "true_peak_db": 0.4,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.8,
+            "max_dropout_s": 0,
+            "energy_cv": 0.024,
+            "quiet_share": 0,
+            "stereo_width": 0.021,
+            "brightness": 0.058
+          },
+          "score": 0.75
+        }
+      ],
+      "pick": 7260,
+      "reason": "metric pick, listening pending; seed 7260 kept (score 0.35: squashed LRA 1.3 +0.35); seed 7261 rejected (score 0.75: squashed LRA 0.5 +0.75)",
+      "master": {
+        "src": "music/kilometer-pulse.mp3",
+        "bytes": 2223936,
+        "sha256": "db08b66f51cc233e0c1a73bbeb421e99a6fa2119ef2b78d20ec1f01b7c5b91ee",
+        "duration": 92.6,
+        "lufs": -16.2,
+        "true_peak_db": -3.4
+      }
+    },
+    "lantern-pass-reel": {
+      "job": "st-1795138262178-149",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, energetic celtic folk reel, fiddle, tin whistle, bodhran frame drum, bouzouki rhythm, acoustic guitar, spirited, dancing, 150 bpm",
+      "key": "D major",
+      "bpm": 150,
+      "duration": 84,
+      "candidates": [
+        {
+          "seed": 7160,
+          "sha256": "c93440c39f16f34a282d5f72017690a0c070ada03b05e6707e1bd4ca1c867bcd",
+          "metrics": {
+            "duration": 84,
+            "lufs": -11.8,
+            "lra": 3.7,
+            "true_peak_db": -1.7,
+            "clipped_runs": 0,
+            "lead_silence_s": 0.05,
+            "tail_silence_s": 3.15,
+            "max_dropout_s": 0,
+            "energy_cv": 0.221,
+            "quiet_share": 0,
+            "stereo_width": 0.164,
+            "brightness": 0.012
+          },
+          "score": 0
+        },
+        {
+          "seed": 7161,
+          "sha256": "eb986d9ec7ddfade144e7862ffab0e8b189705552967ac3742ecae27a2695f25",
+          "metrics": {
+            "duration": 84,
+            "lufs": -11.6,
+            "lra": 1,
+            "true_peak_db": -0.7,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.8,
+            "max_dropout_s": 0,
+            "energy_cv": 0.063,
+            "quiet_share": 0,
+            "stereo_width": 0.19,
+            "brightness": 0.024
+          },
+          "score": 0.5
+        }
+      ],
+      "pick": 7160,
+      "reason": "metric pick, listening pending; seed 7160 kept (score 0.00: no penalties); seed 7161 rejected (score 0.50: squashed LRA 1.0 +0.50)",
+      "master": {
+        "src": "music/lantern-pass-reel.mp3",
+        "bytes": 1944000,
+        "sha256": "eda4217b0c8d2a5bd2ed7549388cbe1447072ccd6971f6521106e56513dd6daa",
+        "duration": 80.95,
+        "lufs": -16.2,
+        "true_peak_db": -6.1
+      }
+    },
+    "mile-marker-confetti": {
+      "job": "st-1795135442280-14",
+      "workflow": "art/music/workflows/acestep15-radio-song.json",
+      "workflow_sha256": "c997f7af48a349bcba38fd001fd006280a9ace848fbb50e89b781a28cca5d8c2",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, electropop, sparkling arpeggiated synths, punchy kick, big euphoric synth chorus, side-chained pads, bright plucked lead, euphoric, celebratory, 128 bpm",
+      "key": "E major",
+      "bpm": 128,
+      "duration": 100,
+      "candidates": [
+        {
+          "seed": 7020,
+          "sha256": "9be7c6b6307e59b6d561bdad520047f4b5bc9bcf9078b79e90ccfec03955458e",
+          "metrics": {
+            "duration": 100,
+            "lufs": -11.1,
+            "lra": 7.9,
+            "true_peak_db": 0.4,
+            "clipped_runs": 0,
+            "lead_silence_s": 0.05,
+            "tail_silence_s": 2.4,
+            "max_dropout_s": 0.15,
+            "energy_cv": 0.36,
+            "quiet_share": 0.005,
+            "stereo_width": 0.288,
+            "brightness": 0.078
+          },
+          "score": 0.49
+        },
+        {
+          "seed": 7021,
+          "sha256": "be8c39f8b530ef7d731b74b57eb9c7e911787ce9aa7f33d8d51b440f73d4a4ab",
+          "metrics": {
+            "duration": 100,
+            "lufs": -11.7,
+            "lra": 5.6,
+            "true_peak_db": -0.3,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.45,
+            "max_dropout_s": 0,
+            "energy_cv": 0.225,
+            "quiet_share": 0,
+            "stereo_width": 0.386,
+            "brightness": 0.043
+          },
+          "score": 0
+        }
+      ],
+      "pick": 7021,
+      "reason": "metric pick, listening pending; seed 7020 rejected (score 0.49: quiet share 0.5% +0.05, energy cv 0.36 +0.44); seed 7021 kept (score 0.00: no penalties)",
+      "master": {
+        "src": "music/mile-marker-confetti.mp3",
+        "bytes": 2344896,
+        "sha256": "8094014be0a9a4d3d3b615d99104d8e3fa971ee70f2dc5ebdedee8e48a0aa3b3",
+        "duration": 97.65,
+        "lufs": -16.2,
+        "true_peak_db": -4.5
+      }
+    },
+    "neon-interstate": {
+      "job": "st-1795138568130-151+st-1795139519856-157",
+      "workflow": "art/music/workflows/acestep15-radio-song.json",
+      "workflow_sha256": "c997f7af48a349bcba38fd001fd006280a9ace848fbb50e89b781a28cca5d8c2",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, retro synthwave, gated reverb drums, pulsing analog bass arpeggio, lush polysynth pads, bright saw lead melody, nostalgic, propulsive, 118 bpm",
+      "key": "F# minor",
+      "bpm": 118,
+      "duration": 96,
+      "candidates": [
+        {
+          "seed": 7200,
+          "sha256": "7609824445ee1c417942b52a7c652d4e74005d06900c83915bf7704d0d14cba3",
+          "metrics": {
+            "duration": 96,
+            "lufs": -12,
+            "lra": 1.2,
+            "true_peak_db": 0.5,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 6.25,
+            "max_dropout_s": 2.3,
+            "energy_cv": 0.106,
+            "quiet_share": 0.026,
+            "stereo_width": 0.119,
+            "brightness": 0.055
+          },
+          "score": 6.36
+        },
+        {
+          "seed": 7201,
+          "sha256": "c7637c20569e7795eee66b6e26466285eff83c6bd8c4e588da4f1af789b09963",
+          "metrics": {
+            "duration": 96,
+            "lufs": -14.9,
+            "lra": 1.7,
+            "true_peak_db": 0.3,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 6.3,
+            "max_dropout_s": 2.35,
+            "energy_cv": 0.126,
+            "quiet_share": 0.027,
+            "stereo_width": 0.103,
+            "brightness": 0.015
+          },
+          "score": 6.27
+        },
+        {
+          "seed": 7202,
+          "sha256": "5c3790529af474c9fb8f6f4606e8b0a7043225549621236c7f4379c450e11a19",
+          "metrics": {
+            "duration": 96,
+            "lufs": -11.6,
+            "lra": 3.3,
+            "true_peak_db": -0.9,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 7,
+            "max_dropout_s": 3,
+            "energy_cv": 0.198,
+            "quiet_share": 0.034,
+            "stereo_width": 0.229,
+            "brightness": 0.046
+          },
+          "score": 8.14
+        },
+        {
+          "seed": 7203,
+          "sha256": "0bc7d81c8929073aea3a5646144a92b0fdcb20ab134f1f38d7ffc79a4e9412e2",
+          "metrics": {
+            "duration": 96,
+            "lufs": -17.2,
+            "lra": 1.6,
+            "true_peak_db": 1.3,
+            "clipped_runs": 3,
+            "lead_silence_s": 0,
+            "tail_silence_s": 6.45,
+            "max_dropout_s": 2.5,
+            "energy_cv": 0.144,
+            "quiet_share": 0.028,
+            "stereo_width": 0.232,
+            "brightness": 0.174
+          },
+          "score": 6.855
+        }
+      ],
+      "pick": 7201,
+      "reason": "metric pick, listening pending; seed 7200 rejected (score 6.36: dropout 2.30s +5.70, quiet share 2.6% +0.26, squashed LRA 1.2 +0.40); seed 7201 kept (score 6.27: dropout 2.35s +5.85, quiet share 2.7% +0.27, squashed LRA 1.7 +0.15); seed 7202 rejected (score 8.14: dropout 3.00s +7.80, quiet share 3.4% +0.34); seed 7203 rejected (score 6.86: 3 clipped runs +0.07, dropout 2.50s +6.30, quiet share 2.8% +0.28, squashed LRA 1.6 +0.20)",
+      "master": {
+        "src": "music/neon-interstate.mp3",
+        "bytes": 2156544,
+        "sha256": "1788d35d1bd7cef5916b8b7b414d158b9b3aa92eb30f3bcacce899e0851752a8",
+        "duration": 89.8,
+        "lufs": -16.3,
+        "true_peak_db": -1.4
+      }
+    },
+    "odometer-rollover": {
+      "job": "st-1795137740060-147",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, fast garage punk rock, fuzzy distorted guitars, energetic snare, driving downstroke riffs, raw live band energy, reckless, fun, 158 bpm",
+      "key": "A major",
+      "bpm": 158,
+      "duration": 80,
+      "candidates": [
+        {
+          "seed": 7050,
+          "sha256": "39da77ad22e1c7b1e8fa1794a3d60cc55d60ea705427e5dfda41186df31268ea",
+          "metrics": {
+            "duration": 80,
+            "lufs": -11.8,
+            "lra": 0.8,
+            "true_peak_db": 0.2,
+            "clipped_runs": 2,
+            "lead_silence_s": 0,
+            "tail_silence_s": 4.3,
+            "max_dropout_s": 0.55,
+            "energy_cv": 0.106,
+            "quiet_share": 0.008,
+            "stereo_width": 0.065,
+            "brightness": 0.023
+          },
+          "score": 1.18
+        },
+        {
+          "seed": 7051,
+          "sha256": "f8318376b74a8ba11edc9b7fb0acbac458b53503422438d558735489a9c7ca59",
+          "metrics": {
+            "duration": 80,
+            "lufs": -11.9,
+            "lra": 1.2,
+            "true_peak_db": 0.4,
+            "clipped_runs": 2,
+            "lead_silence_s": 0,
+            "tail_silence_s": 1,
+            "max_dropout_s": 0.1,
+            "energy_cv": 0.159,
+            "quiet_share": 0.008,
+            "stereo_width": 0.07,
+            "brightness": 0.022
+          },
+          "score": 0.53
+        }
+      ],
+      "pick": 7051,
+      "reason": "metric pick, listening pending; seed 7050 rejected (score 1.18: 2 clipped runs +0.05, dropout 0.55s +0.45, quiet share 0.8% +0.08, squashed LRA 0.8 +0.60); seed 7051 kept (score 0.53: 2 clipped runs +0.05, quiet share 0.8% +0.08, squashed LRA 1.2 +0.40)",
+      "master": {
+        "src": "music/odometer-rollover.mp3",
+        "bytes": 1899648,
+        "sha256": "aff60bdd27ade26ac848421e941aca2f32d0158d6fd54b48f693102a2eb18ee7",
+        "duration": 79.1,
+        "lufs": -16.2,
+        "true_peak_db": -3.8
+      }
+    },
+    "overdrive-groove": {
+      "job": "st-1795138568130-151+st-1795139277783-155",
+      "workflow": "art/music/workflows/acestep15-radio-song.json",
+      "workflow_sha256": "c997f7af48a349bcba38fd001fd006280a9ace848fbb50e89b781a28cca5d8c2",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, classic funk, slap bass, wah wah guitar, tight horn stabs, crisp syncopated drums, clavinet, tight, funky, 108 bpm",
+      "key": "E minor",
+      "bpm": 108,
+      "duration": 92,
+      "candidates": [
+        {
+          "seed": 7180,
+          "sha256": "770e931185d294ed0fe10721080de147a324f742acfa9b2ee520860dc9753f33",
+          "metrics": {
+            "duration": 92,
+            "lufs": -11.6,
+            "lra": 2.1,
+            "true_peak_db": 0.3,
+            "clipped_runs": 159,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.8,
+            "max_dropout_s": 0.1,
+            "energy_cv": 0.178,
+            "quiet_share": 0.048,
+            "stereo_width": 0.029,
+            "brightness": 0.032
+          },
+          "score": 4.455
+        },
+        {
+          "seed": 7181,
+          "sha256": "3d72d516c10a6b7d411de34c34f975b13e5a8d0dec87233337d1d45d592ec285",
+          "metrics": {
+            "duration": 92,
+            "lufs": -13.4,
+            "lra": 1.6,
+            "true_peak_db": 1,
+            "clipped_runs": 134,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.35,
+            "max_dropout_s": 0.2,
+            "energy_cv": 0.105,
+            "quiet_share": 0.076,
+            "stereo_width": 0.018,
+            "brightness": 0.037
+          },
+          "score": 4.31
+        },
+        {
+          "seed": 7182,
+          "sha256": "f0599f5b1cc9d3894a454c6744a169c0de16cf0a09a3d1c62bcc54009744a060",
+          "metrics": {
+            "duration": 92,
+            "lufs": -13.6,
+            "lra": 6,
+            "true_peak_db": 0.3,
+            "clipped_runs": 38,
+            "lead_silence_s": 0.05,
+            "tail_silence_s": 1.6,
+            "max_dropout_s": 0.1,
+            "energy_cv": 0.245,
+            "quiet_share": 0.075,
+            "stereo_width": 0.104,
+            "brightness": 0.042
+          },
+          "score": 1.7
+        },
+        {
+          "seed": 7183,
+          "sha256": "c1e009dcd8e44e238034f36150c71a499f719677fcd0f71104987f6016e5f858",
+          "metrics": {
+            "duration": 92,
+            "lufs": -11,
+            "lra": 1.4,
+            "true_peak_db": 1.5,
+            "clipped_runs": 55,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3,
+            "max_dropout_s": 0.05,
+            "energy_cv": 0.079,
+            "quiet_share": 0.019,
+            "stereo_width": 0.115,
+            "brightness": 0.119
+          },
+          "score": 1.865
+        }
+      ],
+      "pick": 7182,
+      "reason": "metric pick, listening pending; seed 7180 rejected (score 4.46: 159 clipped runs +3.98, quiet share 4.8% +0.48); seed 7181 rejected (score 4.31: 134 clipped runs +3.35, quiet share 7.6% +0.76, squashed LRA 1.6 +0.20); seed 7182 kept (score 1.70: 38 clipped runs +0.95, quiet share 7.5% +0.75); seed 7183 rejected (score 1.86: 55 clipped runs +1.38, quiet share 1.9% +0.19, squashed LRA 1.4 +0.30)",
+      "master": {
+        "src": "music/overdrive-groove.mp3",
+        "bytes": 2173248,
+        "sha256": "b90d11b62c1280ea220f57befe76c2e2c50fd34a71b057343d0b92621f5783b4",
+        "duration": 90.5,
+        "lufs": -16.2,
+        "true_peak_db": -1.9
+      }
+    },
+    "porchlight-stomp": {
+      "job": "st-1795138262178-149",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, foot-stomp folk rock, strummed acoustic guitars, mandolin melody, handclaps, kick drum stomps, upright piano, warm, foot-stomping, 120 bpm",
+      "key": "C major",
+      "bpm": 120,
+      "duration": 96,
+      "candidates": [
+        {
+          "seed": 7170,
+          "sha256": "54107e0f59d0ab663aa9ca252b8382dcab3a22b48972f3433a7b11660cafad49",
+          "metrics": {
+            "duration": 96,
+            "lufs": -11.7,
+            "lra": 2.8,
+            "true_peak_db": -0.1,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 1.7,
+            "max_dropout_s": 0,
+            "energy_cv": 0.124,
+            "quiet_share": 0,
+            "stereo_width": 0.177,
+            "brightness": 0.018
+          },
+          "score": 0
+        },
+        {
+          "seed": 7171,
+          "sha256": "fede57260b8bf624dc1134753b2e827bf6459791e5669c978ee99406dfe998e6",
+          "metrics": {
+            "duration": 96,
+            "lufs": -11.3,
+            "lra": 2.7,
+            "true_peak_db": 0.3,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.9,
+            "max_dropout_s": 0,
+            "energy_cv": 0.133,
+            "quiet_share": 0,
+            "stereo_width": 0.198,
+            "brightness": 0.04
+          },
+          "score": 0
+        }
+      ],
+      "pick": 7170,
+      "reason": "metric pick, listening pending; seed 7170 kept (score 0.00: no penalties); seed 7171 rejected (score 0.00: no penalties)",
+      "master": {
+        "src": "music/porchlight-stomp.mp3",
+        "bytes": 2267136,
+        "sha256": "afdd330b7a58d1c149c5b9efeb34a7cc2f466c8002ca8763eb3c2ba719ffc257",
+        "duration": 94.4,
+        "lufs": -16.2,
+        "true_peak_db": -4.8
+      }
+    },
+    "redline-gallop": {
+      "job": "st-1795137740060-147",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, speed metal, fast tremolo picked riffs, blazing guitar solo, rapid double bass drums, tight bass guitar, fast, exhilarating, 180 bpm",
+      "key": "D minor",
+      "bpm": 180,
+      "duration": 84,
+      "candidates": [
+        {
+          "seed": 7070,
+          "sha256": "9707379c82c68882a04feb7f04c0345c40ae3f48e06e11c4f3f2fd93b5db5ea1",
+          "metrics": {
+            "duration": 84,
+            "lufs": -10.9,
+            "lra": 2,
+            "true_peak_db": -1.2,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 5,
+            "max_dropout_s": 1.1,
+            "energy_cv": 0.056,
+            "quiet_share": 0.014,
+            "stereo_width": 0.177,
+            "brightness": 0.034
+          },
+          "score": 2.24
+        },
+        {
+          "seed": 7071,
+          "sha256": "244ecc42aaec2f913b0e22707f9b2bcfa5f8d40a7bf6fec21715e1db3239a943",
+          "metrics": {
+            "duration": 84,
+            "lufs": -10.6,
+            "lra": 2.8,
+            "true_peak_db": -1.8,
+            "clipped_runs": 0,
+            "lead_silence_s": 0.05,
+            "tail_silence_s": 4.9,
+            "max_dropout_s": 0.95,
+            "energy_cv": 0.077,
+            "quiet_share": 0.013,
+            "stereo_width": 0.233,
+            "brightness": 0.071
+          },
+          "score": 1.78
+        }
+      ],
+      "pick": 7071,
+      "reason": "metric pick, listening pending; seed 7070 rejected (score 2.24: dropout 1.10s +2.10, quiet share 1.4% +0.14); seed 7071 kept (score 1.78: dropout 0.95s +1.65, quiet share 1.3% +0.13)",
+      "master": {
+        "src": "music/redline-gallop.mp3",
+        "bytes": 1901952,
+        "sha256": "8b40c809a413b08948deb3d936691307adb39433ba19372553c1e17f337a6c5c",
+        "duration": 79.2,
+        "lufs": -16.2,
+        "true_peak_db": -7.2
+      }
+    },
+    "ruta-del-sol": {
+      "job": "st-1795138262178-149",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, salsa dura, piano montuno, punchy trombone and trumpet section, congas, timbales, cowbell, clave rhythm, tumbao bass, festive, hot, 180 bpm",
+      "key": "G minor",
+      "bpm": 180,
+      "duration": 92,
+      "candidates": [
+        {
+          "seed": 7120,
+          "sha256": "099ea5e98afe79ea2cbf5955b488d354f4807210755d2a5d1239b172a245a8b8",
+          "metrics": {
+            "duration": 92,
+            "lufs": -10.8,
+            "lra": 4.9,
+            "true_peak_db": 1.2,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.25,
+            "max_dropout_s": 0.1,
+            "energy_cv": 0.208,
+            "quiet_share": 0.005,
+            "stereo_width": 0.255,
+            "brightness": 0.051
+          },
+          "score": 0.05
+        },
+        {
+          "seed": 7121,
+          "sha256": "f08324033788a52ccefa7069e17b2da839da731a5bc36c6d5ef3fd595720b1a6",
+          "metrics": {
+            "duration": 92,
+            "lufs": -11.3,
+            "lra": 3.3,
+            "true_peak_db": 0.9,
+            "clipped_runs": 0,
+            "lead_silence_s": 0.05,
+            "tail_silence_s": 1.25,
+            "max_dropout_s": 0.1,
+            "energy_cv": 0.151,
+            "quiet_share": 0.036,
+            "stereo_width": 0.3,
+            "brightness": 0.026
+          },
+          "score": 0.36
+        }
+      ],
+      "pick": 7120,
+      "reason": "metric pick, listening pending; seed 7120 kept (score 0.05: quiet share 0.5% +0.05); seed 7121 rejected (score 0.36: quiet share 3.6% +0.36)",
+      "master": {
+        "src": "music/ruta-del-sol.mp3",
+        "bytes": 2157696,
+        "sha256": "e4920f9a2017760a156b8d34cfa2d42a94c2672dc23272bdedd941bc07a0e457",
+        "duration": 89.85,
+        "lufs": -16.2,
+        "true_peak_db": -4.3
+      }
+    },
+    "samba-shortcut": {
+      "job": "st-1795138262178-149",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, samba batucada, surdo drums, tamborim, cavaquinho strums, bright brass riffs, rolling percussion groove, carnival, sunny, 104 bpm",
+      "key": "D major",
+      "bpm": 104,
+      "duration": 88,
+      "candidates": [
+        {
+          "seed": 7140,
+          "sha256": "451e55f2830d5bdba069adb235b283d03d7ef63dab88dae5215dff946dd65581",
+          "metrics": {
+            "duration": 88,
+            "lufs": -10.9,
+            "lra": 0.4,
+            "true_peak_db": 1.3,
+            "clipped_runs": 4,
+            "lead_silence_s": 0,
+            "tail_silence_s": 6.55,
+            "max_dropout_s": 2.6,
+            "energy_cv": 0.064,
+            "quiet_share": 0.033,
+            "stereo_width": 0.147,
+            "brightness": 0.093
+          },
+          "score": 7.83
+        },
+        {
+          "seed": 7141,
+          "sha256": "dc1213d109de86cf0553191a1555ebe46f868d3b51eb26576edcbad43351a941",
+          "metrics": {
+            "duration": 88,
+            "lufs": -11.1,
+            "lra": 1.3,
+            "true_peak_db": 0.8,
+            "clipped_runs": 0,
+            "lead_silence_s": 0.05,
+            "tail_silence_s": 5.1,
+            "max_dropout_s": 1.5,
+            "energy_cv": 0.074,
+            "quiet_share": 0.019,
+            "stereo_width": 0.155,
+            "brightness": 0.048
+          },
+          "score": 3.84
+        }
+      ],
+      "pick": 7141,
+      "reason": "metric pick, listening pending; seed 7140 rejected (score 7.83: 4 clipped runs +0.10, dropout 2.60s +6.60, quiet share 3.3% +0.33, squashed LRA 0.4 +0.80); seed 7141 kept (score 3.84: dropout 1.50s +3.30, quiet share 1.9% +0.19, squashed LRA 1.3 +0.35)",
+      "master": {
+        "src": "music/samba-shortcut.mp3",
+        "bytes": 1993536,
+        "sha256": "f12b09ce35fcf191ba06571c4b570012d6f53e1dfe103d315a54be23f5c2e25d",
+        "duration": 83,
+        "lufs": -16.2,
+        "true_peak_db": -3.7
+      }
+    },
+    "shoulder-lane-thunder": {
+      "job": "st-1795135628559-73",
+      "workflow": "art/music/workflows/acestep15-radio-song.json",
+      "workflow_sha256": "c997f7af48a349bcba38fd001fd006280a9ace848fbb50e89b781a28cca5d8c2",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, driving hard rock, crunchy overdriven rhythm guitars, gritty lead guitar riff, pounding live drums, rumbling bass guitar, gritty, confident, 140 bpm",
+      "key": "E minor",
+      "bpm": 140,
+      "duration": 96,
+      "candidates": [
+        {
+          "seed": 7030,
+          "sha256": "c2b98662d50ccc8b58763345e3b497c25785e31fcdec5ba4e60b71ab22e25cd0",
+          "metrics": {
+            "duration": 96,
+            "lufs": -11.9,
+            "lra": 1.2,
+            "true_peak_db": 0.9,
+            "clipped_runs": 1,
+            "lead_silence_s": 0,
+            "tail_silence_s": 1.6,
+            "max_dropout_s": 0,
+            "energy_cv": 0.042,
+            "quiet_share": 0,
+            "stereo_width": 0.113,
+            "brightness": 0.025
+          },
+          "score": 0.425
+        },
+        {
+          "seed": 7031,
+          "sha256": "ae583bd0690d157aa7227d2be812f2dbbe844b1ce05a8ed7292e6b77164111ae",
+          "metrics": {
+            "duration": 96,
+            "lufs": -11.5,
+            "lra": 3.4,
+            "true_peak_db": 0.4,
+            "clipped_runs": 133,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.25,
+            "max_dropout_s": 0,
+            "energy_cv": 0.13,
+            "quiet_share": 0,
+            "stereo_width": 0.139,
+            "brightness": 0.029
+          },
+          "score": 3.325
+        }
+      ],
+      "pick": 7030,
+      "reason": "metric pick, listening pending; seed 7030 kept (score 0.42: 1 clipped runs +0.03, squashed LRA 1.2 +0.40); seed 7031 rejected (score 3.33: 133 clipped runs +3.33)",
+      "master": {
+        "src": "music/shoulder-lane-thunder.mp3",
+        "bytes": 2269440,
+        "sha256": "1d9983e1882c97cd2f9923df5b2016d4fdda52df73a3247c7be66e7ad7687225",
+        "duration": 94.5,
+        "lufs": -16.2,
+        "true_peak_db": -3.4
+      }
+    },
+    "signal-boost": {
+      "job": "st-1795138934999-153",
+      "workflow": "art/music/workflows/acestep15-radio-batch4.json",
+      "workflow_sha256": "2eccada107f4eb303f1f1306711bfa614b0865cee59ef09857428f034983b40a",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, liquid drum and bass, fast breakbeats, deep rolling bass, airy pads, bright piano chords, rushing, bright, 174 bpm",
+      "key": "F minor",
+      "bpm": 174,
+      "duration": 88,
+      "candidates": [
+        {
+          "seed": 7270,
+          "sha256": "1e92dce9d8b7b2d5f68735da4e710e9fcbd1dc3834d2404e563e7f4ae5bd1b2a",
+          "metrics": {
+            "duration": 88,
+            "lufs": -11.5,
+            "lra": 10,
+            "true_peak_db": -2.4,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 0.65,
+            "max_dropout_s": 0,
+            "energy_cv": 0.293,
+            "quiet_share": 0,
+            "stereo_width": 0.288,
+            "brightness": 0.011
+          },
+          "score": 0.172
+        },
+        {
+          "seed": 7271,
+          "sha256": "442333d19b0b44920e1c4ca5c40b5307d54e320a41c0ed53edbf30c98be0a77f",
+          "metrics": {
+            "duration": 88,
+            "lufs": -12.3,
+            "lra": 6.4,
+            "true_peak_db": -0.7,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 0.3,
+            "max_dropout_s": 0,
+            "energy_cv": 0.357,
+            "quiet_share": 0,
+            "stereo_width": 0.192,
+            "brightness": 0.017
+          },
+          "score": 0.428
+        }
+      ],
+      "pick": 7270,
+      "reason": "metric pick, listening pending; seed 7270 kept (score 0.17: energy cv 0.29 +0.17); seed 7271 rejected (score 0.43: energy cv 0.36 +0.43)",
+      "master": {
+        "src": "music/signal-boost.mp3",
+        "bytes": 2100096,
+        "sha256": "b7d875d2ff690f5a96329ebea590107001ceab97272b582b8405c0f9b9974a82",
+        "duration": 87.45,
+        "lufs": -16.2,
+        "true_peak_db": -7.1
+      }
+    },
+    "sunroof-open": {
+      "job": "st-1795135257423-9",
+      "workflow": "art/music/workflows/acestep15-radio-song.json",
+      "workflow_sha256": "c997f7af48a349bcba38fd001fd006280a9ace848fbb50e89b781a28cca5d8c2",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, upbeat summer pop, bright synth plucks, handclaps, glossy electric piano chords, groovy bass guitar, four on the floor kick, catchy whistle-like synth lead, sunny, carefree, 124 bpm",
+      "key": "D major",
+      "bpm": 124,
+      "duration": 92,
+      "candidates": [
+        {
+          "seed": 7000,
+          "sha256": "204ad5ac7642650432a655f1510aa0a5b7983b99b1bce5ef2eda25e2039cc21b",
+          "metrics": {
+            "duration": 92,
+            "lufs": -12.1,
+            "lra": 3.6,
+            "true_peak_db": -0,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 3.25,
+            "max_dropout_s": 0,
+            "energy_cv": 0.145,
+            "quiet_share": 0,
+            "stereo_width": 0.151,
+            "brightness": 0.072
+          },
+          "score": 0
+        },
+        {
+          "seed": 7001,
+          "sha256": "cb90d7a1f504ddc8cc69f42c3102057336f1e04ec85a38296280e99d0f497d2c",
+          "metrics": {
+            "duration": 92,
+            "lufs": -11.2,
+            "lra": 2.5,
+            "true_peak_db": 0.4,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 5.55,
+            "max_dropout_s": 2.1,
+            "energy_cv": 0.226,
+            "quiet_share": 0.025,
+            "stereo_width": 0.208,
+            "brightness": 0.038
+          },
+          "score": 5.35
+        }
+      ],
+      "pick": 7000,
+      "reason": "metric pick, listening pending; seed 7000 kept (score 0.00: no penalties); seed 7001 rejected (score 5.35: dropout 2.10s +5.10, quiet share 2.5% +0.25)",
+      "master": {
+        "src": "music/sunroof-open.mp3",
+        "bytes": 2134080,
+        "sha256": "685c42c4d88031dd04cfea8122188400122e0f26699a12da5a170fa36aca8e2c",
+        "duration": 88.85,
+        "lufs": -16.2,
+        "true_peak_db": -4
+      }
+    },
+    "tailwind-anthem": {
+      "job": "st-1795136696564-127",
+      "workflow": "art/music/workflows/acestep15-radio-song.json",
+      "workflow_sha256": "c997f7af48a349bcba38fd001fd006280a9ace848fbb50e89b781a28cca5d8c2",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, anthemic arena rock, big power chords, soaring melodic guitar lead, tom fills, crash cymbals, steady eighth note bass, triumphant, open road, 132 bpm",
+      "key": "G major",
+      "bpm": 132,
+      "duration": 88,
+      "candidates": [
+        {
+          "seed": 7040,
+          "sha256": "caa974443c44bbbefbd5d53f8fa6d5d8ff3d3db43c591f688ced2d9736ece080",
+          "metrics": {
+            "duration": 88,
+            "lufs": -11.9,
+            "lra": 1.3,
+            "true_peak_db": 0.3,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 0.7,
+            "max_dropout_s": 0,
+            "energy_cv": 0.037,
+            "quiet_share": 0,
+            "stereo_width": 0.431,
+            "brightness": 0.017
+          },
+          "score": 0.35
+        },
+        {
+          "seed": 7041,
+          "sha256": "7b433a3467436058594a454ed4df1c7f333a4f624714b8466f586e67cc3d86a1",
+          "metrics": {
+            "duration": 88,
+            "lufs": -11.1,
+            "lra": 2.3,
+            "true_peak_db": 1.3,
+            "clipped_runs": 0,
+            "lead_silence_s": 0,
+            "tail_silence_s": 7.15,
+            "max_dropout_s": 3.45,
+            "energy_cv": 0.188,
+            "quiet_share": 0.043,
+            "stereo_width": 0.276,
+            "brightness": 0.073
+          },
+          "score": 9.58
+        }
+      ],
+      "pick": 7040,
+      "reason": "metric pick, listening pending; seed 7040 kept (score 0.35: squashed LRA 1.3 +0.35); seed 7041 rejected (score 9.58: dropout 3.45s +9.15, quiet share 4.3% +0.43)",
+      "master": {
+        "src": "music/tailwind-anthem.mp3",
+        "bytes": 2098944,
+        "sha256": "fdf24659928fd5640cdada08e709b92152701ed0c678541138791c8e30506569",
+        "duration": 87.4,
+        "lufs": -16.2,
+        "true_peak_db": -3.5
+      }
+    },
+    "toll-booth-strut": {
+      "job": "st-1795137740060-147",
+      "workflow": "art/music/workflows/acestep15-radio-batch6.json",
+      "workflow_sha256": "603cb711178bf8f58954db238fdc0a897813f746e3e0713ec70d88ec31ac9478",
+      "prompt": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix, jazz fusion, electric piano, slap bass, muted trumpet melody, tight funky drums, bright horn stabs, cool, strutting, 112 bpm",
+      "key": "Eb major",
+      "bpm": 112,
+      "duration": 96,
+      "candidates": [
+        {
+          "seed": 7110,
+          "sha256": "606016ec51f03045333af71d978156a25341a5a9f6503a6b1c11507c072ed4db",
+          "metrics": {
+            "duration": 96,
+            "lufs": -14.7,
+            "lra": 3.7,
+            "true_peak_db": 0.9,
+            "clipped_runs": 10,
+            "lead_silence_s": 0,
+            "tail_silence_s": 2.6,
+            "max_dropout_s": 0.1,
+            "energy_cv": 0.265,
+            "quiet_share": 0.083,
+            "stereo_width": 0.024,
+            "brightness": 0.056
+          },
+          "score": 1.14
+        },
+        {
+          "seed": 7111,
+          "sha256": "b43a38a29a8fecd93524d7b3cae6224fe75fe3f912adfb455cc909dadd463de2",
+          "metrics": {
+            "duration": 96,
+            "lufs": -11.7,
+            "lra": 1.6,
+            "true_peak_db": 0.2,
+            "clipped_runs": 0,
+            "lead_silence_s": 0.05,
+            "tail_silence_s": 5.95,
+            "max_dropout_s": 2.1,
+            "energy_cv": 0.112,
+            "quiet_share": 0.024,
+            "stereo_width": 0.082,
+            "brightness": 0.025
+          },
+          "score": 5.54
+        }
+      ],
+      "pick": 7110,
+      "reason": "metric pick, listening pending; seed 7110 kept (score 1.14: 10 clipped runs +0.25, quiet share 8.3% +0.83, energy cv 0.27 +0.06); seed 7111 rejected (score 5.54: dropout 2.10s +5.10, quiet share 2.4% +0.24, squashed LRA 1.6 +0.20)",
+      "master": {
+        "src": "music/toll-booth-strut.mp3",
+        "bytes": 2245248,
+        "sha256": "d60fb30ac642443a85d99cf379196e48dc5fac7f4a5b31d63956a98a61a20da4",
+        "duration": 93.5,
+        "lufs": -16.3,
+        "true_peak_db": -1.4
+      }
+    }
+  }
+}
