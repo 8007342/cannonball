@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../game/car_catalog.dart';
 import 'departure_timeline.dart';
 
 /// A directed 2.5D departure. Its clock is independent of the race clock.
@@ -20,9 +21,16 @@ class ProofGarage extends StatefulWidget {
     required this.onSound,
     required this.muted,
     this.artwork = true,
+    this.selectedCar = GarageKeys.starter,
   });
   final bool departing, ready, reducedMotion, muted, artwork;
-  final VoidCallback onTakeKeys, onComplete, onSound;
+
+  /// Car id of the keys being (or last) taken; the hand reaches for its hook.
+  final String selectedCar;
+
+  /// Called with the car id of the keychain that was tapped.
+  final ValueChanged<String> onTakeKeys;
+  final VoidCallback onComplete, onSound;
   final ValueChanged<String> onShot;
 
   @override
@@ -57,11 +65,13 @@ class _ProofGarageState extends State<ProofGarage>
     _precacheStarted = true;
     // Decode the complete directed sequence while the road is preparing. Each
     // panel then uses the same ImageCache entry on its first animated frame.
-    for (final path in const [
+    for (final path in [
       'assets/proof-next/garage-wall.png',
       'assets/proof-next/garage-exterior.png',
       'assets/proof-next/entry-atlas.png',
       'assets/proof-next/s2000-atlas.png',
+      CarCatalog.keyCard,
+      for (final art in CarCatalog.players.values) art.body,
       'assets/milestone/hand-reach-atlas.png',
       'assets/milestone/cabin.png',
     ]) {
@@ -220,12 +230,26 @@ class _ProofGarageState extends State<ProofGarage>
             : math.sin(walk * math.pi * 4) * 2.0 * math.sin(walk * math.pi);
         final keyExtent = h * .21;
         final hook = GarageHandPlacement.hook(Size(w, h));
+        final cardHook = GarageHandPlacement.hook(
+          Size(w, h),
+          GarageKeys.cardHook,
+        );
+        final takingCard = widget.selectedCar == GarageKeys.card;
         final handBounds = GarageHandPlacement.bounds(
           Size(w, h),
           reach: handReach,
           withdrawal: withdraw,
           reducedMotion: widget.reducedMotion,
+          sourceHook: takingCard ? GarageKeys.cardHook : null,
         );
+        final rearArt =
+            CarCatalog.players[widget.selectedCar]?.body ??
+            'assets/proof-next/s2000-atlas.png';
+        final rearGround = CarCatalog.players.containsKey(widget.selectedCar)
+            ? 447.0
+            : 449.0;
+        final split = (hook.dx + cardHook.dx) / 2;
+        final cardHeight = keyExtent * .82;
         final handExtent = handBounds.width;
         final handLeft = handBounds.left;
         final handTop = handBounds.top;
@@ -233,7 +257,8 @@ class _ProofGarageState extends State<ProofGarage>
           Size(w, h),
           handBounds,
         );
-        final showKey = !moving || pickup < .55;
+        final showKey = !moving || takingCard || pickup < .55;
+        final showCard = !moving || !takingCard || pickup < .55;
         final exterior = _picture('assets/proof-next/garage-exterior.png');
         final wall = _picture('assets/proof-next/garage-wall.png');
         return Stack(
@@ -283,6 +308,27 @@ class _ProofGarageState extends State<ProofGarage>
                           0,
                           extent: keyExtent,
                           visibleFraction: .90,
+                        ),
+                      ),
+                    if (pan < 1 && showCard)
+                      Positioned(
+                        left:
+                            cardHook.dx -
+                            cardHeight * GarageKeys.cardAspect * .5 +
+                            (widget.reducedMotion ? 0 : w * pan),
+                        top: cardHook.dy - cardHeight * GarageKeys.cardHang,
+                        child: SizedBox(
+                          width: cardHeight * GarageKeys.cardAspect,
+                          height: cardHeight,
+                          child: widget.artwork
+                              ? Image.asset(
+                                  CarCatalog.keyCard,
+                                  fit: BoxFit.fill,
+                                  filterQuality: FilterQuality.medium,
+                                  errorBuilder: (_, _, _) =>
+                                      const SizedBox.shrink(),
+                                )
+                              : null,
                         ),
                       ),
                     if (moving && pickup > 0 && t < .20)
@@ -343,11 +389,11 @@ class _ProofGarageState extends State<ProofGarage>
                               left: w * .5 - h * (.43 - rear * .08) * .5,
                               top:
                                   h * .80 -
-                                  h * (.43 - rear * .08) * (449 / 512),
+                                  h * (.43 - rear * .08) * (rearGround / 512),
                               child: _cell(
                                 0,
                                 extent: h * (.43 - rear * .08),
-                                path: 'assets/proof-next/s2000-atlas.png',
+                                path: rearArt,
                               ),
                             ),
                           ],
@@ -357,11 +403,13 @@ class _ProofGarageState extends State<ProofGarage>
                 ),
               ),
             ),
+            // Two keychains share the key box: the starter keys on the first
+            // hook and the white electric roadster's key card on the next.
             if (!moving)
               Positioned(
                 left: w * .29,
                 top: h * .18,
-                width: w * .42,
+                width: math.max(0.0, split - w * .29),
                 height: h * .64,
                 child: Semantics(
                   button: true,
@@ -369,7 +417,28 @@ class _ProofGarageState extends State<ProofGarage>
                   child: GestureDetector(
                     key: const ValueKey('take-keys'),
                     behavior: HitTestBehavior.opaque,
-                    onTap: widget.ready ? widget.onTakeKeys : null,
+                    onTap: widget.ready
+                        ? () => widget.onTakeKeys(GarageKeys.starter)
+                        : null,
+                    child: const SizedBox.expand(),
+                  ),
+                ),
+              ),
+            if (!moving)
+              Positioned(
+                left: split,
+                top: h * .18,
+                width: math.max(0.0, w * .71 - split),
+                height: h * .64,
+                child: Semantics(
+                  button: true,
+                  label: 'Take the electric roadster key card',
+                  child: GestureDetector(
+                    key: const ValueKey('take-card'),
+                    behavior: HitTestBehavior.opaque,
+                    onTap: widget.ready
+                        ? () => widget.onTakeKeys(GarageKeys.card)
+                        : null,
                     child: const SizedBox.expand(),
                   ),
                 ),
@@ -408,9 +477,13 @@ class _ProofGarageState extends State<ProofGarage>
                     padding: const EdgeInsets.only(bottom: 22),
                     child: IconButton(
                       tooltip: widget.ready
-                          ? 'Take the S2000 keys'
+                          ? (widget.selectedCar == GarageKeys.card
+                                ? 'Take the electric roadster key card'
+                                : 'Take the S2000 keys')
                           : 'Preparing the road',
-                      onPressed: widget.ready ? widget.onTakeKeys : null,
+                      onPressed: widget.ready
+                          ? () => widget.onTakeKeys(widget.selectedCar)
+                          : null,
                       style: IconButton.styleFrom(
                         backgroundColor: const Color(0xaa211c17),
                       ),
@@ -439,6 +512,20 @@ class _ProofGarageState extends State<ProofGarage>
   );
 }
 
+/// The key box's two keychains. Ids are player car ids (lib/game/proof_car.dart).
+abstract final class GarageKeys {
+  static const starter = 's2000';
+  static const card = 'electric_roadster';
+
+  /// Painted hook (wall-image fraction) the key card hangs from: the middle
+  /// hook of the top row, right of the starter keys' hook.
+  static const cardHook = Offset(.525, .385);
+
+  /// keycard.png: width / height, and the ring's hang point as a height fraction.
+  static const cardAspect = 105 / 256;
+  static const cardHang = .07;
+}
+
 /// Keep the fingers and keys at a modest uniform scale. Only the distal painted
 /// forearm is extended along its own axis to leave the viewport; enlarging an
 /// entire cell would turn the held key and hand into oversized props.
@@ -450,16 +537,16 @@ class GarageHandPlacement {
 
   /// Same centered cover transform as the preserved wall painting. The hook is
   /// a point in that painting, not a fixed percentage of every viewport shape.
-  static Offset hook(Size viewport) {
+  static Offset hook(Size viewport, [Offset source = sourceHook]) {
     final scale = math.max(
       viewport.width / wallSize.width,
       viewport.height / wallSize.height,
     );
     return Offset(
       (viewport.width - wallSize.width * scale) * .5 +
-          wallSize.width * sourceHook.dx * scale,
+          wallSize.width * source.dx * scale,
       (viewport.height - wallSize.height * scale) * .5 +
-          wallSize.height * sourceHook.dy * scale,
+          wallSize.height * source.dy * scale,
     );
   }
 
@@ -483,7 +570,9 @@ class GarageHandPlacement {
     required double reach,
     required double withdrawal,
     required bool reducedMotion,
+    Offset? sourceHook,
   }) {
+    final target = hook(viewport, sourceHook ?? GarageHandPlacement.sourceHook);
     final extent = viewport.height * .40;
     final dx = reducedMotion
         ? 0.0
@@ -494,8 +583,8 @@ class GarageHandPlacement {
         : (1 - reach) * viewport.height * .27 +
               withdrawal * viewport.height * .34;
     return Rect.fromLTWH(
-      hook(viewport).dx - extent * contact.dx + dx,
-      hook(viewport).dy - extent * contact.dy + dy,
+      target.dx - extent * contact.dx + dx,
+      target.dy - extent * contact.dy + dy,
       extent,
       extent,
     );

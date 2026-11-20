@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'car_catalog.dart';
 import 'traffic_policy/racer_observation.dart';
 import 'traffic_policy/racer_policy.dart';
 
@@ -31,8 +32,13 @@ class TrafficCar {
   final bool truck, usesSignals;
   final TrafficProfile profile;
 
-  /// Sporty model id for racers (placeholder ids until the car catalog lands).
+  /// Catalog model id for racers (always a sporty body); null for others.
   final String? modelId;
+
+  /// Body drawn for this car (lib/game/car_catalog.dart): racers keep their
+  /// sporty model, everyone else gets a deterministic ordinary or large body.
+  late final String model =
+      modelId ?? CarCatalog.ordinaryModelFor(id, large: truck);
 
   /// Racer speed ceiling (the player's top speed at spawn).
   final double racerCap;

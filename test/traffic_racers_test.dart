@@ -51,7 +51,7 @@ TrafficCar racer(
   truck: false,
   changeAt: 0,
   profile: TrafficProfile.racer,
-  modelId: 'mustang',
+  modelId: 'pony_coupe',
   racerCap: cap,
 );
 

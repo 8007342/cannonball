@@ -1,0 +1,2248 @@
+{
+ "contract": {
+  "basis": "renderer scale = drawWidth / 450 per player cell (225 per traffic cell)",
+  "flatWidth": 432,
+  "groundY": 448,
+  "playerCell": 512,
+  "poses": {
+   "body": [
+    {
+     "name": "flat",
+     "yaw": 0,
+     "steer": 0,
+     "roll": 0,
+     "pitch": 0
+    },
+    {
+     "name": "left",
+     "yaw": 7,
+     "steer": 14,
+     "roll": 1.8,
+     "pitch": 0
+    },
+    {
+     "name": "right",
+     "yaw": -7,
+     "steer": -14,
+     "roll": -1.8,
+     "pitch": 0
+    },
+    {
+     "name": "uphill",
+     "yaw": 0,
+     "steer": 0,
+     "roll": 0,
+     "pitch": 5
+    },
+    {
+     "name": "downhill",
+     "yaw": 0,
+     "steer": 0,
+     "roll": 0,
+     "pitch": -5
+    },
+    {
+     "name": "right-skid",
+     "yaw": -13,
+     "steer": 8,
+     "roll": -3,
+     "pitch": 0
+    }
+   ],
+   "traffic": [
+    {
+     "name": "flat",
+     "yaw": 0,
+     "steer": 0,
+     "roll": 0,
+     "pitch": 0
+    }
+   ],
+   "turn": [
+    {
+     "name": "gentle-left",
+     "yaw": 3,
+     "steer": 7,
+     "roll": 0.8,
+     "pitch": 0
+    },
+    {
+     "name": "gentle-right",
+     "yaw": -3,
+     "steer": -7,
+     "roll": -0.8,
+     "pitch": 0
+    },
+    {
+     "name": "medium-left",
+     "yaw": 7,
+     "steer": 14,
+     "roll": 1.8,
+     "pitch": 0
+    },
+    {
+     "name": "medium-right",
+     "yaw": -7,
+     "steer": -14,
+     "roll": -1.8,
+     "pitch": 0
+    },
+    {
+     "name": "strong-left",
+     "yaw": 12,
+     "steer": 24,
+     "roll": 3,
+     "pitch": 0
+    },
+    {
+     "name": "strong-right",
+     "yaw": -12,
+     "steer": -24,
+     "roll": -3,
+     "pitch": 0
+    }
+   ]
+  },
+  "trafficCell": 256
+ },
+ "files": {
+  "electric_roadster-body.png": {
+   "columns": 3,
+   "height": 1024,
+   "rows": 2,
+   "sha256": "01984473d075e9f65352257a59a80c36930986bc0c748519f5607b2b77e2c50f",
+   "width": 1536
+  },
+  "electric_roadster-turn.png": {
+   "columns": 3,
+   "height": 1024,
+   "rows": 2,
+   "sha256": "20ea98182cddbdde1ef234f9d850383075b36e782024568f39157ec4d2ee9127",
+   "width": 1536
+  },
+  "keycard.png": {
+   "hangPoint": [
+    0.5,
+    0.07
+   ],
+   "height": 256,
+   "sha256": "b5ec3e1a4325dc0fc1edb402bc3388a3ea391652e3dfd7a6ea2677d89783d4cf",
+   "width": 105
+  },
+  "s2000_roadster-body.png": {
+   "columns": 3,
+   "height": 1024,
+   "rows": 2,
+   "sha256": "dbe76333ddf72dfed5e6917c100a3a42156cab8f538be0b784b7cc1a001e9f45",
+   "width": 1536
+  },
+  "s2000_roadster-turn.png": {
+   "columns": 3,
+   "height": 1024,
+   "rows": 2,
+   "sha256": "9d1dba143a61c90988a8ad98c92197add663f03fc41999b2163f444092ed08c3",
+   "width": 1536
+  },
+  "traffic-atlas.png": {
+   "cellWidth": 256,
+   "columns": 8,
+   "height": 1024,
+   "measuredCenterX": [
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5,
+    127.5
+   ],
+   "measuredGroundY": [
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223,
+    223
+   ],
+   "rows": 4,
+   "sha256": "c787a3742819ebba45fcf660ce3054b71bb1b3300bd30631cc15b44cd79f130c",
+   "width": 2048
+  }
+ },
+ "generated": "2026-11-20",
+ "players": {
+  "electric_roadster": {
+   "body": {
+    "file": "assets/cars/electric_roadster-body.png",
+    "measuredCenterX": [
+     255.5,
+     255.5,
+     255.5,
+     255.5,
+     255.5,
+     255.5
+    ],
+    "measuredGroundY": [
+     447,
+     454,
+     454,
+     466,
+     445,
+     460
+    ]
+   },
+   "lamps": {
+    "x": 0.323,
+    "y": 0.286
+   },
+   "turn": {
+    "file": "assets/cars/electric_roadster-turn.png",
+    "measuredCenterX": [
+     255.5,
+     255.5,
+     255.5,
+     255.5,
+     255.5,
+     255.5
+    ],
+    "measuredGroundY": [
+     450,
+     450,
+     454,
+     454,
+     459,
+     459
+    ]
+   }
+  },
+  "s2000_roadster": {
+   "body": {
+    "file": "assets/cars/s2000_roadster-body.png",
+    "measuredCenterX": [
+     255.5,
+     255.5,
+     255.5,
+     255.5,
+     255.5,
+     255.5
+    ],
+    "measuredGroundY": [
+     447,
+     447,
+     448,
+     469,
+     435,
+     451
+    ]
+   },
+   "lamps": {
+    "x": 0.263,
+    "y": 0.354
+   },
+   "turn": {
+    "file": "assets/cars/s2000_roadster-turn.png",
+    "measuredCenterX": [
+     255.5,
+     255.5,
+     255.5,
+     255.5,
+     255.5,
+     255
+    ],
+    "measuredGroundY": [
+     447,
+     447,
+     447,
+     448,
+     450,
+     450
+    ]
+   }
+  }
+ },
+ "provenance": {
+  "cars": {
+   "civic_hot_hatch": {
+    "camera": {
+     "distance": 5.3,
+     "height": 2.1,
+     "lensMm": 70,
+     "lightDirection": [
+      -0.52,
+      -0.55,
+      0.65
+     ],
+     "position": [
+      0,
+      -7.59499979019165,
+      2.0999999046325684
+     ],
+     "renderPx": 1536,
+     "sensorMm": 36,
+     "target": [
+      0,
+      -0.7950000166893005,
+      0.550000011920929
+     ],
+     "targetZ": 0.55
+    },
+    "params": {
+     "cabin": {
+      "baseW": 0.92,
+      "frontBase": 0.73,
+      "frontTop": 0.56,
+      "pillars": 0.16,
+      "rearBase": 0.07,
+      "rearTop": 0.17,
+      "roof": "paint",
+      "roofW": 0.72,
+      "roofZ": 1.41,
+      "type": "closed"
+     },
+     "clearance": 0.12,
+     "diffuser": true,
+     "exhaust": {
+      "r": 0.05,
+      "type": "triple",
+      "x": 0,
+      "z": 0.3
+     },
+     "halfw": [
+      [
+       0,
+       0.88
+      ],
+      [
+       0.06,
+       0.98
+      ],
+      [
+       0.18,
+       1
+      ],
+      [
+       0.5,
+       0.97
+      ],
+      [
+       0.8,
+       0.98
+      ],
+      [
+       0.95,
+       0.9
+      ],
+      [
+       1,
+       0.74
+      ]
+     ],
+     "id": "civic_hot_hatch",
+     "lamps": [
+      {
+       "h": 0.12,
+       "rim": true,
+       "shape": "boomerang",
+       "w": 0.3,
+       "x": 0.7,
+       "z": 0.98
+      },
+      {
+       "h": 0.03,
+       "mat": "lamp_core",
+       "shape": "bar",
+       "w": 0.1,
+       "x": 0.8,
+       "z": 0.48
+      }
+     ],
+     "length": 4.59,
+     "mirrors": {
+      "t": 0.72,
+      "z": 1.02
+     },
+     "paints": [
+      "#f2f1ec",
+      "#c4202b",
+      "#25459c",
+      "#3a3d42"
+     ],
+     "plate": {
+      "h": 0.12,
+      "w": 0.34,
+      "z": 0.8
+     },
+     "rearAxle": 0.88,
+     "rearLower": 0.46,
+     "reference": "current-generation hot hatch with big wing and triple centre exhaust",
+     "section": {
+      "p": 4.2,
+      "taper": 0.22
+     },
+     "spoiler": {
+      "chord": 0.2,
+      "t": 0.025,
+      "type": "wing",
+      "w": 1.5,
+      "z": 1.02
+     },
+     "sporty": true,
+     "top": [
+      [
+       0,
+       0.78
+      ],
+      [
+       0.03,
+       0.96
+      ],
+      [
+       0.08,
+       1
+      ],
+      [
+       0.2,
+       1.02
+      ],
+      [
+       0.55,
+       0.98
+      ],
+      [
+       0.72,
+       0.92
+      ],
+      [
+       0.92,
+       0.82
+      ],
+      [
+       1,
+       0.68
+      ]
+     ],
+     "track": 1.6,
+     "tyreW": 0.265,
+     "use": [
+      "traffic"
+     ],
+     "wheel": {
+      "rim": "#26292d",
+      "style": "split"
+     },
+     "wheelR": 0.335,
+     "wheelbase": 2.73,
+     "width": 1.89
+    },
+    "render": {
+     "blender": "5.3.0",
+     "engine": "CYCLES",
+     "material": "emission cel: 3 soft bands + specular band + fresnel sky, outline hull 11 mm",
+     "samples": 12,
+     "seed": 0
+    }
+   },
+   "electric_roadster": {
+    "camera": {
+     "distance": 5.3,
+     "height": 2.1,
+     "lensMm": 70,
+     "lightDirection": [
+      -0.52,
+      -0.55,
+      0.65
+     ],
+     "position": [
+      0,
+      -7.449999809265137,
+      2.0999999046325684
+     ],
+     "renderPx": 1536,
+     "sensorMm": 36,
+     "target": [
+      0,
+      -0.6499999761581421,
+      0.550000011920929
+     ],
+     "targetZ": 0.55
+    },
+    "params": {
+     "cabin": {
+      "baseW": 0.86,
+      "frontBase": 0.72,
+      "frontTop": 0.55,
+      "pillars": 0.07,
+      "rearBase": 0.1,
+      "rearTop": 0.33,
+      "roof": "glass",
+      "roofW": 0.6,
+      "roofZ": 1.15,
+      "type": "closed"
+     },
+     "clearance": 0.11,
+     "diffuser": true,
+     "exhaust": {
+      "type": "none"
+     },
+     "halfw": [
+      [
+       0,
+       0.86
+      ],
+      [
+       0.06,
+       0.97
+      ],
+      [
+       0.2,
+       1
+      ],
+      [
+       0.45,
+       0.93
+      ],
+      [
+       0.75,
+       0.95
+      ],
+      [
+       0.94,
+       0.86
+      ],
+      [
+       1,
+       0.66
+      ]
+     ],
+     "id": "electric_roadster",
+     "lamps": [
+      {
+       "center": true,
+       "h": 0.035,
+       "mat": "lamp_core",
+       "shape": "bar",
+       "w": 1.62,
+       "x": 0,
+       "z": 0.8
+      },
+      {
+       "brake": true,
+       "h": 0.07,
+       "mat": "lamp_core",
+       "shape": "wedge",
+       "w": 0.22,
+       "x": 0.74,
+       "z": 0.79
+      }
+     ],
+     "length": 4.3,
+     "mirrors": {
+      "t": 0.7,
+      "z": 0.86
+     },
+     "paints": [
+      "#f3f2ee",
+      "#eef0f2",
+      "#b51f2a",
+      "#1c1f24"
+     ],
+     "plate": {
+      "h": 0.11,
+      "w": 0.32,
+      "z": 0.5
+     },
+     "rearAxle": 0.88,
+     "rearLower": 0.34,
+     "reference": "white low electric hypercar-roadster with removable glass roof (player bonus + fast traffic)",
+     "section": {
+      "p": 3.6,
+      "taper": 0.3
+     },
+     "spoiler": {
+      "type": "lip",
+      "w": 1.4,
+      "z": 0.885
+     },
+     "top": [
+      [
+       0,
+       0.7
+      ],
+      [
+       0.02,
+       0.84
+      ],
+      [
+       0.08,
+       0.88
+      ],
+      [
+       0.22,
+       0.86
+      ],
+      [
+       0.45,
+       0.8
+      ],
+      [
+       0.7,
+       0.72
+      ],
+      [
+       0.92,
+       0.62
+      ],
+      [
+       1,
+       0.5
+      ]
+     ],
+     "track": 1.64,
+     "tyreW": 0.27,
+     "use": [
+      "player",
+      "traffic"
+     ],
+     "wheel": {
+      "rim": "#3a3f45",
+      "style": "turbine"
+     },
+     "wheelR": 0.34,
+     "wheelbase": 2.45,
+     "width": 1.95
+    },
+    "render": {
+     "blender": "5.3.0",
+     "engine": "CYCLES",
+     "material": "emission cel: 3 soft bands + specular band + fresnel sky, outline hull 11 mm",
+     "samples": 12,
+     "seed": 0
+    }
+   },
+   "family_sedan": {
+    "camera": {
+     "distance": 5.3,
+     "height": 2.1,
+     "lensMm": 70,
+     "lightDirection": [
+      -0.52,
+      -0.55,
+      0.65
+     ],
+     "position": [
+      0,
+      -7.739999771118164,
+      2.0999999046325684
+     ],
+     "renderPx": 1536,
+     "sensorMm": 36,
+     "target": [
+      0,
+      -0.9399999976158142,
+      0.550000011920929
+     ],
+     "targetZ": 0.55
+    },
+    "params": {
+     "cabin": {
+      "baseW": 0.92,
+      "frontBase": 0.75,
+      "frontTop": 0.62,
+      "pillars": 0.12,
+      "rearBase": 0.19,
+      "rearTop": 0.36,
+      "roof": "paint",
+      "roofW": 0.72,
+      "roofZ": 1.46,
+      "type": "closed"
+     },
+     "clearance": 0.15,
+     "exhaust": {
+      "r": 0.035,
+      "type": "single",
+      "x": 0.55,
+      "z": 0.3
+     },
+     "halfw": [
+      [
+       0,
+       0.86
+      ],
+      [
+       0.06,
+       0.97
+      ],
+      [
+       0.2,
+       1
+      ],
+      [
+       0.55,
+       0.98
+      ],
+      [
+       0.82,
+       0.98
+      ],
+      [
+       0.95,
+       0.88
+      ],
+      [
+       1,
+       0.72
+      ]
+     ],
+     "id": "family_sedan",
+     "lamps": [
+      {
+       "h": 0.12,
+       "rim": true,
+       "shape": "wrap",
+       "w": 0.34,
+       "x": 0.7,
+       "z": 0.94
+      }
+     ],
+     "length": 4.88,
+     "mirrors": {
+      "t": 0.74,
+      "z": 1.02
+     },
+     "paints": [
+      "#b9bec4",
+      "#c9b893",
+      "#7a2430",
+      "#22324f"
+     ],
+     "plate": {
+      "h": 0.12,
+      "w": 0.36,
+      "z": 0.82
+     },
+     "rearAxle": 0.98,
+     "rearLower": 0.44,
+     "reference": "ordinary mid-size family sedan",
+     "section": {
+      "p": 3.8,
+      "taper": 0.18
+     },
+     "spoiler": {
+      "type": "none"
+     },
+     "top": [
+      [
+       0,
+       0.86
+      ],
+      [
+       0.03,
+       1
+      ],
+      [
+       0.1,
+       1.03
+      ],
+      [
+       0.22,
+       1.03
+      ],
+      [
+       0.3,
+       1
+      ],
+      [
+       0.72,
+       0.95
+      ],
+      [
+       0.92,
+       0.84
+      ],
+      [
+       1,
+       0.7
+      ]
+     ],
+     "track": 1.59,
+     "tyreW": 0.225,
+     "use": [
+      "traffic"
+     ],
+     "wheel": {
+      "rim": "#b6babe",
+      "style": "mesh"
+     },
+     "wheelR": 0.33,
+     "wheelbase": 2.83,
+     "width": 1.84
+    },
+    "render": {
+     "blender": "5.3.0",
+     "engine": "CYCLES",
+     "material": "emission cel: 3 soft bands + specular band + fresnel sky, outline hull 11 mm",
+     "samples": 12,
+     "seed": 0
+    }
+   },
+   "minivan": {
+    "camera": {
+     "distance": 5.3,
+     "height": 2.1,
+     "lensMm": 70,
+     "lightDirection": [
+      -0.52,
+      -0.55,
+      0.65
+     ],
+     "position": [
+      0,
+      -7.875,
+      2.0999999046325684
+     ],
+     "renderPx": 1536,
+     "sensorMm": 36,
+     "target": [
+      0,
+      -1.0750000476837158,
+      0.550000011920929
+     ],
+     "targetZ": 0.55
+    },
+    "params": {
+     "cabin": {
+      "baseW": 0.96,
+      "frontBase": 0.84,
+      "frontTop": 0.7,
+      "pillars": 0.1,
+      "rearBase": 0.02,
+      "rearTop": 0.05,
+      "roof": "paint",
+      "roofW": 0.85,
+      "roofZ": 1.76,
+      "type": "closed"
+     },
+     "clearance": 0.16,
+     "exhaust": {
+      "type": "none"
+     },
+     "halfw": [
+      [
+       0,
+       0.9
+      ],
+      [
+       0.06,
+       0.98
+      ],
+      [
+       0.2,
+       1
+      ],
+      [
+       0.82,
+       0.99
+      ],
+      [
+       0.95,
+       0.92
+      ],
+      [
+       1,
+       0.8
+      ]
+     ],
+     "id": "minivan",
+     "lamps": [
+      {
+       "h": 0.3,
+       "rim": true,
+       "shape": "rect",
+       "w": 0.13,
+       "x": 0.82,
+       "z": 1.2
+      }
+     ],
+     "large": true,
+     "length": 5.15,
+     "mirrors": {
+      "t": 0.83,
+      "z": 1.1
+     },
+     "paints": [
+      "#c3c7cc",
+      "#f1efe9",
+      "#b9a585",
+      "#22335a"
+     ],
+     "plate": {
+      "h": 0.12,
+      "w": 0.36,
+      "z": 0.84
+     },
+     "rearAxle": 1.02,
+     "rearLower": 0.52,
+     "reference": "family minivan",
+     "section": {
+      "p": 4.6,
+      "taper": 0.1
+     },
+     "spoiler": {
+      "type": "roof",
+      "w": 1.4
+     },
+     "top": [
+      [
+       0,
+       1
+      ],
+      [
+       0.03,
+       1.06
+      ],
+      [
+       0.1,
+       1.08
+      ],
+      [
+       0.8,
+       1.06
+      ],
+      [
+       0.93,
+       0.98
+      ],
+      [
+       1,
+       0.82
+      ]
+     ],
+     "track": 1.7,
+     "tyreW": 0.235,
+     "use": [
+      "traffic"
+     ],
+     "wheel": {
+      "rim": "#b8bcc0",
+      "style": "mesh"
+     },
+     "wheelR": 0.35,
+     "wheelbase": 3.07,
+     "width": 1.99
+    },
+    "render": {
+     "blender": "5.3.0",
+     "engine": "CYCLES",
+     "material": "emission cel: 3 soft bands + specular band + fresnel sky, outline hull 11 mm",
+     "samples": 12,
+     "seed": 0
+    }
+   },
+   "pickup": {
+    "camera": {
+     "distance": 5.3,
+     "height": 2.1,
+     "lensMm": 70,
+     "lightDirection": [
+      -0.52,
+      -0.55,
+      0.65
+     ],
+     "position": [
+      0,
+      -8,
+      2.0999999046325684
+     ],
+     "renderPx": 1536,
+     "sensorMm": 36,
+     "target": [
+      0,
+      -1.2000000476837158,
+      0.550000011920929
+     ],
+     "targetZ": 0.55
+    },
+    "params": {
+     "bed": {
+      "floor": 0.78,
+      "t0": 0.02,
+      "t1": 0.44,
+      "wall": 0.06
+     },
+     "bumper": true,
+     "cabin": {
+      "baseW": 0.96,
+      "frontBase": 0.74,
+      "frontTop": 0.64,
+      "pillars": 0.2,
+      "rearBase": 0.45,
+      "rearTop": 0.46,
+      "roof": "paint",
+      "roofW": 0.86,
+      "roofZ": 1.88,
+      "type": "closed"
+     },
+     "clearance": 0.26,
+     "exhaust": {
+      "r": 0.045,
+      "type": "single",
+      "x": 0.6,
+      "z": 0.4
+     },
+     "halfw": [
+      [
+       0,
+       0.97
+      ],
+      [
+       0.04,
+       1
+      ],
+      [
+       0.92,
+       1
+      ],
+      [
+       1,
+       0.9
+      ]
+     ],
+     "id": "pickup",
+     "lamps": [
+      {
+       "h": 0.3,
+       "rim": true,
+       "shape": "rect",
+       "w": 0.12,
+       "x": 0.88,
+       "z": 1.02
+      }
+     ],
+     "large": true,
+     "length": 5.4,
+     "mirrors": {
+      "t": 0.72,
+      "z": 1.3
+     },
+     "paints": [
+      "#a8262a",
+      "#f0eee8",
+      "#1e2024",
+      "#5b6f84"
+     ],
+     "plate": {
+      "h": 0.12,
+      "w": 0.36,
+      "z": 0.62
+     },
+     "rearAxle": 1.1,
+     "rearLower": 0.72,
+     "reference": "full-size pickup truck with open bed",
+     "section": {
+      "p": 5,
+      "taper": 0.06
+     },
+     "spoiler": {
+      "type": "none"
+     },
+     "top": [
+      [
+       0,
+       1.22
+      ],
+      [
+       0.02,
+       1.26
+      ],
+      [
+       0.55,
+       1.26
+      ],
+      [
+       0.6,
+       1.2
+      ],
+      [
+       0.68,
+       1.18
+      ],
+      [
+       0.92,
+       1.12
+      ],
+      [
+       1,
+       1
+      ]
+     ],
+     "track": 1.72,
+     "tyreW": 0.27,
+     "use": [
+      "traffic"
+     ],
+     "wheel": {
+      "rim": "#9ea3a8",
+      "style": "steel"
+     },
+     "wheelR": 0.4,
+     "wheelbase": 3.4,
+     "width": 2
+    },
+    "render": {
+     "blender": "5.3.0",
+     "engine": "CYCLES",
+     "material": "emission cel: 3 soft bands + specular band + fresnel sky, outline hull 11 mm",
+     "samples": 12,
+     "seed": 0
+    }
+   },
+   "pony_coupe": {
+    "camera": {
+     "distance": 5.3,
+     "height": 2.1,
+     "lensMm": 70,
+     "lightDirection": [
+      -0.52,
+      -0.55,
+      0.65
+     ],
+     "position": [
+      0,
+      -7.695000171661377,
+      2.0999999046325684
+     ],
+     "renderPx": 1536,
+     "sensorMm": 36,
+     "target": [
+      0,
+      -0.8949999809265137,
+      0.550000011920929
+     ],
+     "targetZ": 0.55
+    },
+    "params": {
+     "cabin": {
+      "baseW": 0.86,
+      "frontBase": 0.69,
+      "frontTop": 0.57,
+      "pillars": 0.18,
+      "rearBase": 0.13,
+      "rearTop": 0.4,
+      "roof": "paint",
+      "roofW": 0.66,
+      "roofZ": 1.38,
+      "type": "closed"
+     },
+     "clearance": 0.13,
+     "exhaust": {
+      "r": 0.045,
+      "type": "quad",
+      "x": 0.55,
+      "z": 0.32
+     },
+     "halfw": [
+      [
+       0,
+       0.86
+      ],
+      [
+       0.06,
+       0.99
+      ],
+      [
+       0.2,
+       1
+      ],
+      [
+       0.5,
+       0.95
+      ],
+      [
+       0.82,
+       0.96
+      ],
+      [
+       0.95,
+       0.88
+      ],
+      [
+       1,
+       0.74
+      ]
+     ],
+     "id": "pony_coupe",
+     "lamps": [
+      {
+       "h": 0.17,
+       "rim": true,
+       "shape": "tribar",
+       "w": 0.3,
+       "x": 0.66,
+       "z": 0.86
+      }
+     ],
+     "length": 4.79,
+     "mirrors": {
+      "t": 0.7,
+      "z": 1
+     },
+     "paints": [
+      "#f2c230",
+      "#b3231e",
+      "#3b3f45",
+      "#2a5aa6"
+     ],
+     "panel": {
+      "h": 0.2,
+      "w": 0.95,
+      "z": 0.86
+     },
+     "plate": {
+      "h": 0.12,
+      "w": 0.34,
+      "z": 0.78
+     },
+     "rearAxle": 0.9,
+     "rearLower": 0.44,
+     "reference": "American fastback pony car with tri-bar lamps and quad exhaust",
+     "section": {
+      "p": 3.8,
+      "taper": 0.2
+     },
+     "spoiler": {
+      "type": "ducktail",
+      "w": 1.3,
+      "z": 1.035
+     },
+     "sporty": true,
+     "top": [
+      [
+       0,
+       0.84
+      ],
+      [
+       0.03,
+       0.99
+      ],
+      [
+       0.08,
+       1.03
+      ],
+      [
+       0.18,
+       1.02
+      ],
+      [
+       0.4,
+       0.99
+      ],
+      [
+       0.62,
+       0.97
+      ],
+      [
+       0.85,
+       0.9
+      ],
+      [
+       1,
+       0.74
+      ]
+     ],
+     "track": 1.62,
+     "tyreW": 0.275,
+     "use": [
+      "traffic"
+     ],
+     "wheel": {
+      "rim": "#2b2e33",
+      "style": "spoke5"
+     },
+     "wheelR": 0.345,
+     "wheelbase": 2.72,
+     "width": 1.92
+    },
+    "render": {
+     "blender": "5.3.0",
+     "engine": "CYCLES",
+     "material": "emission cel: 3 soft bands + specular band + fresnel sky, outline hull 11 mm",
+     "samples": 12,
+     "seed": 0
+    }
+   },
+   "s2000_roadster": {
+    "camera": {
+     "distance": 5.3,
+     "height": 2.1,
+     "lensMm": 70,
+     "lightDirection": [
+      -0.52,
+      -0.55,
+      0.65
+     ],
+     "position": [
+      0,
+      -7.369999885559082,
+      2.0999999046325684
+     ],
+     "renderPx": 1536,
+     "sensorMm": 36,
+     "target": [
+      0,
+      -0.5699999928474426,
+      0.550000011920929
+     ],
+     "targetZ": 0.55
+    },
+    "params": {
+     "cabin": {
+      "cockpit": [
+       0.3,
+       0.56
+      ],
+      "hoops": true,
+      "screen": [
+       0.56,
+       0.68
+      ],
+      "screenTop": 1.24,
+      "seatT": 0.38,
+      "tonneau": 0.27,
+      "type": "open"
+     },
+     "clearance": 0.14,
+     "exhaust": {
+      "r": 0.045,
+      "type": "dual",
+      "x": 0.42,
+      "z": 0.3
+     },
+     "halfw": [
+      [
+       0,
+       0.84
+      ],
+      [
+       0.05,
+       0.95
+      ],
+      [
+       0.18,
+       1
+      ],
+      [
+       0.55,
+       0.97
+      ],
+      [
+       0.8,
+       0.97
+      ],
+      [
+       0.95,
+       0.88
+      ],
+      [
+       1,
+       0.74
+      ]
+     ],
+     "id": "s2000_roadster",
+     "lamps": [
+      {
+       "h": 0.15,
+       "rim": true,
+       "rot": -6,
+       "shape": "oval",
+       "w": 0.3,
+       "x": 0.6,
+       "z": 0.83
+      },
+      {
+       "h": 0.075,
+       "mat": "lamp_core",
+       "shape": "circle",
+       "w": 0.075,
+       "x": 0.52,
+       "z": 0.83
+      },
+      {
+       "h": 0.075,
+       "mat": "lamp_clear",
+       "shape": "circle",
+       "w": 0.075,
+       "x": 0.67,
+       "z": 0.83
+      }
+     ],
+     "length": 4.14,
+     "mirrors": {
+      "t": 0.6,
+      "z": 0.93
+     },
+     "paints": [
+      "#c42a20"
+     ],
+     "plate": {
+      "h": 0.12,
+      "w": 0.34,
+      "z": 0.56
+     },
+     "rearAxle": 0.86,
+     "rearLower": 0.4,
+     "reference": "late-1990s front-engine two-seat roadster (player starter)",
+     "section": {
+      "p": 4.2,
+      "taper": 0.24
+     },
+     "spoiler": {
+      "type": "none"
+     },
+     "top": [
+      [
+       0,
+       0.8
+      ],
+      [
+       0.03,
+       0.93
+      ],
+      [
+       0.1,
+       0.97
+      ],
+      [
+       0.28,
+       0.97
+      ],
+      [
+       0.4,
+       0.95
+      ],
+      [
+       0.55,
+       0.93
+      ],
+      [
+       0.75,
+       0.86
+      ],
+      [
+       0.95,
+       0.76
+      ],
+      [
+       1,
+       0.66
+      ]
+     ],
+     "track": 1.52,
+     "tyreW": 0.225,
+     "use": [
+      "player"
+     ],
+     "wheel": {
+      "rim": "#c9ccd0",
+      "style": "spoke5"
+     },
+     "wheelR": 0.315,
+     "wheelbase": 2.4,
+     "width": 1.75
+    },
+    "render": {
+     "blender": "5.3.0",
+     "engine": "CYCLES",
+     "material": "emission cel: 3 soft bands + specular band + fresnel sky, outline hull 11 mm",
+     "samples": 12,
+     "seed": 0
+    }
+   },
+   "sport_sedan_3": {
+    "camera": {
+     "distance": 5.3,
+     "height": 2.1,
+     "lensMm": 70,
+     "lightDirection": [
+      -0.52,
+      -0.55,
+      0.65
+     ],
+     "position": [
+      0,
+      -7.65500020980835,
+      2.0999999046325684
+     ],
+     "renderPx": 1536,
+     "sensorMm": 36,
+     "target": [
+      0,
+      -0.8550000190734863,
+      0.550000011920929
+     ],
+     "targetZ": 0.55
+    },
+    "params": {
+     "cabin": {
+      "baseW": 0.9,
+      "frontBase": 0.74,
+      "frontTop": 0.6,
+      "pillars": 0.13,
+      "rearBase": 0.2,
+      "rearTop": 0.36,
+      "roof": "paint",
+      "roofW": 0.7,
+      "roofZ": 1.44,
+      "type": "closed"
+     },
+     "clearance": 0.13,
+     "diffuser": true,
+     "exhaust": {
+      "r": 0.04,
+      "type": "quad",
+      "x": 0.52,
+      "z": 0.3
+     },
+     "halfw": [
+      [
+       0,
+       0.86
+      ],
+      [
+       0.06,
+       0.97
+      ],
+      [
+       0.2,
+       1
+      ],
+      [
+       0.55,
+       0.97
+      ],
+      [
+       0.82,
+       0.97
+      ],
+      [
+       0.95,
+       0.88
+      ],
+      [
+       1,
+       0.72
+      ]
+     ],
+     "id": "sport_sedan_3",
+     "lamps": [
+      {
+       "h": 0.12,
+       "rim": true,
+       "shape": "L",
+       "w": 0.3,
+       "x": 0.72,
+       "z": 0.91
+      }
+     ],
+     "length": 4.71,
+     "mirrors": {
+      "t": 0.74,
+      "z": 1
+     },
+     "paints": [
+      "#1f4f9a",
+      "#eceae4",
+      "#18191c",
+      "#80878e"
+     ],
+     "plate": {
+      "h": 0.12,
+      "w": 0.36,
+      "z": 0.8
+     },
+     "rearAxle": 0.84,
+     "rearLower": 0.42,
+     "reference": "compact German sport sedan with L-shaped tail lamps",
+     "section": {
+      "p": 4,
+      "taper": 0.2
+     },
+     "spoiler": {
+      "type": "lip",
+      "w": 1.2,
+      "z": 1.005
+     },
+     "sporty": true,
+     "top": [
+      [
+       0,
+       0.82
+      ],
+      [
+       0.03,
+       0.97
+      ],
+      [
+       0.1,
+       1
+      ],
+      [
+       0.22,
+       1
+      ],
+      [
+       0.3,
+       0.98
+      ],
+      [
+       0.72,
+       0.93
+      ],
+      [
+       0.92,
+       0.82
+      ],
+      [
+       1,
+       0.68
+      ]
+     ],
+     "track": 1.58,
+     "tyreW": 0.245,
+     "use": [
+      "traffic"
+     ],
+     "wheel": {
+      "rim": "#b9bdc2",
+      "style": "spoke5"
+     },
+     "wheelR": 0.33,
+     "wheelbase": 2.85,
+     "width": 1.83
+    },
+    "render": {
+     "blender": "5.3.0",
+     "engine": "CYCLES",
+     "material": "emission cel: 3 soft bands + specular band + fresnel sky, outline hull 11 mm",
+     "samples": 12,
+     "seed": 0
+    }
+   },
+   "suv": {
+    "camera": {
+     "distance": 5.3,
+     "height": 2.1,
+     "lensMm": 70,
+     "lightDirection": [
+      -0.52,
+      -0.55,
+      0.65
+     ],
+     "position": [
+      0,
+      -7.610000133514404,
+      2.0999999046325684
+     ],
+     "renderPx": 1536,
+     "sensorMm": 36,
+     "target": [
+      0,
+      -0.8100000023841858,
+      0.550000011920929
+     ],
+     "targetZ": 0.55
+    },
+    "params": {
+     "cabin": {
+      "baseW": 0.95,
+      "frontBase": 0.76,
+      "frontTop": 0.62,
+      "pillars": 0.14,
+      "rearBase": 0.02,
+      "rearTop": 0.07,
+      "roof": "paint",
+      "roofW": 0.82,
+      "roofZ": 1.7,
+      "type": "closed"
+     },
+     "clearance": 0.22,
+     "exhaust": {
+      "r": 0.04,
+      "type": "single",
+      "x": 0.55,
+      "z": 0.36
+     },
+     "halfw": [
+      [
+       0,
+       0.9
+      ],
+      [
+       0.06,
+       0.98
+      ],
+      [
+       0.2,
+       1
+      ],
+      [
+       0.8,
+       0.99
+      ],
+      [
+       0.95,
+       0.92
+      ],
+      [
+       1,
+       0.8
+      ]
+     ],
+     "id": "suv",
+     "lamps": [
+      {
+       "h": 0.22,
+       "rim": true,
+       "rot": 0,
+       "shape": "rect",
+       "w": 0.16,
+       "x": 0.77,
+       "z": 1.12
+      },
+      {
+       "h": 0.03,
+       "mat": "lamp_core",
+       "shape": "bar",
+       "w": 0.12,
+       "x": 0.8,
+       "z": 0.58
+      }
+     ],
+     "large": true,
+     "length": 4.62,
+     "mirrors": {
+      "t": 0.76,
+      "z": 1.12
+     },
+     "paints": [
+      "#3e5a46",
+      "#efede7",
+      "#aeb3b8",
+      "#24324a"
+     ],
+     "plate": {
+      "h": 0.12,
+      "w": 0.36,
+      "z": 0.9
+     },
+     "rearAxle": 0.92,
+     "rearLower": 0.56,
+     "reference": "mid-size crossover SUV",
+     "section": {
+      "p": 4.4,
+      "taper": 0.12
+     },
+     "skid": true,
+     "spoiler": {
+      "type": "roof",
+      "w": 1.3
+     },
+     "top": [
+      [
+       0,
+       1.02
+      ],
+      [
+       0.03,
+       1.1
+      ],
+      [
+       0.1,
+       1.12
+      ],
+      [
+       0.75,
+       1.1
+      ],
+      [
+       0.92,
+       1.02
+      ],
+      [
+       1,
+       0.9
+      ]
+     ],
+     "track": 1.6,
+     "tyreW": 0.245,
+     "use": [
+      "traffic"
+     ],
+     "wheel": {
+      "rim": "#a8adb2",
+      "style": "spoke5"
+     },
+     "wheelR": 0.37,
+     "wheelbase": 2.7,
+     "width": 1.88
+    },
+    "render": {
+     "blender": "5.3.0",
+     "engine": "CYCLES",
+     "material": "emission cel: 3 soft bands + specular band + fresnel sky, outline hull 11 mm",
+     "samples": 12,
+     "seed": 0
+    }
+   }
+  },
+  "paint": "none: Qwen-Image-Edit hero paint + projection was evaluated as optional; shipped pixels are the rig's own cel shading",
+  "pipeline": "lua art/rigs/cars/run.lua all: bpy car_rig.py (Cycles CPU, emission cel materials, seed 0) -\u003e carpack assemble",
+  "seeds": {
+   "cycles": 0
+  },
+  "sources": {
+   "art/rigs/cars/car_rig.py": "118d624f8dced47d2cbd9cc1852f110b185d4ef4113e4680ff5b5992364055d5",
+   "art/rigs/cars/cars.json": "8a2652fd7edc7545d4fb7bea1b4e32b5a751148fbe3ccb0292a02070d45b8840",
+   "art/rigs/cars/poses.json": "b3547b10e2a429fae63894f8e3bb38339c8e2863906a5bff89abb459e0f14cc5",
+   "tool/rigs/cars/main.go": "20eeef4a3ccdb9b5d3367505aa1b2d57218f98f7cc8c215c66ca0e6664c31945"
+  }
+ },
+ "status": "stylised Blender cel renders (no AI paint); see art/rigs/cars/README.md",
+ "traffic": [
+  {
+   "cell": 0,
+   "lamps": {
+    "x": 0.323,
+    "y": 0.286
+   },
+   "large": false,
+   "model": "electric_roadster",
+   "paint": "#f3f2ee",
+   "paintIndex": 0,
+   "sporty": true
+  },
+  {
+   "cell": 1,
+   "lamps": {
+    "x": 0.323,
+    "y": 0.286
+   },
+   "large": false,
+   "model": "electric_roadster",
+   "paint": "#eef0f2",
+   "paintIndex": 1,
+   "sporty": true
+  },
+  {
+   "cell": 2,
+   "lamps": {
+    "x": 0.323,
+    "y": 0.286
+   },
+   "large": false,
+   "model": "electric_roadster",
+   "paint": "#b51f2a",
+   "paintIndex": 2,
+   "sporty": true
+  },
+  {
+   "cell": 3,
+   "lamps": {
+    "x": 0.323,
+    "y": 0.286
+   },
+   "large": false,
+   "model": "electric_roadster",
+   "paint": "#1c1f24",
+   "paintIndex": 3,
+   "sporty": true
+  },
+  {
+   "cell": 4,
+   "lamps": {
+    "x": 0.301,
+    "y": 0.44
+   },
+   "large": false,
+   "model": "civic_hot_hatch",
+   "paint": "#f2f1ec",
+   "paintIndex": 0,
+   "sporty": true
+  },
+  {
+   "cell": 5,
+   "lamps": {
+    "x": 0.301,
+    "y": 0.44
+   },
+   "large": false,
+   "model": "civic_hot_hatch",
+   "paint": "#c4202b",
+   "paintIndex": 1,
+   "sporty": true
+  },
+  {
+   "cell": 6,
+   "lamps": {
+    "x": 0.301,
+    "y": 0.44
+   },
+   "large": false,
+   "model": "civic_hot_hatch",
+   "paint": "#25459c",
+   "paintIndex": 2,
+   "sporty": true
+  },
+  {
+   "cell": 7,
+   "lamps": {
+    "x": 0.301,
+    "y": 0.44
+   },
+   "large": false,
+   "model": "civic_hot_hatch",
+   "paint": "#3a3d42",
+   "paintIndex": 3,
+   "sporty": true
+  },
+  {
+   "cell": 8,
+   "lamps": {
+    "x": 0.327,
+    "y": 0.432
+   },
+   "large": false,
+   "model": "sport_sedan_3",
+   "paint": "#1f4f9a",
+   "paintIndex": 0,
+   "sporty": true
+  },
+  {
+   "cell": 9,
+   "lamps": {
+    "x": 0.327,
+    "y": 0.432
+   },
+   "large": false,
+   "model": "sport_sedan_3",
+   "paint": "#eceae4",
+   "paintIndex": 1,
+   "sporty": true
+  },
+  {
+   "cell": 10,
+   "lamps": {
+    "x": 0.327,
+    "y": 0.432
+   },
+   "large": false,
+   "model": "sport_sedan_3",
+   "paint": "#18191c",
+   "paintIndex": 2,
+   "sporty": true
+  },
+  {
+   "cell": 11,
+   "lamps": {
+    "x": 0.327,
+    "y": 0.432
+   },
+   "large": false,
+   "model": "sport_sedan_3",
+   "paint": "#80878e",
+   "paintIndex": 3,
+   "sporty": true
+  },
+  {
+   "cell": 12,
+   "lamps": {
+    "x": 0.289,
+    "y": 0.321
+   },
+   "large": false,
+   "model": "pony_coupe",
+   "paint": "#f2c230",
+   "paintIndex": 0,
+   "sporty": true
+  },
+  {
+   "cell": 13,
+   "lamps": {
+    "x": 0.289,
+    "y": 0.321
+   },
+   "large": false,
+   "model": "pony_coupe",
+   "paint": "#b3231e",
+   "paintIndex": 1,
+   "sporty": true
+  },
+  {
+   "cell": 14,
+   "lamps": {
+    "x": 0.289,
+    "y": 0.321
+   },
+   "large": false,
+   "model": "pony_coupe",
+   "paint": "#3b3f45",
+   "paintIndex": 2,
+   "sporty": true
+  },
+  {
+   "cell": 15,
+   "lamps": {
+    "x": 0.289,
+    "y": 0.321
+   },
+   "large": false,
+   "model": "pony_coupe",
+   "paint": "#2a5aa6",
+   "paintIndex": 3,
+   "sporty": true
+  },
+  {
+   "cell": 16,
+   "lamps": {
+    "x": 0.297,
+    "y": 0.413
+   },
+   "large": false,
+   "model": "family_sedan",
+   "paint": "#b9bec4",
+   "paintIndex": 0,
+   "sporty": false
+  },
+  {
+   "cell": 17,
+   "lamps": {
+    "x": 0.297,
+    "y": 0.413
+   },
+   "large": false,
+   "model": "family_sedan",
+   "paint": "#c9b893",
+   "paintIndex": 1,
+   "sporty": false
+  },
+  {
+   "cell": 18,
+   "lamps": {
+    "x": 0.297,
+    "y": 0.413
+   },
+   "large": false,
+   "model": "family_sedan",
+   "paint": "#7a2430",
+   "paintIndex": 2,
+   "sporty": false
+  },
+  {
+   "cell": 19,
+   "lamps": {
+    "x": 0.297,
+    "y": 0.413
+   },
+   "large": false,
+   "model": "family_sedan",
+   "paint": "#22324f",
+   "paintIndex": 3,
+   "sporty": false
+  },
+  {
+   "cell": 20,
+   "lamps": {
+    "x": 0.353,
+    "y": 0.454
+   },
+   "large": true,
+   "model": "suv",
+   "paint": "#3e5a46",
+   "paintIndex": 0,
+   "sporty": false
+  },
+  {
+   "cell": 21,
+   "lamps": {
+    "x": 0.353,
+    "y": 0.454
+   },
+   "large": true,
+   "model": "suv",
+   "paint": "#efede7",
+   "paintIndex": 1,
+   "sporty": false
+  },
+  {
+   "cell": 22,
+   "lamps": {
+    "x": 0.353,
+    "y": 0.454
+   },
+   "large": true,
+   "model": "suv",
+   "paint": "#aeb3b8",
+   "paintIndex": 2,
+   "sporty": false
+  },
+  {
+   "cell": 23,
+   "lamps": {
+    "x": 0.353,
+    "y": 0.454
+   },
+   "large": true,
+   "model": "suv",
+   "paint": "#24324a",
+   "paintIndex": 3,
+   "sporty": false
+  },
+  {
+   "cell": 24,
+   "lamps": {
+    "x": 0.404,
+    "y": 0.325
+   },
+   "large": true,
+   "model": "pickup",
+   "paint": "#a8262a",
+   "paintIndex": 0,
+   "sporty": false
+  },
+  {
+   "cell": 25,
+   "lamps": {
+    "x": 0.404,
+    "y": 0.325
+   },
+   "large": true,
+   "model": "pickup",
+   "paint": "#f0eee8",
+   "paintIndex": 1,
+   "sporty": false
+  },
+  {
+   "cell": 26,
+   "lamps": {
+    "x": 0.404,
+    "y": 0.325
+   },
+   "large": true,
+   "model": "pickup",
+   "paint": "#1e2024",
+   "paintIndex": 2,
+   "sporty": false
+  },
+  {
+   "cell": 27,
+   "lamps": {
+    "x": 0.404,
+    "y": 0.325
+   },
+   "large": true,
+   "model": "pickup",
+   "paint": "#5b6f84",
+   "paintIndex": 3,
+   "sporty": false
+  },
+  {
+   "cell": 28,
+   "lamps": {
+    "x": 0.378,
+    "y": 0.459
+   },
+   "large": true,
+   "model": "minivan",
+   "paint": "#c3c7cc",
+   "paintIndex": 0,
+   "sporty": false
+  },
+  {
+   "cell": 29,
+   "lamps": {
+    "x": 0.378,
+    "y": 0.459
+   },
+   "large": true,
+   "model": "minivan",
+   "paint": "#f1efe9",
+   "paintIndex": 1,
+   "sporty": false
+  },
+  {
+   "cell": 30,
+   "lamps": {
+    "x": 0.378,
+    "y": 0.459
+   },
+   "large": true,
+   "model": "minivan",
+   "paint": "#b9a585",
+   "paintIndex": 2,
+   "sporty": false
+  },
+  {
+   "cell": 31,
+   "lamps": {
+    "x": 0.378,
+    "y": 0.459
+   },
+   "large": true,
+   "model": "minivan",
+   "paint": "#22335a",
+   "paintIndex": 3,
+   "sporty": false
+  }
+ ],
+ "version": "cars-1"
+}

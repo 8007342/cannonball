@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/services.dart';
 
+import '../car_catalog.dart';
 import 'paint_palette.dart';
 import '../proof_level.dart';
 
@@ -59,12 +60,25 @@ class ProofArt {
   ];
   bool get ready => carAtlas != null && environmentAtlas != null;
 
-  Future<void> load({bool s2000 = false, bool course = false}) async {
+  /// True when [trafficAtlas] is the multi-model catalog atlas
+  /// (cell = CarCatalog.trafficCell), not the recoloured player sprite.
+  bool trafficModels = false;
+
+  /// Catalog id of the loaded player sheets, if the car has Blender-rig art.
+  String? playerCar;
+
+  Future<void> load({
+    bool s2000 = false,
+    bool course = false,
+    String? car,
+  }) async {
+    final art = s2000 ? CarCatalog.players[car] : null;
     final results = await Future.wait([
       _load(
-        s2000
-            ? 'assets/proof-next/s2000-atlas.png'
-            : 'assets/proof/car-atlas.png',
+        art?.body ??
+            (s2000
+                ? 'assets/proof-next/s2000-atlas.png'
+                : 'assets/proof/car-atlas.png'),
       ),
       _load('assets/proof/scenery-atlas.png'),
       _load('assets/proof/hills.png', optional: true),
@@ -72,10 +86,13 @@ class ProofArt {
           ? _load('assets/milestone/road-props.png')
           : Future<ui.Image?>.value(null),
       course
-          ? _load('assets/milestone/turn-atlas.png')
+          ? _load(art?.turn ?? 'assets/milestone/turn-atlas.png')
           : Future<ui.Image?>.value(null),
       course
           ? _load('assets/roadside-pass/business-atlas.png', optional: true)
+          : Future<ui.Image?>.value(null),
+      s2000
+          ? _load(CarCatalog.trafficAtlas, optional: true)
           : Future<ui.Image?>.value(null),
     ]);
     if (_disposed) return;
@@ -83,6 +100,58 @@ class ProofArt {
     environmentAtlas = results[1];
     backdrop = results[2];
     turnAtlas = results[4];
+    if (art != null && results[0] != null) playerCar = art.carId;
+    await _measureTurn();
+    if (results[6] != null) {
+      trafficAtlas = results[6];
+      trafficModels = true;
+    }
+    if (carAtlas != null) {
+      carFrames.addAll(_cells(carAtlas!));
+      if (s2000) await _measureAnchors();
+      if (!trafficModels) await _trafficPalette(redBody: s2000);
+    }
+    if (environmentAtlas != null) {
+      environmentFrames.addAll(_cells(environmentAtlas!));
+      _cacheRoadFurniture(results[3], results[5]);
+    }
+    asphalt = _roadTexture();
+    meadow = _groundTexture();
+    _loadTail(course);
+  }
+
+  /// Swap the player's chase sheets (garage key choice) without reloading the
+  /// world. Both sheets share the S2000 anchor contract, so gameplay is unchanged.
+  Future<bool> swapPlayerCar(String car) async {
+    final art = CarCatalog.players[car];
+    if (art == null || art.carId == playerCar || _disposed) {
+      return art != null;
+    }
+    final images = await Future.wait([
+      _load(art.body, optional: true),
+      turnAtlas != null
+          ? _load(art.turn, optional: true)
+          : Future<ui.Image?>.value(null),
+    ]);
+    if (_disposed || images[0] == null) return false;
+    final oldBody = carAtlas, oldTurn = turnAtlas;
+    carAtlas = images[0];
+    if (images[1] != null) turnAtlas = images[1];
+    playerCar = art.carId;
+    await _measureAnchors();
+    await _measureTurn();
+    for (final old in [oldBody, if (images[1] != null) oldTurn]) {
+      if (old == null) continue;
+      _resources.remove(old);
+      old.dispose();
+    }
+    return true;
+  }
+
+  Future<void> _measureTurn() async {
+    turnFrames.clear();
+    turnGround.clear();
+    turnCenter.clear();
     if (turnAtlas != null) {
       turnFrames.addAll(_cells(turnAtlas!));
       final data = await turnAtlas!.toByteData(
@@ -112,17 +181,9 @@ class ProofArt {
         }
       }
     }
-    if (carAtlas != null) {
-      carFrames.addAll(_cells(carAtlas!));
-      if (s2000) await _measureAnchors();
-      await _trafficPalette(redBody: s2000);
-    }
-    if (environmentAtlas != null) {
-      environmentFrames.addAll(_cells(environmentAtlas!));
-      _cacheRoadFurniture(results[3], results[5]);
-    }
-    asphalt = _roadTexture();
-    meadow = _groundTexture();
+  }
+
+  void _loadTail(bool course) {
     cloud = _cloudTexture();
     shadow = _shadowTexture();
     bridge = _bridgeTexture();
