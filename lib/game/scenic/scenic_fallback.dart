@@ -8,8 +8,9 @@ class ScenicFallback {
 
   static const _ground = [512.0, 512.0, 512.0, 478.0, 449.0, 451.0];
 
+  /// The oak (frame 0) canopy overhangs its cell; see ProofArt.oakOverhang.
   static List<double> _cell(int i) => i < 6
-      ? [(i % 3) * 512.0, (i ~/ 3) * 512.0, 512, 512]
+      ? [(i % 3) * 512.0, (i ~/ 3) * 512.0, i == 0 ? 572 : 512, 512]
       : [((i - 6) % 2) * 512.0, 2048 + ((i - 6) ~/ 2) * 512.0, 512, 512];
 
   static ScenicSprite _sprite(
@@ -40,7 +41,8 @@ class ScenicFallback {
       version: 'proof-fallback',
       atlases: const [ScenicAtlas(atlas, '', 1536, 3072)],
       sprites: [
-        _sprite('oak', 0, ScenicBand.mid, 'tree', 8.5, green, sway: 1),
+        // 9.5 m over the widened 572 px frame keeps the original 8.5 m / 512 px.
+        _sprite('oak', 0, ScenicBand.mid, 'tree', 9.5, green, sway: 1),
         _sprite('pine', 1, ScenicBand.mid, 'tree', 7, [
           'forest',
           'river',

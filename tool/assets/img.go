@@ -248,6 +248,76 @@ func cutout(rgb, matte *image.NRGBA, key [3]float64, defringe bool) *fimg {
 
 // cleanAlpha snaps near-empty and near-solid alpha so edges stay soft but
 // atlases do not carry invisible noise.
+// vistaFeather is the fraction of a vista's width faded out at each side.
+const vistaFeather = 0.14
+
+// farFootFeather / farSideFeather: fraction of a far sprite's height faded
+// at the bottom, and of its width faded at the lower corners.
+const farFootFeather, farSideFeather = 0.10, 0.10
+
+// featherFoot fades the bottom rows (frac of the height) to transparent and
+// the left/right edges (side of the width) progressively from mid-height
+// down, so a painted ground slab has no hard bottom corners while the
+// upper subject keeps its silhouette.
+func (f *fimg) featherFoot(frac, side float64) {
+	ramp := func(d float64) float64 {
+		if d >= 1 {
+			return 1
+		}
+		if d <= 0 {
+			return 0
+		}
+		return d * d * (3 - 2*d)
+	}
+	foot := frac * float64(f.h)
+	sideW := side * float64(f.w)
+	for y := 0; y < f.h; y++ {
+		fromBottom := float64(f.h-y) - 0.5
+		b := 1.0
+		if foot >= 1 {
+			b = ramp(fromBottom / foot)
+		}
+		// 0 above mid-height, 1 at the bottom row.
+		w := ramp((float64(y)+0.5)/float64(f.h)*2 - 1)
+		for x := 0; x < f.w; x++ {
+			k := b
+			if sideW >= 1 && w > 0 {
+				d := math.Min(float64(x)+0.5, float64(f.w-x)-0.5) / sideW
+				k *= 1 - (1-ramp(d))*w
+			}
+			if k >= 1 {
+				continue
+			}
+			i := (y*f.w + x) * 4
+			for c := 0; c < 4; c++ {
+				f.p[i+c] *= k
+			}
+		}
+	}
+}
+
+// featherX fades premultiplied pixels to transparent over frac of the width
+// at the left and right edges (smoothstep ramp).
+func (f *fimg) featherX(frac float64) {
+	ramp := frac * float64(f.w)
+	if ramp < 1 {
+		return
+	}
+	for x := 0; x < f.w; x++ {
+		d := math.Min(float64(x)+0.5, float64(f.w-x)-0.5) / ramp
+		if d >= 1 {
+			continue
+		}
+		k := d * d * (3 - 2*d)
+		for y := 0; y < f.h; y++ {
+			i := (y*f.w + x) * 4
+			for c := 0; c < 4; c++ {
+				f.p[i+c] *= k
+			}
+		}
+	}
+}
+
 func (f *fimg) cleanAlpha(lo, hi float64) {
 	for i := 0; i < f.w*f.h; i++ {
 		a := f.p[i*4+3]

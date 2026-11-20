@@ -213,8 +213,7 @@
       "kind": "structure",
       "worldWidthM": 80,
       "biomes": [
-        "desert",
-        "plains"
+        "desert"
       ],
       "tags": [
         "house",

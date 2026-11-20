@@ -181,4 +181,21 @@ void main() {
     expect(ProofTerrain(level('ohio')).sectionAt(5300), 'TREE CANOPY');
     expect(ProofTerrain(level('hudson')).sectionAt(5300), 'TREE CANOPY');
   });
+  test('hairpins draw tighter than their metric curvature; bends do not', () {
+    expect(ProofTerrain.visualCurvature(.05), .05);
+    expect(ProofTerrain.visualCurvature(-.09), -.09);
+    expect(ProofTerrain.visualCurvature(.26), greaterThan(.26 * 2));
+    expect(
+      ProofTerrain.visualCurvature(-.26),
+      -ProofTerrain.visualCurvature(.26),
+    );
+    // Hudson (legacy, all bends below the threshold) keeps its reviewed path.
+    final hudson = ProofTerrain(level('hudson'));
+    var drift = 0.0;
+    for (var s = 5.0; s < 7600; s += 5) {
+      final c = hudson.curvatureAt(s);
+      drift = math.max(drift, (ProofTerrain.visualCurvature(c) - c).abs());
+    }
+    expect(drift, 0);
+  });
 }

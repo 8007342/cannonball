@@ -89,22 +89,28 @@ class SurfaceMeshes {
       int alpha(int c, double t) =>
           (c & 0x00ffffff) | ((t.clamp(0.0, 1.0) * 255).round() << 24);
       final nl = nearLeft ?? left, nr = nearRight ?? right;
-      mesh.quad(
-        nearX + nearHalf * nl,
-        nearX + nearHalf * nr,
-        nearY,
-        farX + farHalf * left,
-        farX + farHalf * right,
-        farY,
-        u(left),
-        u(right),
-        v(nearZ),
-        v(farZ),
-        alpha(color(id, nearZ, nl), tn),
-        alpha(color(id, farZ, left), tf),
-        nearRightColor: alpha(color(id, nearZ, nr), tn),
-        farRightColor: alpha(color(id, farZ, right), tf),
-      );
+      final n = columns(nearHalf, farHalf);
+      for (var c = 0; c < n; c++) {
+        final f0 = c / n, f1 = (c + 1) / n;
+        final l = left + (right - left) * f0, r = left + (right - left) * f1;
+        final ln = nl + (nr - nl) * f0, rn = nl + (nr - nl) * f1;
+        mesh.quad(
+          nearX + nearHalf * ln,
+          nearX + nearHalf * rn,
+          nearY,
+          farX + farHalf * l,
+          farX + farHalf * r,
+          farY,
+          u(l),
+          u(r),
+          v(nearZ),
+          v(farZ),
+          alpha(color(id, nearZ, ln), tn),
+          alpha(color(id, farZ, l), tf),
+          nearRightColor: alpha(color(id, nearZ, rn), tn),
+          farRightColor: alpha(color(id, farZ, r), tf),
+        );
+      }
     }
 
     add(sample.base, false, 1, 1);
@@ -112,6 +118,16 @@ class SurfaceMeshes {
     if (overlay != null && overlay != sample.base) {
       add(overlay, true, nearT, farT);
     }
+  }
+
+  /// Lateral subdivisions of one strip. A textured quad is two affine
+  /// triangles, so on a strongly perspective trapezoid (near the camera)
+  /// lines running along the road kink at the diagonal; plank decks showed
+  /// it as a chevron pattern. Narrower columns shrink the kink in proportion.
+  static int columns(double nearHalf, double farHalf) {
+    if (farHalf <= 0) return 1;
+    final ratio = nearHalf / farHalf;
+    return ((ratio - 1) * 10).ceil().clamp(1, 4);
   }
 
   void draw(ui.Canvas canvas, String layer) {

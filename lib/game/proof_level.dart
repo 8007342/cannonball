@@ -139,7 +139,8 @@ class ProofTerrain {
     var heading = 0.0, center = 0.0;
     centers.add(0);
     for (var i = 1; i <= 2400; i++) {
-      final curvature = curvatureAt((i - .5) * 5) * ProofCourse.lateralScale;
+      final curvature =
+          visualCurvature(curvatureAt((i - .5) * 5)) * ProofCourse.lateralScale;
       center += heading * 5 + curvature * 12.5;
       heading += curvature * 5;
       centers.add(center);
@@ -149,6 +150,20 @@ class ProofTerrain {
   final LevelProfile profile;
   final List<double> centers = [];
   double curvatureAt(double s) => profile.curvatureAt(s);
+
+  /// Drawn hairpins bend harder than their metric curvature: a faithful
+  /// projection of a 140 m bend shifts the road only ~60-90 px by the time
+  /// it reaches the horizon, so hairpins read as gentle sweepers. The part
+  /// above [LevelProfile.cornerThreshold] is amplified; ordinary bends (and
+  /// the whole legacy Hudson course) are unchanged. Render-only: the
+  /// controller's demand still uses [curvatureAt].
+  static const hairpinVisualGain = 2.2;
+  static double visualCurvature(double c) {
+    final excess = c.abs() - LevelProfile.cornerThreshold;
+    return excess <= 0 ? c : c + excess * hairpinVisualGain * c.sign;
+  }
+
+  /// Render-space road centre (lateral world units), from [visualCurvature].
   double centerAt(double s) {
     if (s <= 0) return 0;
     final index = (s / 5).floor().clamp(0, centers.length - 2);

@@ -466,29 +466,34 @@ class ScenicPlan {
             }
           case SetPiece.bridge:
             final end = piece.end ?? piece.s + 200;
-            final structure = _find(
-              manifest,
-              const ['structure/bridge'],
-              zone.biomes,
-              salt,
-              bands: const [ScenicBand.near, ScenicBand.mid],
-            );
-            if (structure == null) break;
-            final spacing =
-                ScenicScale.courseUnits(structure.worldWidthM) * .98;
-            for (var s = piece.s; s + spacing <= end; s += spacing) {
-              for (final side in const [-1, 1]) {
-                _bands[structure.band]!.add(
-                  ScenicPlacement(
-                    s + spacing / 2,
-                    side,
-                    .15,
-                    structure,
-                    structure.band,
-                    setPiece: true,
-                  ),
-                );
-              }
+            // Bridge sprites are side elevations drawn as camera-facing
+            // billboards: placed at the deck edge, a 27-36 m panel covers the
+            // whole carriageway (an arch wall across the road). The deck
+            // itself is the textured surface with procedural parapets; the
+            // structures stand as neighbouring crossings up- and downstream,
+            // seen side-on from the deck as the real ones would be.
+            final pool = [
+              for (final band in const [ScenicBand.near, ScenicBand.mid])
+                ...manifest.query(
+                  band: band,
+                  group: 'structure/bridge',
+                  biomes: zone.biomes,
+                ),
+            ];
+            if (pool.isEmpty) break;
+            final first =
+                (ScenicHash.unit(seed, salt, pool.length) * pool.length)
+                    .floor()
+                    .clamp(0, pool.length - 1);
+            _add(pool[first], piece.s + (end - piece.s) * .3, -1, 34, salt + 3);
+            if (pool.length > 1 && end - piece.s > 150) {
+              _add(
+                pool[(first + 1) % pool.length],
+                piece.s + (end - piece.s) * .75,
+                1,
+                42,
+                salt + 4,
+              );
             }
         }
       }
@@ -545,7 +550,9 @@ class ScenicPlan {
       if (pool.isEmpty) pool = manifest.query(band: ScenicBand.vista);
       final slots = <VistaSlot>[];
       if (pool.isNotEmpty) {
-        const count = 5;
+        // Eight overlapping panels on the wrapped strip: with feathered sides
+        // and the ground-haze foot they read as one continuous horizon.
+        const count = 8;
         String? last;
         for (var n = 0; n < count; n++) {
           var pick =
@@ -559,7 +566,7 @@ class ScenicPlan {
           slots.add(
             VistaSlot(
               pick,
-              (n + ScenicHash.unit(seed, 4100 + z, n) * .6) / count,
+              (n + ScenicHash.unit(seed, 4100 + z, n) * .35) / count,
             ),
           );
         }

@@ -147,8 +147,6 @@
       "kind": "tree",
       "worldWidthM": 5,
       "biomes": [
-        "city",
-        "town",
         "desert"
       ],
       "tags": [
@@ -164,8 +162,7 @@
       "kind": "tree",
       "worldWidthM": 6,
       "biomes": [
-        "town",
-        "river"
+        "desert"
       ],
       "tags": [
         "south"
@@ -263,7 +260,6 @@
       "kind": "tree",
       "worldWidthM": 5,
       "biomes": [
-        "plains",
         "desert"
       ],
       "tags": [
@@ -336,7 +332,6 @@
       "kind": "shrub",
       "worldWidthM": 1.5,
       "biomes": [
-        "plains",
         "desert"
       ],
       "tags": [
@@ -493,8 +488,7 @@
       "kind": "shrub",
       "worldWidthM": 2,
       "biomes": [
-        "desert",
-        "plains"
+        "desert"
       ],
       "tags": [
         "west"

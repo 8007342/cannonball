@@ -87,8 +87,7 @@
       "kind": "vista",
       "worldWidthM": 9000,
       "biomes": [
-        "desert",
-        "plains"
+        "desert"
       ],
       "tags": [
         "mesa",
@@ -104,8 +103,6 @@
       "kind": "vista",
       "worldWidthM": 9000,
       "biomes": [
-        "forest",
-        "plains",
         "desert"
       ],
       "tags": [

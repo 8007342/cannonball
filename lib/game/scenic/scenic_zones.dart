@@ -427,13 +427,32 @@ class LevelScenery {
     ),
   ]);
 
+  // No sand texture is packed: the red dirt shoulder tile is the desert
+  // floor (the green meadow tinted tan read as lawn in the Sonoran desert).
   static const arizona = LevelScenery('arizona', [
-    ScenicZone(0, 1000, ['desert', 'plains'], quiet: true, near: 2, mid: 1),
-    ScenicZone(1000, 2400, ['desert', 'plains'], near: 2.5, mid: 1.5, far: 1.2),
+    ScenicZone(
+      0,
+      1000,
+      ['desert', 'plains'],
+      ground: 'dirt-shoulder',
+      quiet: true,
+      near: 2,
+      mid: 1,
+    ),
+    ScenicZone(
+      1000,
+      2400,
+      ['desert', 'plains'],
+      ground: 'dirt-shoulder',
+      near: 2.5,
+      mid: 1.5,
+      far: 1.2,
+    ),
     ScenicZone(
       2400,
       4100,
       ['desert'],
+      ground: 'dirt-shoulder',
       quiet: true,
       near: 1.5,
       mid: .8,
@@ -443,19 +462,28 @@ class LevelScenery {
       4100,
       5000,
       ['town', 'desert'],
+      ground: 'dirt-shoulder',
       road: 'concrete',
       near: 4,
       mid: 3,
       setPieces: [SetPiece(SetPiece.waterTower, 4600, side: 1, offsetM: 190)],
     ),
-    ScenicZone(5000, 5450, ['desert']),
+    ScenicZone(5000, 5450, ['desert'], ground: 'dirt-shoulder'),
     ScenicZone(
       5450,
       6050,
       ['river', 'desert'],
+      ground: 'dirt-shoulder',
       setPieces: [SetPiece(SetPiece.bridge, 5720, end: 5960)],
     ),
-    ScenicZone(6050, 6820, ['desert'], quiet: true),
-    ScenicZone(6820, 9000, ['desert'], near: 2, mid: 1),
+    ScenicZone(6050, 6820, ['desert'], ground: 'dirt-shoulder', quiet: true),
+    ScenicZone(
+      6820,
+      9000,
+      ['desert'],
+      ground: 'dirt-shoulder',
+      near: 2,
+      mid: 1,
+    ),
   ]);
 }

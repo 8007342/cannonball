@@ -208,6 +208,43 @@ void main() {
     };
   }
 
+  testWidgets('keychains wait for the key box art on first load', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1280, 720);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    Set<String> shown() => {
+      for (final image in tester.widgetList<Image>(find.byType(Image)))
+        if (image.image is AssetImage) (image.image as AssetImage).assetName,
+    };
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ProofGarage(
+          departing: false,
+          ready: false,
+          reducedMotion: false,
+          muted: true,
+          onTakeKeys: (_) {},
+          onComplete: () {},
+          onShot: (_) {},
+          onSound: () {},
+        ),
+      ),
+    );
+    // First frame: the wall is still decoding, so no card floats alone.
+    expect(shown(), contains('assets/proof-next/garage-wall.png'));
+    expect(shown(), isNot(contains(CarCatalog.keyCard)));
+    await tester.runAsync(() async {
+      for (var i = 0; i < 100 && !shown().contains(CarCatalog.keyCard); i++) {
+        await Future<void>.delayed(const Duration(milliseconds: 50));
+        await tester.pump();
+      }
+    });
+    expect(shown(), contains(CarCatalog.keyCard));
+  });
+
   testWidgets('key card departure: card in hand, white roadster outside, door '
       'and cabin', (tester) async {
     final art = CarCatalog.players[GarageKeys.card]!;

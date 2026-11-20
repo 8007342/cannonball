@@ -157,8 +157,7 @@
       "kind": "grass",
       "worldWidthM": 1.0,
       "biomes": [
-        "desert",
-        "plains"
+        "desert"
       ],
       "tags": [
         "west"

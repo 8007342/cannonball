@@ -121,6 +121,11 @@ func prepareSprite(f *Family, it *Item, src *image.NRGBA) (*fimg, int, int) {
 		fatalf("%s: empty after finishing", it.ID)
 	}
 	s = s.crop(x0, y0, x1, y1)
+	if it.Band == "vista" {
+		// Vista paintings tile along a wrapped horizon strip: feathered
+		// sides let neighbouring panels overlap without hard rectangle edges.
+		s.featherX(vistaFeather)
+	}
 	if len(it.Anchor) == 2 { // supplied anchor in source pixels
 		ax := int(math.Round(it.Anchor[0]*scale)) - x0
 		ay := int(math.Round(it.Anchor[1]*scale)) - y0
@@ -194,6 +199,12 @@ func cmdPack(root string, args []string) {
 				continue
 			}
 			img, ax, ay := prepareSprite(f, it, loadPNG(src))
+			if it.Band == "far" && it.Kind != "animal" {
+				// Far set pieces carry a painted ground slab; soften its
+				// bottom and lower corners into the terrain (after the
+				// anchor is measured, so placement is unchanged).
+				img.featherFoot(farFootFeather, farSideFeather)
+			}
 			g := f.Atlas
 			if g == "" {
 				g = f.Family

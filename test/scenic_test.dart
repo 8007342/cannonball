@@ -82,6 +82,7 @@ final fixture = {
     sprite('tree-line', 'far', 'tree', 40, tags: ['tree-line'], cell: 14),
     sprite('ridge', 'vista', 'vista', 3000, tags: ['ridge'], cell: 15),
     sprite('deck-truss', 'near', 'structure', 8, tags: ['bridge'], cell: 3),
+    sprite('bridge-covered', 'mid', 'structure', 26, cell: 7),
     sprite('curve-sign', 'near', 'sign', 1, tags: ['curve'], cell: 9),
     // Malformed entries are skipped, not fatal.
     {
@@ -423,11 +424,17 @@ void main() {
           .placements(ScenicBand.near)
           .where((x) => x.sprite.id == 'curve-sign');
       expect(signs.length, greaterThanOrEqualTo(6));
-      final truss = p
-          .placements(ScenicBand.near)
-          .where((x) => x.sprite.tags.contains('bridge'));
-      expect(truss, isNotEmpty);
-      expect(truss.every((x) => p.onBridge(x.s)), isTrue);
+      // Bridge structures are side-on billboards: they stand clear of the
+      // deck as neighbouring crossings, never over the carriageway.
+      final bridges = [
+        for (final band in ScenicBand.values)
+          ...p.placements(band).where((x) => x.sprite.hasTag('bridge')),
+      ];
+      expect(bridges, isNotEmpty);
+      expect(bridges.every((x) => p.onBridge(x.s)), isTrue);
+      for (final x in bridges) {
+        expect(x.offsetM, greaterThan(x.sprite.worldWidthM / 2));
+      }
     });
 
     test('fallback manifest still schedules every level', () {

@@ -3,12 +3,21 @@ import 'dart:ui' as ui;
 import 'package:cannonball/game/proof_car.dart';
 import 'package:cannonball/game/proof_level.dart';
 import 'package:cannonball/game/race.dart';
+import 'package:cannonball/game/render/surface_meshes.dart';
 import 'package:cannonball/game/scenic/scenic_manifest.dart';
 import 'package:flame/game.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  test('steep near-camera surface strips are split to limit affine kinks', () {
+    expect(SurfaceMeshes.columns(100, 100), 1);
+    expect(SurfaceMeshes.columns(105, 100), 1);
+    expect(SurfaceMeshes.columns(133, 100), 4);
+    expect(SurfaceMeshes.columns(118, 100), 2);
+    expect(SurfaceMeshes.columns(10, 0), 1);
+  });
 
   test('course renderer streams banded scenery within draw budgets', () async {
     final race = RaceController();
@@ -67,7 +76,9 @@ void main() {
       if (level.id != 'chicago') {
         expect(farSeen, greaterThan(0), reason: level.id);
       }
-      expect(maxBatches, lessThan(100), reason: level.id);
+      // Overlap-safe atlas grouping (BillboardBatch) keeps this well below
+      // one draw per sprite; Chicago peaked at 85 before it, ~59 after.
+      expect(maxBatches, lessThan(70), reason: level.id);
       expect(maxSurface, inInclusiveRange(3, 12), reason: level.id);
       expect(
         game.scenicPlan!.placements(ScenicBand.mid),

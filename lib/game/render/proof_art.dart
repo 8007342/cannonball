@@ -37,6 +37,9 @@ class ProofArt {
       environmentAtlas;
   static const carGround = [416.0, 412.0, 415.0, 372.0, 400.0, 404.0];
   static const carCenter = [262.0, 254.5, 252.0, 262.0, 256.0, 250.5];
+
+  /// Frame 0 (oak) width relative to its nominal cell; see [load].
+  static const oakOverhang = 572 / 512;
   static const markerFrame = ui.Rect.fromLTWH(224, 1068, 64, 458);
   static const coneFrame = ui.Rect.fromLTWH(660, 1162, 216, 364);
   static const lampFrame = ui.Rect.fromLTWH(1230, 1094, 142, 432);
@@ -113,6 +116,16 @@ class ProofArt {
     }
     if (environmentAtlas != null) {
       environmentFrames.addAll(_cells(environmentAtlas!));
+      // The painted oak's canopy overhangs its cell (to ~555 of 512 px) and
+      // the pine only starts near 585 px: widen the frame so the canopy is
+      // not sliced by a vertical cell edge. Draw code centres on the cell.
+      final oak = environmentFrames[0];
+      environmentFrames[0] = ui.Rect.fromLTWH(
+        oak.left,
+        oak.top,
+        oak.width * oakOverhang,
+        oak.height,
+      );
       _cacheRoadFurniture(results[3], results[5]);
     }
     asphalt = _roadTexture();
@@ -692,19 +705,39 @@ class ProofArt {
 }
 
 /// Mutable batch buffers avoid allocating a Path per leaf/building/car detail.
-/// Flush at atlas/depth boundaries; never reorder objects to obtain a batch.
+///
+/// Sprites are queued in painter order and drawn at [flush] (call it before
+/// any direct canvas draw: it is the ordering barrier). At flush a sprite may
+/// join an earlier batch with the same atlas, blend and opacity only if its
+/// screen bounds overlap nothing queued between that batch and it, so the
+/// composited result is identical to painter order while scenery from many
+/// atlases (vegetation, structures, far band, cars) needs far fewer draws.
 class BillboardBatch {
-  BillboardBatch({this.capacity = 256})
+  BillboardBatch({this.capacity = 512})
     : transforms = Float32List(capacity * 4),
       rects = Float32List(capacity * 4),
-      colors = Int32List(capacity);
+      colors = Int32List(capacity),
+      _bounds = Float32List(capacity * 4),
+      _images = List<ui.Image?>.filled(capacity, null),
+      _blends = List<ui.BlendMode>.filled(capacity, ui.BlendMode.modulate),
+      _opacities = Int32List(capacity),
+      _stageTransforms = Float32List(capacity * 4),
+      _stageRects = Float32List(capacity * 4),
+      _stageColors = Int32List(capacity);
   final int capacity;
+
+  /// Queued sprites in painter order (RSTransform, source rect, colour).
   final Float32List transforms, rects;
   final Int32List colors;
+  final Float32List _bounds;
+  final List<ui.Image?> _images;
+  final List<ui.BlendMode> _blends;
+  final Int32List _opacities;
+  final Float32List _stageTransforms, _stageRects;
+  final Int32List _stageColors;
+  final List<_Group> _groups = [];
+  int _groupsUsed = 0;
   int count = 0, drawCalls = 0;
-  ui.Image? image;
-  ui.BlendMode colorBlend = ui.BlendMode.modulate;
-  int batchOpacity = 255;
   final ui.Paint paint = ui.Paint()
     ..filterQuality = ui.FilterQuality.low
     ..isAntiAlias = true;
@@ -723,42 +756,121 @@ class BillboardBatch {
     double pivotX = 0,
     double pivotY = 0,
   }) {
-    if (image != atlas ||
-        colorBlend != blend ||
-        batchOpacity != opacity ||
-        count >= capacity) {
-      flush(canvas);
-    }
-    image = atlas;
-    colorBlend = blend;
-    batchOpacity = opacity;
+    if (count >= capacity) flush(canvas);
     final i = count * 4;
     final cosine = math.cos(rotation), sine = math.sin(rotation);
-    transforms[i] = scale * cosine;
-    transforms[i + 1] = scale * sine;
-    transforms[i + 2] = x + pivotX - cosine * pivotX + sine * pivotY;
-    transforms[i + 3] = y + pivotY - sine * pivotX - cosine * pivotY;
+    final a = scale * cosine, b = scale * sine;
+    final tx = x + pivotX - cosine * pivotX + sine * pivotY;
+    final ty = y + pivotY - sine * pivotX - cosine * pivotY;
+    transforms[i] = a;
+    transforms[i + 1] = b;
+    transforms[i + 2] = tx;
+    transforms[i + 3] = ty;
     rects[i] = source.left;
     rects[i + 1] = source.top;
     rects[i + 2] = source.right;
     rects[i + 3] = source.bottom;
     colors[count] = color;
+    // Screen bounds of the rotated quad (u, v) -> (a u - b v + tx, b u + a v + ty).
+    final w = source.width, h = source.height;
+    final ux = a * w, vx = -b * h, uy = b * w, vy = a * h;
+    _bounds[i] = tx + math.min(0, ux) + math.min(0, vx);
+    _bounds[i + 1] = ty + math.min(0, uy) + math.min(0, vy);
+    _bounds[i + 2] = tx + math.max(0, ux) + math.max(0, vx);
+    _bounds[i + 3] = ty + math.max(0, uy) + math.max(0, vy);
+    _images[count] = atlas;
+    _blends[count] = blend;
+    _opacities[count] = opacity;
     count++;
   }
 
+  bool _overlaps(int e, double l, double t, double r, double b) {
+    final i = e * 4;
+    return _bounds[i] < r &&
+        _bounds[i + 2] > l &&
+        _bounds[i + 1] < b &&
+        _bounds[i + 3] > t;
+  }
+
   void flush(ui.Canvas canvas) {
-    if (count == 0 || image == null) return;
-    drawCalls++;
-    paint.color = ui.Color.fromARGB(batchOpacity, 255, 255, 255);
-    canvas.drawRawAtlas(
-      image!,
-      Float32List.sublistView(transforms, 0, count * 4),
-      Float32List.sublistView(rects, 0, count * 4),
-      Int32List.sublistView(colors, 0, count),
-      colorBlend,
-      null,
-      paint,
-    );
+    if (count == 0) return;
+    _groupsUsed = 0;
+    for (var e = 0; e < count; e++) {
+      final i = e * 4;
+      final l = _bounds[i], t = _bounds[i + 1];
+      final r = _bounds[i + 2], b = _bounds[i + 3];
+      _Group? target;
+      for (var g = _groupsUsed - 1; g >= 0; g--) {
+        final group = _groups[g];
+        final first = group.members[0];
+        if (_images[first] == _images[e] &&
+            _blends[first] == _blends[e] &&
+            _opacities[first] == _opacities[e]) {
+          target = group;
+          break;
+        }
+        if (group.left < r &&
+            group.right > l &&
+            group.top < b &&
+            group.bottom > t &&
+            group.members.any((m) => _overlaps(m, l, t, r, b))) {
+          break;
+        }
+      }
+      if (target == null) {
+        if (_groupsUsed == _groups.length) _groups.add(_Group());
+        target = _groups[_groupsUsed++]..reset();
+      }
+      target.add(e, l, t, r, b);
+    }
+    for (var g = 0; g < _groupsUsed; g++) {
+      final members = _groups[g].members;
+      var n = 0;
+      for (final e in members) {
+        final from = e * 4, to = n * 4;
+        for (var k = 0; k < 4; k++) {
+          _stageTransforms[to + k] = transforms[from + k];
+          _stageRects[to + k] = rects[from + k];
+        }
+        _stageColors[n] = colors[e];
+        n++;
+      }
+      final first = members[0];
+      drawCalls++;
+      paint.color = ui.Color.fromARGB(_opacities[first], 255, 255, 255);
+      canvas.drawRawAtlas(
+        _images[first]!,
+        Float32List.sublistView(_stageTransforms, 0, n * 4),
+        Float32List.sublistView(_stageRects, 0, n * 4),
+        Int32List.sublistView(_stageColors, 0, n),
+        _blends[first],
+        null,
+        paint,
+      );
+    }
+    for (var e = 0; e < count; e++) {
+      _images[e] = null;
+    }
     count = 0;
+  }
+}
+
+class _Group {
+  final List<int> members = [];
+  double left = 0, top = 0, right = 0, bottom = 0;
+  void reset() => members.clear();
+  void add(int e, double l, double t, double r, double b) {
+    if (members.isEmpty) {
+      left = l;
+      top = t;
+      right = r;
+      bottom = b;
+    } else {
+      left = math.min(left, l);
+      top = math.min(top, t);
+      right = math.max(right, r);
+      bottom = math.max(bottom, b);
+    }
+    members.add(e);
   }
 }

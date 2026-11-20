@@ -290,7 +290,8 @@ class RaceGame extends FlameGame {
         scenic.provide('asphalt-worn', _art.asphalt, const [11, 2.46]);
         scenic.provide('meadow', _art.meadow, const [9.6, 4.6]);
         _scenic = scenic;
-        _surfaceMeshes = SurfaceMeshes(scenic, _segmentCount * 3);
+        // Room for the near-camera lateral subdivision (SurfaceMeshes.columns).
+        _surfaceMeshes = SurfaceMeshes(scenic, _segmentCount * 6);
       }
       final identity = Float64List.fromList([
         1,
@@ -985,6 +986,19 @@ class RaceGame extends FlameGame {
     _haze(canvas);
   }
 
+  /// Horizon haze colour: sage over vegetation, dusty sand over the bare
+  /// Arizona dirt floor, blended with the surface track.
+  int get _distanceHaze {
+    final dirt =
+        _surfaces?.ground.weight('dirt-shoulder', controller.courseDistance) ??
+        0;
+    return Color.lerp(
+      const Color(0xffb5c49a),
+      const Color(0xffcdb896),
+      dirt.clamp(0.0, 1.0),
+    )!.toARGB32();
+  }
+
   void _haze(Canvas canvas) {
     // A thin haze unifies the painted distance with the live projected terrain.
     _paint.shader = ui.Gradient.linear(
@@ -992,7 +1006,9 @@ class RaceGame extends FlameGame {
       Offset(0, _h * (horizonFraction + .16 + _viewPitch)),
       [
         const Color(0x00d6dfbe),
-        Color(_course ? _material(0xffb5c49a, _world + 25000, 0) : 0xffb5c49a),
+        Color(
+          _course ? _material(_distanceHaze, _world + 25000, 0) : 0xffb5c49a,
+        ),
       ],
     );
     canvas.drawRect(
@@ -1124,7 +1140,11 @@ class RaceGame extends FlameGame {
         const Color(0xffd5dfdf),
         fade * .5,
       )!.toARGB32();
+      // The periodic slip road belongs to the free-road proof. Course levels
+      // have no junction for it to come from, so it read as a stray band
+      // through the verge (and crossed sidewalks); they omit it.
       if (_nextProof &&
+          !_course &&
           ProofJoiningLane.visible(worldZ) &&
           ProofJoiningLane.visible(nextWorldZ)) {
         final ac = ProofJoiningLane.center(worldZ);
@@ -1337,7 +1357,7 @@ class RaceGame extends FlameGame {
               const Color(0x00b5c49a),
               Color(
                 _course
-                    ? _material(0xffb5c49a, _world + _farDepth, 0)
+                    ? _material(_distanceHaze, _world + _farDepth, 0)
                     : 0xffb5c49a,
               ),
               const Color(0x00b5c49a),
@@ -1433,22 +1453,9 @@ class RaceGame extends FlameGame {
     // Course levels use scheduled scenic zones instead of stride copies.
     final scenicActive = _course && _plan != null;
     if (scenicActive) _composeScenic(near, far);
-    for (var i = first; i * 330 < far; i++) {
+    for (var i = first; !scenicActive && i * 330 < far; i++) {
       final z = i * 330.0;
       if (_course && !ProofCourse.vegetationAllowedAt(_courseAt(z))) continue;
-      if (scenicActive) {
-        if (ProofJoiningLane.visible(z) && ProofJoiningLane.progress(z) < .6) {
-          _objects.add(
-            _Object(
-              _Kind.cone,
-              z,
-              ProofJoiningLane.center(z) - ProofJoiningLane.halfWidth(z) - .05,
-              48,
-            ),
-          );
-        }
-        continue;
-      }
       if (_course && i % level.sceneryStride != 0) continue;
       final sampleOrdinal = _course ? i ~/ level.sceneryStride : i;
       final side = sampleOrdinal.isEven ? -1.0 : 1.0;
@@ -1520,6 +1527,7 @@ class RaceGame extends FlameGame {
         );
       }
       if (_nextProof &&
+          !_course &&
           ProofJoiningLane.visible(z) &&
           ProofJoiningLane.progress(z) < .6) {
         _objects.add(
@@ -1857,6 +1865,7 @@ class RaceGame extends FlameGame {
       clip: clip,
       tint: _material(0xffffffff, object.z, object.lateral),
       rotationGround: sprite.anchor[1],
+      rotationCentre: sprite.anchor[0],
       rotation: sprite.sway > 0
           ? ProofFoliage.angle(
                   time: _presentationTime,
@@ -1914,12 +1923,26 @@ class RaceGame extends FlameGame {
         offset: offset,
         baseY: baseY,
         screenWidth: _w,
+        screenHeight: _h,
         projection: _projection,
         tint: tint,
         proofAtlas: _environment,
       );
     }
     _batch.flush(canvas);
+    ScenicDraw.foot(
+      canvas: canvas,
+      paint: _paint,
+      baseY: baseY,
+      screenWidth: _w,
+      screenHeight: _h,
+      // Night keeps the haze from glowing paler than the moonlit ground.
+      color: Color.lerp(
+        Color(_material(_distanceHaze, _world + 25000, 0)),
+        const Color(0xff27313d),
+        n * .55,
+      )!.toARGB32(),
+    );
     return current.isNotEmpty;
   }
 
@@ -1961,11 +1984,16 @@ class RaceGame extends FlameGame {
           final source = _art.environmentFrames[object.frame];
           // All environment cells share a ground baseline near their lower edge.
           final scale = width / 450;
+          // Centre on the nominal cell: the oak frame overhangs to the right.
+          final half =
+              source.width *
+              .5 /
+              (object.frame == 0 ? ProofArt.oakOverhang : 1);
           _sprite(
             canvas,
             atlas,
             source,
-            x - source.width * scale * .5,
+            x - half * scale,
             p.y - ProofArt.sceneryGround[object.frame] * scale,
             scale,
             clip: clip,
@@ -1974,6 +2002,7 @@ class RaceGame extends FlameGame {
                 ? _material(0xffffffff, object.z, object.lateral)
                 : 0xffffffff,
             rotationGround: ProofArt.sceneryGround[object.frame],
+            rotationCentre: half,
             rotation: _course && object.frame < 3
                 ? ProofFoliage.angle(
                     time: _presentationTime,
@@ -2100,6 +2129,7 @@ class RaceGame extends FlameGame {
     int? fog,
     double rotation = 0,
     double? rotationGround,
+    double? rotationCentre,
   }) {
     if (scale <= 0 || y >= clip) return;
     final visibleHeight = math.min(source.height, (clip - y) / scale);
@@ -2144,7 +2174,7 @@ class RaceGame extends FlameGame {
       blend: fog == null ? BlendMode.modulate : BlendMode.dstATop,
       opacity: (_objectOpacity * 255).round(),
       rotation: visibleHeight < source.height ? 0 : rotation,
-      pivotX: source.width * scale * .5,
+      pivotX: (rotationCentre ?? source.width * .5) * scale,
       pivotY: (rotationGround ?? source.height) * scale,
     );
   }

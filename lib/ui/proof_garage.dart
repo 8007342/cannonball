@@ -37,12 +37,18 @@ class ProofGarage extends StatefulWidget {
   State<ProofGarage> createState() => _ProofGarageState();
 }
 
+const _wallArt = 'assets/proof-next/garage-wall.png';
+
 class _ProofGarageState extends State<ProofGarage>
     with SingleTickerProviderStateMixin {
   late final AnimationController _clock;
   String _shot = 'keys';
   bool _completed = false;
   bool _precacheStarted = false;
+
+  /// The keychains hang on the painted key box, so they wait for the wall
+  /// art instead of appearing alone on a blank screen during first load.
+  bool _wallReady = false;
 
   @override
   void initState() {
@@ -63,10 +69,16 @@ class _ProofGarageState extends State<ProofGarage>
     super.didChangeDependencies();
     if (!widget.artwork || _precacheStarted) return;
     _precacheStarted = true;
+    precacheImage(
+      const AssetImage(_wallArt),
+      context,
+      onError: (_, _) {},
+    ).whenComplete(() {
+      if (mounted) setState(() => _wallReady = true);
+    });
     // Decode the complete directed sequence while the road is preparing. Each
     // panel then uses the same ImageCache entry on its first animated frame.
     for (final path in [
-      'assets/proof-next/garage-wall.png',
       'assets/proof-next/garage-exterior.png',
       'assets/proof-next/entry-atlas.png',
       'assets/proof-next/s2000-atlas.png',
@@ -294,14 +306,15 @@ class _ProofGarageState extends State<ProofGarage>
           Size(w, h),
           handBounds,
         );
-        final showKey = !moving || takingCard || pickup < .55;
-        final showCard = !moving || !takingCard || pickup < .55;
+        final hung = !widget.artwork || _wallReady;
+        final showKey = hung && (!moving || takingCard || pickup < .55);
+        final showCard = hung && (!moving || !takingCard || pickup < .55);
         final scenes = CarCatalog.players[widget.selectedCar];
         final exterior = _picture(
           scenes?.exterior ?? 'assets/proof-next/garage-exterior.png',
         );
         final cabinArt = scenes?.cabin ?? 'assets/milestone/cabin.png';
-        final wall = _picture('assets/proof-next/garage-wall.png');
+        final wall = _picture(_wallArt);
         return Stack(
           fit: StackFit.expand,
           children: [
