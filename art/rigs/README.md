@@ -69,9 +69,13 @@ Other rig pipelines (e.g. art/rigs/cars/) reuse this script; keep its interface 
    go run -C tool/assets . check                    # schema/budget gate, then `pack`
    ```
    Ingest applies the rig silhouette as alpha (eroded 1 px, feathered 1 px at render
-   size), trims, area-downscales, writes the source PNG, the family item (worldWidthM
-   measured from the rig, anchor = ground point under the footprint centre in source
-   px) and the provenance ledger entry.
+   size), trims, area-downscales (longest side 512; near band 384), writes the source
+   PNG, the family item (worldWidthM measured from the rig, anchor = ground point under
+   the footprint centre in source px) and the provenance ledger entry. Two guards keep
+   thin parts honest: pixels inside the silhouette where the paint still shows the flat
+   key fall back to the lit rig colour (shade.png), and a template's `keep_rig` colours
+   (e.g. utility-pole wires, which the model tends to redraw elsewhere) always take the
+   flat hint colour with full, un-eroded rig alpha.
 
 ## Camera
 
@@ -89,6 +93,7 @@ items with legible legends (speed limit, stop, yield) set `"mirror": false`.
  "params":  {"w": 9, "wall": "#a8322a"},          // overridable per item
  "derived": {"fy": "-d/2"},                       // computed from params, in order
  "anchor":  [0, 0, 0],                            // optional ground contact (default origin)
+ "keep_rig": ["wire"],                            // optional: hint colours/params kept from the rig
  "parts": [ ... ]}
 ```
 
@@ -133,8 +138,9 @@ left over the flat key `#8c9aa6` (the paint input), `depth.png` (near = white),
 
 ## Paint
 
-`structure-paint-qwen.json` (single) and `structure-paint-qwen-batch4.json` (4
-items x 2 seeds): Qwen-Image-Edit 2511 fp8 + Lightning 4-step LoRA, 1 MP, euler/simple,
+`structure-paint-qwen.json` (single), `structure-paint-qwen-batch4.json` (4
+items x 2 seeds) and `-batch8.json` (8 x 2; `batch` picks it for 5-8 ids, fewer turns
+in a busy shared GPU queue; ~16 s per image): Qwen-Image-Edit 2511 fp8 + Lightning 4-step LoRA, 1 MP, euler/simple,
 cfg 1, denoise 0.85. Denoise 0.7 kept the clay look too flat; 0.85 adds wood, shingle
 and brick texture and warm upper-left light while holding every edge.
 `structure-paint-qwen-styled.json` adds the proof scenery atlas as a second reference

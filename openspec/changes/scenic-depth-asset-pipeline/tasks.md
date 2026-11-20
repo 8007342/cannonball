@@ -9,7 +9,7 @@
 ## 2. Scenic pack (agent-picked)
 - [x] 2.1 Vegetation, crops and ground cover.
 - [x] 2.2 Farms, animals and far-band set pieces.
-- [ ] 2.3 Houses, businesses, street furniture, bridges and structures (Blender-guided).
+- [x] 2.3 Houses, businesses, street furniture, bridges and structures (Blender-guided).
 - [x] 2.4 Vista layers and tileable road/shoulder/sidewalk/bridge textures.
 
 ## 3. Renderer and courses

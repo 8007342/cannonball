@@ -167,11 +167,12 @@ type provenance struct {
 		Repo    string `json:"repo"`
 		Licence string `json:"licence"`
 	} `json:"models"`
-	Seed     int    `json:"seed"`
-	Prompt   string `json:"prompt"`
-	Negative string `json:"negative_prompt"`
-	Output   string `json:"output_sha256"`
-	At       string `json:"at"`
+	Seed     int     `json:"seed"`
+	Prompt   string  `json:"prompt"`
+	Negative string  `json:"negative_prompt"`
+	Output   string  `json:"output_sha256"`
+	Denoise  float64 `json:"denoise"`
+	At       string  `json:"at"`
 }
 
 func defMax(it specItem) int {
@@ -204,7 +205,7 @@ func ingest(args []string) {
 	rigDir := filepath.Join(cacheDir(), "rigs", it.ID)
 	must(os.MkdirAll(srcDir, 0o755))
 	out := filepath.Join(srcDir, it.ID+".png")
-	rec := finishCore(*paint, rigDir, out, defMax(*it), 1, 1)
+	rec := finishCore(*paint, rigDir, out, defMax(*it), 1, 1, keepColours(it.Template, rigDir)...)
 	var pv provenance
 	_ = readJSON(*paint+".provenance.json", &pv)
 	var rg map[string]any
@@ -224,6 +225,9 @@ func ingest(args []string) {
 	dn := s.Paint.Denoise
 	if it.Denoise > 0 {
 		dn = it.Denoise
+	}
+	if pv.Denoise > 0 { // what the paint was actually made with (collect-batch sidecar)
+		dn = pv.Denoise
 	}
 	item := map[string]any{
 		"id": it.ID, "prompt": it.Prompt, "file": filepath.Join("structures", it.ID+".png"), "kind": it.Kind, "band": it.Band,
@@ -272,6 +276,13 @@ func ingest(args []string) {
 	writeJSON(famPath, fam)
 	runs := map[string]any{}
 	_ = readJSON(runsPath, &runs)
+	for k, v := range runs { // one selected candidate per item
+		if strings.HasPrefix(k, it.ID+"/") {
+			if m, ok := v.(map[string]any); ok {
+				m["selected"] = false
+			}
+		}
+	}
 	runs[fmt.Sprintf("%s/%d", it.ID, pv.Seed)] = map[string]any{"raw": *paint, "paintSha256": pv.Output, "source_sha256": rec["sha256"],
 		"source": out, "selected": true, "pick_reason": *pick, "workflow": pv.Workflow.Path, "models": models,
 		"prompt": pv.Prompt, "negative": pv.Negative, "seed": pv.Seed, "denoise": dn, "at": pv.At,
@@ -290,4 +301,24 @@ func packSheet(args []string) {
 	}
 	must(os.MkdirAll(filepath.Dir(sheetPath), 0o755))
 	sheet(files)
+}
+
+// keepColours: the template's "keep_rig" entries (hex or param names) resolved via rig.json params.
+func keepColours(template, rigDir string) []string {
+	var t struct {
+		Keep []string `json:"keep_rig"`
+	}
+	_ = readJSON(filepath.Join("art/rigs/structures", template+".json"), &t)
+	var rg struct {
+		Params map[string]any `json:"params"`
+	}
+	_ = readJSON(filepath.Join(rigDir, "rig.json"), &rg)
+	var out []string
+	for _, k := range t.Keep {
+		if v, ok := rg.Params[k].(string); ok {
+			k = v
+		}
+		out = append(out, k)
+	}
+	return out
 }

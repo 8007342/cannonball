@@ -1,5 +1,6 @@
 {
   "template": "utility_pole",
+  "keep_rig": ["wire"],
   "notes": "Wooden utility pole, crossarm across the road axis, wires running along the road (Y) as short sagging stubs; optional transformer can.",
   "view": {"pitch": 6, "yaw": 30},
   "params": {"h": 10, "span": 5.5, "sag": 0.35, "wood": "#6e5236", "arm": "#7a5c3e", "wire": "#2a2a2a", "ins": "#7fa59a", "transformer": false, "arms": 1},

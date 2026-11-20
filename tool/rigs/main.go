@@ -18,6 +18,7 @@ import (
 	"flag"
 	"fmt"
 	"image"
+	"strings"
 
 	"image/png"
 	"math"
@@ -188,6 +189,39 @@ type rig struct {
 	Size   [2]int     `json:"size"`
 	MPP    float64    `json:"metres_per_px"`
 	Anchor [2]float64 `json:"anchor_px"`
+	BG     string     `json:"background"`
+}
+
+// keyFallback: inside the silhouette, where the paint still shows the flat background key
+// (the model dropped or moved a thin part: wires, arms, posts, rails), use the lit rig colour
+// from shade.png instead. Returns the number of pixels replaced.
+func keyFallback(col, shade *rgbaf, a []float64, bg string) int {
+	if len(bg) != 7 || shade == nil {
+		return 0
+	}
+	var k [3]float64
+	for c := 0; c < 3; c++ {
+		var v int
+		fmt.Sscanf(bg[1+2*c:3+2*c], "%02x", &v)
+		k[c] = float64(v) / 255
+	}
+	n := 0
+	for i := 0; i < col.w*col.h; i++ {
+		if a[i] < 0.05 {
+			continue
+		}
+		d := 0.0
+		for c := 0; c < 3; c++ {
+			d += math.Abs(col.p[4*i+c] - k[c])
+		}
+		if d < 0.09 { // ~8/255 per channel
+			for c := 0; c < 3; c++ {
+				col.p[4*i+c] = shade.p[4*i+c]
+			}
+			n++
+		}
+	}
+	return n
 }
 
 func finish(args []string) {
@@ -195,17 +229,81 @@ func finish(args []string) {
 	maxH := fs.Int("max", 512, "max output longest side px")
 	erode := fs.Int("erode", 1, "silhouette erosion px at render size (hides background bleed)")
 	feather := fs.Int("feather", 1, "edge feather px at render size")
+	keep := fs.String("keep", "", "comma list of hint colours that keep the rig's lit colour")
 	must(fs.Parse(args))
 	if fs.NArg() != 3 {
 		must(fmt.Errorf("finish PAINT.png RIGDIR OUT.png"))
 	}
-	rec := finishCore(fs.Arg(0), fs.Arg(1), fs.Arg(2), *maxH, *erode, *feather)
+	var kc []string
+	if *keep != "" {
+		kc = strings.Split(*keep, ",")
+	}
+	rec := finishCore(fs.Arg(0), fs.Arg(1), fs.Arg(2), *maxH, *erode, *feather, kc...)
 	j, _ := json.Marshal(rec)
 	fmt.Println(string(j))
 }
 
 // finishCore: rig silhouette alpha + painted colour -> trimmed, downscaled sprite. Returns the record.
-func finishCore(paint, dir, out string, maxH, erode, feather int) map[string]any {
+// keepRig: pixels whose flat hint colour (hint.png, within 2/255) is one of these hex colours,
+// plus their 1 px antialiased rim, take that flat colour instead of the paint and keep their
+// full rig alpha (no erosion): thin parts the model tends to redraw or lose (wires, cables).
+// Returns the mask (nil when nothing is kept) and the count.
+func keepRig(col *rgbaf, dir string, colours []string) ([]bool, int) {
+	if len(colours) == 0 {
+		return nil, 0
+	}
+	hint := toF(load(dir + "/hint.png"))
+	var want [][3]float64
+	for _, h := range colours {
+		var r, g, b int
+		if _, err := fmt.Sscanf(strings.TrimPrefix(h, "#"), "%02x%02x%02x", &r, &g, &b); err == nil {
+			want = append(want, [3]float64{float64(r), float64(g), float64(b)})
+		}
+	}
+	W, H := col.w, col.h
+	src := make([]int, W*H) // index+1 of the matched colour
+	for i := 0; i < W*H && i < hint.w*hint.h; i++ {
+		if hint.p[4*i+3] < 0.5 {
+			continue
+		}
+		for n, w := range want {
+			ok := true
+			for c := 0; c < 3; c++ {
+				if math.Abs(hint.p[4*i+c]/hint.p[4*i+3]*255-w[c]) > 2.5 {
+					ok = false
+				}
+			}
+			if ok {
+				src[i] = n + 1
+				break
+			}
+		}
+	}
+	mask := make([]bool, W*H)
+	count := 0
+	for y := 0; y < H; y++ {
+		for x := 0; x < W; x++ {
+			m := 0
+			for dy := -1; dy <= 1 && m == 0; dy++ {
+				for dx := -1; dx <= 1 && m == 0; dx++ {
+					m = src[clamp(y+dy, 0, H-1)*W+clamp(x+dx, 0, W-1)]
+				}
+			}
+			if m == 0 || (src[y*W+x] == 0 && hint.p[4*(y*W+x)+3] >= 0.5) {
+				continue // rim only over background, never over another part
+			}
+			i := y*W + x
+			for c := 0; c < 3; c++ {
+				col.p[4*i+c] = want[m-1][c] / 255
+			}
+			mask[i] = true
+			count++
+		}
+	}
+	return mask, count
+}
+
+func finishCore(paint, dir, out string, maxH, erode, feather int, keep ...string) map[string]any {
 	var r rig
 	b, err := os.ReadFile(dir + "/rig.json")
 	must(err)
@@ -217,11 +315,23 @@ func finishCore(paint, dir, out string, maxH, erode, feather int) map[string]any
 		col = resample(col, W, H)
 	}
 	a := alphaOf(clay)
+	var shade *rgbaf
+	if _, err := os.Stat(dir + "/shade.png"); err == nil {
+		shade = toF(load(dir + "/shade.png"))
+	}
+	keyed := keyFallback(col, shade, a, r.BG)
+	kmask, kept := keepRig(col, dir, keep)
+	a0 := a
 	if erode > 0 {
 		a = morph(a, W, H, erode, true)
 	}
 	if feather > 0 {
 		a = blur(a, W, H, feather)
+	}
+	for i := range kmask {
+		if kmask[i] && a0[i] > a[i] {
+			a[i] = a0[i]
+		}
 	}
 	// trim box
 	x0, y0, x1, y1 := W, H, -1, -1
@@ -267,11 +377,12 @@ func finishCore(paint, dir, out string, maxH, erode, feather int) map[string]any
 	sx, sy := float64(ow)/float64(cw), float64(oh)/float64(ch)
 	sum := save(out, res)
 	rec := map[string]any{
-		"size":         []int{ow, oh},
-		"anchor":       []float64{math.Round((r.Anchor[0]-float64(x0))*sx*10) / 10, math.Round((r.Anchor[1]-float64(y0))*sy*10) / 10},
-		"worldWidthM":  math.Round(float64(cw)*r.MPP*100) / 100,
-		"worldHeightM": math.Round(float64(ch)*r.MPP*100) / 100,
-		"sha256":       sum,
+		"size":          []int{ow, oh},
+		"anchor":        []float64{math.Round((r.Anchor[0]-float64(x0))*sx*10) / 10, math.Round((r.Anchor[1]-float64(y0))*sy*10) / 10},
+		"worldWidthM":   math.Round(float64(cw)*r.MPP*100) / 100,
+		"worldHeightM":  math.Round(float64(ch)*r.MPP*100) / 100,
+		"sha256":        sum,
+		"keyFallbackPx": keyed, "keptPx": kept,
 	}
 	return rec
 }
