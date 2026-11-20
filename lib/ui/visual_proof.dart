@@ -610,7 +610,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     } else {
       _keys.add(event.logicalKey);
     }
-    if (!_tilt) {
+    // Only the steering keys steer: pressing or releasing the brake key
+    // while the mouse holds the rim must not zero the rim's steering.
+    final steeringKey =
+        event.logicalKey == LogicalKeyboardKey.arrowLeft ||
+        event.logicalKey == LogicalKeyboardKey.arrowRight;
+    if (!_tilt && steeringKey) {
       _race.digitalSteering = true;
       _race.steering =
           (_keys.contains(LogicalKeyboardKey.arrowRight) ? 1.0 : 0) -

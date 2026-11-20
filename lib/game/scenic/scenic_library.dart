@@ -64,6 +64,41 @@ class ScenicLibrary {
         f,
   ];
   bool hasSurface(String id) => _surfaces.containsKey(id);
+
+  /// Mean colour (ARGB) of each measured surface texture: what its mip
+  /// chain converges to in the distance. The renderer continues the
+  /// textured ground beyond the mesh in this colour, so the far terrain
+  /// meets the textured terrain without a seam.
+  final Map<String, int> _means = {};
+  int? meanColor(String id) => _means[id];
+
+  /// Measures [meanColor] for every surface not yet measured.
+  Future<void> measureSurfaces() async {
+    for (final entry in _surfaces.entries.toList()) {
+      if (_means.containsKey(entry.key)) continue;
+      final image = entry.value.image;
+      final data = await image.toByteData();
+      if (data == null) continue;
+      _means[entry.key] = meanOf(data, image.width * image.height);
+    }
+  }
+
+  /// Average of opaque-weighted RGBA8 pixels, sampled on a sparse lattice.
+  static int meanOf(ByteData rgba, int pixels) {
+    final step = math.max(1, pixels ~/ 4096);
+    var r = 0.0, g = 0.0, b = 0.0, weight = 0.0;
+    for (var i = 0; i < pixels; i += step) {
+      final a = rgba.getUint8(i * 4 + 3) / 255;
+      r += rgba.getUint8(i * 4) * a;
+      g += rgba.getUint8(i * 4 + 1) * a;
+      b += rgba.getUint8(i * 4 + 2) * a;
+      weight += a;
+    }
+    if (weight <= 0) return 0xff808080;
+    int c(double v) => (v / weight).round().clamp(0, 255);
+    return 0xff000000 | c(r) << 16 | c(g) << 8 | c(b);
+  }
+
   ScenicSurface? surface(String id) => _surfaces[id];
   Iterable<String> get surfaceIds => _surfaces.keys;
 
@@ -280,5 +315,6 @@ class ScenicLibrary {
     _owned.clear();
     _atlases.clear();
     _surfaces.clear();
+    _means.clear();
   }
 }

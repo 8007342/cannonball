@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:cannonball/app/wheel_input.dart';
 import 'package:cannonball/ui/wheel_control.dart';
+import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -170,6 +171,33 @@ void main() {
       expect(steer.last, 0);
     },
   );
+
+  testWidgets('a mouse drag on the rim reaches full lock on screen', (
+    tester,
+  ) async {
+    final steer = <double>[], brake = <bool>[];
+    final origin = await mountWheel(tester, steer, brake);
+    final g = WheelGeometry(const Size(800, 400));
+    // Left rim at mid-height, dragged up along the circle by .3 rad.
+    Offset rim(double angle) =>
+        origin + g.center + Offset(math.cos(angle), math.sin(angle)) * g.radius;
+    final mouse = await tester.startGesture(
+      rim(math.pi),
+      kind: PointerDeviceKind.mouse,
+    );
+    await mouse.moveTo(rim(math.pi + .3));
+    expect(steer.last, closeTo(.3 / WheelGeometry.mouseFullLock, 1e-3));
+    await mouse.moveTo(rim(math.pi + .5));
+    expect(steer.last, 1, reason: 'full lock within the visible rim');
+    await mouse.up();
+    expect(steer.last, 0);
+    // Touch keeps the reviewed angular gain.
+    final touch = await tester.startGesture(rim(math.pi));
+    await touch.moveTo(rim(math.pi + .3));
+    expect(steer.last, closeTo(.3 / WheelGeometry.touchFullLock, 1e-3));
+    await touch.up();
+    expect(brake, isEmpty);
+  });
 
   test('angular wrap takes the short path across the left rim', () {
     expect(

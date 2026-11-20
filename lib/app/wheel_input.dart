@@ -25,8 +25,21 @@ class WheelGeometry {
 
   /// The optional travel comparison uses a 160 logical-pixel tangential stroke
   /// to full steering. This is a playtest hypothesis, not a physical thumb size.
-  double steeringDelta(double from, double to, {bool travel = false}) =>
-      angleDelta(from, to) * (travel ? radius / 160 : 1 / .85);
+  ///
+  /// A desktop mouse drags the rim at the screen's side edge, where only
+  /// about ±.6 rad of the circle is on screen: at the touch gain (full lock
+  /// per .85 rad) a drag from mid-height could not reach full lock before
+  /// leaving the window. Mouse drags therefore reach full lock in
+  /// [mouseFullLock] radians (~260 px of rim on a 720 px screen).
+  static const touchFullLock = .85, mouseFullLock = .45;
+  double steeringDelta(
+    double from,
+    double to, {
+    bool travel = false,
+    bool mouse = false,
+  }) =>
+      angleDelta(from, to) *
+      (travel ? radius / 160 : 1 / (mouse ? mouseFullLock : touchFullLock));
   bool onRim(Offset point) =>
       ((point - center).distance - radius).abs() <= touchHalfWidth;
   bool inSteeringGuard(Offset point) {

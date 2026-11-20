@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart';
@@ -47,6 +48,7 @@ class _WheelControlState extends State<WheelControl>
   final Map<int, double> _turns = {};
   final Set<int> _brakes = {};
   final Set<int> _neutral = {};
+  final Set<int> _mice = {};
   Timer? _brakeRelease;
   double _turn = 0;
   ui.Image? _skin;
@@ -79,6 +81,7 @@ class _WheelControlState extends State<WheelControl>
   }
 
   void _down(PointerDownEvent e, WheelGeometry g) {
+    if (e.kind == PointerDeviceKind.mouse) _mice.add(e.pointer);
     if (widget.visible && g.onRim(e.localPosition)) {
       _angles[e.pointer] = g.angle(e.localPosition);
       _turns[e.pointer] = _turn;
@@ -107,7 +110,12 @@ class _WheelControlState extends State<WheelControl>
     final next = g.angle(e.localPosition);
     _turns[e.pointer] =
         ((_turns[e.pointer] ?? 0) +
-                g.steeringDelta(previous, next, travel: widget.travelSteering))
+                g.steeringDelta(
+                  previous,
+                  next,
+                  travel: widget.travelSteering,
+                  mouse: _mice.contains(e.pointer),
+                ))
             .clamp(-1, 1);
     _angles[e.pointer] = next;
     setState(
@@ -118,6 +126,7 @@ class _WheelControlState extends State<WheelControl>
 
   void _up(int pointer) {
     _neutral.remove(pointer);
+    _mice.remove(pointer);
     final wasSteering = _angles.remove(pointer) != null;
     if (wasSteering) {
       _turns.remove(pointer);

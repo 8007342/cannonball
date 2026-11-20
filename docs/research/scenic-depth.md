@@ -44,14 +44,21 @@ These are measured from the road edge.
   `zNear/zFar` times a near object's (the test checks for less than 1/30). A
   farm 300 m out stays on screen for more than 8 s at top speed. Far objects
   have their own pass, painted back to front by true distance (`dz²+dx²`)
-  before near/mid objects. Beyond the mesh they clip at the last crest line,
-  so a hill hides them. They fade in over the last 24% of the window with a
+  before near/mid objects. Beyond the road mesh, a far-ground extension
+  (36 geometric depth samples out to the far band's end, plus a skirt to the
+  horizon) continues the terrain at its exaggerated elevation. It is drawn
+  in the ground textures' mean colour and fades toward the distance haze, so
+  far sprites stand on drawn ground and a crest in front hides them through
+  the same clip chain (`test/scenic_grounding_test.dart`). They fade in over the last 24% of the window with a
   0.9 peak opacity. Only far sprites get a 1.7× artistic size boost. Their
   positions stay metric, so the parallax rate is unchanged.
 - **Vista (>600 m)** is a wrapped horizon strip, 2.6 screens wide. Its offset
   is `-projection·heading·halfScreen`, using the absolute road heading from
   `ProofRoadFrame`. It moves only when the road turns and never with speed.
-  Each zone gets five vista slots, and zones cross-fade over 300 units. When
+  Each zone gets five vista slots, and zones cross-fade over 300 units.
+  The strip's base sits on the furthest far-ground line (or the horizon,
+  whichever is higher on screen). Its foot fades into that ground's colour,
+  not into a pale haze band. When
   a zone has vista sprites they replace the shared painted hills. Otherwise
   the hills stay, now also driven by heading instead of lateral position.
 - Animated sprites (`frames`) change frame at 0.45 Hz for animals (grazing)
@@ -131,7 +138,16 @@ their own profiles:
   therefore matters, and the advantage it buys is deterministic. Legacy
   bends (≤ .08) are untouched. The cruising assist still releases above
   .026.
-- The radio warns "Hairpin ahead" 60–260 units before a hairpin.
+- The radio warns "Hairpin ahead" 60–340 units before a hairpin (about 4 s
+  at top speed). An advance sign and chevrons stand 200, 130, 80 and 35 units
+  before it, on the outside of the bend.
+- Steering into a marked hairpin cancels up to 22% of its extra demand
+  (`RaceController.hairpinAssist`, scaled by the square root of the steering
+  share). Beyond the road edge the shoulder pushes back by up to 0.9
+  half-widths/s (`edgeReturn`). Without braking, the car still leaves the road
+  at top speed (tested). `test/mouse_pilot_test.dart` checks that a delayed,
+  rate-limited pilot that only brakes moderately stays on the road in every
+  level.
 - Slopes stay under 23 elevation units per course unit. The existing ±0.24
   pitch clamp holds at every flow preset.
 
