@@ -58,6 +58,8 @@ class LevelProfile {
     this.rises = const [],
     this.sections = const [],
     this.legacy = false,
+    this.relief = 1,
+    this.riseRelief = 1,
   });
   final String id;
   final TerrainCharacter character;
@@ -70,6 +72,33 @@ class LevelProfile {
 
   /// Hudson keeps the reviewed shared course exactly.
   final bool legacy;
+
+  /// Presentation-only vertical exaggeration. A faithful projection at the
+  /// velocity flow scale moves a 1500-unit crest only ~20 px, so hills read
+  /// as gentle undulation. The renderer multiplies [hills] (crests and dips)
+  /// by this factor (see [visualElevationAt]); the controller's grade, speed
+  /// and steering keep using [elevationAt] unchanged.
+  final double relief;
+
+  /// Exaggeration of [rises] (long climbs and descents). Kept lower than
+  /// [relief]: a multi-kilometre climb already reads, and scaling it like a
+  /// crest would hold the camera at its pitch limit for whole chapters.
+  final double riseRelief;
+
+  /// Render-space elevation with [share] (0..1) of the exaggeration applied.
+  double visualElevationAt(double s, [double share = 1]) {
+    if (legacy) return ProofCourse.elevationAt(s);
+    final k = share.clamp(0.0, 1.0);
+    final hillGain = 1 + (relief - 1) * k, riseGain = 1 + (riseRelief - 1) * k;
+    var h = 0.0;
+    for (final hill in hills) {
+      h += hill.at(s) * hillGain;
+    }
+    for (final rise in rises) {
+      h += rise.at(s) * riseGain;
+    }
+    return h;
+  }
 
   /// Curvature magnitude above which a bend adds centrifugal demand that the
   /// steering authority cannot hold at top speed. Every legacy bend is below.
@@ -130,6 +159,7 @@ class LevelProfile {
   static const indiana = LevelProfile(
     id: 'indiana',
     character: TerrainCharacter.rolling,
+    relief: 9,
     bends: [
       Bend(450, 700, .04, ramp: 80),
       Bend(800, 1050, -.06, ramp: 80),
@@ -174,6 +204,7 @@ class LevelProfile {
   static const iowa = LevelProfile(
     id: 'iowa',
     character: TerrainCharacter.calm,
+    relief: 1.8,
     bends: [
       Bend(1600, 2000, .012, ramp: 150),
       Bend(3400, 3800, -.014, ramp: 150),
@@ -200,6 +231,8 @@ class LevelProfile {
   static const ohio = LevelProfile(
     id: 'ohio',
     character: TerrainCharacter.hairpins,
+    relief: 6,
+    riseRelief: 2.5,
     bends: [
       Bend(420, 620, .03, ramp: 60),
       Bend(680, 880, -.05, ramp: 60),
@@ -270,6 +303,8 @@ class LevelProfile {
   static const arizona = LevelProfile(
     id: 'arizona',
     character: TerrainCharacter.mountain,
+    relief: 6,
+    riseRelief: 3,
     bends: [
       Bend(700, 900, .045, ramp: 60),
       Bend(1080, 1230, .27, ramp: 35),

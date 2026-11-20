@@ -10,8 +10,8 @@
       "prompt": "a blank patch of worn grey asphalt paving: uniform fine grey aggregate with a few hairline cracks and darker tar patches, nothing painted on it",
       "kind": "road",
       "tileM": [
-        6,
-        6
+        2.8,
+        2.8
       ]
     },
     {
@@ -28,8 +28,8 @@
       "prompt": "pale grey concrete highway pavement slabs with straight expansion joints in a square grid and light brushed texture",
       "kind": "road",
       "tileM": [
-        4,
-        4
+        7.2,
+        9
       ],
       "seed": 3347290
     },
@@ -38,8 +38,8 @@
       "prompt": "old red brick street pavers in a running bond pattern with sandy grout",
       "kind": "road",
       "tileM": [
-        3,
-        3
+        1.6,
+        1.6
       ],
       "seed": 8200360
     },
@@ -48,8 +48,8 @@
       "prompt": "rounded grey cobblestones set in a dense irregular pattern",
       "kind": "road",
       "tileM": [
-        3,
-        3
+        2,
+        2
       ]
     },
     {
@@ -106,8 +106,8 @@
       "prompt": "weathered wooden bridge deck of parallel brown timber planks with dark gaps and iron nail heads",
       "kind": "bridge-deck",
       "tileM": [
-        3,
-        3
+        2.4,
+        2.4
       ],
       "seed": 6740900
     },

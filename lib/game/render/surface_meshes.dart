@@ -22,6 +22,16 @@ class SurfaceMeshes {
   /// velocity preset where forward and lateral scales match.
   static const worldUnitsPerMetre = 195.0;
 
+  /// Detail surfaces blended over a plain base: (base id, detail share).
+  static const underlays = <String, (String, double)>{
+    'asphalt-worn': ('asphalt-fresh', .55),
+  };
+
+  /// Lateral texture origin (metres from the road centre). Lane lines sit at
+  /// about ±1.8 m, so slab textures with a joint at u = 0 put their
+  /// longitudinal joints on the lane lines rather than down a lane.
+  static const laneOffsetM = 1.8;
+
   static final _identity = Float64List.fromList([
     1, 0, 0, 0, //
     0, 1, 0, 0, //
@@ -40,7 +50,11 @@ class SurfaceMeshes {
         ui.TileMode.repeated,
         ui.TileMode.repeated,
         _identity,
-        filterQuality: ui.FilterQuality.low,
+        // Mipmapped sampling: a 2-3 m crack or joint tile minifies to a few
+        // pixels within ~60 m, and without mips it sparkles as the road
+        // flows. The mip chain fades distant detail to the surface's mean
+        // colour instead.
+        filterQuality: ui.FilterQuality.medium,
       )
       ..isAntiAlias = false;
   }
@@ -84,7 +98,7 @@ class SurfaceMeshes {
       final h = surface.image.height.toDouble();
       final tileU = surface.tileM[0], tileV = surface.tileM[1];
       double u(double lateral) =>
-          lateral * ScenicScale.roadHalfWidthM / tileU * w;
+          (lateral * ScenicScale.roadHalfWidthM + laneOffsetM) / tileU * w;
       double v(double z) => z / worldUnitsPerMetre / tileV * h;
       int alpha(int c, double t) =>
           (c & 0x00ffffff) | ((t.clamp(0.0, 1.0) * 255).round() << 24);
@@ -113,10 +127,20 @@ class SurfaceMeshes {
       }
     }
 
-    add(sample.base, false, 1, 1);
+    // A detail texture with an underlay draws the underlay first and itself
+    // on top at a fixed share, so its cracks and patches read as wear on a
+    // sound road rather than a shattered one.
+    void surface(String id, bool overlay, double tn, double tf) {
+      final under = underlays[id];
+      if (under == null) return add(id, overlay, tn, tf);
+      add(under.$1, overlay, tn, tf);
+      add(id, true, tn * under.$2, tf * under.$2);
+    }
+
+    surface(sample.base, false, 1, 1);
     final overlay = sample.overlay;
     if (overlay != null && overlay != sample.base) {
-      add(overlay, true, nearT, farT);
+      surface(overlay, true, nearT, farT);
     }
   }
 

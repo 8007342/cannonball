@@ -171,16 +171,44 @@ class ProofTerrain {
     return centers[index] + (centers[index + 1] - centers[index]) * fraction;
   }
 
+  /// Simulation elevation (controller grade and speed). Never exaggerated.
   double elevationAt(double s) => profile.elevationAt(s);
+
+  /// 0..1 share of the level's [LevelProfile.relief] the renderer applies.
+  /// Comfort mode lowers it so crests and dips stay readable but gentler.
+  double reliefScale = 1;
+
+  /// Render-space elevation: the road, ground, scenery, traffic, lights and
+  /// the camera all use this so everything stays grounded on the slope.
+  double visualElevationAt(double s) =>
+      profile.visualElevationAt(s, reliefScale);
 
   /// Extra centrifugal demand of hairpins (half-widths/s at top speed).
   double cornerDemandAt(double s) => profile.cornerDemandAt(s);
   String sectionAt(double s) => profile.sectionAt(s);
+
+  /// Render-space grade (visual elevation) for the grounded car pose.
   double gradeAt(double s, double scale) =>
-      (elevationAt(s + 5) - elevationAt(s - 5)) / (10 * scale);
-  double pitchAt(double s, double scale) =>
-      ((elevationAt(s + 60) - elevationAt(s - 60)) / (120 * scale) * 1.8).clamp(
-        -.24,
-        .24,
-      );
+      (visualElevationAt(s + 5) - visualElevationAt(s - 5)) / (10 * scale);
+
+  /// Camera pitch follows the render-space grade through a soft limit, so a
+  /// steep exaggerated climb never saturates into a hard snap at a crest.
+  /// It follows less than the road rises, which leaves crests, walls and
+  /// valleys visible instead of levelling them out.
+  static const maxPitch = .26, pitchFollow = 1.1;
+  double pitchAt(double s, double scale) {
+    if (!scale.isFinite || scale <= 0) return 0;
+    final grade =
+        (visualElevationAt(s + 60) - visualElevationAt(s - 60)) / (120 * scale);
+    // Unexaggerated levels (Hudson's reviewed baseline, flat Chicago) keep
+    // the original linear follow and clamp exactly.
+    if (profile.relief == 1 && profile.riseRelief == 1) {
+      return (grade * 1.8).clamp(-.24, .24);
+    }
+    final x = grade * pitchFollow / maxPitch;
+    if (!x.isFinite) return 0;
+    // tanh without dart:math's missing helper.
+    final e = math.exp(-2 * x.abs().clamp(0.0, 20.0));
+    return maxPitch * x.sign * (1 - e) / (1 + e);
+  }
 }

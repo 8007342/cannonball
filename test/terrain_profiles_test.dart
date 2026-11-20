@@ -161,7 +161,16 @@ void main() {
         for (var s = 0.0; s < 9000; s += 7) {
           final pitch = t.pitchAt(s, flow);
           expect(pitch.isFinite, isTrue);
-          expect(pitch.abs(), lessThanOrEqualTo(.24));
+          expect(pitch.abs(), lessThanOrEqualTo(ProofTerrain.maxPitch));
+          // No snaps at the shipped velocity preset: the target pitch
+          // changes gradually along the road (about 100 units per second).
+          if (flow == 168) {
+            expect(
+              (t.pitchAt(s + 1, flow) - pitch).abs(),
+              lessThan(.012),
+              reason: '${l.id} pitch step at $s',
+            );
+          }
           expect(t.gradeAt(s, flow).isFinite, isTrue);
         }
       }

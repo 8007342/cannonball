@@ -1114,7 +1114,12 @@ class SceneCar(Car):
         sw.data.materials.append(M['trim']); smooth_all(sw); self.outlined.append(sw)
 
     def open_door(self):
-        P = self.P; cab = P['cabin']
+        """Cut the driver door out of the body and cabin shells, give it real thickness
+        (outer skin keeps the toon body paint, the inside becomes a darker trimmed panel with
+        an armrest, pull handle, release lever and speaker) and swing it on its front hinge.
+        Without thickness the camera, which stands behind the open door, saw only the
+        shells' back faces: flat, untextured grey slabs."""
+        P, M = self.P, self.M; cab = P['cabin']
         d0, d1 = cab['rearTop'] + 0.06, cab['frontBase'] - 0.03
         y0, y1 = self.T(d0), self.T(d1)
         z0 = P['clearance'] + 0.10; z1 = cab['roofZ'] - 0.05
@@ -1122,18 +1127,70 @@ class SceneCar(Car):
         def pick(c, n):
             return c.x < x_in and y0 < c.y < y1 and z0 < c.z < z1 and n.x < -0.2
         hinge = Vector((-self.hw(d1) * 0.98, y1, 0))
-        R = Matrix.Rotation(math.radians(-62), 3, 'Z')
-        for ob in (self.body, self.cabin):
+        ang = math.radians(-62)
+        R = Matrix.Rotation(ang, 3, 'Z')
+        if 'door_panel' not in M:
+            M['door_panel'] = toon('door_panel', '#4d4641', gloss=0.10, env=0.06, hint='#504038')
+            M['door_cap'] = toon('door_cap', '#24211f', gloss=0.20, env=0.10, hint='#302820')
+            M['door_insert'] = toon('door_insert', '#7a6f63', gloss=0.05, env=0.04, hint='#706050')
+        parts = []
+        skin_z = []          # (z, inner x) samples of the door skin for placing the trim
+        for ob, thick, inner in ((self.body, 0.07, 'door_panel'), (self.cabin, 0.03, 'door_cap')):
             p = self._split(ob, pick)
             if p is None:
                 continue
+            mats = list(p.data.materials)
+            if inner and M[inner] not in mats:
+                p.data.materials.append(M[inner])
+            sol = p.modifiers.new('door_skin', 'SOLIDIFY')
+            sol.thickness = thick; sol.offset = -1.0; sol.use_rim = True; sol.use_even_offset = True
+            evaluated_copy(p)
+            me = p.data
+            ii = list(me.materials).index(M[inner])
+            glass = list(me.materials).index(M['glass']) if M['glass'] in list(me.materials) else -1
+            for f in me.polygons:
+                # the solidified inner shell faces into the car (+x); window glass
+                # stays glass, painted window frame turns into dark trim
+                if f.normal.x > 0.35 and f.material_index != glass:
+                    f.material_index = ii
+                    if ob is self.body:
+                        skin_z.append((f.center.z, f.center.x))
+            parts.append(p)
+        if skin_z:
+            def inner_x(z, band=0.08):
+                xs = [x for zz, x in skin_z if abs(zz - z) < band] or [x for _, x in skin_z]
+                return sum(xs) / len(xs)
+            zs = [z for z, _ in skin_z]
+            lo, hi = min(zs), max(zs)
+            span = y1 - y0
+            def trim(name, sx, sy, sz, y, z, mat, bevel=0.012, inset=0.0):
+                o = new_obj(name, box_mesh(name, sx, sy, sz, bevel=bevel, seg=2), self.body.parent,
+                            (inner_x(z) + sx / 2 - 0.004 + inset, y, z))
+                o.data.materials.append(M[mat]); smooth_all(o)
+                parts.append(o)
+                return o
+            arm_z = lo + (hi - lo) * 0.62
+            # armrest running most of the door, a pull grip and a lower map pocket
+            trim('door_armrest', 0.075, span * 0.55, 0.055, y0 + span * 0.42, arm_z, 'door_cap', 0.018)
+            trim('door_grip', 0.05, 0.16, 0.035, y0 + span * 0.62, arm_z + 0.06, 'door_cap', 0.012)
+            trim('door_pocket', 0.04, span * 0.60, 0.11, y0 + span * 0.48, lo + (hi - lo) * 0.22, 'door_cap', 0.012)
+            trim('door_insert', 0.012, span * 0.62, (hi - lo) * 0.20, y0 + span * 0.46,
+                 arm_z + (hi - lo) * 0.16, 'door_insert', 0.006)
+            trim('door_sill', 0.03, span * 0.94, 0.03, y0 + span * 0.5, hi - 0.015, 'door_cap', 0.008)
+            trim('door_release', 0.02, 0.07, 0.03, y0 + span * 0.80, arm_z + 0.14, 'chrome', 0.006)
+            spk = new_obj('door_speaker', cyl_mesh('door_speaker', 0.075, 0.02, seg=28, axis='X'),
+                          self.body.parent, (inner_x(lo + 0.12) + 0.008, y0 + span * 0.80, lo + (hi - lo) * 0.24))
+            spk.data.materials.append(M['door_insert']); smooth_all(spk); parts.append(spk)
+        for p in parts:
+            # pieces live in their parent's space; swing every vertex about the hinge
+            off = p.location.copy()
             for v in p.data.vertices:
-                v.co = R @ (v.co - hinge) + hinge
-            p.data.update(); smooth_all(p); self.outlined.append(p)
+                v.co = R @ (v.co + off - hinge) + hinge - off
+            p.data.update(); self.outlined.append(p)
         for ob in list(self.roll.children):
             if ob.name.startswith(('mirror', 'stalk')) and ob.location.x < 0:
                 ob.location = R @ (ob.location - hinge) + hinge
-                ob.rotation_euler = (0, 0, math.radians(-62))
+                ob.rotation_euler = (0, 0, ang)
 
 
 def inside_materials(M, hex_colour='#3b3633'):

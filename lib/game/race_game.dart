@@ -374,6 +374,8 @@ class RaceGame extends FlameGame {
       _presentationTime += dt.clamp(0, .25);
     }
     if (_course) {
+      // Comfort mode keeps the exaggerated relief at half strength.
+      terrain.reliefScale = controller.comfortMode ? .5 : 1;
       controller.proofPresentationScale = _flowScale;
       controller.proofTrafficPreview = ProofDepth.preview(_flowScale);
     }
@@ -439,7 +441,7 @@ class RaceGame extends FlameGame {
       ? terrain.centerAt(_courseAt(z))
       : controller.centerAt((z - _worldOffset) / _flowScale) * 8;
   double _elevation(double z) {
-    if (_course) return terrain.elevationAt(_courseAt(z));
+    if (_course) return terrain.visualElevationAt(_courseAt(z));
     if (proofMode) {
       return math.sin(z / 5900) * 620 + math.sin(z / 2750) * 115;
     }
@@ -1065,6 +1067,10 @@ class RaceGame extends FlameGame {
           const Color(0xffd1d8bb),
           fade,
         )!.toARGB32();
+        // The ground reaches the screen edges at every depth, so a crest
+        // raised above the horizon reads as a hillside rather than a ridge
+        // of road floating in front of the sky and vista.
+        final reachNear = _groundReach(a), reachFar = _groundReach(b);
         _surfaceStrip(
           meshes,
           'ground',
@@ -1073,10 +1079,12 @@ class RaceGame extends FlameGame {
           b,
           worldZ,
           nextWorldZ,
-          -7,
-          7,
+          -reachFar,
+          reachFar,
           (id, z, lateral) =>
               _material(id == 'meadow' ? color : haze, z, lateral.sign * 2),
+          nearLeft: -reachNear,
+          nearRight: reachNear,
         );
         final wNear = surfaces.shoulderWidthAt(sNear);
         final wFar = surfaces.shoulderWidthAt(sFar);
@@ -1346,7 +1354,13 @@ class RaceGame extends FlameGame {
     if (_course) {
       // The finite ribbon ends inside this narrow horizon-colored veil. World
       // objects independently fade over the last24% of their visible depth.
-      final y = _h * (horizonFraction + _viewPitch);
+      // The veil follows the ribbon's far end when it is in view, and never
+      // sits lower than the highest crest: on a raised hill the horizon line
+      // crosses the hillside, and a haze stripe there reads as a seam.
+      final last = _points[_segmentCount];
+      final horizonY = _h * (horizonFraction + _viewPitch);
+      final crestTop = math.min(last.clip, last.y);
+      final y = last.y <= last.clip ? last.y : math.min(horizonY, crestTop);
       canvas.drawRect(
         Rect.fromLTWH(0, y - _h * .025, _w, _h * .075),
         Paint()
@@ -1367,6 +1381,10 @@ class RaceGame extends FlameGame {
       );
     }
   }
+
+  double _groundReach(_RoadPoint p) => p.halfWidth <= 0
+      ? 7
+      : (((p.x - _w * .5).abs() + _w * .6) / p.halfWidth).clamp(7.0, 600.0);
 
   void _surfaceStrip(
     SurfaceMeshes meshes,
@@ -2016,8 +2034,11 @@ class RaceGame extends FlameGame {
           _vehicle(canvas, object, x, p.y, width, clip, false);
           if (_course) _carLights(canvas, object, x, p.y, width, clip);
         case _Kind.player:
-          _vehicle(canvas, object, x, p.y, width, clip, true);
-          if (_course) _carLights(canvas, object, x, p.y, width, clip);
+          // Terrain between the camera and the car never hides the player,
+          // even where an exaggerated slope behind it rises on screen.
+          final open = _h + 200;
+          _vehicle(canvas, object, x, p.y, width, open, true);
+          if (_course) _carLights(canvas, object, x, p.y, width, open);
         case _Kind.bridge:
           final scale = width / 1024;
           _sprite(

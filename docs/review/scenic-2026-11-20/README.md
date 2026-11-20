@@ -15,6 +15,9 @@ captures only. Phone and user moving review (task 4.2) is still open.
 | `5-chicago-rain-night.png` | Chicago in rain after dark (the start of the city grid) |
 | `6-arizona-canyon-hairpin.png` | Arizona canyon hairpin: dirt desert floor, mesas, a saguaro stand and a white traffic roadster |
 | `7-roadster-hudson-bridge.png` | Roadster on the Hudson plank deck between water, with a neighbouring stone-arch bridge |
+| `8-ohio-crest.png` | Ohio BLIND CREST after the relief pass. Top: at about 1640 the road climbs as a wall into the sky. Bottom: at the crest (about 1840) the road drops out of sight just ahead, and the vista shows beyond |
+| `9-indiana-valley.png` | Indiana, climbing out of the 500–900 dip at about 870: the road rises far up the next swell |
+| `10-roadster-door.png` | The roadster departure door shot, re-rendered: white painted door edge, dark trim panel with armrest, pocket and speaker |
 
 ## What works
 - Depth reads well. Near furniture, mid trees and houses, the far band (farmsteads,
@@ -72,9 +75,6 @@ The pack is still deterministic: two `pack` runs give byte-identical output. The
 runtime atlas size is 14.3 MB against a 16 MB budget.
 
 ## What remains (not fixed here)
-- **Roadster departure door shot.** The door-opening cell of the electric roadster's
-  entry atlas renders untextured grey door slabs. This needs a re-render in the car
-  rig pipeline; the renderer can't fix it.
 - **Plank deck.** Still a little wavy right in front of the car. Fixing it fully
   needs perspective-correct UVs or finer depth segments.
 - **Bridge structures.** Only the plank or steel deck, the parapets and the
@@ -84,9 +84,62 @@ runtime atlas size is 14.3 MB against a 16 MB budget.
 - **Chicago at night.** The skyline vista is only a faint silhouette, with no lit
   windows (`nightEmissive` isn't used for vistas). The near city zone still reads as
   suburban: trees, a billboard and a gas station.
-- **Hills.** Crests and climbs are present but mild on screen. Unlike the curves, I
-  didn't exaggerate elevation; worth a moving review on a phone.
+- **Hills (after the polish pass).** Desktop emulation only: the comfort of the bigger
+  pitch swings still needs a moving review on a phone. Behind a crest, the backdrop
+  haze foot shows as a pale band, and one far sprite has an unfeathered side edge
+  (Indiana, near the 300 crest).
 - **Night horizon haze.** The haze between the vista and the ground is still a pale
   band at night. Darker would be better, but it now reads as mist rather than a gap.
 - **Unverified.** I didn't check radio programme audio (the window is headless) or
   phone performance with the doubled surface-mesh capacity.
+
+## Polish pass (hills, asphalt scale, roadster door)
+
+These are desktop headless captures (1280×720) of the rebuilt release preview. I
+didn't commit anything.
+
+1. **Much more noticeable hills (presentation only).**
+   - `LevelProfile.relief` multiplies the crests and dips, and `riseRelief` the
+     long climbs: Indiana 9/1, Ohio 6/2.5, Arizona 6/3, Iowa 1.8 (still calm),
+     Hudson and Chicago 1. Before this pass, a 1500-unit crest at the velocity
+     flow scale moved the road only about 20 px.
+   - The road, the ground, scenery, traffic, light occlusion and the camera all use
+     `ProofTerrain.visualElevationAt`. The controller's grade, speed and steering
+     still use the raw `elevationAt`, which is tested.
+   - Hilly levels now use a soft-limited camera pitch (tanh, maximum .26, follow
+     1.1). Hudson and Chicago keep the old linear ±.24 exactly. Comfort mode
+     applies half the relief.
+   - The ground now reaches the screen edges at every depth, so a raised crest
+     reads as a hillside, not a ribbon in front of the sky.
+   - The horizon veil follows the ribbon's far end instead of crossing the
+     hillside.
+   - The player car is never crest-clipped. A test keeps every visual slope below
+     the camera-height/trail limit.
+   - New tests in `test/terrain_relief_test.dart` check the screen-space road rise
+     at the Ohio crest, sight lines over the crests and down into the Indiana dip,
+     the hilly-versus-calm ordering, comfort mode, determinism, and that Hudson is
+     unchanged. A pitch-step bound was added to the terrain-profile test.
+2. **Worn asphalt scale.**
+   - `tileM` values, in both the manifest and the family spec: asphalt-worn 6 → 2.8 m,
+     concrete 4 → 7.2×9 m (lane-wide slabs whose joints sit on the lane lines through
+     `SurfaceMeshes.laneOffsetM`), brick 3 → 1.6 m, cobblestone 3 → 2 m, plank deck
+     3 → 2.4 m.
+   - Surfaces sample with mipmaps (`FilterQuality.medium`), so distant detail fades
+     to its mean colour instead of sparkling.
+   - The zone default is now fresh asphalt. Four rural zones use worn asphalt,
+     drawn at 55 % over a fresh base, so they read as wear rather than a shattered
+     road. Tested in `test/road_texture_scale_test.dart`.
+3. **Roadster door.**
+   - `SceneCar.open_door` now solidifies the cut door. The outer skin and edge keep
+     the toon body paint. The inside is a darker trim panel with an armrest, grip,
+     map pocket, insert, sill, chrome release and speaker, and the window frame
+     turns to dark trim.
+   - I re-framed the door camera in `poses.json`.
+   - I re-rendered with `lua art/rigs/cars/run.lua scenes`. Only
+     `electric_roadster-entry.png` changed, along with the hashes and sources in
+     `electric_roadster-scenes.json`. The exterior and cabin renders came out
+     byte-identical.
+
+Checks I ran: dart format, flutter analyze, flutter test (220 tests),
+`flutter build web --release`, `openspec validate --all --strict`,
+`node --test web/*.test.mjs`, and the services/api test and check (dry run).
