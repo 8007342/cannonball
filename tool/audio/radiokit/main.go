@@ -493,7 +493,7 @@ func cmdCatalog() error {
 	}
 	programme := map[string]any{
 		"version": 1, "about": "Wordless ACE-Step radio songs joined by hard radio cuts: song -> buzz -> interjection -> buzz -> another song. See art/music/README.md.",
-		"rules":    map[string]any{"recentSongs": 10, "recentLines": 8, "stayOnStation": 0.55, "identEvery": 2},
+		"rules":    map[string]any{"recentSongs": 10, "recentLines": 8, "identEvery": 2},
 		"stations": stations, "songs": songs, "buzz": buzzes, "interjections": lines,
 	}
 	var cat map[string]json.RawMessage

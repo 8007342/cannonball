@@ -82,6 +82,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   String _lastRadio = '';
   String _departureShot = 'keys';
   String _station = '';
+  bool _closureAhead = false;
+  double _closureReportAt = -100;
   final _radioDirector = ProofRadioDirector();
   String? _artError;
   int _renderBaseline = 0, _updateBaseline = 0;
@@ -313,6 +315,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _lastHudTime = -1;
     _lastRadio = '';
     _station = '';
+    _closureAhead = false;
+    _closureReportAt = -100;
     _departureShot = 'keys';
     _radioDirector.reset();
     _renderBaseline = _game?.renderCount ?? 0;
@@ -334,10 +338,20 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       _reset();
       unawaited(_game?.setPlayerCar(chosen.id));
     }
-    unawaited(_platform.beginAudio());
+    _wakeRadio();
     _race.paused = true;
     _phase.value = _ProofPhase.departing;
     _departureShot = 'reach';
+  }
+
+  /// One continuous soundtrack for the whole demo: the radio comes on with the
+  /// first gesture in the garage (browser autoplay rules) and stays on air
+  /// through the departure, all six levels, chapter replays, restarts and the
+  /// completion screen. Only mute, station skip and an explicit pause touch it.
+  void _wakeRadio() {
+    if (_muted || _phase.value == _ProofPhase.paused) return;
+    unawaited(_platform.beginAudio());
+    _platform.holdRadio(false);
   }
 
   /// Programme caption (presenter line or now playing), else the last report.
@@ -375,6 +389,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     }
     _resetInput();
     unawaited(_platform.beginAudio());
+    _platform.holdRadio(false);
     _race.paused = false;
     _platform.pause(false);
     _phase.value = _ProofPhase.driving;
@@ -394,6 +409,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _resetInput();
     _race.paused = true;
     _platform.pause(true);
+    _platform.holdRadio(true); // resumes the same song at the same position
     _phase.value = _ProofPhase.paused;
   }
 
@@ -439,28 +455,52 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       intensity: (_race.speed / _race.car.topSpeed).clamp(0, 1),
       region: station,
     );
+    final detourClosed = _race.approachingFork && _race.closedBranchId != null;
+    final laneClosed =
+        _race.closedLane != null && _race.edgeDistance < _race.closureEnd;
+    final closure = detourClosed || laneClosed;
     if (station != _station) {
+      // Level start, level select, chapter replay or restart: the report
+      // waits for the next natural break so the current song keeps flowing.
       _station = station;
-      final report = _radioDirector.choose(
-        station: station,
-        weather: _race.weather.name,
-        trafficCount: _race.traffic.length,
-        detourClosed: _race.approachingFork && _race.closedBranchId != null,
-        laneClosed:
-            _race.closedLane != null && _race.edgeDistance < _race.closureEnd,
-      );
-      _lastRadio = report.text;
-      _platform.radioBreak(
-        text: report.text,
-        station: report.station,
-        urgent: report.urgent,
-      );
-      _hud.value++;
+      _closureAhead = closure;
+      _report(station, detourClosed, laneClosed, cutIn: false);
+    } else if (closure && !_closureAhead) {
+      // A closure appearing mid-level cuts in (then the song resumes).
+      _closureAhead = true;
+      if (_race.elapsed - _closureReportAt >= 30) {
+        _closureReportAt = _race.elapsed;
+        _report(station, detourClosed, laneClosed, cutIn: true);
+      }
+    } else if (!closure) {
+      _closureAhead = false;
     }
     if (_race.elapsed - _lastHudTime >= .1) {
       _lastHudTime = _race.elapsed;
       _hud.value++;
     }
+  }
+
+  void _report(
+    String station,
+    bool detourClosed,
+    bool laneClosed, {
+    required bool cutIn,
+  }) {
+    final report = _radioDirector.choose(
+      station: station,
+      weather: _race.weather.name,
+      trafficCount: _race.traffic.length,
+      detourClosed: detourClosed,
+      laneClosed: laneClosed,
+    );
+    _lastRadio = report.text;
+    _platform.radioBreak(
+      text: report.text,
+      station: report.station,
+      urgent: cutIn && report.urgent,
+    );
+    _hud.value++;
   }
 
   @override
@@ -502,6 +542,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   }
 
   void _key(KeyEvent event) {
+    if (event is KeyDownEvent) _wakeRadio();
     if (event is KeyDownEvent) {
       final index = const [
         LogicalKeyboardKey.keyQ,
@@ -569,7 +610,12 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     } else {
       _keys.add(event.logicalKey);
     }
-    if (!_tilt) {
+    // Only the steering keys steer: pressing or releasing the brake key
+    // while the mouse holds the rim must not zero the rim's steering.
+    final steeringKey =
+        event.logicalKey == LogicalKeyboardKey.arrowLeft ||
+        event.logicalKey == LogicalKeyboardKey.arrowRight;
+    if (!_tilt && steeringKey) {
       _race.digitalSteering = true;
       _race.steering =
           (_keys.contains(LogicalKeyboardKey.arrowRight) ? 1.0 : 0) -
@@ -615,254 +661,267 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       focusNode: _keyboard,
       autofocus: true,
       onKeyEvent: _key,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final portrait = constraints.maxHeight > constraints.maxWidth;
-          return Stack(
-            fit: StackFit.expand,
-            children: [
-              _scene,
-              ValueListenableBuilder(
-                valueListenable: _phase,
-                builder: (context, phase, _) =>
-                    phase == _ProofPhase.driving && !portrait
-                    ? ValueListenableBuilder(
-                        valueListenable: _hud,
-                        builder: (context, _, _) => WheelControl(
-                          visible: !_tilt,
-                          appliedSteering: _race.effectiveSteering,
-                          steeringReader: () => _race.effectiveSteering,
-                          travelSteering:
-                              Uri.base.queryParameters['touch'] == 'travel',
-                          onSteer: (value) {
-                            if (!_tilt) {
-                              _race.digitalSteering = false;
-                              _race.steering = value;
-                            }
-                          },
-                          onBrake: (value) {
-                            _touchBrake = value;
-                            _race.braking =
-                                value ||
-                                _keys.contains(LogicalKeyboardKey.arrowDown) ||
-                                _keys.contains(LogicalKeyboardKey.space);
-                          },
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-              ),
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 22,
-                    vertical: 16,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'CANNONBALL',
-                                style: TextStyle(
-                                  color: cream,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 24,
-                                  letterSpacing: 4,
-                                  shadows: [
-                                    Shadow(blurRadius: 12, color: dark),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 3),
-                              PopupMenuButton<String>(
-                                tooltip: 'Choose level (Q W E R T Y)',
-                                onSelected: (id) =>
-                                    _selectLevel(ProofLevel.fromId(id)),
-                                itemBuilder: (_) => [
-                                  for (final l in ProofLevel.all)
-                                    PopupMenuItem(
-                                      value: l.id,
-                                      child: Text('${l.key}  ${l.name}'),
-                                    ),
-                                ],
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 8,
-                                  ),
-                                  child: Text(
-                                    '${widget.sequence ? '${ProofLevel.all.indexOf(_level) + 1}/6  ' : ''}${_level.key}  ${_level.name.toUpperCase()}  v',
-                                    style: const TextStyle(
-                                      color: accent,
-                                      fontSize: 9,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+      child: Listener(
+        behavior: HitTestBehavior.translucent,
+        onPointerDown: (_) => _wakeRadio(),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final portrait = constraints.maxHeight > constraints.maxWidth;
+            return Stack(
+              fit: StackFit.expand,
+              children: [
+                _scene,
+                ValueListenableBuilder(
+                  valueListenable: _phase,
+                  builder: (context, phase, _) =>
+                      phase == _ProofPhase.driving && !portrait
+                      ? ValueListenableBuilder(
+                          valueListenable: _hud,
+                          builder: (context, _, _) => WheelControl(
+                            visible: !_tilt,
+                            appliedSteering: _race.effectiveSteering,
+                            steeringReader: () => _race.effectiveSteering,
+                            travelSteering:
+                                Uri.base.queryParameters['touch'] == 'travel',
+                            onSteer: (value) {
+                              if (!_tilt) {
+                                _race.digitalSteering = false;
+                                _race.steering = value;
+                              }
+                            },
+                            onBrake: (value) {
+                              _touchBrake = value;
+                              _race.braking =
+                                  value ||
+                                  _keys.contains(
+                                    LogicalKeyboardKey.arrowDown,
+                                  ) ||
+                                  _keys.contains(LogicalKeyboardKey.space);
+                            },
                           ),
-                          const Spacer(),
-                          ValueListenableBuilder(
-                            valueListenable: _hud,
-                            builder: (context, _, _) => Row(
+                        )
+                      : const SizedBox.shrink(),
+                ),
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 22,
+                      vertical: 16,
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                _utility(
-                                  _muted
-                                      ? Icons.volume_off_outlined
-                                      : Icons.volume_up_outlined,
-                                  _muted ? 'Enable sound' : 'Mute sound',
-                                  _toggleSound,
+                                Text(
+                                  'CANNONBALL',
+                                  style: TextStyle(
+                                    color: cream,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 24,
+                                    letterSpacing: 4,
+                                    shadows: [
+                                      Shadow(blurRadius: 12, color: dark),
+                                    ],
+                                  ),
                                 ),
-                                _utility(
-                                  Icons.radio,
-                                  'Change radio station',
-                                  _skipStation,
+                                SizedBox(height: 3),
+                                PopupMenuButton<String>(
+                                  tooltip: 'Choose level (Q W E R T Y)',
+                                  onSelected: (id) =>
+                                      _selectLevel(ProofLevel.fromId(id)),
+                                  itemBuilder: (_) => [
+                                    for (final l in ProofLevel.all)
+                                      PopupMenuItem(
+                                        value: l.id,
+                                        child: Text('${l.key}  ${l.name}'),
+                                      ),
+                                  ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 8,
+                                    ),
+                                    child: Text(
+                                      '${widget.sequence ? '${ProofLevel.all.indexOf(_level) + 1}/6  ' : ''}${_level.key}  ${_level.name.toUpperCase()}  v',
+                                      style: const TextStyle(
+                                        color: accent,
+                                        fontSize: 9,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                _utility(
-                                  Icons.camera_alt_outlined,
-                                  'Change camera',
-                                  _cycleCamera,
+                              ],
+                            ),
+                            const Spacer(),
+                            ValueListenableBuilder(
+                              valueListenable: _hud,
+                              builder: (context, _, _) => Row(
+                                children: [
+                                  _utility(
+                                    _muted
+                                        ? Icons.volume_off_outlined
+                                        : Icons.volume_up_outlined,
+                                    _muted ? 'Enable sound' : 'Mute sound',
+                                    _toggleSound,
+                                  ),
+                                  _utility(
+                                    Icons.radio,
+                                    'Change radio station',
+                                    _skipStation,
+                                  ),
+                                  _utility(
+                                    Icons.camera_alt_outlined,
+                                    'Change camera',
+                                    _cycleCamera,
+                                  ),
+                                  _utility(
+                                    Icons.blur_on,
+                                    'Toggle speed effects',
+                                    _toggleSpeedEffects,
+                                    active: _game?.speedEffects ?? false,
+                                  ),
+                                  _utility(
+                                    Icons.screen_rotation,
+                                    _tilt ? 'Disable tilt' : 'Enable tilt',
+                                    _toggleTilt,
+                                    active: _tilt,
+                                  ),
+                                  _utility(
+                                    Icons.closed_caption_outlined,
+                                    _captions
+                                        ? 'Hide radio captions'
+                                        : 'Show radio captions',
+                                    () {
+                                      _captions = !_captions;
+                                      _hud.value++;
+                                    },
+                                    active: _captions,
+                                  ),
+                                  _utility(
+                                    Icons.pause,
+                                    'Pause test drive',
+                                    () => _pause(true),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        ValueListenableBuilder(
+                          valueListenable: _hud,
+                          builder: (context, _, _) =>
+                              _captions && _radioCaption.isNotEmpty
+                              ? Padding(
+                                  padding: const EdgeInsets.only(bottom: 18),
+                                  child: Container(
+                                    constraints: const BoxConstraints(
+                                      maxWidth: 600,
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 14,
+                                      vertical: 8,
+                                    ),
+                                    color: dark.withValues(alpha: .8),
+                                    child: Text(
+                                      _radioCaption,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color: cream,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                        ),
+                        ValueListenableBuilder(
+                          valueListenable: _hud,
+                          builder: (context, _, _) => IgnorePointer(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                _stat(
+                                  _race.speed.round().toString().padLeft(
+                                    3,
+                                    '0',
+                                  ),
+                                  'MPH',
                                 ),
-                                _utility(
-                                  Icons.blur_on,
-                                  'Toggle speed effects',
-                                  _toggleSpeedEffects,
-                                  active: _game?.speedEffects ?? false,
+                                const SizedBox(width: 24),
+                                _stat(
+                                  '${(duration - _race.elapsed).clamp(0, duration).ceil()}',
+                                  'SECONDS LEFT',
                                 ),
-                                _utility(
-                                  Icons.screen_rotation,
-                                  _tilt ? 'Disable tilt' : 'Enable tilt',
-                                  _toggleTilt,
-                                  active: _tilt,
-                                ),
-                                _utility(
-                                  Icons.closed_caption_outlined,
-                                  _captions
-                                      ? 'Hide radio captions'
-                                      : 'Show radio captions',
-                                  () {
-                                    _captions = !_captions;
-                                    _hud.value++;
-                                  },
-                                  active: _captions,
-                                ),
-                                _utility(
-                                  Icons.pause,
-                                  'Pause test drive',
-                                  () => _pause(true),
+                                const Spacer(),
+                                const Text(
+                                  'LEFT/RIGHT  STEER     DOWN  BRAKE\nOR DRAG THE RIM',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    fontSize: 9,
+                                    height: 1.8,
+                                    color: cream,
+                                    shadows: [
+                                      Shadow(blurRadius: 8, color: dark),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                      const Spacer(),
-                      ValueListenableBuilder(
-                        valueListenable: _hud,
-                        builder: (context, _, _) =>
-                            _captions && _radioCaption.isNotEmpty
-                            ? Padding(
-                                padding: const EdgeInsets.only(bottom: 18),
-                                child: Container(
-                                  constraints: const BoxConstraints(
-                                    maxWidth: 600,
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 14,
-                                    vertical: 8,
-                                  ),
-                                  color: dark.withValues(alpha: .8),
-                                  child: Text(
-                                    _radioCaption,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: cream,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : const SizedBox.shrink(),
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: _hud,
-                        builder: (context, _, _) => IgnorePointer(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              _stat(
-                                _race.speed.round().toString().padLeft(3, '0'),
-                                'MPH',
-                              ),
-                              const SizedBox(width: 24),
-                              _stat(
-                                '${(duration - _race.elapsed).clamp(0, duration).ceil()}',
-                                'SECONDS LEFT',
-                              ),
-                              const Spacer(),
-                              const Text(
-                                'LEFT/RIGHT  STEER     DOWN  BRAKE\nOR DRAG THE RIM',
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  fontSize: 9,
-                                  height: 1.8,
-                                  color: cream,
-                                  shadows: [Shadow(blurRadius: 8, color: dark)],
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              ValueListenableBuilder(
-                valueListenable: _phase,
-                builder: (context, phase, _) => ValueListenableBuilder(
-                  valueListenable: _ready,
-                  builder: (context, ready, _) =>
-                      (phase == _ProofPhase.ready ||
-                              phase == _ProofPhase.departing) &&
-                          !portrait
-                      ? ValueListenableBuilder(
-                          valueListenable: _hud,
-                          builder: (context, _, _) => ProofGarage(
-                            departing: phase == _ProofPhase.departing,
-                            ready: ready,
-                            reducedMotion: _platform.reducedMotion,
-                            artwork: widget.sceneBuilder == null,
-                            muted: _muted,
-                            selectedCar: _car.id,
-                            onTakeKeys: _beginDeparture,
-                            onComplete: _start,
-                            onShot: (shot) {
-                              _departureShot = shot;
-                              if (shot == 'grasp') _platform.garageCue('keys');
-                              if (const [
-                                'door',
-                                'cabin',
-                                'rear',
-                                'launch',
-                              ].contains(shot)) {
-                                _platform.garageCue(shot);
-                              }
-                            },
-                            onSound: _toggleSound,
-                          ),
-                        )
-                      : phase == _ProofPhase.driving && !portrait
-                      ? const SizedBox.shrink()
-                      : _curtain(context, phase, ready, portrait),
+                ValueListenableBuilder(
+                  valueListenable: _phase,
+                  builder: (context, phase, _) => ValueListenableBuilder(
+                    valueListenable: _ready,
+                    builder: (context, ready, _) =>
+                        (phase == _ProofPhase.ready ||
+                                phase == _ProofPhase.departing) &&
+                            !portrait
+                        ? ValueListenableBuilder(
+                            valueListenable: _hud,
+                            builder: (context, _, _) => ProofGarage(
+                              departing: phase == _ProofPhase.departing,
+                              ready: ready,
+                              reducedMotion: _platform.reducedMotion,
+                              artwork: widget.sceneBuilder == null,
+                              muted: _muted,
+                              selectedCar: _car.id,
+                              onTakeKeys: _beginDeparture,
+                              onComplete: _start,
+                              onShot: (shot) {
+                                _departureShot = shot;
+                                if (shot == 'grasp') {
+                                  _platform.garageCue('keys');
+                                }
+                                if (const [
+                                  'door',
+                                  'cabin',
+                                  'rear',
+                                  'launch',
+                                ].contains(shot)) {
+                                  _platform.garageCue(shot);
+                                }
+                              },
+                              onSound: _toggleSound,
+                            ),
+                          )
+                        : phase == _ProofPhase.driving && !portrait
+                        ? const SizedBox.shrink()
+                        : _curtain(context, phase, ready, portrait),
+                  ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     ),
   );

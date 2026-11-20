@@ -68,3 +68,10 @@ card, 8 traffic models), near-top-speed racers with a locally trained lane-chang
 policy, and a 28-song ACE-Step radio programme (`radio-programme`). Evidence:
 docs/review/scenic-2026-11-20/. Open: listening pass, physical-phone and user
 moving review, crest haze band, lit night skyline, drive-through bridge geometry.
+
+2026-11-20 follow-up: one continuous radio programme from garage to finish
+(level changes/restarts never cut songs; station changes every 1–2 songs via
+STATION_CADENCE), far ground extended to the horizon so vistas and large far
+sprites are grounded, rim/brake steering fix and mouse-playable hairpins
+(see docs/review/grounding-2026-11-20/). `game` is the integration branch:
+work/* -> game -> main. Phone and real-mouse hairpin review remain open.

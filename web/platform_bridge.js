@@ -92,7 +92,11 @@
     });
   }
 
-  let context = null, master = null, engine = null, engineGain = null;
+  let context = null, master = null, engine = null, engineGain = null, radioBus = null;
+  // The radio programme has its own bus and its own hold: gameplay pauses
+  // (garage, level changes, restarts, the completion screen) never touch it.
+  // Only an explicit listener pause (holdRadio), mute or a hidden tab does.
+  let radioHold = false;
   let audioTimer = null, nextNote = 0, step = 0, muted = false, paused = true;
   let speed = 0, intensity = 0, region = 'Atlantic', activeRegion = '';
   let theme = null, voice = null, speechEpoch = 0, speechTimer = null;
@@ -157,18 +161,19 @@
   // the catalog answers nothing else starts; if it fails the legacy prepared
   // score / oscillator fallback below plays instead.
   function programmeActive() { return proofAudio && Boolean(programme) && (programme.ready || programme.pending); }
+  function radioPaused() { return muted || Boolean(doc.hidden) || radioHold; }
 
   function scheduleMusic() {
-    if (!context || paused || muted || doc.hidden || context.state !== 'running') return;
+    if (!context || muted || doc.hidden || context.state !== 'running') return;
     if (programmeActive()) {
-      if (programme.ready) {
+      if (programme.ready && !radioHold) {
         programme.setRegion(region);
         programme.play(region);
         for (const node of [...activeNodes]) { try { node.stop(); } catch (_) {} }
       }
       return;
     }
-    if (radioPhase !== 'music') return;
+    if (paused || radioPhase !== 'music') return;
     if (proofAudio && scorePlayer) {
       if (scorePlayer.state === 'playing') return;
       scorePlayer.play(region).then(playing => {
@@ -222,6 +227,10 @@
     const silent = muted || paused || doc.hidden;
     master.gain.cancelScheduledValues(context.currentTime);
     master.gain.setTargetAtTime(silent ? 0 : 0.32, context.currentTime, 0.025);
+    if (radioBus) {
+      radioBus.gain.cancelScheduledValues(context.currentTime);
+      radioBus.gain.setTargetAtTime(radioPaused() ? 0 : 0.32, context.currentTime, 0.025);
+    }
   }
 
   async function beginAudio() {
@@ -233,6 +242,9 @@
         master = context.createGain();
         master.gain.value = 0;
         master.connect(context.destination);
+        radioBus = context.createGain();
+        radioBus.gain.value = 0;
+        radioBus.connect(context.destination);
         engine = context.createOscillator();
         engine.type = 'sawtooth';
         engine.frequency.value = 38;
@@ -248,7 +260,7 @@
           scorePlayer.prepare();
         }
         if (root.CannonballRadioProgramme && context.decodeAudioData && root.fetch) {
-          programme = new root.CannonballRadioProgramme(context, master, {
+          programme = new root.CannonballRadioProgramme(context, radioBus, {
             loadCatalog: () => scorePlayer ? scorePlayer.prepare() : null,
             speak: speakReport,
             onHalt: cancelSpeech,
@@ -259,7 +271,7 @@
       }
       programme?.unlock(); // Inside the gesture: unlock the reused media element.
       await context.resume();
-      programme?.setPaused(paused || muted || doc.hidden);
+      programme?.setPaused(radioPaused());
       nextNote = context.currentTime + 0.035;
       updateVolume();
       return context.state === 'running';
@@ -473,9 +485,11 @@
   }
 
   function setProofAudio(value) {
+    // Idempotent: re-enabling proof audio must never reset the programme.
+    if (Boolean(value) === proofAudio && programme) return;
     stopMusic();
     programme?.reset();
-    programme?.setPaused(paused || muted || doc.hidden);
+    programme?.setPaused(radioPaused());
     proofAudio = Boolean(value);
     cancelRadio();
     activeRegion = '';
@@ -488,10 +502,10 @@
 
   function pause(value) {
     paused = Boolean(value);
-    // The programme defers its pause so pause(true); pause(false) within one
-    // task (a level change) keeps the current song playing without a gap.
-    programme?.setPaused(paused || muted || doc.hidden);
-    if (paused && programmeActive()) cancelGarage(); // speech stops when the programme does
+    // Gameplay pause: engine and legacy score only. The radio programme keeps
+    // playing (see holdRadio); its own state decides whether it is on air.
+    programme?.setPaused(radioPaused());
+    if (paused && programmeActive()) cancelGarage(); // reports belong to the programme
     else if (paused) { stopMusic(); cancelSpeech(); cancelRadio(); cancelGarage(); }
     updateVolume();
     if (context && !paused) {
@@ -500,10 +514,21 @@
     }
   }
 
+  /** Explicit listener pause of the radio; resumes the same song in place. */
+  function holdRadio(value) {
+    radioHold = Boolean(value);
+    programme?.setPaused(radioPaused());
+    updateVolume();
+    if (context && !radioPaused()) context.resume().catch(() => {});
+  }
+
   function onVisibility() {
     if (doc.hidden) {
       disableTilt();
       pause(true);
+    } else {
+      programme?.setPaused(radioPaused());
+      updateVolume();
     }
     callbacks.visibility?.(Boolean(doc.hidden));
   }
@@ -587,13 +612,13 @@
       chooseVoice();
     },
     enableTilt, disableTilt, beginAudio, setAudioState, say, pause, renderGoogleButton,
-    setProofAudio, radioBreak, garageCue,
+    setProofAudio, radioBreak, garageCue, holdRadio,
     /** User station skip; false when the programme is not playing. */
     radioSkip() { return programmeActive() && programme.ready ? programme.skip() : false; },
     /** Now-playing / presenter caption, or '' when nothing is on air. */
     radioCaption() { return programmeActive() && programme.ready ? programme.label() : ''; },
     audioSnapshot() {
-      return {proofAudio, phase: radioPhase, station: radioStation, reportCount,
+      return {proofAudio, radioHold, gamePaused: paused, phase: radioPhase, station: radioStation, reportCount,
         radioVariant, surfCount, stationChanges,
         lastRadioText, trackStyle: theme?.style || 'prototype',
         prepared: scorePlayer?.snapshot() || null,
@@ -603,7 +628,7 @@
     setMuted(value) {
       muted = Boolean(value);
       if (muted) { programme?.halt(); stopMusic(); cancelSpeech(); cancelRadio(); cancelGarage(); }
-      else programme?.setPaused(paused || doc.hidden);
+      else programme?.setPaused(radioPaused());
       updateVolume();
     },
     async requestLandscape() {
@@ -638,8 +663,9 @@
       activeNodes.clear();
       if (engine) { try { engine.stop(); } catch (_) {} }
       if (context) context.close().catch(() => {});
-      context = master = engine = engineGain = audioTimer = null;
+      context = master = engine = engineGain = audioTimer = radioBus = null;
       paused = true;
+      radioHold = false;
       activeRegion = '';
       step = 0;
       listening = false;

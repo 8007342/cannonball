@@ -500,6 +500,10 @@ class ScenicPlan {
     }
   }
 
+  /// Course units before a hairpin's demand begins where its warning and
+  /// chevron signs stand.
+  static const hairpinSignOffsets = [200.0, 130.0, 80.0, 35.0];
+
   void _curveSigns(
     ScenicManifest manifest,
     LevelProfile profile,
@@ -517,16 +521,21 @@ class ScenicPlan {
       final now = demand.abs() > 1;
       if (now && !inside && s > 120 && !enclosed(s - 110)) {
         final sprite = pool[(s ~/ 2) % pool.length];
-        _bands[ScenicBand.near]!.add(
-          ScenicPlacement(
-            s - 110,
-            demand > 0 ? -1 : 1,
-            .9,
-            sprite,
-            ScenicBand.near,
-            setPiece: true,
-          ),
-        );
+        // An advance warning, then a run of chevrons on the outside of the
+        // bend up to its entry: at top speed the first is ~2.5 s out.
+        for (final before in hairpinSignOffsets) {
+          if (enclosed(s - before)) continue;
+          _bands[ScenicBand.near]!.add(
+            ScenicPlacement(
+              s - before,
+              demand > 0 ? -1 : 1,
+              .9,
+              sprite,
+              ScenicBand.near,
+              setPiece: true,
+            ),
+          );
+        }
       }
       inside = now;
     }

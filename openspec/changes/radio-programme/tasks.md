@@ -14,3 +14,12 @@
 - [x] 2.3 Urgent reports cut in; others queue and expire
 - [x] 2.4 Pause/mute/hidden, station skip, level-change continuity
 - [ ] 2.5 Physical-device validation (iOS Safari, Android Chrome)
+- [x] 2.6 One continuous programme: garage gesture to completion; level
+      advance/select, chapter replay, restart and replay never cut the song;
+      own audio bus and listener hold; pause resumes in place
+- [x] 2.7 Cadence constant (station change every 1–2 songs), phrase-boundary
+      trim for long songs, next-song preload on a spare element in the last
+      20 s, static cover for slow loads
+- [x] 2.8 Urgent mid-level bulletins return to the same song position;
+      level-start reports queue for the next break
+- [ ] 2.9 Listening pass of the continuous programme on a physical device

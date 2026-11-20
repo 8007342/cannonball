@@ -324,6 +324,20 @@ class RaceController extends ChangeNotifier {
         math.sin(position / 900) * amplitude * .14;
   }
 
+  /// Share of a hairpin's extra demand cancelled at full steering into it.
+  static const hairpinAssist = .22;
+
+  /// Forgiving road edge: beyond the painted edge the shoulder pushes the
+  /// car back towards the road (half-widths/s, signed like [x]), growing
+  /// from zero at the edge to [edgeReturnMax] at the crash line, so a
+  /// late correction recovers instead of sliding on into the scenery.
+  static const edgeReturnMax = .9;
+  static double edgeReturn(double x) {
+    final over = x.abs() - .98;
+    if (over <= 0) return 0;
+    return x.sign * edgeReturnMax * math.min(1, over / .54);
+  }
+
   void _step() {
     _stepPlayerStart = _worldDistance;
     _stepPlayerXStart = playerX;
@@ -402,17 +416,27 @@ class RaceController extends ChangeNotifier {
       );
       // Hairpins add demand beyond the bounded bend pull; braking lowers it
       // faster (ratio squared) than it lowers steering authority (linear).
-      final cornerDemand = testCourseEnabled
+      final rawDemand = testCourseEnabled
           ? proofTerrain.cornerDemandAt(courseDistance)
           : 0.0;
+      // Hairpin assist: steering into a marked hairpin cancels part of its
+      // extra demand, so a partly turned rim (mouse, touch) is enough once
+      // the car has braked. Full lock never cancels all of it: at top speed
+      // the hairpin still throws the car off without braking.
+      final into = rawDemand == 0
+          ? 0.0
+          : (safeSteering * rawDemand.sign).clamp(0.0, 1.0);
+      final cornerDemand = rawDemand * (1 - hairpinAssist * math.sqrt(into));
+      final kerb = testCourseEnabled ? edgeReturn(playerX) : 0.0;
       playerX +=
           ((safeSteering + _roadCorrection) *
-                  _car.handling *
-                  grip *
-                  (0.2 + ratio * 1.15) -
-              curveAt(_worldDistance) * ratio * ratio * .23 -
-              cornerDemand * ratio * ratio) *
-          fixedStep;
+                      _car.handling *
+                      grip *
+                      (0.2 + ratio * 1.15) -
+                  curveAt(_worldDistance) * ratio * ratio * .23 -
+                  cornerDemand * ratio * ratio) *
+              fixedStep -
+          kerb * fixedStep;
       playerX = playerX.clamp(-1.65, 1.65);
       if (playerX.abs() > 1.02) {
         _speed = math.max(24, _speed - 52 * fixedStep);
@@ -512,7 +536,8 @@ class RaceController extends ChangeNotifier {
 
   void _advisories() {
     if (testCourseEnabled && courseDistance > _hairpinAnnouncedUntil) {
-      for (var ahead = 60.0; ahead <= 260; ahead += 20) {
+      // Spoken about 4 s out at top speed, before the first chevron.
+      for (var ahead = 60.0; ahead <= 340; ahead += 20) {
         if (proofTerrain.cornerDemandAt(courseDistance + ahead).abs() > 1) {
           _hairpinAnnouncedUntil = courseDistance + ahead + 200;
           _say('Hairpin ahead. Brake before the turn.', 3, 3);

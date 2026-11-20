@@ -35,15 +35,52 @@ buffers.
 
 #### Scenario: urgent report
 - **WHEN** a closure, worksite, snow or rain report is issued mid-song
-- **THEN** the song is cut at once for buzz, the captioned report and buzz;
-  non-urgent reports wait for the next break and expire if it is far away
+- **THEN** the song pauses in place for buzz, the captioned report and buzz,
+  then the same song resumes at the same position; non-urgent reports wait
+  for the next break and expire if it is far away
+
+### Requirement: Station cadence
+Every song SHALL end in a programme break, and the programme SHALL change
+station roughly every one to two songs: a station visit plays between one and
+a single tunable maximum (default two) songs before an eligible different
+station is chosen, unless that would replay a recent song. Songs longer than
+the configured maximum SHALL fade into the break at a phrase boundary and SHALL
+play for at least 60 seconds.
+
+#### Scenario: station visit ends
+- **WHEN** a station has played its drawn number of songs (at most the cadence)
+- **THEN** the next break tunes to a different eligible station with its ident
+
+#### Scenario: gapless break
+- **WHEN** the current song enters its last 20 seconds
+- **THEN** the next song buffers on a second media element and the break's
+  clips are already decoded, and a stream that is still not ready is covered
+  by static rather than silence
 
 ### Requirement: Radio playback lifecycle
 Songs SHALL stream rather than be fully decoded, and only the next song SHALL
-be loaded ahead. The programme SHALL respect pause, mute and hidden tabs,
-offer a listener station skip, keep playing across level changes, and fall
-back to the prepared score when the programme cannot load.
+be loaded ahead. Only listener mute, station skip, pause and hidden tabs
+SHALL affect playback, and resuming SHALL continue the same song at the same
+position. The programme SHALL fall back to the prepared score when it cannot
+load.
+
+#### Scenario: listener pause
+- **WHEN** the listener pauses and later resumes
+- **THEN** the same song continues from where it was paused
+
+### Requirement: Continuous demo soundtrack
+The programme SHALL be one continuous soundtrack from the first garage gesture
+to the end of the demo. The departure, level advances, manual level selection,
+chapter replays, restarts and the completion screen SHALL NOT stop, restart or
+re-select the current song; they MAY only queue a report for the next break.
 
 #### Scenario: level change
-- **WHEN** the sequence advances to the next level
-- **THEN** the current song continues without a gap
+- **WHEN** the sequence advances, or the listener selects a level, replays a
+  chapter or restarts
+- **THEN** the current song continues without a gap from the same position
+
+#### Scenario: garage to road
+- **WHEN** the listener takes the keys in the garage
+- **THEN** the radio comes on and plays unbroken through the departure into
+  the first level
+

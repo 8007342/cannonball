@@ -28,6 +28,13 @@ import 'scenic/scenic_manifest.dart';
 import 'scenic/scenic_scheduler.dart';
 import 'scenic/scenic_zones.dart';
 
+/// A drawn scenic sprite's ground anchor (see [RaceGame.recordAnchors]).
+class ScenicAnchor {
+  const ScenicAnchor(this.band, this.s, this.depth, this.y, this.clip);
+  final ScenicBand band;
+  final double s, depth, y, clip;
+}
+
 class _RoadPoint {
   double x = 0, y = 0, halfWidth = 0, z = 0, clip = 0;
   bool visible = false;
@@ -289,6 +296,7 @@ class RaceGame extends FlameGame {
         }
         scenic.provide('asphalt-worn', _art.asphalt, const [11, 2.46]);
         scenic.provide('meadow', _art.meadow, const [9.6, 4.6]);
+        await scenic.measureSurfaces();
         _scenic = scenic;
         // Room for the near-camera lateral subdivision (SurfaceMeshes.columns).
         _surfaceMeshes = SurfaceMeshes(scenic, _segmentCount * 6);
@@ -474,6 +482,7 @@ class RaceGame extends FlameGame {
       ..start();
     super.render(canvas);
     _batch.drawCalls = 0;
+    scenicAnchors.clear();
     _lightCache.clear();
     _lightVisibilityCache.clear();
     if (size.x > 0 && size.y > 0) {
@@ -510,6 +519,7 @@ class RaceGame extends FlameGame {
         canvas.translate(_w / 2, _h * horizonFraction);
         canvas.rotate(controller.cameraLean * .65);
         canvas.translate(-_w / 2, -_h * horizonFraction);
+        _projectTerrain();
         _backdrop(canvas);
         if (_course && ProofCourse.tunnelAt(controller.courseDistance) > 0) {
           final shade = ProofCourse.tunnelAt(controller.courseDistance);
@@ -652,6 +662,11 @@ class RaceGame extends FlameGame {
     }
     return light.clamp(0.0, 1.0);
   }
+
+  /// [_material] without local lights: night tint only. Far ground and
+  /// horizon colours use it so passing lamps never flicker the horizon.
+  int _unlit(int color) =>
+      !_course ? color : ProofLighting.material(color, nightStrength, 0);
 
   int _material(int color, double z, double lateral) => !_course
       ? color
@@ -928,7 +943,8 @@ class RaceGame extends FlameGame {
     final vista = _course && _drawVista(canvas);
     final backdrop = vista ? null : _art.backdrop;
     if (backdrop == null) {
-      _haze(canvas);
+      // Course levels: the far ground reaches the horizon and hides it.
+      if (!_course) _haze(canvas);
       return;
     }
     final source = Rect.fromLTWH(
@@ -949,7 +965,10 @@ class RaceGame extends FlameGame {
             : _course && level.id == 'chicago'
             ? .28
             : .54);
-    final y = _h * (horizonFraction + .09 + _viewPitch) - height;
+    // Course hills stand on the furthest visible ground, like the vista.
+    final y = _course
+        ? farGroundY + _h * .03 - height
+        : _h * (horizonFraction + .09 + _viewPitch) - height;
     _paint.color = const Color(0xffffffff);
     if (_course) {
       final n = nightStrength;
@@ -985,7 +1004,18 @@ class RaceGame extends FlameGame {
       );
     }
     _paint.colorFilter = null;
-    _haze(canvas);
+    if (_course) {
+      ScenicDraw.foot(
+        canvas: canvas,
+        paint: _paint,
+        baseY: farGroundY + _h * .012,
+        screenWidth: _w,
+        screenHeight: _h,
+        color: _farColor,
+      );
+    } else {
+      _haze(canvas);
+    }
   }
 
   /// Horizon haze colour: sage over vegetation, dusty sand over the bare
@@ -1032,13 +1062,8 @@ class RaceGame extends FlameGame {
     final surfaces = _course ? _surfaces : null;
     final meshes = surfaces == null ? null : _surfaceMeshes;
     meshes?.clear();
-    final base = (_cameraZ / _segmentLength).floor() * _segmentLength;
-    var crestClip = _h + 200;
-    for (var i = 0; i <= _segmentCount; i++) {
-      _project(base + _depthAt(i + 1), _points[i]);
-      _points[i].clip = crestClip;
-      if (_points[i].y < crestClip) crestClip = _points[i].y;
-    }
+    final base = _terrainBase;
+    if (_course) _drawFarGround(canvas);
     final biome = _biome;
     final green = _course
         ? Color(level.ground)
@@ -1313,6 +1338,7 @@ class RaceGame extends FlameGame {
     if (meshes != null) {
       meshes.drawCalls = 0;
       meshes.draw(canvas, 'ground');
+      _blendGroundEnd(canvas);
       meshes.draw(canvas, 'shoulder');
     } else {
       _ground.draw(canvas, _groundPaint);
@@ -1351,35 +1377,229 @@ class RaceGame extends FlameGame {
         ..isAntiAlias = false,
     );
     lastRoadQuads = _asphalt.count + (meshes == null ? 0 : _segmentCount);
-    if (_course) {
-      // The finite ribbon ends inside this narrow horizon-colored veil. World
-      // objects independently fade over the last24% of their visible depth.
-      // The veil follows the ribbon's far end when it is in view, and never
-      // sits lower than the highest crest: on a raised hill the horizon line
-      // crosses the hillside, and a haze stripe there reads as a seam.
-      final last = _points[_segmentCount];
-      final horizonY = _h * (horizonFraction + _viewPitch);
-      final crestTop = math.min(last.clip, last.y);
-      final y = last.y <= last.clip ? last.y : math.min(horizonY, crestTop);
-      canvas.drawRect(
-        Rect.fromLTWH(0, y - _h * .025, _w, _h * .075),
-        Paint()
-          ..shader = ui.Gradient.linear(
-            Offset(0, y - _h * .025),
-            Offset(0, y + _h * .05),
-            [
-              const Color(0x00b5c49a),
-              Color(
-                _course
-                    ? _material(_distanceHaze, _world + _farDepth, 0)
-                    : 0xffb5c49a,
-              ),
-              const Color(0x00b5c49a),
-            ],
-            [0, .33, 1],
-          ),
+    // Course levels need no veil where the ribbon ends: the far ground
+    // ([_drawFarGround]) continues the terrain in the textures' mean colour.
+  }
+
+  /// Projects the road mesh points and the far-ground extension, and chains
+  /// their crest clips (nearest first). Runs before the backdrop so the vista
+  /// can stand on the furthest visible ground.
+  void _projectTerrain() {
+    final base = (_cameraZ / _segmentLength).floor() * _segmentLength;
+    _terrainBase = base;
+    var crestClip = _h + 200;
+    for (var i = 0; i <= _segmentCount; i++) {
+      _project(base + _depthAt(i + 1), _points[i]);
+      _points[i].clip = crestClip;
+      if (_points[i].y < crestClip) crestClip = _points[i].y;
+    }
+    if (!_course) return;
+    final near = _depthAt(_segmentCount + 1);
+    final far = farGroundDepth(near, _flowScale);
+    for (var j = 0; j < farGroundSamples; j++) {
+      final p = _farPoints[j];
+      _project(base + farGroundSample(j, near, far), p);
+      p.clip = crestClip;
+      if (p.y < crestClip) crestClip = p.y;
+    }
+    final last = _farPoints.last;
+    horizonY = _h * (horizonFraction + _viewPitch);
+    // Beyond the extension the terrain is held at its last elevation out to
+    // the horizon (a skirt), so the visible ground top never drops below it.
+    farGroundY = math.min(last.y, horizonY);
+    groundTopY = math.min(crestClip, horizonY);
+    _farStart = _groundTone(_courseAt(base + near));
+    _farColor = _farGroundColor(far, near, far);
+  }
+
+  int _farStart = 0xffb5c49a;
+
+  /// Share of distance haze in the far ground at the horizon.
+  static const farGroundHaze = .78;
+
+  /// Far ground colour at [depth]: aerial perspective grows with log
+  /// distance from the mesh end ([near]) towards the distance haze.
+  int _farGroundColor(double depth, double near, double far) {
+    final t = (math.log(depth / near) / math.log(far / near)).clamp(0.0, 1.0);
+    return Color.lerp(
+      Color(_farStart),
+      Color(_farHaze),
+      farGroundHaze * math.sqrt(t),
+    )!.toARGB32();
+  }
+
+  /// Test hook: when set, every drawn scenic sprite's ground anchor is
+  /// recorded in [scenicAnchors] (cleared each frame).
+  bool recordAnchors = false;
+  final List<ScenicAnchor> scenicAnchors = [];
+
+  /// The terrain line pair around [depth] (camera-relative world units):
+  /// screen y of its nearer and farther sample and the crest clip in front
+  /// of it, from the road mesh or the far ground. Null beyond the far ground.
+  ({double nearY, double farY, double clip})? groundSegmentAt(double depth) {
+    final all = [..._points, if (_course) ..._farPoints];
+    for (var i = 1; i < all.length; i++) {
+      if (all[i].z >= depth && all[i - 1].z <= depth) {
+        return (nearY: all[i - 1].y, farY: all[i].y, clip: all[i - 1].clip);
+      }
+    }
+    return null;
+  }
+
+  /// Far ground: [farGroundSamples] geometric depth samples from the end of
+  /// the road mesh to just past the far scenic band, so far sprites always
+  /// stand on drawn terrain at their own (exaggerated) elevation.
+  static const farGroundSamples = 36;
+  static double farGroundDepth(double meshEnd, double flowScale) => math.max(
+    meshEnd * 1.25,
+    (ScenicScale.farAheadCourse + 160) * flowScale + 560,
+  );
+  static double farGroundSample(int j, double near, double far) =>
+      near * math.pow(far / near, (j + 1) / farGroundSamples);
+
+  final List<_RoadPoint> _farPoints = List.generate(
+    farGroundSamples,
+    (_) => _RoadPoint(),
+  );
+  final RoadMesh _farGround = RoadMesh(farGroundSamples + 2);
+  final Paint _farGroundPaint = Paint()
+    ..color = const Color(0xffffffff)
+    ..isAntiAlias = false;
+  double _terrainBase = 0;
+
+  /// Screen y of the horizon (infinite depth), the top of the far ground
+  /// at the end of the extension, and the topmost visible ground line.
+  double horizonY = 0, farGroundY = 0, groundTopY = 0;
+
+  /// Colour of the furthest ground (vista foot); set by [_drawFarGround].
+  int _farColor = 0xffb5c49a;
+
+  int _modulate(int a, int b) {
+    int ch(int shift) =>
+        (((a >> shift) & 0xff) * ((b >> shift) & 0xff) / 255).round();
+    return 0xff000000 | ch(16) << 16 | ch(8) << 8 | ch(0);
+  }
+
+  /// Apparent colour of the textured ground at [s] far away: the texture's
+  /// mean colour modulated by the vertex tint the mesh uses at full haze.
+  int _groundTone(double s) {
+    final track = _surfaces?.ground;
+    int tone(String id) {
+      final mean = _scenic?.meanColor(id) ?? level.ground;
+      final tint = id == 'meadow'
+          ? Color.lerp(Color(level.ground), const Color(0xffd1d8bb), .65)!
+          : Color.lerp(const Color(0xffffffff), const Color(0xffd1d8bb), .65)!;
+      return _modulate(mean, _unlit(tint.toARGB32()));
+    }
+
+    if (track == null) return _unlit(level.ground);
+    final sample = track.at(s);
+    final base = tone(sample.base);
+    final overlay = sample.overlay;
+    if (overlay == null) return base;
+    return Color.lerp(
+      Color(base),
+      Color(tone(overlay)),
+      track.weight(overlay, s).clamp(0.0, 1.0),
+    )!.toARGB32();
+  }
+
+  /// Distance haze the far ground fades towards; night keeps it from glowing
+  /// paler than the moonlit ground.
+  int get _farHaze => Color.lerp(
+    Color(_unlit(_distanceHaze)),
+    const Color(0xff27313d),
+    nightStrength * .55,
+  )!.toARGB32();
+
+  /// Number of textured ground strips before the mesh end that fade into the
+  /// far ground's flat colour, so mip-level texture detail never ends at a
+  /// visible line.
+  static const groundBlendStrips = 28;
+  final RoadMesh _groundBlend = RoadMesh(groundBlendStrips);
+
+  void _blendGroundEnd(Canvas canvas) {
+    _groundBlend.clear();
+    final near = _depthAt(_segmentCount + 1);
+    final far = farGroundDepth(near, _flowScale);
+    final first = _segmentCount - groundBlendStrips;
+    final from = _depthAt(first + 1);
+    int color(int i) {
+      final depth = _depthAt(i + 1);
+      final t = ((depth - from) / (near - from)).clamp(0.0, 1.0);
+      final alpha = (t * t * (3 - 2 * t) * 255).round();
+      return (_farGroundColor(near, near, far) & 0x00ffffff) | alpha << 24;
+    }
+
+    for (var i = _segmentCount - 1; i >= first; i--) {
+      final a = _points[i], b = _points[i + 1];
+      if (!a.visible) continue;
+      _groundBlend.quad(
+        -400,
+        _w + 400,
+        a.y,
+        -400,
+        _w + 400,
+        b.y,
+        0,
+        0,
+        0,
+        0,
+        color(i),
+        color(i + 1),
       );
     }
+    _groundBlend.draw(canvas, _farGroundPaint);
+  }
+
+  /// Draws the terrain beyond the road mesh back to front: a skirt to the
+  /// horizon, then plain strips from the extension's end to the mesh end.
+  /// Painter order handles crest occlusion: nearer ground draws later.
+  void _drawFarGround(Canvas canvas) {
+    _farGround.clear();
+    final meshEnd = _points[_segmentCount];
+    final near = _depthAt(_segmentCount + 1);
+    final far = farGroundDepth(near, _flowScale);
+    int colorAt(double depth) => _farGroundColor(depth, near, far);
+    const left = -400.0, right = _w + 400;
+    final last = _farPoints.last;
+    if (last.y > horizonY) {
+      _farGround.quad(
+        left,
+        right,
+        last.y,
+        left,
+        right,
+        horizonY,
+        0,
+        0,
+        0,
+        0,
+        _farColor,
+        _farColor,
+      );
+    }
+    for (var j = farGroundSamples - 1; j >= 0; j--) {
+      final b = _farPoints[j], a = j == 0 ? meshEnd : _farPoints[j - 1];
+      // Back faces of a crest are hidden by the face drawn in front.
+      if (!(a.y > b.y && b.y < a.clip)) continue;
+      final depthA = j == 0 ? near : farGroundSample(j - 1, near, far);
+      _farGround.quad(
+        left,
+        right,
+        a.y,
+        left,
+        right,
+        b.y,
+        0,
+        0,
+        0,
+        0,
+        colorAt(depthA),
+        colorAt(farGroundSample(j, near, far)),
+      );
+    }
+    _farGround.draw(canvas, _farGroundPaint);
   }
 
   double _groundReach(_RoadPoint p) => p.halfWidth <= 0
@@ -1828,8 +2048,6 @@ class RaceGame extends FlameGame {
 
   void _drawFar(Canvas canvas) {
     if (_farObjects.isEmpty) return;
-    final last = _points[_segmentCount];
-    final beyond = math.min(last.clip, last.y);
     for (final object in _farObjects) {
       _project(object.z, _objectPoint);
       final p = _objectPoint;
@@ -1837,7 +2055,7 @@ class RaceGame extends FlameGame {
       final x = p.x + p.halfWidth * object.lateral;
       final width = p.halfWidth * object.width / _roadHalfWidth;
       if (x + width < -30 || x - width > _w + 30 || width < .8) continue;
-      final clip = p.z > last.z ? beyond : _clipAt(object.z);
+      final clip = _clipAt(object.z);
       _objectOpacity =
           ProofCamera.opacityByte(p.z, object.fadeFar) /
           255 *
@@ -1860,6 +2078,11 @@ class RaceGame extends FlameGame {
     final scenic = _scenic;
     final placement = object.scenic;
     if (scenic == null || placement == null) return;
+    if (recordAnchors) {
+      scenicAnchors.add(
+        ScenicAnchor(placement.band, placement.s, p.z, p.y, clip),
+      );
+    }
     final sprite = ScenicDraw.frameAt(
       scenic.manifest,
       placement,
@@ -1927,7 +2150,9 @@ class RaceGame extends FlameGame {
       n * .85,
     )!.toARGB32();
     final offset = ScenicParallax.vistaOffset(_tangent, _projection, _w * .5);
-    final baseY = _h * (horizonFraction + .05 + _viewPitch);
+    // The strip stands on the furthest ground (or the horizon when that is
+    // lower), slightly overlapped so the ground covers the panel feet.
+    final baseY = farGroundY + _h * .012;
     for (final (slots, weight) in [
       (current, other == index ? 1.0 : 1 - t),
       if (other != index) (plan.zoneVistas[other], t),
@@ -1954,19 +2179,25 @@ class RaceGame extends FlameGame {
       baseY: baseY,
       screenWidth: _w,
       screenHeight: _h,
-      // Night keeps the haze from glowing paler than the moonlit ground.
-      color: Color.lerp(
-        Color(_material(_distanceHaze, _world + 25000, 0)),
-        const Color(0xff27313d),
-        n * .55,
-      )!.toARGB32(),
+      // The foot fades the panels into the far ground's own colour, so the
+      // horizon reads as distant terrain rather than a pale band.
+      color: _farColor,
     );
     return current.isNotEmpty;
   }
 
   final _RoadPoint _objectPoint = _RoadPoint();
+
+  /// Crest clip for an object at world [z]: the highest ground line in
+  /// front of it, from the road mesh or, beyond it, the far ground.
   double _clipAt(double z) {
     final depth = z - _cameraZ;
+    if (_course && depth > _points[_segmentCount].z) {
+      for (final p in _farPoints) {
+        if (p.z > depth) return p.clip;
+      }
+      return math.min(_farPoints.last.clip, _farPoints.last.y);
+    }
     var low = 0, high = _segmentCount;
     while (low < high) {
       final middle = (low + high + 1) ~/ 2;
