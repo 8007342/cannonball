@@ -5,6 +5,7 @@ import 'dart:ui' as ui;
 import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
 
+import 'car_catalog.dart';
 import 'race_controller.dart';
 import 'render/proof_art.dart';
 import 'render/proof_camera.dart';
@@ -134,7 +135,14 @@ class RaceGame extends FlameGame {
     }
   }
 
-  bool get _nextProof => proofMode && controller.car.id == 's2000';
+  bool get _nextProof =>
+      proofMode &&
+      (controller.car.id == 's2000' ||
+          CarCatalog.players.containsKey(controller.car.id));
+
+  /// Swap the player's chase sheets after a garage key choice.
+  Future<bool> setPlayerCar(String carId) => _art.swapPlayerCar(carId);
+  String? get playerArtCar => _art.playerCar;
   double get _flowScale =>
       visualSpeedScale *
       (_nextProof
@@ -261,7 +269,11 @@ class RaceGame extends FlameGame {
   Future<void> onLoad() async {
     await super.onLoad();
     try {
-      await _art.load(s2000: _nextProof, course: _course);
+      await _art.load(
+        s2000: _nextProof,
+        course: _course,
+        car: controller.car.id,
+      );
       if (_removed) {
         _art.dispose();
         return;
@@ -1542,7 +1554,9 @@ class RaceGame extends FlameGame {
             z,
             car.x,
             car.truck ? 370 : 300,
-            frame: car.paintVariant,
+            frame: _art.trafficModels
+                ? CarCatalog.trafficCell(car.model, car.paintVariant)
+                : car.paintVariant,
             braking: car.braking,
             incident: car.incidentSeconds,
             reaction: car.reactionIntensity,
@@ -2176,7 +2190,12 @@ class RaceGame extends FlameGame {
     final frame = pose.frame;
     final paletteTraffic = !player && _art.trafficAtlas != null;
     final src = paletteTraffic
-        ? Rect.fromLTWH((object.frame % 8) * 256.0, 0, 256, 256)
+        ? Rect.fromLTWH(
+            (object.frame % 8) * 256.0,
+            (object.frame ~/ 8) * 256.0,
+            256,
+            256,
+          )
         : useTurn
         ? _art.turnFrames[frame]
         : _art.carFrames[frame];
@@ -2288,8 +2307,16 @@ class RaceGame extends FlameGame {
         }
       }
     }
+    // Brake glow sits on each body's measured lamp position (car catalog).
+    final lamp = player
+        ? (_art.playerCar == null
+              ? LampOffset.legacy
+              : CarCatalog.players[_art.playerCar]!.lamp)
+        : paletteTraffic && _art.trafficModels
+        ? CarCatalog.modelForCell(object.frame).lamp
+        : LampOffset.legacy;
     if ((player ? controller.braking : object.braking) &&
-        bodyY - width * .39 < clip) {
+        bodyY - width * lamp.y < clip) {
       _batch.flush(canvas);
       for (final side in [-1.0, 1.0]) {
         _paint
@@ -2297,7 +2324,7 @@ class RaceGame extends FlameGame {
           ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3);
         canvas.drawOval(
           Rect.fromCenter(
-            center: Offset(x + side * width * .29, bodyY - width * .39),
+            center: Offset(x + side * width * lamp.x, bodyY - width * lamp.y),
             width: width * .20,
             height: width * .055,
           ),

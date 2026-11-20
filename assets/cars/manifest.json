@@ -1845,16 +1845,16 @@
     }
    }
   },
-  "paint": "none: Qwen-Image-Edit hero paint + projection was evaluated as optional; shipped pixels are the rig's own cel shading",
+  "paint": "none shipped: Qwen-Image-Edit hero repaint (art/workflows/structure-paint-qwen.json, seed 2001) evaluated on the S2000 rear view; one painted view cannot cover the flanks that turn poses reveal and its baked highlight travels with the yawing body, so the cel renders stay (art/rigs/cars/README.md)",
   "pipeline": "lua art/rigs/cars/run.lua all: bpy car_rig.py (Cycles CPU, emission cel materials, seed 0) -\u003e carpack assemble",
   "seeds": {
    "cycles": 0
   },
   "sources": {
-   "art/rigs/cars/car_rig.py": "118d624f8dced47d2cbd9cc1852f110b185d4ef4113e4680ff5b5992364055d5",
+   "art/rigs/cars/car_rig.py": "d7e98d7dd7a4653cba216e77463ab7b331766c15af222bd54ab1c527430b3db1",
    "art/rigs/cars/cars.json": "8a2652fd7edc7545d4fb7bea1b4e32b5a751148fbe3ccb0292a02070d45b8840",
-   "art/rigs/cars/poses.json": "b3547b10e2a429fae63894f8e3bb38339c8e2863906a5bff89abb459e0f14cc5",
-   "tool/rigs/cars/main.go": "20eeef4a3ccdb9b5d3367505aa1b2d57218f98f7cc8c215c66ca0e6664c31945"
+   "art/rigs/cars/poses.json": "97994d45fcbf3392a526bbd8dffe3b29b96fd2ac31eef459c6a1a586615bd16a",
+   "tool/rigs/cars/main.go": "689bc5f9ee737a15fa804d0fafbf29ae7f529abc1e3eb489af6d168a23faa199"
   }
  },
  "status": "stylised Blender cel renders (no AI paint); see art/rigs/cars/README.md",

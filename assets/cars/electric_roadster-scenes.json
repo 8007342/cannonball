@@ -1,0 +1,27 @@
+{
+ "car": "electric_roadster",
+ "files": {
+  "electric_roadster-cabin.png": {
+   "height": 941,
+   "sha256": "4b9ad7686cf97f6e1091aa5f2bc7cfdc7c8d2551f8e98b278c44740482bdaca2",
+   "width": 1672
+  },
+  "electric_roadster-entry.png": {
+   "cells": "cell 3 = open driver door",
+   "height": 1024,
+   "sha256": "f581fb40309fe12492025bb943215c2d0b7cef9ca3e21a84d133c4175d8d9d7a",
+   "width": 1536
+  },
+  "electric_roadster-exterior.png": {
+   "height": 1024,
+   "sha256": "bbacc82747325ec908ced4a3f6290cb0d0f82ea548dafd5dc1aa383f70d63727",
+   "width": 1536
+  }
+ },
+ "note": "garage departure views; exterior and cabin reuse the painted garage-exterior street",
+ "sources": {
+  "painting": "e6f5f54d05de2e282be2b68e9ba9dff877eeb282fdd8713b2ce0e7cb46c59384",
+  "poses": "97994d45fcbf3392a526bbd8dffe3b29b96fd2ac31eef459c6a1a586615bd16a",
+  "rig": "d7e98d7dd7a4653cba216e77463ab7b331766c15af222bd54ab1c527430b3db1"
+ }
+}

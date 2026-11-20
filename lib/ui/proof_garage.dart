@@ -71,7 +71,12 @@ class _ProofGarageState extends State<ProofGarage>
       'assets/proof-next/entry-atlas.png',
       'assets/proof-next/s2000-atlas.png',
       CarCatalog.keyCard,
-      for (final art in CarCatalog.players.values) art.body,
+      for (final art in CarCatalog.players.values) ...[
+        art.body,
+        ?art.exterior,
+        ?art.entry,
+        ?art.cabin,
+      ],
       'assets/milestone/hand-reach-atlas.png',
       'assets/milestone/cabin.png',
     ]) {
@@ -151,11 +156,43 @@ class _ProofGarageState extends State<ProofGarage>
   );
 
   Widget _hand(int frame, double extent, double armStretch) {
-    Widget picture() => _cell(
-      frame,
-      extent: extent,
-      path: 'assets/milestone/hand-reach-atlas.png',
-    );
+    // The painted grasp frames hold the metal starter key. For the key card the
+    // open pinch (frame 1) holds the rendered card by its ring instead.
+    final card = widget.selectedCar == GarageKeys.card && frame >= 2;
+    Widget picture() {
+      final hand = _cell(
+        card ? 1 : frame,
+        extent: extent,
+        path: 'assets/milestone/hand-reach-atlas.png',
+      );
+      if (!card) return hand;
+      final cardHeight = extent * GarageKeys.heldCardHeight;
+      return Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned(
+            left:
+                extent * GarageKeys.pinch.dx -
+                cardHeight * GarageKeys.cardAspect * .5,
+            top:
+                extent * GarageKeys.pinch.dy - cardHeight * GarageKeys.cardHang,
+            width: cardHeight * GarageKeys.cardAspect,
+            height: cardHeight,
+            child: widget.artwork
+                ? Image.asset(
+                    CarCatalog.keyCard,
+                    key: const ValueKey('held-card'),
+                    fit: BoxFit.fill,
+                    filterQuality: FilterQuality.medium,
+                    errorBuilder: (_, _, _) => const SizedBox.shrink(),
+                  )
+                : const SizedBox(key: ValueKey('held-card')),
+          ),
+          hand,
+        ],
+      );
+    }
+
     final pivot = extent * GarageHandPlacement.wristPivot;
     return SizedBox.square(
       dimension: extent,
@@ -259,7 +296,11 @@ class _ProofGarageState extends State<ProofGarage>
         );
         final showKey = !moving || takingCard || pickup < .55;
         final showCard = !moving || !takingCard || pickup < .55;
-        final exterior = _picture('assets/proof-next/garage-exterior.png');
+        final scenes = CarCatalog.players[widget.selectedCar];
+        final exterior = _picture(
+          scenes?.exterior ?? 'assets/proof-next/garage-exterior.png',
+        );
+        final cabinArt = scenes?.cabin ?? 'assets/milestone/cabin.png';
         final wall = _picture('assets/proof-next/garage-wall.png');
         return Stack(
           fit: StackFit.expand,
@@ -352,7 +393,13 @@ class _ProofGarageState extends State<ProofGarage>
                         top: h * .08,
                         child: Transform.rotate(
                           angle: widget.reducedMotion ? 0 : -door * .10,
-                          child: _cell(3, extent: h * 1.10),
+                          child: _cell(
+                            3,
+                            extent: h * 1.10,
+                            path:
+                                scenes?.entry ??
+                                'assets/proof-next/entry-atlas.png',
+                          ),
                         ),
                       ),
                     if (moving && t >= .70 && t < .85)
@@ -363,16 +410,13 @@ class _ProofGarageState extends State<ProofGarage>
                               ? 1
                               : 1.025 - cabin * .025,
                           child: _picture(
-                            'assets/milestone/cabin.png',
+                            cabinArt,
                             alignment: const Alignment(0, -.15),
                           ),
                         ),
                       ),
                     if (moving && t >= .82)
-                      Opacity(
-                        opacity: 1 - rear,
-                        child: _picture('assets/milestone/cabin.png'),
-                      ),
+                      Opacity(opacity: 1 - rear, child: _picture(cabinArt)),
                     if (moving && t >= .82)
                       // The live game is underneath this overlay. A rear sprite
                       // settles toward its chase-camera position during the cut.
@@ -524,6 +568,11 @@ abstract final class GarageKeys {
   /// keycard.png: width / height, and the ring's hang point as a height fraction.
   static const cardAspect = 105 / 256;
   static const cardHang = .07;
+
+  /// Pinch point of the open hand (hand-reach-atlas frame 1) and the held
+  /// card's height, both as fractions of the hand cell.
+  static const pinch = Offset(.12, .225);
+  static const heldCardHeight = .42;
 }
 
 /// Keep the fingers and keys at a modest uniform scale. Only the distal painted

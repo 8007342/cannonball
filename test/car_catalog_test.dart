@@ -175,6 +175,83 @@ void main() {
     expect(card.dy, closeTo(keys.dy, 1));
   });
 
+  Future<Set<String>> departureAssets(
+    WidgetTester tester,
+    String car,
+    int milliseconds,
+  ) async {
+    tester.view.physicalSize = const Size(1280, 720);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ProofGarage(
+          key: ValueKey('$car-$milliseconds'),
+          departing: true,
+          ready: true,
+          reducedMotion: false,
+          muted: true,
+          selectedCar: car,
+          onTakeKeys: (_) {},
+          onComplete: () {},
+          onShot: (_) {},
+          onSound: () {},
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(Duration(milliseconds: milliseconds));
+    return {
+      for (final image in tester.widgetList<Image>(find.byType(Image)))
+        if (image.image is AssetImage) (image.image as AssetImage).assetName,
+    };
+  }
+
+  testWidgets('key card departure: card in hand, white roadster outside, door '
+      'and cabin', (tester) async {
+    final art = CarCatalog.players[GarageKeys.card]!;
+    // pickup beat: the open hand holds the key card, not the metal key
+    final pickup = await departureAssets(tester, GarageKeys.card, 1200);
+    expect(pickup, contains(CarCatalog.keyCard));
+    expect(find.byKey(const ValueKey('held-card')), findsWidgets);
+    final walk = await departureAssets(tester, GarageKeys.card, 3800);
+    expect(walk, contains(art.exterior));
+    expect(walk, isNot(contains('assets/proof-next/garage-exterior.png')));
+    final door = await departureAssets(tester, GarageKeys.card, 4900);
+    expect(door, contains(art.entry));
+    expect(door, isNot(contains('assets/proof-next/entry-atlas.png')));
+    final cabin = await departureAssets(tester, GarageKeys.card, 5700);
+    expect(cabin, contains(art.cabin));
+    expect(cabin, isNot(contains('assets/milestone/cabin.png')));
+    // the starter keeps every painted original and the metal key
+    await departureAssets(tester, GarageKeys.starter, 1200);
+    expect(find.byKey(const ValueKey('held-card')), findsNothing);
+    expect(
+      await departureAssets(tester, GarageKeys.starter, 5700),
+      contains('assets/milestone/cabin.png'),
+    );
+  });
+
+  test(
+    'departure scene art is bundled at the painted originals\' sizes',
+    () async {
+      final art = CarCatalog.players[GarageKeys.card]!;
+      for (final (path, w, h) in [
+        (art.exterior!, 1536, 1024),
+        (art.entry!, 1536, 1024),
+        (art.cabin!, 1672, 941),
+      ]) {
+        final data = await rootBundle.load(path);
+        final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
+        final frame = await codec.getNextFrame();
+        expect((frame.image.width, frame.image.height), (w, h), reason: path);
+        frame.image.dispose();
+        codec.dispose();
+      }
+    },
+  );
+
   test('key choice persists under the proof car key', () {
     LocalStore().write(proofCarStoreKey, 'electric_roadster');
     expect(

@@ -49,9 +49,16 @@ class PlayerCarArt {
     required this.body,
     required this.turn,
     required this.lamp,
+    this.exterior,
+    this.entry,
+    this.cabin,
   });
   final String carId, body, turn;
   final LampOffset lamp;
+
+  /// Garage departure views rendered from the rig (null: the painted S2000
+  /// originals). [entry] follows proof-next/entry-atlas.png; cell 3 = door.
+  final String? exterior, entry, cabin;
 }
 
 /// Shared car catalogue: art ids for the renderer, model ids for traffic AI.
@@ -149,6 +156,9 @@ abstract final class CarCatalog {
       body: 'assets/cars/electric_roadster-body.png',
       turn: 'assets/cars/electric_roadster-turn.png',
       lamp: LampOffset(.323, .286),
+      exterior: 'assets/cars/electric_roadster-exterior.png',
+      entry: 'assets/cars/electric_roadster-entry.png',
+      cabin: 'assets/cars/electric_roadster-cabin.png',
     ),
   };
 
