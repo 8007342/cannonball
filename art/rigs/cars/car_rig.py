@@ -1026,6 +1026,175 @@ def render_keycard(out, threads, samples):
     print('keycard rendered', flush=True)
 
 
+# ------------------------------------------------------------------ departure scenes
+# The garage departure shows the chosen car three more times: parked outside (exterior), the
+# driver door opened (door) and the first-person cabin (cabin). For a rig car these views are
+# rendered from the same parametric body, hollowed into a cockpit with a seat, dashboard,
+# steering wheel and an opening driver door (left-hand drive, -x side).
+
+class SceneCar(Car):
+    """The rig car opened up for the departure views. Instead of solid booleans the shells
+    are cut open (faces deleted): seen from inside, a shell's back faces render in the
+    interior colour (see inside_materials), so the cockpit is a clean cavity."""
+
+    def __init__(self, P, M, door_open):
+        super().__init__(P, M)
+        self.door_open = door_open
+
+    def _split(self, ob, pick):
+        """Remove faces where pick(center, normal) is true; return them as a new object."""
+        me = ob.data
+        keep = bpy.data.meshes.new(ob.name + '_piece'); keep = me.copy()
+        bm = bmesh.new(); bm.from_mesh(me)
+        sel = [f for f in bm.faces if pick(f.calc_center_median(), f.normal)]
+        bmesh.ops.delete(bm, geom=sel, context='FACES'); bm.to_mesh(me); bm.free(); me.update()
+        bm = bmesh.new(); bm.from_mesh(keep)
+        rest = [f for f in bm.faces if not pick(f.calc_center_median(), f.normal)]
+        bmesh.ops.delete(bm, geom=rest, context='FACES'); bm.to_mesh(keep); bm.free(); keep.update()
+        return new_obj(ob.name + '_piece', keep, ob.parent, ob.location.copy()) if len(keep.polygons) else None
+
+    def build(self):
+        P, M = self.P, self.M; cab = P['cabin']
+        self.build_body()
+        self.build_cabin()
+        y0, y1 = self.T(cab['rearBase'] + 0.04), self.T(cab['frontBase'] - 0.03)
+        hw = self.hw(0.5)
+        # open the body top under the greenhouse and drop the greenhouse floor
+        for piece in (self._split(self.body, lambda c, n: n.z > 0.25 and y0 < c.y < y1 and abs(c.x) < hw * 0.84),
+                      self._split(self.cabin, lambda c, n: n.z < -0.4)):
+            if piece:
+                bpy.data.objects.remove(piece, do_unlink=True)
+        self.build_interior()
+        self.build_rear()
+        self.build_wheels()
+        if self.door_open:
+            self.open_door()
+        self.make_outlines()
+
+    def build_interior(self):
+        P, M = self.P, self.M; cab = P['cabin']
+        x = -0.36
+        seat_y = self.T(cab['rearTop'] + 0.07)
+        floor = P['clearance'] + 0.14
+        def part(name, sx, sy, sz, loc, mat, rot=(0, 0, 0), bevel=0.04):
+            o = new_obj(name, box_mesh(name, sx, sy, sz, bevel=bevel, seg=3), self.roll, loc)
+            o.rotation_euler = rot; o.data.materials.append(M[mat]); smooth_all(o)
+            self.outlined.append(o)
+            return o
+        part('floor', self.hw(0.45) * 1.7, (cab['frontBase'] - cab['rearBase']) * self.L, 0.04,
+             (0, self.T((cab['rearBase'] + cab['frontBase']) / 2), floor - 0.02), 'interior', bevel=0.0)
+        for sx in (-1, 1):
+            part('seat_base', 0.48, 0.50, 0.14, (sx * 0.36, seat_y + 0.10, floor + 0.12), 'seat')
+            part('seat_back', 0.48, 0.12, 0.62, (sx * 0.36, seat_y - 0.14, floor + 0.46), 'seat', (math.radians(-16), 0, 0))
+        part('console', 0.20, 1.0, 0.22, (0, seat_y + 0.45, floor + 0.12), 'interior')
+        dash_y = self.T(cab['frontBase']) - 0.30
+        dash_z = self.top(cab['frontBase'] - 0.04) - 0.02
+        part('dash', self.hw(0.62) * 1.70, 0.50, 0.30, (0, dash_y, dash_z - 0.13), 'interior', bevel=0.08)
+        part('screen', 0.30, 0.025, 0.19, (0.02, dash_y - 0.26, dash_z + 0.03), 'glass', (math.radians(-18), 0, 0), bevel=0.012)
+        bm = bmesh.new(); R, r, nu, nv = 0.175, 0.022, 36, 10; rings = []
+        for i in range(nu):
+            a = 2 * math.pi * i / nu; ring = []
+            for k in range(nv):
+                b = 2 * math.pi * k / nv
+                ring.append(bm.verts.new(((R + r * math.cos(b)) * math.cos(a), r * math.sin(b), (R + r * math.cos(b)) * math.sin(a))))
+            rings.append(ring)
+        for i in range(nu):
+            a, b2 = rings[i], rings[(i + 1) % nu]
+            for k in range(nv):
+                bm.faces.new((a[k], a[(k + 1) % nv], b2[(k + 1) % nv], b2[k]))
+        for k in range(3):
+            ang = math.radians(-90 + 120 * k)
+            bmesh.ops.create_cube(bm, size=1.0, matrix=Matrix.Translation((math.cos(ang) * R / 2, 0, math.sin(ang) * R / 2))
+                                  @ Matrix.Rotation(-ang, 4, 'Y') @ Matrix.Diagonal((R, 0.02, 0.035, 1)))
+        bmesh.ops.create_cone(bm, cap_ends=True, segments=20, radius1=0.06, radius2=0.06, depth=0.05,
+                              matrix=Matrix.Rotation(math.pi / 2, 4, 'X'))
+        me = bpy.data.meshes.new('wheel'); bm.to_mesh(me); bm.free()
+        sw = new_obj('steering', me, self.roll, (x, dash_y - 0.42, dash_z - 0.04))
+        sw.rotation_euler = (math.radians(-22), 0, 0)
+        sw.data.materials.append(M['trim']); smooth_all(sw); self.outlined.append(sw)
+
+    def open_door(self):
+        P = self.P; cab = P['cabin']
+        d0, d1 = cab['rearTop'] + 0.06, cab['frontBase'] - 0.03
+        y0, y1 = self.T(d0), self.T(d1)
+        z0 = P['clearance'] + 0.10; z1 = cab['roofZ'] - 0.05
+        x_in = -self.hw(0.5) * 0.45
+        def pick(c, n):
+            return c.x < x_in and y0 < c.y < y1 and z0 < c.z < z1 and n.x < -0.2
+        hinge = Vector((-self.hw(d1) * 0.98, y1, 0))
+        R = Matrix.Rotation(math.radians(-62), 3, 'Z')
+        for ob in (self.body, self.cabin):
+            p = self._split(ob, pick)
+            if p is None:
+                continue
+            for v in p.data.vertices:
+                v.co = R @ (v.co - hinge) + hinge
+            p.data.update(); smooth_all(p); self.outlined.append(p)
+        for ob in list(self.roll.children):
+            if ob.name.startswith(('mirror', 'stalk')) and ob.location.x < 0:
+                ob.location = R @ (ob.location - hinge) + hinge
+                ob.rotation_euler = (0, 0, math.radians(-62))
+
+
+def inside_materials(M, hex_colour='#3b3633'):
+    """Back faces (a shell seen from inside) render as flat interior trim."""
+    for name, m in M.items():
+        if name in ('outline', 'clear') or not m.node_tree:
+            continue
+        nt = m.node_tree
+        out = [n for n in nt.nodes if n.type == 'OUTPUT_MATERIAL'][0]
+        src = out.inputs['Surface'].links[0].from_socket
+        geo = nt.nodes.new('ShaderNodeNewGeometry')
+        em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = (*lin(hex_colour), 1)
+        mix = nt.nodes.new('ShaderNodeMixShader')
+        nt.links.new(geo.outputs['Backfacing'], mix.inputs[0])
+        nt.links.new(src, mix.inputs[1]); nt.links.new(em.outputs[0], mix.inputs[2])
+        nt.links.new(mix.outputs[0], out.inputs['Surface'])
+
+
+def look(cam, pos, target, lens, roll=0.0):
+    cam.location = Vector(pos)
+    d = Vector(target) - Vector(pos)
+    q = d.to_track_quat('-Z', 'Y')
+    cam.rotation_euler = (q @ __import__('mathutils').Quaternion((0, 0, 1), roll)).to_euler()
+    cam.data.lens = lens; cam.data.sensor_width = 36; cam.data.sensor_fit = 'HORIZONTAL'
+    cam.data.clip_start = 0.05; cam.data.clip_end = 80
+
+
+def render_scenes(P, out, threads, samples, cfg):
+    os.makedirs(out, exist_ok=True)
+    shots = cfg['scenes']
+    for door_open, names in ((True, ['door']), (False, ['exterior', 'cabin'])):
+        sc, cam = setup_scene(threads, samples, 1024)
+        M = make_materials(P, P['paints'][0])
+        M['clear'] = bpy.data.materials.new('clear'); M['clear'].use_nodes = True
+        nt = M['clear'].node_tree; nt.nodes.clear()
+        tr = nt.nodes.new('ShaderNodeBsdfTransparent'); o = nt.nodes.new('ShaderNodeOutputMaterial')
+        nt.links.new(tr.outputs[0], o.inputs['Surface'])
+        car = SceneCar(P, M, door_open); car.build()
+        inside_materials(M)
+        for name in names:
+            s = shots[name]
+            sc.render.resolution_x, sc.render.resolution_y = s['size']
+            car.root.rotation_euler = (0, 0, math.radians(s.get('yaw', 0)))
+            bpy.context.view_layer.update()
+            look(cam, s['camera'], s['target'], s['lens'], math.radians(s.get('roll', 0)))
+            cam.data.shift_x, cam.data.shift_y = s.get('shift', [0, 0])
+            inside = name == 'cabin'
+            for ol in car.outline_objs:
+                ol.hide_render = inside
+            if inside:
+                # see out through the windscreen: its glass faces become clear
+                gi = [i for i, sl in enumerate(car.cabin.material_slots) if sl.material == M['glass']]
+                car.cabin.data.materials.append(M['clear']); ci = len(car.cabin.data.materials) - 1
+                for p in car.cabin.data.polygons:
+                    # windscreen, and the glass roof when the car has one
+                    if p.material_index in gi and (p.normal.y > 0.3 or p.normal.z > 0.75):
+                        p.material_index = ci
+            render(sc, os.path.join(out, name + '.png'))
+        print('scenes:', names, flush=True)
+
+
 def main(argv):
     pos, kv = opts(argv)
     cars_path, poses_path, out = pos[:3]
@@ -1038,6 +1207,9 @@ def main(argv):
     cfg = poses['camera']
     if kv.get('prop') == 'keycard':
         return render_keycard(os.path.join(out, 'props'), threads, samples)
+    if kv.get('prop') == 'scenes':
+        P = [c for c in cars if c['id'] == kv.get('ids', 'electric_roadster')][0]
+        return render_scenes(P, os.path.join(out, P['id'], 'scenes'), threads, samples, poses)
     global LIGHT
     LIGHT = Vector(cfg['lightDirection']).normalized()
     for P in cars:

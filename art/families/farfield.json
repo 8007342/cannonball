@@ -1,0 +1,244 @@
+{
+  "family": "farfield",
+  "type": "sprite",
+  "atlas": "far",
+  "workflow": "art/workflows/sprite-flux2-matte.json",
+  "style": "distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+  "candidates": 3,
+  "canvas": [
+    1536,
+    768
+  ],
+  "items": [
+    {
+      "id": "farmstead-red-a",
+      "prompt": "a small American farmstead cluster: a red barn, a white farmhouse with a porch, a grey metal grain bin and a few round green trees, side view",
+      "band": "far",
+      "kind": "structure",
+      "worldWidthM": 90,
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "tags": [
+        "barn",
+        "silo",
+        "house",
+        "farm"
+      ]
+    },
+    {
+      "id": "farmstead-white-b",
+      "prompt": "a small dairy farmstead cluster: a white barn with grey roof, two tall blue silos, a small yellow house and a windmill, with a few trees, side view",
+      "band": "far",
+      "kind": "structure",
+      "worldWidthM": 100,
+      "biomes": [
+        "farm"
+      ],
+      "tags": [
+        "barn",
+        "silo",
+        "house",
+        "farm"
+      ]
+    },
+    {
+      "id": "treeline-summer-a",
+      "prompt": "a long distant tree line of mixed green deciduous trees forming a continuous wooded edge, rounded crowns of varied heights",
+      "band": "far",
+      "kind": "tree",
+      "worldWidthM": 160,
+      "biomes": [
+        "farm",
+        "forest",
+        "river",
+        "plains"
+      ],
+      "canvas": [
+        1792,
+        576
+      ],
+      "tags": [
+        "tree-line"
+      ]
+    },
+    {
+      "id": "treeline-autumn-a",
+      "prompt": "a long distant tree line of autumn deciduous trees in red, orange, gold and a few green, continuous wooded edge",
+      "band": "far",
+      "kind": "tree",
+      "worldWidthM": 160,
+      "biomes": [
+        "farm",
+        "forest",
+        "river"
+      ],
+      "tags": [
+        "autumn",
+        "tree-line"
+      ],
+      "canvas": [
+        1792,
+        576
+      ]
+    },
+    {
+      "id": "treeline-pine-a",
+      "prompt": "a long distant line of dark green pine and spruce trees with pointed tops forming a continuous forest edge",
+      "band": "far",
+      "kind": "tree",
+      "worldWidthM": 160,
+      "biomes": [
+        "forest",
+        "river"
+      ],
+      "canvas": [
+        1792,
+        576
+      ],
+      "tags": [
+        "tree-line"
+      ]
+    },
+    {
+      "id": "orchard-rows-a",
+      "prompt": "a distant apple orchard seen exactly from the side: many small round green fruit trees standing in one long even horizontal row, with more rows peeking above behind them",
+      "band": "far",
+      "kind": "tree",
+      "worldWidthM": 120,
+      "biomes": [
+        "farm"
+      ],
+      "canvas": [
+        1792,
+        576
+      ],
+      "tags": [
+        "tree-line"
+      ]
+    },
+    {
+      "id": "grain-elevator-a",
+      "prompt": "a tall concrete prairie grain elevator with a cluster of white cylindrical silos and a taller headhouse, small metal sheds at the base",
+      "band": "far",
+      "kind": "structure",
+      "worldWidthM": 40,
+      "biomes": [
+        "plains",
+        "farm"
+      ],
+      "canvas": [
+        1024,
+        1024
+      ],
+      "tags": [
+        "silo"
+      ]
+    },
+    {
+      "id": "water-tower-a",
+      "prompt": "a small-town water tower, a rounded light blue tank on four tall steel legs with a ladder",
+      "band": "far",
+      "kind": "structure",
+      "worldWidthM": 14,
+      "biomes": [
+        "town",
+        "farm",
+        "plains"
+      ],
+      "canvas": [
+        768,
+        1024
+      ],
+      "tags": [
+        "tower"
+      ]
+    },
+    {
+      "id": "wind-turbines-a",
+      "prompt": "three tall white modern wind turbines with three-bladed rotors standing in a row at different distances",
+      "band": "far",
+      "kind": "structure",
+      "worldWidthM": 420,
+      "biomes": [
+        "plains",
+        "farm"
+      ],
+      "canvas": [
+        1536,
+        896
+      ],
+      "tags": [
+        "windmill",
+        "turbine"
+      ]
+    },
+    {
+      "id": "church-town-a",
+      "prompt": "a distant small American town: a white church with a tall pointed steeple, a red brick main street, rooftops and leafy trees, side view",
+      "band": "far",
+      "kind": "structure",
+      "worldWidthM": 260,
+      "biomes": [
+        "town",
+        "farm"
+      ],
+      "tags": [
+        "town",
+        "church"
+      ]
+    },
+    {
+      "id": "silos-pair-a",
+      "prompt": "two tall farm silos side by side, one blue steel and one weathered concrete with a domed cap, beside a small red shed",
+      "band": "far",
+      "kind": "structure",
+      "worldWidthM": 18,
+      "biomes": [
+        "farm"
+      ],
+      "canvas": [
+        1024,
+        1024
+      ],
+      "tags": [
+        "silo"
+      ]
+    },
+    {
+      "id": "ranch-desert-a",
+      "prompt": "a small Arizona desert ranch: an adobe ranch house with a flat roof, a weathered wooden corral and a metal windmill water pump, a few palo verde trees, side view",
+      "band": "far",
+      "kind": "structure",
+      "worldWidthM": 80,
+      "biomes": [
+        "desert",
+        "plains"
+      ],
+      "tags": [
+        "house",
+        "ranch",
+        "windmill"
+      ]
+    },
+    {
+      "id": "saguaro-stand-far-a",
+      "prompt": "a scattered stand of tall saguaro cacti and low desert shrubs on a strip of pale sandy ground, side view",
+      "band": "far",
+      "kind": "tree",
+      "worldWidthM": 120,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "tree-line",
+        "cactus"
+      ],
+      "canvas": [
+        1792,
+        576
+      ]
+    }
+  ]
+}

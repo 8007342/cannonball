@@ -1,0 +1,18 @@
+{
+  "template": "overpass",
+  "notes": "Concrete highway overpass seen head-on (yaw 0) as it crosses the road: deck along X, piers clear of the roadway, embankment abutments.",
+  "view": {"pitch": 4, "yaw": 0},
+  "params": {"L": 40, "D": 12, "clear": 5.4, "t": 1.6, "gap": 16, "conc": "#b7b3aa", "dark": "#8e8a82", "rail": "#c9c5bc", "embank": "#8f9a6a"},
+  "parts": [
+    {"p": "box", "size": ["L", "D", "t"], "at": [0, 0, "clear"], "c": "conc"},
+    {"p": "box", "size": ["L", 0.4, 1.0], "at": [0, "-D/2+0.2", "clear+t"], "c": "rail"},
+    {"p": "box", "size": ["L+0.02", 0.42, 0.2], "at": [0, "-D/2+0.2", "clear+t+1.0"], "c": "dark"},
+    {"p": "box", "size": ["L", 0.5, 0.25], "at": [0, "-D/2-0.1", "clear-0.05"], "c": "dark"},
+    {"repeat": {"s": "[-1, 1]"}, "parts": [
+      {"p": "box", "size": [1.3, "D*0.8", 0.9], "at": ["s*gap/2", 0, "clear-0.9"], "c": "dark"},
+      {"repeat": {"j": "[-1, 0, 1]"}, "p": "cyl", "r": 0.55, "h": "clear-0.9", "seg": 14, "at": ["s*gap/2", "j*D*0.3", 0], "c": "conc"},
+      {"p": "extrude", "axis": "y", "depth": "D+1", "at": ["s*(L/2-3)", 0, 0],
+       "profile": [["-s*3.5", 0], ["s*4", 0], ["s*4", "clear"], ["s*1.5", "clear"]], "c": "embank"}
+    ]}
+  ]
+}

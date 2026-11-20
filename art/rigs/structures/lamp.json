@@ -1,0 +1,32 @@
+{
+  "template": "lamp",
+  "notes": "Street lamp. style 'cobra': tapered pole, curved arm reaching toward the road (-X), cobra head. style 'historic': cast-iron post with lantern or globe.",
+  "view": {"pitch": 6, "yaw": 30},
+  "params": {"style": "cobra", "h": 9, "arm": 3.2, "pole": "#9aa3a8", "head": "#b9c0c4", "lens": "#fff3c4", "iron": "#2f3b35", "top": "lantern"},
+  "parts": [
+    {"if": "style == 'cobra'", "parts": [
+      {"p": "cyl", "r": 0.25, "h": 0.5, "seg": 12, "c": "#a8a49c"},
+      {"p": "cyl", "r": 0.14, "r2": 0.09, "h": "h", "seg": 12, "at": [0, 0, 0.5], "c": "pole"},
+      {"p": "tube", "r": 0.06, "seg": 8, "path": "[(-arm*t, 0, h + 0.1 + 0.9*sin(t*pi/2)) for t in [i/10 for i in range(11)]]", "c": "pole"},
+      {"p": "sphere", "r": 0.5, "seg": 14, "at": ["-arm-0.35", 0, "h+1.0"], "scale": [1.6, 0.75, 0.38], "c": "head"},
+      {"p": "box", "size": [0.9, 0.45, 0.06], "at": ["-arm-0.4", 0, "h+0.88"], "c": "lens"}
+    ]},
+    {"if": "style == 'historic'", "parts": [
+      {"p": "cyl", "r": 0.32, "r2": 0.22, "h": 0.9, "seg": 12, "c": "iron"},
+      {"p": "cyl", "r": 0.26, "h": 0.12, "seg": 12, "at": [0, 0, 0.9], "c": "iron"},
+      {"p": "cyl", "r": 0.1, "r2": 0.08, "h": 3.0, "seg": 10, "at": [0, 0, 1.0], "c": "iron"},
+      {"p": "cyl", "r": 0.16, "h": 0.15, "seg": 10, "at": [0, 0, 2.2], "c": "iron"},
+      {"p": "cyl", "r": 0.2, "r2": 0.12, "h": 0.25, "seg": 10, "at": [0, 0, 4.0], "c": "iron"},
+      {"if": "top == 'lantern'", "parts": [
+        {"p": "cyl", "r": 0.25, "r2": 0.36, "h": 0.75, "seg": 6, "at": [0, 0, 4.25], "c": "lens"},
+        {"repeat": {"a": "range(0, 360, 60)"}, "p": "beam", "from": ["0.25*cos(radians(a))", "0.25*sin(radians(a))", 4.25], "to": ["0.36*cos(radians(a))", "0.36*sin(radians(a))", 5.0], "size": [0.04, 0.04], "c": "iron"},
+        {"p": "cyl", "r": 0.48, "r2": 0.05, "h": 0.45, "seg": 6, "at": [0, 0, 5.0], "c": "iron"},
+        {"p": "sphere", "r": 0.07, "seg": 8, "at": [0, 0, 5.5], "c": "iron"}
+      ]},
+      {"if": "top == 'globe'", "parts": [
+        {"p": "sphere", "r": 0.38, "seg": 16, "at": [0, 0, 4.6], "c": "lens"},
+        {"p": "cyl", "r": 0.12, "h": 0.12, "seg": 10, "at": [0, 0, 4.95], "c": "iron"}
+      ]}
+    ]}
+  ]
+}

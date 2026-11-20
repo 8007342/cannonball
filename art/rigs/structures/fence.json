@@ -1,0 +1,17 @@
+{
+  "template": "fence",
+  "notes": "Fence segment, length along X. style 'rail' split-rail/post-and-rail, 'picket' white picket, 'farm' 3-board painted farm fence.",
+  "view": {"pitch": 8, "yaw": 22},
+  "params": {"style": "rail", "L": 8, "h": 1.2, "wood": "#8a6a48", "paint": "#f3f0e8", "posts": 4},
+  "derived": {"pc": "paint if style in ('picket', 'farm') else wood"},
+  "parts": [
+    {"repeat": {"k": "range(posts)"}, "p": "box", "size": [0.14, 0.14, "h + (0.15 if style != 'picket' else 0.05)"], "at": ["-L/2 + 0.1 + k*(L-0.2)/(posts-1)", 0, 0], "c": "pc"},
+    {"if": "style == 'rail'", "repeat": {"z": "[h*0.35, h*0.75]"}, "p": "beam", "from": ["-L/2", -0.1, "z"], "to": ["L/2", -0.1, "z + 0.05"], "size": [0.12, 0.09], "c": "wood"},
+    {"if": "style == 'farm'", "repeat": {"z": "[h*0.2, h*0.52, h*0.84]"}, "p": "box", "size": ["L", 0.04, 0.16], "at": [0, -0.09, "z"], "c": "paint"},
+    {"if": "style == 'picket'", "parts": [
+      {"repeat": {"z": "[h*0.25, h*0.65]"}, "p": "box", "size": ["L", 0.06, 0.08], "at": [0, 0.04, "z"], "c": "paint"},
+      {"repeat": {"k": "range(int(L/0.16))"}, "p": "extrude", "axis": "y", "depth": 0.025, "at": ["-L/2 + 0.08 + k*0.16", -0.02, 0.05],
+       "profile": "[(-0.045, 0), (0.045, 0), (0.045, h-0.18), (0, h-0.05), (-0.045, h-0.18)]", "c": "paint"}
+    ]}
+  ]
+}

@@ -1,0 +1,16 @@
+# Third-party licence acknowledgement for the Cannonball scenic asset pipeline.
+# The user approved this model set in the agent session of 2026-11-20 (relayed by
+# the coordinating agent). This record is NOT cryptographically signed; a signed
+# or merge-backed acknowledgement can replace it without changing the register.
+record: tillandsias-licence-acknowledgement v1
+licence: creativeml-openrail-plus-plus-m-sdxl-lightning
+licence_text: licences/texts/creativeml-openrail-plus-plus-m-sdxl-lightning.md
+licence_sha256: 58a5efadd5103ca0906bfc86817ad2d02ebd0856a79e5034756cadd02fa97066
+covers: ["ByteDance/SDXL-Lightning (4-step)"]
+grantor: operator
+scope: project:cannonball
+use: generated game art (scenic sprites and textures) committed to this repository
+expiry: "standing"
+approved_on: "2026-11-20"
+strength: chat-approval
+signature: ""

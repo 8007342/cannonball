@@ -4,6 +4,7 @@
 --   lua art/rigs/cars/run.lua hero ID        clay/hint/depth/beauty passes for the paint flow
 --   lua art/rigs/cars/run.lua keycard        garage key-card prop render
 --   lua art/rigs/cars/run.lua assemble       atlases, manifest and contact sheet (Go, CPU)
+--   lua art/rigs/cars/run.lua scenes [ID]    garage departure views (exterior, door, cabin)
 --   lua art/rigs/cars/run.lua all            render + keycard + assemble
 -- Renders go to $CANNONBALL_ART/cars/renders (default ~/.cache/tillandsias-project/
 -- cannonball-art), never into the checkout. Only assemble writes assets/cars/.
@@ -40,11 +41,17 @@ elseif verb == "keycard" then
   rig("--prop keycard")
 elseif verb == "assemble" then
   sh("go run -C tool/rigs ./cars assemble " .. q(OUT) .. " " .. q(capture("pwd")))
+elseif verb == "scenes" then
+  local id = arg[2] or "electric_roadster"
+  rig("--prop scenes --ids " .. q(id))
+  sh("go run -C tool/rigs ./cars scenes " .. q(OUT) .. " " .. q(capture("pwd")) .. " " .. q(id))
 elseif verb == "all" then
   rig("--passes clay,hint,depth")
   rig("--prop keycard")
   sh("go run -C tool/rigs ./cars assemble " .. q(OUT) .. " " .. q(capture("pwd")))
+  rig("--prop scenes --ids electric_roadster")
+  sh("go run -C tool/rigs ./cars scenes " .. q(OUT) .. " " .. q(capture("pwd")) .. " electric_roadster")
 else
-  io.stderr:write("usage: lua art/rigs/cars/run.lua render [ids]|hero ID|keycard|assemble|all\n")
+  io.stderr:write("usage: lua art/rigs/cars/run.lua render [ids]|hero ID|keycard|assemble|scenes [ID]|all\n")
   os.exit(2)
 end

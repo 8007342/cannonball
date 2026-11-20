@@ -1,0 +1,461 @@
+{
+  "appalachian-autumn-a/5745800": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "Appalachian mountains in autumn: rolling forested ridges covered in red, orange and gold trees, a farther blue ridge behind, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 5745800,
+    "studio_job": "st-1795135629893-74",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/appalachian-autumn-a/5745800-rgb.png",
+    "sha256": "fcd684d439076bb210adcb9ead98065fcb94a1abf7c8eab7ca67f2d498bcdaf1",
+    "matte_sha256": "7cdb75ea1f8ea76f62d256c4d2942d6382b926cabc4f864f6a8fd2a12493b194",
+    "selected": true,
+    "pick_reason": "autumn ridges with a blue ridge behind give depth",
+    "source_sha256": "1d5e2a47288144dafeff9c55140431e7fe64ad9b6199ba1672480291ee322579",
+    "source": "art/sources/vistas/appalachian-autumn-a.png"
+  },
+  "appalachian-autumn-a/5745801": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "Appalachian mountains in autumn: rolling forested ridges covered in red, orange and gold trees, a farther blue ridge behind, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 5745801,
+    "studio_job": "st-1795135629893-74",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/appalachian-autumn-a/5745801-rgb.png",
+    "sha256": "dedf0ea649841aedafd07ea6a243d773f3f7e006abfbbd2477d91048fed98c2d",
+    "matte_sha256": "229770590bd8781725016a6c75b4a5087c089f0d03f78e6c3fd1eff8382ef539",
+    "selected": false
+  },
+  "appalachian-autumn-a/5745802": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "Appalachian mountains in autumn: rolling forested ridges covered in red, orange and gold trees, a farther blue ridge behind, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 5745802,
+    "studio_job": "st-1795135629893-74",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/appalachian-autumn-a/5745802-rgb.png",
+    "sha256": "ad2679c8fe9a58003ab37ea92518de81a1e2f324ec2b0ab7905690390bc1552f",
+    "matte_sha256": "d4e1180c4841e8887fc610b8d47e05faf392e3c6d4f0cb814dc901c1b2192877",
+    "selected": false
+  },
+  "chicago-skyline-a/6968390": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "the present-day Chicago downtown skyline seen from far away across flat land: a dense cluster of tall skyscrapers including one very tall black tower with two antennas on top, a tall white stone tower and slender glass towers, lower buildings around them, soft hazy blue-grey tones, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 6968390,
+    "studio_job": "st-1795136307135-120",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/chicago-skyline-a/6968390-rgb.png",
+    "sha256": "b106fbfdf23837fb9fb22d76e388fe39bdc89d3d3a28b7da37028c21866bfe3a",
+    "matte_sha256": "27a9940f8d291990d103e9eeee25686f7000645c401e75afb31aef3c0543fece",
+    "selected": true,
+    "pick_reason": "black twin-antenna tower and white stone tower read as present-day Chicago",
+    "source_sha256": "3e2211a8bb6cf3762814d2d8b6641a655cbe5bbcde01ffee4fab3d6f09c1d381",
+    "source": "art/sources/vistas/chicago-skyline-a.png"
+  },
+  "chicago-skyline-a/6968391": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "the present-day Chicago downtown skyline seen from far away across flat land: a dense cluster of tall skyscrapers including one very tall black tower with two antennas on top, a tall white stone tower and slender glass towers, lower buildings around them, soft hazy blue-grey tones, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 6968391,
+    "studio_job": "st-1795136307135-120",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/chicago-skyline-a/6968391-rgb.png",
+    "sha256": "0cdfe2e08508003bb66a02529a6065db8eabc7e40f20761c493b2e9e6a139fc3",
+    "matte_sha256": "badf4d3d572ec8aa4845e9b71ce5b888967af2e8a6cc3408b30c7c81e9b1f5ff",
+    "selected": false
+  },
+  "chicago-skyline-a/6968392": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "the present-day Chicago downtown skyline seen from far away across flat land: a dense cluster of tall skyscrapers including one very tall black tower with two antennas on top, a tall white stone tower and slender glass towers, lower buildings around them, soft hazy blue-grey tones, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 6968392,
+    "studio_job": "st-1795136307135-120",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/chicago-skyline-a/6968392-rgb.png",
+    "sha256": "3b4df8a006d52b18cd649e0b88e5423c8ffb79ae7ec510e7903538b0b74ceaa9",
+    "matte_sha256": "2eab180b67f4febb14a829762ad6d3a6f79ddcb13842b3c675c76aac46882aaa",
+    "selected": false
+  },
+  "city-skyline-a/4798260": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a distant present-day American city skyline: varied glass and stone skyscrapers, a few towers, lower buildings at the base, soft hazy blue-grey tones, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 4798260,
+    "studio_job": "st-1795135633878-76",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/city-skyline-a/4798260-rgb.png",
+    "sha256": "b87448dc940287448e76bc94cc59263a08fb5c876e3adb5ddb6ce30c67db3376",
+    "matte_sha256": "5c6d99dee5e65a9f9490f94f7a61447826ec528911e6beb180c1a2b5f28e43d0",
+    "selected": true,
+    "pick_reason": "most varied tower heights, readable at small size",
+    "source_sha256": "1dde0874013895b12ad8429ea303977b740a708439865c712f0a17d354ebb09d",
+    "source": "art/sources/vistas/city-skyline-a.png"
+  },
+  "city-skyline-a/4798261": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a distant present-day American city skyline: varied glass and stone skyscrapers, a few towers, lower buildings at the base, soft hazy blue-grey tones, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 4798261,
+    "studio_job": "st-1795135633878-76",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/city-skyline-a/4798261-rgb.png",
+    "sha256": "b39fc3b644bc76e9c914cdbb974503db8460e94bbe7c2da4648debfa8113f675",
+    "matte_sha256": "a69de4ba4d91df09689a87c058b8b25ce00aeca966730ce1814ac9d93c26deef",
+    "selected": false
+  },
+  "city-skyline-a/4798262": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a distant present-day American city skyline: varied glass and stone skyscrapers, a few towers, lower buildings at the base, soft hazy blue-grey tones, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 4798262,
+    "studio_job": "st-1795135633878-76",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/city-skyline-a/4798262-rgb.png",
+    "sha256": "553472a1127954019043455ada2c577dc925c33204cbd9a85278d9e38036a818",
+    "matte_sha256": "94d2958265db219a11e578a080b6136e177728e77fcc83da0981a862ee8874f9",
+    "selected": false
+  },
+  "hills-green-a/2386550": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "gently rolling green hills with patchwork farm fields, hedgerows and small clumps of trees, a paler hill line behind, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 2386550,
+    "studio_job": "st-1795136305641-119",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/hills-green-a/2386550-rgb.png",
+    "sha256": "077d08e82f1275612bc7d4566641ebdd22fd0b8fc5ba1ec2cb75312150983a9f",
+    "matte_sha256": "bc8b5186e7c077c80e3b035be2e6be53200636742dd861ddbbe17f7f79828f0c",
+    "selected": false
+  },
+  "hills-green-a/2386551": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "gently rolling green hills with patchwork farm fields, hedgerows and small clumps of trees, a paler hill line behind, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 2386551,
+    "studio_job": "st-1795136305641-119",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/hills-green-a/2386551-rgb.png",
+    "sha256": "0d978b1cb4b0b466432c0f3a1c82db824890976ab0b4131e116893c043f82212",
+    "matte_sha256": "18fae0f3c4072431a42a0e56c897edf01b83fa819a6526bfa38d7f649fcc8e52",
+    "selected": true,
+    "pick_reason": "patchwork fields over rolling hills, even horizon",
+    "source_sha256": "260acb5ca67a29bccf18dc1b02fc67941327ecd59520ae57e1dbeb972e315b71",
+    "source": "art/sources/vistas/hills-green-a.png"
+  },
+  "hills-green-a/2386552": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "gently rolling green hills with patchwork farm fields, hedgerows and small clumps of trees, a paler hill line behind, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 2386552,
+    "studio_job": "st-1795136305641-119",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/hills-green-a/2386552-rgb.png",
+    "sha256": "24bb4a02ccb139bfea215f99690c1c8d0a5ca4681b4add1bd6966207403a9631",
+    "matte_sha256": "8fb456eff9aa3918d372312cbb7d07352ba90d2541c8e99cba874ee7c5ce34a6",
+    "selected": false
+  },
+  "mesa-desert-a/5377210": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "distant red rock mesas and buttes of the American Southwest with flat tops and layered orange cliffs over a pale desert plain, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 5377210,
+    "studio_job": "st-1795135636124-77",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/mesa-desert-a/5377210-rgb.png",
+    "sha256": "c4d15391e9f1185d556bdb621d201767346e7f31e7802ffeb5c95756195a8d12",
+    "matte_sha256": "3c1f07affcbf1bb7f93be99a4498be46d7811a06546181862f853bbf3037bccd",
+    "selected": false
+  },
+  "mesa-desert-a/5377211": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "distant red rock mesas and buttes of the American Southwest with flat tops and layered orange cliffs over a pale desert plain, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 5377211,
+    "studio_job": "st-1795135636124-77",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/mesa-desert-a/5377211-rgb.png",
+    "sha256": "30b62936d8130c7b9e2bfb0e34b792cfa16293ebd65ba5c2bdaa187748f8fb50",
+    "matte_sha256": "cf580e435dc6db1eec77780a3dd6d659da1c5eb3e464278393bacb5997251be8",
+    "selected": false
+  },
+  "mesa-desert-a/5377212": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "distant red rock mesas and buttes of the American Southwest with flat tops and layered orange cliffs over a pale desert plain, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 5377212,
+    "studio_job": "st-1795135636124-77",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/mesa-desert-a/5377212-rgb.png",
+    "sha256": "61046be497fdd6b64129fca16fd622cd60749c6b0f92b2e499a180f6195a2804",
+    "matte_sha256": "d8dd8111214887ebb152dbe80de846b313fa2c07409be707ab5d089e5b389ab2",
+    "selected": true,
+    "pick_reason": "mesas on both ends tile and read as Southwest",
+    "source_sha256": "4775608551dbdbfb347551535802bb20832c8712f077f9b86a8b69c53c426344",
+    "source": "art/sources/vistas/mesa-desert-a.png"
+  },
+  "prairie-horizon-a/7198510": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a flat Midwestern prairie horizon: a low band of distant green and golden fields, faint tree clumps and a far grain elevator, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 7198510,
+    "studio_job": "st-1795135632020-75",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/prairie-horizon-a/7198510-rgb.png",
+    "sha256": "0683b2eb89f3a1f12e8addfa4f4e08b1ae40a70befa316c98cd05314ec0ae0f8",
+    "matte_sha256": "244f36f2398316db0dcf08c72b8849a7f4b25459182d70773bee2b3982fe374b",
+    "selected": true,
+    "pick_reason": "low field band with tree clumps reads as distant horizon (skyline matte)",
+    "source_sha256": "5135f3d9c9938c54386cedb3cb5914ce7b67e492a6989fbdc1b96de2956afa6d",
+    "source": "art/sources/vistas/prairie-horizon-a.png"
+  },
+  "prairie-horizon-a/7198511": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a flat Midwestern prairie horizon: a low band of distant green and golden fields, faint tree clumps and a far grain elevator, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 7198511,
+    "studio_job": "st-1795135632020-75",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/prairie-horizon-a/7198511-rgb.png",
+    "sha256": "2146466cc230e25ee906df2a30a1078aa28ef028f377b4365a644890e7988724",
+    "matte_sha256": "6c1a35cf332bdf8cc2aaaeb979947dedc0b417b100d058ea0107cdbc49411ebd",
+    "selected": false
+  },
+  "prairie-horizon-a/7198512": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a flat Midwestern prairie horizon: a low band of distant green and golden fields, faint tree clumps and a far grain elevator, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 7198512,
+    "studio_job": "st-1795135632020-75",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/prairie-horizon-a/7198512-rgb.png",
+    "sha256": "4c8076d8be0c5809b250ead1ead6835f91e6bd07c68461d1277845d925aec028",
+    "matte_sha256": "6400853f000ada35367c04e628c266b7fd0af8eb35e48e368917142d78e753e9",
+    "selected": false
+  },
+  "ridge-blue-a/3749330": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors",
+      "flux2-vae.safetensors",
+      "model.safetensors",
+      "qwen_3_4b.safetensors"
+    ],
+    "prompt": "the Blue Ridge mountains: layered overlapping soft blue ridgelines fading into haze, gentle rounded forested crests, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 3749330,
+    "studio_job": "st-1795135363600-12",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/ridge-blue-a/3749330-rgb.png",
+    "sha256": "ae1f59349e204ce7fb086efa2af728c1abb52bf3f90f2bef145bbd0c11f2bf42",
+    "matte_sha256": "7824f0fff73f1dc0bb81b3768d7dd0a69877bca2dfe5dcb4a687497f1e27380f",
+    "selected": false
+  },
+  "ridge-blue-a/3749331": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors",
+      "flux2-vae.safetensors",
+      "model.safetensors",
+      "qwen_3_4b.safetensors"
+    ],
+    "prompt": "the Blue Ridge mountains: layered overlapping soft blue ridgelines fading into haze, gentle rounded forested crests, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 3749331,
+    "studio_job": "st-1795135363600-12",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/ridge-blue-a/3749331-rgb.png",
+    "sha256": "5fdcac67c0b0842c1119b7648206572cae55a085720687c236ea1754d98e9536",
+    "matte_sha256": "8b9335f909b7cdf7155e3b4b61f314d41226ed7a8a16ec4b45298be25744332a",
+    "selected": true,
+    "pick_reason": "layered blue ridges with forest foreground, mildest glow",
+    "source_sha256": "0149a076bca399ca5c90c40da9eb9798760fd14603c4ed3a5fb4e2a1c54a5489",
+    "source": "art/sources/vistas/ridge-blue-a.png"
+  },
+  "ridge-blue-a/3749332": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors",
+      "flux2-vae.safetensors",
+      "model.safetensors",
+      "qwen_3_4b.safetensors"
+    ],
+    "prompt": "the Blue Ridge mountains: layered overlapping soft blue ridgelines fading into haze, gentle rounded forested crests, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 3749332,
+    "studio_job": "st-1795135363600-12",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/ridge-blue-a/3749332-rgb.png",
+    "sha256": "aefeca35e789778df7b4ea9d486447fc2ca6d6ade761ab6f050bdd8744c469fa",
+    "matte_sha256": "938b09c708d7d699ce611f48f9e2b516031d0f825176006883c8512ea029e033",
+    "selected": false
+  },
+  "rockies-snow-a/7315630": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "the Rocky Mountains: tall jagged blue-grey peaks with snow caps above dark green forested foothills, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 7315630,
+    "studio_job": "st-1795135638198-78",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/rockies-snow-a/7315630-rgb.png",
+    "sha256": "db65b4f3e3a594ae197cdc00665dd5b1584afb612e72de2d27457a1aeeedfa80",
+    "matte_sha256": "eed19885e4cce5ccc4522dcdd738102cac812e23eea175b0eb59cbee8df50df3",
+    "selected": false
+  },
+  "rockies-snow-a/7315631": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "the Rocky Mountains: tall jagged blue-grey peaks with snow caps above dark green forested foothills, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 7315631,
+    "studio_job": "st-1795135638198-78",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/rockies-snow-a/7315631-rgb.png",
+    "sha256": "2dd565e3911cd728c150cb1f9a979c1eb8f4c14947312625e0e77a6fbf3a1d65",
+    "matte_sha256": "e08f8d29ba3bf78fb2a5d097aab19c51599de2d958da2f38906fbdf2c11eddca",
+    "selected": true,
+    "pick_reason": "strong snow peaks over dark foothills",
+    "source_sha256": "c104c2dfbeef5767e28b4a1790144d6b264af9f74c1f73e6f90fabe990dbab9e",
+    "source": "art/sources/vistas/rockies-snow-a.png"
+  },
+  "rockies-snow-a/7315632": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "the Rocky Mountains: tall jagged blue-grey peaks with snow caps above dark green forested foothills, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 7315632,
+    "studio_job": "st-1795135638198-78",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/rockies-snow-a/7315632-rgb.png",
+    "sha256": "05a92bfa5c04fda8402062d409dcd7d36b0ee4d9f9ad934c0c0b396cc82003a4",
+    "matte_sha256": "a3c95a071ed9cc91eb3dae71cd674f34c62debafd1df04dfc651cb5ac1ea9b65",
+    "selected": false
+  },
+  "sonoran-hills-a/5611420": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "distant rugged Sonoran desert mountains of Arizona, jagged brown and purple ridges with scattered saguaro cacti on the lower slopes, pale tan desert floor, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 5611420,
+    "studio_job": "st-1795136309493-121",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/sonoran-hills-a/5611420-rgb.png",
+    "sha256": "09a0c82b16e24b404490ccaa4eedebb5bd09e020316cc20f02e014a08e23dd09",
+    "matte_sha256": "bccc762c80edc2247119f08b075d1b0d4694ea5f2982ae68135b6f8381e32dcf",
+    "selected": true,
+    "pick_reason": "brown and purple ridges with saguaros, both ends similar for tiling",
+    "source_sha256": "9cd0589a731c6a813c50402148114f8878396437e98aea0244ba6175c2745ac8",
+    "source": "art/sources/vistas/sonoran-hills-a.png"
+  },
+  "sonoran-hills-a/5611421": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "distant rugged Sonoran desert mountains of Arizona, jagged brown and purple ridges with scattered saguaro cacti on the lower slopes, pale tan desert floor, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 5611421,
+    "studio_job": "st-1795136309493-121",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/sonoran-hills-a/5611421-rgb.png",
+    "sha256": "c55a05fa1a3a0845427a1fbf61e472da8a67785850759974d1d73d25c13af45f",
+    "matte_sha256": "7bca2bd4331324641477dd7033f77cb756035bbb6df0de69d00cecce5765edbd",
+    "selected": false
+  },
+  "sonoran-hills-a/5611422": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "distant rugged Sonoran desert mountains of Arizona, jagged brown and purple ridges with scattered saguaro cacti on the lower slopes, pale tan desert floor, wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+    "seed": 5611422,
+    "studio_job": "st-1795136309493-121",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vistas/sonoran-hills-a/5611422-rgb.png",
+    "sha256": "a081c5aa9b83d6f536c3bbc8ea91622e7972b2fb70a4f5e488d56250e393b513",
+    "matte_sha256": "adb645ddf5e21cd9f1ca952ce4a089e22ff2a9383b4f6a43a2249ef41e8fa7ca",
+    "selected": false
+  }
+}

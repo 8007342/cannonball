@@ -32,14 +32,33 @@ scale and ground line (each is centred on its own silhouette; the renderer measu
 Traffic: `traffic-atlas.png`, 8 columns of 256 px cells, cell = model row x 4 + paint, the
 same contract at half size. Brake-lamp offsets come from the rig's projected lamps.
 
+## Garage departure views
+
+Picking the key card plays the same directed departure with the roadster: the open hand
+holds the rendered key card (`assets/cars/keycard.png`) by its ring, the courtyard shows the
+white car parked where the painted S2000 stands (`<id>-exterior.png`, with an underbody
+shadow so the painted car never shows through), the driver door opens (`<id>-entry.png`,
+cell 3) and the first-person cabin looks out through the windscreen and glass roof
+(`<id>-cabin.png`, street taken from the exterior painting). `run.lua scenes ID` renders
+them (`car_rig.py --prop scenes`: the shells are cut open, back faces render as interior
+trim, seats/dash/wheel are added and the driver door swings on its front hinge) and
+`carpack scenes` composes them; cameras live in `poses.json` under `scenes`.
+
 ## Look
 
 Emission-only cel shading in Cycles: three soft-edged light bands (cool shadow, mid, warm
 lit) from a fixed upper-left light, a hard specular band, a fresnel sky reflection and an
 inverted-hull outline. No logos, badges, wordmarks or plate text; names in game are generic
 (`lib/game/car_catalog.dart`). A Qwen-Image-Edit hero repaint (`run.lua hero ID`, then
-`art/workflows/structure-paint-qwen.json` with `beauty` + `depth`) was evaluated; the shipped
-pixels are the rig's own shading because the cel renders stay consistent across poses.
+`art/workflows/structure-paint-qwen.json` with `beauty` as `$init_image` and `depth` as
+`$control`, seed 2001) was evaluated on the S2000 flat rear view. It kept the silhouette and
+looked richer as a still (warmer gradient, stronger gloss), but it is one view: projecting it
+onto the mesh paints only rear-facing surfaces, so the flanks that turn, skid and slope poses
+reveal would fall back to cel shading inside the same sprite, and its baked highlight would
+travel with the body as the car yaws while every other light in the game stays put. In the
+moving game that reads as flicker between frames, not as better paint, so the shipped pixels
+are the rig's own cel shading. The painted candidate and its provenance are kept outside the
+checkout (`~/.cache/tillandsias-project/cannonball-art/cars/paints/s2000_roadster/`).
 
 ## Add a new car in 3 steps
 

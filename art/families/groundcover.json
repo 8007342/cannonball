@@ -1,0 +1,184 @@
+{
+  "family": "groundcover",
+  "type": "sprite",
+  "atlas": "near",
+  "workflow": "art/workflows/sprite-flux2-matte.json",
+  "style": "hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+  "candidates": 3,
+  "canvas": [
+    1024,
+    768
+  ],
+  "items": [
+    {
+      "id": "grass-tall-green-a",
+      "prompt": "a lush clump of tall green meadow grass blades and seed heads",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 1.6,
+      "biomes": [
+        "farm",
+        "forest",
+        "river",
+        "plains",
+        "town"
+      ],
+      "sway": 0.35
+    },
+    {
+      "id": "grass-tall-golden-a",
+      "prompt": "a clump of tall dry golden prairie grass with feathery seed heads",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 1.6,
+      "biomes": [
+        "plains",
+        "farm"
+      ],
+      "tags": [
+        "autumn",
+        "west"
+      ],
+      "sway": 0.35
+    },
+    {
+      "id": "grass-tuft-short-a",
+      "prompt": "a small low tuft of short bright green grass",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 0.8,
+      "biomes": [
+        "farm",
+        "forest",
+        "town",
+        "city",
+        "river",
+        "plains"
+      ],
+      "sway": 0.2
+    },
+    {
+      "id": "wildflowers-mixed-a",
+      "prompt": "a patch of mixed roadside wildflowers, blue chicory, white Queen Anne's lace and yellow buttercups among green grass",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 2.0,
+      "biomes": [
+        "farm",
+        "plains",
+        "forest",
+        "river"
+      ],
+      "tags": [
+        "spring",
+        "summer"
+      ],
+      "sway": 0.3
+    },
+    {
+      "id": "black-eyed-susans-a",
+      "prompt": "a clump of black-eyed Susan flowers, bright yellow petals with dark brown centres on green stems",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 1.2,
+      "biomes": [
+        "farm",
+        "plains",
+        "town"
+      ],
+      "tags": [
+        "summer"
+      ],
+      "sway": 0.3
+    },
+    {
+      "id": "lupine-blue-a",
+      "prompt": "a clump of tall blue and purple lupine flower spikes with palm-shaped green leaves",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 1.2,
+      "biomes": [
+        "forest",
+        "river",
+        "plains"
+      ],
+      "tags": [
+        "spring"
+      ],
+      "sway": 0.3
+    },
+    {
+      "id": "goldenrod-a",
+      "prompt": "a clump of goldenrod with arching plumes of tiny golden-yellow flowers on green stalks",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 1.4,
+      "biomes": [
+        "farm",
+        "plains",
+        "river"
+      ],
+      "tags": [
+        "autumn"
+      ],
+      "sway": 0.3
+    },
+    {
+      "id": "cattails-a",
+      "prompt": "a clump of cattail reeds with tall green blades and brown velvet seed heads, marsh plants",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 1.5,
+      "biomes": [
+        "river"
+      ],
+      "sway": 0.3,
+      "canvas": [
+        768,
+        1024
+      ]
+    },
+    {
+      "id": "ferns-a",
+      "prompt": "a lush clump of green forest ferns with arching feathery fronds",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 1.4,
+      "biomes": [
+        "forest",
+        "river"
+      ],
+      "sway": 0.2
+    },
+    {
+      "id": "desert-grass-a",
+      "prompt": "a clump of pale straw-coloured desert bunch grass with thin wiry blades",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 1.0,
+      "biomes": [
+        "desert",
+        "plains"
+      ],
+      "tags": [
+        "west"
+      ],
+      "sway": 0.3
+    },
+    {
+      "id": "desert-marigold-a",
+      "prompt": "a low mound of silvery desert marigold with many small bright yellow daisy flowers",
+      "band": "near",
+      "kind": "grass",
+      "worldWidthM": 0.9,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "west",
+        "spring"
+      ],
+      "sway": 0.2
+    }
+  ]
+}

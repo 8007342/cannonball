@@ -1,0 +1,21 @@
+{
+  "template": "billboard",
+  "notes": "Roadside billboard facing approaching traffic (-Y). Panel left blank (no brands). style 'wood' on timber legs or 'steel' monopole.",
+  "view": {"pitch": 6, "yaw": 20},
+  "params": {"style": "wood", "pw": 9, "ph": 3.6, "lift": 3.2, "panel": "#efe8d6", "frame": "#3f4448", "wood": "#7a5a3c", "steel": "#8e979c"},
+  "parts": [
+    {"p": "box", "size": ["pw+0.3", 0.25, "ph+0.3"], "at": [0, 0.1, "lift-0.15"], "c": "frame"},
+    {"p": "box", "size": ["pw", 0.1, "ph"], "at": [0, -0.06, "lift"], "c": "panel"},
+    {"p": "box", "size": ["pw+0.3", 0.9, 0.08], "at": [0, -0.45, "lift-0.4"], "c": "frame"},
+    {"repeat": {"k": "range(3)"}, "p": "beam", "from": ["-pw/2 + pw*(k+0.5)/3", -0.6, "lift-0.35"], "to": ["-pw/2 + pw*(k+0.5)/3", -0.9, "lift-0.1"], "size": [0.06, 0.06], "c": "frame"},
+    {"repeat": {"k": "range(3)"}, "p": "box", "size": [0.35, 0.3, 0.18], "at": ["-pw/2 + pw*(k+0.5)/3", -1.0, "lift-0.1"], "c": "frame"},
+    {"if": "style == 'wood'", "repeat": {"k": "range(3)"}, "parts": [
+      {"p": "box", "size": [0.3, 0.3, "lift+ph"], "at": ["-pw/2 + 0.9 + k*(pw-1.8)/2", 0.4, 0], "c": "wood"},
+      {"p": "beam", "from": ["-pw/2 + 0.9 + k*(pw-1.8)/2", 2.2, 0], "to": ["-pw/2 + 0.9 + k*(pw-1.8)/2", 0.5, "lift+1"], "size": [0.2, 0.2], "c": "wood"}
+    ]},
+    {"if": "style == 'steel'", "parts": [
+      {"p": "cyl", "r": 0.55, "r2": 0.45, "h": "lift", "seg": 16, "at": [0, 0.7, 0], "c": "steel"},
+      {"p": "box", "size": ["pw*0.8", 0.5, 0.5], "at": [0, 0.6, "lift+ph*0.25"], "c": "steel"}
+    ]}
+  ]
+}

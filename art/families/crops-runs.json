@@ -1,0 +1,410 @@
+{
+  "corn-row-dry-a/8509760": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long strip of tall dry tan autumn corn stalks ready for harvest with drooping papery leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 8509760,
+    "studio_job": "st-1795135501383-24",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/corn-row-dry-a/8509760-rgb.png",
+    "sha256": "d5b510935972dc6b9c616d48705c71c5178dff8bfa21fcad8f5927a780cfaa22",
+    "matte_sha256": "ef5766cf970e7ffd2af4b886608160ccac5132d6cb63dd1ecae58f05ead8965e",
+    "selected": true,
+    "pick_reason": "uniform dry tan stalks, no glow band",
+    "source_sha256": "4e2f831e5b453f4cc578c2d311fd92cbad31f74059a8e80c2673783fe557a06b",
+    "source": "art/sources/crops/corn-row-dry-a.png"
+  },
+  "corn-row-dry-a/8509761": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long strip of tall dry tan autumn corn stalks ready for harvest with drooping papery leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 8509761,
+    "studio_job": "st-1795135501383-24",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/corn-row-dry-a/8509761-rgb.png",
+    "sha256": "c40501125efc00cac577b4fe80dabdeb1fd54958ddec191267ed93bc778abd57",
+    "matte_sha256": "45d9e4f5285f15ebc7e630c7ccc4a3c84b1ac27d3ba74912373d45a9d6082919",
+    "selected": false
+  },
+  "corn-row-dry-a/8509762": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long strip of tall dry tan autumn corn stalks ready for harvest with drooping papery leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 8509762,
+    "studio_job": "st-1795135501383-24",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/corn-row-dry-a/8509762-rgb.png",
+    "sha256": "287518269116879b80b74e8fc5fc952d9ffcdbbb1c3a66c845303f08cb3cb095",
+    "matte_sha256": "78c0112e053b04f62370faaa8834e04dd1904cc16866f31c1aebdebe4c2b6848",
+    "selected": false
+  },
+  "corn-row-green-a/2902300": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long strip of tall green corn plants in a row, broad leaves and golden tassels on top, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 2902300,
+    "studio_job": "st-1795135496570-23",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/corn-row-green-a/2902300-rgb.png",
+    "sha256": "619ca07179846ea83efc236b51f008f920040c573755683c579e1803bf672a10",
+    "matte_sha256": "7471b74137503a71ca3bf405e3bac119c519c1d2f3720a9407b084d5417739b8",
+    "selected": false
+  },
+  "corn-row-green-a/2902301": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long strip of tall green corn plants in a row, broad leaves and golden tassels on top, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 2902301,
+    "studio_job": "st-1795135496570-23",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/corn-row-green-a/2902301-rgb.png",
+    "sha256": "53cc864e2dcfbd0b0e9a98e362b1de49b20e178926be741224a4b0c172f72398",
+    "matte_sha256": "d46b9547e880b3fb58b4be861aadf4b11b51490de20101429b3cca91615b78a1",
+    "selected": true,
+    "pick_reason": "evenest green, tassels read, least left-side yellow cast",
+    "source_sha256": "06d540bdcd594f36dfcb961d5d7ebaabc97640f2c581afc623e167c475094d4c",
+    "source": "art/sources/crops/corn-row-green-a.png"
+  },
+  "corn-row-green-a/2902302": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long strip of tall green corn plants in a row, broad leaves and golden tassels on top, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 2902302,
+    "studio_job": "st-1795135496570-23",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/corn-row-green-a/2902302-rgb.png",
+    "sha256": "61d8aa209e3f9d47eff5096feabc5f9f786dc2f686fe1bd46be08ee2bd6a8c53",
+    "matte_sha256": "09d058323686c172f2d3c960b290970bcb4f278120f1dd00af8329dbff423eb9",
+    "selected": false
+  },
+  "hay-bale-round-a/3977930": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single big round rolled hay bale of golden straw lying on its side, seen at a three-quarter angle, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3977930,
+    "studio_job": "st-1795135507023-29",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/hay-bale-round-a/3977930-rgb.png",
+    "sha256": "b888d586679fdade402255a4cb9609ee159c341034dc60bef7a182ea1454cc35",
+    "matte_sha256": "2e2d8b224c827e66bf9add669d64e3488cd8b53dfaa3739ef602157fc74941a2",
+    "selected": false
+  },
+  "hay-bale-round-a/3977931": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single big round rolled hay bale of golden straw lying on its side, seen at a three-quarter angle, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3977931,
+    "studio_job": "st-1795135507023-29",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/hay-bale-round-a/3977931-rgb.png",
+    "sha256": "b65a1ec1f404d97d498c2e7fc5e99c9bef566a6bf5bda96c4efa20e7239d2631",
+    "matte_sha256": "0db9dc31cf65bcaac6a1798737c514c5512c897b4392c53b4f55435092f72745",
+    "selected": true,
+    "pick_reason": "soft painted edge without the hard black outline of the others",
+    "source_sha256": "748dcef308ce26f91bd0dda2a5fa8773e89606c07e61f4152decfd5aa6e45c77",
+    "source": "art/sources/crops/hay-bale-round-a.png"
+  },
+  "hay-bale-round-a/3977932": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single big round rolled hay bale of golden straw lying on its side, seen at a three-quarter angle, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3977932,
+    "studio_job": "st-1795135507023-29",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/hay-bale-round-a/3977932-rgb.png",
+    "sha256": "dd6d3e475f5154d187b6e88a0578f53d1df8f86bfd48687377bf076e3c0bb2a1",
+    "matte_sha256": "f4ee70a23b66211363b67965ffd4a010865fb075c45a8a36493f6275d5630ac2",
+    "selected": false
+  },
+  "hay-bales-square-a/69670": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small stack of rectangular golden straw hay bales tied with twine, three bales on two below, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 69670,
+    "studio_job": "st-1795135508646-30",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/hay-bales-square-a/69670-rgb.png",
+    "sha256": "c50b2f11f3b2ce85fe8f9cd9bdf3ac2569a5ee2956eaa7944db81eed3ce3a2b7",
+    "matte_sha256": "f41a4e5cae5d08352e747041628dc9420ff5d4ec6f7365ed4ce7041fef59835c",
+    "selected": false
+  },
+  "hay-bales-square-a/69671": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small stack of rectangular golden straw hay bales tied with twine, three bales on two below, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 69671,
+    "studio_job": "st-1795135508646-30",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/hay-bales-square-a/69671-rgb.png",
+    "sha256": "4c7b144e4d034999cbae65b83dbb0694975f925af51889027f7c305ee18be87c",
+    "matte_sha256": "ad5ea62a6f6fdb246fb0061676e343fd5bd9a3b9fa9ae8cac51cb7d8b6b55600",
+    "selected": true,
+    "pick_reason": "neat two-bale stack, twine reads, even straw",
+    "source_sha256": "1db23da8c3b681f77c17fd83f601e606cde8d043d9ffacb076d5666cfb6c5658",
+    "source": "art/sources/crops/hay-bales-square-a.png"
+  },
+  "hay-bales-square-a/69672": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small stack of rectangular golden straw hay bales tied with twine, three bales on two below, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 69672,
+    "studio_job": "st-1795135508646-30",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/hay-bales-square-a/69672-rgb.png",
+    "sha256": "f7ea4558882c92003b70ae3ef6ff4483a4cf7ffa837902b72fa0b27cb63273e3",
+    "matte_sha256": "1512a947b8c0e0a13e9dcac14ee7a44b80d1e7a1b9a62e70a7f22a42226b94db",
+    "selected": false
+  },
+  "pumpkin-patch-a/3730180": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low patch of orange pumpkins among sprawling green vines and big leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3730180,
+    "studio_job": "st-1795135505387-28",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/pumpkin-patch-a/3730180-rgb.png",
+    "sha256": "9a89b16fb0721d554f5b38dfb90099ea691bb2a44d99cc3a975612bfc41402a4",
+    "matte_sha256": "0c90bd1aed424a75335bcf0d14f0cbeefa407def85a64da24c31c1ed441a6782",
+    "selected": true,
+    "pick_reason": "clear pumpkins, low spread, readable leaves",
+    "source_sha256": "5800a38dce3cfde9398fddcde90a3ddc569e8c482749aa2301d733601e75c768",
+    "source": "art/sources/crops/pumpkin-patch-a.png"
+  },
+  "pumpkin-patch-a/3730181": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low patch of orange pumpkins among sprawling green vines and big leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3730181,
+    "studio_job": "st-1795135505387-28",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/pumpkin-patch-a/3730181-rgb.png",
+    "sha256": "55753eaa49a69ea4b25e2f98c6003aeacb98ad518190964fb6efda01a5953d07",
+    "matte_sha256": "2b0493c1c92e935a5752a849a3c4b5b646697cf5491fe2a2e0bba3b41beec834",
+    "selected": false
+  },
+  "pumpkin-patch-a/3730182": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low patch of orange pumpkins among sprawling green vines and big leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3730182,
+    "studio_job": "st-1795135505387-28",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/pumpkin-patch-a/3730182-rgb.png",
+    "sha256": "33c626989948463f299db963f703394dd9c9a4ca1b8437276d8c824dc83d0e23",
+    "matte_sha256": "7a61ab6088e76150ef2bbd09054b24edad85bb14fa0b3950cd23b6089e286f0b",
+    "selected": false
+  },
+  "soybean-strip-a/8356210": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long low strip of bushy green soybean plants in neat rows, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 8356210,
+    "studio_job": "st-1795135502416-26",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/soybean-strip-a/8356210-rgb.png",
+    "sha256": "2cf555853a0a86356b02ad06f37c0bb11e75b736ed52a9c4d691b736ecda7569",
+    "matte_sha256": "64fbc9a10ac53c6a64e30f6b02df9e0f6149add7c893cbf445e6aa566af7d99c",
+    "selected": true,
+    "pick_reason": "dense green rows without a soil band",
+    "source_sha256": "b350e10070f9254a67ba9058af3d87e71d3ec51b81865e432172b08a69afea3c",
+    "source": "art/sources/crops/soybean-strip-a.png"
+  },
+  "soybean-strip-a/8356211": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long low strip of bushy green soybean plants in neat rows, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 8356211,
+    "studio_job": "st-1795135502416-26",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/soybean-strip-a/8356211-rgb.png",
+    "sha256": "5b5b1f589dca9aeaf266846bf22f1c2f527a181dba0a233bdd9af560fbccc215",
+    "matte_sha256": "f516a87434469ce5fb0b88031466383872a569a6cf466078137cfea6d7b0f83f",
+    "selected": false
+  },
+  "soybean-strip-a/8356212": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long low strip of bushy green soybean plants in neat rows, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 8356212,
+    "studio_job": "st-1795135502416-26",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/soybean-strip-a/8356212-rgb.png",
+    "sha256": "8b3535ac4fbe8fadd9f92ca1f4a57affbfed2fc5d01b40b96bc04201461aee1b",
+    "matte_sha256": "0a1ad26f0587249a24b86715c5dfa42c16084718abf5b08a98137fed4a1264ef",
+    "selected": false
+  },
+  "sunflower-row-a/8022530": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a row of tall sunflowers with big yellow blossoms facing left and broad green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 8022530,
+    "studio_job": "st-1795135503578-27",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/sunflower-row-a/8022530-rgb.png",
+    "sha256": "4266b8e94acd28aa2a7075db85d23316fccf71ed7fc817b2288752a029499fc0",
+    "matte_sha256": "1bc8981b0db44d0ed87365e79743b3d09052effe34c180cbc0e1bbdbb1ee40f9",
+    "selected": false
+  },
+  "sunflower-row-a/8022531": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a row of tall sunflowers with big yellow blossoms facing left and broad green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 8022531,
+    "studio_job": "st-1795135503578-27",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/sunflower-row-a/8022531-rgb.png",
+    "sha256": "19b50158f9e0ba44ce604ec43b8a8de0569dcfbc029e682c3b2227667e23fe18",
+    "matte_sha256": "c05a628091b9c47ea3f5a3e5d005202c84e93decf649747a49650142dd535aa4",
+    "selected": false
+  },
+  "sunflower-row-a/8022532": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a row of tall sunflowers with big yellow blossoms facing left and broad green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 8022532,
+    "studio_job": "st-1795135503578-27",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/sunflower-row-a/8022532-rgb.png",
+    "sha256": "c50809b2fa2dab8ad210c4c666b8aa0183626c519a7bcc009819534e2ba1ff5c",
+    "matte_sha256": "0e6c658ecb6e6fef04d5b8f75ebc5eee4393bcbcc4f2204a002263cbf4c88155",
+    "selected": true,
+    "pick_reason": "fewer larger blooms read best at mid distance",
+    "source_sha256": "4a08ab8ba50f9ac89508d9096271971f49b760d0ae8b6d0f7ed53fbd5f911e68",
+    "source": "art/sources/crops/sunflower-row-a.png"
+  },
+  "wheat-strip-a/4815930": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long strip of ripe golden wheat with dense bearded grain heads, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4815930,
+    "studio_job": "st-1795135501478-25",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/wheat-strip-a/4815930-rgb.png",
+    "sha256": "0329c64c2028c1b4d6371ba89b95a067b5ffdc8c552cd11fdfc9cd29c2717e44",
+    "matte_sha256": "ae0cc76d62d76299719b0262b583f00da95d0a2aa329f6165721b77ddd584248",
+    "selected": true,
+    "pick_reason": "large clear grain heads that still read when small",
+    "source_sha256": "6a63fa63f991a873ec45906adf9daa4a97f14b447bcf50a5ff0a86c6b5b13337",
+    "source": "art/sources/crops/wheat-strip-a.png"
+  },
+  "wheat-strip-a/4815931": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long strip of ripe golden wheat with dense bearded grain heads, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4815931,
+    "studio_job": "st-1795135501478-25",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/wheat-strip-a/4815931-rgb.png",
+    "sha256": "fa99a775eca00eaa269a8462ff13d550cfd33fec8ba82a76504249748529d8d2",
+    "matte_sha256": "c2f46a653830c8438b0594a732fb73079044f3bde302c097cd0efba0fc547e80",
+    "selected": false
+  },
+  "wheat-strip-a/4815932": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long strip of ripe golden wheat with dense bearded grain heads, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4815932,
+    "studio_job": "st-1795135501478-25",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/crops/wheat-strip-a/4815932-rgb.png",
+    "sha256": "7437909a8d8c75263104a65e04affc3ebdc5f8ece8867a3f34413f536a486bd5",
+    "matte_sha256": "7b2ad6456dae8ad0da885648022ef1dd917a65663e77515bc93c4dcfccb3f25d",
+    "selected": false
+  }
+}

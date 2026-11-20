@@ -1,0 +1,30 @@
+{
+  "template": "church",
+  "notes": "Country church: gabled nave (ridge along Y), front tower with spire facing -Y.",
+  "view": {"pitch": 8, "yaw": 33},
+  "params": {"w": 8, "d": 15, "h": 5, "rh": 4.0, "wall": "#f1ede4", "trim": "#ffffff", "roofc": "#5a5658", "glass": "#5a7397", "doorc": "#7b3b2a", "tower": 3.2, "spire": 7.5, "spirec": "#5a5658"},
+  "derived": {"fy": "-d/2", "th": "h + rh + 2.5"},
+  "parts": [
+    {"p": "box", "size": ["w+0.2", "d+0.2", 0.5], "c": "#9a948a"},
+    {"p": "box", "size": ["w", "d", "h"], "at": [0, 0, 0.5], "c": "wall"},
+    {"p": "prism", "size": ["w", "d", "rh*0.97"], "at": [0, 0, "h+0.5"], "c": "wall"},
+    {"p": "shell", "axis": "y", "depth": "d+0.6", "t": 0.22, "at": [0, 0, "h+0.5"],
+     "profile": [["-w/2-0.45", -0.45], [0, "rh+0.05"], ["w/2+0.45", -0.45]], "c": "roofc"},
+    {"repeat": {"k": "range(4)"}, "parts": [
+      {"p": "box", "size": [0.1, 1.0, 2.6], "at": ["-w/2-0.04", "fy + 2.5 + k*(d-4)/3.5", 1.6], "c": "glass"},
+      {"p": "extrude", "axis": "x", "depth": 0.12, "at": ["-w/2-0.04", "fy + 2.5 + k*(d-4)/3.5", 4.2], "profile": "arc(0, 0, 0.5, 0, 180, 6)", "c": "glass"}
+    ]},
+    {"p": "box", "size": ["tower", "tower", "th"], "at": [0, "fy-tower/2+0.3", 0], "c": "wall"},
+    {"p": "box", "size": ["tower+0.3", "tower+0.3", 0.25], "at": [0, "fy-tower/2+0.3", "th"], "c": "trim"},
+    {"p": "box", "size": ["tower*0.7", "tower*0.7", 2.0], "at": [0, "fy-tower/2+0.3", "th+0.25"], "c": "wall"},
+    {"p": "box", "size": [0.9, 0.1, 1.3], "at": [0, "fy-tower*0.85+0.32", "th+0.6"], "c": "#3a3530"},
+    {"p": "box", "size": [0.1, 0.9, 1.3], "at": ["-tower*0.35-0.02", "fy-tower/2+0.3", "th+0.6"], "c": "#3a3530"},
+    {"p": "hip", "size": ["tower*0.8", "tower*0.8", "spire"], "at": [0, "fy-tower/2+0.3", "th+2.25"], "c": "spirec"},
+    {"p": "box", "size": [0.08, 0.08, 1.2], "at": [0, "fy-tower/2+0.3", "th+2.2+spire"], "c": "#c9a640"},
+    {"p": "box", "size": [0.6, 0.08, 0.08], "at": [0, "fy-tower/2+0.3", "th+2.9+spire"], "c": "#c9a640"},
+    {"p": "box", "size": [1.6, 0.12, 2.6], "at": [0, "fy-tower+0.25", 0.5], "c": "doorc"},
+    {"p": "extrude", "axis": "y", "depth": 0.12, "at": [0, "fy-tower+0.25", 3.1], "profile": "arc(0, 0, 0.8, 0, 180, 6)", "c": "doorc"},
+    {"p": "box", "size": [2.4, 1.2, 0.5], "at": [0, "fy-tower-0.4", 0], "c": "#9a948a"},
+    {"p": "cyl", "r": 0.55, "h": 0.1, "axis": "y", "seg": 12, "at": [0, "fy-tower+0.24", "h+1.2"], "c": "glass"}
+  ]
+}

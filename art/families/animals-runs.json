@@ -1,0 +1,524 @@
+{
+  "cow-angus-a/5906870": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single black Angus cow standing in profile facing left, head up, full body with four legs, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 5906870,
+    "studio_job": "st-1795135477179-15",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-angus-a/5906870-rgb.png",
+    "sha256": "3bd9c928f4d03842659d20cf2ea81e9b985c228cf83d7443ebeee797b6517709",
+    "matte_sha256": "ad2b7acde24bcc7cff6b5de404c1142967cc8ba5b5a94d9ab641e4536a285b1b",
+    "selected": false
+  },
+  "cow-angus-a/5906871": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single black Angus cow standing in profile facing left, head up, full body with four legs, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 5906871,
+    "studio_job": "st-1795135477179-15",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-angus-a/5906871-rgb.png",
+    "sha256": "9a2fb31c095ae0fa4fc8d4e3e72d1df7cd20fd51cdacf2e9077b4c84a9a5ee9d",
+    "matte_sha256": "6aa7a509f35d0b96afc9b464e59531f2897adef36fb263f7dad4dbbda7c34884",
+    "selected": false
+  },
+  "cow-angus-a/5906872": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single black Angus cow standing in profile facing left, head up, full body with four legs, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 5906872,
+    "studio_job": "st-1795135477179-15",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-angus-a/5906872-rgb.png",
+    "sha256": "32a4a3e2b97d0a42ad5cf5b3116f47971400b203e21096c4eefad2bd4a65881d",
+    "matte_sha256": "a97f49d9ff038236ef837328c72233aeb95070488d14b5ae7ebcdc667065a2a4",
+    "selected": true,
+    "pick_reason": "reads as a cow (udder, no bull horns), clean profile, warm rim light",
+    "source_sha256": "e81b95b9b8ded790403c243126989bdf557f4a4d74d68c6fe63296633b554a37",
+    "source": "art/sources/animals/cow-angus-a.png"
+  },
+  "cow-angus-graze-a/6527590": {
+    "workflow": "art/workflows/structure-paint-qwen.json",
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors (Comfy-Org/Qwen-Image-Edit@f68ace85e60b, apache-2.0)",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "qwen_image_vae.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors (lightx2v/Qwen-Image-Edit-2511-Lightning@107d238d68b8, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "The same black cow, same size, same position, same style and same white background, now lowering its head down to the ground to graze. Keep the body and legs unchanged.",
+    "seed": 6527590,
+    "studio_job": "st-1795135754074-90",
+    "derived_from": "cow-angus-a",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-angus-graze-a/6527590-rgb.png",
+    "sha256": "e84f066ce3d912dccf5c25dd4b2fc469d32c453935cc11158cdd4e2ccf339705",
+    "matte_sha256": "5677b682d8be434671b7d07596a454be758557b36b40d21f9bc7ee4216318bc9",
+    "selected": true,
+    "pick_reason": "Qwen edit keeps body, legs and size of the head-up pick; head down reads as grazing",
+    "source_sha256": "48c01ac92409b9d45b1ae96bc5f0a020878df7a4d8f9423b5b88e3c15b3a3400",
+    "source": "art/sources/animals/cow-angus-graze-a.png"
+  },
+  "cow-angus-graze-a/6527591": {
+    "workflow": "art/workflows/structure-paint-qwen.json",
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors (Comfy-Org/Qwen-Image-Edit@f68ace85e60b, apache-2.0)",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "qwen_image_vae.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors (lightx2v/Qwen-Image-Edit-2511-Lightning@107d238d68b8, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "The same black cow, same size, same position, same style and same white background, now lowering its head down to the ground to graze. Keep the body and legs unchanged.",
+    "seed": 6527591,
+    "studio_job": "st-1795135754074-90",
+    "derived_from": "cow-angus-a",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-angus-graze-a/6527591-rgb.png",
+    "sha256": "8828b87b38df43e3728f3350fb2830cf8d6994458e94abbb016a5722952f7d26",
+    "matte_sha256": "0f16c45b080e9ad500d64b1978f0179ae4c0233ba272e933f48ab0ecae2f9eac",
+    "selected": false
+  },
+  "cow-angus-graze-a/6527592": {
+    "workflow": "art/workflows/structure-paint-qwen.json",
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors (Comfy-Org/Qwen-Image-Edit@f68ace85e60b, apache-2.0)",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "qwen_image_vae.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors (lightx2v/Qwen-Image-Edit-2511-Lightning@107d238d68b8, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "The same black cow, same size, same position, same style and same white background, now lowering its head down to the ground to graze. Keep the body and legs unchanged.",
+    "seed": 6527592,
+    "studio_job": "st-1795135754074-90",
+    "derived_from": "cow-angus-a",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-angus-graze-a/6527592-rgb.png",
+    "sha256": "211d43ebe73393dc1897c6fb95054eb8e36a98d1ff97629d1ff344ac00f1095a",
+    "matte_sha256": "c5b038cacef4e29c5b69c0a5e2d81675f0e60d63590d4b7ee10e1528091282df",
+    "selected": false
+  },
+  "cow-hereford-a/938460": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single red-brown Hereford beef cow with a white face, standing in profile facing left, grazing with head down, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 938460,
+    "studio_job": "st-1795135481291-17",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-hereford-a/938460-rgb.png",
+    "sha256": "7e6fa89028cc0b025d3bc5103d246901eb092c658c0a51d5e90cf544d6a64a05",
+    "matte_sha256": "4a3975de2275cabf8862d73521e656c2582b292dd08007283b01fa8119876c48",
+    "selected": false
+  },
+  "cow-hereford-a/938461": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single red-brown Hereford beef cow with a white face, standing in profile facing left, grazing with head down, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 938461,
+    "studio_job": "st-1795135481291-17",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-hereford-a/938461-rgb.png",
+    "sha256": "aeda3d4adb0afb8f368bdc9a9e50f3c4d6a7385bab32c43ffc0e33ee19bb15c0",
+    "matte_sha256": "58fb16ea13a8ca3ecd91eb08780046ec8048727b6d298d15fa9ec8f4f82384a1",
+    "selected": true,
+    "pick_reason": "white face reads at distance, natural grazing pose",
+    "source_sha256": "9b9d4170563c5580ff65a79c9a1ec1546f32e7e78e447bbf3c5b79e36f18fcbb",
+    "source": "art/sources/animals/cow-hereford-a.png"
+  },
+  "cow-hereford-a/938462": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single red-brown Hereford beef cow with a white face, standing in profile facing left, grazing with head down, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 938462,
+    "studio_job": "st-1795135481291-17",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-hereford-a/938462-rgb.png",
+    "sha256": "fc019ac3af83ccfaa2a81144df451046a84a5e3a673831510b605d8b45453599",
+    "matte_sha256": "6b94f7092177a95fbc7ad2b299ce8793881ba6f68628ca03441420442faac26b",
+    "selected": false
+  },
+  "cow-holstein-a/5561890": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single black and white Holstein dairy cow standing in profile facing right, head up, full body with four legs, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 5561890,
+    "studio_job": "st-1795135480339-16",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-holstein-a/5561890-rgb.png",
+    "sha256": "9ad508fa296f803dddbe702c46d3ffa16490f69d71fffe1c4454b9e334fc8919",
+    "matte_sha256": "5e9c4db98acbcf8cb221429361e8978c82fdf0aeb222969f300e8366acacffa5",
+    "selected": true,
+    "pick_reason": "crisp patches, clean legs and tail, centred profile",
+    "source_sha256": "711c448837f6cd9bb409176fb416ae7e0159ae54a4b2195fd1a87a66821d9e61",
+    "source": "art/sources/animals/cow-holstein-a.png"
+  },
+  "cow-holstein-a/5561891": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single black and white Holstein dairy cow standing in profile facing right, head up, full body with four legs, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 5561891,
+    "studio_job": "st-1795135480339-16",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-holstein-a/5561891-rgb.png",
+    "sha256": "5a6b39433d98854d76c74a5ab3a33076df2317d328354380dd2734b233c2b0de",
+    "matte_sha256": "85cf0f1e9ba9c7443bd60bf05b4e07da19d0e49132be8900acbaf1e544308ed9",
+    "selected": false
+  },
+  "cow-holstein-a/5561892": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single black and white Holstein dairy cow standing in profile facing right, head up, full body with four legs, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 5561892,
+    "studio_job": "st-1795135480339-16",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-holstein-a/5561892-rgb.png",
+    "sha256": "8575fe862ca7f244e2fe789f5b3b73b0cb68f5de96e90dcb8671f5df46f31b9b",
+    "matte_sha256": "fbdbd947f36706c7fade4cc220e6db997ae57358b33f9a82be31c132bd7e582c",
+    "selected": false
+  },
+  "cow-holstein-graze-a/3759050": {
+    "workflow": "art/workflows/structure-paint-qwen.json",
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors (Comfy-Org/Qwen-Image-Edit@f68ace85e60b, apache-2.0)",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "qwen_image_vae.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors (lightx2v/Qwen-Image-Edit-2511-Lightning@107d238d68b8, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "The same black and white cow, same size, same position, same style and same white background, now lowering its head down to the ground to graze. Keep the body and legs unchanged.",
+    "seed": 3759050,
+    "studio_job": "st-1795135755798-91",
+    "derived_from": "cow-holstein-a",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-holstein-graze-a/3759050-rgb.png",
+    "sha256": "dbe9f64f70793afa8555d467e44fad7c77ac440bfa3d0b98ae63aa4eebaa21be",
+    "matte_sha256": "aa1a81dc68b3451bdb3a6aa0c5fda7550ac194c6a16f5b6e242dbc091b3d74e2",
+    "selected": false
+  },
+  "cow-holstein-graze-a/3759051": {
+    "workflow": "art/workflows/structure-paint-qwen.json",
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors (Comfy-Org/Qwen-Image-Edit@f68ace85e60b, apache-2.0)",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "qwen_image_vae.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors (lightx2v/Qwen-Image-Edit-2511-Lightning@107d238d68b8, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "The same black and white cow, same size, same position, same style and same white background, now lowering its head down to the ground to graze. Keep the body and legs unchanged.",
+    "seed": 3759051,
+    "studio_job": "st-1795135755798-91",
+    "derived_from": "cow-holstein-a",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-holstein-graze-a/3759051-rgb.png",
+    "sha256": "92ce1899178946d2251a8e535d268fd282c96273f5fad7291c320df4a1139039",
+    "matte_sha256": "8fb9bc83b799c3280bfa1c78f104b325065770912f897db27b2a9fd1bf1c6b04",
+    "selected": true,
+    "pick_reason": "same facing, patches and scale as the head-up pick; cleanest legs",
+    "source_sha256": "511d8e3624018ce448f229be05e57ada9c5c1272038984f83b99e5f242f3657e",
+    "source": "art/sources/animals/cow-holstein-graze-a.png"
+  },
+  "cow-holstein-graze-a/3759052": {
+    "workflow": "art/workflows/structure-paint-qwen.json",
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors (Comfy-Org/Qwen-Image-Edit@f68ace85e60b, apache-2.0)",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "qwen_image_vae.safetensors (Comfy-Org/Qwen-Image@1f12b17be14c, apache-2.0)",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors (lightx2v/Qwen-Image-Edit-2511-Lightning@107d238d68b8, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "The same black and white cow, same size, same position, same style and same white background, now lowering its head down to the ground to graze. Keep the body and legs unchanged.",
+    "seed": 3759052,
+    "studio_job": "st-1795135755798-91",
+    "derived_from": "cow-holstein-a",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/cow-holstein-graze-a/3759052-rgb.png",
+    "sha256": "3e7dcd2df239e2f6ad6e24dc7172708000ae96f4dc6eb06d1726a93437899d0a",
+    "matte_sha256": "b61679bade7c2ca9e268cda8bd0609edc79c879d93ed9a9c02865ea4a317214d",
+    "selected": false
+  },
+  "crows-fencepost-a/535630": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a short weathered grey wooden fence post standing upright, with two small black crows sitting on its flat top, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 535630,
+    "studio_job": "st-1795135852326-93",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/crows-fencepost-a/535630-rgb.png",
+    "sha256": "d4c0f6b00a4c3997931bf37330514c333beed237b6d09ded7f41be5ee53f76c4",
+    "matte_sha256": "ef45bc6b7904fa151b51271c93788a0018ad440db39c31eb4b01f8c2df458936",
+    "selected": true,
+    "pick_reason": "only candidate with the post; two crows read clearly",
+    "source_sha256": "f8cbbc65e2554b0375d27b68787fccc1315a341d57f45343841bf12564350c04",
+    "source": "art/sources/animals/crows-fencepost-a.png"
+  },
+  "crows-fencepost-a/535631": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a short weathered grey wooden fence post standing upright, with two small black crows sitting on its flat top, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 535631,
+    "studio_job": "st-1795135852326-93",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/crows-fencepost-a/535631-rgb.png",
+    "sha256": "2df43516e3200afed56df8ac8284049cb4b722ca00cb7d7d0e9e7c29e6624f8d",
+    "matte_sha256": "d7a7c2084c1f366ea08c36786d5fdf279b13f86c0753ff7914ef7f169cb35fcf",
+    "selected": false
+  },
+  "crows-fencepost-a/535632": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a short weathered grey wooden fence post standing upright, with two small black crows sitting on its flat top, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 535632,
+    "studio_job": "st-1795135852326-93",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/crows-fencepost-a/535632-rgb.png",
+    "sha256": "89c2e57b649d3a18ff981a4c6f7bb526512d4cddb4a24ccea7ab292e031057a8",
+    "matte_sha256": "d2cedd77713906b126c5c83007788aa7732b49b29454040fdf47a34040f523ba",
+    "selected": false
+  },
+  "deer-whitetail-a/2332370": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tan-brown deer doe with a reddish-brown coat and pale belly, standing alert in profile facing left, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 2332370,
+    "studio_job": "st-1795135850850-92",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/deer-whitetail-a/2332370-rgb.png",
+    "sha256": "c8142c608a0f664df62fd2620f910f4d901ec73dd1602254deeec70155f70913",
+    "matte_sha256": "2331512fbe69bcecd1eaaf7cbe3a0f30ec2a04a104a53c3326186c63a9c7eba1",
+    "selected": false
+  },
+  "deer-whitetail-a/2332371": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tan-brown deer doe with a reddish-brown coat and pale belly, standing alert in profile facing left, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 2332371,
+    "studio_job": "st-1795135850850-92",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/deer-whitetail-a/2332371-rgb.png",
+    "sha256": "a52f525258010946709f45a24924c540bd9ec678d2262b8ee1261ea3ed2f29b5",
+    "matte_sha256": "bc93af4a75758f6e6d3888114d27f469fdd97a700afc521ad0cd18554417f434",
+    "selected": false
+  },
+  "deer-whitetail-a/2332372": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tan-brown deer doe with a reddish-brown coat and pale belly, standing alert in profile facing left, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 2332372,
+    "studio_job": "st-1795135850850-92",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/deer-whitetail-a/2332372-rgb.png",
+    "sha256": "c32048c27a43946bef99b9df13ab795e0dc9ba3772a84b9ea896618c54e51916",
+    "matte_sha256": "ce0b84410eeb06eebfd6b312577da395e4df2d6d2d25a8850a0c45a49c13cd2f",
+    "selected": true,
+    "pick_reason": "natural tan coat and alert pose (painted as a young buck, reads as deer at distance)",
+    "source_sha256": "78bc013715e8a8a0b2bbece7fd80d303f3b7bfce49cf8722d813d4f67334fa5c",
+    "source": "art/sources/animals/deer-whitetail-a.png"
+  },
+  "horse-bay-a/1193970": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single bay horse, brown with black mane and tail, standing in profile facing right, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 1193970,
+    "studio_job": "st-1795135482160-18",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/horse-bay-a/1193970-rgb.png",
+    "sha256": "b33d9801b59e5321acfd583416335f88a53e712f37731309a98dfb83138e0f59",
+    "matte_sha256": "8212dd7b8ead972fdaf197ad7344dbf255e9de7a65d0742c20369ccc5207b21c",
+    "selected": false
+  },
+  "horse-bay-a/1193971": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single bay horse, brown with black mane and tail, standing in profile facing right, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 1193971,
+    "studio_job": "st-1795135482160-18",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/horse-bay-a/1193971-rgb.png",
+    "sha256": "6081ae37a5a4fe5c98d17c714790085e36714b7e079fd80ddb5b9dfaf4905cc8",
+    "matte_sha256": "b6fd31bc85bfdfc6821bc84b1842ec9944a65bc74b47730fb31eba6bf23c0c37",
+    "selected": true,
+    "pick_reason": "best proportions and dark points, clean silhouette",
+    "source_sha256": "9acc897b76c34cc2af02535434ebbf6d74faafe633c82ca581e61952fb0a32c6",
+    "source": "art/sources/animals/horse-bay-a.png"
+  },
+  "horse-bay-a/1193972": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single bay horse, brown with black mane and tail, standing in profile facing right, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 1193972,
+    "studio_job": "st-1795135482160-18",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/horse-bay-a/1193972-rgb.png",
+    "sha256": "286b7a768c54662744f675700d84298555f428fce79e9851bf10fe388bb073d6",
+    "matte_sha256": "417ac03b1ac6b918ca77a91b16142a4d150d1fffe9770be231c8d3b779fca44b",
+    "selected": false
+  },
+  "horse-white-graze-a/159160": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single white grey horse in profile facing left, grazing with head down, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 159160,
+    "studio_job": "st-1795135483785-19",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/horse-white-graze-a/159160-rgb.png",
+    "sha256": "15286d59cededc777cd3ada32f6416e54dde959f0251487128c4b8e4b8320f9b",
+    "matte_sha256": "1653c6a743635854eddf418e70a64f68339e01510399619e7bdf138071c64b3b",
+    "selected": false
+  },
+  "horse-white-graze-a/159161": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single white grey horse in profile facing left, grazing with head down, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 159161,
+    "studio_job": "st-1795135483785-19",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/horse-white-graze-a/159161-rgb.png",
+    "sha256": "3f4092518f3ae1ccc279654bdd93ade3049543a57ede58ce0592ca2f9b54dbd7",
+    "matte_sha256": "737583c5763bfb0a0af8d3f8385bb2f54c1409ed581ca0ed3bd4865360948c9a",
+    "selected": true,
+    "pick_reason": "even grey coat, clear grazing head, no sun glare",
+    "source_sha256": "b2ca1840545a1ddeeaec605c2d9b2c30d42f83e594e6a18bb4ab2311aaa521e5",
+    "source": "art/sources/animals/horse-white-graze-a.png"
+  },
+  "horse-white-graze-a/159162": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single white grey horse in profile facing left, grazing with head down, full body, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 159162,
+    "studio_job": "st-1795135483785-19",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/horse-white-graze-a/159162-rgb.png",
+    "sha256": "0c901e323ae34ab7e6142b62f987018c3e36d6fd8480a93bedac0bb05e03fed7",
+    "matte_sha256": "2b90a4062b98ea73459a221ce8ed86892edbe3673ce79ee53d807d7e82cb00f3",
+    "selected": false
+  },
+  "sheep-flock-a/8781340": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small flock of five fluffy white sheep with black faces, grazing in a loose group, side view, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 8781340,
+    "studio_job": "st-1795135485567-20",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/sheep-flock-a/8781340-rgb.png",
+    "sha256": "5fa5b3ef16e674dfd1c50e87f7c22cab539cbe6b5d6a7c8363385ce1edeb30fa",
+    "matte_sha256": "0572189994bf39186cd81d456150abe3e3f3a0654cca4b6db7dc85900ebcfe56",
+    "selected": false
+  },
+  "sheep-flock-a/8781341": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small flock of five fluffy white sheep with black faces, grazing in a loose group, side view, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 8781341,
+    "studio_job": "st-1795135485567-20",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/sheep-flock-a/8781341-rgb.png",
+    "sha256": "debf62910a670dad5b2e47dd637e89b77013b35ce6347a80a3dd2b6891b091f6",
+    "matte_sha256": "0a71268afb5abe2f8f39d735de2a21de78281400c4b89b8ddad93f90ad07bf23",
+    "selected": false
+  },
+  "sheep-flock-a/8781342": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small flock of five fluffy white sheep with black faces, grazing in a loose group, side view, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+    "seed": 8781342,
+    "studio_job": "st-1795135485567-20",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/animals/sheep-flock-a/8781342-rgb.png",
+    "sha256": "5557b2f1a674edafce742cee98b9bd78070a08f591c784a7b2a4db82795a1cb4",
+    "matte_sha256": "94a68038a38b04d1fd453efde8a867f63447e265fe535e40e36791d05760684d",
+    "selected": true,
+    "pick_reason": "five sheep spaced apart so the group reads at far distance",
+    "source_sha256": "b29bfa2a6aa2b55cdde80f5b75c87931ade9ba0e1f0c5bb1f4a62dd22a6fdc95",
+    "source": "art/sources/animals/sheep-flock-a.png"
+  }
+}

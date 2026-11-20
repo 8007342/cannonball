@@ -1,0 +1,22 @@
+{
+  "family": "roadside",
+  "type": "sprite",
+  "atlas": "road",
+  "workflow": "art/workflows/sprite-flux2-matte.json",
+  "style": "hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+  "candidates": 3,
+  "canvas": [1536, 768],
+  "items": [
+    {"id": "fence-split-rail-a", "prompt": "a straight section of weathered grey split-rail wooden fence with three rough horizontal rails between four posts, seen exactly from the side", "band": "near", "kind": "furniture", "worldWidthM": 6, "biomes": ["farm", "forest", "plains", "river"], "tags": ["fence", "run"]},
+    {"id": "fence-board-white-a", "prompt": "a straight section of white painted three-board horse farm fence between four square posts, seen exactly from the side", "band": "near", "kind": "furniture", "worldWidthM": 6, "biomes": ["farm", "plains"], "tags": ["fence", "run"]},
+    {"id": "fence-picket-white-a", "prompt": "a straight section of white wooden picket fence with pointed pickets, seen exactly from the side", "band": "near", "kind": "furniture", "worldWidthM": 4, "biomes": ["town"], "tags": ["fence", "run"]},
+    {"id": "fence-barbed-wire-a", "prompt": "a straight section of ranch fence: four weathered wooden posts with three strands of barbed wire, seen exactly from the side", "band": "near", "kind": "furniture", "worldWidthM": 8, "biomes": ["plains", "desert", "farm"], "tags": ["fence", "run"]},
+    {"id": "mailbox-rural-a", "prompt": "a single grey metal rural mailbox with a rounded top and a small red flag on a wooden post", "band": "near", "kind": "furniture", "worldWidthM": 0.6, "biomes": ["farm", "plains", "town", "desert"], "tags": ["mailbox"], "canvas": [768, 1024]},
+    {"id": "hydrant-red-a", "prompt": "a single short red fire hydrant with silver caps", "band": "near", "kind": "furniture", "worldWidthM": 0.5, "biomes": ["town", "city"], "tags": ["hydrant"], "canvas": [768, 1024]},
+    {"id": "bench-park-a", "prompt": "a single green wooden slat park bench with black cast iron legs and armrests, seen from the front at a slight angle", "band": "near", "kind": "furniture", "worldWidthM": 1.8, "biomes": ["town", "city"], "tags": ["bench"], "canvas": [1024, 768]},
+    {"id": "sign-curve-right-a", "prompt": "a yellow diamond-shaped road warning sign with a black arrow curving to the right, on a grey metal post, seen from the front", "band": "near", "kind": "sign", "worldWidthM": 0.8, "biomes": [], "tags": ["curve", "warning"], "canvas": [768, 1024]},
+    {"id": "sign-chevron-a", "prompt": "a yellow rectangular road sign with one bold black chevron arrow pointing right, on a grey metal post, seen from the front", "band": "near", "kind": "sign", "worldWidthM": 0.6, "biomes": [], "tags": ["curve"], "canvas": [768, 1024]},
+    {"id": "sign-deer-crossing-a", "prompt": "a yellow diamond-shaped road warning sign with a black leaping deer silhouette, on a grey metal post, seen from the front", "band": "near", "kind": "sign", "worldWidthM": 0.8, "biomes": ["forest", "farm", "river"], "tags": ["warning"], "canvas": [768, 1024]},
+    {"id": "reflector-post-a", "prompt": "a single slim white plastic roadside delineator post with a small rectangular amber reflector near the top", "band": "near", "kind": "furniture", "worldWidthM": 0.15, "biomes": [], "tags": ["post"], "canvas": [768, 1024]}
+  ]
+}

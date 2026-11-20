@@ -1,0 +1,16 @@
+# Third-party licence acknowledgement for the Cannonball scenic asset pipeline.
+# The user approved this model set in the agent session of 2026-11-20 (relayed by
+# the coordinating agent). This record is NOT cryptographically signed; a signed
+# or merge-backed acknowledgement can replace it without changing the register.
+record: tillandsias-licence-acknowledgement v1
+licence: mit
+licence_text: licences/texts/mit.txt
+licence_sha256: fe19302f783541b78192e40be298ca59a2769ad4abfa8abff9d973eac88aa468
+covers: ["ZhengPeng7/BiRefNet", "madebyollin/sdxl-vae-fp16-fix (sdxl_vae)"]
+grantor: operator
+scope: project:cannonball
+use: generated game art (scenic sprites and textures) committed to this repository
+expiry: "standing"
+approved_on: "2026-11-20"
+strength: chat-approval
+signature: ""

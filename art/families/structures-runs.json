@@ -1,0 +1,846 @@
+{
+  "barn-grey-gable/47316": {
+    "at": "2026-11-20T00:43:25Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "06caa5c9fb0e675ece17cebffd1f96bf6a9280c4ea3a2950071e9799fac3a14e",
+    "pick_reason": "stronger weathered silver boards and rusted tin, lean-to reads clearly",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: an old weathered grey wooden gable barn with silvery unpainted boards, a rusty corrugated tin roof and a lean-to shed on the side. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/barn-grey-gable/47316.png",
+    "rig": {
+      "params": {
+        "cupola": false,
+        "d": 16,
+        "dh": 3.6799999999999997,
+        "door": "#6c675f",
+        "dw": 4.2,
+        "fy": -8,
+        "h": 4.6,
+        "lean_to": true,
+        "ov": 0.4,
+        "rh": 3.2,
+        "roof": "gable",
+        "roofc": "#8a5a3e",
+        "trim": "#c9c2b4",
+        "w": 10,
+        "wall": "#8e8a82"
+      },
+      "template": "barn",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 47316,
+    "selected": true,
+    "source": "art/sources/structures/barn-grey-gable.png",
+    "source_sha256": "450e7d410d07b91caabee9562682013073678d2c210d4d537fd8841895ec4676",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "barn-red-gambrel/55430": {
+    "at": "2026-11-20T00:33:38Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "8b807d0787598853fbaedf763eb03d79f8d784b0cef9cda0594ebfa4cc9d4c60",
+    "pick_reason": "keeps loft door and X-brace intact, clean framed windows, no sky glow on roof",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a classic red wooden gambrel-roof farm barn with white trim, white X-braced sliding door, dark grey shingle roof and a small white cupola. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/barn-red-gambrel/55430.png",
+    "rig": {
+      "params": {
+        "cupola": true,
+        "d": 14,
+        "dh": 3.3600000000000003,
+        "door": "#7d241f",
+        "dw": 3.78,
+        "fy": -7,
+        "h": 4.2,
+        "lean_to": false,
+        "ov": 0.4,
+        "rh": 4,
+        "roof": "gambrel",
+        "roofc": "#4f4c4f",
+        "trim": "#efe9dc",
+        "w": 9,
+        "wall": "#a8322a"
+      },
+      "template": "barn",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 55430,
+    "selected": true,
+    "source": "art/sources/structures/barn-red-gambrel.png",
+    "source_sha256": "4ae9b7eca5329fd7ab11384485e112321751ad1d0a15c9293b86cdd3f9fd43ca",
+    "workflow": "art/rigs/workflows/structure-paint-qwen.json"
+  },
+  "barn-white-gambrel/92588": {
+    "at": "2026-11-20T00:43:25Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "a326f5ec30b878293b34b17f33764d1657a0bdd52c491bf4c4fd263ed3f4e087",
+    "pick_reason": "cleaner standing-seam roof, red trim crisp, warm roof highlight",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a tidy white-painted gambrel dairy barn with red trim, red X-braced door and a blue-grey metal roof with a small cupola. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/barn-white-gambrel/92588.png",
+    "rig": {
+      "params": {
+        "cupola": true,
+        "d": 11,
+        "dh": 3.3600000000000003,
+        "door": "#d9d1c0",
+        "dw": 3.36,
+        "fy": -5.5,
+        "h": 4.2,
+        "lean_to": false,
+        "ov": 0.4,
+        "rh": 4,
+        "roof": "gambrel",
+        "roofc": "#3f5b6e",
+        "trim": "#a8322a",
+        "w": 8,
+        "wall": "#ece6d8"
+      },
+      "template": "barn",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 92588,
+    "selected": true,
+    "source": "art/sources/structures/barn-white-gambrel.png",
+    "source_sha256": "cdd669ecf8086341234220ed4af0dbaeb4e48003c109dc02de2f4245cb304975",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "church-stone/76786": {
+    "at": "2026-11-20T01:20:39Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "41166585b5e8c0109590d280d3efa89eb04a47c250caade87d0e2b7f7d0dbdcb",
+    "pick_reason": "warmer readable fieldstone; other seed too dark at distance",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a small grey fieldstone chapel with a square stone bell tower and slate spire, arched stained-glass windows and a dark slate roof. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/church-stone/76786.png",
+    "rig": {
+      "params": {
+        "d": 15,
+        "doorc": "#7b3b2a",
+        "fy": -7.5,
+        "glass": "#6a5e8a",
+        "h": 5,
+        "rh": 4,
+        "roofc": "#4a4644",
+        "spire": 6,
+        "spirec": "#4a4644",
+        "th": 11.5,
+        "tower": 3.2,
+        "trim": "#cbbfac",
+        "w": 8,
+        "wall": "#a59886"
+      },
+      "template": "church",
+      "view": {
+        "pitch": 8,
+        "yaw": 33
+      }
+    },
+    "seed": 76786,
+    "selected": true,
+    "source": "art/sources/structures/church-stone.png",
+    "source_sha256": "d3dd79fa44a6f074c3097373b9f9609afbdeb2d37f364ee09bdd9ad374c7b7da",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "church-white/44111": {
+    "at": "2026-11-20T01:20:39Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "da79c6d6b79ff152cbb5af822c91e144f597bca0f182449d12bf2f235fdb5013",
+    "pick_reason": "bell visible in the belfry, warm roof light",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a white wooden New England country church with a tall front steeple and bell tower, arched windows, dark shingle roof and red front doors. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/church-white/44111.png",
+    "rig": {
+      "params": {
+        "d": 15,
+        "doorc": "#7b3b2a",
+        "fy": -7.5,
+        "glass": "#5a7397",
+        "h": 5,
+        "rh": 4,
+        "roofc": "#5a5658",
+        "spire": 7.5,
+        "spirec": "#5a5658",
+        "th": 11.5,
+        "tower": 3.2,
+        "trim": "#ffffff",
+        "w": 8,
+        "wall": "#f1ede4"
+      },
+      "template": "church",
+      "view": {
+        "pitch": 8,
+        "yaw": 33
+      }
+    },
+    "seed": 44111,
+    "selected": true,
+    "source": "art/sources/structures/church-white.png",
+    "source_sha256": "f8b6ece3a61743d9e6abf950576dd4ffa61e288a8a1ea484eff809d04f14e2cd",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "diner-streamline/58116": {
+    "at": "2026-11-20T01:20:39Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "2309904f9148940ee4a18943cf96f29b527eaa2b6c79e398bb50a38961f5b439",
+    "pick_reason": "stronger stainless sheen and stripe, sign stays blank",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a shiny 1950s streamline roadside diner with rounded ends, stainless steel siding, a red stripe, a long ribbon of windows, an entrance vestibule and a blank roof sign. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/diner-streamline/58116.png",
+    "rig": {
+      "params": {
+        "body": "#e7e9ea",
+        "d": 7,
+        "glass": "#40627d",
+        "h": 3.6,
+        "roofc": "#9aa0a6",
+        "sign": "#f2e2b0",
+        "signc": "#c8343a",
+        "stripe": "#c8343a",
+        "stripe2": "#2d6f8c",
+        "w": 16
+      },
+      "template": "diner",
+      "view": {
+        "pitch": 7,
+        "yaw": 25
+      }
+    },
+    "seed": 58116,
+    "selected": true,
+    "source": "art/sources/structures/diner-streamline.png",
+    "source_sha256": "dfcab7ce2fefd6e78688b3a400eb1127ca6399adcf17aed7db0f9fdef68276f8",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "gas-station/26427": {
+    "at": "2026-11-20T01:20:39Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "f552a3850ad67fd90fd6ae2b6993306d1e0f1458cb46663cf3213a4f7b368f9c",
+    "pick_reason": "cleaner pump islands and kiosk glass, unbranded fascia",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: an unbranded roadside gas station with a flat canopy with red and white fascia on white columns, two fuel pump islands and a small convenience kiosk behind. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/gas-station/26427.png",
+    "rig": {
+      "params": {
+        "cd": 9,
+        "ch": 4.6,
+        "column": "#e9e6df",
+        "cw": 14,
+        "fascia": "#d8432f",
+        "fascia2": "#f3efe6",
+        "glass": "#3b5670",
+        "kiosk": "#e8dcc4",
+        "pump": "#e6e2d6",
+        "pumpc": "#d8432f",
+        "roofc": "#6e6a66"
+      },
+      "template": "gas_station",
+      "view": {
+        "pitch": 8,
+        "yaw": 32
+      }
+    },
+    "seed": 26427,
+    "selected": true,
+    "source": "art/sources/structures/gas-station.png",
+    "source_sha256": "121cfc6ad7109d74ef5855e6f905d558619dbf1a8c73ff988e06232f24496feb",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "house-cottage-red/41149": {
+    "at": "2026-11-20T01:02:07Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "d790c3a281da623f66a2caf7b1dd2dccad977adc10d809a3057585acccfa4338",
+    "pick_reason": "white-trimmed windows and stone foundation read clearly",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a small red-painted wooden cottage with white trim, a steep dark roof, small front porch and a stone chimney. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/house-cottage-red/41149.png",
+    "rig": {
+      "params": {
+        "H": 3.1999999999999997,
+        "chimney": true,
+        "chimneyc": "#8b4a36",
+        "cross_gable": false,
+        "d": 6.5,
+        "door_k": 1,
+        "doorc": "#7a3b2a",
+        "fy": -3.25,
+        "garage": false,
+        "garage_side": -1,
+        "glass": "#3d5068",
+        "gw": 3.04,
+        "n": 1,
+        "nsw": 2,
+        "nw": 3,
+        "ov": 0.45,
+        "porch": true,
+        "porch_w": 0.6,
+        "rh": 3,
+        "roof": "gable",
+        "roofc": "#3f4a50",
+        "sh": 2.8,
+        "shutterc": "#2f4a3a",
+        "shutters": false,
+        "siding": "boards",
+        "trim": "#f4efe4",
+        "turret": false,
+        "w": 8,
+        "wall": "#b8473b"
+      },
+      "template": "house",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 41149,
+    "selected": true,
+    "source": "art/sources/structures/house-cottage-red.png",
+    "source_sha256": "ff8a4a5cabf0bb58218e85696b1176c15190e2d0cb25868cfe2902f94a51c567",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "house-farmhouse-white/82178": {
+    "at": "2026-11-20T00:43:25Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "bd1f956ded15591813f8b052b8b2d8b91a4f91b2344dcd6fc104d6a727e49826",
+    "pick_reason": "clapboard and porch columns read best, no sky glow",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a white two-storey wooden American farmhouse with clapboard siding, a deep front porch with white columns, dark grey shingle roof and a red brick chimney. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/house-farmhouse-white/82178.png",
+    "rig": {
+      "params": {
+        "H": 6,
+        "chimney": true,
+        "chimneyc": "#8b4a36",
+        "cross_gable": false,
+        "d": 7.5,
+        "door_k": 1,
+        "doorc": "#7a3b2a",
+        "fy": -3.75,
+        "garage": false,
+        "garage_side": -1,
+        "glass": "#3d5068",
+        "gw": 3.8,
+        "n": 2,
+        "nsw": 2,
+        "nw": 3,
+        "ov": 0.45,
+        "porch": true,
+        "porch_w": 0.9,
+        "rh": 2.6,
+        "roof": "gable",
+        "roofc": "#5b5550",
+        "sh": 2.8,
+        "shutterc": "#2f4a3a",
+        "shutters": false,
+        "siding": "boards",
+        "trim": "#ffffff",
+        "turret": false,
+        "w": 10,
+        "wall": "#f1ece0"
+      },
+      "template": "house",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 82178,
+    "selected": true,
+    "source": "art/sources/structures/house-farmhouse-white.png",
+    "source_sha256": "ea1a9b341a68c1b5cb0ec0c302d29e48e3bdc31c4938915e928713f607974f21",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "house-farmhouse-yellow/62349": {
+    "at": "2026-11-20T00:43:25Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "f778fbd0e58944db34465d5fc8f8cf1f95e62644a4d8c0eb39c6b19442af5162",
+    "pick_reason": "warm upper-left light on yellow siding, crisp green shutters",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a butter-yellow two-storey clapboard farmhouse with dark green shutters, a white front porch and a charcoal shingle roof. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/house-farmhouse-yellow/62349.png",
+    "rig": {
+      "params": {
+        "H": 6,
+        "chimney": true,
+        "chimneyc": "#8b4a36",
+        "cross_gable": false,
+        "d": 7.5,
+        "door_k": 1,
+        "doorc": "#7a3b2a",
+        "fy": -3.75,
+        "garage": false,
+        "garage_side": -1,
+        "glass": "#3d5068",
+        "gw": 3.42,
+        "n": 2,
+        "nsw": 2,
+        "nw": 3,
+        "ov": 0.45,
+        "porch": true,
+        "porch_w": 0.9,
+        "rh": 2.6,
+        "roof": "gable",
+        "roofc": "#4d4a4c",
+        "sh": 2.8,
+        "shutterc": "#3d5a45",
+        "shutters": true,
+        "siding": "boards",
+        "trim": "#ffffff",
+        "turret": false,
+        "w": 9,
+        "wall": "#e8d38a"
+      },
+      "template": "house",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 62349,
+    "selected": true,
+    "source": "art/sources/structures/house-farmhouse-yellow.png",
+    "source_sha256": "b5a392bd2cdf76ee4d73de37ad08e0f45959eeaea7cd48af9b04e551a2ff7031",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "house-ranch-blue/47351": {
+    "at": "2026-11-20T00:46:17Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "f71f70301cdd63b496dbc8a8da75e9f15f8ca6755c55a9afdf38a402b06bd242",
+    "pick_reason": "stronger warm roof highlight, blue siding reads well",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a single-storey suburban ranch house with soft blue siding, white trim, a low gable roof, brick chimney and an attached garage. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/house-ranch-blue/47351.png",
+    "rig": {
+      "params": {
+        "H": 3.1999999999999997,
+        "chimney": true,
+        "chimneyc": "#9a5a44",
+        "cross_gable": false,
+        "d": 8,
+        "door_k": 2,
+        "doorc": "#7a3b2a",
+        "fy": -4,
+        "garage": true,
+        "garage_side": 1,
+        "glass": "#3d5068",
+        "gw": 4.94,
+        "n": 1,
+        "nsw": 2,
+        "nw": 5,
+        "ov": 0.45,
+        "porch": false,
+        "porch_w": 0.9,
+        "rh": 2,
+        "roof": "gable",
+        "roofc": "#585452",
+        "sh": 2.8,
+        "shutterc": "#2f4a3a",
+        "shutters": false,
+        "siding": "boards",
+        "trim": "#f4f1ea",
+        "turret": false,
+        "w": 13,
+        "wall": "#8fa9bf"
+      },
+      "template": "house",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 47351,
+    "selected": true,
+    "source": "art/sources/structures/house-ranch-blue.png",
+    "source_sha256": "cca2a4582bd23740f1bbc13cb71806d9cd3c6095c8f75d21ef8d5b4a96c2ff13",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "house-ranch-tan/62742": {
+    "at": "2026-11-20T00:46:17Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "e4791997a0ff1532ec2cab9859429020fb2c088a9fd044f0babaee3da0b53b91",
+    "pick_reason": "warmer siding and roof light, shutters crisp",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a single-storey suburban ranch house with tan siding, brown shutters, a low hip roof and an attached garage with a white garage door. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/house-ranch-tan/62742.png",
+    "rig": {
+      "params": {
+        "H": 3.1999999999999997,
+        "chimney": false,
+        "chimneyc": "#8b4a36",
+        "cross_gable": false,
+        "d": 8,
+        "door_k": 2,
+        "doorc": "#7a3b2a",
+        "fy": -4,
+        "garage": true,
+        "garage_side": 1,
+        "glass": "#3d5068",
+        "gw": 5.32,
+        "n": 1,
+        "nsw": 2,
+        "nw": 5,
+        "ov": 0.45,
+        "porch": false,
+        "porch_w": 0.9,
+        "rh": 1.8,
+        "roof": "hip",
+        "roofc": "#6b5d52",
+        "sh": 2.8,
+        "shutterc": "#6e4b35",
+        "shutters": true,
+        "siding": "boards",
+        "trim": "#f4efe4",
+        "turret": false,
+        "w": 14,
+        "wall": "#d9c7a3"
+      },
+      "template": "house",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 62742,
+    "selected": true,
+    "source": "art/sources/structures/house-ranch-tan.png",
+    "source_sha256": "52136606fdc9c5ee1262be912cb663bff6da7f8d18e48a80885684a2e313ca0c",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "house-victorian-rose/22589": {
+    "at": "2026-11-20T00:46:17Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "dec644b1d31e0e42e741cd98480e0f9c843140a5879b6c097706733327252ac0",
+    "pick_reason": "richest gingerbread trim and window hoods, turret shingles clear",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a dusty-rose painted Victorian lady house with ivory gingerbread trim, a round turret with a slate-blue pointed roof, a cross gable and a front porch. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/house-victorian-rose/22589.png",
+    "rig": {
+      "params": {
+        "H": 6.4,
+        "chimney": false,
+        "chimneyc": "#8b4a36",
+        "cross_gable": true,
+        "d": 9,
+        "door_k": 1,
+        "doorc": "#3f5e7a",
+        "fy": -4.5,
+        "garage": false,
+        "garage_side": -1,
+        "glass": "#3d5068",
+        "gw": 3.23,
+        "n": 2,
+        "nsw": 2,
+        "nw": 3,
+        "ov": 0.45,
+        "porch": true,
+        "porch_w": 0.9,
+        "rh": 3.8,
+        "roof": "gable",
+        "roofc": "#4a4f63",
+        "sh": 3,
+        "shutterc": "#2f4a3a",
+        "shutters": false,
+        "siding": "boards",
+        "trim": "#fbf4e8",
+        "turret": true,
+        "w": 8.5,
+        "wall": "#d49aa0"
+      },
+      "template": "house",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 22589,
+    "selected": true,
+    "source": "art/sources/structures/house-victorian-rose.png",
+    "source_sha256": "b4ac38f3fcf6ca5624b222c267300180d3311be7eb790ef7853fd01ae17d5c6e",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "house-victorian-sage/30594": {
+    "at": "2026-11-20T00:46:17Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "1ff76a6e6a75c587e3302d88043749bb3549bd4ed48e663d9594643fb4077aa6",
+    "pick_reason": "consistent sage siding (other seed drifted to yellow-green), gable trim",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a painted Victorian house with sage green siding, cream gingerbread trim, a round corner turret with a pointed roof, a front cross gable and a front porch. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/house-victorian-sage/30594.png",
+    "rig": {
+      "params": {
+        "H": 6.4,
+        "chimney": true,
+        "chimneyc": "#8b4a36",
+        "cross_gable": true,
+        "d": 9,
+        "door_k": 1,
+        "doorc": "#7b2d3a",
+        "fy": -4.5,
+        "garage": false,
+        "garage_side": -1,
+        "glass": "#3d5068",
+        "gw": 3.42,
+        "n": 2,
+        "nsw": 2,
+        "nw": 3,
+        "ov": 0.45,
+        "porch": true,
+        "porch_w": 0.9,
+        "rh": 3.6,
+        "roof": "gable",
+        "roofc": "#5d4a5e",
+        "sh": 3,
+        "shutterc": "#2f4a3a",
+        "shutters": false,
+        "siding": "boards",
+        "trim": "#f5efe2",
+        "turret": true,
+        "w": 9,
+        "wall": "#9fb59a"
+      },
+      "template": "house",
+      "view": {
+        "pitch": 7,
+        "yaw": 35
+      }
+    },
+    "seed": 30594,
+    "selected": true,
+    "source": "art/sources/structures/house-victorian-sage.png",
+    "source_sha256": "d3a987b91aa1821e4dea2a5309a1618ca6784a0010d2b250e79dacddd060e2ef",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "storefront-brick-3/60086": {
+    "at": "2026-11-20T01:02:07Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "489eba1f4bae1e8335ccf8ff3342e13b7a0d6c025a19fefdf50b1703850c8b04",
+    "pick_reason": "warmer brick, sun-lit cornice, awnings saturated",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a two-storey red brick main-street storefront row with three shops, green, red and blue canvas awnings, big shop windows, a cream cornice and blank sign bands. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/storefront-brick-3/60086.png",
+    "rig": {
+      "params": {
+        "H": 7.2,
+        "awn": [
+          "#2f6b4f",
+          "#b8352c",
+          "#2c4f86"
+        ],
+        "cornice": "#d8cbb2",
+        "d": 12,
+        "doorc": "#3c2f2a",
+        "fy": -6,
+        "glass": "#3b5670",
+        "n": 3,
+        "sh": 3.6,
+        "storeys": 2,
+        "trim": "#e8dcc4",
+        "uw": 6,
+        "w": 18,
+        "wall": "#a5523a"
+      },
+      "template": "storefront",
+      "view": {
+        "pitch": 7,
+        "yaw": 30
+      }
+    },
+    "seed": 60086,
+    "selected": true,
+    "source": "art/sources/structures/storefront-brick-3.png",
+    "source_sha256": "d63d943fda936e53cdfec1e5732c8faefdf20d107bde42e93b387c6e402da2cd",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "storefront-painted-4/28273": {
+    "at": "2026-11-20T01:02:07Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "ffffad9680d0a66a01ddc1bc982820cc97ab28fa5e9140d3b7e5c320ddb2ec22",
+    "pick_reason": "clearer storefront glass and awning colours",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a one-storey painted wooden small-town shop strip with four storefronts, colourful awnings, big windows and a flat parapet roof. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/storefront-painted-4/28273.png",
+    "rig": {
+      "params": {
+        "H": 3.6,
+        "awn": [
+          "#c8582f",
+          "#3f7b5a",
+          "#d9a63a",
+          "#8a3f6a"
+        ],
+        "cornice": "#f1ebdd",
+        "d": 12,
+        "doorc": "#3c2f2a",
+        "fy": -6,
+        "glass": "#3b5670",
+        "n": 4,
+        "sh": 3.6,
+        "storeys": 1,
+        "trim": "#e8dcc4",
+        "uw": 5,
+        "w": 20,
+        "wall": "#7f9aa6"
+      },
+      "template": "storefront",
+      "view": {
+        "pitch": 7,
+        "yaw": 30
+      }
+    },
+    "seed": 28273,
+    "selected": true,
+    "source": "art/sources/structures/storefront-painted-4.png",
+    "source_sha256": "f4ae171be9cbc91f0a3aa62e3d639ef66782a1a172b38cf9957f711734370ac2",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  },
+  "storefront-tan-2/22092": {
+    "at": "2026-11-20T01:02:07Z",
+    "denoise": 0.85,
+    "models": [
+      "qwen_image_edit_2511_fp8mixed.safetensors",
+      "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "qwen_image_vae.safetensors",
+      "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+    ],
+    "negative": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+    "paintSha256": "9bf9f6ef60064806eb9aa11f9d2b5a00be392e6e3ad5861261e5de94878c84a5",
+    "pick_reason": "crisper outlines, less shadow banding across the facade",
+    "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a three-storey tan stone and brick downtown building with two ground-floor shops, striped red and gold awnings, tall upper windows and a cream cornice. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/paints/storefront-tan-2/22092.png",
+    "rig": {
+      "params": {
+        "H": 10.8,
+        "awn": [
+          "#a8322a",
+          "#e0a43a"
+        ],
+        "cornice": "#efe5d0",
+        "d": 12,
+        "doorc": "#3c2f2a",
+        "fy": -6,
+        "glass": "#3b5670",
+        "n": 2,
+        "sh": 3.6,
+        "storeys": 3,
+        "trim": "#e8dcc4",
+        "uw": 7,
+        "w": 14,
+        "wall": "#cdb48c"
+      },
+      "template": "storefront",
+      "view": {
+        "pitch": 7,
+        "yaw": 30
+      }
+    },
+    "seed": 22092,
+    "selected": true,
+    "source": "art/sources/structures/storefront-tan-2.png",
+    "source_sha256": "9709afa62a5aeb622b6ecbbaaec9a015edbee30c53d55ccebefa0ce10899c63a",
+    "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json"
+  }
+}

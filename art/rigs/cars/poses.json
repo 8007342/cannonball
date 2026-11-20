@@ -30,5 +30,11 @@
     "traffic": [
       {"name": "flat", "yaw": 0, "steer": 0, "roll": 0, "pitch": 0}
     ]
+  },
+  "scenes": {
+    "comment": "Departure views for rig cars (render_scenes): car-space metres, camera position/target, lens mm.",
+    "exterior": {"size": [1536, 1024], "yaw": 0, "camera": [-5.6, -6.2, 1.55], "target": [0.2, 0.3, 0.55], "lens": 42, "shift": [-0.11, 0.012]},
+    "door": {"size": [1024, 1024], "camera": [-1.8, -0.95, 1.12], "target": [-0.55, 0.3, 0.5], "lens": 19},
+    "cabin": {"size": [1672, 941], "camera": [-0.36, -0.22, 0.95], "target": [-0.36, 3.0, 0.92], "lens": 15}
   }
 }

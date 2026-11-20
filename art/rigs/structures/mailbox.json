@@ -1,0 +1,22 @@
+{
+  "template": "mailbox",
+  "notes": "style 'rural': curbside tunnel mailbox on a wooden post (door toward the road, -X), red flag. style 'collection': blue street collection box.",
+  "view": {"pitch": 10, "yaw": 32},
+  "params": {"style": "rural", "boxc": "#9aa2a8", "post": "#7a5a3c", "flag": "#d0362c", "blue": "#2f5a9e"},
+  "parts": [
+    {"if": "style == 'rural'", "parts": [
+      {"p": "box", "size": [0.11, 0.11, 1.0], "c": "post"},
+      {"p": "box", "size": [0.3, 0.6, 0.06], "at": [-0.05, 0, 1.0], "c": "post"},
+      {"p": "extrude", "axis": "x", "depth": 0.5, "at": [-0.05, 0, 1.06], "profile": "[(-0.12, 0), (0.12, 0)] + arc(0, 0.2, 0.12, 0, 180, 8)", "c": "boxc"},
+      {"p": "box", "size": [0.03, 0.03, 0.28], "at": [-0.05, 0.135, 1.12], "c": "flag"},
+      {"p": "box", "size": [0.03, 0.12, 0.08], "at": [-0.05, 0.135, 1.33], "c": "flag"}
+    ]},
+    {"if": "style == 'collection'", "parts": [
+      {"repeat": {"i": "[-1, 1]"}, "parts": [{"repeat": {"j": "[-1, 1]"}, "p": "box", "size": [0.06, 0.06, 0.25], "at": ["i*0.22", "j*0.22", 0], "c": "blue"}]},
+      {"p": "box", "size": [0.5, 0.5, 0.75], "at": [0, 0, 0.25], "c": "blue"},
+      {"p": "extrude", "axis": "x", "depth": 0.5, "at": [0, 0, 1.0], "profile": "arc(0, 0, 0.25, 0, 180, 10)", "c": "blue"},
+      {"p": "box", "size": [0.3, 0.05, 0.06], "at": [0, -0.27, 0.95], "c": "#1e2a3a"},
+      {"p": "box", "size": [0.28, 0.03, 0.18], "at": [0, -0.255, 0.55], "c": "#e9e2d2"}
+    ]}
+  ]
+}

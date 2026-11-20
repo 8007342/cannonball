@@ -12,6 +12,14 @@
 //	assets/cars/manifest.json   anchors, lamps, cells, provenance (rig params, seeds, sha256)
 //	art/contact/cars.png        contact sheet of everything above
 //
+//	go run ./cars scenes RENDERS REPO CAR
+//
+// composes the garage departure views of a rig car (car_rig.py --prop scenes) over the
+// painted garage: <car>-exterior.png (the car parked in garage-exterior.png, with a soft
+// underbody shadow so the painted starter car never shows through), <car>-entry.png (an
+// entry-atlas-shaped sheet whose cell 3 is the open driver door) and <car>-cabin.png (the
+// first-person cabin, the street from the exterior painting seen through the windscreen).
+//
 // Scale contract (same as the hand-painted S2000 atlas): in a 512 px player cell the flat
 // pose is `cell.width` px wide (mirrors included), tyres touch y = groundY, centred on x 256.
 // Every other pose of that car uses the SAME transform, so pose changes never rescale the car.
@@ -245,8 +253,12 @@ func lampFractions(lamps [][]float64, xf xform, centre, ground, basis float64) m
 }
 
 func main() {
+	if len(os.Args) == 5 && os.Args[1] == "scenes" {
+		scenes(os.Args[2], os.Args[3], os.Args[4])
+		return
+	}
 	if len(os.Args) != 4 || os.Args[1] != "assemble" {
-		fmt.Fprintln(os.Stderr, "usage: carpack assemble RENDERS REPO")
+		fmt.Fprintln(os.Stderr, "usage: carpack assemble RENDERS REPO | carpack scenes RENDERS REPO CAR")
 		os.Exit(2)
 	}
 	renders, repo := os.Args[2], os.Args[3]
@@ -384,7 +396,7 @@ func main() {
 	manifest["provenance"] = map[string]any{
 		"sources":  src,
 		"pipeline": "lua art/rigs/cars/run.lua all: bpy car_rig.py (Cycles CPU, emission cel materials, seed 0) -> carpack assemble",
-		"paint":    "none: Qwen-Image-Edit hero paint + projection was evaluated as optional; shipped pixels are the rig's own cel shading",
+		"paint":    "none shipped: Qwen-Image-Edit hero repaint (art/workflows/structure-paint-qwen.json, seed 2001) evaluated on the S2000 rear view; one painted view cannot cover the flanks that turn poses reveal and its baked highlight travels with the yawing body, so the cel renders stay (art/rigs/cars/README.md)",
 		"seeds":    map[string]int{"cycles": 0},
 		"cars":     provenance,
 	}
@@ -434,4 +446,116 @@ func main() {
 	over(tatlas, 0, len(sheetCells)/2*512+8, .75)
 	save(sheet, filepath.Join(repo, "art/contact/cars.png"))
 	fmt.Printf("carpack: %d player sheets, %d traffic cells, manifest written\n", len(sheetCells), len(tcells))
+}
+
+// over composites src (premultiplied) onto dst at offset with uniform scale sc.
+func overAt(dst, src *rgbaf, ox, oy, sc float64) {
+	n := int(math.Ceil(1/sc)) + 1
+	w, h := int(float64(src.w)*sc), int(float64(src.h)*sc)
+	for y := 0; y < h; y++ {
+		for x := 0; x < w; x++ {
+			dx, dy := int(ox)+x, int(oy)+y
+			if dx < 0 || dy < 0 || dx >= dst.w || dy >= dst.h {
+				continue
+			}
+			var acc [4]float64
+			for j := 0; j < n; j++ {
+				for i := 0; i < n; i++ {
+					c := src.at((float64(x)+(float64(i)+.5)/float64(n))/sc, (float64(y)+(float64(j)+.5)/float64(n))/sc)
+					for k := range acc {
+						acc[k] += c[k] / float64(n*n)
+					}
+				}
+			}
+			d := (dy*dst.w + dx) * 4
+			for k := 0; k < 4; k++ {
+				dst.p[d+k] = acc[k] + dst.p[d+k]*(1-acc[3])
+			}
+		}
+	}
+}
+
+func scenes(renders, repo, car string) {
+	dir := filepath.Join(renders, car, "scenes")
+	out := filepath.Join(repo, "assets/cars")
+	files := map[string]any{}
+
+	// exterior: underbody shadow per column (top of car to the lowest tyre nearby), then car
+	paint := load(filepath.Join(repo, "assets/proof-next/garage-exterior.png"))
+	ext := load(filepath.Join(dir, "exterior.png"))
+	if ext.w != paint.w || ext.h != paint.h {
+		must(fmt.Errorf("exterior render %dx%d does not match the painting", ext.w, ext.h))
+	}
+	top := make([]int, ext.w)
+	bot := make([]int, ext.w)
+	for x := 0; x < ext.w; x++ {
+		top[x], bot[x] = -1, -1
+		for y := 0; y < ext.h; y++ {
+			if ext.p[(y*ext.w+x)*4+3] > .5 {
+				if top[x] < 0 {
+					top[x] = y
+				}
+				bot[x] = y
+			}
+		}
+	}
+	for x := 0; x < ext.w; x++ {
+		if top[x] < 0 {
+			continue
+		}
+		b := bot[x]
+		for k := max(0, x-60); k < min(ext.w, x+60); k++ {
+			b = max(b, bot[k])
+		}
+		for y := top[x]; y <= b+3 && y < ext.h; y++ {
+			d := (y*paint.w + x) * 4
+			a := .94
+			if y > b-2 {
+				a *= float64(b+3-y) / 5 // soft lower edge on the cobbles
+			}
+			for k, c := range []float64{.13, .10, .09} {
+				paint.p[d+k] = c*a + paint.p[d+k]*(1-a)
+			}
+		}
+	}
+	overAt(paint, ext, 0, 0, 1)
+	name := car + "-exterior.png"
+	files[name] = map[string]any{"width": paint.w, "height": paint.h, "sha256": save(paint, filepath.Join(out, name))}
+
+	// entry sheet: same 3x2 / 512 layout as proof-next/entry-atlas.png; cell 3 = open door
+	door := load(filepath.Join(dir, "door.png"))
+	entry := &rgbaf{1536, 1024, make([]float64, 1536*1024*4)}
+	overAt(entry, door, 0, 512, 512/float64(door.w))
+	name = car + "-entry.png"
+	files[name] = map[string]any{"width": 1536, "height": 1024, "cells": "cell 3 = open driver door", "sha256": save(entry, filepath.Join(out, name))}
+
+	// cabin: the street through the garage door (above the parked car) behind the cockpit
+	cab := load(filepath.Join(dir, "cabin.png"))
+	canvas := &rgbaf{cab.w, cab.h, make([]float64, cab.w*cab.h*4)}
+	for i := 0; i < cab.w*cab.h; i++ {
+		canvas.p[i*4], canvas.p[i*4+1], canvas.p[i*4+2], canvas.p[i*4+3] = .2, .18, .17, 1
+	}
+	street := load(filepath.Join(repo, "assets/proof-next/garage-exterior.png"))
+	crop := &rgbaf{980, 405, make([]float64, 980*405*4)}
+	for y := 0; y < crop.h; y++ {
+		copy(crop.p[y*crop.w*4:(y+1)*crop.w*4], street.p[(y*street.w+470)*4:(y*street.w+470+crop.w)*4])
+	}
+	sc := float64(cab.w) / float64(crop.w)
+	overAt(canvas, crop, 0, float64(cab.h)*.56-float64(crop.h)*sc, sc)
+	overAt(canvas, cab, 0, 0, 1)
+	name = car + "-cabin.png"
+	files[name] = map[string]any{"width": cab.w, "height": cab.h, "sha256": save(canvas, filepath.Join(out, name))}
+
+	b, err := json.MarshalIndent(map[string]any{
+		"car": car, "files": files,
+		"sources": map[string]string{
+			"rig":      fileSha(filepath.Join(repo, "art/rigs/cars/car_rig.py")),
+			"poses":    fileSha(filepath.Join(repo, "art/rigs/cars/poses.json")),
+			"painting": fileSha(filepath.Join(repo, "assets/proof-next/garage-exterior.png")),
+		},
+		"note": "garage departure views; exterior and cabin reuse the painted garage-exterior street",
+	}, "", " ")
+	must(err)
+	must(os.WriteFile(filepath.Join(out, car+"-scenes.json"), append(b, '\n'), 0o644))
+	fmt.Println("carpack: departure scenes written for", car)
 }

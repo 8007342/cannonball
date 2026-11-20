@@ -1,0 +1,26 @@
+{
+  "template": "truss_bridge",
+  "notes": "Steel through-truss (Pratt) span along X on stone abutments; broadside faces -Y.",
+  "view": {"pitch": 8, "yaw": 22},
+  "params": {"L": 30, "W": 7, "T": 6, "n": 6, "hd": 2.5, "steel": "#4f7f96", "deck": "#7a746c", "stone": "#9b9184"},
+  "derived": {"p": "L/n"},
+  "parts": [
+    {"p": "box", "size": ["L", "W+0.6", 0.6], "at": [0, 0, "hd-0.6"], "c": "deck"},
+    {"repeat": {"e": "[-1, 1]"}, "p": "extrude", "axis": "y", "depth": "W+2", "at": ["e*(L/2+1.0)", 0, 0],
+     "profile": [[-1.6, 0], [1.6, 0], [1.2, "hd-0.6"], [-1.2, "hd-0.6"]], "c": "stone"},
+    {"repeat": {"s": "[-1, 1]"}, "parts": [
+      {"p": "beam", "from": ["-L/2", "s*W/2", "hd"], "to": ["L/2", "s*W/2", "hd"], "size": [0.45, 0.5], "c": "steel"},
+      {"p": "beam", "from": ["-L/2+p", "s*W/2", "hd+T"], "to": ["L/2-p", "s*W/2", "hd+T"], "size": [0.45, 0.5], "c": "steel"},
+      {"p": "beam", "from": ["-L/2", "s*W/2", "hd"], "to": ["-L/2+p", "s*W/2", "hd+T"], "size": [0.45, 0.5], "c": "steel"},
+      {"p": "beam", "from": ["L/2", "s*W/2", "hd"], "to": ["L/2-p", "s*W/2", "hd+T"], "size": [0.45, 0.5], "c": "steel"},
+      {"repeat": {"i": "range(1, n)"}, "p": "beam", "from": ["-L/2+p*i", "s*W/2", "hd"], "to": ["-L/2+p*i", "s*W/2", "hd+T"], "size": [0.28, 0.3], "c": "steel"},
+      {"repeat": {"i": "range(1, n-1)"}, "p": "beam",
+       "from": ["-L/2+p*i", "s*W/2", "hd+T"], "to": ["-L/2+p*(i+1) if i < n/2 else -L/2+p*(i-1)", "s*W/2", "hd"], "size": [0.2, 0.22], "c": "steel", "if": "i != n/2"},
+      {"if": "n % 2 == 0", "p": "beam", "from": ["-p", "s*W/2", "hd+T"], "to": [0, "s*W/2", "hd"], "size": [0.2, 0.22], "c": "steel"},
+      {"if": "n % 2 == 0", "p": "beam", "from": ["p", "s*W/2", "hd+T"], "to": [0, "s*W/2", "hd"], "size": [0.2, 0.22], "c": "steel"},
+      {"p": "beam", "from": ["-L/2", "s*(W/2-0.4)", "hd+1.0"], "to": ["L/2", "s*(W/2-0.4)", "hd+1.0"], "size": [0.1, 0.12], "c": "steel"}
+    ]},
+    {"repeat": {"i": "range(1, n)"}, "p": "beam", "from": ["-L/2+p*i", "-W/2", "hd+T"], "to": ["-L/2+p*i", "W/2", "hd+T"], "size": [0.25, 0.25], "c": "steel"},
+    {"repeat": {"e": "[-1, 1]"}, "p": "beam", "from": ["e*(L/2-p)", "-W/2", "hd+T-1.2"], "to": ["e*(L/2-p)", "W/2", "hd+T-1.2"], "size": [0.25, 0.25], "c": "steel"}
+  ]
+}

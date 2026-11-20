@@ -1,0 +1,183 @@
+{
+  "family": "animals",
+  "type": "sprite",
+  "atlas": "farm",
+  "workflow": "art/workflows/sprite-flux2-matte.json",
+  "style": "hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no grass, no shadow",
+  "candidates": 3,
+  "canvas": [
+    1024,
+    768
+  ],
+  "items": [
+    {
+      "id": "cow-angus-a",
+      "prompt": "a single black Angus cow standing in profile facing left, head up, full body with four legs",
+      "band": "far",
+      "kind": "animal",
+      "worldWidthM": 2.4,
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "frames": [
+        "cow-angus-a",
+        "cow-angus-graze-a"
+      ],
+      "tags": [
+        "cattle"
+      ]
+    },
+    {
+      "id": "cow-angus-graze-a",
+      "prompt": "a single black Angus cow in profile facing left with its head lowered to graze",
+      "derive": {
+        "from": "cow-angus-a",
+        "workflow": "art/workflows/structure-paint-qwen.json",
+        "prompt": "The same black cow, same size, same position, same style and same white background, now lowering its head down to the ground to graze. Keep the body and legs unchanged."
+      },
+      "band": "far",
+      "kind": "animal",
+      "worldWidthM": 2.4,
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "frames": [
+        "cow-angus-a",
+        "cow-angus-graze-a"
+      ],
+      "tags": [
+        "cattle"
+      ]
+    },
+    {
+      "id": "cow-holstein-a",
+      "prompt": "a single black and white Holstein dairy cow standing in profile facing right, head up, full body with four legs",
+      "band": "far",
+      "kind": "animal",
+      "worldWidthM": 2.4,
+      "biomes": [
+        "farm"
+      ],
+      "frames": [
+        "cow-holstein-a",
+        "cow-holstein-graze-a"
+      ],
+      "tags": [
+        "cattle"
+      ]
+    },
+    {
+      "id": "cow-holstein-graze-a",
+      "prompt": "a single Holstein cow grazing",
+      "derive": {
+        "from": "cow-holstein-a",
+        "workflow": "art/workflows/structure-paint-qwen.json",
+        "prompt": "The same black and white cow, same size, same position, same style and same white background, now lowering its head down to the ground to graze. Keep the body and legs unchanged."
+      },
+      "band": "far",
+      "kind": "animal",
+      "worldWidthM": 2.4,
+      "biomes": [
+        "farm"
+      ],
+      "frames": [
+        "cow-holstein-a",
+        "cow-holstein-graze-a"
+      ],
+      "tags": [
+        "cattle"
+      ]
+    },
+    {
+      "id": "cow-hereford-a",
+      "prompt": "a single red-brown Hereford beef cow with a white face, standing in profile facing left, grazing with head down, full body",
+      "band": "far",
+      "kind": "animal",
+      "worldWidthM": 2.4,
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "tags": [
+        "cattle"
+      ]
+    },
+    {
+      "id": "horse-bay-a",
+      "prompt": "a single bay horse, brown with black mane and tail, standing in profile facing right, full body",
+      "band": "far",
+      "kind": "animal",
+      "worldWidthM": 2.5,
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "tags": [
+        "horse"
+      ]
+    },
+    {
+      "id": "horse-white-graze-a",
+      "prompt": "a single white grey horse in profile facing left, grazing with head down, full body",
+      "band": "far",
+      "kind": "animal",
+      "worldWidthM": 2.5,
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "tags": [
+        "horse"
+      ]
+    },
+    {
+      "id": "sheep-flock-a",
+      "prompt": "a small flock of five fluffy white sheep with black faces, grazing in a loose group, side view",
+      "band": "far",
+      "kind": "animal",
+      "worldWidthM": 7,
+      "biomes": [
+        "farm"
+      ],
+      "canvas": [
+        1536,
+        768
+      ],
+      "tags": [
+        "sheep"
+      ]
+    },
+    {
+      "id": "deer-whitetail-a",
+      "prompt": "a single tan-brown deer doe with a reddish-brown coat and pale belly, standing alert in profile facing left, full body",
+      "band": "far",
+      "kind": "animal",
+      "worldWidthM": 1.8,
+      "biomes": [
+        "forest",
+        "farm",
+        "river"
+      ]
+    },
+    {
+      "id": "crows-fencepost-a",
+      "prompt": "a short weathered grey wooden fence post standing upright, with two small black crows sitting on its flat top",
+      "band": "near",
+      "kind": "animal",
+      "worldWidthM": 0.6,
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "canvas": [
+        768,
+        1024
+      ],
+      "tags": [
+        "bird"
+      ]
+    }
+  ]
+}

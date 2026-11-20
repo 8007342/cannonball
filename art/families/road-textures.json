@@ -1,0 +1,143 @@
+{
+  "family": "road-textures",
+  "type": "texture",
+  "workflow": "art/workflows/texture-flux2.json",
+  "style": "seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+  "candidates": 2,
+  "items": [
+    {
+      "id": "asphalt-worn",
+      "prompt": "a blank patch of worn grey asphalt paving: uniform fine grey aggregate with a few hairline cracks and darker tar patches, nothing painted on it",
+      "kind": "road",
+      "tileM": [
+        6,
+        6
+      ]
+    },
+    {
+      "id": "asphalt-fresh",
+      "prompt": "a blank patch of fresh dark charcoal asphalt paving: uniform fine black and grey aggregate speckles, nothing painted on it",
+      "kind": "road",
+      "tileM": [
+        6,
+        6
+      ]
+    },
+    {
+      "id": "concrete",
+      "prompt": "pale grey concrete highway pavement slabs with straight expansion joints in a square grid and light brushed texture",
+      "kind": "road",
+      "tileM": [
+        4,
+        4
+      ],
+      "seed": 3347290
+    },
+    {
+      "id": "brick",
+      "prompt": "old red brick street pavers in a running bond pattern with sandy grout",
+      "kind": "road",
+      "tileM": [
+        3,
+        3
+      ],
+      "seed": 8200360
+    },
+    {
+      "id": "cobblestone",
+      "prompt": "rounded grey cobblestones set in a dense irregular pattern",
+      "kind": "road",
+      "tileM": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "gravel",
+      "prompt": "loose grey and tan crushed gravel road shoulder with small stones",
+      "kind": "shoulder",
+      "tileM": [
+        3,
+        3
+      ],
+      "seed": 2505130
+    },
+    {
+      "id": "dirt-shoulder",
+      "prompt": "packed brown dirt with small pebbles and a few dry grass blades",
+      "kind": "shoulder",
+      "tileM": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "grass",
+      "prompt": "short mowed green lawn grass verge with a few clover leaves",
+      "kind": "ground",
+      "tileM": [
+        4,
+        4
+      ],
+      "seed": 7192290
+    },
+    {
+      "id": "meadow",
+      "prompt": "uneven green and yellow meadow grass with small wildflowers",
+      "kind": "ground",
+      "tileM": [
+        5,
+        5
+      ],
+      "seed": 847650
+    },
+    {
+      "id": "sidewalk",
+      "prompt": "light grey concrete sidewalk with square slab joints every metre and a light broom texture",
+      "kind": "sidewalk",
+      "tileM": [
+        2,
+        2
+      ],
+      "seed": 8488730
+    },
+    {
+      "id": "bridge-deck",
+      "prompt": "weathered wooden bridge deck of parallel brown timber planks with dark gaps and iron nail heads",
+      "kind": "bridge-deck",
+      "tileM": [
+        3,
+        3
+      ],
+      "seed": 6740900
+    },
+    {
+      "id": "bridge-deck-steel",
+      "prompt": "steel bridge deck grating, a dense diamond-pattern grid of grey metal bars over dark shadow",
+      "kind": "bridge-deck",
+      "tileM": [
+        2,
+        2
+      ],
+      "seed": 5132710
+    },
+    {
+      "id": "water",
+      "prompt": "calm river water surface with soft blue-green ripples and small glints",
+      "kind": "ground",
+      "tileM": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "crop-rows",
+      "prompt": "farm field of straight parallel rows of young green crop plants on brown soil, rows running vertically",
+      "kind": "ground",
+      "tileM": [
+        6,
+        6
+      ]
+    }
+  ]
+}
