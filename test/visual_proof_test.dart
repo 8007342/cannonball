@@ -46,7 +46,9 @@ void main() {
     (tester) async {
       final race = await mountProof(tester, sequence: true);
       await startProof(tester);
-      for (var i = 0; i < 481; i++) {
+      // Stop on the tick that ends the stage: the advance carries the speed
+      // captured then, even if the car is still accelerating after a scrape.
+      while (race.elapsed < 120) {
         race.tick(.25);
       }
       final carriedSpeed = race.speed;

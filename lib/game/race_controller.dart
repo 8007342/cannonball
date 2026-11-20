@@ -10,6 +10,8 @@ import 'proof_contacts.dart';
 import 'proof_dynamics.dart';
 import 'route.dart';
 import 'traffic.dart';
+import 'traffic_policy/racer_models.dart';
+import 'traffic_policy/racer_policy_loader.dart';
 
 export 'traffic.dart' show TrafficCar, TrafficProfile;
 export 'proof_contacts.dart' show ProofCone, ConeFlight;
@@ -62,6 +64,11 @@ class RaceController extends ChangeNotifier {
   double _lastTrafficPlayerX = 0;
   int get trafficReactionCount => _reactiveTraffic.reactions;
   int get trafficIncidentCount => _reactiveTraffic.incidents;
+
+  /// Racer lane-change brain for this attempt: bundle model id, or `rules`.
+  /// Captured at start() so a mid-run asset load cannot change a seeded run.
+  String get racerPolicyId => _reactiveTraffic.racerPolicy?.modelId ?? 'rules';
+  int get racerDecisionCount => _reactiveTraffic.racerDecisions;
   final Map<String, String> _closedBranches = {};
   late _RandomStream _trafficRandom;
   late _RandomStream _conditionRandom;
@@ -83,6 +90,7 @@ class RaceController extends ChangeNotifier {
   double _roadCorrection = 0;
   double _cruiseBlend = 1;
   bool _gentleRoad = true;
+  double _hairpinAnnouncedUntil = -1;
   double get effectiveSteering =>
       testCourseEnabled ? _effectiveSteering + _roadCorrection : steering;
   bool get steadyHorizon => comfortMode;
@@ -182,8 +190,9 @@ class RaceController extends ChangeNotifier {
     _roadCorrection = 0;
     _cruiseBlend = 1;
     _gentleRoad = true;
+    _hairpinAnnouncedUntil = -1;
     reactiveTrafficEnabled = reactiveTraffic;
-    _reactiveTraffic = ReactiveTraffic();
+    _reactiveTraffic = ReactiveTraffic(racerPolicy: RacerPolicyStore.shared);
     _lastTrafficPlayerX = 0;
     _car = car;
     _seed = seed ?? DateTime.now().microsecondsSinceEpoch % 1000000000;
@@ -258,8 +267,12 @@ class RaceController extends ChangeNotifier {
         );
       }
       // A slower lead vehicle stays in view while the player builds speed.
-      traffic.first.cruiseSpeed = 55;
-      traffic.first.currentSpeed = 55;
+      final lead = traffic.firstWhere(
+        (t) => !t.isRacer,
+        orElse: () => traffic.first,
+      );
+      lead.cruiseSpeed = 55;
+      lead.currentSpeed = 55;
     }
     _say('Red Ball Garage. Westbound. Next stop: the Pacific.', 3, 8);
     notifyListeners();
@@ -387,12 +400,18 @@ class RaceController extends ChangeNotifier {
         0,
         _car.topSpeed,
       );
+      // Hairpins add demand beyond the bounded bend pull; braking lowers it
+      // faster (ratio squared) than it lowers steering authority (linear).
+      final cornerDemand = testCourseEnabled
+          ? proofTerrain.cornerDemandAt(courseDistance)
+          : 0.0;
       playerX +=
           ((safeSteering + _roadCorrection) *
                   _car.handling *
                   grip *
                   (0.2 + ratio * 1.15) -
-              curveAt(_worldDistance) * ratio * ratio * .23) *
+              curveAt(_worldDistance) * ratio * ratio * .23 -
+              cornerDemand * ratio * ratio) *
           fixedStep;
       playerX = playerX.clamp(-1.65, 1.65);
       if (playerX.abs() > 1.02) {
@@ -492,6 +511,15 @@ class RaceController extends ChangeNotifier {
   }
 
   void _advisories() {
+    if (testCourseEnabled && courseDistance > _hairpinAnnouncedUntil) {
+      for (var ahead = 60.0; ahead <= 260; ahead += 20) {
+        if (proofTerrain.cornerDemandAt(courseDistance + ahead).abs() > 1) {
+          _hairpinAnnouncedUntil = courseDistance + ahead + 200;
+          _say('Hairpin ahead. Brake before the turn.', 3, 3);
+          break;
+        }
+      }
+    }
     if (approachingFork && !_forkAnnounced) {
       _forkAnnounced = true;
       final left = nextChoices.first;
@@ -670,6 +698,7 @@ class RaceController extends ChangeNotifier {
       closedLane: _closedLane,
       closureStart: _worldDistance - _edgeDistance + closureStart,
       closureEnd: _worldDistance - _edgeDistance + closureEnd,
+      playerTopSpeed: _car.topSpeed,
     );
     _lastTrafficPlayerX = playerX;
     for (final other in traffic) {
@@ -701,7 +730,10 @@ class RaceController extends ChangeNotifier {
     }
     traffic.removeWhere(
       (t) =>
-          t.position < _worldDistance - 180 ||
+          // Racers linger behind so a passed racer can chase and re-pass.
+          t.position <
+              _worldDistance -
+                  (t.profile == TrafficProfile.racer ? 700 : 180) ||
           t.position > _worldDistance + 11000,
     );
   }
@@ -737,19 +769,43 @@ class RaceController extends ChangeNotifier {
     }
   }
 
+  TrafficProfile _nextTrafficProfile() {
+    if (!reactiveTrafficEnabled) return TrafficProfile.ordinary;
+    // Deterministic 50-slot mixture, 62/20/8/4/6 percent over a full cycle.
+    final roll = (_trafficId * 7 + _seed) % 50;
+    if (roll < 31) return TrafficProfile.ordinary;
+    if (roll < 41) return TrafficProfile.cautious;
+    if (roll < 45) return TrafficProfile.brisk;
+    if (roll < 47) return TrafficProfile.pushy;
+    // At most two racers at once keeps them special and CPU bounded.
+    return traffic.where((t) => t.isRacer).length >= 2
+        ? TrafficProfile.brisk
+        : TrafficProfile.racer;
+  }
+
   void _spawnTraffic({double? proofOffset}) {
-    final spawn =
-        _worldDistance +
-        (testCourseEnabled
-            ? (proofOffset ??
-                  (denseProofTraffic ? proofTrafficPreview + 25 : 300))
-            : (reactiveTrafficEnabled ? 520 : 1500)) +
-        _trafficRandom.next() *
-            (denseProofTraffic
-                ? 10
-                : (testCourseEnabled
-                      ? 25
-                      : (reactiveTrafficEnabled ? 520 : 900)));
+    final profile = _nextTrafficProfile();
+    final racer = profile == TrafficProfile.racer;
+    // Racers cruise at 88-97% of the player's top speed (hash, not the RNG
+    // stream, so ordinary traffic keeps its seeded sequence).
+    final racerCruise =
+        _car.topSpeed * (.88 + ((_trafficId * 37 + _seed) % 10) * .01);
+    // A slower player meets racers arriving from behind; a flat-out player
+    // catches them ahead instead.
+    final fromBehind = racer && _speed < racerCruise - 4;
+    final spawn = fromBehind
+        ? _worldDistance - 260 - (_trafficId % 4) * 30
+        : _worldDistance +
+              (testCourseEnabled
+                  ? (proofOffset ??
+                        (denseProofTraffic ? proofTrafficPreview + 25 : 300))
+                  : (reactiveTrafficEnabled ? 520 : 1500)) +
+              _trafficRandom.next() *
+                  (denseProofTraffic
+                      ? 10
+                      : (testCourseEnabled
+                            ? 25
+                            : (reactiveTrafficEnabled ? 520 : 900)));
     var lane = [-.65, 0.0, .65][_trafficRandom.index(3)];
     final spawnOnEdge = _edgeDistance + spawn - _worldDistance;
     if (reactiveTrafficEnabled &&
@@ -769,6 +825,15 @@ class RaceController extends ChangeNotifier {
           (lane - _closedLane! * .65).abs() < .3) {
         lane = 0;
       }
+    }
+    if (fromBehind) {
+      // Never directly behind the player: arrive in a neighbouring lane.
+      final open = [
+        for (final l in const [-.65, 0.0, .65])
+          if ((l - playerX).abs() > .4) l,
+      ];
+      if (open.isEmpty) return;
+      lane = open[_trafficId % open.length];
     }
     if (denseProofTraffic) {
       // Two adjacent lanes may pair up; a third car cannot close the whole road.
@@ -793,37 +858,42 @@ class RaceController extends ChangeNotifier {
       0xff7b965d,
       0xff8e7ea1,
     ];
-    final profileRoll = (_trafficId * 7 + _seed) % 20;
-    final profile = !reactiveTrafficEnabled
-        ? TrafficProfile.ordinary
-        : profileRoll < 13
-        ? TrafficProfile.ordinary
-        : profileRoll < 17
-        ? TrafficProfile.cautious
-        : profileRoll < 19
-        ? TrafficProfile.brisk
-        : TrafficProfile.pushy;
+    final speedRoll = _trafficRandom.next();
+    var color = palette[_trafficRandom.index(palette.length)];
+    final truck = _trafficRandom.next() < .18 && !racer;
+    final changeAt = elapsed + 4 + _trafficRandom.next() * 8;
+    // Wide cruising variety: slow trucks and cautious drivers through brisk
+    // ones; racers sit just under the player's top speed.
+    var cruise = !reactiveTrafficEnabled
+        ? 67 + speedRoll * 27
+        : switch (profile) {
+            TrafficProfile.cautious => 58 + speedRoll * 22,
+            TrafficProfile.ordinary => 66 + speedRoll * 32,
+            TrafficProfile.brisk => 88 + speedRoll * 27,
+            TrafficProfile.pushy => 82 + speedRoll * 26,
+            TrafficProfile.racer => racerCruise,
+          };
+    if (reactiveTrafficEnabled && truck) {
+      cruise = math.min(cruise, 55 + speedRoll * 20);
+    }
+    final model = racer ? RacerModel.forTrafficId(_trafficId) : null;
+    if (model?.fixedColor case final fixed?) color = fixed;
     traffic.add(
       TrafficCar(
         id: _trafficId++,
         position: spawn,
         x: lane,
-        cruiseSpeed:
-            (67 + _trafficRandom.next() * 27) *
-            (reactiveTrafficEnabled
-                ? switch (profile) {
-                    TrafficProfile.cautious => .88,
-                    TrafficProfile.brisk => 1.24,
-                    TrafficProfile.pushy => 1.16,
-                    TrafficProfile.ordinary => 1.06,
-                  }
-                : 1),
-        color: palette[_trafficRandom.index(palette.length)],
-        truck: _trafficRandom.next() < .18,
-        changeAt: elapsed + 4 + _trafficRandom.next() * 8,
+        cruiseSpeed: cruise,
+        color: color,
+        truck: truck,
+        changeAt: changeAt,
         profile: profile,
         paintVariant: _trafficId % 8,
-        usesSignals: !reactiveTrafficEnabled || profile != TrafficProfile.pushy,
+        usesSignals:
+            !reactiveTrafficEnabled ||
+            (profile != TrafficProfile.pushy && (!racer || _trafficId.isEven)),
+        modelId: model?.id,
+        racerCap: racer ? _car.topSpeed : null,
       ),
     );
   }

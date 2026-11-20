@@ -1,0 +1,17 @@
+{
+  "template": "hydrant",
+  "notes": "Fire hydrant; pumper nozzle faces -Y, hose nozzles to the sides.",
+  "view": {"pitch": 10, "yaw": 30},
+  "params": {"body": "#c9302c", "cap": "#e9e2d2", "metal": "#8f8f8f"},
+  "parts": [
+    {"p": "cyl", "r": 0.22, "h": 0.08, "seg": 16, "c": "body"},
+    {"p": "cyl", "r": 0.15, "r2": 0.14, "h": 0.55, "seg": 16, "at": [0, 0, 0.08], "c": "body"},
+    {"p": "cyl", "r": 0.19, "h": 0.06, "seg": 16, "at": [0, 0, 0.6], "c": "body"},
+    {"p": "sphere", "r": 0.16, "half": true, "seg": 16, "at": [0, 0, 0.66], "c": "cap"},
+    {"p": "cyl", "r": 0.04, "h": 0.07, "seg": 5, "at": [0, 0, 0.8], "c": "cap"},
+    {"p": "cyl", "r": 0.06, "h": 0.46, "axis": "x", "seg": 12, "at": [0, 0, 0.47], "c": "body"},
+    {"p": "cyl", "r": 0.075, "h": 0.06, "axis": "x", "seg": 6, "at": [-0.245, 0, 0.47], "c": "cap", "sym": "x"},
+    {"p": "cyl", "r": 0.09, "h": 0.12, "axis": "y", "seg": 12, "at": [0, -0.18, 0.42], "c": "body"},
+    {"p": "cyl", "r": 0.1, "h": 0.05, "axis": "y", "seg": 6, "at": [0, -0.25, 0.42], "c": "cap"}
+  ]
+}

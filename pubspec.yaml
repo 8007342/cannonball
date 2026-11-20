@@ -67,6 +67,11 @@ flutter:
     - assets/audio/midi/
     - assets/roadside-pass/
     - assets/controls/
+    - assets/cars/
+    - assets/audio/music/
+    - assets/scenic/
+    - assets/scenic/road/
+    - assets/traffic/
   fonts:
     - family: Cannonball
       fonts:

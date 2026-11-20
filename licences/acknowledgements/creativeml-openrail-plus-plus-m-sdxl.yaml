@@ -1,0 +1,16 @@
+# Third-party licence acknowledgement for the Cannonball scenic asset pipeline.
+# The user approved this model set in the agent session of 2026-11-20 (relayed by
+# the coordinating agent). This record is NOT cryptographically signed; a signed
+# or merge-backed acknowledgement can replace it without changing the register.
+record: tillandsias-licence-acknowledgement v1
+licence: creativeml-openrail-plus-plus-m-sdxl
+licence_text: licences/texts/creativeml-openrail-plus-plus-m-sdxl.md
+licence_sha256: 19b6998b569b53ac1fc2158a8a3202c8699a9a4605b47075715d9c96be7fb6d0
+covers: ["stabilityai/stable-diffusion-xl-base-1.0"]
+grantor: operator
+scope: project:cannonball
+use: generated game art (scenic sprites and textures) committed to this repository
+expiry: "standing"
+approved_on: "2026-11-20"
+strength: chat-approval
+signature: ""

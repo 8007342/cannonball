@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'proof_course.dart';
 import 'route.dart';
+import 'terrain/level_profiles.dart';
 
 /// Illustrative review packs, not surveyed road corridors or final campaign art.
 class ProofLevel {
@@ -27,6 +28,9 @@ class ProofLevel {
   });
   final String id, name, key;
   final int seed, treeFrame, sceneryStride, ground;
+
+  /// `hills`/`curves` describe the level's relative character for review
+  /// metadata; geometry now comes from its own `LevelProfile`.
   final double night, sunset, wet, hills, curves, variation, lampSpacing;
   final bool autumn, canopy, urban;
   final RaceWeather weather;
@@ -128,26 +132,38 @@ class ProofLevel {
 }
 
 /// One source for controller demand and renderer elevation/center coordinates.
+/// Each level owns its authored profile (see [LevelProfile]); Hudson keeps
+/// the reviewed shared course exactly.
 class ProofTerrain {
-  ProofTerrain(this.level) {
+  ProofTerrain(this.level) : profile = LevelProfile.forId(level.id) {
     var heading = 0.0, center = 0.0;
     centers.add(0);
     for (var i = 1; i <= 2400; i++) {
-      final curvature = curvatureAt((i - .5) * 5) * ProofCourse.lateralScale;
+      final curvature =
+          visualCurvature(curvatureAt((i - .5) * 5)) * ProofCourse.lateralScale;
       center += heading * 5 + curvature * 12.5;
       heading += curvature * 5;
       centers.add(center);
     }
   }
   final ProofLevel level;
+  final LevelProfile profile;
   final List<double> centers = [];
-  double curvatureAt(double s) =>
-      ProofCourse.curvatureAt(s) * level.curves +
-      (level.variation == 0 || s < 420
-          ? 0
-          : math.sin((s - 420) / (310 + level.variation * 23)) *
-                .003 *
-                math.min(1, (s - 420) / 200));
+  double curvatureAt(double s) => profile.curvatureAt(s);
+
+  /// Drawn hairpins bend harder than their metric curvature: a faithful
+  /// projection of a 140 m bend shifts the road only ~60-90 px by the time
+  /// it reaches the horizon, so hairpins read as gentle sweepers. The part
+  /// above [LevelProfile.cornerThreshold] is amplified; ordinary bends (and
+  /// the whole legacy Hudson course) are unchanged. Render-only: the
+  /// controller's demand still uses [curvatureAt].
+  static const hairpinVisualGain = 2.2;
+  static double visualCurvature(double c) {
+    final excess = c.abs() - LevelProfile.cornerThreshold;
+    return excess <= 0 ? c : c + excess * hairpinVisualGain * c.sign;
+  }
+
+  /// Render-space road centre (lateral world units), from [visualCurvature].
   double centerAt(double s) {
     if (s <= 0) return 0;
     final index = (s / 5).floor().clamp(0, centers.length - 2);
@@ -155,19 +171,44 @@ class ProofTerrain {
     return centers[index] + (centers[index + 1] - centers[index]) * fraction;
   }
 
-  double elevationAt(double s) =>
-      ProofCourse.elevationAt(s) * level.hills +
-      (level.variation == 0
-          ? 0
-          : math.sin(s / (180 + level.variation * 41)) *
-                math.sin(s / 850) *
-                180 *
-                level.hills);
+  /// Simulation elevation (controller grade and speed). Never exaggerated.
+  double elevationAt(double s) => profile.elevationAt(s);
+
+  /// 0..1 share of the level's [LevelProfile.relief] the renderer applies.
+  /// Comfort mode lowers it so crests and dips stay readable but gentler.
+  double reliefScale = 1;
+
+  /// Render-space elevation: the road, ground, scenery, traffic, lights and
+  /// the camera all use this so everything stays grounded on the slope.
+  double visualElevationAt(double s) =>
+      profile.visualElevationAt(s, reliefScale);
+
+  /// Extra centrifugal demand of hairpins (half-widths/s at top speed).
+  double cornerDemandAt(double s) => profile.cornerDemandAt(s);
+  String sectionAt(double s) => profile.sectionAt(s);
+
+  /// Render-space grade (visual elevation) for the grounded car pose.
   double gradeAt(double s, double scale) =>
-      (elevationAt(s + 5) - elevationAt(s - 5)) / (10 * scale);
-  double pitchAt(double s, double scale) =>
-      ((elevationAt(s + 60) - elevationAt(s - 60)) / (120 * scale) * 1.8).clamp(
-        -.24,
-        .24,
-      );
+      (visualElevationAt(s + 5) - visualElevationAt(s - 5)) / (10 * scale);
+
+  /// Camera pitch follows the render-space grade through a soft limit, so a
+  /// steep exaggerated climb never saturates into a hard snap at a crest.
+  /// It follows less than the road rises, which leaves crests, walls and
+  /// valleys visible instead of levelling them out.
+  static const maxPitch = .26, pitchFollow = 1.1;
+  double pitchAt(double s, double scale) {
+    if (!scale.isFinite || scale <= 0) return 0;
+    final grade =
+        (visualElevationAt(s + 60) - visualElevationAt(s - 60)) / (120 * scale);
+    // Unexaggerated levels (Hudson's reviewed baseline, flat Chicago) keep
+    // the original linear follow and clamp exactly.
+    if (profile.relief == 1 && profile.riseRelief == 1) {
+      return (grade * 1.8).clamp(-.24, .24);
+    }
+    final x = grade * pitchFollow / maxPitch;
+    if (!x.isFinite) return 0;
+    // tanh without dart:math's missing helper.
+    final e = math.exp(-2 * x.abs().clamp(0.0, 20.0));
+    return maxPitch * x.sign * (1 - e) / (1 + e);
+  }
 }

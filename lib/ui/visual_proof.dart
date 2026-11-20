@@ -11,6 +11,7 @@ import '../game/proof_level.dart';
 import '../platform/browser_platform.dart';
 import '../platform/proof_telemetry.dart';
 import '../platform/proof_radio.dart';
+import '../services/local_store.dart';
 import 'proof_garage.dart';
 import 'wheel_control.dart';
 
@@ -61,6 +62,10 @@ class _VisualProofScreenState extends State<VisualProofScreen>
   static const dark = Color(0xff14242b);
   ProofLevel _level = ProofLevel.fromId(Uri.base.queryParameters['level']);
   late final RaceController _race;
+
+  /// Garage key choice; persisted on this browser like other car choices.
+  final _store = LocalStore();
+  late CarSpec _car = proofCarById(_store.read(proofCarStoreKey));
   RaceGame? _game;
   late final Widget _scene;
   final _phase = ValueNotifier(_ProofPhase.ready);
@@ -87,7 +92,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     super.initState();
     _race = widget.controller ?? RaceController();
     _race.start(
-      proofCar,
+      _car,
       seed: _level.seed,
       level: _level,
       reactiveTraffic: true,
@@ -193,7 +198,8 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'state': _phase.value.name,
     'departureShot': _departureShot,
     'radioStation': _station,
-    'radioCaption': _lastRadio,
+    'radioCaption': _radioCaption,
+    'radioReport': _lastRadio,
     'captionsEnabled': _captions,
     'speechMode':
         'prepared neural reports with device fallback; accents pending',
@@ -223,7 +229,13 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     'coursePitch': _game?.coursePitch,
     'courseDistance': _race.courseDistance,
     'courseStartDistance': _race.courseStartDistance,
-    'courseSection': ProofCourse.sectionAt(_race.courseDistance),
+    'courseSection': _race.proofTerrain.sectionAt(_race.courseDistance),
+    'terrainCharacter': _race.proofTerrain.profile.character.name,
+    'scenicPack': _game?.scenicLibrary?.manifest.version,
+    'scenicSupplemented': _game?.scenicLibrary?.supplemented,
+    'scenicSprites': _game?.lastScenicSpriteCount,
+    'farSprites': _game?.lastFarSpriteCount,
+    'surfaceDraws': _game?.lastSurfaceDraws,
     'courseLength': ProofCourse.length,
     'braking': _race.braking,
     'playerX': _race.playerX,
@@ -286,7 +298,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _game?.lighting.reset();
     _game?.lightHistory.clear();
     _race.start(
-      proofCar,
+      _car,
       seed: _level.seed,
       level: _level,
       reactiveTraffic: true,
@@ -311,14 +323,33 @@ class _VisualProofScreenState extends State<VisualProofScreen>
     _hud.value++;
   }
 
-  void _beginDeparture() {
+  void _beginDeparture([String? carId]) {
     if (!mounted || !_ready.value || _phase.value != _ProofPhase.ready) return;
     final viewport = MediaQuery.sizeOf(context);
     if (viewport.height > viewport.width) return;
+    final chosen = proofCarById(carId ?? _car.id);
+    if (chosen.id != _car.id) {
+      _car = chosen;
+      _store.write(proofCarStoreKey, chosen.id);
+      _reset();
+      unawaited(_game?.setPlayerCar(chosen.id));
+    }
     unawaited(_platform.beginAudio());
     _race.paused = true;
     _phase.value = _ProofPhase.departing;
     _departureShot = 'reach';
+  }
+
+  /// Programme caption (presenter line or now playing), else the last report.
+  String get _radioCaption {
+    final live = _platform.radioCaption();
+    return live.isNotEmpty ? live : _lastRadio;
+  }
+
+  void _skipStation() {
+    if (_muted || _phase.value != _ProofPhase.driving) return;
+    _platform.radioSkip();
+    _hud.value++;
   }
 
   void _toggleSound() {
@@ -419,7 +450,11 @@ class _VisualProofScreenState extends State<VisualProofScreen>
             _race.closedLane != null && _race.edgeDistance < _race.closureEnd,
       );
       _lastRadio = report.text;
-      _platform.radioBreak(text: report.text, station: report.station);
+      _platform.radioBreak(
+        text: report.text,
+        station: report.station,
+        urgent: report.urgent,
+      );
       _hud.value++;
     }
     if (_race.elapsed - _lastHudTime >= .1) {
@@ -482,6 +517,10 @@ class _VisualProofScreenState extends State<VisualProofScreen>
       }
     }
     if (event is KeyDownEvent && _phase.value != _ProofPhase.departing) {
+      if (event.logicalKey == LogicalKeyboardKey.keyN) {
+        _skipStation();
+        return;
+      }
       if (event.logicalKey == LogicalKeyboardKey.keyV) {
         _toggleSpeedEffects();
         return;
@@ -678,6 +717,11 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                                   _toggleSound,
                                 ),
                                 _utility(
+                                  Icons.radio,
+                                  'Change radio station',
+                                  _skipStation,
+                                ),
+                                _utility(
                                   Icons.camera_alt_outlined,
                                   'Change camera',
                                   _cycleCamera,
@@ -719,7 +763,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                       ValueListenableBuilder(
                         valueListenable: _hud,
                         builder: (context, _, _) =>
-                            _captions && _lastRadio.isNotEmpty
+                            _captions && _radioCaption.isNotEmpty
                             ? Padding(
                                 padding: const EdgeInsets.only(bottom: 18),
                                 child: Container(
@@ -732,7 +776,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                                   ),
                                   color: dark.withValues(alpha: .8),
                                   child: Text(
-                                    _lastRadio,
+                                    _radioCaption,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       color: cream,
@@ -793,6 +837,7 @@ class _VisualProofScreenState extends State<VisualProofScreen>
                             reducedMotion: _platform.reducedMotion,
                             artwork: widget.sceneBuilder == null,
                             muted: _muted,
+                            selectedCar: _car.id,
                             onTakeKeys: _beginDeparture,
                             onComplete: _start,
                             onShot: (shot) {

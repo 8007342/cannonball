@@ -24,7 +24,13 @@ class BrowserPlatform {
   void say(String text) {}
   void setProofAudio(bool enabled) {}
   void garageCue(String cue) {}
-  void radioBreak({required String text, required String station}) {}
+  void radioBreak({
+    required String text,
+    required String station,
+    bool urgent = true,
+  }) {}
+  bool radioSkip() => false;
+  String radioCaption() => '';
   void pause(bool paused) {}
   Future<bool> requestLandscape() async => false;
   void dispose() {}

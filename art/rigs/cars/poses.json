@@ -1,0 +1,40 @@
+{
+  "comment": "Chase-camera pose table (camera distance is measured from the rear bumper) shared by car_rig.py and lib/game/render/vehicle_pose.dart (VehiclePoseGeometry; test/car_pose_geometry_test.dart keeps them equal). Degrees. yaw > 0: nose left. steer > 0: FRONT wheels point left of the body (rear wheels never steer). roll > 0: right side down (a left turn leans out to the right). pitch > 0: nose up.",
+  "camera": {
+    "distance": 5.3,
+    "height": 2.1,
+    "targetZ": 0.55,
+    "lensMm": 70,
+    "sensorMm": 36,
+    "renderPx": 1536,
+    "lightDirection": [-0.52, -0.55, 0.65]
+  },
+  "cell": {"player": 512, "traffic": 256, "groundY": 448, "width": 432},
+  "sheets": {
+    "body": [
+      {"name": "flat", "yaw": 0, "steer": 0, "roll": 0, "pitch": 0},
+      {"name": "left", "yaw": 7, "steer": 14, "roll": 1.8, "pitch": 0},
+      {"name": "right", "yaw": -7, "steer": -14, "roll": -1.8, "pitch": 0},
+      {"name": "uphill", "yaw": 0, "steer": 0, "roll": 0, "pitch": 5},
+      {"name": "downhill", "yaw": 0, "steer": 0, "roll": 0, "pitch": -5},
+      {"name": "right-skid", "yaw": -13, "steer": 8, "roll": -3, "pitch": 0}
+    ],
+    "turn": [
+      {"name": "gentle-left", "yaw": 3, "steer": 7, "roll": 0.8, "pitch": 0},
+      {"name": "gentle-right", "yaw": -3, "steer": -7, "roll": -0.8, "pitch": 0},
+      {"name": "medium-left", "yaw": 7, "steer": 14, "roll": 1.8, "pitch": 0},
+      {"name": "medium-right", "yaw": -7, "steer": -14, "roll": -1.8, "pitch": 0},
+      {"name": "strong-left", "yaw": 12, "steer": 24, "roll": 3, "pitch": 0},
+      {"name": "strong-right", "yaw": -12, "steer": -24, "roll": -3, "pitch": 0}
+    ],
+    "traffic": [
+      {"name": "flat", "yaw": 0, "steer": 0, "roll": 0, "pitch": 0}
+    ]
+  },
+  "scenes": {
+    "comment": "Departure views for rig cars (render_scenes): car-space metres, camera position/target, lens mm.",
+    "exterior": {"size": [1536, 1024], "yaw": 0, "camera": [-5.6, -6.2, 1.55], "target": [0.2, 0.3, 0.55], "lens": 42, "shift": [-0.11, 0.012]},
+    "door": {"size": [1024, 1024], "camera": [-2.25, -0.9, 1.3], "target": [-1.05, 0.6, 0.22], "lens": 19},
+    "cabin": {"size": [1672, 941], "camera": [-0.36, -0.22, 0.95], "target": [-0.36, 3.0, 0.92], "lens": 15}
+  }
+}

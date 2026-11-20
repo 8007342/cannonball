@@ -1,0 +1,1329 @@
+{
+  "1": {
+    "_meta": {
+      "title": "ACE-Step 1.5 XL turbo"
+    },
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "acestep_v1.5_xl_turbo_bf16.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "100": {
+    "_meta": {
+      "title": "slot 0 candidate 0 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "101": {
+    "_meta": {
+      "title": "slot 0 candidate 0 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "100",
+        0
+      ]
+    }
+  },
+  "102": {
+    "_meta": {
+      "title": "slot 0 candidate 0 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "103": {
+    "_meta": {
+      "title": "slot 0 candidate 0 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "102",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "101",
+        0
+      ],
+      "positive": [
+        "100",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "104": {
+    "_meta": {
+      "title": "slot 0 candidate 0 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "103",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "105": {
+    "_meta": {
+      "title": "slot 0 candidate 0 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "104",
+        0
+      ],
+      "filename_prefix": "radio/slot0-0"
+    }
+  },
+  "110": {
+    "_meta": {
+      "title": "slot 0 candidate 1 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "111": {
+    "_meta": {
+      "title": "slot 0 candidate 1 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "110",
+        0
+      ]
+    }
+  },
+  "112": {
+    "_meta": {
+      "title": "slot 0 candidate 1 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "113": {
+    "_meta": {
+      "title": "slot 0 candidate 1 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "112",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "111",
+        0
+      ],
+      "positive": [
+        "110",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "114": {
+    "_meta": {
+      "title": "slot 0 candidate 1 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "113",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "115": {
+    "_meta": {
+      "title": "slot 0 candidate 1 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "114",
+        0
+      ],
+      "filename_prefix": "radio/slot0-1"
+    }
+  },
+  "120": {
+    "_meta": {
+      "title": "slot 1 candidate 0 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "121": {
+    "_meta": {
+      "title": "slot 1 candidate 0 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "120",
+        0
+      ]
+    }
+  },
+  "122": {
+    "_meta": {
+      "title": "slot 1 candidate 0 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "123": {
+    "_meta": {
+      "title": "slot 1 candidate 0 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "122",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "121",
+        0
+      ],
+      "positive": [
+        "120",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "124": {
+    "_meta": {
+      "title": "slot 1 candidate 0 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "123",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "125": {
+    "_meta": {
+      "title": "slot 1 candidate 0 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "124",
+        0
+      ],
+      "filename_prefix": "radio/slot1-0"
+    }
+  },
+  "130": {
+    "_meta": {
+      "title": "slot 1 candidate 1 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "131": {
+    "_meta": {
+      "title": "slot 1 candidate 1 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "130",
+        0
+      ]
+    }
+  },
+  "132": {
+    "_meta": {
+      "title": "slot 1 candidate 1 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "133": {
+    "_meta": {
+      "title": "slot 1 candidate 1 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "132",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "131",
+        0
+      ],
+      "positive": [
+        "130",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "134": {
+    "_meta": {
+      "title": "slot 1 candidate 1 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "133",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "135": {
+    "_meta": {
+      "title": "slot 1 candidate 1 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "134",
+        0
+      ],
+      "filename_prefix": "radio/slot1-1"
+    }
+  },
+  "140": {
+    "_meta": {
+      "title": "slot 2 candidate 0 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "141": {
+    "_meta": {
+      "title": "slot 2 candidate 0 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "140",
+        0
+      ]
+    }
+  },
+  "142": {
+    "_meta": {
+      "title": "slot 2 candidate 0 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "143": {
+    "_meta": {
+      "title": "slot 2 candidate 0 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "142",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "141",
+        0
+      ],
+      "positive": [
+        "140",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "144": {
+    "_meta": {
+      "title": "slot 2 candidate 0 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "143",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "145": {
+    "_meta": {
+      "title": "slot 2 candidate 0 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "144",
+        0
+      ],
+      "filename_prefix": "radio/slot2-0"
+    }
+  },
+  "150": {
+    "_meta": {
+      "title": "slot 2 candidate 1 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "151": {
+    "_meta": {
+      "title": "slot 2 candidate 1 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "150",
+        0
+      ]
+    }
+  },
+  "152": {
+    "_meta": {
+      "title": "slot 2 candidate 1 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "153": {
+    "_meta": {
+      "title": "slot 2 candidate 1 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "152",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "151",
+        0
+      ],
+      "positive": [
+        "150",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "154": {
+    "_meta": {
+      "title": "slot 2 candidate 1 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "153",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "155": {
+    "_meta": {
+      "title": "slot 2 candidate 1 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "154",
+        0
+      ],
+      "filename_prefix": "radio/slot2-1"
+    }
+  },
+  "160": {
+    "_meta": {
+      "title": "slot 3 candidate 0 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "161": {
+    "_meta": {
+      "title": "slot 3 candidate 0 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "160",
+        0
+      ]
+    }
+  },
+  "162": {
+    "_meta": {
+      "title": "slot 3 candidate 0 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "163": {
+    "_meta": {
+      "title": "slot 3 candidate 0 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "162",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "161",
+        0
+      ],
+      "positive": [
+        "160",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "164": {
+    "_meta": {
+      "title": "slot 3 candidate 0 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "163",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "165": {
+    "_meta": {
+      "title": "slot 3 candidate 0 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "164",
+        0
+      ],
+      "filename_prefix": "radio/slot3-0"
+    }
+  },
+  "170": {
+    "_meta": {
+      "title": "slot 3 candidate 1 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "171": {
+    "_meta": {
+      "title": "slot 3 candidate 1 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "170",
+        0
+      ]
+    }
+  },
+  "172": {
+    "_meta": {
+      "title": "slot 3 candidate 1 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "173": {
+    "_meta": {
+      "title": "slot 3 candidate 1 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "172",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "171",
+        0
+      ],
+      "positive": [
+        "170",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "174": {
+    "_meta": {
+      "title": "slot 3 candidate 1 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "173",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "175": {
+    "_meta": {
+      "title": "slot 3 candidate 1 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "174",
+        0
+      ],
+      "filename_prefix": "radio/slot3-1"
+    }
+  },
+  "180": {
+    "_meta": {
+      "title": "slot 4 candidate 0 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "181": {
+    "_meta": {
+      "title": "slot 4 candidate 0 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "180",
+        0
+      ]
+    }
+  },
+  "182": {
+    "_meta": {
+      "title": "slot 4 candidate 0 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "183": {
+    "_meta": {
+      "title": "slot 4 candidate 0 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "182",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "181",
+        0
+      ],
+      "positive": [
+        "180",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "184": {
+    "_meta": {
+      "title": "slot 4 candidate 0 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "183",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "185": {
+    "_meta": {
+      "title": "slot 4 candidate 0 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "184",
+        0
+      ],
+      "filename_prefix": "radio/slot4-0"
+    }
+  },
+  "190": {
+    "_meta": {
+      "title": "slot 4 candidate 1 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "191": {
+    "_meta": {
+      "title": "slot 4 candidate 1 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "190",
+        0
+      ]
+    }
+  },
+  "192": {
+    "_meta": {
+      "title": "slot 4 candidate 1 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "193": {
+    "_meta": {
+      "title": "slot 4 candidate 1 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "192",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "191",
+        0
+      ],
+      "positive": [
+        "190",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "194": {
+    "_meta": {
+      "title": "slot 4 candidate 1 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "193",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "195": {
+    "_meta": {
+      "title": "slot 4 candidate 1 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "194",
+        0
+      ],
+      "filename_prefix": "radio/slot4-1"
+    }
+  },
+  "2": {
+    "_meta": {
+      "title": "ACE 1.5 text encoders"
+    },
+    "class_type": "DualCLIPLoader",
+    "inputs": {
+      "clip_name1": "qwen_0.6b_ace15.safetensors",
+      "clip_name2": "qwen_4b_ace15.safetensors",
+      "type": "ace"
+    }
+  },
+  "200": {
+    "_meta": {
+      "title": "slot 5 candidate 0 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "201": {
+    "_meta": {
+      "title": "slot 5 candidate 0 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "200",
+        0
+      ]
+    }
+  },
+  "202": {
+    "_meta": {
+      "title": "slot 5 candidate 0 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "203": {
+    "_meta": {
+      "title": "slot 5 candidate 0 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "202",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "201",
+        0
+      ],
+      "positive": [
+        "200",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "204": {
+    "_meta": {
+      "title": "slot 5 candidate 0 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "203",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "205": {
+    "_meta": {
+      "title": "slot 5 candidate 0 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "204",
+        0
+      ],
+      "filename_prefix": "radio/slot5-0"
+    }
+  },
+  "210": {
+    "_meta": {
+      "title": "slot 5 candidate 1 prompt"
+    },
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "bpm": 120,
+      "cfg_scale": 2,
+      "clip": [
+        "2",
+        0
+      ],
+      "duration": 90,
+      "generate_audio_codes": true,
+      "keyscale": "C major",
+      "language": "en",
+      "lyrics": "[instrumental]",
+      "min_p": 0,
+      "seed": 0,
+      "tags": "instrumental, no vocals, upbeat driving pop, 120 bpm",
+      "temperature": 0.85,
+      "timesignature": "4",
+      "top_k": 0,
+      "top_p": 0.9
+    }
+  },
+  "211": {
+    "_meta": {
+      "title": "slot 5 candidate 1 negative (zero)"
+    },
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "210",
+        0
+      ]
+    }
+  },
+  "212": {
+    "_meta": {
+      "title": "slot 5 candidate 1 latent"
+    },
+    "class_type": "EmptyAceStep1.5LatentAudio",
+    "inputs": {
+      "batch_size": 1,
+      "seconds": 90
+    }
+  },
+  "213": {
+    "_meta": {
+      "title": "slot 5 candidate 1 sampler"
+    },
+    "class_type": "KSampler",
+    "inputs": {
+      "cfg": 1,
+      "denoise": 1,
+      "latent_image": [
+        "212",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ],
+      "negative": [
+        "211",
+        0
+      ],
+      "positive": [
+        "210",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "seed": 0,
+      "steps": 8
+    }
+  },
+  "214": {
+    "_meta": {
+      "title": "slot 5 candidate 1 decode"
+    },
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "213",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "215": {
+    "_meta": {
+      "title": "slot 5 candidate 1 save"
+    },
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "214",
+        0
+      ],
+      "filename_prefix": "radio/slot5-1"
+    }
+  },
+  "3": {
+    "_meta": {
+      "title": "ACE 1.5 VAE"
+    },
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ace_1.5_vae.safetensors"
+    }
+  },
+  "4": {
+    "_meta": {
+      "title": "Flow shift"
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "shift": 3
+    }
+  }
+}

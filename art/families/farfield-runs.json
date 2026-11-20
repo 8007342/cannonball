@@ -1,0 +1,665 @@
+{
+  "church-town-a/3885830": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a distant small American town: a white church with a tall pointed steeple, a red brick main street, rooftops and leafy trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3885830,
+    "studio_job": "st-1795135624016-71",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/church-town-a/3885830-rgb.png",
+    "sha256": "351e31399ac25c8058b07aaed2fd919fb6e63be5d4318aaf4c42ef15b91c5bc1",
+    "matte_sha256": "17fe72a5920a69cae40dc5d38954eb2122670ef0f0c58c4170273dae1fb78a78",
+    "selected": true,
+    "pick_reason": "steeple dominates, brick main street reads at distance",
+    "source_sha256": "ca9051b38e476d0f4d4011058991afc36eaf2faccda0cb6668e33a09923da08d",
+    "source": "art/sources/farfield/church-town-a.png"
+  },
+  "church-town-a/3885831": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a distant small American town: a white church with a tall pointed steeple, a red brick main street, rooftops and leafy trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3885831,
+    "studio_job": "st-1795135624016-71",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/church-town-a/3885831-rgb.png",
+    "sha256": "c41d5de11043b62f5285fd7cc1c89c4cfdd6ba2155276f14c4497c02c5394aac",
+    "matte_sha256": "b4828e9840fdab469847cf067d8581fd48ee1bfa5a6ca0a0f82ada22729eddfd",
+    "selected": false
+  },
+  "church-town-a/3885832": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a distant small American town: a white church with a tall pointed steeple, a red brick main street, rooftops and leafy trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3885832,
+    "studio_job": "st-1795135624016-71",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/church-town-a/3885832-rgb.png",
+    "sha256": "187a453320a661483a9e236fb312ac0210c70f0756569a1b3c061c8301ef6160",
+    "matte_sha256": "cba6dfebace91e87be0adebd50eca29fb547ef992f4ce0147f0884064eb12fc7",
+    "selected": false
+  },
+  "farmstead-red-a/2585360": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small American farmstead cluster: a red barn, a white farmhouse with a porch, a grey metal grain bin and a few round green trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 2585360,
+    "studio_job": "st-1795135606391-61",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/farmstead-red-a/2585360-rgb.png",
+    "sha256": "5e0b0b59df5999e350bfbe1bfbcfa68ac40686629c3ac2e782649ca188407679",
+    "matte_sha256": "4195aab922718509b75b628229c7a0f9bdd230b4dab2b730e9069c8b33765d95",
+    "selected": true,
+    "pick_reason": "barn, house, bin and trees grouped compactly, clean matte",
+    "source_sha256": "6ae93bfdd8112e6d7a8775a1a9e7ea81f5184b1abcbe640c440b3749cbce447c",
+    "source": "art/sources/farfield/farmstead-red-a.png"
+  },
+  "farmstead-red-a/2585361": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small American farmstead cluster: a red barn, a white farmhouse with a porch, a grey metal grain bin and a few round green trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 2585361,
+    "studio_job": "st-1795135606391-61",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/farmstead-red-a/2585361-rgb.png",
+    "sha256": "0c233fcbd51e48f74040b1e019166c4320a7e6a45de886908f78f2499ad8ad93",
+    "matte_sha256": "f5bd60ad73943c38db1cc70230fec57cf708f6d165836bab739e01847537d4d8",
+    "selected": false
+  },
+  "farmstead-red-a/2585362": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small American farmstead cluster: a red barn, a white farmhouse with a porch, a grey metal grain bin and a few round green trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 2585362,
+    "studio_job": "st-1795135606391-61",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/farmstead-red-a/2585362-rgb.png",
+    "sha256": "3df489f0502d99cb231b6040143df164bd651de106edd0913c5a5267ac99f2ef",
+    "matte_sha256": "4f57e2f0f97e1ef60fc66521a2f4927bacb5c814ab41f86ec23087b7909fa781",
+    "selected": false
+  },
+  "farmstead-white-b/5232870": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small dairy farmstead cluster: a white barn with grey roof, two tall blue silos, a small yellow house and a windmill, with a few trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 5232870,
+    "studio_job": "st-1795135608238-62",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/farmstead-white-b/5232870-rgb.png",
+    "sha256": "e2b4f9f46d0ac5785be78dce44f56bb9c80f7d9b926265b1b964071244a6ea94",
+    "matte_sha256": "531137a1a38f269e3980903f65b7a41a47fafc9f69297b181eb1864c31639fe3",
+    "selected": true,
+    "pick_reason": "clear silos and windmill, no sky remnants",
+    "source_sha256": "0b0cee4a2e49114d02e389de24d405bb467428bee0dd6575b18d674df8faec52",
+    "source": "art/sources/farfield/farmstead-white-b.png"
+  },
+  "farmstead-white-b/5232871": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small dairy farmstead cluster: a white barn with grey roof, two tall blue silos, a small yellow house and a windmill, with a few trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 5232871,
+    "studio_job": "st-1795135608238-62",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/farmstead-white-b/5232871-rgb.png",
+    "sha256": "1cdf4388cb0db016196430517345e8d21ad156c7072497e3d89e1d13ef52054b",
+    "matte_sha256": "7a74625aa478b0842085b98142b8611163ec2e734559767ea219a0d6326df292",
+    "selected": false
+  },
+  "farmstead-white-b/5232872": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small dairy farmstead cluster: a white barn with grey roof, two tall blue silos, a small yellow house and a windmill, with a few trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 5232872,
+    "studio_job": "st-1795135608238-62",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/farmstead-white-b/5232872-rgb.png",
+    "sha256": "72084085528932a8ba0d11132855b76a6c513c98abcffa3060fc87f6753e2279",
+    "matte_sha256": "e95addff86a36173a250a2e90869b3b223d8323955faca7d1ea0784da2ffc74c",
+    "selected": false
+  },
+  "grain-elevator-a/7335550": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a tall concrete prairie grain elevator with a cluster of white cylindrical silos and a taller headhouse, small metal sheds at the base, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 7335550,
+    "studio_job": "st-1795135618730-68",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/grain-elevator-a/7335550-rgb.png",
+    "sha256": "63a326b004fe23c3aadb46925c8c0d9ebc3be2c8349ff95366e4368d14759959",
+    "matte_sha256": "071f5fcff08a127d68b392a0e20dd66bb7875f31ad05cab68956c513c70fcd0f",
+    "selected": false
+  },
+  "grain-elevator-a/7335551": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a tall concrete prairie grain elevator with a cluster of white cylindrical silos and a taller headhouse, small metal sheds at the base, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 7335551,
+    "studio_job": "st-1795135618730-68",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/grain-elevator-a/7335551-rgb.png",
+    "sha256": "d6b1f2f1e9254e6ab2fe620b37eb0f081d6eeda76854a63c1715abad68039c3b",
+    "matte_sha256": "87fa7193de790ac6ad9aecef45a217366c4cfd71eec24ef3e04101defc14934b",
+    "selected": false
+  },
+  "grain-elevator-a/7335552": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a tall concrete prairie grain elevator with a cluster of white cylindrical silos and a taller headhouse, small metal sheds at the base, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 7335552,
+    "studio_job": "st-1795135618730-68",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/grain-elevator-a/7335552-rgb.png",
+    "sha256": "5b0dd06b0d9e6bddd1be702242c0d37805e31bded63d42b5b9298adc59c5f409",
+    "matte_sha256": "5148f3127ab87e914ca99fc60be4bcfcc98a59852151734e3ce252fcc2d47da7",
+    "selected": true,
+    "pick_reason": "tall headhouse and silo cluster with no painted ground",
+    "source_sha256": "b0e6a2a8b67d97edc9517322fa7249951e74395ffb942367092fa1c4dd621dca",
+    "source": "art/sources/farfield/grain-elevator-a.png"
+  },
+  "orchard-rows-a/7583160": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a distant apple orchard seen exactly from the side: many small round green fruit trees standing in one long even horizontal row, with more rows peeking above behind them, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 7583160,
+    "studio_job": "st-1795137284769-131",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/orchard-rows-a/7583160-rgb.png",
+    "sha256": "52850ad5f141c0f6c2a2c83ced481bc3267664f1f0cc3a0e17b8f5a752ddae83",
+    "matte_sha256": "3163510f41aab4e5ae83e88b862cf987bf63da750333d0fcdba9b2afd7a56fe8",
+    "selected": false
+  },
+  "orchard-rows-a/7583161": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a distant apple orchard seen exactly from the side: many small round green fruit trees standing in one long even horizontal row, with more rows peeking above behind them, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 7583161,
+    "studio_job": "st-1795137284769-131",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/orchard-rows-a/7583161-rgb.png",
+    "sha256": "cdaf1997546f46aa9cea5e33eee1a05dd125c93157e5be82acaff7a519017b8d",
+    "matte_sha256": "8ec796b9b78b5aee2c81dd6e363a14bdd13ec3377665fb45cec235f8906bfc60",
+    "selected": false
+  },
+  "orchard-rows-a/7583162": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a distant apple orchard seen exactly from the side: many small round green fruit trees standing in one long even horizontal row, with more rows peeking above behind them, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 7583162,
+    "studio_job": "st-1795137284769-131",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/orchard-rows-a/7583162-rgb.png",
+    "sha256": "4f415de2cf5f763cfab9aa52c575a202b37b5f5fe92a3a0068d9ede873013715",
+    "matte_sha256": "743b73fd4c18798e2016960b195ef9e12459a031c85fc5d7126f03190e8e64a3",
+    "selected": true,
+    "pick_reason": "even rows of fruit trees in a side-on band",
+    "source_sha256": "0533be039ca4fc439ec62977600e20dece11c38a3f4026f89e2d9b192d29051c",
+    "source": "art/sources/farfield/orchard-rows-a.png"
+  },
+  "ranch-desert-a/5408590": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small Arizona desert ranch: an adobe ranch house with a flat roof, a weathered wooden corral and a metal windmill water pump, a few palo verde trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 5408590,
+    "studio_job": "st-1795136300837-117",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/ranch-desert-a/5408590-rgb.png",
+    "sha256": "cedda41df7b5a942afd204225f5eb875671a22a82bbabcdd620f820406086cce",
+    "matte_sha256": "488a3cf1df735e9c51ef8fac56acd5eca33c8f1dc009875758d4d6d9f2aca382",
+    "selected": true,
+    "pick_reason": "adobe house, corral and windmill all clear, least ground patch",
+    "source_sha256": "adad526c21c8f52714d58636ab210346cd5f271867c5109a287609329f67a39a",
+    "source": "art/sources/farfield/ranch-desert-a.png"
+  },
+  "ranch-desert-a/5408591": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small Arizona desert ranch: an adobe ranch house with a flat roof, a weathered wooden corral and a metal windmill water pump, a few palo verde trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 5408591,
+    "studio_job": "st-1795136300837-117",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/ranch-desert-a/5408591-rgb.png",
+    "sha256": "6df3facba0b5f8de9d14cd0ae5c93fe19a2fd24ce1ef74667aa45558916dfe70",
+    "matte_sha256": "25e75a1d15795bdb0e867e6f8281b54b460013aaa23c758347f0b16f1a199798",
+    "selected": false
+  },
+  "ranch-desert-a/5408592": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small Arizona desert ranch: an adobe ranch house with a flat roof, a weathered wooden corral and a metal windmill water pump, a few palo verde trees, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 5408592,
+    "studio_job": "st-1795136300837-117",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/ranch-desert-a/5408592-rgb.png",
+    "sha256": "8a04945c65b174bc8f44e437495ef897a9112acc486f04082aa39196080aa6db",
+    "matte_sha256": "a7566d89815c4e285766fbf515dd8ef07c4bd8271f657338f484fc8de3f3bed5",
+    "selected": false
+  },
+  "saguaro-stand-far-a/4036200": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a scattered stand of tall saguaro cacti and low desert shrubs on a strip of pale sandy ground, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4036200,
+    "studio_job": "st-1795136302802-118",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/saguaro-stand-far-a/4036200-rgb.png",
+    "sha256": "66e92eef5f25f107c2c7e51e53b20bc90eae4a33c1fbc343b10e5f2a29db5bd9",
+    "matte_sha256": "5eb965640a3004aa085b37febd2c419c4845b72462b22b4849e0236fe464e80e",
+    "selected": false
+  },
+  "saguaro-stand-far-a/4036201": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a scattered stand of tall saguaro cacti and low desert shrubs on a strip of pale sandy ground, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4036201,
+    "studio_job": "st-1795136302802-118",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/saguaro-stand-far-a/4036201-rgb.png",
+    "sha256": "6fdd3dfafeea220a67036045532d2cb93c967aa2b57b5abd79a1c63df3f558ab",
+    "matte_sha256": "362bbee2f84ce93ada1914a9cff8902a12b81c4332a3d75570d59a39c4fdcc87",
+    "selected": false
+  },
+  "saguaro-stand-far-a/4036202": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a scattered stand of tall saguaro cacti and low desert shrubs on a strip of pale sandy ground, side view, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4036202,
+    "studio_job": "st-1795136302802-118",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/saguaro-stand-far-a/4036202-rgb.png",
+    "sha256": "1f71efc14dfcebb9efe71bf2da9afdaf86264de2e68781bb9c8704c3bf1a2367",
+    "matte_sha256": "6956eef3acdac316b4fecc791499653c84c8daa18815eebd9a65e00f95ebc0c5",
+    "selected": true,
+    "pick_reason": "densest saguaro stand, reads at far distance",
+    "source_sha256": "4a4519006c7269bf38b0ea5bcbac9954fd2f9212c03a751bc437e141ee7d6fd2",
+    "source": "art/sources/farfield/saguaro-stand-far-a.png"
+  },
+  "silos-pair-a/4687500": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "two tall farm silos side by side, one blue steel and one weathered concrete with a domed cap, beside a small red shed, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4687500,
+    "studio_job": "st-1795135626009-72",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/silos-pair-a/4687500-rgb.png",
+    "sha256": "fd756c5a61b5cf5bd79e4b905783aab837d94f2392b4ccfe3f4db1b6043a7715",
+    "matte_sha256": "3be2d780dacd6cdbb8cd0018347f06cdc117daef3779bcc10d34d52878a551ad",
+    "selected": false
+  },
+  "silos-pair-a/4687501": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "two tall farm silos side by side, one blue steel and one weathered concrete with a domed cap, beside a small red shed, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4687501,
+    "studio_job": "st-1795135626009-72",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/silos-pair-a/4687501-rgb.png",
+    "sha256": "71d8e2a910ceab7b59f9fc01f885296a9f1c191357bfd8eee781396dbf0d52e8",
+    "matte_sha256": "63296bd4f5819a29cb07d777479a09215198c80023df1d1c060c6904f6e3298f",
+    "selected": false
+  },
+  "silos-pair-a/4687502": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "two tall farm silos side by side, one blue steel and one weathered concrete with a domed cap, beside a small red shed, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4687502,
+    "studio_job": "st-1795135626009-72",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/silos-pair-a/4687502-rgb.png",
+    "sha256": "dfc10dcf1fbb03f053d9964cd5b783275e8b37e659ab6260c2b1e1868ba7201d",
+    "matte_sha256": "f59382600547bd9ecceb9eefdd21a5515e8680d0b69567681b96731fa78035bf",
+    "selected": true,
+    "pick_reason": "blue steel and concrete silos with shed, least ground",
+    "source_sha256": "cb074e5e9b6425ead1a652e93e6b16099a707faa520f75ef3ecdb63c3cc68831",
+    "source": "art/sources/farfield/silos-pair-a.png"
+  },
+  "treeline-autumn-a/1294340": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long distant tree line of autumn deciduous trees in red, orange, gold and a few green, continuous wooded edge, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 1294340,
+    "studio_job": "st-1795135612667-65",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/treeline-autumn-a/1294340-rgb.png",
+    "sha256": "246169f7271d3573af148d2f88293ef8052cced776cbe20ad669760d0de7ff57",
+    "matte_sha256": "7e02e95b46c5d69e443359fe70885431ed61a51eec07333b565b1bd7cf09532e",
+    "selected": false
+  },
+  "treeline-autumn-a/1294341": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long distant tree line of autumn deciduous trees in red, orange, gold and a few green, continuous wooded edge, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 1294341,
+    "studio_job": "st-1795135612667-65",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/treeline-autumn-a/1294341-rgb.png",
+    "sha256": "1bca360df14e088b3d72f019ce14ff04e31f1b1220d9234fe9f500fdf2cd0ed7",
+    "matte_sha256": "9f28c6b3c4402db85c6314288ba29160eb8e8b37b316ab582f005c95f1bd237a",
+    "selected": false
+  },
+  "treeline-autumn-a/1294342": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long distant tree line of autumn deciduous trees in red, orange, gold and a few green, continuous wooded edge, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 1294342,
+    "studio_job": "st-1795135612667-65",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/treeline-autumn-a/1294342-rgb.png",
+    "sha256": "a63ccad8c03774503e1be99eb8ea7139ca6b673c409af0c44b8ec221ef667ecc",
+    "matte_sha256": "12900312caacd4f387c92f29545a145d4053cfeaeeef58083d5739f035cc3707",
+    "selected": true,
+    "pick_reason": "continuous mixed autumn colours, fewest gaps",
+    "source_sha256": "9b1feb6ee16f78f3f926741de787734e4c23fd20bc7f3e8e71facd9f37434509",
+    "source": "art/sources/farfield/treeline-autumn-a.png"
+  },
+  "treeline-pine-a/3605180": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long distant line of dark green pine and spruce trees with pointed tops forming a continuous forest edge, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3605180,
+    "studio_job": "st-1795135614677-66",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/treeline-pine-a/3605180-rgb.png",
+    "sha256": "4c9f9a61803b0d6079f9253c27bbaf42ab65f56bff0543320b801193bd823606",
+    "matte_sha256": "7857b6a5063e90b28034a4d657a9a139153cef17dc042e866cfcad37d7e68b69",
+    "selected": false
+  },
+  "treeline-pine-a/3605181": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long distant line of dark green pine and spruce trees with pointed tops forming a continuous forest edge, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3605181,
+    "studio_job": "st-1795135614677-66",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/treeline-pine-a/3605181-rgb.png",
+    "sha256": "4d4a5c1f4aa2a1f3f3f9842eaaec245c5280154cb98fd65daf9714c2daf968c4",
+    "matte_sha256": "a15775388bd21970b2e783475a48b8715fef63778ddeee77b2d68ea2a0b22426",
+    "selected": false
+  },
+  "treeline-pine-a/3605182": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long distant line of dark green pine and spruce trees with pointed tops forming a continuous forest edge, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3605182,
+    "studio_job": "st-1795135614677-66",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/treeline-pine-a/3605182-rgb.png",
+    "sha256": "392251698525f5d27bebf5c268d5743c91bd85a03d8f301470b4b56e38b86fc2",
+    "matte_sha256": "9bb8801ecd063a06def082123ab810b97062c8fec7065653dba1c50406e53a68",
+    "selected": true,
+    "pick_reason": "even dark pine edge without left-side glow",
+    "source_sha256": "97ad3dd5c66a648add33ef67828bd354da786ff2d4aab755322788b5d42cfc06",
+    "source": "art/sources/farfield/treeline-pine-a.png"
+  },
+  "treeline-summer-a/4329330": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long distant tree line of mixed green deciduous trees forming a continuous wooded edge, rounded crowns of varied heights, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4329330,
+    "studio_job": "st-1795135611309-63",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/treeline-summer-a/4329330-rgb.png",
+    "sha256": "574679294452cf20d011a210942227637a943e2f801e2213371899626488742c",
+    "matte_sha256": "975e7a0d542c335f77f629276ace02b67a381ee94ac19148cb9076111b525e10",
+    "selected": true,
+    "pick_reason": "most continuous edge with varied crowns",
+    "source_sha256": "14fc39ef6a5e8ddf556dda47f82b060cab8f7915baaa10d4eaecdcd8fa71046d",
+    "source": "art/sources/farfield/treeline-summer-a.png"
+  },
+  "treeline-summer-a/4329331": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long distant tree line of mixed green deciduous trees forming a continuous wooded edge, rounded crowns of varied heights, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4329331,
+    "studio_job": "st-1795135611309-63",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/treeline-summer-a/4329331-rgb.png",
+    "sha256": "d9ead14fce5bb105d3ebff3ec542745c8a17442edf04de178539dd72e62adf90",
+    "matte_sha256": "e0a591f8f8c609556de4799e0787d4f4129d3f7df22b726f9d42aed886881b01",
+    "selected": false
+  },
+  "treeline-summer-a/4329332": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long distant tree line of mixed green deciduous trees forming a continuous wooded edge, rounded crowns of varied heights, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4329332,
+    "studio_job": "st-1795135611309-63",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/treeline-summer-a/4329332-rgb.png",
+    "sha256": "9f49975a4d8620f374fa78d486851c8c2a3ca437d9acffb4bac1f0bd5cb93bb3",
+    "matte_sha256": "a6bd07c7365283a8e0466e05a707ee58d2f751b871f0375632107e8f13d3f0c9",
+    "selected": false
+  },
+  "water-tower-a/4639220": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small-town water tower, a rounded light blue tank on four tall steel legs with a ladder, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4639220,
+    "studio_job": "st-1795135620024-69",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/water-tower-a/4639220-rgb.png",
+    "sha256": "c9382b348fc321feae98355cc96e5024dd7e834b1203723db957e4a73b85af1b",
+    "matte_sha256": "1bcdfd7607d2fc5bd5fc4f92ff41d7b4cf9bf185c89b8d72695db0b3a81f2b45",
+    "selected": false
+  },
+  "water-tower-a/4639221": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small-town water tower, a rounded light blue tank on four tall steel legs with a ladder, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4639221,
+    "studio_job": "st-1795135620024-69",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/water-tower-a/4639221-rgb.png",
+    "sha256": "1b2747d219ff2f4b9223fa2b6c946cb1538570693e6efd17e8b417c2b20d0a9d",
+    "matte_sha256": "fefa5415ec1e38b08f15d296a2ea0b27f8b4e3d46f7b205e329bae9c1f84a2d7",
+    "selected": false
+  },
+  "water-tower-a/4639222": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small-town water tower, a rounded light blue tank on four tall steel legs with a ladder, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 4639222,
+    "studio_job": "st-1795135620024-69",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/water-tower-a/4639222-rgb.png",
+    "sha256": "d132173a70404328d9ad4e9932894e5e689adae030d6f432b9687bfcac15a249",
+    "matte_sha256": "e9dba29f71b2f3fccf05bb705df24b96f72094eba39b4a3623e415aa3c744249",
+    "selected": true,
+    "pick_reason": "clean tank and legs, no stray house",
+    "source_sha256": "6e8d288dbccfd5101f06c0d6003ed6e05320ab74728adf9d11f53d930c3046f1",
+    "source": "art/sources/farfield/water-tower-a.png"
+  },
+  "wind-turbines-a/3016560": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "three tall white modern wind turbines with three-bladed rotors standing in a row at different distances, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3016560,
+    "studio_job": "st-1795135622121-70",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/wind-turbines-a/3016560-rgb.png",
+    "sha256": "3f0b20260d645b26da3ae08a524445db377c2dfd94bea5f825ec992bca9020c6",
+    "matte_sha256": "9a9e607a5f8ce808fbbc22fbbf4fb03c2a2e2aa6936a530e8c7a4945a0cde609",
+    "selected": false
+  },
+  "wind-turbines-a/3016561": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "three tall white modern wind turbines with three-bladed rotors standing in a row at different distances, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3016561,
+    "studio_job": "st-1795135622121-70",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/wind-turbines-a/3016561-rgb.png",
+    "sha256": "10de255a5ea220062fcc013a62fbbcc4105711472468a1f1482931b4583d22ca",
+    "matte_sha256": "d29efb1aa2a303edd9748c12a9833f9f81719403f54c63e3fce849042394e763",
+    "selected": false
+  },
+  "wind-turbines-a/3016562": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "three tall white modern wind turbines with three-bladed rotors standing in a row at different distances, distant scenery seen from a country road a few hundred metres away, hand-painted cartoon game sprite for a retro 16-bit racing game, simple readable shapes, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+    "seed": 3016562,
+    "studio_job": "st-1795135622121-70",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/farfield/wind-turbines-a/3016562-rgb.png",
+    "sha256": "8a354b2f8af4a9b615d35c4ba4b58faf4f8f7a35f0396199a2b4c36d2280fa87",
+    "matte_sha256": "7b4cc229e839b4ccd06ea07b8e474bab7721adbe2e236cdada4d0eabd8b0a808",
+    "selected": true,
+    "pick_reason": "three turbines at different distances, no ground patch",
+    "source_sha256": "f3345a03435a27b894a4732eac0216e7ea4d828c0aa54dcd0a1e5eeace86f070",
+    "source": "art/sources/farfield/wind-turbines-a.png"
+  }
+}

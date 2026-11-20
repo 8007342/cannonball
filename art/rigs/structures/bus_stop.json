@@ -1,0 +1,18 @@
+{
+  "template": "bus_stop",
+  "notes": "Small bus shelter open toward the road (-Y side open), glass back and ends, bench, blank sign blade.",
+  "view": {"pitch": 7, "yaw": 30},
+  "params": {"w": 3.8, "d": 1.6, "h": 2.5, "frame": "#3b4a52", "glass": "#a8c4d4", "roofc": "#5b6a72", "bench": "#8a6a4a", "signc": "#2f6b9e"},
+  "parts": [
+    {"p": "box", "size": ["w+0.6", "d+0.6", 0.12], "c": "#b4aea4"},
+    {"repeat": {"i": "[-1, 1]"}, "parts": [{"repeat": {"j": "[-1, 1]"}, "p": "box", "size": [0.08, 0.08, "h"], "at": ["i*w/2", "j*d/2", 0.12], "c": "frame"}]},
+    {"p": "box", "size": ["w", 0.04, "h-0.4"], "at": [0, "d/2", 0.3], "c": "glass"},
+    {"p": "box", "size": [0.04, "d", "h-0.4"], "at": ["-w/2", 0, 0.3], "c": "glass", "sym": "x"},
+    {"p": "extrude", "axis": "x", "depth": "w+0.4", "at": [0, 0, 0], "profile": [["-d/2-0.4", "h+0.1"], ["d/2+0.2", "h+0.3"], ["d/2+0.2", "h+0.42"], ["-d/2-0.4", "h+0.22"]], "c": "roofc"},
+    {"p": "box", "size": ["w*0.7", 0.4, 0.06], "at": [0, "d/2-0.3", 0.55], "c": "bench"},
+    {"p": "box", "size": [0.05, 0.3, 0.45], "at": ["-w*0.3", "d/2-0.3", 0.12], "c": "frame", "sym": "x"},
+    {"p": "cyl", "r": 0.05, "h": 2.9, "seg": 8, "at": ["-w/2-0.8", "-d/2", 0], "c": "#8e979c"},
+    {"p": "box", "size": [0.5, 0.04, 0.6], "at": ["-w/2-0.8", "-d/2-0.06", 2.3], "c": "signc"},
+    {"p": "box", "size": [0.4, 0.05, 0.25], "at": ["-w/2-0.8", "-d/2-0.07", 2.45], "c": "#f2f0ea"}
+  ]
+}

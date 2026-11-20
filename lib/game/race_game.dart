@@ -5,6 +5,7 @@ import 'dart:ui' as ui;
 import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
 
+import 'car_catalog.dart';
 import 'race_controller.dart';
 import 'render/proof_art.dart';
 import 'render/proof_camera.dart';
@@ -18,6 +19,14 @@ import 'render/vehicle_pose.dart';
 import 'render/proof_road_module.dart';
 import 'route.dart';
 import 'proof_course.dart';
+import 'render/scenic_draw.dart';
+import 'render/surface_meshes.dart';
+import 'scenic/road_surfaces.dart';
+import 'scenic/scenic_bands.dart';
+import 'scenic/scenic_library.dart';
+import 'scenic/scenic_manifest.dart';
+import 'scenic/scenic_scheduler.dart';
+import 'scenic/scenic_zones.dart';
 
 class _RoadPoint {
   double x = 0, y = 0, halfWidth = 0, z = 0, clip = 0;
@@ -36,6 +45,7 @@ enum _Kind {
   marker,
   canopy,
   portal,
+  scenic,
 }
 
 class _Object {
@@ -57,6 +67,7 @@ class _Object {
   final bool braking;
   final double incident, reaction, flightAge;
   double fadeFar = double.infinity;
+  ScenicPlacement? scenic;
 }
 
 /// Original cartoon art proof with independent simulation and presentation.
@@ -86,6 +97,19 @@ class RaceGame extends FlameGame {
 
   final SteeringPresentation _steeringArt = SteeringPresentation();
   final BillboardBatch _batch = BillboardBatch();
+  ScenicLibrary? _scenic;
+  ScenicPlan? _plan;
+  RoadSurfaces? _surfaces;
+  SurfaceMeshes? _surfaceMeshes;
+  String? _planLevel;
+  final List<_Object> _farObjects = [];
+  final RoadMesh _parapets = RoadMesh(_segmentCount * 2);
+  ScenicPlan? get scenicPlan => _plan;
+  ScenicLibrary? get scenicLibrary => _scenic;
+  int lastFarSpriteCount = 0, lastScenicSpriteCount = 0, lastSurfaceDraws = 0;
+
+  /// Per-frame sprite budgets; placements stream nearest first.
+  static const maxNearMidScenic = 72, maxFarScenic = 28;
   static const _w = 1000.0, _roadHalfWidth = 1100.0;
   static const visualSpeedScale = 12.0;
   String _speedPreset = 'velocity';
@@ -111,7 +135,14 @@ class RaceGame extends FlameGame {
     }
   }
 
-  bool get _nextProof => proofMode && controller.car.id == 's2000';
+  bool get _nextProof =>
+      proofMode &&
+      (controller.car.id == 's2000' ||
+          CarCatalog.players.containsKey(controller.car.id));
+
+  /// Swap the player's chase sheets after a garage key choice.
+  Future<bool> setPlayerCar(String carId) => _art.swapPlayerCar(carId);
+  String? get playerArtCar => _art.playerCar;
   double get _flowScale =>
       visualSpeedScale *
       (_nextProof
@@ -215,7 +246,7 @@ class RaceGame extends FlameGame {
   double get presentationDistance => _world;
   int _lastSeed = -1;
   String get proofStage => _course
-      ? ProofCourse.sectionAt(controller.courseDistance)
+      ? terrain.sectionAt(controller.courseDistance)
       : _biome == Biome.city
       ? 'CITY EDGE'
       : _biome == Biome.mountain
@@ -238,10 +269,29 @@ class RaceGame extends FlameGame {
   Future<void> onLoad() async {
     await super.onLoad();
     try {
-      await _art.load(s2000: _nextProof, course: _course);
+      await _art.load(
+        s2000: _nextProof,
+        course: _course,
+        car: controller.car.id,
+      );
       if (_removed) {
         _art.dispose();
         return;
+      }
+      if (_course) {
+        final scenic = await ScenicLibrary.load(
+          businesses: _art.environmentFrames.length >= 10,
+        );
+        if (_removed) {
+          scenic.dispose();
+          _art.dispose();
+          return;
+        }
+        scenic.provide('asphalt-worn', _art.asphalt, const [11, 2.46]);
+        scenic.provide('meadow', _art.meadow, const [9.6, 4.6]);
+        _scenic = scenic;
+        // Room for the near-camera lateral subdivision (SurfaceMeshes.columns).
+        _surfaceMeshes = SurfaceMeshes(scenic, _segmentCount * 6);
       }
       final identity = Float64List.fromList([
         1,
@@ -324,6 +374,8 @@ class RaceGame extends FlameGame {
       _presentationTime += dt.clamp(0, .25);
     }
     if (_course) {
+      // Comfort mode keeps the exaggerated relief at half strength.
+      terrain.reliefScale = controller.comfortMode ? .5 : 1;
       controller.proofPresentationScale = _flowScale;
       controller.proofTrafficPreview = ProofDepth.preview(_flowScale);
     }
@@ -389,7 +441,7 @@ class RaceGame extends FlameGame {
       ? terrain.centerAt(_courseAt(z))
       : controller.centerAt((z - _worldOffset) / _flowScale) * 8;
   double _elevation(double z) {
-    if (_course) return terrain.elevationAt(_courseAt(z));
+    if (_course) return terrain.visualElevationAt(_courseAt(z));
     if (proofMode) {
       return math.sin(z / 5900) * 620 + math.sin(z / 2750) * 115;
     }
@@ -431,6 +483,7 @@ class RaceGame extends FlameGame {
       canvas.scale(scale);
       canvas.clipRect(Rect.fromLTWH(0, 0, _w, _h));
       _sky(canvas);
+      if (_loaded && _course) _ensurePlan();
       if (_loaded) {
         _cameraZ =
             _world -
@@ -483,6 +536,10 @@ class RaceGame extends FlameGame {
           canvas.drawRect(Rect.fromLTWH(0, 0, _w, _h), wallPaint);
         }
         _composeObjects();
+        if (_course) {
+          _composeFar();
+          _drawFar(canvas);
+        }
         _drawObjects(canvas);
         _dust(canvas);
         canvas.restore();
@@ -866,15 +923,25 @@ class RaceGame extends FlameGame {
   }
 
   void _backdrop(Canvas canvas) {
-    final backdrop = _art.backdrop;
-    if (backdrop == null) return;
+    // A generated vista pack replaces the shared painted hills; the proof
+    // hills stay as the fallback horizon.
+    final vista = _course && _drawVista(canvas);
+    final backdrop = vista ? null : _art.backdrop;
+    if (backdrop == null) {
+      _haze(canvas);
+      return;
+    }
     final source = Rect.fromLTWH(
       0,
       0,
       backdrop.width.toDouble(),
       backdrop.height.toDouble(),
     );
-    final offset = -(_center(_world) * .018) % 1200;
+    // Course hills drift with absolute road heading (a distant layer), not
+    // with accumulated lateral position.
+    final offset = _course
+        ? ScenicParallax.vistaOffset(_tangent, _projection, _w * .5) * .9 % 1200
+        : -(_center(_world) * .018) % 1200;
     final height =
         _h *
         (_course && level.id == 'iowa'
@@ -918,13 +985,32 @@ class RaceGame extends FlameGame {
       );
     }
     _paint.colorFilter = null;
+    _haze(canvas);
+  }
+
+  /// Horizon haze colour: sage over vegetation, dusty sand over the bare
+  /// Arizona dirt floor, blended with the surface track.
+  int get _distanceHaze {
+    final dirt =
+        _surfaces?.ground.weight('dirt-shoulder', controller.courseDistance) ??
+        0;
+    return Color.lerp(
+      const Color(0xffb5c49a),
+      const Color(0xffcdb896),
+      dirt.clamp(0.0, 1.0),
+    )!.toARGB32();
+  }
+
+  void _haze(Canvas canvas) {
     // A thin haze unifies the painted distance with the live projected terrain.
     _paint.shader = ui.Gradient.linear(
       Offset(0, _h * (horizonFraction + .02 + _viewPitch)),
       Offset(0, _h * (horizonFraction + .16 + _viewPitch)),
       [
         const Color(0x00d6dfbe),
-        Color(_course ? _material(0xffb5c49a, _world + 25000, 0) : 0xffb5c49a),
+        Color(
+          _course ? _material(_distanceHaze, _world + 25000, 0) : 0xffb5c49a,
+        ),
       ],
     );
     canvas.drawRect(
@@ -942,6 +1028,10 @@ class RaceGame extends FlameGame {
     _joiningLane.clear();
     _joiningMarkings.clear();
     _markings.clear();
+    _parapets.clear();
+    final surfaces = _course ? _surfaces : null;
+    final meshes = surfaces == null ? null : _surfaceMeshes;
+    meshes?.clear();
     final base = (_cameraZ / _segmentLength).floor() * _segmentLength;
     var crestClip = _h + 200;
     for (var i = 0; i <= _segmentCount; i++) {
@@ -970,35 +1060,84 @@ class RaceGame extends FlameGame {
         const Color(0xffd1d8bb),
         fade,
       )!.toARGB32();
-      _ground.quad(
-        a.x - a.halfWidth * 7,
-        a.x + a.halfWidth * 7,
-        yNear,
-        b.x - b.halfWidth * 7,
-        b.x + b.halfWidth * 7,
-        yFar,
-        0,
-        2048,
-        worldZ / 900 * 256,
-        nextWorldZ / 900 * 256,
-        _material(color, worldZ, 2),
-        _material(color, nextWorldZ, 2),
-      );
-      final shoulderColor = biome == Biome.city ? 0xffc9c5aa : 0xffd4c297;
-      _shoulder.quad(
-        a.x - a.halfWidth * 1.14,
-        a.x + a.halfWidth * 1.14,
-        yNear,
-        b.x - b.halfWidth * 1.14,
-        b.x + b.halfWidth * 1.14,
-        yFar,
-        0,
-        512,
-        worldZ / 480 * 512,
-        nextWorldZ / 480 * 512,
-        _material(shoulderColor, worldZ, 1.15),
-        _material(shoulderColor, nextWorldZ, 1.15),
-      );
+      final sNear = _courseAt(worldZ), sFar = _courseAt(nextWorldZ);
+      if (meshes != null && surfaces != null) {
+        final haze = Color.lerp(
+          const Color(0xffffffff),
+          const Color(0xffd1d8bb),
+          fade,
+        )!.toARGB32();
+        // The ground reaches the screen edges at every depth, so a crest
+        // raised above the horizon reads as a hillside rather than a ridge
+        // of road floating in front of the sky and vista.
+        final reachNear = _groundReach(a), reachFar = _groundReach(b);
+        _surfaceStrip(
+          meshes,
+          'ground',
+          surfaces.ground,
+          a,
+          b,
+          worldZ,
+          nextWorldZ,
+          -reachFar,
+          reachFar,
+          (id, z, lateral) =>
+              _material(id == 'meadow' ? color : haze, z, lateral.sign * 2),
+          nearLeft: -reachNear,
+          nearRight: reachNear,
+        );
+        final wNear = surfaces.shoulderWidthAt(sNear);
+        final wFar = surfaces.shoulderWidthAt(sFar);
+        if (wNear > 1.001 || wFar > 1.001) {
+          _surfaceStrip(
+            meshes,
+            'shoulder',
+            surfaces.shoulder,
+            a,
+            b,
+            worldZ,
+            nextWorldZ,
+            -wFar,
+            wFar,
+            (id, z, lateral) => _material(haze, z, lateral * 1.01),
+            nearLeft: -wNear,
+            nearRight: wNear,
+          );
+        }
+        if (_plan?.onBridge(sNear) == true && _plan?.onBridge(sFar) == true) {
+          _parapet(a, b, worldZ, nextWorldZ);
+        }
+      } else {
+        _ground.quad(
+          a.x - a.halfWidth * 7,
+          a.x + a.halfWidth * 7,
+          yNear,
+          b.x - b.halfWidth * 7,
+          b.x + b.halfWidth * 7,
+          yFar,
+          0,
+          2048,
+          worldZ / 900 * 256,
+          nextWorldZ / 900 * 256,
+          _material(color, worldZ, 2),
+          _material(color, nextWorldZ, 2),
+        );
+        final shoulderColor = biome == Biome.city ? 0xffc9c5aa : 0xffd4c297;
+        _shoulder.quad(
+          a.x - a.halfWidth * 1.14,
+          a.x + a.halfWidth * 1.14,
+          yNear,
+          b.x - b.halfWidth * 1.14,
+          b.x + b.halfWidth * 1.14,
+          yFar,
+          0,
+          512,
+          worldZ / 480 * 512,
+          nextWorldZ / 480 * 512,
+          _material(shoulderColor, worldZ, 1.15),
+          _material(shoulderColor, nextWorldZ, 1.15),
+        );
+      }
       final weatherTint = controller.weather == RaceWeather.rain
           ? const Color(0xffb4c6d0)
           : controller.weather == RaceWeather.snow
@@ -1009,7 +1148,11 @@ class RaceGame extends FlameGame {
         const Color(0xffd5dfdf),
         fade * .5,
       )!.toARGB32();
+      // The periodic slip road belongs to the free-road proof. Course levels
+      // have no junction for it to come from, so it read as a stray band
+      // through the verge (and crossed sidewalks); they omit it.
       if (_nextProof &&
+          !_course &&
           ProofJoiningLane.visible(worldZ) &&
           ProofJoiningLane.visible(nextWorldZ)) {
         final ac = ProofJoiningLane.center(worldZ);
@@ -1062,6 +1205,22 @@ class RaceGame extends FlameGame {
       }
       for (var lane = 0; lane < 3; lane++) {
         final left = -1 + lane * 2 / 3, right = left + 2 / 3;
+        if (meshes != null && surfaces != null) {
+          final roadTint = tint;
+          _surfaceStrip(
+            meshes,
+            'road',
+            surfaces.road,
+            a,
+            b,
+            worldZ,
+            nextWorldZ,
+            left,
+            right,
+            (id, z, lateral) => _material(roadTint, z, lateral),
+          );
+          continue;
+        }
         _asphalt.quad(
           a.x + a.halfWidth * left,
           a.x + a.halfWidth * right,
@@ -1129,6 +1288,14 @@ class RaceGame extends FlameGame {
         );
       }
 
+      if (surfaces != null) {
+        final curb = surfaces.curbAt(_courseAt(worldZ));
+        if (curb > .02) {
+          final c = ((curb * 255).round() << 24) | 0xd8d4c6;
+          line(-1.03, -1.0, c);
+          line(1.0, 1.03, c);
+        }
+      }
       line(-.974, -.968, 0xffead394);
       line(-.956, -.950, 0xffead394);
       line(.960, .970, 0xfff5f1d9);
@@ -1143,7 +1310,13 @@ class RaceGame extends FlameGame {
         line(.328, .338, 0xfff4f2e4, _dashNear, _dashFar);
       }
     }
-    _ground.draw(canvas, _groundPaint);
+    if (meshes != null) {
+      meshes.drawCalls = 0;
+      meshes.draw(canvas, 'ground');
+      meshes.draw(canvas, 'shoulder');
+    } else {
+      _ground.draw(canvas, _groundPaint);
+    }
     _shoulder.draw(
       canvas,
       Paint()
@@ -1158,6 +1331,10 @@ class RaceGame extends FlameGame {
         ..isAntiAlias = false,
     );
     _asphalt.draw(canvas, _roadPaint);
+    if (meshes != null) {
+      meshes.draw(canvas, 'road');
+      lastSurfaceDraws = meshes.drawCalls;
+    }
     if (_course && level.autumn) {
       _leaves.draw(canvas, _leafPaint);
     }
@@ -1167,11 +1344,23 @@ class RaceGame extends FlameGame {
         ..color = const Color(0xffffffff)
         ..isAntiAlias = false,
     );
-    lastRoadQuads = _asphalt.count;
+    _parapets.draw(
+      canvas,
+      Paint()
+        ..color = const Color(0xffffffff)
+        ..isAntiAlias = false,
+    );
+    lastRoadQuads = _asphalt.count + (meshes == null ? 0 : _segmentCount);
     if (_course) {
       // The finite ribbon ends inside this narrow horizon-colored veil. World
       // objects independently fade over the last24% of their visible depth.
-      final y = _h * (horizonFraction + _viewPitch);
+      // The veil follows the ribbon's far end when it is in view, and never
+      // sits lower than the highest crest: on a raised hill the horizon line
+      // crosses the hillside, and a haze stripe there reads as a seam.
+      final last = _points[_segmentCount];
+      final horizonY = _h * (horizonFraction + _viewPitch);
+      final crestTop = math.min(last.clip, last.y);
+      final y = last.y <= last.clip ? last.y : math.min(horizonY, crestTop);
       canvas.drawRect(
         Rect.fromLTWH(0, y - _h * .025, _w, _h * .075),
         Paint()
@@ -1182,7 +1371,7 @@ class RaceGame extends FlameGame {
               const Color(0x00b5c49a),
               Color(
                 _course
-                    ? _material(0xffb5c49a, _world + _farDepth, 0)
+                    ? _material(_distanceHaze, _world + _farDepth, 0)
                     : 0xffb5c49a,
               ),
               const Color(0x00b5c49a),
@@ -1193,11 +1382,96 @@ class RaceGame extends FlameGame {
     }
   }
 
+  double _groundReach(_RoadPoint p) => p.halfWidth <= 0
+      ? 7
+      : (((p.x - _w * .5).abs() + _w * .6) / p.halfWidth).clamp(7.0, 600.0);
+
+  void _surfaceStrip(
+    SurfaceMeshes meshes,
+    String layer,
+    SurfaceTrack track,
+    _RoadPoint a,
+    _RoadPoint b,
+    double nearZ,
+    double farZ,
+    double left,
+    double right,
+    int Function(String id, double z, double lateral) color, {
+    double? nearLeft,
+    double? nearRight,
+  }) {
+    final sNear = _courseAt(nearZ), sFar = _courseAt(farZ);
+    final sample = track.at((sNear + sFar) * .5);
+    final overlay = sample.overlay;
+    meshes.strip(
+      layer,
+      sample,
+      overlay == null ? 0 : track.weight(overlay, sNear),
+      overlay == null ? 0 : track.weight(overlay, sFar),
+      left: left,
+      right: right,
+      nearLeft: nearLeft,
+      nearRight: nearRight,
+      nearX: a.x,
+      nearY: a.y,
+      nearHalf: a.halfWidth,
+      farX: b.x,
+      farY: b.y,
+      farHalf: b.halfWidth,
+      nearZ: nearZ,
+      farZ: farZ,
+      color: color,
+    );
+  }
+
+  /// Procedural concrete parapets along bridge decks; structure sprites
+  /// from the scenic pack (trusses, railings) stand on top of them.
+  void _parapet(_RoadPoint a, _RoadPoint b, double nearZ, double farZ) {
+    // .6 m parapet: lateral units map to screen through halfWidth; vertical
+    // screen scale is h*.7 against the lateral w*.5.
+    const height = .6 * ScenicScale.unitsPerMetre / _roadHalfWidth;
+    final vertical = _h * .7 / (_w * .5);
+    for (final side in const [-1.0, 1.0]) {
+      final lateral = side * 1.04;
+      final nx = a.x + a.halfWidth * lateral, fx = b.x + b.halfWidth * lateral;
+      final nh = a.halfWidth * height * vertical;
+      final fh = b.halfWidth * height * vertical;
+      // Face, then a lighter cap.
+      _parapets.quadPoints(
+        nx,
+        a.y,
+        nx,
+        a.y - nh,
+        fx,
+        b.y,
+        fx,
+        b.y - fh,
+        _material(0xff7d7c75, nearZ, lateral),
+        _material(0xff7d7c75, farZ, lateral),
+      );
+      _parapets.quadPoints(
+        nx,
+        a.y - nh,
+        nx - side * a.halfWidth * .03,
+        a.y - nh,
+        fx,
+        b.y - fh,
+        fx - side * b.halfWidth * .03,
+        b.y - fh,
+        _material(0xffc9c7bc, nearZ, lateral),
+        _material(0xffc9c7bc, farZ, lateral),
+      );
+    }
+  }
+
   void _composeObjects() {
     _objects.clear();
     final near = _cameraZ + 450, far = _cameraZ + _farDepth;
     final first = (near / 330).floor();
-    for (var i = first; i * 330 < far; i++) {
+    // Course levels use scheduled scenic zones instead of stride copies.
+    final scenicActive = _course && _plan != null;
+    if (scenicActive) _composeScenic(near, far);
+    for (var i = first; !scenicActive && i * 330 < far; i++) {
       final z = i * 330.0;
       if (_course && !ProofCourse.vegetationAllowedAt(_courseAt(z))) continue;
       if (_course && i % level.sceneryStride != 0) continue;
@@ -1271,6 +1545,7 @@ class RaceGame extends FlameGame {
         );
       }
       if (_nextProof &&
+          !_course &&
           ProofJoiningLane.visible(z) &&
           ProofJoiningLane.progress(z) < .6) {
         _objects.add(
@@ -1305,7 +1580,9 @@ class RaceGame extends FlameGame {
             z,
             car.x,
             car.truck ? 370 : 300,
-            frame: car.paintVariant,
+            frame: _art.trafficModels
+                ? CarCatalog.trafficCell(car.model, car.paintVariant)
+                : car.paintVariant,
             braking: car.braking,
             incident: car.incidentSeconds,
             reaction: car.reactionIntensity,
@@ -1349,7 +1626,7 @@ class RaceGame extends FlameGame {
       }
       // Sparse, authored one-offs break the repeating scenery rhythm. Their
       // ground positions are stable through optical-flow preset changes.
-      if (_art.environmentFrames.length >= 10) {
+      if (!scenicActive && _art.environmentFrames.length >= 10) {
         const stops = [480.0, 1760.0, 3980.0, 4860.0, 5820.0, 7060.0];
         for (var i = 0; i < stops.length; i++) {
           final z = _courseZ(stops[i]);
@@ -1447,6 +1724,7 @@ class RaceGame extends FlameGame {
       _objects.removeWhere(
         (object) =>
             (object.kind == _Kind.scenery ||
+                object.kind == _Kind.scenic ||
                 object.kind == _Kind.lamp ||
                 object.kind == _Kind.marker) &&
             ProofJoiningLane.overlapsScenery(
@@ -1458,6 +1736,232 @@ class RaceGame extends FlameGame {
     }
     _objects.sort((a, b) => b.z.compareTo(a.z));
     lastSpriteCount = _objects.length;
+  }
+
+  /// Rebuilds the deterministic scenic plan when the level changes.
+  void _ensurePlan() {
+    final scenic = _scenic;
+    if (scenic == null || (_plan != null && _planLevel == level.id)) return;
+    final scenery = LevelScenery.forId(level.id);
+    _plan = ScenicPlan.build(
+      manifest: scenic.manifest,
+      scenery: scenery,
+      seed: level.seed,
+      profile: terrain.profile,
+      enclosed: (s) => ProofCourse.tunnelAt(s) > 0,
+    );
+    _surfaces = RoadSurfaces(scenery, _plan);
+    _planLevel = level.id;
+  }
+
+  /// Near/mid scenic placements ride the road mesh; light reflector posts
+  /// stay as course-keyed road furniture, also in quiet stretches.
+  void _composeScenic(double near, double far) {
+    final plan = _plan!;
+    final s0 = _courseAt(near), s1 = _courseAt(far);
+    var count = 0;
+    for (final band in const [ScenicBand.near, ScenicBand.mid]) {
+      for (final placement in plan.between(band, s0, s1)) {
+        if (count >= maxNearMidScenic) break;
+        count++;
+        _objects.add(
+          _Object(
+              _Kind.scenic,
+              _courseZ(placement.s),
+              placement.lateral,
+              ScenicScale.widthUnits(placement.sprite.worldWidthM),
+            )
+            ..scenic = placement
+            ..fadeFar = band == ScenicBand.near ? 30000 : double.infinity,
+        );
+      }
+    }
+    lastScenicSpriteCount = count;
+    for (final s in ProofCourse.fixedPositions(
+      origin: 3,
+      spacing: 7,
+      near: s0,
+      far: s1,
+    )) {
+      if (ProofCourse.tunnelAt(s) > .1 || plan.onBridge(s)) continue;
+      final ordinal = ((s - 3) / 7).round();
+      _objects.add(
+        _Object(_Kind.marker, _courseZ(s), ordinal.isEven ? -1.15 : 1.15, 44),
+      );
+    }
+  }
+
+  /// Far-band objects stream well beyond the road mesh, nearest first, and
+  /// are painted back to front by true distance before near/mid objects.
+  void _composeFar() {
+    _farObjects.clear();
+    final plan = _plan;
+    if (plan == null) return;
+    final camera = _courseAt(_cameraZ);
+    final ahead = ScenicScale.ahead(ScenicBand.far, _farDepth / _flowScale);
+    for (final placement in plan.between(
+      ScenicBand.far,
+      camera + 2,
+      camera + ahead,
+    )) {
+      if (_farObjects.length >= maxFarScenic) break;
+      _farObjects.add(
+        _Object(
+            _Kind.scenic,
+            _courseZ(placement.s),
+            placement.lateral,
+            ScenicScale.widthUnits(placement.sprite.worldWidthM) *
+                ScenicScale.farSizeBoost,
+          )
+          ..scenic = placement
+          ..fadeFar = ahead * _flowScale,
+      );
+    }
+    double distance(_Object o) {
+      final dz = o.z - _cameraZ, dx = o.lateral * _roadHalfWidth;
+      return dz * dz + dx * dx;
+    }
+
+    _farObjects.sort((a, b) => distance(b).compareTo(distance(a)));
+    lastFarSpriteCount = _farObjects.length;
+  }
+
+  void _drawFar(Canvas canvas) {
+    if (_farObjects.isEmpty) return;
+    final last = _points[_segmentCount];
+    final beyond = math.min(last.clip, last.y);
+    for (final object in _farObjects) {
+      _project(object.z, _objectPoint);
+      final p = _objectPoint;
+      if (p.z < 200) continue;
+      final x = p.x + p.halfWidth * object.lateral;
+      final width = p.halfWidth * object.width / _roadHalfWidth;
+      if (x + width < -30 || x - width > _w + 30 || width < .8) continue;
+      final clip = p.z > last.z ? beyond : _clipAt(object.z);
+      _objectOpacity =
+          ProofCamera.opacityByte(p.z, object.fadeFar) /
+          255 *
+          ScenicScale.peakOpacity(ScenicBand.far);
+      if (_objectOpacity <= 0) continue;
+      _drawScenic(canvas, object, p, x, width, clip);
+    }
+    _batch.flush(canvas);
+    _objectOpacity = 1;
+  }
+
+  void _drawScenic(
+    Canvas canvas,
+    _Object object,
+    _RoadPoint p,
+    double x,
+    double width,
+    double clip,
+  ) {
+    final scenic = _scenic;
+    final placement = object.scenic;
+    if (scenic == null || placement == null) return;
+    final sprite = ScenicDraw.frameAt(
+      scenic.manifest,
+      placement,
+      _presentationTime,
+    );
+    final image = scenic.atlas(sprite.atlas, proofAtlas: _environment);
+    if (image == null) return;
+    final scale = width / sprite.rect[2];
+    _sprite(
+      canvas,
+      image,
+      Rect.fromLTWH(
+        sprite.rect[0],
+        sprite.rect[1],
+        sprite.rect[2],
+        sprite.rect[3],
+      ),
+      x - sprite.anchor[0] * scale,
+      p.y - sprite.anchor[1] * scale,
+      scale,
+      clip: clip,
+      tint: _material(0xffffffff, object.z, object.lateral),
+      rotationGround: sprite.anchor[1],
+      rotationCentre: sprite.anchor[0],
+      rotation: sprite.sway > 0
+          ? ProofFoliage.angle(
+                  time: _presentationTime,
+                  position: object.z,
+                  depth: p.z,
+                  quiet: controller.comfortMode || !animatedFoliage,
+                ) *
+                sprite.sway
+          : 0,
+    );
+  }
+
+  /// Heading-driven horizon layer: an infinitely distant strip shifts only
+  /// with absolute road heading, never with road speed. Zones cross-fade.
+  bool _drawVista(Canvas canvas) {
+    final plan = _plan, scenic = _scenic;
+    if (plan == null || scenic == null) return false;
+    final s = controller.courseDistance;
+    final zones = plan.scenery.zones;
+    final index = plan.scenery.indexAt(s);
+    final zone = zones[index];
+    var other = index, t = 0.0;
+    if (s > zone.end - 150 && index + 1 < zones.length) {
+      other = index + 1;
+      t = ((s - zone.end + 150) / 300).clamp(0.0, 1.0);
+    } else if (s < zone.start + 150 && index > 0) {
+      other = index - 1;
+      t = ((zone.start + 150 - s) / 300).clamp(0.0, 1.0);
+    }
+    t = t * t * (3 - 2 * t);
+    final current = plan.zoneVistas[index];
+    if (current.isEmpty && plan.zoneVistas[other].isEmpty) return false;
+    final n = nightStrength;
+    final tint = Color.lerp(
+      Color.lerp(
+        const Color(0xffffffff),
+        const Color(0xffffc9a0),
+        level.sunset * .45,
+      ),
+      const Color(0xff3c4a63),
+      n * .85,
+    )!.toARGB32();
+    final offset = ScenicParallax.vistaOffset(_tangent, _projection, _w * .5);
+    final baseY = _h * (horizonFraction + .05 + _viewPitch);
+    for (final (slots, weight) in [
+      (current, other == index ? 1.0 : 1 - t),
+      if (other != index) (plan.zoneVistas[other], t),
+    ]) {
+      ScenicDraw.vista(
+        canvas: canvas,
+        batch: _batch,
+        library: scenic,
+        slots: slots,
+        opacity: weight,
+        offset: offset,
+        baseY: baseY,
+        screenWidth: _w,
+        screenHeight: _h,
+        projection: _projection,
+        tint: tint,
+        proofAtlas: _environment,
+      );
+    }
+    _batch.flush(canvas);
+    ScenicDraw.foot(
+      canvas: canvas,
+      paint: _paint,
+      baseY: baseY,
+      screenWidth: _w,
+      screenHeight: _h,
+      // Night keeps the haze from glowing paler than the moonlit ground.
+      color: Color.lerp(
+        Color(_material(_distanceHaze, _world + 25000, 0)),
+        const Color(0xff27313d),
+        n * .55,
+      )!.toARGB32(),
+    );
+    return current.isNotEmpty;
   }
 
   final _RoadPoint _objectPoint = _RoadPoint();
@@ -1490,17 +1994,24 @@ class RaceGame extends FlameGame {
                 255;
       if (_objectOpacity <= 0) continue;
       switch (object.kind) {
+        case _Kind.scenic:
+          _drawScenic(canvas, object, p, x, width, clip);
         case _Kind.scenery:
           final atlas = _environment;
           if (atlas == null) continue;
           final source = _art.environmentFrames[object.frame];
           // All environment cells share a ground baseline near their lower edge.
           final scale = width / 450;
+          // Centre on the nominal cell: the oak frame overhangs to the right.
+          final half =
+              source.width *
+              .5 /
+              (object.frame == 0 ? ProofArt.oakOverhang : 1);
           _sprite(
             canvas,
             atlas,
             source,
-            x - source.width * scale * .5,
+            x - half * scale,
             p.y - ProofArt.sceneryGround[object.frame] * scale,
             scale,
             clip: clip,
@@ -1509,6 +2020,7 @@ class RaceGame extends FlameGame {
                 ? _material(0xffffffff, object.z, object.lateral)
                 : 0xffffffff,
             rotationGround: ProofArt.sceneryGround[object.frame],
+            rotationCentre: half,
             rotation: _course && object.frame < 3
                 ? ProofFoliage.angle(
                     time: _presentationTime,
@@ -1522,8 +2034,11 @@ class RaceGame extends FlameGame {
           _vehicle(canvas, object, x, p.y, width, clip, false);
           if (_course) _carLights(canvas, object, x, p.y, width, clip);
         case _Kind.player:
-          _vehicle(canvas, object, x, p.y, width, clip, true);
-          if (_course) _carLights(canvas, object, x, p.y, width, clip);
+          // Terrain between the camera and the car never hides the player,
+          // even where an exaggerated slope behind it rises on screen.
+          final open = _h + 200;
+          _vehicle(canvas, object, x, p.y, width, open, true);
+          if (_course) _carLights(canvas, object, x, p.y, width, open);
         case _Kind.bridge:
           final scale = width / 1024;
           _sprite(
@@ -1635,6 +2150,7 @@ class RaceGame extends FlameGame {
     int? fog,
     double rotation = 0,
     double? rotationGround,
+    double? rotationCentre,
   }) {
     if (scale <= 0 || y >= clip) return;
     final visibleHeight = math.min(source.height, (clip - y) / scale);
@@ -1679,7 +2195,7 @@ class RaceGame extends FlameGame {
       blend: fog == null ? BlendMode.modulate : BlendMode.dstATop,
       opacity: (_objectOpacity * 255).round(),
       rotation: visibleHeight < source.height ? 0 : rotation,
-      pivotX: source.width * scale * .5,
+      pivotX: (rotationCentre ?? source.width * .5) * scale,
       pivotY: (rotationGround ?? source.height) * scale,
     );
   }
@@ -1725,7 +2241,12 @@ class RaceGame extends FlameGame {
     final frame = pose.frame;
     final paletteTraffic = !player && _art.trafficAtlas != null;
     final src = paletteTraffic
-        ? Rect.fromLTWH((object.frame % 8) * 256.0, 0, 256, 256)
+        ? Rect.fromLTWH(
+            (object.frame % 8) * 256.0,
+            (object.frame ~/ 8) * 256.0,
+            256,
+            256,
+          )
         : useTurn
         ? _art.turnFrames[frame]
         : _art.carFrames[frame];
@@ -1837,8 +2358,16 @@ class RaceGame extends FlameGame {
         }
       }
     }
+    // Brake glow sits on each body's measured lamp position (car catalog).
+    final lamp = player
+        ? (_art.playerCar == null
+              ? LampOffset.legacy
+              : CarCatalog.players[_art.playerCar]!.lamp)
+        : paletteTraffic && _art.trafficModels
+        ? CarCatalog.modelForCell(object.frame).lamp
+        : LampOffset.legacy;
     if ((player ? controller.braking : object.braking) &&
-        bodyY - width * .39 < clip) {
+        bodyY - width * lamp.y < clip) {
       _batch.flush(canvas);
       for (final side in [-1.0, 1.0]) {
         _paint
@@ -1846,7 +2375,7 @@ class RaceGame extends FlameGame {
           ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3);
         canvas.drawOval(
           Rect.fromCenter(
-            center: Offset(x + side * width * .29, bodyY - width * .39),
+            center: Offset(x + side * width * lamp.x, bodyY - width * lamp.y),
             width: width * .20,
             height: width * .055,
           ),
@@ -1919,6 +2448,8 @@ class RaceGame extends FlameGame {
   void onRemove() {
     _removed = true;
     _art.dispose();
+    _scenic?.dispose();
+    _scenic = null;
     super.onRemove();
   }
 }

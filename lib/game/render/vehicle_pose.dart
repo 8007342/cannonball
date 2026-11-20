@@ -131,3 +131,60 @@ class GroundedSlopePresentation {
     }
   }
 }
+
+/// Rig geometry behind each chase-camera frame (art/rigs/cars/poses.json; the
+/// test keeps both equal). Degrees. yaw > 0: nose left. steer: FRONT wheels
+/// only, > 0 pointing left of the body. roll > 0: right side down. pitch > 0:
+/// nose up. There is deliberately no rear-steer value: rear wheels stay aligned
+/// with the body, and from the rear chase camera the visible steering cue is
+/// body yaw/lean plus the edge of a steered front wheel.
+///
+/// The earlier image-generated S2000 sheets baked the opposite cue: rear wheel
+/// faces swung out while the body stayed square (and one strong-left cell
+/// showed the right flank), which read as rear-wheel steering. The runtime
+/// selection below was correct; the art was replaced (assets/cars/).
+class VehiclePoseGeometry {
+  const VehiclePoseGeometry(
+    this.name, {
+    this.yaw = 0,
+    this.steer = 0,
+    this.roll = 0,
+    this.pitch = 0,
+  });
+  final String name;
+  final double yaw, steer, roll, pitch;
+
+  /// Body sheet frames, in [VehiclePose.frame] order.
+  static const body = [
+    VehiclePoseGeometry('flat'),
+    VehiclePoseGeometry('left', yaw: 7, steer: 14, roll: 1.8),
+    VehiclePoseGeometry('right', yaw: -7, steer: -14, roll: -1.8),
+    VehiclePoseGeometry('uphill', pitch: 5),
+    VehiclePoseGeometry('downhill', pitch: -5),
+    // Oversteer: nose right, front wheels counter-steered left.
+    VehiclePoseGeometry('right-skid', yaw: -13, steer: 8, roll: -3),
+  ];
+
+  /// Turn sheet frames: strength * 2 + (right ? 1 : 0).
+  static const turn = [
+    VehiclePoseGeometry('gentle-left', yaw: 3, steer: 7, roll: .8),
+    VehiclePoseGeometry('gentle-right', yaw: -3, steer: -7, roll: -.8),
+    VehiclePoseGeometry('medium-left', yaw: 7, steer: 14, roll: 1.8),
+    VehiclePoseGeometry('medium-right', yaw: -7, steer: -14, roll: -1.8),
+    VehiclePoseGeometry('strong-left', yaw: 12, steer: 24, roll: 3),
+    VehiclePoseGeometry('strong-right', yaw: -12, steer: -24, roll: -3),
+  ];
+
+  /// Geometry actually shown for [pose], including the runtime mirror.
+  static VehiclePoseGeometry of(VehiclePose pose) {
+    final g = (pose.turnSheet ? turn : body)[pose.frame];
+    if (!pose.mirrored) return g;
+    return VehiclePoseGeometry(
+      '${g.name}-mirrored',
+      yaw: -g.yaw,
+      steer: -g.steer,
+      roll: -g.roll,
+      pitch: g.pitch,
+    );
+  }
+}

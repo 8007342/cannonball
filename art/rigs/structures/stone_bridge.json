@@ -1,0 +1,14 @@
+{
+  "template": "stone_bridge",
+  "notes": "Masonry arch bridge along X: n semicircular arches, parapet; broadside faces -Y.",
+  "view": {"pitch": 8, "yaw": 22},
+  "params": {"L": 26, "W": 6, "H": 7.5, "n": 3, "span": 6.2, "spring": 2.4, "stone": "#a49a88", "cap": "#c2b8a4"},
+  "parts": [
+    {"p": "extrude", "axis": "y", "depth": "W", "profile": "arches(L, H, n, span, spring)", "c": "stone"},
+    {"p": "box", "size": ["L+0.3", "W+0.3", 0.35], "at": [0, 0, "H-0.6"], "c": "cap"},
+    {"repeat": {"s": "[-1, 1]"}, "p": "box", "size": ["L", 0.5, 1.0], "at": [0, "s*(W/2-0.25)", "H"], "c": "stone"},
+    {"repeat": {"s": "[-1, 1]"}, "p": "box", "size": ["L+0.1", 0.6, 0.18], "at": [0, "s*(W/2-0.25)", "H+1.0"], "c": "cap"},
+    {"repeat": {"i": "range(n+1)"}, "if": "0 < i < n", "p": "extrude", "axis": "z", "depth": "spring",
+     "at": ["-L/2 + L*i/n", "-W/2", 0], "profile": [[-1.0, 0], [1.0, 0], [0, -1.2]], "c": "stone"}
+  ]
+}

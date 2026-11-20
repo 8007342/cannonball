@@ -1,0 +1,563 @@
+{
+  "bench-park-a/817140": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single green wooden slat park bench with black cast iron legs and armrests, seen from the front at a slight angle, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 817140,
+    "studio_job": "st-1795136267753-100",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/bench-park-a/817140-rgb.png",
+    "sha256": "bbe95f86747a15154ebbe5e54151b5edcb59d9bf88d07312f5de12efc819ee6f",
+    "matte_sha256": "7c99b270bde57740942aaf912a724a23034681d66cbdaed62fe81ade225f35c0",
+    "selected": false
+  },
+  "bench-park-a/817141": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single green wooden slat park bench with black cast iron legs and armrests, seen from the front at a slight angle, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 817141,
+    "studio_job": "st-1795136267753-100",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/bench-park-a/817141-rgb.png",
+    "sha256": "1cca51003bae7646c962ca6c39c4b52818e0d3a1155c197326a4e6ae30162279",
+    "matte_sha256": "f2fa28bf50b4fe6e579cc2994b5b61664546d28df8df480f559abe7fbbfd5d26",
+    "selected": true,
+    "pick_reason": "green slats and iron frame read at small size",
+    "source_sha256": "6d0eccb6aedd40d062452a5ea3eda29054b3b4ea30bf5b67cbcb01abd1482403",
+    "source": "art/sources/roadside/bench-park-a.png"
+  },
+  "bench-park-a/817142": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single green wooden slat park bench with black cast iron legs and armrests, seen from the front at a slight angle, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 817142,
+    "studio_job": "st-1795136267753-100",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/bench-park-a/817142-rgb.png",
+    "sha256": "1a968cad48a464f0626dcd3bcf9e2813beb7454c004a26cce07a6dde108f5763",
+    "matte_sha256": "2e34ca509cb2bd24771074189138c9fa18e036c53ad05b58f89dabf0fd586ac2",
+    "selected": false
+  },
+  "fence-barbed-wire-a/460390": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of ranch fence: four weathered wooden posts with three strands of barbed wire, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 460390,
+    "studio_job": "st-1795136261628-97",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-barbed-wire-a/460390-rgb.png",
+    "sha256": "b9b6a5537d17546957a80d1ca03824f42d3df6e97ef311d38f2c3fe5f9be0914",
+    "matte_sha256": "d701068b0bceb4b5aa23b7aa025c71b7f33352f17f2a468464aeaeea49b01452",
+    "selected": false
+  },
+  "fence-barbed-wire-a/460391": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of ranch fence: four weathered wooden posts with three strands of barbed wire, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 460391,
+    "studio_job": "st-1795136261628-97",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-barbed-wire-a/460391-rgb.png",
+    "sha256": "b21e78a856e74d2e374b4088855e8ba38a6bd46757b4e5c964ca5fd4085c32bc",
+    "matte_sha256": "a3be3cf64a716fbcec6f1490f768e1e1d1ca273d8f62d6dec285b89ba88d8f2f",
+    "selected": true,
+    "pick_reason": "thin wire strands visible between posts without clutter",
+    "source_sha256": "f5f590da19f097644b860f8aab900ea402ad56ea808cc70b9684ff09b30e273e",
+    "source": "art/sources/roadside/fence-barbed-wire-a.png"
+  },
+  "fence-barbed-wire-a/460392": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of ranch fence: four weathered wooden posts with three strands of barbed wire, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 460392,
+    "studio_job": "st-1795136261628-97",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-barbed-wire-a/460392-rgb.png",
+    "sha256": "df03119315520ebf0b09eb44a259139d1bcf6427f753ce9cbc352d228b0648c9",
+    "matte_sha256": "1ce4519b5cd0005e6593d53e047cced7e919ff6be6e2c3ec790593a070bd580b",
+    "selected": false
+  },
+  "fence-board-white-a/4777490": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of white painted three-board horse farm fence between four square posts, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4777490,
+    "studio_job": "st-1795136258007-95",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-board-white-a/4777490-rgb.png",
+    "sha256": "665a6d6433a069d7350313ae5274d55b22549a0a96c4d0da4c80dac3bc40ca40",
+    "matte_sha256": "5d17d7dc3c7ebd15643368170d6d24824ec852221ae2e0a93f3eb1ec0fb2d7c9",
+    "selected": true,
+    "pick_reason": "all-white boards and posts like horse farm fencing",
+    "source_sha256": "8bd266f54398c05cbb2b78f7ffbea14fb3e5db27e18d46c6bc7bfc18ee852c1b",
+    "source": "art/sources/roadside/fence-board-white-a.png"
+  },
+  "fence-board-white-a/4777491": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of white painted three-board horse farm fence between four square posts, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4777491,
+    "studio_job": "st-1795136258007-95",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-board-white-a/4777491-rgb.png",
+    "sha256": "5ebaf30556b7156e652ba33d2f261f8bd7189c21afa3bcac54dddbdcfbe9809a",
+    "matte_sha256": "633c26c13accdc9619caea7755656553d0ac514da70709ab4a484c4be6e61eb8",
+    "selected": false
+  },
+  "fence-board-white-a/4777492": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of white painted three-board horse farm fence between four square posts, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4777492,
+    "studio_job": "st-1795136258007-95",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-board-white-a/4777492-rgb.png",
+    "sha256": "e57bbb0e35e1a9c81319f58059edd8ec53d2e6d51b2ae3929be8c4b52a469e55",
+    "matte_sha256": "fdf65b17caeea647ea555e87bbc23e6a9228774917ad8021efe62d8130c8f1f5",
+    "selected": false
+  },
+  "fence-picket-white-a/1598870": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of white wooden picket fence with pointed pickets, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1598870,
+    "studio_job": "st-1795136260101-96",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-picket-white-a/1598870-rgb.png",
+    "sha256": "dc0b6e2cf42b43537956a02a8589ecc315a4480b97bf113df63d193f90be1fd2",
+    "matte_sha256": "72a2ed7e3b7e2630202069de7e04a616d956e5c36732a97bb5d5ebc8290839e4",
+    "selected": false
+  },
+  "fence-picket-white-a/1598871": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of white wooden picket fence with pointed pickets, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1598871,
+    "studio_job": "st-1795136260101-96",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-picket-white-a/1598871-rgb.png",
+    "sha256": "0547863ebcb00264026da3ecfe1af578167118b1b61bfdbddeb12546d865e25e",
+    "matte_sha256": "69a8ba156561605fd72a661fcc79ff89b2142dc1fe2909226c9926af1167e8d2",
+    "selected": true,
+    "pick_reason": "even pickets that repeat cleanly in a run",
+    "source_sha256": "832ea990e1979017a79b2e9740307cbcdbf8b67852470d43ea3c5da062bad897",
+    "source": "art/sources/roadside/fence-picket-white-a.png"
+  },
+  "fence-picket-white-a/1598872": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of white wooden picket fence with pointed pickets, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1598872,
+    "studio_job": "st-1795136260101-96",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-picket-white-a/1598872-rgb.png",
+    "sha256": "15f73c9c5a520e2b4b27900d701789d45777e32a257e019f4ce564f7804caa2f",
+    "matte_sha256": "e7e6cdd502a7ecdd86a2b2a63bc9764a595b118a56b6b1ae61fab579f8a08060",
+    "selected": false
+  },
+  "fence-split-rail-a/1635360": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of weathered grey split-rail wooden fence with three rough horizontal rails between four posts, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1635360,
+    "studio_job": "st-1795136256671-94",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-split-rail-a/1635360-rgb.png",
+    "sha256": "160fd87896b9c13a322e3eb390367a84fbde2779679990958dff9ebf15fb4890",
+    "matte_sha256": "d9a485417906e6cf20332f3d18b1f645675af04bb9b2ceb95ed3e39d9e08c166",
+    "selected": false
+  },
+  "fence-split-rail-a/1635361": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of weathered grey split-rail wooden fence with three rough horizontal rails between four posts, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1635361,
+    "studio_job": "st-1795136256671-94",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-split-rail-a/1635361-rgb.png",
+    "sha256": "bbde636cc25e60545c5801ea5aaaec6c9150f5d1f116184017b56b191b1158ef",
+    "matte_sha256": "7b7238e6f2c120f0a6180cd858ab7254654d3e17a64fa37a4c0252f58c317ea4",
+    "selected": true,
+    "pick_reason": "three rails between posts, weathered grey reads as split rail",
+    "source_sha256": "2ae9ceadec8b8a74e9ce7c4b2d90db192597f40321a83dcc0cfba43c8e6156dd",
+    "source": "art/sources/roadside/fence-split-rail-a.png"
+  },
+  "fence-split-rail-a/1635362": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight section of weathered grey split-rail wooden fence with three rough horizontal rails between four posts, seen exactly from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1635362,
+    "studio_job": "st-1795136256671-94",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/fence-split-rail-a/1635362-rgb.png",
+    "sha256": "b38bc011057f49e64456913673709314ec1d97beacb9c8d4ae2e863676f99652",
+    "matte_sha256": "a3e9c713b2735f0e3ec45543f9a877385744d6df3bbd3128af22ae1d54377eb6",
+    "selected": false
+  },
+  "hydrant-red-a/4287570": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single short red fire hydrant with silver caps, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4287570,
+    "studio_job": "st-1795136265804-99",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/hydrant-red-a/4287570-rgb.png",
+    "sha256": "83bcc34749bf45de928662ec3efe4f4b2269d800ffaa9dc9d08be0661a0f5217",
+    "matte_sha256": "1a51b51932bd4f9eec2aa63defe957821e8e3ad240d8d16d405056ba1c8ccb1d",
+    "selected": false
+  },
+  "hydrant-red-a/4287571": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single short red fire hydrant with silver caps, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4287571,
+    "studio_job": "st-1795136265804-99",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/hydrant-red-a/4287571-rgb.png",
+    "sha256": "517247ebb7a4ade041ca59cec837ecdf1c7cbdaaa559b90dabb3f313b4f3a9ab",
+    "matte_sha256": "713c4a6e0654142095daf95fa19f6f239cf3662c7e249b090002b5ab3fdfe803",
+    "selected": true,
+    "pick_reason": "classic proportions, bright red with silver caps",
+    "source_sha256": "2116c2439a520b838e2f9be586a910e6aaa59ee18082fa2da4cb9e86e6cd9352",
+    "source": "art/sources/roadside/hydrant-red-a.png"
+  },
+  "hydrant-red-a/4287572": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single short red fire hydrant with silver caps, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4287572,
+    "studio_job": "st-1795136265804-99",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/hydrant-red-a/4287572-rgb.png",
+    "sha256": "a8f25b8052cc105ab63a5b2775d551d5e845c29b7037193727fef7e3521ddd9c",
+    "matte_sha256": "2b95389822f140723372171b90ffc977b1025092fe091853b1a2d8a5b963600e",
+    "selected": false
+  },
+  "mailbox-rural-a/3664960": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single grey metal rural mailbox with a rounded top and a small red flag on a wooden post, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 3664960,
+    "studio_job": "st-1795136263662-98",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/mailbox-rural-a/3664960-rgb.png",
+    "sha256": "11e50b638cd4f4e41a5197e29b74fcacca3ce5c47f4dca1c5a548c1abd9411b9",
+    "matte_sha256": "40e6acb2646ef8e4e50d194438994486f84d5c8ada2fee0f3052ab583d098010",
+    "selected": false
+  },
+  "mailbox-rural-a/3664961": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single grey metal rural mailbox with a rounded top and a small red flag on a wooden post, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 3664961,
+    "studio_job": "st-1795136263662-98",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/mailbox-rural-a/3664961-rgb.png",
+    "sha256": "c3d6233a5da2c2e0ee498046a127cc4ed915fe5c898e843f470661e5da233f03",
+    "matte_sha256": "38d39e8a628b1803eaa5fa3464088776da813f58fc0ab66ad88802be968b3415",
+    "selected": true,
+    "pick_reason": "closed door and raised flag, clean post",
+    "source_sha256": "1a3d2b6fc2c6335c5e65db4ef567ff1989cdf7a2011d2c8987be4adb0a912fc9",
+    "source": "art/sources/roadside/mailbox-rural-a.png"
+  },
+  "mailbox-rural-a/3664962": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single grey metal rural mailbox with a rounded top and a small red flag on a wooden post, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 3664962,
+    "studio_job": "st-1795136263662-98",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/mailbox-rural-a/3664962-rgb.png",
+    "sha256": "60b3ce6d6a711f252761e067fa532f7dc11e9edd0da8d2b0bdcceabcaa9d5396",
+    "matte_sha256": "b086b08cfc00f8c4cb4f9411c35093109752bd4a7775444285ad7c95efde14dd",
+    "selected": false
+  },
+  "reflector-post-a/4936700": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single slim white plastic roadside delineator post with a small rectangular amber reflector near the top, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4936700,
+    "studio_job": "st-1795136274628-104",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/reflector-post-a/4936700-rgb.png",
+    "sha256": "b008e4475f3b5363c0a792a8064a828d94f2f86dc197d3aa6a4a4e2d58d72e98",
+    "matte_sha256": "4226e0243f3a4c162a38454954fab7cfc6d051bee61faf08085425a0f9986af0",
+    "selected": false
+  },
+  "reflector-post-a/4936701": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single slim white plastic roadside delineator post with a small rectangular amber reflector near the top, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4936701,
+    "studio_job": "st-1795136274628-104",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/reflector-post-a/4936701-rgb.png",
+    "sha256": "f6ba9ec060878e66bbb1d8720da57aea270aa930a365f71bce6437439f827d8c",
+    "matte_sha256": "141d87654a6f0f691cd05d2408e60799a9b7e0a9e5354b348bc3b9a58c21159b",
+    "selected": true,
+    "pick_reason": "slim white post with amber reflector, least glare",
+    "source_sha256": "a90ce64b9bcb73d1fc297ba6216d942c058a4335ce867ef94efb897764d6f83f",
+    "source": "art/sources/roadside/reflector-post-a.png"
+  },
+  "reflector-post-a/4936702": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single slim white plastic roadside delineator post with a small rectangular amber reflector near the top, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4936702,
+    "studio_job": "st-1795136274628-104",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/reflector-post-a/4936702-rgb.png",
+    "sha256": "a0a6383f8b09ba275a9f3ffbd194d85eb814170d51a8f341325a604f83c04a32",
+    "matte_sha256": "cf8be0f182fafb522d1238eb0b4a5e983e14a4029a2b6eecb0b7c3134d96df84",
+    "selected": false
+  },
+  "sign-chevron-a/3629960": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a yellow rectangular road sign with one bold black chevron arrow pointing right, on a grey metal post, seen from the front, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 3629960,
+    "studio_job": "st-1795136271710-102",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/sign-chevron-a/3629960-rgb.png",
+    "sha256": "15784d1b7aa085835b79df0c9f26697e4c8569b9ff5e75a4dc025d421b8ab3e2",
+    "matte_sha256": "65875c6c8409eff4f6fea316974d0dd936d2f43a60ce4cfbd6a52515884c1a1b",
+    "selected": false
+  },
+  "sign-chevron-a/3629961": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a yellow rectangular road sign with one bold black chevron arrow pointing right, on a grey metal post, seen from the front, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 3629961,
+    "studio_job": "st-1795136271710-102",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/sign-chevron-a/3629961-rgb.png",
+    "sha256": "ef9de7460d87d7c5c0f98d2a49ebbdb83d6b9daa9da374851191383a147eef62",
+    "matte_sha256": "16e7dff252c1e0684e4161f5a62248c0f1b4b1c93ef50a60b5f9acd3be9dbeae",
+    "selected": true,
+    "pick_reason": "bold arrow board on post, cleanest edges (arrow board, used for curve tag)",
+    "source_sha256": "705623faacad3e3836b43befe3ef592e4241a9461ebd4fe92ce998dbf2290361",
+    "source": "art/sources/roadside/sign-chevron-a.png"
+  },
+  "sign-chevron-a/3629962": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a yellow rectangular road sign with one bold black chevron arrow pointing right, on a grey metal post, seen from the front, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 3629962,
+    "studio_job": "st-1795136271710-102",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/sign-chevron-a/3629962-rgb.png",
+    "sha256": "5b2466079eae0e012220c81e4a16d48b6b1a7639063fd6095d9d01a58e0fa544",
+    "matte_sha256": "f0332aca9c3ea027c8b6b52a54db619efd4bf2dc500a2782acedf37d7ebadb07",
+    "selected": false
+  },
+  "sign-curve-right-a/5462070": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a yellow diamond-shaped road warning sign with a black arrow curving to the right, on a grey metal post, seen from the front, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 5462070,
+    "studio_job": "st-1795136269192-101",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/sign-curve-right-a/5462070-rgb.png",
+    "sha256": "a8df3a7966402d7e8dd1d79d336ea526aa5240ae7326dfcd3e0b9a5f0174b50c",
+    "matte_sha256": "84c9414d04a7d600c719175cd5888acb2f0ee844a094b40152dff67229795503",
+    "selected": false
+  },
+  "sign-curve-right-a/5462071": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a yellow diamond-shaped road warning sign with a black arrow curving to the right, on a grey metal post, seen from the front, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 5462071,
+    "studio_job": "st-1795136269192-101",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/sign-curve-right-a/5462071-rgb.png",
+    "sha256": "43fd4f7b9d9fcc969f07cbb2313a0833425b920162c6145f3e57bf027885f634",
+    "matte_sha256": "d8e3f4cb7eb1163c6a09d0faf93aa546697025400b49a725bdc16f9d3b888d08",
+    "selected": true,
+    "pick_reason": "crisp diamond with curved arrow, centred post",
+    "source_sha256": "741ac36fa6cd6aae2f7e3295ca0694a9fa773a41f46c04721e5b86234e063e9c",
+    "source": "art/sources/roadside/sign-curve-right-a.png"
+  },
+  "sign-curve-right-a/5462072": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a yellow diamond-shaped road warning sign with a black arrow curving to the right, on a grey metal post, seen from the front, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 5462072,
+    "studio_job": "st-1795136269192-101",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/sign-curve-right-a/5462072-rgb.png",
+    "sha256": "3c395280800583a0a86713e3bf1a3cf116f8fd8bb82b1c3ac3845928cb461005",
+    "matte_sha256": "288959532c68604f69092b2804f2f9d36762f44b0ce89c57227dc5fe3ffc57f8",
+    "selected": false
+  },
+  "sign-deer-crossing-a/2470880": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a yellow diamond-shaped road warning sign with a black leaping deer silhouette, on a grey metal post, seen from the front, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2470880,
+    "studio_job": "st-1795136273795-103",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/sign-deer-crossing-a/2470880-rgb.png",
+    "sha256": "5aaeb54bad82edd8753c552283119392411732a71b6169487489cc4b12703004",
+    "matte_sha256": "8fb0b5de0d27f4a31802a2e8104698a61971c1aacf71d15a0464b44f15c0fdff",
+    "selected": false
+  },
+  "sign-deer-crossing-a/2470881": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a yellow diamond-shaped road warning sign with a black leaping deer silhouette, on a grey metal post, seen from the front, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2470881,
+    "studio_job": "st-1795136273795-103",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/sign-deer-crossing-a/2470881-rgb.png",
+    "sha256": "2285c80cee361ecb837e23235c476ba9f71270045d137efdb5df8068c03bbb6e",
+    "matte_sha256": "ae51162f312a2aa69146b7a068f7684754d495d0d60a5aeb65c1477979567fe7",
+    "selected": true,
+    "pick_reason": "clear leaping deer silhouette",
+    "source_sha256": "4d5d6a8c000a12d76bb3f8b9f3c6ddc0ab736f75f6324a0c4bf97894678e2a22",
+    "source": "art/sources/roadside/sign-deer-crossing-a.png"
+  },
+  "sign-deer-crossing-a/2470882": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a yellow diamond-shaped road warning sign with a black leaping deer silhouette, on a grey metal post, seen from the front, hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2470882,
+    "studio_job": "st-1795136273795-103",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/roadside/sign-deer-crossing-a/2470882-rgb.png",
+    "sha256": "5579b0c57160fdcbcb39980d058fbccdb429c120fb7a34ad58952eb3d156786b",
+    "matte_sha256": "fc24976667204bbffcea5df0b7efc59bd5d6b2f8dd7e1b4d716ae9ef18b067e3",
+    "selected": false
+  }
+}

@@ -57,3 +57,14 @@ docs/research/level-lighting-scenery.md. User/physical-device acceptance remains
 tracked separately from local implementation and browser evidence.
 
 2026-10-25 session: painted prototype is the default app; gentle-road assist and applied-angle wheel feedback are implemented alongside denser dramatic road rhythm. See docs/research/cruising-road-feel.md. Physical-phone and user handling acceptance remain open; historical pending notes above describe earlier checkpoints.
+
+2026-11-20 session: `scenic-depth-asset-pipeline` adds a local, reproducible asset
+pipeline (ComfyUI studio + headless Blender rigs + Go finishing/packing, licence
+register and provenance), a 142+-sprite scenic pack and 14 road textures,
+depth-banded scenery (far farms/cattle drift slowly; vista horizon), scheduled
+zones with quiet stretches, per-level terrain (hairpins, exaggerated crests),
+Blender-modelled cars (front-wheel steer fix, playable electric roadster via key
+card, 8 traffic models), near-top-speed racers with a locally trained lane-change
+policy, and a 28-song ACE-Step radio programme (`radio-programme`). Evidence:
+docs/review/scenic-2026-11-20/. Open: listening pass, physical-phone and user
+moving review, crest haze band, lit night skyline, drive-through bridge geometry.

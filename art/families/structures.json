@@ -1,0 +1,3419 @@
+{
+  "atlas": "struct",
+  "family": "structures",
+  "items": [
+    {
+      "anchor": [
+        256,
+        301.1
+      ],
+      "band": "mid",
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/barn-red-gambrel.png",
+      "id": "barn-red-gambrel",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a classic red wooden gambrel-roof farm barn with white trim, white X-braced sliding door, dark grey shingle roof and a small white cupola",
+      "provenance": {
+        "at": "2026-11-20T00:33:38Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "8b807d0787598853fbaedf763eb03d79f8d784b0cef9cda0594ebfa4cc9d4c60",
+        "pick_reason": "keeps loft door and X-brace intact, clean framed windows, no sky glow on roof",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a classic red wooden gambrel-roof farm barn with white trim, white X-braced sliding door, dark grey shingle roof and a small white cupola. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "cupola": true,
+            "d": 14,
+            "dh": 3.3600000000000003,
+            "door": "#7d241f",
+            "dw": 3.78,
+            "fy": -7,
+            "h": 4.2,
+            "lean_to": false,
+            "ov": 0.4,
+            "rh": 4,
+            "roof": "gambrel",
+            "roofc": "#4f4c4f",
+            "trim": "#efe9dc",
+            "w": 9,
+            "wall": "#a8322a"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/barn.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 55430,
+        "sha256": "f53fe023b2aa312763e32812392832237719940fd2d3daff9b786ac3cde0e5cb",
+        "workflow": "art/rigs/workflows/structure-paint-qwen.json",
+        "workflowSha256": "70cbb12fb430f4bb705a480c4c7c03b0cf4aa0d707198ce6770c39d4f7d2b6fd"
+      },
+      "size": [
+        512,
+        334
+      ],
+      "sway": 0,
+      "worldHeightM": 10.81,
+      "worldWidthM": 16.58
+    },
+    {
+      "anchor": [
+        279.3,
+        217.7
+      ],
+      "band": "mid",
+      "biomes": [
+        "farm",
+        "forest",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/barn-grey-gable.png",
+      "id": "barn-grey-gable",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "an old weathered grey wooden gable barn with silvery unpainted boards, a rusty corrugated tin roof and a lean-to shed on the side",
+      "provenance": {
+        "at": "2026-11-20T00:43:25Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "06caa5c9fb0e675ece17cebffd1f96bf6a9280c4ea3a2950071e9799fac3a14e",
+        "pick_reason": "stronger weathered silver boards and rusted tin, lean-to reads clearly",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: an old weathered grey wooden gable barn with silvery unpainted boards, a rusty corrugated tin roof and a lean-to shed on the side. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "cupola": false,
+            "d": 16,
+            "dh": 3.6799999999999997,
+            "door": "#6c675f",
+            "dw": 4.2,
+            "fy": -8,
+            "h": 4.6,
+            "lean_to": true,
+            "ov": 0.4,
+            "rh": 3.2,
+            "roof": "gable",
+            "roofc": "#8a5a3e",
+            "trim": "#c9c2b4",
+            "w": 10,
+            "wall": "#8e8a82"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/barn.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 47316,
+        "sha256": "b7ec4bda93a74460616c1a5fccb8e0ac28c903ad9c9386f506b61d0cc6e91bee",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        248
+      ],
+      "sway": 0,
+      "worldHeightM": 9.88,
+      "worldWidthM": 20.42
+    },
+    {
+      "anchor": [
+        256,
+        354.9
+      ],
+      "band": "mid",
+      "biomes": [
+        "farm",
+        "river"
+      ],
+      "collides": true,
+      "file": "structures/barn-white-gambrel.png",
+      "id": "barn-white-gambrel",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a tidy white-painted gambrel dairy barn with red trim, red X-braced door and a blue-grey metal roof with a small cupola",
+      "provenance": {
+        "at": "2026-11-20T00:43:25Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "a326f5ec30b878293b34b17f33764d1657a0bdd52c491bf4c4fd263ed3f4e087",
+        "pick_reason": "cleaner standing-seam roof, red trim crisp, warm roof highlight",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a tidy white-painted gambrel dairy barn with red trim, red X-braced door and a blue-grey metal roof with a small cupola. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "cupola": true,
+            "d": 11,
+            "dh": 3.3600000000000003,
+            "door": "#d9d1c0",
+            "dw": 3.36,
+            "fy": -5.5,
+            "h": 4.2,
+            "lean_to": false,
+            "ov": 0.4,
+            "rh": 4,
+            "roof": "gambrel",
+            "roofc": "#3f5b6e",
+            "trim": "#a8322a",
+            "w": 8,
+            "wall": "#ece6d8"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/barn.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 92588,
+        "sha256": "3a1d4c3572cf693e1264165b98e3e1f92c67eb04bb263ba278fe255160f59229",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        387
+      ],
+      "sway": 0,
+      "worldHeightM": 10.61,
+      "worldWidthM": 14.02
+    },
+    {
+      "anchor": [
+        244.8,
+        333
+      ],
+      "band": "mid",
+      "biomes": [
+        "farm",
+        "plains",
+        "river"
+      ],
+      "collides": true,
+      "file": "structures/house-farmhouse-white.png",
+      "id": "house-farmhouse-white",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a white two-storey wooden American farmhouse with clapboard siding, a deep front porch with white columns, dark grey shingle roof and a red brick chimney",
+      "provenance": {
+        "at": "2026-11-20T00:43:25Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "bd1f956ded15591813f8b052b8b2d8b91a4f91b2344dcd6fc104d6a727e49826",
+        "pick_reason": "clapboard and porch columns read best, no sky glow",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a white two-storey wooden American farmhouse with clapboard siding, a deep front porch with white columns, dark grey shingle roof and a red brick chimney. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 6,
+            "chimney": true,
+            "chimneyc": "#8b4a36",
+            "cross_gable": false,
+            "d": 7.5,
+            "door_k": 1,
+            "doorc": "#7a3b2a",
+            "fy": -3.75,
+            "garage": false,
+            "garage_side": -1,
+            "glass": "#3d5068",
+            "gw": 3.8,
+            "n": 2,
+            "nsw": 2,
+            "nw": 3,
+            "ov": 0.45,
+            "porch": true,
+            "porch_w": 0.9,
+            "rh": 2.6,
+            "roof": "gable",
+            "roofc": "#5b5550",
+            "sh": 2.8,
+            "shutterc": "#2f4a3a",
+            "shutters": false,
+            "siding": "boards",
+            "trim": "#ffffff",
+            "turret": false,
+            "w": 10,
+            "wall": "#f1ece0"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/house.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 82178,
+        "sha256": "3d50f02743c4ae6b58403e138b53159064c0b3554639eddc8e54f7a02334f639",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        367
+      ],
+      "sway": 0,
+      "worldHeightM": 10.35,
+      "worldWidthM": 14.44
+    },
+    {
+      "anchor": [
+        243.6,
+        351.8
+      ],
+      "band": "mid",
+      "biomes": [
+        "farm",
+        "town",
+        "river"
+      ],
+      "collides": true,
+      "file": "structures/house-farmhouse-yellow.png",
+      "id": "house-farmhouse-yellow",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a butter-yellow two-storey clapboard farmhouse with dark green shutters, a white front porch and a charcoal shingle roof",
+      "provenance": {
+        "at": "2026-11-20T00:43:25Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "f778fbd0e58944db34465d5fc8f8cf1f95e62644a4d8c0eb39c6b19442af5162",
+        "pick_reason": "warm upper-left light on yellow siding, crisp green shutters",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a butter-yellow two-storey clapboard farmhouse with dark green shutters, a white front porch and a charcoal shingle roof. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 6,
+            "chimney": true,
+            "chimneyc": "#8b4a36",
+            "cross_gable": false,
+            "d": 7.5,
+            "door_k": 1,
+            "doorc": "#7a3b2a",
+            "fy": -3.75,
+            "garage": false,
+            "garage_side": -1,
+            "glass": "#3d5068",
+            "gw": 3.42,
+            "n": 2,
+            "nsw": 2,
+            "nw": 3,
+            "ov": 0.45,
+            "porch": true,
+            "porch_w": 0.9,
+            "rh": 2.6,
+            "roof": "gable",
+            "roofc": "#4d4a4c",
+            "sh": 2.8,
+            "shutterc": "#3d5a45",
+            "shutters": true,
+            "siding": "boards",
+            "trim": "#ffffff",
+            "turret": false,
+            "w": 9,
+            "wall": "#e8d38a"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/house.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 62349,
+        "sha256": "fe28f123d07930f986d01a2a26b85c2ba326263483171689703bef8a1b19c282",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        387
+      ],
+      "sway": 0,
+      "worldHeightM": 10.32,
+      "worldWidthM": 13.65
+    },
+    {
+      "anchor": [
+        221.4,
+        132.3
+      ],
+      "band": "mid",
+      "biomes": [
+        "town",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/house-ranch-tan.png",
+      "id": "house-ranch-tan",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a single-storey suburban ranch house with tan siding, brown shutters, a low hip roof and an attached garage with a white garage door",
+      "provenance": {
+        "at": "2026-11-20T00:46:17Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "e4791997a0ff1532ec2cab9859429020fb2c088a9fd044f0babaee3da0b53b91",
+        "pick_reason": "warmer siding and roof light, shutters crisp",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a single-storey suburban ranch house with tan siding, brown shutters, a low hip roof and an attached garage with a white garage door. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 3.1999999999999997,
+            "chimney": false,
+            "chimneyc": "#8b4a36",
+            "cross_gable": false,
+            "d": 8,
+            "door_k": 2,
+            "doorc": "#7a3b2a",
+            "fy": -4,
+            "garage": true,
+            "garage_side": 1,
+            "glass": "#3d5068",
+            "gw": 5.32,
+            "n": 1,
+            "nsw": 2,
+            "nw": 5,
+            "ov": 0.45,
+            "porch": false,
+            "porch_w": 0.9,
+            "rh": 1.8,
+            "roof": "hip",
+            "roofc": "#6b5d52",
+            "sh": 2.8,
+            "shutterc": "#6e4b35",
+            "shutters": true,
+            "siding": "boards",
+            "trim": "#f4efe4",
+            "turret": false,
+            "w": 14,
+            "wall": "#d9c7a3"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/house.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 62742,
+        "sha256": "ba5b9d80cb34cf132d6f0945d8f0a48323d4523818f7fc68fd7926b0864d061c",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        157
+      ],
+      "sway": 0,
+      "worldHeightM": 6.12,
+      "worldWidthM": 20.02
+    },
+    {
+      "anchor": [
+        220.6,
+        162.5
+      ],
+      "band": "mid",
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "collides": true,
+      "file": "structures/house-ranch-blue.png",
+      "id": "house-ranch-blue",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a single-storey suburban ranch house with soft blue siding, white trim, a low gable roof, brick chimney and an attached garage",
+      "provenance": {
+        "at": "2026-11-20T00:46:17Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "f71f70301cdd63b496dbc8a8da75e9f15f8ca6755c55a9afdf38a402b06bd242",
+        "pick_reason": "stronger warm roof highlight, blue siding reads well",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a single-storey suburban ranch house with soft blue siding, white trim, a low gable roof, brick chimney and an attached garage. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 3.1999999999999997,
+            "chimney": true,
+            "chimneyc": "#9a5a44",
+            "cross_gable": false,
+            "d": 8,
+            "door_k": 2,
+            "doorc": "#7a3b2a",
+            "fy": -4,
+            "garage": true,
+            "garage_side": 1,
+            "glass": "#3d5068",
+            "gw": 4.94,
+            "n": 1,
+            "nsw": 2,
+            "nw": 5,
+            "ov": 0.45,
+            "porch": false,
+            "porch_w": 0.9,
+            "rh": 2,
+            "roof": "gable",
+            "roofc": "#585452",
+            "sh": 2.8,
+            "shutterc": "#2f4a3a",
+            "shutters": false,
+            "siding": "boards",
+            "trim": "#f4f1ea",
+            "turret": false,
+            "w": 13,
+            "wall": "#8fa9bf"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/house.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 47351,
+        "sha256": "442a69a32f81da14cf8e54c8d53cd1e543420c859baca1ec5d1962cb15e14a45",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        187
+      ],
+      "sway": 0,
+      "worldHeightM": 7.03,
+      "worldWidthM": 19.26
+    },
+    {
+      "anchor": [
+        244.1,
+        383.1
+      ],
+      "band": "mid",
+      "biomes": [
+        "town",
+        "river"
+      ],
+      "collides": true,
+      "file": "structures/house-victorian-sage.png",
+      "id": "house-victorian-sage",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a painted Victorian house with sage green siding, cream gingerbread trim, a round corner turret with a pointed roof, a front cross gable and a front porch",
+      "provenance": {
+        "at": "2026-11-20T00:46:17Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "1ff76a6e6a75c587e3302d88043749bb3549bd4ed48e663d9594643fb4077aa6",
+        "pick_reason": "consistent sage siding (other seed drifted to yellow-green), gable trim",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a painted Victorian house with sage green siding, cream gingerbread trim, a round corner turret with a pointed roof, a front cross gable and a front porch. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 6.4,
+            "chimney": true,
+            "chimneyc": "#8b4a36",
+            "cross_gable": true,
+            "d": 9,
+            "door_k": 1,
+            "doorc": "#7b2d3a",
+            "fy": -4.5,
+            "garage": false,
+            "garage_side": -1,
+            "glass": "#3d5068",
+            "gw": 3.42,
+            "n": 2,
+            "nsw": 2,
+            "nw": 3,
+            "ov": 0.45,
+            "porch": true,
+            "porch_w": 0.9,
+            "rh": 3.6,
+            "roof": "gable",
+            "roofc": "#5d4a5e",
+            "sh": 3,
+            "shutterc": "#2f4a3a",
+            "shutters": false,
+            "siding": "boards",
+            "trim": "#f5efe2",
+            "turret": true,
+            "w": 9,
+            "wall": "#9fb59a"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/house.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 30594,
+        "sha256": "61fecffe81d4c5c4215a4999162bfea8fce1d31a22ab7a20a1f038ae3991c56b",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        419
+      ],
+      "sway": 0,
+      "worldHeightM": 11.87,
+      "worldWidthM": 14.52
+    },
+    {
+      "anchor": [
+        243.7,
+        393.9
+      ],
+      "band": "mid",
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "collides": true,
+      "file": "structures/house-victorian-rose.png",
+      "id": "house-victorian-rose",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a dusty-rose painted Victorian lady house with ivory gingerbread trim, a round turret with a slate-blue pointed roof, a cross gable and a front porch",
+      "provenance": {
+        "at": "2026-11-20T00:46:17Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "dec644b1d31e0e42e741cd98480e0f9c843140a5879b6c097706733327252ac0",
+        "pick_reason": "richest gingerbread trim and window hoods, turret shingles clear",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a dusty-rose painted Victorian lady house with ivory gingerbread trim, a round turret with a slate-blue pointed roof, a cross gable and a front porch. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 6.4,
+            "chimney": false,
+            "chimneyc": "#8b4a36",
+            "cross_gable": true,
+            "d": 9,
+            "door_k": 1,
+            "doorc": "#3f5e7a",
+            "fy": -4.5,
+            "garage": false,
+            "garage_side": -1,
+            "glass": "#3d5068",
+            "gw": 3.23,
+            "n": 2,
+            "nsw": 2,
+            "nw": 3,
+            "ov": 0.45,
+            "porch": true,
+            "porch_w": 0.9,
+            "rh": 3.8,
+            "roof": "gable",
+            "roofc": "#4a4f63",
+            "sh": 3,
+            "shutterc": "#2f4a3a",
+            "shutters": false,
+            "siding": "boards",
+            "trim": "#fbf4e8",
+            "turret": true,
+            "w": 8.5,
+            "wall": "#d49aa0"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/house.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 22589,
+        "sha256": "07a440c183a68e7dc045c7f5aaaff6d94f7dd3ad104de2ea11eef363c22a157f",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        430
+      ],
+      "sway": 0,
+      "worldHeightM": 11.87,
+      "worldWidthM": 14.12
+    },
+    {
+      "anchor": [
+        256,
+        307.4
+      ],
+      "band": "mid",
+      "biomes": [
+        "forest",
+        "river",
+        "farm"
+      ],
+      "collides": true,
+      "file": "structures/house-cottage-red.png",
+      "id": "house-cottage-red",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a small red-painted wooden cottage with white trim, a steep dark roof, small front porch and a stone chimney",
+      "provenance": {
+        "at": "2026-11-20T01:02:07Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "d790c3a281da623f66a2caf7b1dd2dccad977adc10d809a3057585acccfa4338",
+        "pick_reason": "white-trimmed windows and stone foundation read clearly",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a small red-painted wooden cottage with white trim, a steep dark roof, small front porch and a stone chimney. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 3.1999999999999997,
+            "chimney": true,
+            "chimneyc": "#8b4a36",
+            "cross_gable": false,
+            "d": 6.5,
+            "door_k": 1,
+            "doorc": "#7a3b2a",
+            "fy": -3.25,
+            "garage": false,
+            "garage_side": -1,
+            "glass": "#3d5068",
+            "gw": 3.04,
+            "n": 1,
+            "nsw": 2,
+            "nw": 3,
+            "ov": 0.45,
+            "porch": true,
+            "porch_w": 0.6,
+            "rh": 3,
+            "roof": "gable",
+            "roofc": "#3f4a50",
+            "sh": 2.8,
+            "shutterc": "#2f4a3a",
+            "shutters": false,
+            "siding": "boards",
+            "trim": "#f4efe4",
+            "turret": false,
+            "w": 8,
+            "wall": "#b8473b"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/house.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 35
+          }
+        },
+        "seed": 41149,
+        "sha256": "56d9c6aec79e31f9b7d29c266b032223020fa1d2663534ebb0c268d893f280a0",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        341
+      ],
+      "sway": 0,
+      "worldHeightM": 7.71,
+      "worldWidthM": 11.58
+    },
+    {
+      "anchor": [
+        252.7,
+        220.3
+      ],
+      "band": "mid",
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "collides": true,
+      "file": "structures/storefront-brick-3.png",
+      "id": "storefront-brick-3",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a two-storey red brick main-street storefront row with three shops, green, red and blue canvas awnings, big shop windows, a cream cornice and blank sign bands",
+      "provenance": {
+        "at": "2026-11-20T01:02:07Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "489eba1f4bae1e8335ccf8ff3342e13b7a0d6c025a19fefdf50b1703850c8b04",
+        "pick_reason": "warmer brick, sun-lit cornice, awnings saturated",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a two-storey red brick main-street storefront row with three shops, green, red and blue canvas awnings, big shop windows, a cream cornice and blank sign bands. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 7.2,
+            "awn": [
+              "#2f6b4f",
+              "#b8352c",
+              "#2c4f86"
+            ],
+            "cornice": "#d8cbb2",
+            "d": 12,
+            "doorc": "#3c2f2a",
+            "fy": -6,
+            "glass": "#3b5670",
+            "n": 3,
+            "sh": 3.6,
+            "storeys": 2,
+            "trim": "#e8dcc4",
+            "uw": 6,
+            "w": 18,
+            "wall": "#a5523a"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/storefront.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 30
+          }
+        },
+        "seed": 60086,
+        "sha256": "d63d943fda936e53cdfec1e5732c8faefdf20d107bde42e93b387c6e402da2cd",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        249
+      ],
+      "sway": 0,
+      "worldHeightM": 10.91,
+      "worldWidthM": 22.42
+    },
+    {
+      "anchor": [
+        252.7,
+        355
+      ],
+      "band": "mid",
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "collides": true,
+      "file": "structures/storefront-tan-2.png",
+      "id": "storefront-tan-2",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a three-storey tan stone and brick downtown building with two ground-floor shops, striped red and gold awnings, tall upper windows and a cream cornice",
+      "provenance": {
+        "at": "2026-11-20T01:02:07Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "9bf9f6ef60064806eb9aa11f9d2b5a00be392e6e3ad5861261e5de94878c84a5",
+        "pick_reason": "crisper outlines, less shadow banding across the facade",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a three-storey tan stone and brick downtown building with two ground-floor shops, striped red and gold awnings, tall upper windows and a cream cornice. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 10.8,
+            "awn": [
+              "#a8322a",
+              "#e0a43a"
+            ],
+            "cornice": "#efe5d0",
+            "d": 12,
+            "doorc": "#3c2f2a",
+            "fy": -6,
+            "glass": "#3b5670",
+            "n": 2,
+            "sh": 3.6,
+            "storeys": 3,
+            "trim": "#e8dcc4",
+            "uw": 7,
+            "w": 14,
+            "wall": "#cdb48c"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/storefront.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 30
+          }
+        },
+        "seed": 22092,
+        "sha256": "4f2ea4c433e85ad3ed9b627fd5895b2d194375f699eec9a937b75efd6d410abe",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        386
+      ],
+      "sway": 0,
+      "worldHeightM": 14.24,
+      "worldWidthM": 18.87
+    },
+    {
+      "anchor": [
+        252.8,
+        130.5
+      ],
+      "band": "mid",
+      "biomes": [
+        "town"
+      ],
+      "collides": true,
+      "file": "structures/storefront-painted-4.png",
+      "id": "storefront-painted-4",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a one-storey painted wooden small-town shop strip with four storefronts, colourful awnings, big windows and a flat parapet roof",
+      "provenance": {
+        "at": "2026-11-20T01:02:07Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "ffffad9680d0a66a01ddc1bc982820cc97ab28fa5e9140d3b7e5c320ddb2ec22",
+        "pick_reason": "clearer storefront glass and awning colours",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a one-storey painted wooden small-town shop strip with four storefronts, colourful awnings, big windows and a flat parapet roof. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 3.6,
+            "awn": [
+              "#c8582f",
+              "#3f7b5a",
+              "#d9a63a",
+              "#8a3f6a"
+            ],
+            "cornice": "#f1ebdd",
+            "d": 12,
+            "doorc": "#3c2f2a",
+            "fy": -6,
+            "glass": "#3b5670",
+            "n": 4,
+            "sh": 3.6,
+            "storeys": 1,
+            "trim": "#e8dcc4",
+            "uw": 5,
+            "w": 20,
+            "wall": "#7f9aa6"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/storefront.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 30
+          }
+        },
+        "seed": 28273,
+        "sha256": "b793b61c7f0ed490ea0348ec9b3c0a218309b2d5cc84d1c5a84f47befecd1d36",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        159
+      ],
+      "sway": 0,
+      "worldHeightM": 7.49,
+      "worldWidthM": 24.19
+    },
+    {
+      "anchor": [
+        276,
+        181.7
+      ],
+      "band": "mid",
+      "biomes": [
+        "town",
+        "plains",
+        "farm"
+      ],
+      "collides": true,
+      "file": "structures/gas-station.png",
+      "id": "gas-station",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "an unbranded roadside gas station with a flat canopy with red and white fascia on white columns, two fuel pump islands and a small convenience kiosk behind",
+      "provenance": {
+        "at": "2026-11-20T01:20:39Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "f552a3850ad67fd90fd6ae2b6993306d1e0f1458cb46663cf3213a4f7b368f9c",
+        "pick_reason": "cleaner pump islands and kiosk glass, unbranded fascia",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: an unbranded roadside gas station with a flat canopy with red and white fascia on white columns, two fuel pump islands and a small convenience kiosk behind. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "cd": 9,
+            "ch": 4.6,
+            "column": "#e9e6df",
+            "cw": 14,
+            "fascia": "#d8432f",
+            "fascia2": "#f3efe6",
+            "glass": "#3b5670",
+            "kiosk": "#e8dcc4",
+            "pump": "#e6e2d6",
+            "pumpc": "#d8432f",
+            "roofc": "#6e6a66"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/gas_station.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 32
+          }
+        },
+        "seed": 26427,
+        "sha256": "13d70507a727eac57d20fa1e906cfcae8455561b29d1fb5fb2c70b14e649a0a4",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        202
+      ],
+      "sway": 0,
+      "worldHeightM": 7.19,
+      "worldWidthM": 18.21
+    },
+    {
+      "anchor": [
+        256,
+        227
+      ],
+      "band": "mid",
+      "biomes": [
+        "town",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/diner-streamline.png",
+      "id": "diner-streamline",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a shiny 1950s streamline roadside diner with rounded ends, stainless steel siding, a red stripe, a long ribbon of windows, an entrance vestibule and a blank roof sign",
+      "provenance": {
+        "at": "2026-11-20T01:20:39Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "2309904f9148940ee4a18943cf96f29b527eaa2b6c79e398bb50a38961f5b439",
+        "pick_reason": "stronger stainless sheen and stripe, sign stays blank",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a shiny 1950s streamline roadside diner with rounded ends, stainless steel siding, a red stripe, a long ribbon of windows, an entrance vestibule and a blank roof sign. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "body": "#e7e9ea",
+            "d": 7,
+            "glass": "#40627d",
+            "h": 3.6,
+            "roofc": "#9aa0a6",
+            "sign": "#f2e2b0",
+            "signc": "#c8343a",
+            "stripe": "#c8343a",
+            "stripe2": "#2d6f8c",
+            "w": 16
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/diner.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 25
+          }
+        },
+        "seed": 58116,
+        "sha256": "0b7c5a1c8843937f5164ef07030ca5a60545a05c7d75f54214be08985aa5c5e7",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        252
+      ],
+      "sway": 0,
+      "worldHeightM": 7.76,
+      "worldWidthM": 15.75
+    },
+    {
+      "anchor": [
+        180.5,
+        477.9
+      ],
+      "band": "mid",
+      "biomes": [
+        "farm",
+        "town",
+        "river"
+      ],
+      "collides": true,
+      "file": "structures/church-white.png",
+      "id": "church-white",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a white wooden New England country church with a tall front steeple and bell tower, arched windows, dark shingle roof and red front doors",
+      "provenance": {
+        "at": "2026-11-20T01:20:39Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "da79c6d6b79ff152cbb5af822c91e144f597bca0f182449d12bf2f235fdb5013",
+        "pick_reason": "bell visible in the belfry, warm roof light",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a white wooden New England country church with a tall front steeple and bell tower, arched windows, dark shingle roof and red front doors. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "d": 15,
+            "doorc": "#7b3b2a",
+            "fy": -7.5,
+            "glass": "#5a7397",
+            "h": 5,
+            "rh": 4,
+            "roofc": "#5a5658",
+            "spire": 7.5,
+            "spirec": "#5a5658",
+            "th": 11.5,
+            "tower": 3.2,
+            "trim": "#ffffff",
+            "w": 8,
+            "wall": "#f1ede4"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/church.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 33
+          }
+        },
+        "seed": 44111,
+        "sha256": "7b3ef863c0af84531bf92cc0a4a093918fb7132a06efff7a348d28a51bbf1f00",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        361,
+        512
+      ],
+      "sway": 0,
+      "worldHeightM": 22.73,
+      "worldWidthM": 16.05
+    },
+    {
+      "anchor": [
+        193.5,
+        475.7
+      ],
+      "band": "mid",
+      "biomes": [
+        "town",
+        "forest"
+      ],
+      "collides": true,
+      "file": "structures/church-stone.png",
+      "id": "church-stone",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a small grey fieldstone chapel with a square stone bell tower and slate spire, arched stained-glass windows and a dark slate roof",
+      "provenance": {
+        "at": "2026-11-20T01:20:39Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "41166585b5e8c0109590d280d3efa89eb04a47c250caade87d0e2b7f7d0dbdcb",
+        "pick_reason": "warmer readable fieldstone; other seed too dark at distance",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a small grey fieldstone chapel with a square stone bell tower and slate spire, arched stained-glass windows and a dark slate roof. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "d": 15,
+            "doorc": "#7b3b2a",
+            "fy": -7.5,
+            "glass": "#6a5e8a",
+            "h": 5,
+            "rh": 4,
+            "roofc": "#4a4644",
+            "spire": 6,
+            "spirec": "#4a4644",
+            "th": 11.5,
+            "tower": 3.2,
+            "trim": "#cbbfac",
+            "w": 8,
+            "wall": "#a59886"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/church.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 33
+          }
+        },
+        "seed": 76786,
+        "sha256": "adbb7f2c14ba73f28e9402409f1cd13c843e20e343c2e49fc2e7953035331c4d",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        387,
+        512
+      ],
+      "sway": 0,
+      "worldHeightM": 21.23,
+      "worldWidthM": 16.04
+    },
+    {
+      "anchor": [
+        72.5,
+        499.6
+      ],
+      "band": "far",
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/silo-stave.png",
+      "id": "silo-stave",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a tall cream concrete-stave farm silo with steel hoop bands, a grey metal dome and a red chute up the side",
+      "provenance": {
+        "at": "2026-11-20T01:27:02Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "deb7bb3f65f483e537c89ffd0b128f773b662ac0bf138381876ec8431bdc7011",
+        "pick_reason": "clean hoop bands, chute ladder detail, less grime",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a tall cream concrete-stave farm silo with steel hoop bands, a grey metal dome and a red chute up the side. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "band": "#b9b2a4",
+            "body": "#d8d2c4",
+            "chute": "#a8322a",
+            "dome": "#8f9aa3",
+            "gap": 1,
+            "h": 16,
+            "n": 1,
+            "pitch_x": 6.2,
+            "r": 2.6,
+            "style": "stave"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/silo.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 30
+          }
+        },
+        "seed": 94382,
+        "sha256": "38914c5c14ea512a33f859b8f8aecfc34d9bf63ed5b0c46fe2b7e1072fea36ed",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        145,
+        512
+      ],
+      "sway": 0,
+      "worldHeightM": 18.98,
+      "worldWidthM": 5.37
+    },
+    {
+      "anchor": [
+        144.5,
+        493.6
+      ],
+      "band": "far",
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/silo-pair.png",
+      "id": "silo-pair",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a pair of tall pale grey tile farm silos with red domes and cream chutes",
+      "provenance": {
+        "at": "2026-11-20T01:27:02Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "82b49d0b49959d8806756f61ae225ec9d01663d90640f5a0d8b5b94bd1105e5e",
+        "pick_reason": "warmer tile, crisp red domes",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a pair of tall pale grey tile farm silos with red domes and cream chutes. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "band": "#a9b0b4",
+            "body": "#c9cdd0",
+            "chute": "#d9d2c2",
+            "dome": "#b03a30",
+            "gap": 1,
+            "h": 14,
+            "n": 2,
+            "pitch_x": 5.6,
+            "r": 2.3,
+            "style": "stave"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/silo.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 30
+          }
+        },
+        "seed": 43680,
+        "sha256": "f049140a9ba7085cfac945ec27d89477203e11f900af5a230adade99866fc22e",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        289,
+        512
+      ],
+      "sway": 0,
+      "worldHeightM": 17.05,
+      "worldWidthM": 9.61
+    },
+    {
+      "anchor": [
+        256.3,
+        248.4
+      ],
+      "band": "far",
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/grain-bins.png",
+      "id": "grain-bins",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a row of three galvanised corrugated steel grain bins with cone roofs",
+      "provenance": {
+        "at": "2026-11-20T01:27:02Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "1e253c56240459f27a8f23bc6eca60a096b96cdc0f5213e4685bf86379828f6c",
+        "pick_reason": "crisper corrugation, even galvanised tone",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a row of three galvanised corrugated steel grain bins with cone roofs. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "band": "#9aa3a8",
+            "body": "#c3c9cc",
+            "chute": "#a8322a",
+            "dome": "#b4bbbf",
+            "gap": 0.8,
+            "h": 6,
+            "n": 3,
+            "pitch_x": 7.2,
+            "r": 3.2,
+            "style": "bin"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/silo.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 30
+          }
+        },
+        "seed": 86778,
+        "sha256": "35bd929adbca0397498d7cafa0ae42602f3f339cc0355542acd75eb6b6155fe0",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        512,
+        275
+      ],
+      "sway": 0,
+      "worldHeightM": 10.32,
+      "worldWidthM": 19.23
+    },
+    {
+      "anchor": [
+        105.5,
+        494.3
+      ],
+      "band": "far",
+      "biomes": [
+        "town",
+        "farm",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/water-tower.png",
+      "id": "water-tower",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a small-town steel water tower on four tall legs with cross bracing, a pale blue-grey cylindrical tank with a cone roof and a catwalk railing, blank tank",
+      "provenance": {
+        "at": "2026-11-20T01:27:02Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "f0db32ca811987d72607d96c5544d0d0f62fd9fa16d9a437d957ede19b3dcd68",
+        "pick_reason": "tank shading and catwalk read best; braces outside the rig are cut by the silhouette",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a small-town steel water tower on four tall legs with cross bracing, a pale blue-grey cylindrical tank with a cone roof and a catwalk railing, blank tank. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "legh": 18,
+            "legs": "#9aa6b0",
+            "r": 4.5,
+            "roofc": "#b5c0c8",
+            "shape": "cyl",
+            "tank": "#c9d3db",
+            "th": 5
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/water_tower.json",
+          "view": {
+            "pitch": 9,
+            "yaw": 30
+          }
+        },
+        "seed": 62868,
+        "sha256": "88f959ffdf6ae68e225b3f22e3a4025826579a0b4abacdd54b28121f85ff4631",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        211,
+        512
+      ],
+      "sway": 0,
+      "worldHeightM": 27.41,
+      "worldWidthM": 11.31
+    },
+    {
+      "anchor": [
+        97.5,
+        495.3
+      ],
+      "band": "far",
+      "biomes": [
+        "town",
+        "city",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/water-tower-ball.png",
+      "id": "water-tower-ball",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a round ball-shaped cream water tower on slender steel legs, blank tank",
+      "provenance": {
+        "at": "2026-11-20T01:33:15Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "b09cd5f2c7f9bbb917f24b1a66a9720ac0dd9e9900638ca404f85e29f3973a5e",
+        "pick_reason": "warmer tank highlight, leg braces read",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a round ball-shaped cream water tower on slender steel legs, blank tank. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "legh": 18,
+            "legs": "#a7b0b5",
+            "r": 4.2,
+            "roofc": "#b5c0c8",
+            "shape": "ball",
+            "tank": "#e6e1d2",
+            "th": 5
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/water_tower.json",
+          "view": {
+            "pitch": 9,
+            "yaw": 30
+          }
+        },
+        "seed": 52495,
+        "sha256": "a46446d1dc25425937eaa5d694a5712134f5e3688effcaf97325dedb4c1c1d39",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        195,
+        512
+      ],
+      "sway": 0,
+      "worldHeightM": 27.93,
+      "worldWidthM": 10.64
+    },
+    {
+      "anchor": [
+        84.8,
+        498.9
+      ],
+      "band": "far",
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/windmill-farm.png",
+      "id": "windmill-farm",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "an old American farm windmill with a tall galvanised steel lattice tower, a multi-blade fan wheel and a red tail vane",
+      "provenance": {
+        "at": "2026-11-20T01:33:15Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "e85a3a0a9d75b4b12b08015ee96311f82c424eeeafeb89f30bca5ccb9557e6ee",
+        "pick_reason": "blade wheel and red vane crisp, lattice clean",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: an old American farm windmill with a tall galvanised steel lattice tower, a multi-blade fan wheel and a red tail vane. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "base": 3.2,
+            "blade": "#c9cdd0",
+            "blades": 18,
+            "h": 11,
+            "steel": "#8d969c",
+            "vane": "#c63a2f",
+            "wr": 2
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/windmill.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 28
+          }
+        },
+        "seed": 96508,
+        "sha256": "041b31a990bf1539ab06054bbbf0a4c4b95fe00c32b36d9960ae4d1ec0f97e1e",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        172,
+        512
+      ],
+      "sway": 0,
+      "worldHeightM": 13.59,
+      "worldWidthM": 4.57
+    },
+    {
+      "anchor": [
+        256,
+        138.4
+      ],
+      "band": "mid",
+      "biomes": [
+        "river",
+        "forest"
+      ],
+      "collides": true,
+      "file": "structures/bridge-truss.png",
+      "id": "bridge-truss",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a riveted steel through-truss bridge painted teal-blue, spanning between two stone abutments",
+      "provenance": {
+        "at": "2026-11-20T01:33:15Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "3d20eb74a1a59be7559ba95f1a234e1129924722d451292ee94daea58966ce1d",
+        "pick_reason": "cleaner teal truss members, deck planks visible",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a riveted steel through-truss bridge painted teal-blue, spanning between two stone abutments. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "L": 30,
+            "T": 6,
+            "W": 7,
+            "deck": "#7a746c",
+            "hd": 2.5,
+            "n": 6,
+            "p": 5,
+            "steel": "#4f7f96",
+            "stone": "#9b9184"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/truss_bridge.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 22
+          }
+        },
+        "seed": 93323,
+        "sha256": "b8d5ae62788a2407afa55ccac5979d54f19bb37aa140a0652c82b54479d2a60f",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        512,
+        161
+      ],
+      "sway": 0,
+      "worldHeightM": 11.36,
+      "worldWidthM": 36.19
+    },
+    {
+      "anchor": [
+        256,
+        184.7
+      ],
+      "band": "mid",
+      "biomes": [
+        "river",
+        "farm",
+        "forest"
+      ],
+      "collides": true,
+      "file": "structures/bridge-stone-arch.png",
+      "id": "bridge-stone-arch",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "an old weathered stone masonry bridge with three round arches, cut-stone voussoirs, and a stone parapet with a pale capstone",
+      "provenance": {
+        "at": "2026-11-20T01:33:15Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "230388fbcdf56e2021c6aebb4c01297179265693d106890f8b16a73e93811ef2",
+        "pick_reason": "warmer stone with light moss, voussoirs readable",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: an old weathered stone masonry bridge with three round arches, cut-stone voussoirs, and a stone parapet with a pale capstone. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "H": 7.5,
+            "L": 26,
+            "W": 6,
+            "cap": "#c2b8a4",
+            "n": 3,
+            "span": 6.2,
+            "spring": 2.4,
+            "stone": "#a49a88"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/stone_bridge.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 22
+          }
+        },
+        "seed": 93648,
+        "sha256": "0218be54a1623c68c2ea82469392a3f0fa06897ff0ee32a518549945727e9927",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        512,
+        206
+      ],
+      "sway": 0,
+      "worldHeightM": 10.85,
+      "worldWidthM": 26.91
+    },
+    {
+      "anchor": [
+        256,
+        182.2
+      ],
+      "band": "mid",
+      "biomes": [
+        "river",
+        "forest",
+        "farm"
+      ],
+      "collides": true,
+      "file": "structures/bridge-covered.png",
+      "id": "bridge-covered",
+      "kind": "structure",
+      "mirror": true,
+      "prompt": "a barn-red wooden covered bridge with board-and-batten siding, white portal trim, small side windows, dark shingle roof, on stone abutments",
+      "provenance": {
+        "at": "2026-11-20T01:33:15Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "5dc9616aa4c84864db6d305cb3cf74216689619d720d4e89d6d1bacc5159f63a",
+        "pick_reason": "crisper side windows and portal trim",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a barn-red wooden covered bridge with board-and-batten siding, white portal trim, small side windows, dark shingle roof, on stone abutments. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "L": 24,
+            "W": 5.5,
+            "h": 4.2,
+            "hd": 2.2,
+            "rh": 2.2,
+            "roofc": "#5d5652",
+            "stone": "#9b9184",
+            "trim": "#e9e2d2",
+            "wall": "#9e3328"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/covered_bridge.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 30
+          }
+        },
+        "seed": 93504,
+        "sha256": "e26bd95ba27bc1cdc1dd60aac81844a6537e227fde26b8e63061dff5d5b9a47f",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        512,
+        210
+      ],
+      "sway": 0,
+      "worldHeightM": 10.96,
+      "worldWidthM": 26.73
+    },
+    {
+      "anchor": [
+        256,
+        95.8
+      ],
+      "band": "mid",
+      "biomes": [
+        "city",
+        "town",
+        "plains"
+      ],
+      "collides": true,
+      "file": "structures/overpass-concrete.png",
+      "id": "overpass-concrete",
+      "kind": "structure",
+      "mirror": false,
+      "prompt": "a plain concrete highway overpass seen head-on, with a concrete parapet, round concrete piers and grassy embankments at each end, weathered concrete stains",
+      "provenance": {
+        "at": "2026-11-20T01:33:15Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "0f23065ce5aee496d3b30463b073323d605da1c6673a9cebc3523d77969e865a",
+        "pick_reason": "even concrete, grassy embankments, fewer stains",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a plain concrete highway overpass seen head-on, with a concrete parapet, round concrete piers and grassy embankments at each end, weathered concrete stains. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "D": 12,
+            "L": 40,
+            "clear": 5.4,
+            "conc": "#b7b3aa",
+            "dark": "#8e8a82",
+            "embank": "#8f9a6a",
+            "gap": 16,
+            "rail": "#c9c5bc",
+            "t": 1.6
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/overpass.json",
+          "view": {
+            "pitch": 4,
+            "yaw": 0
+          }
+        },
+        "seed": 38758,
+        "sha256": "f4e824e547547ed6938789daf7ae0ce889916c93195a785172fbc956f6c98b5d",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        512,
+        103
+      ],
+      "sway": 0,
+      "worldHeightM": 8.52,
+      "worldWidthM": 42.25
+    },
+    {
+      "anchor": [
+        145.3,
+        381.8
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city",
+        "plains"
+      ],
+      "collides": false,
+      "file": "structures/lamp-cobra.png",
+      "id": "lamp-cobra",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a grey galvanised steel cobra-head street light with a tapered pole and curved arm",
+      "provenance": {
+        "at": "2026-11-20T01:33:15Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "29e013ea29970606833ece6d1603f736e48bdbbae017f5404afe40eff6710eb3",
+        "pick_reason": "head and arm clean; painted light cone mostly outside the silhouette",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a grey galvanised steel cobra-head street light with a tapered pole and curved arm. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "arm": 3.2,
+            "h": 9,
+            "head": "#b9c0c4",
+            "iron": "#2f3b35",
+            "lens": "#fff3c4",
+            "pole": "#9aa3a8",
+            "style": "cobra",
+            "top": "lantern"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/lamp.json",
+          "view": {
+            "pitch": 6,
+            "yaw": 30
+          }
+        },
+        "seed": 34260,
+        "sha256": "8c9c257c7ff53fbc987234ce4ad9f53f665bbf262ea1d4bea9690c2910fc130a",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        156,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 10.04,
+      "worldWidthM": 4.07
+    },
+    {
+      "anchor": [
+        29.5,
+        380.5
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "collides": false,
+      "file": "structures/lamp-historic-lantern.png",
+      "id": "lamp-historic-lantern",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "an ornate dark green cast-iron historic street lamp post with a fluted column and a glass lantern top glowing warmly",
+      "provenance": {
+        "at": "2026-11-20T01:33:15Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "b276fa3fdbf834acb2e08fcc07bbeff88f9ec11e1515b14f5816cd0951fe977f",
+        "pick_reason": "more ornate base and lantern, warm glow",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: an ornate dark green cast-iron historic street lamp post with a fluted column and a glass lantern top glowing warmly. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "arm": 3.2,
+            "h": 9,
+            "head": "#b9c0c4",
+            "iron": "#2f3b35",
+            "lens": "#fff3c4",
+            "pole": "#9aa3a8",
+            "style": "historic",
+            "top": "lantern"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/lamp.json",
+          "view": {
+            "pitch": 6,
+            "yaw": 30
+          }
+        },
+        "seed": 25819,
+        "sha256": "f01a0f2afa0dcb60531f6bda7333df87fcaaa3e776a2cbcea2dc07cfc825fe42",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        59,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 5.6,
+      "worldWidthM": 0.87
+    },
+    {
+      "anchor": [
+        29,
+        380.3
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city",
+        "river"
+      ],
+      "collides": false,
+      "file": "structures/lamp-historic-globe.png",
+      "id": "lamp-historic-globe",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a black cast-iron vintage street lamp post with a white glass globe",
+      "provenance": {
+        "at": "2026-11-20T01:39:38Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "83743ad83d41186584f6c38a3ad5270b8ce3455e3fbdb6d14c74bc42b25f95a8",
+        "pick_reason": "cleaner globe, darker iron with warm rim light",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a black cast-iron vintage street lamp post with a white glass globe. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "arm": 3.2,
+            "h": 9,
+            "head": "#b9c0c4",
+            "iron": "#24262a",
+            "lens": "#fff3c4",
+            "pole": "#9aa3a8",
+            "style": "historic",
+            "top": "globe"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/lamp.json",
+          "view": {
+            "pitch": 6,
+            "yaw": 30
+          }
+        },
+        "seed": 12728,
+        "sha256": "f60e0c2b0ef0b72e751e39013f4028f83b3ecef93238c83a588b9f65e0eae79b",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        58,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 5.12,
+      "worldWidthM": 0.78
+    },
+    {
+      "anchor": [
+        321.2,
+        381.2
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "collides": false,
+      "file": "structures/traffic-light.png",
+      "id": "traffic-light",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a grey steel traffic signal pole with a long mast arm and two yellow three-light traffic signal heads with red, amber and green lenses",
+      "provenance": {
+        "at": "2026-11-20T01:39:38Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "87aff90172cd381688888b4ad1c8f62d50c2bb32fcddb7c9be3abfd23da258e8",
+        "pick_reason": "signal heads crisp, less painted light ray",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a grey steel traffic signal pole with a long mast arm and two yellow three-light traffic signal heads with red, amber and green lenses. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "arm": 7,
+            "h": 6.4,
+            "heads": 2,
+            "housing": "#d9b62a",
+            "steel": "#8e979c"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/traffic_light.json",
+          "view": {
+            "pitch": 6,
+            "yaw": 25
+          }
+        },
+        "seed": 13948,
+        "sha256": "f118f027f6a7e904057d5aedd840a6fbb88de6c1484d2bebd08bb06866de612c",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        347,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 7.66,
+      "worldWidthM": 6.92
+    },
+    {
+      "anchor": [
+        116,
+        366.8
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "collides": false,
+      "file": "structures/hydrant-red.png",
+      "id": "hydrant-red",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a red cast-iron fire hydrant with a white bonnet and white nozzle caps",
+      "provenance": {
+        "at": "2026-11-20T01:39:38Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "a1ef56710c1ead7a8a13dbf13ee7df912009273b98b4e34bb232184438d40299",
+        "pick_reason": "bolted flange and bonnet read best",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a red cast-iron fire hydrant with a white bonnet and white nozzle caps. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "body": "#c9302c",
+            "cap": "#e9e2d2",
+            "metal": "#8f8f8f"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/hydrant.json",
+          "view": {
+            "pitch": 10,
+            "yaw": 30
+          }
+        },
+        "seed": 49139,
+        "sha256": "a56f09845bd9168e61e6415ac0d9bd2bbcfd6a030f2ba5c6bd7a2e5fcaba21b4",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        232,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 0.91,
+      "worldWidthM": 0.55
+    },
+    {
+      "anchor": [
+        116,
+        366.8
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city",
+        "plains"
+      ],
+      "collides": false,
+      "file": "structures/hydrant-yellow.png",
+      "id": "hydrant-yellow",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a chrome-yellow fire hydrant with blue caps",
+      "provenance": {
+        "at": "2026-11-20T01:39:38Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "a277d58fc59a993abec3731a71465729cfa02612c0172e937de5cc50c25bab5c",
+        "pick_reason": "even chrome-yellow, clear blue caps",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a chrome-yellow fire hydrant with blue caps. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "body": "#e2b52c",
+            "cap": "#3d5f9c",
+            "metal": "#8f8f8f"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/hydrant.json",
+          "view": {
+            "pitch": 10,
+            "yaw": 30
+          }
+        },
+        "seed": 65076,
+        "sha256": "62750f2e18331518b6c2a6740a617968e4a88954f1a1c1947b16fe8b7564fca3",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        232,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 0.91,
+      "worldWidthM": 0.55
+    },
+    {
+      "anchor": [
+        88.8,
+        379.3
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "plains",
+        "forest",
+        "river"
+      ],
+      "collides": false,
+      "file": "structures/mailbox-rural.png",
+      "id": "mailbox-rural",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a rural curbside galvanised tunnel mailbox on a wooden post with a red flag",
+      "provenance": {
+        "at": "2026-11-20T01:39:38Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "8a4c5e163e65def0c9e8d135768c6d191f6656a9f34557ba5945522afb7f2d15",
+        "pick_reason": "flag and door read, warm post grain",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a rural curbside galvanised tunnel mailbox on a wooden post with a red flag. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "blue": "#2f5a9e",
+            "boxc": "#9aa2a8",
+            "flag": "#d0362c",
+            "post": "#7a5a3c",
+            "style": "rural"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/mailbox.json",
+          "view": {
+            "pitch": 10,
+            "yaw": 32
+          }
+        },
+        "seed": 86250,
+        "sha256": "28114fc8783a91dcd625647690bd8dde20ae86486fae34b9dcd7d9cf26713cba",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        155,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 1.43,
+      "worldWidthM": 0.58
+    },
+    {
+      "anchor": [
+        101,
+        365.5
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "collides": false,
+      "file": "structures/mailbox-collection.png",
+      "id": "mailbox-collection",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a blue steel street mail collection box with a rounded top and short legs, no lettering",
+      "provenance": {
+        "at": "2026-11-20T01:39:38Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "f089bfd0db8d0c2b24793c6d0e55727c26eabdd76a8b521bfbcc66125a5dc304",
+        "pick_reason": "smoother enamel, less blotchy weathering",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a blue steel street mail collection box with a rounded top and short legs, no lettering. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "blue": "#2f5a9e",
+            "boxc": "#9aa2a8",
+            "flag": "#d0362c",
+            "post": "#7a5a3c",
+            "style": "collection"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/mailbox.json",
+          "view": {
+            "pitch": 10,
+            "yaw": 32
+          }
+        },
+        "seed": 47475,
+        "sha256": "c890df412f1fa0e53586a6177429d6a9f4c6a01397c8918df1e4805d572da130",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        202,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 1.32,
+      "worldWidthM": 0.7
+    },
+    {
+      "anchor": [
+        192,
+        245
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "collides": false,
+      "file": "structures/bus-stop.png",
+      "id": "bus-stop",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a small glass and dark steel bus shelter with a bench and a blue blank bus stop sign on a pole",
+      "provenance": {
+        "at": "2026-11-20T01:39:38Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "d6d50b357b40847c1377cedb479ecc54713bee2f86f693f58c551aaac699a5e5",
+        "pick_reason": "glass panels and bench read, blank sign",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a small glass and dark steel bus shelter with a bench and a blue blank bus stop sign on a pole. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "bench": "#8a6a4a",
+            "d": 1.6,
+            "frame": "#3b4a52",
+            "glass": "#a8c4d4",
+            "h": 2.5,
+            "roofc": "#5b6a72",
+            "signc": "#2f6b9e",
+            "w": 3.8
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/bus_stop.json",
+          "view": {
+            "pitch": 7,
+            "yaw": 30
+          }
+        },
+        "seed": 28436,
+        "sha256": "2dfbd9e6ae2ab5d13911c9e8d05465a243bde19a7b43a4d2d5b8891ed1f15901",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        384,
+        266
+      ],
+      "sway": 0,
+      "worldHeightM": 3.42,
+      "worldWidthM": 4.94
+    },
+    {
+      "anchor": [
+        138.4,
+        382.3
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "plains",
+        "town",
+        "forest",
+        "river"
+      ],
+      "collides": false,
+      "file": "structures/utility-pole.png",
+      "id": "utility-pole",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a weathered wooden utility pole with a crossarm, green glass insulators and sagging black power lines",
+      "provenance": {
+        "at": "2026-11-20T01:39:38Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "f30216cf1b6dc4bd2ed60942bbe1126c1df8a7481d1531a4bed390bf399c08bc",
+        "pick_reason": "pole grain and green insulators read; wires taken from the rig (keep_rig) since the paint redrew them",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a weathered wooden utility pole with a crossarm, green glass insulators and sagging black power lines. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "arm": "#7a5c3e",
+            "arms": 1,
+            "h": 10,
+            "ins": "#7fa59a",
+            "sag": 0.35,
+            "span": 5.5,
+            "transformer": false,
+            "wire": "#2a2a2a",
+            "wood": "#6e5236"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/utility_pole.json",
+          "view": {
+            "pitch": 6,
+            "yaw": 30
+          }
+        },
+        "seed": 86892,
+        "sha256": "7667d05344bba636777a342e06cce3bdf712552ddaf492eb354633dc78748c01",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        283,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 10.03,
+      "worldWidthM": 7.4
+    },
+    {
+      "anchor": [
+        138.4,
+        382.3
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city",
+        "plains"
+      ],
+      "collides": false,
+      "file": "structures/utility-pole-transformer.png",
+      "id": "utility-pole-transformer",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a wooden utility pole with two crossarms, insulators, sagging power lines and a grey transformer can",
+      "provenance": {
+        "at": "2026-11-20T01:45:46Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "467954aa8b02438a5c3e95a89ef6851dc764324841794ffcc8e21753f83cb9f0",
+        "pick_reason": "transformer and crossarms clean; wires from the rig (keep_rig)",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a wooden utility pole with two crossarms, insulators, sagging power lines and a grey transformer can. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "arm": "#7a5c3e",
+            "arms": 2,
+            "h": 10,
+            "ins": "#7fa59a",
+            "sag": 0.35,
+            "span": 5.5,
+            "transformer": true,
+            "wire": "#2a2a2a",
+            "wood": "#6e5236"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/utility_pole.json",
+          "view": {
+            "pitch": 6,
+            "yaw": 30
+          }
+        },
+        "seed": 79158,
+        "sha256": "34a94e6a1d564b8ba383b989a3aafb450f788497da24661f2d28ea9e9e7abffc",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        283,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 10.03,
+      "worldWidthM": 7.4
+    },
+    {
+      "anchor": [
+        249.6,
+        397.4
+      ],
+      "band": "mid",
+      "biomes": [
+        "plains",
+        "farm",
+        "town"
+      ],
+      "collides": false,
+      "file": "structures/billboard-wood.png",
+      "id": "billboard-wood",
+      "kind": "sign",
+      "mirror": true,
+      "prompt": "a roadside billboard on weathered timber legs with a catwalk and three lamps, a completely blank cream paper panel with no words",
+      "provenance": {
+        "at": "2026-11-20T01:45:46Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "104451e3fee38a13fbcb5135741ca508cef9ae48154ddf7beb87f1e007689aac",
+        "pick_reason": "panel stays blank, lamps and timber legs read",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a roadside billboard on weathered timber legs with a catwalk and three lamps, a completely blank cream paper panel with no words. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "frame": "#3f4448",
+            "lift": 3.2,
+            "panel": "#efe8d6",
+            "ph": 3.6,
+            "pw": 9,
+            "steel": "#8e979c",
+            "style": "wood",
+            "wood": "#7a5a3c"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/billboard.json",
+          "view": {
+            "pitch": 6,
+            "yaw": 20
+          }
+        },
+        "seed": 85035,
+        "sha256": "19742ef01f09b829db8d8caf2be9cf2fa8dfd3251deb1a36400575d69ebe8116",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        512,
+        405
+      ],
+      "sway": 0,
+      "worldHeightM": 7.26,
+      "worldWidthM": 9.18
+    },
+    {
+      "anchor": [
+        244.3,
+        509.9
+      ],
+      "band": "mid",
+      "biomes": [
+        "city",
+        "town",
+        "plains"
+      ],
+      "collides": false,
+      "file": "structures/billboard-steel.png",
+      "id": "billboard-steel",
+      "kind": "sign",
+      "mirror": true,
+      "prompt": "a tall steel monopole highway billboard with a catwalk and lamps, completely blank pale panel with no words",
+      "provenance": {
+        "at": "2026-11-20T01:45:46Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "c706f1feb3b35d330bcca3eb71b5556851c1e2ef24e9bd01df437edea93fa8a5",
+        "pick_reason": "even warm panel, no diagonal light streak",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a tall steel monopole highway billboard with a catwalk and lamps, completely blank pale panel with no words. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "frame": "#3f4448",
+            "lift": 6,
+            "panel": "#e9e4d6",
+            "ph": 4,
+            "pw": 10,
+            "steel": "#8e979c",
+            "style": "steel",
+            "wood": "#7a5a3c"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/billboard.json",
+          "view": {
+            "pitch": 6,
+            "yaw": 20
+          }
+        },
+        "seed": 99419,
+        "sha256": "bf9e899ee03bbe0bb7b9f1b9bd9cf50fa3c60b96b26f195044d0a21a73946780",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        500,
+        512
+      ],
+      "sway": 0,
+      "worldHeightM": 10.37,
+      "worldWidthM": 10.13
+    },
+    {
+      "anchor": [
+        54.5,
+        382.4
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "plains",
+        "town",
+        "forest",
+        "river",
+        "city"
+      ],
+      "collides": false,
+      "file": "structures/sign-speed-limit.png",
+      "id": "sign-speed-limit",
+      "kind": "sign",
+      "mirror": false,
+      "prompt": "a white rectangular US speed limit road sign with a thin black border reading SPEED LIMIT 55 in black letters, on a grey metal post",
+      "provenance": {
+        "at": "2026-11-20T01:45:46Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, watermark, logo, changed shape, flat vector",
+        "paintSha256": "1fef07d4c78be9af7b6c9abdba977c5eb364f30242b3e000c8e16260b711f171",
+        "pick_reason": "legend legible and centred, crisp border",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a white rectangular US speed limit road sign with a thin black border reading SPEED LIMIT 55 in black letters, on a grey metal post. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "black": "#1f1f1f",
+            "green": "#1f6f4a",
+            "ph": 2.1,
+            "post": "#9aa3a8",
+            "red": "#c8302c",
+            "style": "speed",
+            "white": "#f4f2ec",
+            "yellow": "#f2c230"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/sign.json",
+          "view": {
+            "pitch": 5,
+            "yaw": 14
+          }
+        },
+        "seed": 44817,
+        "sha256": "452639aa10688d9a26c45aa748e9c5970272744b2a87e8d16f01a0c68529a09d",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        109,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 2.68,
+      "worldWidthM": 0.76
+    },
+    {
+      "anchor": [
+        46,
+        382.4
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "plains",
+        "forest",
+        "river"
+      ],
+      "collides": false,
+      "file": "structures/sign-chevron.png",
+      "id": "sign-chevron",
+      "kind": "sign",
+      "mirror": true,
+      "prompt": "a yellow curve chevron warning road sign with a bold black chevron arrow, on a grey metal post",
+      "provenance": {
+        "at": "2026-11-20T01:45:46Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "32765bc06225dc9b760703f28a75a9e35ca081fab94e6dbb475766d7870c6b04",
+        "pick_reason": "bold chevron, clean yellow",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a yellow curve chevron warning road sign with a bold black chevron arrow, on a grey metal post. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "black": "#1f1f1f",
+            "green": "#1f6f4a",
+            "ph": 2.1,
+            "post": "#9aa3a8",
+            "red": "#c8302c",
+            "style": "chevron",
+            "white": "#f4f2ec",
+            "yellow": "#f2c230"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/sign.json",
+          "view": {
+            "pitch": 5,
+            "yaw": 14
+          }
+        },
+        "seed": 55830,
+        "sha256": "70f8321c7c6bdd913f73a5ef38d8b2b2eb77642e40a32aef0bf930129f9cdb9f",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        92,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 2.6,
+      "worldWidthM": 0.62
+    },
+    {
+      "anchor": [
+        32.3,
+        382.4
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "plains",
+        "forest",
+        "river"
+      ],
+      "collides": false,
+      "file": "structures/sign-curve.png",
+      "id": "sign-curve",
+      "kind": "sign",
+      "mirror": true,
+      "prompt": "a yellow diamond curve-ahead warning road sign with a black border and a black curved arrow, on a grey metal post",
+      "provenance": {
+        "at": "2026-11-20T01:45:46Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "bba390827d4f5c25e5502bdf319a697a116b86961bb4d2b7c78e3875fccbb68a",
+        "pick_reason": "arrow and diamond border read",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a yellow diamond curve-ahead warning road sign with a black border and a black curved arrow, on a grey metal post. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "black": "#1f1f1f",
+            "green": "#1f6f4a",
+            "ph": 2.1,
+            "post": "#9aa3a8",
+            "red": "#c8302c",
+            "style": "curve",
+            "white": "#f4f2ec",
+            "yellow": "#f2c230"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/sign.json",
+          "view": {
+            "pitch": 5,
+            "yaw": 14
+          }
+        },
+        "seed": 26346,
+        "sha256": "565ab32524fe942d8a7fedbebf74e27a0888c274275d3408fd9f9d9557416045",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        128,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 3.02,
+      "worldWidthM": 1
+    },
+    {
+      "anchor": [
+        57,
+        382.4
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "town",
+        "city"
+      ],
+      "collides": false,
+      "file": "structures/sign-stop.png",
+      "id": "sign-stop",
+      "kind": "sign",
+      "mirror": false,
+      "prompt": "a red octagonal STOP road sign with white border and white STOP letters, on a grey metal post",
+      "provenance": {
+        "at": "2026-11-20T01:45:46Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, watermark, logo, changed shape, flat vector",
+        "paintSha256": "6b75fc74c30d542305ab86e4242e0d3d81cd96b398e749ea023285ced855dc65",
+        "pick_reason": "legend centred, bevelled white border",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a red octagonal STOP road sign with white border and white STOP letters, on a grey metal post. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "black": "#1f1f1f",
+            "green": "#1f6f4a",
+            "ph": 2.1,
+            "post": "#9aa3a8",
+            "red": "#c8302c",
+            "style": "stop",
+            "white": "#f4f2ec",
+            "yellow": "#f2c230"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/sign.json",
+          "view": {
+            "pitch": 5,
+            "yaw": 14
+          }
+        },
+        "seed": 56803,
+        "sha256": "d818d58860e2b3bd9d056b5292add1c6a830263f45e4dad6eb53e054559dd9c8",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        114,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 2.6,
+      "worldWidthM": 0.77
+    },
+    {
+      "anchor": [
+        66,
+        382.6
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "city",
+        "plains"
+      ],
+      "collides": false,
+      "file": "structures/sign-yield.png",
+      "id": "sign-yield",
+      "kind": "sign",
+      "mirror": false,
+      "prompt": "a red and white inverted-triangle YIELD road sign, on a grey metal post",
+      "provenance": {
+        "at": "2026-11-20T01:45:46Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, watermark, logo, changed shape, flat vector",
+        "paintSha256": "20c26b5e9f5c69f7dba89b1efba2528e2186ad60e26b0c0d1bfabc9559ccc540",
+        "pick_reason": "cleaner red border and warm highlight",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a red and white inverted-triangle YIELD road sign, on a grey metal post. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "black": "#1f1f1f",
+            "green": "#1f6f4a",
+            "ph": 2.1,
+            "post": "#9aa3a8",
+            "red": "#c8302c",
+            "style": "yield",
+            "white": "#f4f2ec",
+            "yellow": "#f2c230"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/sign.json",
+          "view": {
+            "pitch": 5,
+            "yaw": 14
+          }
+        },
+        "seed": 95897,
+        "sha256": "c6246cd6829c5c2a0aa413ab8ca88e6f47eb5550e7e4759f664aca670a2aac9c",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        132,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 2.6,
+      "worldWidthM": 0.89
+    },
+    {
+      "anchor": [
+        165,
+        380.4
+      ],
+      "band": "near",
+      "biomes": [
+        "plains",
+        "city",
+        "town"
+      ],
+      "collides": false,
+      "file": "structures/sign-guide-green.png",
+      "id": "sign-guide-green",
+      "kind": "sign",
+      "mirror": true,
+      "prompt": "a large green highway guide sign with a white border, a white up arrow and two blank pale stripes instead of words, on two grey steel posts",
+      "provenance": {
+        "at": "2026-11-20T01:51:14Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "70f4bc4ab45edc52e7185893456a7aa0f1f6b8b72ec6fa9ac26349fde699453a",
+        "pick_reason": "cleaner panel, blank stripes stay blank, crisp arrow",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a large green highway guide sign with a white border, a white up arrow and two blank pale stripes instead of words, on two grey steel posts. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "black": "#1f1f1f",
+            "green": "#1f6f4a",
+            "ph": 2.1,
+            "post": "#9aa3a8",
+            "red": "#c8302c",
+            "style": "guide",
+            "white": "#f4f2ec",
+            "yellow": "#f2c230"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/sign.json",
+          "view": {
+            "pitch": 5,
+            "yaw": 14
+          }
+        },
+        "seed": 72352,
+        "sha256": "da9373c6e18a13a03d9197e188343efcedcbe702ae1ea1d30ce681f77f609733",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        330,
+        384
+      ],
+      "sway": 0,
+      "worldHeightM": 4.79,
+      "worldWidthM": 4.12
+    },
+    {
+      "anchor": [
+        190.5,
+        54.9
+      ],
+      "band": "near",
+      "biomes": [
+        "plains",
+        "forest",
+        "river",
+        "farm"
+      ],
+      "collides": false,
+      "file": "structures/guardrail.png",
+      "id": "guardrail",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a galvanised steel W-beam highway guardrail segment on steel posts",
+      "provenance": {
+        "at": "2026-11-20T01:52:50Z",
+        "denoise": 0.7,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "3ba9ce51abf71b4aaa47601f0143319f64b59f20f80f748563a559c8b45e7352",
+        "pick_reason": "denoise 0.7 rerun: rail stays galvanised grey (0.85 drifted to brown)",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a galvanised steel W-beam highway guardrail segment on steel posts. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "L": 8,
+            "n": 5,
+            "postc": "#8a8f92",
+            "rail": "#b8c0c4",
+            "wood": false
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/guardrail.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 22
+          }
+        },
+        "seed": 48399,
+        "sha256": "2d56df45b1542076f131e649e397d1e139c35a894a1d2ee50daa1db4b11be507",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        384,
+        65
+      ],
+      "sway": 0,
+      "worldHeightM": 1.31,
+      "worldWidthM": 7.75
+    },
+    {
+      "anchor": [
+        190.5,
+        54.9
+      ],
+      "band": "near",
+      "biomes": [
+        "forest",
+        "river",
+        "farm"
+      ],
+      "collides": false,
+      "file": "structures/guardrail-wood-post.png",
+      "id": "guardrail-wood-post",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a galvanised steel W-beam guardrail segment on weathered wooden posts",
+      "provenance": {
+        "at": "2026-11-20T01:52:50Z",
+        "denoise": 0.7,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "cec774455bfac4b21e3e751d6e64a5943db87f447bbd0315bf2de329b3cb1603",
+        "pick_reason": "denoise 0.7 rerun: galvanised rail on brown timber posts",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a galvanised steel W-beam guardrail segment on weathered wooden posts. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "L": 8,
+            "n": 5,
+            "postc": "#8a8f92",
+            "rail": "#b8c0c4",
+            "wood": true
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/guardrail.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 22
+          }
+        },
+        "seed": 99765,
+        "sha256": "75ba36c4a480fb4c69ef493f5dc3516ac1e20b0b41bcafe50481a7e1ef7dbd25",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch4.json",
+        "workflowSha256": "2059cbbb29873c678ccdade7d5eafc001f4baa46ae5dd037de25ba3b34738731"
+      },
+      "size": [
+        384,
+        65
+      ],
+      "sway": 0,
+      "worldHeightM": 1.31,
+      "worldWidthM": 7.75
+    },
+    {
+      "anchor": [
+        190.4,
+        80
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "forest",
+        "plains"
+      ],
+      "collides": false,
+      "file": "structures/fence-split-rail.png",
+      "id": "fence-split-rail",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a rustic weathered wooden post-and-rail fence segment",
+      "provenance": {
+        "at": "2026-11-20T01:51:14Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "e19f3b07e4be12765261d050731bbe10fa24aea1f605a861f80c15c8ea289bff",
+        "pick_reason": "weathered rails read, less sky glow",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a rustic weathered wooden post-and-rail fence segment. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "L": 8,
+            "h": 1.2,
+            "paint": "#f3f0e8",
+            "pc": "#8a6a48",
+            "posts": 4,
+            "style": "rail",
+            "wood": "#8a6a48"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/fence.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 22
+          }
+        },
+        "seed": 40731,
+        "sha256": "fc25bd0956fc96a7f12f7482a61153f996ca1d65345ef3de823ba128467fec88",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        384,
+        92
+      ],
+      "sway": 0,
+      "worldHeightM": 1.81,
+      "worldWidthM": 7.52
+    },
+    {
+      "anchor": [
+        192.7,
+        65
+      ],
+      "band": "near",
+      "biomes": [
+        "town",
+        "farm"
+      ],
+      "collides": false,
+      "file": "structures/fence-picket.png",
+      "id": "fence-picket",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a white painted wooden picket fence segment with pointed pickets",
+      "provenance": {
+        "at": "2026-11-20T01:51:14Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "cacd389cfe73f8943cd5f93eebdf8b249cbe2d7412d414caa0535dde118a9593",
+        "pick_reason": "even pickets, warm white",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a white painted wooden picket fence segment with pointed pickets. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "L": 8,
+            "h": 1,
+            "paint": "#f3f0e8",
+            "pc": "#f3f0e8",
+            "posts": 4,
+            "style": "picket",
+            "wood": "#8a6a48"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/fence.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 22
+          }
+        },
+        "seed": 80774,
+        "sha256": "ec28d6a24a625e019dfbb2c21b6bc92401fd5ac1a34ad14d0f0e04235d64d123",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        384,
+        77
+      ],
+      "sway": 0,
+      "worldHeightM": 1.51,
+      "worldWidthM": 7.49
+    },
+    {
+      "anchor": [
+        190.9,
+        80
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "collides": false,
+      "file": "structures/fence-farm-board.png",
+      "id": "fence-farm-board",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a white three-board horse farm fence segment",
+      "provenance": {
+        "at": "2026-11-20T01:51:14Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "9c436c5e439a504c21b3a176a68637a0693195df5b27c72780a030de3d334d8d",
+        "pick_reason": "boards brighter and straighter",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a white three-board horse farm fence segment. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "L": 8,
+            "h": 1.2,
+            "paint": "#f3f0e8",
+            "pc": "#f3f0e8",
+            "posts": 4,
+            "style": "farm",
+            "wood": "#8a6a48"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/fence.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 22
+          }
+        },
+        "seed": 40456,
+        "sha256": "4b0071b26658d60d7ebbfd8dcd25ecd9df01e60f0b8f35b3a87d35b209e3d6be",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        384,
+        92
+      ],
+      "sway": 0,
+      "worldHeightM": 1.81,
+      "worldWidthM": 7.5
+    },
+    {
+      "anchor": [
+        190.9,
+        80
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "collides": false,
+      "file": "structures/fence-farm-black.png",
+      "id": "fence-farm-black",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "a black painted three-board horse farm fence segment",
+      "provenance": {
+        "at": "2026-11-20T01:51:14Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "367cdff77201a37f633c107748823a670e119152734eadca3598ba7f3fbfe542",
+        "pick_reason": "warm rim light on black boards",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: a black painted three-board horse farm fence segment. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "L": 8,
+            "h": 1.2,
+            "paint": "#2b2a29",
+            "pc": "#2b2a29",
+            "posts": 4,
+            "style": "farm",
+            "wood": "#8a6a48"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/fence.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 22
+          }
+        },
+        "seed": 20923,
+        "sha256": "47eb347cbf246d7b30b2e6a2f04155cd47fffee4e7f3ffc778e2247c0ff2507e",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        384,
+        92
+      ],
+      "sway": 0,
+      "worldHeightM": 1.81,
+      "worldWidthM": 7.5
+    },
+    {
+      "anchor": [
+        195,
+        83.4
+      ],
+      "band": "near",
+      "biomes": [
+        "farm",
+        "forest",
+        "river"
+      ],
+      "collides": false,
+      "file": "structures/stone-wall.png",
+      "id": "stone-wall",
+      "kind": "furniture",
+      "mirror": true,
+      "prompt": "an old dry-stacked fieldstone wall segment with grey and tan stones and patches of moss on the capstones",
+      "provenance": {
+        "at": "2026-11-20T01:51:14Z",
+        "denoise": 0.85,
+        "models": [
+          "qwen_image_edit_2511_fp8mixed.safetensors",
+          "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+          "qwen_image_vae.safetensors",
+          "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+        ],
+        "negativePrompt": "photo, photorealistic, blurry, extra objects, people, ground, grass, trees, text, letters, watermark, logo, changed shape, flat vector",
+        "paintSha256": "b6f9e714eb5220bf9d269ed1550e77746e3e8c6aa7d578e786a7b3dadf6175ff",
+        "pick_reason": "varied fieldstone and moss, less orange cast",
+        "prompt": "Repaint this flat 3D clay mock-up as a finished, richly hand-painted cartoon video game scenery sprite: an old dry-stacked fieldstone wall segment with grey and tan stones and patches of moss on the capstones. Keep exactly the same shape, outline, camera angle, proportions, colours and every part in the same place. Lush painterly detail like 1990s SNES racing game scenery repainted by a modern animation studio: rich painted material texture, glowing warm late-afternoon sunlight from the upper left with golden highlights and cool blue-violet shadows, gently diffused pixel-like edges. Keep the plain flat grey-blue background. No ground, no grass, no cast shadow, no text, no logos, no brand names.",
+        "rig": {
+          "params": {
+            "L": 7,
+            "cap": "#a8a296",
+            "h": 1,
+            "moss": "#7f8a5c",
+            "rows": 3,
+            "stone": "#9b958a",
+            "stone2": "#8a8478"
+          },
+          "script": "art/rigs/rig.py",
+          "template": "art/rigs/structures/stone_wall.json",
+          "view": {
+            "pitch": 8,
+            "yaw": 22
+          }
+        },
+        "seed": 35526,
+        "sha256": "b0c6809990c2f8f2117432b0017af4f7aa70c37d526a8ece1c91ed5265fc3682",
+        "workflow": "art/rigs/workflows/structure-paint-qwen-batch8.json",
+        "workflowSha256": "9fbdc636e4dc86917b653b0da084cd3bdb32c5c0f1344e28f2752ec4ff71a471"
+      },
+      "size": [
+        384,
+        97
+      ],
+      "sway": 0,
+      "worldHeightM": 1.67,
+      "worldWidthM": 6.6
+    }
+  ],
+  "notes": "Blender-guided structure pack. Generated by `rigfinish ingest` from art/rigs/structures-rigs.json; sprites in art/sources/structures/. anchor = ground contact under the footprint centre, in sprite px. mirror = may be flipped for the left side of the road.",
+  "type": "sprite",
+  "workflow": "art/rigs/workflows/structure-paint-qwen.json"
+}

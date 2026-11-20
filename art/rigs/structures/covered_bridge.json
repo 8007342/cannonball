@@ -1,0 +1,19 @@
+{
+  "template": "covered_bridge",
+  "notes": "New England covered bridge: barn-red housing with gable roof along X, open portal at the -X end, stone abutments.",
+  "view": {"pitch": 8, "yaw": 30},
+  "params": {"L": 24, "W": 5.5, "h": 4.2, "rh": 2.2, "wall": "#9e3328", "trim": "#e9e2d2", "roofc": "#5d5652", "stone": "#9b9184", "hd": 2.2},
+  "parts": [
+    {"repeat": {"e": "[-1, 1]"}, "p": "extrude", "axis": "y", "depth": "W+2", "at": ["e*(L/2-0.8)", 0, 0],
+     "profile": [[-2.0, 0], [2.0, 0], [1.6, "hd"], [-1.6, "hd"]], "c": "stone"},
+    {"p": "box", "size": ["L", "W", "h"], "at": [0, 0, "hd"], "c": "wall"},
+    {"p": "prism", "axis": "x", "size": ["W", "L", "rh*0.97"], "at": [0, 0, "hd+h"], "c": "wall"},
+    {"p": "shell", "axis": "x", "depth": "L+0.8", "t": 0.2, "at": [0, 0, "hd+h"],
+     "profile": [["-W/2-0.5", -0.45], [0, "rh+0.05"], ["W/2+0.5", -0.45]], "c": "roofc"},
+    {"p": "box", "size": [0.12, "W*0.62", "h*0.8"], "at": ["-L/2-0.03", 0, "hd"], "c": "#241c1a"},
+    {"p": "extrude", "axis": "x", "depth": 0.14, "at": ["-L/2-0.03", 0, "hd+h*0.8"], "profile": "arc(0, 0, W*0.31, 0, 180, 8)", "c": "#241c1a"},
+    {"p": "box", "size": [0.16, "W*0.7", 0.25], "at": ["-L/2-0.06", 0, "hd+h*0.8+W*0.31"], "c": "trim"},
+    {"repeat": {"k": "range(5)"}, "p": "box", "size": [1.4, 0.1, 0.8], "at": ["-L/2 + L*(k+0.5)/5", "-W/2-0.03", "hd+h*0.55"], "c": "#2a2220"},
+    {"p": "box", "size": ["L+0.1", "W+0.1", 0.25], "at": [0, 0, "hd"], "c": "trim"}
+  ]
+}

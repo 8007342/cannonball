@@ -1,0 +1,13 @@
+{
+  "template": "guardrail",
+  "notes": "Steel W-beam guardrail segment, length along X (broadside billboard), posts behind the rail.",
+  "view": {"pitch": 8, "yaw": 22},
+  "params": {"L": 8, "n": 5, "rail": "#b8c0c4", "postc": "#8a8f92", "wood": false},
+  "parts": [
+    {"repeat": {"k": "range(n)"}, "p": "box", "size": [0.16, 0.16, 0.85], "at": ["-L/2 + 0.3 + k*(L-0.6)/(n-1)", 0.22, 0], "c": "'#6e5236' if wood else postc"},
+    {"repeat": {"k": "range(n)"}, "p": "box", "size": [0.14, 0.3, 0.3], "at": ["-L/2 + 0.3 + k*(L-0.6)/(n-1)", 0.05, 0.42], "c": "postc"},
+    {"p": "extrude", "axis": "x", "depth": "L", "at": [0, 0, 0],
+     "profile": [[-0.12, 0.45], [-0.04, 0.53], [-0.04, 0.6], [-0.12, 0.68], [-0.12, 0.75], [-0.02, 0.77], [-0.02, 0.43], [-0.12, 0.43]], "c": "rail"},
+    {"repeat": {"e": "[-1, 1]"}, "p": "cyl", "r": 0.17, "h": 0.12, "axis": "x", "seg": 10, "at": ["e*(L/2+0.06)", -0.08, 0.6], "scale": [1, 0.5, 1], "c": "rail"}
+  ]
+}

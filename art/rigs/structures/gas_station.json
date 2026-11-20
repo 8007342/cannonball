@@ -1,0 +1,26 @@
+{
+  "template": "gas_station",
+  "notes": "Unbranded fuel canopy on columns over two pump islands, small kiosk behind (+Y).",
+  "view": {"pitch": 8, "yaw": 32},
+  "params": {"cw": 14, "cd": 9, "ch": 4.6, "fascia": "#d8432f", "fascia2": "#f3efe6", "column": "#e9e6df",
+             "pump": "#e6e2d6", "pumpc": "#d8432f", "kiosk": "#e8dcc4", "glass": "#3b5670", "roofc": "#6e6a66"},
+  "parts": [
+    {"p": "box", "size": ["cw", "cd", 0.6], "at": [0, 0, "ch"], "c": "fascia"},
+    {"p": "box", "size": ["cw+0.04", "cd+0.04", 0.18], "at": [0, 0, "ch+0.22"], "c": "fascia2"},
+    {"p": "box", "size": ["cw-0.3", "cd-0.3", 0.25], "at": [0, 0, "ch+0.6"], "c": "fascia2"},
+    {"repeat": {"i": "[-1, 1]"}, "parts": [
+      {"repeat": {"j": "[-1, 1]"}, "p": "box", "size": [0.45, 0.45, "ch"], "at": ["i*cw*0.3", "j*cd*0.18", 0], "c": "column"},
+      {"p": "box", "size": [1.2, "cd*0.6", 0.25], "at": ["i*cw*0.3", 0, 0], "c": "#b9b4aa"},
+      {"repeat": {"j": "[-1, 1]"}, "parts": [
+        {"p": "box", "size": [0.8, 0.55, 1.7], "at": ["i*cw*0.3", "j*cd*0.08", 0.25], "c": "pump"},
+        {"p": "box", "size": [0.82, 0.57, 0.35], "at": ["i*cw*0.3", "j*cd*0.08", 1.6], "c": "pumpc"},
+        {"p": "box", "size": [0.5, 0.6, 0.35], "at": ["i*cw*0.3", "j*cd*0.08", 1.05], "c": "#2c3440"}
+      ]}
+    ]},
+    {"p": "box", "size": [9, 5.5, 3.4], "at": [0, "cd/2+3.6", 0], "c": "kiosk"},
+    {"p": "box", "size": [9.3, 5.8, 0.5], "at": [0, "cd/2+3.6", 3.4], "c": "fascia"},
+    {"p": "box", "size": [5.5, 0.1, 2.0], "at": [-0.8, "cd/2+0.82", 0.5], "c": "glass"},
+    {"p": "box", "size": [1.2, 0.12, 2.3], "at": [3.0, "cd/2+0.82", 0], "c": "glass"},
+    {"p": "box", "size": [0.1, 3.0, 1.4], "at": [-4.55, "cd/2+3.6", 1.0], "c": "glass"}
+  ]
+}

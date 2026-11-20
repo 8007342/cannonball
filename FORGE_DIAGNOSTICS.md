@@ -34,3 +34,10 @@ six-stage app with291,398 backing pixels and no asset/console error; a rim touch
 produced steering.118 and the same applied angle. This is emulation evidence,
 not physical iPhone/Safari validation. Full sequence, speed carry, final replay
 and stale queued-advance cancellation are covered by widget tests.
+
+## 2026-11-20 — `magick` brew shim misparses its first run
+The first `magick a.png b.png -resize 384x384 +append out.png` in the forge
+installed imagemagick 7.1.2-36 through the userspace brew shim and then failed
+with `magick: no decode delegate for this image format 'timeout'` (the shim
+appears to pass its own wrapper word as an input file). Not retried; the scenic
+pipeline does all image work in Go (`tool/assets`) and needs no ImageMagick.

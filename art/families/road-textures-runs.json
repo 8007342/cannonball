@@ -1,0 +1,436 @@
+{
+  "asphalt-fresh/1936170": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "a blank patch of fresh dark charcoal asphalt paving: uniform fine black and grey aggregate speckles, nothing painted on it, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 1936170,
+    "studio_job": "st-1795137579709-133",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/asphalt-fresh/1936170-rgb.png",
+    "sha256": "a5bca78281dcb9a0dd7c46b2931c8dae9240373806edd09430d7dec19cecec4b",
+    "selected": false
+  },
+  "asphalt-fresh/1936171": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "a blank patch of fresh dark charcoal asphalt paving: uniform fine black and grey aggregate speckles, nothing painted on it, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 1936171,
+    "studio_job": "st-1795137579709-133",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/asphalt-fresh/1936171-rgb.png",
+    "sha256": "3417c91d416cb74a5c0df9eb15a6ba02fe32852074385ecadc548af03f5e6c57",
+    "selected": true,
+    "pick_reason": "even dark aggregate speckle, no markings",
+    "source_sha256": "c8325fafe3dddec88539d8350c519d7900c8c4be69a1d54b2fde090738c6f9bd",
+    "source": "art/sources/road-textures/asphalt-fresh.png"
+  },
+  "asphalt-worn/5067770": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "a blank patch of worn grey asphalt paving: uniform fine grey aggregate with a few hairline cracks and darker tar patches, nothing painted on it, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 5067770,
+    "studio_job": "st-1795137577978-132",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/asphalt-worn/5067770-rgb.png",
+    "sha256": "75a62ffe372ce080523c6759c3865b245a10fd5d412a0c022014e38abc9fe91d",
+    "selected": true,
+    "pick_reason": "no painted markings, cracks and tar patches tile cleanly",
+    "source_sha256": "3e006c2cef82286d53e270258b0afed370a42b2ebc5185f05d943f113161f275",
+    "source": "art/sources/road-textures/asphalt-worn.png"
+  },
+  "asphalt-worn/5067771": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "a blank patch of worn grey asphalt paving: uniform fine grey aggregate with a few hairline cracks and darker tar patches, nothing painted on it, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 5067771,
+    "studio_job": "st-1795137577978-132",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/asphalt-worn/5067771-rgb.png",
+    "sha256": "824e5e95d94fb64e858c626e8edefb082f9982bb9f9d7b1fb23c4b63eb8c3965",
+    "selected": false
+  },
+  "brick/8200360": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "old red brick street pavers in a running bond pattern with sandy grout, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 8200360,
+    "studio_job": "st-1795137583345-135",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/brick/8200360-rgb.png",
+    "sha256": "28b2558523551fba6fb38cb48d5afc5ca7a75eef1844804a72dc86c3db0986a4",
+    "selected": false
+  },
+  "brick/8200361": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "old red brick street pavers in a running bond pattern with sandy grout, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 8200361,
+    "studio_job": "st-1795137583345-135",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/brick/8200361-rgb.png",
+    "sha256": "d5ec51c986e88407413ed2864b5cfd45c06fed180f94ca702c5d17e3a4c2bc35",
+    "selected": true,
+    "pick_reason": "regular bond with fewer doubled joints in the blend band",
+    "source_sha256": "076a9e040d681c7bed20bbdb219fd3300bccadc09ec12503c21b2739a84d75e5",
+    "source": "art/sources/road-textures/brick.png"
+  },
+  "bridge-deck-steel/5132710": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "steel bridge deck grating, a dense diamond-pattern grid of grey metal bars over dark shadow, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 5132710,
+    "studio_job": "st-1795137592914-141",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/bridge-deck-steel/5132710-rgb.png",
+    "sha256": "8a4cde1d2f5353edf81ba3dd639c32759ef67b9304c77258dbc35f1f04ca565d",
+    "selected": false
+  },
+  "bridge-deck-steel/5132711": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "steel bridge deck grating, a dense diamond-pattern grid of grey metal bars over dark shadow, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 5132711,
+    "studio_job": "st-1795137592914-141",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/bridge-deck-steel/5132711-rgb.png",
+    "sha256": "4a6012d730dc3c131cb3d0b54f9e671012b1a3b32cef3b133a41a6d07a38ada4",
+    "selected": true,
+    "pick_reason": "diamond grating with fewest blend artifacts",
+    "source_sha256": "ea41a3986a79af2e78d4056dce373a25f021d12cdfa4bf07afc21fad033e4379",
+    "source": "art/sources/road-textures/bridge-deck-steel.png"
+  },
+  "bridge-deck/6740900": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "weathered wooden bridge deck of parallel brown timber planks with dark gaps and iron nail heads, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 6740900,
+    "studio_job": "st-1795137591094-140",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/bridge-deck/6740900-rgb.png",
+    "sha256": "ea9299862bb7fafdc98e2b8c47e399f75154e09451dea7f962ec5a0df8e28d1e",
+    "selected": true,
+    "pick_reason": "parallel timber planks with gaps, blend band least visible",
+    "source_sha256": "97292e8d34c597e7683ff34b8466d0d7bb0b35a4816fc18e857c722b96c7c754",
+    "source": "art/sources/road-textures/bridge-deck.png"
+  },
+  "bridge-deck/6740901": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "weathered wooden bridge deck of parallel brown timber planks with dark gaps and iron nail heads, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 6740901,
+    "studio_job": "st-1795137591094-140",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/bridge-deck/6740901-rgb.png",
+    "sha256": "1850876c8ff2cf83a881ff6818843d03eeedbb4b94ffd8a17f465d89acfdba1f",
+    "selected": false
+  },
+  "cobblestone/7398690": {
+    "workflow": "art/workflows/texture-flux2-tile.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "rounded grey cobblestones set in a dense irregular pattern, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 7398690,
+    "studio_job": "st-1795135651435-82",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/cobblestone/7398690-rgb.png",
+    "sha256": "3e39f5464027545b79b81bbaa68e0e6080daa7256991cb1325d36fcdc9e5abc3",
+    "selected": true,
+    "pick_reason": "darker joints read as stones at road scale",
+    "source_sha256": "ce276f088a2fc9b2d0a7937d2f89c895b2dd9811f7068251b7b5a27fdb7e67bc",
+    "source": "art/sources/road-textures/cobblestone.png"
+  },
+  "cobblestone/7398691": {
+    "workflow": "art/workflows/texture-flux2-tile.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "rounded grey cobblestones set in a dense irregular pattern, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 7398691,
+    "studio_job": "st-1795135651435-82",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/cobblestone/7398691-rgb.png",
+    "sha256": "3edff430fc80f1b27164203286e6c169ca0795ac556665ae7efbef6de3cfb2be",
+    "selected": false
+  },
+  "concrete/3347290": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "pale grey concrete highway pavement slabs with straight expansion joints in a square grid and light brushed texture, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 3347290,
+    "studio_job": "st-1795137581737-134",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/concrete/3347290-rgb.png",
+    "sha256": "88298ec45b7de156c070bc52cae7a2ab43e35126cfc7f9502656fc00079ef258",
+    "selected": true,
+    "pick_reason": "slab joints read with only faint blend ghosting",
+    "source_sha256": "0d2f94c8ce1b6ce41afbaea238b300acd6002cf397de69568157006d75adfd0d",
+    "source": "art/sources/road-textures/concrete.png"
+  },
+  "concrete/3347291": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "pale grey concrete highway pavement slabs with straight expansion joints in a square grid and light brushed texture, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 3347291,
+    "studio_job": "st-1795137581737-134",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/concrete/3347291-rgb.png",
+    "sha256": "e4c5113c3a6336f8afa79246dbdc642e8e07dcddb7137d0faa45b18e774aa902",
+    "selected": false
+  },
+  "crop-rows/5857030": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "farm field of straight parallel rows of young green crop plants on brown soil, rows running vertically, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 5857030,
+    "studio_job": "st-1795137595976-143",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/crop-rows/5857030-rgb.png",
+    "sha256": "f5b77400a07a5482e2b8a30a67d21a4ba34e1b41f552e926fda08065ab9d0f61",
+    "selected": true,
+    "pick_reason": "parallel crop rows on brown soil, rows run along the tile",
+    "source_sha256": "3892e178aad156828b85da8c4775cc04aea0f82d0180f4d97c4c2fa4efc848a9",
+    "source": "art/sources/road-textures/crop-rows.png"
+  },
+  "crop-rows/5857031": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "farm field of straight parallel rows of young green crop plants on brown soil, rows running vertically, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 5857031,
+    "studio_job": "st-1795137595976-143",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/crop-rows/5857031-rgb.png",
+    "sha256": "b097d34e98b0d204fda2ea6c991ceff333c4347511e4826bb14b949b72411da8",
+    "selected": false
+  },
+  "dirt-shoulder/990790": {
+    "workflow": "art/workflows/texture-flux2-tile.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "packed brown dirt with small pebbles and a few dry grass blades, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 990790,
+    "studio_job": "st-1795135654774-84",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/dirt-shoulder/990790-rgb.png",
+    "sha256": "46a9e0647fa3b3bd325bed66199a0c573a45b6bf07c0e79f42fb57d4041f2c7a",
+    "selected": true,
+    "pick_reason": "even packed dirt, pebbles tile without seams",
+    "source_sha256": "619c47425472ebe8de5e9100abc7da6e69e2718bed992b602d4ddf6316b48f00",
+    "source": "art/sources/road-textures/dirt-shoulder.png"
+  },
+  "dirt-shoulder/990791": {
+    "workflow": "art/workflows/texture-flux2-tile.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "packed brown dirt with small pebbles and a few dry grass blades, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 990791,
+    "studio_job": "st-1795135654774-84",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/dirt-shoulder/990791-rgb.png",
+    "sha256": "77aa04c435429fe1be8cc9313cf0303343b0348821cf15d8be7e655d1069f947",
+    "selected": false
+  },
+  "grass/7192290": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "short mowed green lawn grass verge with a few clover leaves, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 7192290,
+    "studio_job": "st-1795137586476-137",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/grass/7192290-rgb.png",
+    "sha256": "10e5f8b15526db46fa62d97242ffa5407bcbf472ad82b2982e62040f3182455f",
+    "selected": true,
+    "pick_reason": "soft even lawn without repeated clover rows",
+    "source_sha256": "0789f4fbb43a78c533c087f361c971df0fa22ee3d8aabdef1327967d2e8d5ea5",
+    "source": "art/sources/road-textures/grass.png"
+  },
+  "grass/7192291": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "short mowed green lawn grass verge with a few clover leaves, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 7192291,
+    "studio_job": "st-1795137586476-137",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/grass/7192291-rgb.png",
+    "sha256": "b659b0c7e9ac23ba40463dc77951fc65ac97be6a05e5146679bea915e3f282c3",
+    "selected": false
+  },
+  "gravel/2505130": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "loose grey and tan crushed gravel road shoulder with small stones, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 2505130,
+    "studio_job": "st-1795137584662-136",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/gravel/2505130-rgb.png",
+    "sha256": "a00b8c6ebf7ecbb916818a49b14e5b3b70e229d9e923de3cc005d4394bf161a4",
+    "selected": true,
+    "pick_reason": "uniform stones without the stripe of the other seed",
+    "source_sha256": "61c9a69a1025aef56d09a36bbb34d2b27056f2ae77fbe5af95402ecfcfe5b567",
+    "source": "art/sources/road-textures/gravel.png"
+  },
+  "gravel/2505131": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "loose grey and tan crushed gravel road shoulder with small stones, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 2505131,
+    "studio_job": "st-1795137584662-136",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/gravel/2505131-rgb.png",
+    "sha256": "e0bed8d59051e6a52a34ccc8cce4b0b9b5933643e2c19856093b26894cf4adbf",
+    "selected": false
+  },
+  "meadow/847650": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "uneven green and yellow meadow grass with small wildflowers, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 847650,
+    "studio_job": "st-1795137587869-138",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/meadow/847650-rgb.png",
+    "sha256": "eb4e90bd76ab13e9764714a66997f7e34286e78f560de23a2172bbde7baed77e",
+    "selected": true,
+    "pick_reason": "green and yellow meadow with flowers, even tiling",
+    "source_sha256": "439a965d45a410a8ae92a070397d0c89301c335d7013d41202760274c117580b",
+    "source": "art/sources/road-textures/meadow.png"
+  },
+  "meadow/847651": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "uneven green and yellow meadow grass with small wildflowers, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 847651,
+    "studio_job": "st-1795137587869-138",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/meadow/847651-rgb.png",
+    "sha256": "4b9c8677abdcbb7d45bfbd87a58b6335d1af0ee39feac40daf15e4def809ac9d",
+    "selected": false
+  },
+  "sidewalk/8488730": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "light grey concrete sidewalk with square slab joints every metre and a light broom texture, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 8488730,
+    "studio_job": "st-1795137589554-139",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/sidewalk/8488730-rgb.png",
+    "sha256": "b5822f1af609294d2948ffd3ca056b69b2fc1a7c8ff1e03ef4aa7e1af9e4eef4",
+    "selected": true,
+    "pick_reason": "regular square slabs closest to a real sidewalk",
+    "source_sha256": "2949c8119216ef06e09cd129d4d17420ff81b57573ebc83f574b6228f396a863",
+    "source": "art/sources/road-textures/sidewalk.png"
+  },
+  "sidewalk/8488731": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "light grey concrete sidewalk with square slab joints every metre and a light broom texture, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 8488731,
+    "studio_job": "st-1795137589554-139",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/sidewalk/8488731-rgb.png",
+    "sha256": "a39c81d819271901d666c4321fd19d910e0fbec5f3b0b497d9f3510f47946fcd",
+    "selected": false
+  },
+  "water/2524360": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "calm river water surface with soft blue-green ripples and small glints, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 2524360,
+    "studio_job": "st-1795137594532-142",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/water/2524360-rgb.png",
+    "sha256": "4cf512b6f2dc2c4320c0c2ead5c77fe6f55cb97e59365239252234587f3d128f",
+    "selected": false
+  },
+  "water/2524361": {
+    "workflow": "art/workflows/texture-flux2.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)"
+    ],
+    "prompt": "calm river water surface with soft blue-green ripples and small glints, seamless tileable texture seen straight from above, orthographic top-down view, evenly lit, flat even lighting, no perspective, no horizon, fills the whole frame edge to edge, hand-painted cartoon game texture for a retro 16-bit racing game, softly diffused pixel-like detail",
+    "seed": 2524361,
+    "studio_job": "st-1795137594532-142",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/road-textures/water/2524361-rgb.png",
+    "sha256": "ed0e477dd7e12f35e59e799ded6899a10b1085625e243b89aabe5f0ec4f47e04",
+    "selected": true,
+    "pick_reason": "clear ripple pattern reads as water at road scale",
+    "source_sha256": "e063de17baa5df680e9c587a64adecfc33b6055d74124072c52080d1f5164134",
+    "source": "art/sources/road-textures/water.png"
+  }
+}

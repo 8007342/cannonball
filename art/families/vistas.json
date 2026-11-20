@@ -1,0 +1,167 @@
+{
+  "family": "vistas",
+  "type": "sprite",
+  "atlas": "vista",
+  "workflow": "art/workflows/sprite-flux2-matte.json",
+  "style": "wide panoramic horizon band for a side-scrolling parallax layer, hand-painted cartoon game background art for a retro 16-bit racing game, soft atmospheric painterly shading, softly diffused pixel-like edges, calm even daylight with warm tints, the land fills the lower part and reaches the left and right edges, above the skyline is a flat pure white background, no sky, no clouds, no sun",
+  "candidates": 3,
+  "canvas": [
+    1792,
+    576
+  ],
+  "items": [
+    {
+      "id": "ridge-blue-a",
+      "prompt": "the Blue Ridge mountains: layered overlapping soft blue ridgelines fading into haze, gentle rounded forested crests",
+      "band": "vista",
+      "kind": "vista",
+      "worldWidthM": 6000,
+      "biomes": [
+        "forest",
+        "river",
+        "farm"
+      ],
+      "tileX": true,
+      "tags": [
+        "ridge",
+        "hills"
+      ]
+    },
+    {
+      "id": "appalachian-autumn-a",
+      "prompt": "Appalachian mountains in autumn: rolling forested ridges covered in red, orange and gold trees, a farther blue ridge behind",
+      "band": "vista",
+      "kind": "vista",
+      "worldWidthM": 5000,
+      "biomes": [
+        "forest",
+        "farm",
+        "town"
+      ],
+      "tags": [
+        "ridge",
+        "hills",
+        "autumn"
+      ],
+      "tileX": true
+    },
+    {
+      "id": "prairie-horizon-a",
+      "prompt": "a flat Midwestern prairie horizon: a low band of distant green and golden fields, faint tree clumps and a far grain elevator",
+      "band": "vista",
+      "kind": "vista",
+      "worldWidthM": 8000,
+      "biomes": [
+        "plains",
+        "farm"
+      ],
+      "tileX": true,
+      "canvas": [
+        1792,
+        448
+      ],
+      "tags": [
+        "plains",
+        "prairie"
+      ]
+    },
+    {
+      "id": "city-skyline-a",
+      "prompt": "a distant present-day American city skyline: varied glass and stone skyscrapers, a few towers, lower buildings at the base, soft hazy blue-grey tones",
+      "band": "vista",
+      "kind": "vista",
+      "worldWidthM": 4000,
+      "biomes": [
+        "city"
+      ],
+      "tileX": true,
+      "tags": [
+        "skyline",
+        "city"
+      ]
+    },
+    {
+      "id": "mesa-desert-a",
+      "prompt": "distant red rock mesas and buttes of the American Southwest with flat tops and layered orange cliffs over a pale desert plain",
+      "band": "vista",
+      "kind": "vista",
+      "worldWidthM": 9000,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "mesa",
+        "mountain",
+        "west"
+      ],
+      "tileX": true
+    },
+    {
+      "id": "rockies-snow-a",
+      "prompt": "the Rocky Mountains: tall jagged blue-grey peaks with snow caps above dark green forested foothills",
+      "band": "vista",
+      "kind": "vista",
+      "worldWidthM": 9000,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "mountain",
+        "ridge",
+        "west"
+      ],
+      "tileX": true
+    },
+    {
+      "id": "hills-green-a",
+      "prompt": "gently rolling green hills with patchwork farm fields, hedgerows and small clumps of trees, a paler hill line behind",
+      "band": "vista",
+      "kind": "vista",
+      "worldWidthM": 5000,
+      "biomes": [
+        "farm",
+        "town",
+        "river",
+        "forest",
+        "plains"
+      ],
+      "tags": [
+        "hills"
+      ],
+      "tileX": true
+    },
+    {
+      "id": "chicago-skyline-a",
+      "prompt": "the present-day Chicago downtown skyline seen from far away across flat land: a dense cluster of tall skyscrapers including one very tall black tower with two antennas on top, a tall white stone tower and slender glass towers, lower buildings around them, soft hazy blue-grey tones",
+      "band": "vista",
+      "kind": "vista",
+      "worldWidthM": 6000,
+      "biomes": [
+        "city"
+      ],
+      "tags": [
+        "skyline",
+        "city"
+      ],
+      "tileX": true
+    },
+    {
+      "id": "sonoran-hills-a",
+      "prompt": "distant rugged Sonoran desert mountains of Arizona, jagged brown and purple ridges with scattered saguaro cacti on the lower slopes, pale tan desert floor",
+      "band": "vista",
+      "kind": "vista",
+      "worldWidthM": 7000,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "mountain",
+        "hills",
+        "ridge",
+        "west"
+      ],
+      "tileX": true
+    }
+  ],
+  "matte": "skyline"
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "cannonball.radio-songs/v1",
+  "about": "Wordless (instrumental) original radio songs for the in-car radio programme. Prompts describe genre traits only; they never name an artist, song, band, game or composer. Each song is rendered text-to-music with ACE-Step 1.5 XL turbo through the committed workflow, two candidates per song (seed and seed+1); tool/audio/radiokit picks one and masters it.",
+  "workflow": "art/music/workflows/acestep15-radio-song.json",
+  "models": ["acestep_v1.5_xl_turbo_bf16.safetensors", "qwen_0.6b_ace15.safetensors", "qwen_4b_ace15.safetensors", "ace_1.5_vae.safetensors"],
+  "licence": "ACE-Step 1.5 weights Apache-2.0 (user-approved 2026-11); generated audio is original to this project",
+  "nodes": {"tags": "5.tags", "lyrics": "5.lyrics", "bpm": "5.bpm", "keyscale": "5.keyscale", "duration": "5.duration", "seconds": "7.seconds", "seed": "$seed (5.seed and 8.seed)"},
+  "candidates": 2,
+  "common_tags": "instrumental, no vocals, no singing, wordless, upbeat, driving road trip energy, high quality stereo studio mix",
+  "lyrics": "[instrumental]",
+  "master": {"lufs": -16.0, "true_peak_db": -2.0, "lra": 11, "codec": "mp3", "bitrate_kbps": 192, "sample_rate": 48000, "fade_in_s": 0.02, "fade_out_s": 2.5},
+  "stations": [
+    {"id": "sunroof", "name": "Sunroof FM", "frequency": "101.3", "genres": ["pop"], "regions": ["City", "Forest"], "voice": "af_heart"},
+    {"id": "redline", "name": "Redline Rock", "frequency": "97.7", "genres": ["rock", "surf"], "regions": ["Mountain", "Forest", "City"], "voice": "am_fenrir"},
+    {"id": "ironmile", "name": "Iron Mile", "frequency": "106.6", "genres": ["metal"], "regions": ["Mountain"], "voice": "am_onyx"},
+    {"id": "bluelane", "name": "Blue Lane", "frequency": "88.1", "genres": ["jazz", "funk"], "regions": ["City"], "voice": "bm_george"},
+    {"id": "caliente", "name": "Ruta Caliente", "frequency": "94.5", "genres": ["latin"], "regions": ["City", "Forest"], "voice": "em_alex"},
+    {"id": "backroads", "name": "Back Roads", "frequency": "90.3", "genres": ["folk", "country"], "regions": ["Forest", "Mountain"], "voice": "af_nicole"},
+    {"id": "neon", "name": "Neon Overdrive", "frequency": "103.9", "genres": ["synthwave", "electronic"], "regions": ["City", "Mountain"], "voice": "am_puck"}
+  ],
+  "songs": [
+    {"id": "sunroof-open", "title": "Sunroof Open", "genre": "pop", "station": "sunroof", "bpm": 124, "key": "D major", "duration": 92, "seed": 7000, "mood": "sunny, carefree", "tags": "upbeat summer pop, bright synth plucks, handclaps, glossy electric piano chords, groovy bass guitar, four on the floor kick, catchy whistle-like synth lead"},
+    {"id": "green-light-streak", "title": "Green Light Streak", "genre": "pop", "station": "sunroof", "bpm": 118, "key": "A major", "duration": 84, "seed": 7010, "mood": "playful, bouncy", "tags": "dance pop, funky clean guitar strums, snappy claps, warm sub bass, catchy synth lead hook, bright tambourine"},
+    {"id": "mile-marker-confetti", "title": "Mile Marker Confetti", "genre": "pop", "station": "sunroof", "bpm": 128, "key": "E major", "duration": 100, "seed": 7020, "mood": "euphoric, celebratory", "tags": "electropop, sparkling arpeggiated synths, punchy kick, big euphoric synth chorus, side-chained pads, bright plucked lead"},
+
+    {"id": "shoulder-lane-thunder", "title": "Shoulder Lane Thunder", "genre": "rock", "station": "redline", "bpm": 140, "key": "E minor", "duration": 96, "seed": 7030, "mood": "gritty, confident", "tags": "driving hard rock, crunchy overdriven rhythm guitars, gritty lead guitar riff, pounding live drums, rumbling bass guitar"},
+    {"id": "tailwind-anthem", "title": "Tailwind Anthem", "genre": "rock", "station": "redline", "bpm": 132, "key": "G major", "duration": 88, "seed": 7040, "mood": "triumphant, open road", "tags": "anthemic arena rock, big power chords, soaring melodic guitar lead, tom fills, crash cymbals, steady eighth note bass"},
+    {"id": "odometer-rollover", "title": "Odometer Rollover", "genre": "rock", "station": "redline", "bpm": 158, "key": "A major", "duration": 80, "seed": 7050, "mood": "reckless, fun", "tags": "fast garage punk rock, fuzzy distorted guitars, energetic snare, driving downstroke riffs, raw live band energy"},
+
+    {"id": "iron-overpass", "title": "Iron Overpass", "genre": "metal", "station": "ironmile", "bpm": 168, "key": "E minor", "duration": 90, "seed": 7060, "mood": "heroic, relentless", "tags": "classic heavy metal, galloping palm-muted riffs, double kick drums, harmonized twin lead guitar melody, crunchy bass"},
+    {"id": "redline-gallop", "title": "Redline Gallop", "genre": "metal", "station": "ironmile", "bpm": 180, "key": "D minor", "duration": 84, "seed": 7070, "mood": "fast, exhilarating", "tags": "speed metal, fast tremolo picked riffs, blazing guitar solo, rapid double bass drums, tight bass guitar"},
+    {"id": "granite-grade", "title": "Granite Grade", "genre": "metal", "station": "ironmile", "bpm": 120, "key": "C# minor", "duration": 96, "seed": 7080, "mood": "heavy, head-nodding", "tags": "groove metal, chunky low tuned riffs, syncopated stop-start groove, punchy drums, squealing lead guitar fills"},
+
+    {"id": "blue-lane-shuffle", "title": "Blue Lane Shuffle", "genre": "jazz", "station": "bluelane", "bpm": 160, "key": "Bb major", "duration": 92, "seed": 7090, "mood": "swinging, cheerful", "tags": "up-tempo big band swing, walking upright bass, ride cymbal swing, punchy brass section, tenor saxophone lead, piano comping"},
+    {"id": "cruise-control-bop", "title": "Cruise Control Bop", "genre": "jazz", "station": "bluelane", "bpm": 200, "key": "F major", "duration": 80, "seed": 7100, "mood": "nimble, quick", "tags": "fast bebop jazz quartet, alto saxophone melody, brisk piano comping, walking upright bass, brushed snare and ride cymbal"},
+    {"id": "toll-booth-strut", "title": "Toll Booth Strut", "genre": "jazz", "station": "bluelane", "bpm": 112, "key": "Eb major", "duration": 96, "seed": 7110, "mood": "cool, strutting", "tags": "jazz fusion, electric piano, slap bass, muted trumpet melody, tight funky drums, bright horn stabs"},
+
+    {"id": "ruta-del-sol", "title": "Ruta del Sol", "genre": "latin", "station": "caliente", "bpm": 180, "key": "G minor", "duration": 92, "seed": 7120, "mood": "festive, hot", "tags": "salsa dura, piano montuno, punchy trombone and trumpet section, congas, timbales, cowbell, clave rhythm, tumbao bass"},
+    {"id": "cumbia-de-la-carretera", "title": "Cumbia de la Carretera", "genre": "latin", "station": "caliente", "bpm": 100, "key": "A minor", "duration": 90, "seed": 7130, "mood": "swaying, joyful", "tags": "upbeat cumbia, button accordion melody, guira scraper, congas, bouncy bass, offbeat guitar"},
+    {"id": "samba-shortcut", "title": "Samba Shortcut", "genre": "latin", "station": "caliente", "bpm": 104, "key": "D major", "duration": 88, "seed": 7140, "mood": "carnival, sunny", "tags": "samba batucada, surdo drums, tamborim, cavaquinho strums, bright brass riffs, rolling percussion groove"},
+
+    {"id": "back-road-hoedown", "title": "Back Road Hoedown", "genre": "folk", "station": "backroads", "bpm": 140, "key": "G major", "duration": 88, "seed": 7150, "mood": "rollicking, rustic", "tags": "up-tempo bluegrass folk, rolling banjo, lively fiddle melody, acoustic guitar flatpicking, upright bass, foot stomps"},
+    {"id": "lantern-pass-reel", "title": "Lantern Pass Reel", "genre": "folk", "station": "backroads", "bpm": 150, "key": "D major", "duration": 84, "seed": 7160, "mood": "spirited, dancing", "tags": "energetic celtic folk reel, fiddle, tin whistle, bodhran frame drum, bouzouki rhythm, acoustic guitar"},
+    {"id": "porchlight-stomp", "title": "Porchlight Stomp", "genre": "folk", "station": "backroads", "bpm": 120, "key": "C major", "duration": 96, "seed": 7170, "mood": "warm, foot-stomping", "tags": "foot-stomp folk rock, strummed acoustic guitars, mandolin melody, handclaps, kick drum stomps, upright piano"},
+
+    {"id": "overdrive-groove", "title": "Overdrive Groove", "genre": "funk", "station": "bluelane", "bpm": 108, "key": "E minor", "duration": 92, "seed": 7180, "mood": "tight, funky", "tags": "classic funk, slap bass, wah wah guitar, tight horn stabs, crisp syncopated drums, clavinet"},
+    {"id": "carpool-get-down", "title": "Carpool Get-Down", "genre": "funk", "station": "bluelane", "bpm": 116, "key": "A minor", "duration": 84, "seed": 7190, "mood": "glittering, dancing", "tags": "disco funk, four on the floor, octave bass line, lush string swells, chicken scratch guitar, brass hits"},
+
+    {"id": "neon-interstate", "title": "Neon Interstate", "genre": "synthwave", "station": "neon", "bpm": 118, "key": "F# minor", "duration": 96, "seed": 7200, "mood": "nostalgic, propulsive", "tags": "retro synthwave, gated reverb drums, pulsing analog bass arpeggio, lush polysynth pads, bright saw lead melody"},
+    {"id": "afterglow-overtake", "title": "Afterglow Overtake", "genre": "synthwave", "station": "neon", "bpm": 128, "key": "C minor", "duration": 88, "seed": 7210, "mood": "fast night drive", "tags": "outrun synthwave, driving sixteenth note bass, electric guitar lead over synths, big snare, shimmering arpeggios"},
+
+    {"id": "breakwater-run", "title": "Breakwater Run", "genre": "surf", "station": "redline", "bpm": 168, "key": "E minor", "duration": 80, "seed": 7220, "mood": "splashy, thrilling", "tags": "instrumental surf rock, reverb drenched twangy guitar, fast tremolo picking, galloping drums, spring reverb, electric bass"},
+    {"id": "coastline-tremolo", "title": "Coastline Tremolo", "genre": "surf", "station": "redline", "bpm": 150, "key": "A minor", "duration": 76, "seed": 7230, "mood": "sunny, twangy", "tags": "surf rock instrumental, twangy baritone guitar melody, tremolo bar dips, combo organ, energetic tom beat"},
+
+    {"id": "highway-two-step", "title": "Highway Two-Step", "genre": "country", "station": "backroads", "bpm": 130, "key": "A major", "duration": 90, "seed": 7240, "mood": "rolling, friendly", "tags": "upbeat country, twangy telecaster guitar, pedal steel, train beat drums, chicken picking, honky tonk piano"},
+    {"id": "gravel-shoulder-boogie", "title": "Gravel Shoulder Boogie", "genre": "country", "station": "backroads", "bpm": 164, "key": "E major", "duration": 84, "seed": 7250, "mood": "bouncy, rowdy", "tags": "rockabilly, slapback echo electric guitar, slapped upright bass, snare shuffle, boogie woogie piano"},
+
+    {"id": "kilometer-pulse", "title": "Kilometer Pulse", "genre": "electronic", "station": "neon", "bpm": 126, "key": "G minor", "duration": 96, "seed": 7260, "mood": "hypnotic, forward", "tags": "progressive house, rolling bassline, crisp hi hats, filtered chord stabs, uplifting synth lead, big build and drop"},
+    {"id": "signal-boost", "title": "Signal Boost", "genre": "electronic", "station": "neon", "bpm": 174, "key": "F minor", "duration": 88, "seed": 7270, "mood": "rushing, bright", "tags": "liquid drum and bass, fast breakbeats, deep rolling bass, airy pads, bright piano chords"}
+  ]
+}

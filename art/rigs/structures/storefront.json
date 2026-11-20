@@ -1,0 +1,36 @@
+{
+  "template": "storefront",
+  "notes": "Row of n shop units sharing one brick facade; shop windows and awnings face -Y.",
+  "view": {"pitch": 7, "yaw": 30},
+  "params": {"n": 3, "uw": 6.0, "d": 12, "storeys": 2, "sh": 3.6, "wall": "#a5523a", "trim": "#e8dcc4",
+             "glass": "#3b5670", "doorc": "#3c2f2a", "awn": ["#2f6b4f", "#b8352c", "#2c4f86"], "cornice": "#d8cbb2"},
+  "derived": {"w": "n*uw", "H": "storeys*sh", "fy": "-d/2"},
+  "parts": [
+    {"p": "box", "size": ["w", "d", "H"], "c": "wall"},
+    {"p": "box", "size": ["w+0.3", "d+0.3", 0.5], "at": [0, 0, "H"], "c": "cornice"},
+    {"p": "box", "size": ["w+0.05", "d+0.05", 0.6], "at": [0, 0, "H+0.5"], "c": "wall"},
+    {"p": "box", "size": ["w+0.2", "d+0.2", 0.15], "at": [0, 0, "H+1.1"], "c": "cornice"},
+    {"p": "box", "size": ["w+0.1", 0.12, 0.3], "at": [0, "fy-0.06", "sh-0.2"], "c": "cornice"},
+    {"repeat": {"k": "range(n)"}, "parts": [
+      {"p": "box", "size": ["uw*0.62", 0.1, 2.2], "at": ["-w/2 + uw*(k+0.5) - uw*0.12", "fy-0.04", 0.5], "c": "glass"},
+      {"p": "box", "size": ["uw*0.66", 0.08, 0.5], "at": ["-w/2 + uw*(k+0.5) - uw*0.12", "fy-0.03", 0], "c": "trim"},
+      {"p": "box", "size": [1.1, 0.12, 2.5], "at": ["-w/2 + uw*(k+0.5) + uw*0.3", "fy-0.05", 0], "c": "doorc"},
+      {"p": "box", "size": ["uw*0.86", 0.14, 0.7], "at": ["-w/2 + uw*(k+0.5)", "fy-0.07", 2.75], "c": "trim"},
+      {"p": "extrude", "axis": "x", "depth": "uw*0.9", "at": ["-w/2 + uw*(k+0.5)", 0, 0],
+       "profile": [["fy", 2.6], ["fy", 3.3], ["fy-1.5", 2.65], ["fy-1.5", 2.35]], "c": "awn[k % len(awn)]"},
+      {"repeat": {"s": "range(1, storeys)"}, "parts": [
+        {"repeat": {"j": "range(3)"}, "parts": [
+          {"p": "box", "size": [1.15, 0.1, 1.8], "at": ["-w/2 + uw*k + uw*(j+0.5)/3", "fy-0.04", "s*sh+0.8"], "c": "glass"},
+          {"p": "box", "size": [1.4, 0.16, 0.18], "at": ["-w/2 + uw*k + uw*(j+0.5)/3", "fy-0.06", "s*sh+2.6"], "c": "cornice"},
+          {"p": "box", "size": [1.35, 0.2, 0.12], "at": ["-w/2 + uw*k + uw*(j+0.5)/3", "fy-0.08", "s*sh+0.72"], "c": "cornice"}
+        ]}
+      ]},
+      {"p": "box", "size": [0.3, 0.2, "H"], "at": ["-w/2 + uw*k", "fy-0.08", 0], "c": "wall"}
+    ]},
+    {"p": "box", "size": [0.3, 0.2, "H"], "at": ["w/2", "fy-0.08", 0], "c": "wall"},
+    {"repeat": {"s": "range(storeys)"}, "parts": [
+      {"repeat": {"j": "range(int(d/3.5))"}, "p": "box", "size": [0.1, 1.1, 1.7], "at": ["-w/2-0.04", "fy + d*(j+0.5)/int(d/3.5)", "s*sh+0.9"], "c": "glass"}
+    ]},
+    {"p": "box", "size": [1.2, 1.2, 0.9], "at": ["w*0.25", "d*0.1", "H+0.5"], "c": "#8d8f93"}
+  ]
+}

@@ -1,0 +1,858 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "qwen-image-edit-2511"
+    },
+    "inputs": {
+      "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "qwen-vl-text-encoder"
+    },
+    "inputs": {
+      "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "type": "qwen_image"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "qwen-image-vae"
+    },
+    "inputs": {
+      "vae_name": "qwen_image_vae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "lightning-4step"
+    },
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors",
+      "strength_model": 1.0
+    }
+  },
+  "5": {
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "shift"
+    },
+    "inputs": {
+      "model": [
+        "4",
+        0
+      ],
+      "shift": 3.1
+    }
+  },
+  "100": {
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "$in0"
+    },
+    "inputs": {
+      "image": "$in0"
+    }
+  },
+  "101": {
+    "class_type": "ImageScaleToTotalPixels",
+    "_meta": {
+      "title": "megapixels-0"
+    },
+    "inputs": {
+      "image": [
+        "100",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 1.0,
+      "resolution_steps": 16
+    }
+  },
+  "102": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "_meta": {
+      "title": "prompt-0"
+    },
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image1": [
+        "101",
+        0
+      ],
+      "prompt": "Repaint this clay model as hand-painted cartoon game art."
+    }
+  },
+  "103": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "_meta": {
+      "title": "negative-0"
+    },
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image1": [
+        "101",
+        0
+      ],
+      "prompt": ""
+    }
+  },
+  "104": {
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "encode-0"
+    },
+    "inputs": {
+      "pixels": [
+        "101",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "105": {
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "$seed"
+    },
+    "inputs": {
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "102",
+        0
+      ],
+      "negative": [
+        "103",
+        0
+      ],
+      "latent_image": [
+        "104",
+        0
+      ],
+      "seed": 1000,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.85
+    }
+  },
+  "107": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "decode-0-0"
+    },
+    "inputs": {
+      "samples": [
+        "105",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "109": {
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "save-0-0"
+    },
+    "inputs": {
+      "images": [
+        "107",
+        0
+      ],
+      "filename_prefix": "structures/b0s0"
+    }
+  },
+  "106": {
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "sampler-0-1"
+    },
+    "inputs": {
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "102",
+        0
+      ],
+      "negative": [
+        "103",
+        0
+      ],
+      "latent_image": [
+        "104",
+        0
+      ],
+      "seed": 1001,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.85
+    }
+  },
+  "108": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "decode-0-1"
+    },
+    "inputs": {
+      "samples": [
+        "106",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "110": {
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "save-0-1"
+    },
+    "inputs": {
+      "images": [
+        "108",
+        0
+      ],
+      "filename_prefix": "structures/b0s1"
+    }
+  },
+  "120": {
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "$in1"
+    },
+    "inputs": {
+      "image": "$in1"
+    }
+  },
+  "121": {
+    "class_type": "ImageScaleToTotalPixels",
+    "_meta": {
+      "title": "megapixels-1"
+    },
+    "inputs": {
+      "image": [
+        "120",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 1.0,
+      "resolution_steps": 16
+    }
+  },
+  "122": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "_meta": {
+      "title": "prompt-1"
+    },
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image1": [
+        "121",
+        0
+      ],
+      "prompt": "Repaint this clay model as hand-painted cartoon game art."
+    }
+  },
+  "123": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "_meta": {
+      "title": "negative-1"
+    },
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image1": [
+        "121",
+        0
+      ],
+      "prompt": ""
+    }
+  },
+  "124": {
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "encode-1"
+    },
+    "inputs": {
+      "pixels": [
+        "121",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "125": {
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "sampler-1-0"
+    },
+    "inputs": {
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "122",
+        0
+      ],
+      "negative": [
+        "123",
+        0
+      ],
+      "latent_image": [
+        "124",
+        0
+      ],
+      "seed": 1000,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.85
+    }
+  },
+  "127": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "decode-1-0"
+    },
+    "inputs": {
+      "samples": [
+        "125",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "129": {
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "save-1-0"
+    },
+    "inputs": {
+      "images": [
+        "127",
+        0
+      ],
+      "filename_prefix": "structures/b1s0"
+    }
+  },
+  "126": {
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "sampler-1-1"
+    },
+    "inputs": {
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "122",
+        0
+      ],
+      "negative": [
+        "123",
+        0
+      ],
+      "latent_image": [
+        "124",
+        0
+      ],
+      "seed": 1001,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.85
+    }
+  },
+  "128": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "decode-1-1"
+    },
+    "inputs": {
+      "samples": [
+        "126",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "130": {
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "save-1-1"
+    },
+    "inputs": {
+      "images": [
+        "128",
+        0
+      ],
+      "filename_prefix": "structures/b1s1"
+    }
+  },
+  "140": {
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "$in2"
+    },
+    "inputs": {
+      "image": "$in2"
+    }
+  },
+  "141": {
+    "class_type": "ImageScaleToTotalPixels",
+    "_meta": {
+      "title": "megapixels-2"
+    },
+    "inputs": {
+      "image": [
+        "140",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 1.0,
+      "resolution_steps": 16
+    }
+  },
+  "142": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "_meta": {
+      "title": "prompt-2"
+    },
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image1": [
+        "141",
+        0
+      ],
+      "prompt": "Repaint this clay model as hand-painted cartoon game art."
+    }
+  },
+  "143": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "_meta": {
+      "title": "negative-2"
+    },
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image1": [
+        "141",
+        0
+      ],
+      "prompt": ""
+    }
+  },
+  "144": {
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "encode-2"
+    },
+    "inputs": {
+      "pixels": [
+        "141",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "145": {
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "sampler-2-0"
+    },
+    "inputs": {
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "142",
+        0
+      ],
+      "negative": [
+        "143",
+        0
+      ],
+      "latent_image": [
+        "144",
+        0
+      ],
+      "seed": 1000,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.85
+    }
+  },
+  "147": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "decode-2-0"
+    },
+    "inputs": {
+      "samples": [
+        "145",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "149": {
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "save-2-0"
+    },
+    "inputs": {
+      "images": [
+        "147",
+        0
+      ],
+      "filename_prefix": "structures/b2s0"
+    }
+  },
+  "146": {
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "sampler-2-1"
+    },
+    "inputs": {
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "142",
+        0
+      ],
+      "negative": [
+        "143",
+        0
+      ],
+      "latent_image": [
+        "144",
+        0
+      ],
+      "seed": 1001,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.85
+    }
+  },
+  "148": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "decode-2-1"
+    },
+    "inputs": {
+      "samples": [
+        "146",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "150": {
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "save-2-1"
+    },
+    "inputs": {
+      "images": [
+        "148",
+        0
+      ],
+      "filename_prefix": "structures/b2s1"
+    }
+  },
+  "160": {
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "$in3"
+    },
+    "inputs": {
+      "image": "$in3"
+    }
+  },
+  "161": {
+    "class_type": "ImageScaleToTotalPixels",
+    "_meta": {
+      "title": "megapixels-3"
+    },
+    "inputs": {
+      "image": [
+        "160",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 1.0,
+      "resolution_steps": 16
+    }
+  },
+  "162": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "_meta": {
+      "title": "prompt-3"
+    },
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image1": [
+        "161",
+        0
+      ],
+      "prompt": "Repaint this clay model as hand-painted cartoon game art."
+    }
+  },
+  "163": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "_meta": {
+      "title": "negative-3"
+    },
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image1": [
+        "161",
+        0
+      ],
+      "prompt": ""
+    }
+  },
+  "164": {
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "encode-3"
+    },
+    "inputs": {
+      "pixels": [
+        "161",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "165": {
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "sampler-3-0"
+    },
+    "inputs": {
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "162",
+        0
+      ],
+      "negative": [
+        "163",
+        0
+      ],
+      "latent_image": [
+        "164",
+        0
+      ],
+      "seed": 1000,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.85
+    }
+  },
+  "167": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "decode-3-0"
+    },
+    "inputs": {
+      "samples": [
+        "165",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "169": {
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "save-3-0"
+    },
+    "inputs": {
+      "images": [
+        "167",
+        0
+      ],
+      "filename_prefix": "structures/b3s0"
+    }
+  },
+  "166": {
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "sampler-3-1"
+    },
+    "inputs": {
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "162",
+        0
+      ],
+      "negative": [
+        "163",
+        0
+      ],
+      "latent_image": [
+        "164",
+        0
+      ],
+      "seed": 1001,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.85
+    }
+  },
+  "168": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "decode-3-1"
+    },
+    "inputs": {
+      "samples": [
+        "166",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "170": {
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "save-3-1"
+    },
+    "inputs": {
+      "images": [
+        "168",
+        0
+      ],
+      "filename_prefix": "structures/b3s1"
+    }
+  }
+}

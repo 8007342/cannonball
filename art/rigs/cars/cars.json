@@ -1,0 +1,206 @@
+{
+  "comment": "Parametric car bodies for art/rigs/cars/car_rig.py. Original inspired-by shapes: no logos, badges, wordmarks or plate text. Metres; t runs along the body from rear bumper (0) to front bumper (1). Reference names are for art direction only; in-game names live in lib/game/car_catalog.dart.",
+  "cars": [
+    {
+      "id": "s2000_roadster",
+      "reference": "late-1990s front-engine two-seat roadster (player starter)",
+      "use": ["player"],
+      "length": 4.14, "width": 1.75, "wheelbase": 2.40, "rearAxle": 0.86, "track": 1.52,
+      "wheelR": 0.315, "tyreW": 0.225, "clearance": 0.14,
+      "top": [[0, 0.80], [0.03, 0.93], [0.10, 0.97], [0.28, 0.97], [0.40, 0.95], [0.55, 0.93], [0.75, 0.86], [0.95, 0.76], [1, 0.66]],
+      "halfw": [[0, 0.84], [0.05, 0.95], [0.18, 1.0], [0.55, 0.97], [0.80, 0.97], [0.95, 0.88], [1, 0.74]],
+      "section": {"p": 4.2, "taper": 0.24},
+      "cabin": {"type": "open", "cockpit": [0.30, 0.56], "screen": [0.56, 0.68], "screenTop": 1.24, "seatT": 0.38, "hoops": true, "tonneau": 0.27},
+      "lamps": [
+        {"shape": "oval", "x": 0.60, "z": 0.83, "w": 0.30, "h": 0.15, "rot": -6, "rim": true},
+        {"shape": "circle", "x": 0.52, "z": 0.83, "w": 0.075, "h": 0.075, "mat": "lamp_core"},
+        {"shape": "circle", "x": 0.67, "z": 0.83, "w": 0.075, "h": 0.075, "mat": "lamp_clear"}
+      ],
+      "plate": {"z": 0.56, "w": 0.34, "h": 0.12},
+      "rearLower": 0.40,
+      "exhaust": {"type": "dual", "x": 0.42, "z": 0.30, "r": 0.045},
+      "spoiler": {"type": "none"},
+      "mirrors": {"t": 0.60, "z": 0.93},
+      "wheel": {"style": "spoke5", "rim": "#c9ccd0"},
+      "paints": ["#c42a20"]
+    },
+    {
+      "id": "electric_roadster",
+      "reference": "white low electric hypercar-roadster with removable glass roof (player bonus + fast traffic)",
+      "use": ["player", "traffic"], "sporty": true,
+      "length": 4.30, "width": 1.95, "wheelbase": 2.45, "rearAxle": 0.88, "track": 1.64,
+      "wheelR": 0.34, "tyreW": 0.27, "clearance": 0.11,
+      "top": [[0, 0.70], [0.02, 0.84], [0.08, 0.88], [0.22, 0.86], [0.45, 0.80], [0.70, 0.72], [0.92, 0.62], [1, 0.50]],
+      "halfw": [[0, 0.86], [0.06, 0.97], [0.20, 1.0], [0.45, 0.93], [0.75, 0.95], [0.94, 0.86], [1, 0.66]],
+      "section": {"p": 3.6, "taper": 0.30},
+      "cabin": {"type": "closed", "rearBase": 0.10, "rearTop": 0.33, "frontTop": 0.55, "frontBase": 0.72, "roofZ": 1.15, "roofW": 0.60, "baseW": 0.86, "roof": "glass", "pillars": 0.07},
+      "lamps": [
+        {"shape": "bar", "x": 0, "z": 0.80, "w": 1.62, "h": 0.035, "center": true, "mat": "lamp_core"},
+        {"shape": "wedge", "x": 0.74, "z": 0.79, "w": 0.22, "h": 0.07, "mat": "lamp_core", "brake": true}
+      ],
+      "plate": {"z": 0.50, "w": 0.32, "h": 0.11},
+      "rearLower": 0.34,
+      "diffuser": true,
+      "exhaust": {"type": "none"},
+      "spoiler": {"type": "lip", "z": 0.885, "w": 1.40},
+      "mirrors": {"t": 0.70, "z": 0.86},
+      "wheel": {"style": "turbine", "rim": "#3a3f45"},
+      "paints": ["#f3f2ee", "#eef0f2", "#b51f2a", "#1c1f24"]
+    },
+    {
+      "id": "civic_hot_hatch",
+      "reference": "current-generation hot hatch with big wing and triple centre exhaust",
+      "use": ["traffic"], "sporty": true,
+      "length": 4.59, "width": 1.89, "wheelbase": 2.73, "rearAxle": 0.88, "track": 1.60,
+      "wheelR": 0.335, "tyreW": 0.265, "clearance": 0.12,
+      "top": [[0, 0.78], [0.03, 0.96], [0.08, 1.00], [0.20, 1.02], [0.55, 0.98], [0.72, 0.92], [0.92, 0.82], [1, 0.68]],
+      "halfw": [[0, 0.88], [0.06, 0.98], [0.18, 1.0], [0.50, 0.97], [0.80, 0.98], [0.95, 0.90], [1, 0.74]],
+      "section": {"p": 4.2, "taper": 0.22},
+      "cabin": {"type": "closed", "rearBase": 0.07, "rearTop": 0.17, "frontTop": 0.56, "frontBase": 0.73, "roofZ": 1.41, "roofW": 0.72, "baseW": 0.92, "roof": "paint", "pillars": 0.16},
+      "lamps": [
+        {"shape": "boomerang", "x": 0.70, "z": 0.98, "w": 0.30, "h": 0.12, "rim": true},
+        {"shape": "bar", "x": 0.80, "z": 0.48, "w": 0.10, "h": 0.03, "mat": "lamp_core"}
+      ],
+      "plate": {"z": 0.80, "w": 0.34, "h": 0.12},
+      "rearLower": 0.46,
+      "diffuser": true,
+      "exhaust": {"type": "triple", "x": 0.0, "z": 0.30, "r": 0.05},
+      "spoiler": {"type": "wing", "z": 1.02, "w": 1.50, "t": 0.025, "chord": 0.20},
+      "mirrors": {"t": 0.72, "z": 1.02},
+      "wheel": {"style": "split", "rim": "#26292d"},
+      "paints": ["#f2f1ec", "#c4202b", "#25459c", "#3a3d42"]
+    },
+    {
+      "id": "sport_sedan_3",
+      "reference": "compact German sport sedan with L-shaped tail lamps",
+      "use": ["traffic"], "sporty": true,
+      "length": 4.71, "width": 1.83, "wheelbase": 2.85, "rearAxle": 0.84, "track": 1.58,
+      "wheelR": 0.33, "tyreW": 0.245, "clearance": 0.13,
+      "top": [[0, 0.82], [0.03, 0.97], [0.10, 1.00], [0.22, 1.00], [0.30, 0.98], [0.72, 0.93], [0.92, 0.82], [1, 0.68]],
+      "halfw": [[0, 0.86], [0.06, 0.97], [0.20, 1.0], [0.55, 0.97], [0.82, 0.97], [0.95, 0.88], [1, 0.72]],
+      "section": {"p": 4.0, "taper": 0.20},
+      "cabin": {"type": "closed", "rearBase": 0.20, "rearTop": 0.36, "frontTop": 0.60, "frontBase": 0.74, "roofZ": 1.44, "roofW": 0.70, "baseW": 0.90, "roof": "paint", "pillars": 0.13},
+      "lamps": [
+        {"shape": "L", "x": 0.72, "z": 0.91, "w": 0.30, "h": 0.12, "rim": true}
+      ],
+      "plate": {"z": 0.80, "w": 0.36, "h": 0.12},
+      "rearLower": 0.42,
+      "diffuser": true,
+      "exhaust": {"type": "quad", "x": 0.52, "z": 0.30, "r": 0.04},
+      "spoiler": {"type": "lip", "z": 1.005, "w": 1.20},
+      "mirrors": {"t": 0.74, "z": 1.00},
+      "wheel": {"style": "spoke5", "rim": "#b9bdc2"},
+      "paints": ["#1f4f9a", "#eceae4", "#18191c", "#80878e"]
+    },
+    {
+      "id": "pony_coupe",
+      "reference": "American fastback pony car with tri-bar lamps and quad exhaust",
+      "use": ["traffic"], "sporty": true,
+      "length": 4.79, "width": 1.92, "wheelbase": 2.72, "rearAxle": 0.90, "track": 1.62,
+      "wheelR": 0.345, "tyreW": 0.275, "clearance": 0.13,
+      "top": [[0, 0.84], [0.03, 0.99], [0.08, 1.03], [0.18, 1.02], [0.40, 0.99], [0.62, 0.97], [0.85, 0.90], [1, 0.74]],
+      "halfw": [[0, 0.86], [0.06, 0.99], [0.20, 1.0], [0.50, 0.95], [0.82, 0.96], [0.95, 0.88], [1, 0.74]],
+      "section": {"p": 3.8, "taper": 0.20},
+      "cabin": {"type": "closed", "rearBase": 0.13, "rearTop": 0.40, "frontTop": 0.57, "frontBase": 0.69, "roofZ": 1.38, "roofW": 0.66, "baseW": 0.86, "roof": "paint", "pillars": 0.18},
+      "lamps": [
+        {"shape": "tribar", "x": 0.66, "z": 0.86, "w": 0.30, "h": 0.17, "rim": true}
+      ],
+      "plate": {"z": 0.78, "w": 0.34, "h": 0.12},
+      "panel": {"z": 0.86, "w": 0.95, "h": 0.20},
+      "rearLower": 0.44,
+      "exhaust": {"type": "quad", "x": 0.55, "z": 0.32, "r": 0.045},
+      "spoiler": {"type": "ducktail", "z": 1.035, "w": 1.30},
+      "mirrors": {"t": 0.70, "z": 1.00},
+      "wheel": {"style": "spoke5", "rim": "#2b2e33"},
+      "paints": ["#f2c230", "#b3231e", "#3b3f45", "#2a5aa6"]
+    },
+    {
+      "id": "family_sedan",
+      "reference": "ordinary mid-size family sedan",
+      "use": ["traffic"],
+      "length": 4.88, "width": 1.84, "wheelbase": 2.83, "rearAxle": 0.98, "track": 1.59,
+      "wheelR": 0.33, "tyreW": 0.225, "clearance": 0.15,
+      "top": [[0, 0.86], [0.03, 1.00], [0.10, 1.03], [0.22, 1.03], [0.30, 1.00], [0.72, 0.95], [0.92, 0.84], [1, 0.70]],
+      "halfw": [[0, 0.86], [0.06, 0.97], [0.20, 1.0], [0.55, 0.98], [0.82, 0.98], [0.95, 0.88], [1, 0.72]],
+      "section": {"p": 3.8, "taper": 0.18},
+      "cabin": {"type": "closed", "rearBase": 0.19, "rearTop": 0.36, "frontTop": 0.62, "frontBase": 0.75, "roofZ": 1.46, "roofW": 0.72, "baseW": 0.92, "roof": "paint", "pillars": 0.12},
+      "lamps": [
+        {"shape": "wrap", "x": 0.70, "z": 0.94, "w": 0.34, "h": 0.12, "rim": true}
+      ],
+      "plate": {"z": 0.82, "w": 0.36, "h": 0.12},
+      "rearLower": 0.44,
+      "exhaust": {"type": "single", "x": 0.55, "z": 0.30, "r": 0.035},
+      "spoiler": {"type": "none"},
+      "mirrors": {"t": 0.74, "z": 1.02},
+      "wheel": {"style": "mesh", "rim": "#b6babe"},
+      "paints": ["#b9bec4", "#c9b893", "#7a2430", "#22324f"]
+    },
+    {
+      "id": "suv",
+      "reference": "mid-size crossover SUV",
+      "use": ["traffic"], "large": true,
+      "length": 4.62, "width": 1.88, "wheelbase": 2.70, "rearAxle": 0.92, "track": 1.60,
+      "wheelR": 0.37, "tyreW": 0.245, "clearance": 0.22,
+      "top": [[0, 1.02], [0.03, 1.10], [0.10, 1.12], [0.75, 1.10], [0.92, 1.02], [1, 0.90]],
+      "halfw": [[0, 0.90], [0.06, 0.98], [0.20, 1.0], [0.80, 0.99], [0.95, 0.92], [1, 0.80]],
+      "section": {"p": 4.4, "taper": 0.12},
+      "cabin": {"type": "closed", "rearBase": 0.02, "rearTop": 0.07, "frontTop": 0.62, "frontBase": 0.76, "roofZ": 1.70, "roofW": 0.82, "baseW": 0.95, "roof": "paint", "pillars": 0.14},
+      "lamps": [
+        {"shape": "rect", "x": 0.77, "z": 1.12, "w": 0.16, "h": 0.22, "rim": true, "rot": 0},
+        {"shape": "bar", "x": 0.80, "z": 0.58, "w": 0.12, "h": 0.03, "mat": "lamp_core"}
+      ],
+      "plate": {"z": 0.90, "w": 0.36, "h": 0.12},
+      "rearLower": 0.56,
+      "skid": true,
+      "exhaust": {"type": "single", "x": 0.55, "z": 0.36, "r": 0.04},
+      "spoiler": {"type": "roof", "w": 1.30},
+      "mirrors": {"t": 0.76, "z": 1.12},
+      "wheel": {"style": "spoke5", "rim": "#a8adb2"},
+      "paints": ["#3e5a46", "#efede7", "#aeb3b8", "#24324a"]
+    },
+    {
+      "id": "pickup",
+      "reference": "full-size pickup truck with open bed",
+      "use": ["traffic"], "large": true,
+      "length": 5.40, "width": 2.00, "wheelbase": 3.40, "rearAxle": 1.10, "track": 1.72,
+      "wheelR": 0.40, "tyreW": 0.27, "clearance": 0.26,
+      "top": [[0, 1.22], [0.02, 1.26], [0.55, 1.26], [0.60, 1.20], [0.68, 1.18], [0.92, 1.12], [1, 1.00]],
+      "halfw": [[0, 0.97], [0.04, 1.0], [0.92, 1.0], [1, 0.90]],
+      "section": {"p": 5.0, "taper": 0.06},
+      "cabin": {"type": "closed", "rearBase": 0.45, "rearTop": 0.46, "frontTop": 0.64, "frontBase": 0.74, "roofZ": 1.88, "roofW": 0.86, "baseW": 0.96, "roof": "paint", "pillars": 0.20},
+      "bed": {"t0": 0.02, "t1": 0.44, "floor": 0.78, "wall": 0.06},
+      "lamps": [
+        {"shape": "rect", "x": 0.88, "z": 1.02, "w": 0.12, "h": 0.30, "rim": true}
+      ],
+      "plate": {"z": 0.62, "w": 0.36, "h": 0.12},
+      "rearLower": 0.72,
+      "bumper": true,
+      "exhaust": {"type": "single", "x": 0.60, "z": 0.40, "r": 0.045},
+      "spoiler": {"type": "none"},
+      "mirrors": {"t": 0.72, "z": 1.30},
+      "wheel": {"style": "steel", "rim": "#9ea3a8"},
+      "paints": ["#a8262a", "#f0eee8", "#1e2024", "#5b6f84"]
+    },
+    {
+      "id": "minivan",
+      "reference": "family minivan",
+      "use": ["traffic"], "large": true,
+      "length": 5.15, "width": 1.99, "wheelbase": 3.07, "rearAxle": 1.02, "track": 1.70,
+      "wheelR": 0.35, "tyreW": 0.235, "clearance": 0.16,
+      "top": [[0, 1.00], [0.03, 1.06], [0.10, 1.08], [0.80, 1.06], [0.93, 0.98], [1, 0.82]],
+      "halfw": [[0, 0.90], [0.06, 0.98], [0.20, 1.0], [0.82, 0.99], [0.95, 0.92], [1, 0.80]],
+      "section": {"p": 4.6, "taper": 0.10},
+      "cabin": {"type": "closed", "rearBase": 0.02, "rearTop": 0.05, "frontTop": 0.70, "frontBase": 0.84, "roofZ": 1.76, "roofW": 0.85, "baseW": 0.96, "roof": "paint", "pillars": 0.10},
+      "lamps": [
+        {"shape": "rect", "x": 0.82, "z": 1.20, "w": 0.13, "h": 0.30, "rim": true}
+      ],
+      "plate": {"z": 0.84, "w": 0.36, "h": 0.12},
+      "rearLower": 0.52,
+      "exhaust": {"type": "none"},
+      "spoiler": {"type": "roof", "w": 1.40},
+      "mirrors": {"t": 0.83, "z": 1.10},
+      "wheel": {"style": "mesh", "rim": "#b8bcc0"},
+      "paints": ["#c3c7cc", "#f1efe9", "#b9a585", "#22335a"]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# Third-party licence acknowledgement for the Cannonball scenic asset pipeline.
+# The user approved this model set in the agent session of 2026-11-20 (relayed by
+# the coordinating agent). This record is NOT cryptographically signed; a signed
+# or merge-backed acknowledgement can replace it without changing the register.
+record: tillandsias-licence-acknowledgement v1
+licence: apache-2.0
+licence_text: licences/texts/apache-2.0.txt
+licence_sha256: 8ada45cd9f843acf64e4722ae262c622a2b3b3007c7310ef36ac1061a30f6adb
+covers: ["Qwen/Qwen-Image-Edit-2511", "lightx2v/Qwen-Image-Lightning (Qwen-Image-Edit-2511-Lightning-4steps)", "Qwen/Qwen2.5-VL-7B-Instruct (text encoder)", "black-forest-labs/FLUX.2-klein-4B", "Qwen/Qwen3-4B (FLUX.2-klein text encoder)", "black-forest-labs/FLUX.1-schnell", "xinsir/controlnet-union-sdxl-1.0 (promax)", "h94/IP-Adapter (ip-adapter-plus_sdxl_vit-h)", "laion/CLIP-ViT-H-14-laion2B-s32B-b79K (IP-Adapter image encoder)"]
+grantor: operator
+scope: project:cannonball
+use: generated game art (scenic sprites and textures) committed to this repository
+expiry: "standing"
+approved_on: "2026-11-20"
+strength: chat-approval
+signature: ""

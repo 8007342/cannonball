@@ -1,0 +1,31 @@
+{
+  "template": "water_tower",
+  "notes": "Small-town water tower: legged steel tank, cone roof, catwalk. Tank text left blank.",
+  "view": {"pitch": 9, "yaw": 30},
+  "params": {"r": 4.5, "th": 5, "legh": 18, "tank": "#c9d3db", "legs": "#9aa6b0", "roofc": "#b5c0c8", "shape": "cyl"},
+  "parts": [
+    {"repeat": {"a": "[45, 135, 225, 315]"}, "parts": [
+      {"p": "beam", "from": ["cos(radians(a))*r*1.15", "sin(radians(a))*r*1.15", 0], "to": ["cos(radians(a))*r*0.8", "sin(radians(a))*r*0.8", "legh+0.5"], "size": [0.4, 0.4], "c": "legs"},
+      {"p": "cyl", "r": 0.6, "h": 0.6, "seg": 8, "at": ["cos(radians(a))*r*1.15", "sin(radians(a))*r*1.15", 0], "c": "#a59c90"}
+    ]},
+    {"repeat": {"z": "[legh*0.35, legh*0.7]"}, "parts": [
+      {"repeat": {"a": "[45, 135, 225, 315]"}, "p": "beam",
+       "from": ["cos(radians(a))*r*(1.15-0.35*z/legh)", "sin(radians(a))*r*(1.15-0.35*z/legh)", "z"],
+       "to": ["cos(radians(a+90))*r*(1.15-0.35*z/legh)", "sin(radians(a+90))*r*(1.15-0.35*z/legh)", "z"], "size": [0.15, 0.15], "c": "legs"}
+    ]},
+    {"p": "cyl", "r": 0.5, "h": "legh", "seg": 10, "c": "legs"},
+    {"if": "shape == 'cyl'", "parts": [
+      {"p": "sphere", "r": "r", "half": true, "seg": 20, "at": [0, 0, "legh+0.5"], "scale": [1, 1, -0.45], "c": "tank"},
+      {"p": "cyl", "r": "r", "h": "th", "seg": 24, "at": [0, 0, "legh+0.5"], "c": "tank"},
+      {"p": "cyl", "r": "r+0.25", "r2": 0.3, "h": "r*0.55", "seg": 24, "at": [0, 0, "legh+0.5+th"], "c": "roofc"},
+      {"p": "cyl", "r": 0.25, "h": 0.8, "seg": 8, "at": [0, 0, "legh+0.4+th+r*0.55"], "c": "legs"},
+      {"p": "cyl", "r": "r+0.9", "h": 0.12, "seg": 24, "at": [0, 0, "legh+0.5"], "c": "legs"},
+      {"repeat": {"a": "range(0, 360, 20)"}, "p": "box", "size": [0.06, 0.06, 1.0], "at": ["cos(radians(a))*(r+0.85)", "sin(radians(a))*(r+0.85)", "legh+0.6"], "c": "legs"},
+      {"p": "cyl", "r": "r+0.9", "h": 0.08, "seg": 24, "at": [0, 0, "legh+1.55"], "c": "legs", "r2": "r+0.9"}
+    ]},
+    {"if": "shape == 'ball'", "parts": [
+      {"p": "sphere", "r": "r*1.1", "seg": 24, "at": [0, 0, "legh + r*1.1"], "c": "tank"},
+      {"p": "cyl", "r": "r*1.12", "h": 0.12, "seg": 24, "at": [0, 0, "legh + r*1.05"], "c": "legs"}
+    ]}
+  ]
+}

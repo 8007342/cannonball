@@ -1,0 +1,21 @@
+{
+  "template": "traffic_light",
+  "notes": "Signal pole with a mast arm reaching over the road (-X); heads face approaching traffic (-Y).",
+  "view": {"pitch": 6, "yaw": 25},
+  "params": {"h": 6.4, "arm": 7.0, "steel": "#8e979c", "housing": "#d9b62a", "heads": 2},
+  "parts": [
+    {"p": "cyl", "r": 0.35, "h": 0.4, "seg": 12, "c": "#a8a49c"},
+    {"p": "cyl", "r": 0.18, "r2": 0.14, "h": "h", "seg": 12, "at": [0, 0, 0.4], "c": "steel"},
+    {"p": "beam", "from": [0, 0, "h"], "to": ["-arm", 0, "h+0.2"], "size": [0.18, 0.18], "c": "steel"},
+    {"p": "beam", "from": [0, 0, "h+1.2"], "to": ["-arm*0.45", 0, "h+0.15"], "size": [0.06, 0.06], "c": "steel"},
+    {"repeat": {"k": "range(heads)"}, "at": ["-arm*(0.5 + 0.45*k/max(1, heads-1)) if heads > 1 else -arm*0.75", 0, "h-1.2"], "parts": [
+      {"p": "box", "size": [0.42, 0.32, 1.2], "c": "housing"},
+      {"p": "box", "size": [0.62, 0.06, 1.4], "at": [0, 0.15, -0.1], "c": "#2a2c2e"},
+      {"repeat": {"j": "[0, 1, 2]"}, "parts": [
+        {"p": "cyl", "r": 0.13, "h": 0.06, "axis": "y", "seg": 14, "at": [0, -0.18, "0.98 - j*0.38"], "c": "['#e0362c', '#f2b630', '#3fbf6a'][j]"},
+        {"p": "box", "size": [0.32, 0.22, 0.04], "at": [0, -0.27, "1.12 - j*0.38"], "c": "housing"}
+      ]}
+    ]},
+    {"p": "box", "size": [0.35, 0.3, 0.55], "at": [0.25, -0.1, 2.4], "c": "housing"}
+  ]
+}

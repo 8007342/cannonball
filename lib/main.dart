@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'app/session.dart';
 import 'game/race.dart';
 import 'game/legacy_race_game.dart';
+import 'game/traffic_policy/racer_policy_loader.dart';
 import 'ui/google_button.dart';
 import 'ui/painters.dart';
 import 'ui/wheel_control.dart';
@@ -14,6 +15,9 @@ import 'ui/visual_proof.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // Optional learned racer brain; traffic falls back to rules until/unless it
+  // loads. Each run captures the policy available when it starts.
+  unawaited(RacerPolicyStore.load());
   runApp(const CannonballApp());
 }
 

@@ -1,0 +1,563 @@
+{
+  "black-eyed-susans-a/1571700": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of black-eyed Susan flowers, bright yellow petals with dark brown centres on green stems, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 1571700,
+    "studio_job": "st-1795135547636-35",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/black-eyed-susans-a/1571700-rgb.png",
+    "sha256": "01080965bbaf6cf163e949be4e9489f257447a412cbefeae50e49ad568b902c6",
+    "matte_sha256": "b7d706430f2ac7357797cf2f3df7c3e9196361e74fc93d0e6531c5dbe679cc63",
+    "selected": false
+  },
+  "black-eyed-susans-a/1571701": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of black-eyed Susan flowers, bright yellow petals with dark brown centres on green stems, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 1571701,
+    "studio_job": "st-1795135547636-35",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/black-eyed-susans-a/1571701-rgb.png",
+    "sha256": "ebb2c5f7c19d0e9767ec4f05890855b36f507bdc3fcea29e45f7024b407e45b2",
+    "matte_sha256": "43a250985fc44ca52a0282e85b4d4e7d2a3a995d31d9aebca5b0aeb744a7fb51",
+    "selected": false
+  },
+  "black-eyed-susans-a/1571702": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of black-eyed Susan flowers, bright yellow petals with dark brown centres on green stems, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 1571702,
+    "studio_job": "st-1795135547636-35",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/black-eyed-susans-a/1571702-rgb.png",
+    "sha256": "2fc782e9df791d06d359c26c43034e210e850229ef78461a4e2abcab057edbc7",
+    "matte_sha256": "e8c0a43549b505e7b2695518aa417e867e0a2dfa85e0695c6a65055c01001662",
+    "selected": true,
+    "pick_reason": "dark centres and stems clearest",
+    "source_sha256": "54ecf223790222f26a3eb43cae7bdb6a5a499bcb571b7592612a14fedde12e3c",
+    "source": "art/sources/groundcover/black-eyed-susans-a.png"
+  },
+  "cattails-a/5577760": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of cattail reeds with tall green blades and brown velvet seed heads, marsh plants, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 5577760,
+    "studio_job": "st-1795135553097-38",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/cattails-a/5577760-rgb.png",
+    "sha256": "493c4540e1ddf5ab9b97157fab03fd92db5da26c6ea73ea6122ec330a0d4cd52",
+    "matte_sha256": "255faae64db97ad43778f2e733dea10778cfd825652bf7d113b3c3c2ea58e06e",
+    "selected": true,
+    "pick_reason": "fullest reed clump with several heads",
+    "source_sha256": "7c3748303b9f4637c1d15e184761092b9371a30592dd33158013cb9c3d9dd135",
+    "source": "art/sources/groundcover/cattails-a.png"
+  },
+  "cattails-a/5577761": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of cattail reeds with tall green blades and brown velvet seed heads, marsh plants, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 5577761,
+    "studio_job": "st-1795135553097-38",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/cattails-a/5577761-rgb.png",
+    "sha256": "c0cb583100334a1858c8c62a3abefbf55b825b86ae8bd231b5968789963b96eb",
+    "matte_sha256": "58b37253fa619dd752f67f1d4b2f13dc65d67c9690bd4c20179a4e6a6803204f",
+    "selected": false
+  },
+  "cattails-a/5577762": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of cattail reeds with tall green blades and brown velvet seed heads, marsh plants, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 5577762,
+    "studio_job": "st-1795135553097-38",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/cattails-a/5577762-rgb.png",
+    "sha256": "2ca043965a06804e6f38f517496458006c1c9082620d3000f0d9b3c1ad0e02fe",
+    "matte_sha256": "7e9ceea447466bf23a0dbcc8d16d90cfd7859cf2635ec15d6bf7cadc6c80bef2",
+    "selected": false
+  },
+  "desert-grass-a/4956410": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of pale straw-coloured desert bunch grass with thin wiry blades, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 4956410,
+    "studio_job": "st-1795136299493-115",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/desert-grass-a/4956410-rgb.png",
+    "sha256": "f44e0f28d43eb12e116e5428f7cfd13f7fef7881bb51faa3056ffd64259fc15f",
+    "matte_sha256": "3dd5ae876992598380fa707832986af4e17df15d5639f962aec7c51e3e7de3f7",
+    "selected": false
+  },
+  "desert-grass-a/4956411": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of pale straw-coloured desert bunch grass with thin wiry blades, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 4956411,
+    "studio_job": "st-1795136299493-115",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/desert-grass-a/4956411-rgb.png",
+    "sha256": "404072beb4f10e6ac74ad4b9b433419ed288710716ee9df6277031b05b09b19a",
+    "matte_sha256": "d72d74133224997e88691ba3bae1ce0053841af5635731e5b942c91d8055d693",
+    "selected": true,
+    "pick_reason": "straw bunch grass with seed plumes, compact base",
+    "source_sha256": "2604e643c23b48eb0e0eecd9a7c4e25604a8c2853bd4a01fe280ce8c34d44548",
+    "source": "art/sources/groundcover/desert-grass-a.png"
+  },
+  "desert-grass-a/4956412": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of pale straw-coloured desert bunch grass with thin wiry blades, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 4956412,
+    "studio_job": "st-1795136299493-115",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/desert-grass-a/4956412-rgb.png",
+    "sha256": "79d7c259f0f4d3008cdf2cae9e2cf9f151cd048db3407385762436c3726f314e",
+    "matte_sha256": "ad850ea67cd344037a2321e2f057bc5e043c4819ae132578bfd89dd021715860",
+    "selected": false
+  },
+  "desert-marigold-a/5391240": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low mound of silvery desert marigold with many small bright yellow daisy flowers, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 5391240,
+    "studio_job": "st-1795136299961-116",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/desert-marigold-a/5391240-rgb.png",
+    "sha256": "a89d7337291a61b41f8fedc21315ea8cea6bd0b68edc78b09b18a60a80c91822",
+    "matte_sha256": "63e9c4f6188f09c8f9b6f490165e644837cd5bf3f665d9b881c4bc6ed0abe6eb",
+    "selected": false
+  },
+  "desert-marigold-a/5391241": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low mound of silvery desert marigold with many small bright yellow daisy flowers, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 5391241,
+    "studio_job": "st-1795136299961-116",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/desert-marigold-a/5391241-rgb.png",
+    "sha256": "5a2d25e12facc8821231a3649e8762d1c9e5e43fc014ca97e70fad860ba6ade2",
+    "matte_sha256": "a0cefc578f9690516a0b8874d8c24ec40ab02f102df1065e7dee20c970851edd",
+    "selected": true,
+    "pick_reason": "dense yellow daisies over silvery leaves",
+    "source_sha256": "d67380cf70ca673604e619d418c15151f2badb7c4cd14d74fd7f6b1e6ca4f153",
+    "source": "art/sources/groundcover/desert-marigold-a.png"
+  },
+  "desert-marigold-a/5391242": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low mound of silvery desert marigold with many small bright yellow daisy flowers, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 5391242,
+    "studio_job": "st-1795136299961-116",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/desert-marigold-a/5391242-rgb.png",
+    "sha256": "62793e5c200db8ea03e55f9d0304fc61b823fc91e21f0ec5d1b387d8cd5f9a26",
+    "matte_sha256": "86575c40dd8b2cc557d608b959871f5975ad5302aa3c20152e7380578ecf8eeb",
+    "selected": false
+  },
+  "ferns-a/142390": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a lush clump of green forest ferns with arching feathery fronds, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 142390,
+    "studio_job": "st-1795135554640-39",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/ferns-a/142390-rgb.png",
+    "sha256": "b8f00ae00090449f6c68d91b45d0a3fd8c098ee3674b58596eae96deec55e5be",
+    "matte_sha256": "e95e15668991a1646e1d9331cda70ff42eaf3190fc295611cbd4cf6e395d04d2",
+    "selected": true,
+    "pick_reason": "lush even fronds, least yellow cast",
+    "source_sha256": "db5f0146841afa2c7fd0cd476fc57f0743ea1b3c2463ebec554e933713aeab7b",
+    "source": "art/sources/groundcover/ferns-a.png"
+  },
+  "ferns-a/142391": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a lush clump of green forest ferns with arching feathery fronds, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 142391,
+    "studio_job": "st-1795135554640-39",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/ferns-a/142391-rgb.png",
+    "sha256": "e071f171f4b13093ef4ad81d8d8e8389a962fa6c74d69c9104cdecfcaf61bfe5",
+    "matte_sha256": "7e1635e45cd7dbbe7aad5b05092db714749612b03e2eae4cc10435c59984b0fd",
+    "selected": false
+  },
+  "ferns-a/142392": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a lush clump of green forest ferns with arching feathery fronds, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 142392,
+    "studio_job": "st-1795135554640-39",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/ferns-a/142392-rgb.png",
+    "sha256": "daa25effd2b0d59243e44addc735351e1f6c2ad074754c6bb20c96238c3f0ccc",
+    "matte_sha256": "676daeaacc802a6374fd1cb8faa5c31af160ec304ff2a1342e97b3909d3a79ef",
+    "selected": false
+  },
+  "goldenrod-a/5419150": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of goldenrod with arching plumes of tiny golden-yellow flowers on green stalks, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 5419150,
+    "studio_job": "st-1795135551478-37",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/goldenrod-a/5419150-rgb.png",
+    "sha256": "7a454da197a40e8b13cc83cf4b177d0e0e32d7cd5d37e751fc0b1c4b5bcebe4e",
+    "matte_sha256": "5d23e08885f0801790144356328eed6c0efb367852829b967ed1ead938db4ad5",
+    "selected": true,
+    "pick_reason": "arching plumes closest to real goldenrod",
+    "source_sha256": "81141b920ead44c5cfc1e35a21de58d3c872f015725e155d9e1e461654c59045",
+    "source": "art/sources/groundcover/goldenrod-a.png"
+  },
+  "goldenrod-a/5419151": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of goldenrod with arching plumes of tiny golden-yellow flowers on green stalks, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 5419151,
+    "studio_job": "st-1795135551478-37",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/goldenrod-a/5419151-rgb.png",
+    "sha256": "0e7f95b5f26adf377d7d1ec14df9692b6d04f977e4f86f26e36fc9baf046b966",
+    "matte_sha256": "412179e023e5bb31c25f99f70af37d1852cb2303f423f012a9c2bac2ae40292c",
+    "selected": false
+  },
+  "goldenrod-a/5419152": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of goldenrod with arching plumes of tiny golden-yellow flowers on green stalks, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 5419152,
+    "studio_job": "st-1795135551478-37",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/goldenrod-a/5419152-rgb.png",
+    "sha256": "f69538a6b6cf9015cc570f25967d9225a3e615fc64ecdbed741165653f97aef2",
+    "matte_sha256": "63010786412458f59a5fad0c9a2a6e36a742058c7ef2e0fe72cf8a71796b0314",
+    "selected": false
+  },
+  "grass-tall-golden-a/120250": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of tall dry golden prairie grass with feathery seed heads, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 120250,
+    "studio_job": "st-1795135542075-32",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/grass-tall-golden-a/120250-rgb.png",
+    "sha256": "42ba93ea3aa00b9329bf1d3eb122974ead682fb75f3faf098d5d71de421d08d1",
+    "matte_sha256": "eefde11de8d0e1253e1e210cfa154bd5896d1a69da15a109944ebde78a557129",
+    "selected": false
+  },
+  "grass-tall-golden-a/120251": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of tall dry golden prairie grass with feathery seed heads, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 120251,
+    "studio_job": "st-1795135542075-32",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/grass-tall-golden-a/120251-rgb.png",
+    "sha256": "ff1ea22a9018a1d5b7fd2894f69ceed3db1316fb7efa119bf5c12673db593ea2",
+    "matte_sha256": "ce9157dadd396830dcd32f6a5c0a0d361bbafd59e04940f26f88bd620b57cbae",
+    "selected": true,
+    "pick_reason": "fullest golden plumes, even colour",
+    "source_sha256": "dd9e3e2968a136ea158b97f538de49cbe9dafa7c5747fb2b5b78bb82dda5fc88",
+    "source": "art/sources/groundcover/grass-tall-golden-a.png"
+  },
+  "grass-tall-golden-a/120252": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of tall dry golden prairie grass with feathery seed heads, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 120252,
+    "studio_job": "st-1795135542075-32",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/grass-tall-golden-a/120252-rgb.png",
+    "sha256": "56132364ef002351f221f430086ef3452ca1e4a1147fea49f6bc05f3b3a576c5",
+    "matte_sha256": "2d34f1b622d34fc46bf99536765db855d13d75f670018c846c30f3b11a133c53",
+    "selected": false
+  },
+  "grass-tall-green-a/2499950": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a lush clump of tall green meadow grass blades and seed heads, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 2499950,
+    "studio_job": "st-1795135540621-31",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/grass-tall-green-a/2499950-rgb.png",
+    "sha256": "0d51010b13f968abd0b9f546f8630cb289fee5bb30c51d0d8e36676cb87c1e6d",
+    "matte_sha256": "7b475a958dbd08b845f06464c910ed8916f2377c84cd60d942adfac28152ede6",
+    "selected": false
+  },
+  "grass-tall-green-a/2499951": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a lush clump of tall green meadow grass blades and seed heads, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 2499951,
+    "studio_job": "st-1795135540621-31",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/grass-tall-green-a/2499951-rgb.png",
+    "sha256": "c81da48a7ff91fc755cccefb4be690834517ddf8e592cc9400d05ef944edb989",
+    "matte_sha256": "58b1c535eed4440c251670aa234f9ace622893d6e1251a3b7f7df85cf669514f",
+    "selected": true,
+    "pick_reason": "balanced clump with seed heads, natural silhouette",
+    "source_sha256": "fc78b2dcff50e0e3581e01552e676449bef66d18da68601ccad630584f34f8c6",
+    "source": "art/sources/groundcover/grass-tall-green-a.png"
+  },
+  "grass-tall-green-a/2499952": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a lush clump of tall green meadow grass blades and seed heads, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 2499952,
+    "studio_job": "st-1795135540621-31",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/grass-tall-green-a/2499952-rgb.png",
+    "sha256": "d3a643a4d17c57bf262e3998e535cc035d6652d2e20441c5c68585713cab666f",
+    "matte_sha256": "51d1344a8bc24c65daf885dd0aff13ebc06015c015f14bffec88bf162a9773d9",
+    "selected": false
+  },
+  "grass-tuft-short-a/164840": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small low tuft of short bright green grass, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 164840,
+    "studio_job": "st-1795135543834-33",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/grass-tuft-short-a/164840-rgb.png",
+    "sha256": "c6adfe5023333f43d0ea0ecb2fec2d36a2e7f3307ef15177420ffb6ede699f36",
+    "matte_sha256": "418480ec0eaa61f43815102f1fe965b410ca1470b0d80a818c9406261caf0cae",
+    "selected": false
+  },
+  "grass-tuft-short-a/164841": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small low tuft of short bright green grass, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 164841,
+    "studio_job": "st-1795135543834-33",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/grass-tuft-short-a/164841-rgb.png",
+    "sha256": "914cde28eb6a27600da23d69931a77a0a50cf78704b225c5bbb5d6e79302eeff",
+    "matte_sha256": "93cc203c5473ca47079dc9b61f7825c57c5eeef63caecd65ee6f0d49ece6d3b9",
+    "selected": true,
+    "pick_reason": "softest edges, least spiky, sits low",
+    "source_sha256": "ed527facf4a50803e15c59fa5d4e53274fd6809a8a0657d6e1d9f5dbd1c2223d",
+    "source": "art/sources/groundcover/grass-tuft-short-a.png"
+  },
+  "grass-tuft-short-a/164842": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small low tuft of short bright green grass, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 164842,
+    "studio_job": "st-1795135543834-33",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/grass-tuft-short-a/164842-rgb.png",
+    "sha256": "81433cc4a2b87947a9a51b172c1ba8bbe5073a8a22f225a21171c6ef01f6e975",
+    "matte_sha256": "7684f6e73fcad56666390e7f27bd10a9d07272d4aacd6252601cd1b56233da4b",
+    "selected": false
+  },
+  "lupine-blue-a/8523690": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of tall blue and purple lupine flower spikes with palm-shaped green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 8523690,
+    "studio_job": "st-1795135549532-36",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/lupine-blue-a/8523690-rgb.png",
+    "sha256": "6d24d077860a9f0bd9ba38053e1a789fe288b00d05da61d9fd6d2e79ffa42272",
+    "matte_sha256": "c003225e6ea118c0ee7b1ef1bb090d59738417003fea1dd574246307386a7898",
+    "selected": false
+  },
+  "lupine-blue-a/8523691": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of tall blue and purple lupine flower spikes with palm-shaped green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 8523691,
+    "studio_job": "st-1795135549532-36",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/lupine-blue-a/8523691-rgb.png",
+    "sha256": "3e284f8d5e9db09b5ed6c97796d77ced0e4839352614092b0cd130c7b2fc089e",
+    "matte_sha256": "ebfb6c8e4b1bc75939f1a47a61ec763e516b29c2d3ba4b9ec23792dcdfb2c460",
+    "selected": true,
+    "pick_reason": "tall blue spikes plus palmate leaves read best",
+    "source_sha256": "9d2372bb3eee0aafe7f326779111336d1ea65c0bf4a5a9fe4975c6f3f1166d30",
+    "source": "art/sources/groundcover/lupine-blue-a.png"
+  },
+  "lupine-blue-a/8523692": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of tall blue and purple lupine flower spikes with palm-shaped green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 8523692,
+    "studio_job": "st-1795135549532-36",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/lupine-blue-a/8523692-rgb.png",
+    "sha256": "d39efe84dd05442709520c4006c5aad00134447b99db3fa6e606f2cb12a8dd60",
+    "matte_sha256": "56dcdfeeab13e86eb7f4f0812551649fa5d68cac728260498024a7be88fd10c6",
+    "selected": false
+  },
+  "wildflowers-mixed-a/2061470": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a patch of mixed roadside wildflowers, blue chicory, white Queen Anne's lace and yellow buttercups among green grass, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 2061470,
+    "studio_job": "st-1795135545656-34",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/wildflowers-mixed-a/2061470-rgb.png",
+    "sha256": "1adb67e0d5474724c4b3cdc464a47a5a232788d4a64847b737918b74d264aad3",
+    "matte_sha256": "4de85f9d519821301d232286b96183a299ead8d5c5282e82014122063b2ec1e1",
+    "selected": false
+  },
+  "wildflowers-mixed-a/2061471": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a patch of mixed roadside wildflowers, blue chicory, white Queen Anne's lace and yellow buttercups among green grass, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 2061471,
+    "studio_job": "st-1795135545656-34",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/wildflowers-mixed-a/2061471-rgb.png",
+    "sha256": "08d4613eb895774b0856957e6c8535a69bd462ee402961d56e99e5bfaf9e1e8b",
+    "matte_sha256": "9048f80b6c5f74005e5a79bcfe628547329cc47a5e23bef3570e6a7211ce9ac8",
+    "selected": true,
+    "pick_reason": "all three requested flowers visible, airy silhouette",
+    "source_sha256": "d2e16ee366e4840a7fb681443ce7bdbbc1964ca3e05ec7cc32465730af5636c2",
+    "source": "art/sources/groundcover/wildflowers-mixed-a.png"
+  },
+  "wildflowers-mixed-a/2061472": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a patch of mixed roadside wildflowers, blue chicory, white Queen Anne's lace and yellow buttercups among green grass, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole plant clump centered with margin, isolated on a flat pure white background, no soil, no shadow",
+    "seed": 2061472,
+    "studio_job": "st-1795135545656-34",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/groundcover/wildflowers-mixed-a/2061472-rgb.png",
+    "sha256": "a39969efd9f0d1ce7ecfa4cea8ea81c8f349bc11ae5002c9c08e37f8a86831d8",
+    "matte_sha256": "6a12a460dbc3ac71214514e4b15f8e8376cd710dd852187848597916e4dfe381",
+    "selected": false
+  }
+}

@@ -1,0 +1,536 @@
+{
+  "family": "vegetation",
+  "type": "sprite",
+  "atlas": "veg",
+  "workflow": "art/workflows/sprite-flux2-matte.json",
+  "style": "hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+  "candidates": 3,
+  "canvas": [
+    896,
+    1152
+  ],
+  "items": [
+    {
+      "id": "oak-round-a",
+      "seed": 101,
+      "prompt": "a single large round American oak tree, full tree from roots to crown, layered rounded green foliage clumps, sturdy brown trunk",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 12,
+      "biomes": [
+        "farm",
+        "forest",
+        "town",
+        "plains"
+      ],
+      "sway": 0.15,
+      "canvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "id": "oak-spreading-b",
+      "prompt": "a single wide spreading old live oak tree with a broad low canopy of dark green leaf clumps and thick twisting brown limbs",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 16,
+      "biomes": [
+        "farm",
+        "plains",
+        "river"
+      ],
+      "sway": 0.1,
+      "canvas": [
+        1152,
+        896
+      ]
+    },
+    {
+      "id": "maple-green-a",
+      "prompt": "a single tall sugar maple tree with a dense rounded oval crown of bright green leaves and a straight grey-brown trunk",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 10,
+      "biomes": [
+        "forest",
+        "town",
+        "farm"
+      ],
+      "sway": 0.15
+    },
+    {
+      "id": "maple-autumn-red-a",
+      "prompt": "a single sugar maple tree in autumn with a dense rounded crown of glowing crimson red leaves and a straight grey-brown trunk",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 10,
+      "biomes": [
+        "forest",
+        "town",
+        "farm"
+      ],
+      "tags": [
+        "autumn"
+      ],
+      "sway": 0.15
+    },
+    {
+      "id": "maple-autumn-orange-a",
+      "prompt": "a single maple tree in autumn with a full rounded crown of orange and golden yellow leaves and a dark brown trunk",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 9,
+      "biomes": [
+        "forest",
+        "town",
+        "farm"
+      ],
+      "tags": [
+        "autumn"
+      ],
+      "sway": 0.15
+    },
+    {
+      "id": "pine-white-a",
+      "prompt": "a single tall eastern white pine tree with layered horizontal tufts of soft blue-green needles and a tall reddish-brown trunk",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 8,
+      "biomes": [
+        "forest",
+        "river"
+      ],
+      "sway": 0.08
+    },
+    {
+      "id": "spruce-conical-a",
+      "prompt": "a single dense conical blue spruce fir tree with a pointed top and downswept dark green branches",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 6,
+      "biomes": [
+        "forest",
+        "town"
+      ],
+      "sway": 0.05
+    },
+    {
+      "id": "birch-clump-a",
+      "prompt": "a clump of three slender white paper birch trees with white bark marked with black, light airy crowns of yellow-green leaves",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 7,
+      "biomes": [
+        "forest",
+        "river"
+      ],
+      "sway": 0.2
+    },
+    {
+      "id": "cottonwood-a",
+      "prompt": "a single huge plains cottonwood tree with a broad irregular crown of shimmering green leaves and a thick furrowed grey trunk",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 18,
+      "biomes": [
+        "plains",
+        "river",
+        "farm"
+      ],
+      "sway": 0.15
+    },
+    {
+      "id": "palm-fan-a",
+      "prompt": "a single very tall slender California fan palm tree with a thin straight trunk and a compact round head of green fan fronds",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 5,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "south",
+        "west"
+      ],
+      "sway": 0.1
+    },
+    {
+      "id": "palm-sabal-a",
+      "prompt": "a single cabbage palmetto palm tree with a rough criss-cross textured trunk and a full round crown of green fan fronds",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 6,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "south"
+      ],
+      "sway": 0.12
+    },
+    {
+      "id": "poplar-windbreak-a",
+      "prompt": "a straight row of six tall narrow Lombardy poplar trees standing side by side as a farm windbreak, columnar dark green crowns",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 40,
+      "biomes": [
+        "farm",
+        "plains"
+      ],
+      "tags": [
+        "windbreak"
+      ],
+      "sway": 0.1,
+      "canvas": [
+        1536,
+        768
+      ]
+    },
+    {
+      "id": "willow-weeping-a",
+      "prompt": "a single weeping willow tree with long drooping curtains of light green leafy branches and a gnarled trunk",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 14,
+      "biomes": [
+        "river",
+        "town"
+      ],
+      "sway": 0.3,
+      "canvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "id": "elm-vase-a",
+      "prompt": "a single tall American elm tree with a graceful vase-shaped crown of arching branches and green leaves",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 15,
+      "biomes": [
+        "town",
+        "city",
+        "farm"
+      ],
+      "sway": 0.15,
+      "tags": [
+        "street"
+      ]
+    },
+    {
+      "id": "dogwood-flowering-a",
+      "prompt": "a small flowering dogwood tree covered in white blossoms with a low layered crown",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 6,
+      "biomes": [
+        "town",
+        "forest"
+      ],
+      "tags": [
+        "spring"
+      ],
+      "sway": 0.12,
+      "canvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "id": "cypress-bald-a",
+      "prompt": "a single bald cypress tree with a flared buttressed base, feathery rust-green foliage and a narrow pyramid crown",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 8,
+      "biomes": [
+        "river"
+      ],
+      "tags": [
+        "south"
+      ],
+      "sway": 0.08
+    },
+    {
+      "id": "juniper-western-a",
+      "prompt": "a single shaggy rocky-mountain juniper tree with twisted trunk and dusty blue-green scale foliage, scrubby irregular shape",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 5,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "west"
+      ],
+      "sway": 0.05,
+      "canvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "id": "shrub-round-a",
+      "prompt": "a low wide mound-shaped green garden bush made of many small leaves, growing straight out of the ground with no visible trunk, much wider than it is tall",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 2.0,
+      "biomes": [
+        "farm",
+        "forest",
+        "town",
+        "city",
+        "river",
+        "plains"
+      ],
+      "sway": 0.1,
+      "canvas": [
+        1024,
+        768
+      ]
+    },
+    {
+      "id": "azalea-pink-a",
+      "prompt": "a low wide mound-shaped azalea bush covered in bright pink flowers and small green leaves, growing straight out of the ground with no visible trunk, much wider than it is tall",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 1.8,
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "tags": [
+        "spring"
+      ],
+      "sway": 0.08,
+      "canvas": [
+        1024,
+        768
+      ]
+    },
+    {
+      "id": "hedge-boxwood-a",
+      "prompt": "a long neatly trimmed dark green boxwood hedge, a straight rectangular block of small leaves, seen from the side",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 8,
+      "biomes": [
+        "town",
+        "city"
+      ],
+      "canvas": [
+        1536,
+        640
+      ]
+    },
+    {
+      "id": "sagebrush-a",
+      "prompt": "a low wide mound-shaped silver-grey-green sagebrush bush of many small twigs, growing straight out of the ground with no visible trunk, much wider than it is tall",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 1.5,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "west"
+      ],
+      "sway": 0.05,
+      "canvas": [
+        1024,
+        768
+      ]
+    },
+    {
+      "id": "sumac-autumn-a",
+      "prompt": "a single staghorn sumac shrub in autumn with fiery red and orange pointed leaflets and dark red fruit cones",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 3,
+      "biomes": [
+        "forest",
+        "farm",
+        "river"
+      ],
+      "tags": [
+        "autumn"
+      ],
+      "sway": 0.12,
+      "canvas": [
+        1024,
+        896
+      ]
+    },
+    {
+      "id": "saguaro-a",
+      "prompt": "a single tall saguaro cactus with a thick ribbed green column trunk and two upturned arms",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 3,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "cactus",
+        "west"
+      ]
+    },
+    {
+      "id": "saguaro-b",
+      "prompt": "a single very tall old saguaro cactus with four curving arms of different heights, ribbed green trunk",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 4,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "cactus",
+        "west"
+      ]
+    },
+    {
+      "id": "joshua-tree-a",
+      "prompt": "a single Joshua tree with a shaggy trunk and many spiky branching arms ending in tufts of sharp green leaves",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 5,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "west"
+      ],
+      "canvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "id": "palo-verde-a",
+      "prompt": "a single palo verde desert tree with smooth green bark, many thin twisting branches and a light airy crown of tiny yellow-green leaves and yellow flowers",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 7,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "west"
+      ],
+      "sway": 0.1,
+      "canvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "id": "ocotillo-a",
+      "prompt": "a single ocotillo plant: a fountain of tall thin spiny grey-green stems with small red flower tips",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 3,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "cactus",
+        "west"
+      ],
+      "sway": 0.1,
+      "canvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "id": "prickly-pear-a",
+      "prompt": "a single prickly pear cactus clump of flat round green pads with a few magenta fruits",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 1.6,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "cactus",
+        "west"
+      ],
+      "canvas": [
+        1024,
+        768
+      ]
+    },
+    {
+      "id": "barrel-cactus-a",
+      "prompt": "a small group of three round ribbed barrel cacti with golden spines and yellow flowers on top",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 1.2,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "cactus",
+        "west"
+      ],
+      "canvas": [
+        1024,
+        768
+      ]
+    },
+    {
+      "id": "creosote-bush-a",
+      "prompt": "a low wide scraggly creosote bush of olive-green tiny leaves on many thin grey stems rising straight from the ground, no trunk, wider than it is tall",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 2,
+      "biomes": [
+        "desert"
+      ],
+      "tags": [
+        "west"
+      ],
+      "sway": 0.08,
+      "canvas": [
+        1024,
+        768
+      ]
+    },
+    {
+      "id": "street-tree-planter-a",
+      "prompt": "a single young honey locust street tree with a light rounded crown of small green leaves, growing from a square concrete sidewalk planter with a black iron tree guard",
+      "band": "mid",
+      "kind": "tree",
+      "worldWidthM": 5,
+      "biomes": [
+        "city",
+        "town"
+      ],
+      "tags": [
+        "street"
+      ],
+      "sway": 0.12
+    },
+    {
+      "id": "planter-flowers-a",
+      "prompt": "a rectangular concrete city planter box overflowing with red geraniums, purple petunias and trailing green ivy",
+      "band": "near",
+      "kind": "shrub",
+      "worldWidthM": 1.8,
+      "biomes": [
+        "city",
+        "town"
+      ],
+      "tags": [
+        "street"
+      ],
+      "canvas": [
+        1024,
+        768
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "family": "crops",
+  "type": "sprite",
+  "atlas": "farm",
+  "workflow": "art/workflows/sprite-flux2-matte.json",
+  "style": "hand-painted cartoon game sprite for a retro 16-bit racing game, side view, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, centered with margin, isolated on a flat pure white background, no sky, no shadow",
+  "candidates": 3,
+  "canvas": [1536, 768],
+  "items": [
+    {"id": "corn-row-green-a", "prompt": "a long strip of tall green corn plants in a row, broad leaves and golden tassels on top", "band": "mid", "kind": "crop", "worldWidthM": 14, "biomes": ["farm", "plains"], "tags": ["summer"], "sway": 0.25},
+    {"id": "corn-row-dry-a", "prompt": "a long strip of tall dry tan autumn corn stalks ready for harvest with drooping papery leaves", "band": "mid", "kind": "crop", "worldWidthM": 14, "biomes": ["farm", "plains"], "tags": ["autumn"], "sway": 0.2},
+    {"id": "wheat-strip-a", "prompt": "a long strip of ripe golden wheat with dense bearded grain heads", "band": "mid", "kind": "crop", "worldWidthM": 14, "biomes": ["farm", "plains"], "tags": ["summer"], "sway": 0.3},
+    {"id": "soybean-strip-a", "prompt": "a long low strip of bushy green soybean plants in neat rows", "band": "mid", "kind": "crop", "worldWidthM": 14, "biomes": ["farm", "plains"], "sway": 0.15},
+    {"id": "sunflower-row-a", "prompt": "a row of tall sunflowers with big yellow blossoms facing left and broad green leaves", "band": "mid", "kind": "crop", "worldWidthM": 8, "biomes": ["farm", "plains"], "tags": ["summer"], "sway": 0.2},
+    {"id": "pumpkin-patch-a", "prompt": "a low patch of orange pumpkins among sprawling green vines and big leaves", "band": "near", "kind": "crop", "worldWidthM": 4, "biomes": ["farm"], "tags": ["autumn"], "sway": 0.05},
+    {"id": "hay-bale-round-a", "prompt": "a single big round rolled hay bale of golden straw lying on its side, seen at a three-quarter angle", "band": "mid", "kind": "crop", "worldWidthM": 1.8, "biomes": ["farm", "plains"], "canvas": [1024, 768]},
+    {"id": "hay-bales-square-a", "prompt": "a small stack of rectangular golden straw hay bales tied with twine, three bales on two below", "band": "near", "kind": "crop", "worldWidthM": 2.6, "biomes": ["farm"], "canvas": [1024, 768]}
+  ]
+}

@@ -1,0 +1,1618 @@
+{
+  "azalea-pink-a/2651460": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide mound-shaped azalea bush covered in bright pink flowers and small green leaves, growing straight out of the ground with no visible trunk, much wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2651460,
+    "studio_job": "st-1795136364074-125",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/azalea-pink-a/2651460-rgb.png",
+    "sha256": "43505743d2b72e03920fdf6aceb2ad7a1d180ae801190f2c8ee31bf18e867705",
+    "matte_sha256": "ac52b55062fec0387955ba1288c7b3b3b5207caa65c2240411c2b03429b2c01a",
+    "selected": true,
+    "pick_reason": "trunkless pink mound, no soil patch",
+    "source_sha256": "e9b64d3e90747f465a0062201bab83438d62b50e934a9884734800591fefc43f",
+    "source": "art/sources/vegetation/azalea-pink-a.png"
+  },
+  "azalea-pink-a/2651461": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide mound-shaped azalea bush covered in bright pink flowers and small green leaves, growing straight out of the ground with no visible trunk, much wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2651461,
+    "studio_job": "st-1795136364074-125",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/azalea-pink-a/2651461-rgb.png",
+    "sha256": "d07bc41e3442ef8aa203fce84913c341825b6b63b8449ecc4a0ea64b79b36174",
+    "matte_sha256": "72952c77e203224eaf8d51c98f5c84af63c8b0bb2426011bd3528b498c14e453",
+    "selected": false
+  },
+  "azalea-pink-a/2651462": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide mound-shaped azalea bush covered in bright pink flowers and small green leaves, growing straight out of the ground with no visible trunk, much wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2651462,
+    "studio_job": "st-1795136364074-125",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/azalea-pink-a/2651462-rgb.png",
+    "sha256": "2e8b045e389e0afcb3c7efada3003a5a8b49ff4228aacefbd94355389fb0c07e",
+    "matte_sha256": "412ee2a8ddf4916be69a47438985ba631f73268a05bb4b096fdb08c2109b7466",
+    "selected": false
+  },
+  "barrel-cactus-a/240610": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small group of three round ribbed barrel cacti with golden spines and yellow flowers on top, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 240610,
+    "studio_job": "st-1795136289597-111",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/barrel-cactus-a/240610-rgb.png",
+    "sha256": "7a8f93612338b2a61cb64e120d5d0438eff67070779371af33602c88da925a73",
+    "matte_sha256": "27f0f1fd9ab60a779f773785c47e53cc779ddecc8825839ccd34701a6feab753",
+    "selected": false
+  },
+  "barrel-cactus-a/240611": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small group of three round ribbed barrel cacti with golden spines and yellow flowers on top, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 240611,
+    "studio_job": "st-1795136289597-111",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/barrel-cactus-a/240611-rgb.png",
+    "sha256": "2a2369ecd5260a8e2a25d805dd9742894ca946ddf46a6fc573ce038d92a233b7",
+    "matte_sha256": "2f5b6c55ab7715445f697eb7344c49955d56ed358de5d83d1276cc254d634fb7",
+    "selected": true,
+    "pick_reason": "three barrels with yellow flowers, tight group",
+    "source_sha256": "83a7b93519792dd51205c6add999b90487f99164daa34af8f4f42a32b3f74d85",
+    "source": "art/sources/vegetation/barrel-cactus-a.png"
+  },
+  "barrel-cactus-a/240612": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small group of three round ribbed barrel cacti with golden spines and yellow flowers on top, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 240612,
+    "studio_job": "st-1795136289597-111",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/barrel-cactus-a/240612-rgb.png",
+    "sha256": "5d2f1b47bbd5cb73c7e4e021d1fc541845bfc09c1785a98492f251df2230e478",
+    "matte_sha256": "765673365b57a1600fcc4624772c967fbce75915dfc20ed23e4e63c71ba08e6a",
+    "selected": false
+  },
+  "birch-clump-a/2323450": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of three slender white paper birch trees with white bark marked with black, light airy crowns of yellow-green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2323450,
+    "studio_job": "st-1795135571951-46",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/birch-clump-a/2323450-rgb.png",
+    "sha256": "1a1772d1fd32da29e41e8617c7c27e5172439d62053f1263b9f2e8c2dcc331cd",
+    "matte_sha256": "e934ffa3f08df02ef816ae774ccd77741cde4e22bb5cf5064c4645351ba57b7b",
+    "selected": false
+  },
+  "birch-clump-a/2323451": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of three slender white paper birch trees with white bark marked with black, light airy crowns of yellow-green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2323451,
+    "studio_job": "st-1795135571951-46",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/birch-clump-a/2323451-rgb.png",
+    "sha256": "3c925af84ff715876e1ef7f5556ba2012565d728bd3889711517b932c5d8977f",
+    "matte_sha256": "2c56a4792bf765f338e5bfee19b2a2217f70bbd99f05fee876418dc287744041",
+    "selected": true,
+    "pick_reason": "three distinct white trunks, airy crown",
+    "source_sha256": "78755bfa8b0ed9e523cadcab709b3145c6e14e2822f370dc938a6af1447419c3",
+    "source": "art/sources/vegetation/birch-clump-a.png"
+  },
+  "birch-clump-a/2323452": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a clump of three slender white paper birch trees with white bark marked with black, light airy crowns of yellow-green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2323452,
+    "studio_job": "st-1795135571951-46",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/birch-clump-a/2323452-rgb.png",
+    "sha256": "8d4475a572bdf28a45fce24261c61c7742ba184d2ce714828ae5cb67363c3da6",
+    "matte_sha256": "f8bc47721d5d5fbaa518c942f02db60485b2470df9e65c76cfdd6ab2ef5f54e3",
+    "selected": false
+  },
+  "cottonwood-a/8199970": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single huge plains cottonwood tree with a broad irregular crown of shimmering green leaves and a thick furrowed grey trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8199970,
+    "studio_job": "st-1795135573885-47",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/cottonwood-a/8199970-rgb.png",
+    "sha256": "3d417015898a6d64ffa53b8002e2f156742a143bd1a22674e2bcf15fa7dd16aa",
+    "matte_sha256": "667e8d8a99e8bbab1bd410985cbf039762f308964a6509f9e888d4e3f2751d17",
+    "selected": false
+  },
+  "cottonwood-a/8199971": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single huge plains cottonwood tree with a broad irregular crown of shimmering green leaves and a thick furrowed grey trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8199971,
+    "studio_job": "st-1795135573885-47",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/cottonwood-a/8199971-rgb.png",
+    "sha256": "d85cf48ba8d6b97ee744d46940e7acba2fe2441a8aa4a7fea2db167b7cf7800b",
+    "matte_sha256": "8c4c27005cc45c8b2a58a594b0d5e359a94f8b32abaa48326838d60af985c7ee",
+    "selected": true,
+    "pick_reason": "broad irregular crown, grey furrowed trunk",
+    "source_sha256": "089ca7093bf0c34f2882ae6efc391ac44d5632dbece779c562e7047d76f81f7c",
+    "source": "art/sources/vegetation/cottonwood-a.png"
+  },
+  "cottonwood-a/8199972": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single huge plains cottonwood tree with a broad irregular crown of shimmering green leaves and a thick furrowed grey trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8199972,
+    "studio_job": "st-1795135573885-47",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/cottonwood-a/8199972-rgb.png",
+    "sha256": "edf9bafc1e3d5668c461feaeb7130e002e830d7e4bb5125e5d8cc3263b035745",
+    "matte_sha256": "46b553ab7306236159ab96764100dbaaaf33a3ee8535198b52e6470c8a38fbb2",
+    "selected": false
+  },
+  "creosote-bush-a/6791360": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide scraggly creosote bush of olive-green tiny leaves on many thin grey stems rising straight from the ground, no trunk, wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 6791360,
+    "studio_job": "st-1795137615715-145",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/creosote-bush-a/6791360-rgb.png",
+    "sha256": "9c6391a532b61eb5cf7099c94b824de40f725b7924f58973664b69ff1998a619",
+    "matte_sha256": "693d4575c6eb5868c8642030d3d4a5bd7ed72656fdccb19b68454f2ff9d8eaf9",
+    "selected": false
+  },
+  "creosote-bush-a/6791361": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide scraggly creosote bush of olive-green tiny leaves on many thin grey stems rising straight from the ground, no trunk, wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 6791361,
+    "studio_job": "st-1795137615715-145",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/creosote-bush-a/6791361-rgb.png",
+    "sha256": "6149f509c9b3606972e75670528e57240e64281d5e4f46a1bfe24e9dba8bf6a8",
+    "matte_sha256": "562e183471396c074fcb204f0eae260a9ee07e2a4a8879143daa0aa2763173d1",
+    "selected": true,
+    "pick_reason": "best of three; still tree-like, acceptable as a large desert shrub (re-roll candidate)",
+    "source_sha256": "214105b4174181112b78a3dc58f1ce5d94b5e92458183025735e63f469e15678",
+    "source": "art/sources/vegetation/creosote-bush-a.png"
+  },
+  "creosote-bush-a/6791362": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide scraggly creosote bush of olive-green tiny leaves on many thin grey stems rising straight from the ground, no trunk, wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 6791362,
+    "studio_job": "st-1795137615715-145",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/creosote-bush-a/6791362-rgb.png",
+    "sha256": "c2911a4a739801a609f50c83aa9f1156569435f8176434d361ad06ebb3c6ac30",
+    "matte_sha256": "5faad4549a91a868d311cd2e32f97244e6b896818595090ba0b44f690f28a67c",
+    "selected": false
+  },
+  "cypress-bald-a/7685520": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single bald cypress tree with a flared buttressed base, feathery rust-green foliage and a narrow pyramid crown, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7685520,
+    "studio_job": "st-1795135588183-54",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/cypress-bald-a/7685520-rgb.png",
+    "sha256": "07a5978853eee7121305708afa673519c452ca974be79bf0a98152c9fc51e9d0",
+    "matte_sha256": "2c26ab13ac398c01326d9fe3fa61ef07850ea0eb4cfffc334cc8582274ce3eb4",
+    "selected": false
+  },
+  "cypress-bald-a/7685521": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single bald cypress tree with a flared buttressed base, feathery rust-green foliage and a narrow pyramid crown, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7685521,
+    "studio_job": "st-1795135588183-54",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/cypress-bald-a/7685521-rgb.png",
+    "sha256": "32c53154f6e4842742f540a0a79a44cfdedd89f45eeabcb21a280eda5327539f",
+    "matte_sha256": "92653f9331790ddd7e2b78abe234ea596542820dcf20d657b6b9843b2398e458",
+    "selected": false
+  },
+  "cypress-bald-a/7685522": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single bald cypress tree with a flared buttressed base, feathery rust-green foliage and a narrow pyramid crown, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7685522,
+    "studio_job": "st-1795135588183-54",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/cypress-bald-a/7685522-rgb.png",
+    "sha256": "d604389764e21083356413a9d4b03dad9af7aa5f32bbf5ae9def9023c142035d",
+    "matte_sha256": "7adfa6fab996f11a59986675611df871dfd23245dd5a9a8f4bf5ba5dd724a04c",
+    "selected": true,
+    "pick_reason": "narrow rust-green pyramid with flared base",
+    "source_sha256": "9f1b02d503e0ee3f3a96bab8485193ffd7639c3c4a4c57ce5335f916fa15b2ac",
+    "source": "art/sources/vegetation/cypress-bald-a.png"
+  },
+  "dogwood-flowering-a/2930420": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small flowering dogwood tree covered in white blossoms with a low layered crown, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2930420,
+    "studio_job": "st-1795135586416-53",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/dogwood-flowering-a/2930420-rgb.png",
+    "sha256": "bd98468ab58bf635e5a48e1c546d0a006784238f42e442ea3e9155b287003bde",
+    "matte_sha256": "5a8df68ef62e9dc071f856a1fa238ce1926759e38c3aa6d5e553064a9b9f2c53",
+    "selected": false
+  },
+  "dogwood-flowering-a/2930421": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small flowering dogwood tree covered in white blossoms with a low layered crown, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2930421,
+    "studio_job": "st-1795135586416-53",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/dogwood-flowering-a/2930421-rgb.png",
+    "sha256": "573d9c29764a73bae61f416a50699575605d3c80e3c2c316d609f6e4c8f83c88",
+    "matte_sha256": "fc8a822a738ea74c8ab19f1b2911309facd31f77ce8077247b511efff340347f",
+    "selected": true,
+    "pick_reason": "white blossoms evenly spread, low crown",
+    "source_sha256": "85b7c6891968ffb9ea65599db9bc547b6a476c0fdd2b03f5b1b9e7d844ab078a",
+    "source": "art/sources/vegetation/dogwood-flowering-a.png"
+  },
+  "dogwood-flowering-a/2930422": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a small flowering dogwood tree covered in white blossoms with a low layered crown, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2930422,
+    "studio_job": "st-1795135586416-53",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/dogwood-flowering-a/2930422-rgb.png",
+    "sha256": "598dbe2cf164c19484354bc8c507b640b072d95c2cad53c4f03c7765467c64e8",
+    "matte_sha256": "0d26883dcd26a13811545d294cb8430fb476a32cfa984bcce001154b6f31f574",
+    "selected": false
+  },
+  "elm-vase-a/963650": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall American elm tree with a graceful vase-shaped crown of arching branches and green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 963650,
+    "studio_job": "st-1795135584681-52",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/elm-vase-a/963650-rgb.png",
+    "sha256": "bcadcfecb2a8b737bec5e46d0c34b2867a8845c941e99803d74d9309e66fa760",
+    "matte_sha256": "684e535999a68719cf8b3c1db596bb73911ec0172da66aed24e91b4440668f09",
+    "selected": false
+  },
+  "elm-vase-a/963651": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall American elm tree with a graceful vase-shaped crown of arching branches and green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 963651,
+    "studio_job": "st-1795135584681-52",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/elm-vase-a/963651-rgb.png",
+    "sha256": "8484c66c2e2831443b032d85048d08924baf739e2c4d9fd3f0eb1397c9599b26",
+    "matte_sha256": "f22a0d7ed1ba1c82976019bc7f684b649aaa282e1258cfce7cb5169f60b1e1c3",
+    "selected": true,
+    "pick_reason": "vase-shaped branching most legible",
+    "source_sha256": "b23159de35e192616f864e3de916f9011b9a3fba63b85b4fa573efbf2fc5ce1d",
+    "source": "art/sources/vegetation/elm-vase-a.png"
+  },
+  "elm-vase-a/963652": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall American elm tree with a graceful vase-shaped crown of arching branches and green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 963652,
+    "studio_job": "st-1795135584681-52",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/elm-vase-a/963652-rgb.png",
+    "sha256": "37c9ef4a7cf5bda888e1f02c755b4ab01f4779a143e78fb7b9ffed56851c27db",
+    "matte_sha256": "5ce96ea7671a09ffeb198646bd8abcab90abef29b7f5b8c0443a213fe342a3f0",
+    "selected": false
+  },
+  "hedge-boxwood-a/4746770": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long neatly trimmed dark green boxwood hedge, a straight rectangular block of small leaves, seen from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4746770,
+    "studio_job": "st-1795135595430-58",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/hedge-boxwood-a/4746770-rgb.png",
+    "sha256": "a9a023d81e8bf2c30d85fe3aac993193fb027cdcef6e01a0ed941503531c8f89",
+    "matte_sha256": "9c87d5f1fbaede1d325de1ba980fd18a1f6f00cdffb81c85e5ec5992d639f480",
+    "selected": false
+  },
+  "hedge-boxwood-a/4746771": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long neatly trimmed dark green boxwood hedge, a straight rectangular block of small leaves, seen from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4746771,
+    "studio_job": "st-1795135595430-58",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/hedge-boxwood-a/4746771-rgb.png",
+    "sha256": "cfdbbc62e3558ec805f89af0c5c4f67ab26288735c41e4c5621ff88a818d00c9",
+    "matte_sha256": "95cf0f3313b18b710405fe11ef2621304fe6b064828a9b10a1c829a86250b5a3",
+    "selected": true,
+    "pick_reason": "even trimmed block, least yellow cast",
+    "source_sha256": "685753eaec0baa55027a59d1c14ce3e578c5959b09ccb2678c7c82e22ba187f9",
+    "source": "art/sources/vegetation/hedge-boxwood-a.png"
+  },
+  "hedge-boxwood-a/4746772": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a long neatly trimmed dark green boxwood hedge, a straight rectangular block of small leaves, seen from the side, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4746772,
+    "studio_job": "st-1795135595430-58",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/hedge-boxwood-a/4746772-rgb.png",
+    "sha256": "4a2f1319e0c5e6b613f1d1ef840e8e0edbd50e63a9bf5b8cf6d36be74515387b",
+    "matte_sha256": "3438872c720b55e80f9fadce02647f5ca4d334737cc07e5e6026aa01b7b9309b",
+    "selected": false
+  },
+  "joshua-tree-a/7447080": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single Joshua tree with a shaggy trunk and many spiky branching arms ending in tufts of sharp green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7447080,
+    "studio_job": "st-1795136281127-107",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/joshua-tree-a/7447080-rgb.png",
+    "sha256": "f7d3a329ad5beb09e311e16f2706e2de5596fa18f92019a807ca077f93ebcdb5",
+    "matte_sha256": "d539bc5ef8f1e4217449281058442600805003acfbc771fcc5536913e1564592",
+    "selected": false
+  },
+  "joshua-tree-a/7447081": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single Joshua tree with a shaggy trunk and many spiky branching arms ending in tufts of sharp green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7447081,
+    "studio_job": "st-1795136281127-107",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/joshua-tree-a/7447081-rgb.png",
+    "sha256": "43fa4e2f980f7da278cb765b765fcf3b7bfd977d6ba0de986e92c4d9717f7f4f",
+    "matte_sha256": "03905fbbfc5a04b35272bb54ab0bf63346a469446dc3df7d260df7ad0d2e02fc",
+    "selected": true,
+    "pick_reason": "shaggy trunk with spiky leaf tufts reads as Joshua tree",
+    "source_sha256": "48b5f53950d0a8f0dbae1206fb63feaa18c2c1ccb08ee713d9e8b3b9fbdec7c6",
+    "source": "art/sources/vegetation/joshua-tree-a.png"
+  },
+  "joshua-tree-a/7447082": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single Joshua tree with a shaggy trunk and many spiky branching arms ending in tufts of sharp green leaves, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7447082,
+    "studio_job": "st-1795136281127-107",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/joshua-tree-a/7447082-rgb.png",
+    "sha256": "b71c6072ac9d73b12fc52a0ed65135444c98deef437d5e06f5cf197b9d34cf59",
+    "matte_sha256": "ed1835165281e7f3c1b78874e409bfcfd25fcd96a1e134229bdb7d51551cd952",
+    "selected": false
+  },
+  "juniper-western-a/3471330": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single shaggy rocky-mountain juniper tree with twisted trunk and dusty blue-green scale foliage, scrubby irregular shape, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 3471330,
+    "studio_job": "st-1795135590355-55",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/juniper-western-a/3471330-rgb.png",
+    "sha256": "96bd5537c7f9c3cd999eecfeb05e102e0a4d81edc609829081fb7c1a87d5e44b",
+    "matte_sha256": "2543e31c8a45074fb1512cb4a33af14ddeffca54049e8d1626202f4a0b64931e",
+    "selected": true,
+    "pick_reason": "scrubby irregular blue-green, least spruce-like",
+    "source_sha256": "315677a8405489f2eeed1d59a032b3595cd6e2e5b241d72a3a37fc74c1ed2bd2",
+    "source": "art/sources/vegetation/juniper-western-a.png"
+  },
+  "juniper-western-a/3471331": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single shaggy rocky-mountain juniper tree with twisted trunk and dusty blue-green scale foliage, scrubby irregular shape, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 3471331,
+    "studio_job": "st-1795135590355-55",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/juniper-western-a/3471331-rgb.png",
+    "sha256": "76d1ee6b48fe79a33aca1df6ab086ed304be6b7d799ac0a184c85d259053db09",
+    "matte_sha256": "63267f45dce551ad96b36fb32b1b57877997b19f51d0e4392f6be184defeadd8",
+    "selected": false
+  },
+  "juniper-western-a/3471332": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single shaggy rocky-mountain juniper tree with twisted trunk and dusty blue-green scale foliage, scrubby irregular shape, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 3471332,
+    "studio_job": "st-1795135590355-55",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/juniper-western-a/3471332-rgb.png",
+    "sha256": "bbb29b56abfc1039b57440d9d1f7f0d3dbe5b4a5215a5e4359f8a587bbb44e68",
+    "matte_sha256": "fef440724ef2e862f9124822c623acfdf89b35b035695a672062116d1ca61234",
+    "selected": false
+  },
+  "maple-autumn-orange-a/819980": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single maple tree in autumn with a full rounded crown of orange and golden yellow leaves and a dark brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 819980,
+    "studio_job": "st-1795135566451-43",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/maple-autumn-orange-a/819980-rgb.png",
+    "sha256": "e5f9b041bbe75be6d49f58e03345556e14644603dca8ad4cbf2cb42ffe89e4bd",
+    "matte_sha256": "ae7cb36803ae6af15d7828808cab4dd893ad8e7d27ec902bee7f7e730ff7a641",
+    "selected": true,
+    "pick_reason": "fullest orange-gold crown with clear trunk",
+    "source_sha256": "2a9644454e41eaf06f5f0945ebfa6805ac7ffe7231b9adb377191cbaf41f2214",
+    "source": "art/sources/vegetation/maple-autumn-orange-a.png"
+  },
+  "maple-autumn-orange-a/819981": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single maple tree in autumn with a full rounded crown of orange and golden yellow leaves and a dark brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 819981,
+    "studio_job": "st-1795135566451-43",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/maple-autumn-orange-a/819981-rgb.png",
+    "sha256": "30f03bd2ce99667413ba0ef914534cdc1c2090a046c69251cb96b9345101df9b",
+    "matte_sha256": "ed26c6de987f566fd2919d558c8a466b5e79c233329397ba5b5f9e3bc4a67e6b",
+    "selected": false
+  },
+  "maple-autumn-orange-a/819982": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single maple tree in autumn with a full rounded crown of orange and golden yellow leaves and a dark brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 819982,
+    "studio_job": "st-1795135566451-43",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/maple-autumn-orange-a/819982-rgb.png",
+    "sha256": "00d9e5fd53354e05fd84657402e7c8e609e5ba76fc7331518414fdff9dc386b0",
+    "matte_sha256": "a244759426fbacf1a9e7235f4ba0140d0056426b23e75e14956d06a9d6ae982a",
+    "selected": false
+  },
+  "maple-autumn-red-a/8539030": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single sugar maple tree in autumn with a dense rounded crown of glowing crimson red leaves and a straight grey-brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8539030,
+    "studio_job": "st-1795135564701-42",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/maple-autumn-red-a/8539030-rgb.png",
+    "sha256": "08a226142779389d6a3b33849c40fcec4916dcff3916fd802dcce74ee71ef56f",
+    "matte_sha256": "4fd1b03b87fb5a1501c0c5850b0a2af8a2d59c41a95cfd1215511f337d822d97",
+    "selected": false
+  },
+  "maple-autumn-red-a/8539031": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single sugar maple tree in autumn with a dense rounded crown of glowing crimson red leaves and a straight grey-brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8539031,
+    "studio_job": "st-1795135564701-42",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/maple-autumn-red-a/8539031-rgb.png",
+    "sha256": "7cf54e0ebb20572844831fbcb80ca2916b84c74907573e1a4ff874b3305e46ca",
+    "matte_sha256": "b41de82e79625b8262bf0c74b25d31bca03f9ce24c2f7a5e3880c35e4f5a997e",
+    "selected": true,
+    "pick_reason": "most saturated crimson without orange drift",
+    "source_sha256": "eca471950a0728975f76008c479eee79f7bfbce20442cc2bb0f097ca92149c3d",
+    "source": "art/sources/vegetation/maple-autumn-red-a.png"
+  },
+  "maple-autumn-red-a/8539032": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single sugar maple tree in autumn with a dense rounded crown of glowing crimson red leaves and a straight grey-brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8539032,
+    "studio_job": "st-1795135564701-42",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/maple-autumn-red-a/8539032-rgb.png",
+    "sha256": "bb5a86a99fe701aa0e2768c15f9dbc8c2530a8ee429450455bc2b92cbfb42957",
+    "matte_sha256": "79732ab0e939edf8dac356ac9eaae07bdcbf63fe46b595bea7815a6a6869cb02",
+    "selected": false
+  },
+  "maple-green-a/1304540": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall sugar maple tree with a dense rounded oval crown of bright green leaves and a straight grey-brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1304540,
+    "studio_job": "st-1795135562801-41",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/maple-green-a/1304540-rgb.png",
+    "sha256": "61472e8640e2685e0ba8f9619b918f0049be648140f0c56b9b8b3db7f872a7a0",
+    "matte_sha256": "d00d980c0d09c24468a50d8abe5716aae41709cc41565031b7aa8bc2e820732e",
+    "selected": true,
+    "pick_reason": "cleanest oval crown and straight trunk",
+    "source_sha256": "eaa9bac8a7f470546f00f601da5fef2bb1c91d6f4feb32339003cc29bd508720",
+    "source": "art/sources/vegetation/maple-green-a.png"
+  },
+  "maple-green-a/1304541": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall sugar maple tree with a dense rounded oval crown of bright green leaves and a straight grey-brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1304541,
+    "studio_job": "st-1795135562801-41",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/maple-green-a/1304541-rgb.png",
+    "sha256": "94dfa4e01347f5778cad01a171cd84184327a765fbd3c6696f86b4c358105928",
+    "matte_sha256": "29b33d1f37ef5a1b22453be78e228538bb2be37dcbf51befa0149a02514ddda1",
+    "selected": false
+  },
+  "maple-green-a/1304542": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall sugar maple tree with a dense rounded oval crown of bright green leaves and a straight grey-brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1304542,
+    "studio_job": "st-1795135562801-41",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/maple-green-a/1304542-rgb.png",
+    "sha256": "a1048be02d9b1a10736739f7f2b393b354c2c4874e51633e5ea3c4195833a37d",
+    "matte_sha256": "63a115e14ea631da58d894c9cb466e188f7041ae74f30add0e817da78b8c99cd",
+    "selected": false
+  },
+  "oak-round-a/101": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors",
+      "flux2-vae.safetensors",
+      "model.safetensors",
+      "qwen_3_4b.safetensors"
+    ],
+    "prompt": "a single large round American oak tree, full tree from roots to crown, layered rounded green foliage clumps, sturdy brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 101,
+    "studio_job": "st-1795134618187-3",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/oak-round-a/101-rgb.png",
+    "sha256": "9bb17084cb0a75200b8fb48a7643c1e3dcbde8349e8e8e955385bc56b8cefbfc",
+    "matte_sha256": "a0f829724c90c7a5c0c56f14cc7dac27628913d9829ab9933d59322240e0d7ce",
+    "selected": false
+  },
+  "oak-round-a/102": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors",
+      "flux2-vae.safetensors",
+      "model.safetensors",
+      "qwen_3_4b.safetensors"
+    ],
+    "prompt": "a single large round American oak tree, full tree from roots to crown, layered rounded green foliage clumps, sturdy brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 102,
+    "studio_job": "st-1795134618187-3",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/oak-round-a/102-rgb.png",
+    "sha256": "9302906bd1bfa9100b4bfc05264c733dc9f7ab7588fe8dbfac343c2284f693ff",
+    "matte_sha256": "4d06100ef5a94309a5945d9601a29358a64fb16b45221361e6c8793dd6125045",
+    "selected": true,
+    "pick_reason": "fuller crown, warm upper-left light, no light shafts",
+    "source_sha256": "3f247f93713c362057585b6b459ba75f04a1c986595499e791872d9396fea4fc",
+    "source": "art/sources/vegetation/oak-round-a.png"
+  },
+  "oak-spreading-b/2895930": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single wide spreading old live oak tree with a broad low canopy of dark green leaf clumps and thick twisting brown limbs, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2895930,
+    "studio_job": "st-1795135560950-40",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/oak-spreading-b/2895930-rgb.png",
+    "sha256": "002f349b47635b29e0b6d9479a7b799e31a3748e1fcb24109e3f5bc3e76a1982",
+    "matte_sha256": "64e02dd37b398abb5f0f0e61585d8cc60c79a94b694e465223b5ad0a6484f683",
+    "selected": false
+  },
+  "oak-spreading-b/2895931": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single wide spreading old live oak tree with a broad low canopy of dark green leaf clumps and thick twisting brown limbs, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2895931,
+    "studio_job": "st-1795135560950-40",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/oak-spreading-b/2895931-rgb.png",
+    "sha256": "08aae77bc341b5af7c96ea2fbcd8842f90e07ed798eece28a5c307b3075ec5c1",
+    "matte_sha256": "4087a589da82956dda0b4c4cd21a29c6d044f2e7e48a0219c6b31cc3ae91ae52",
+    "selected": true,
+    "pick_reason": "broadest low canopy with readable twisting limbs",
+    "source_sha256": "01bc9e29757ff1c6117167cc55cdeba87a18640df86eab3c87835954aad66d09",
+    "source": "art/sources/vegetation/oak-spreading-b.png"
+  },
+  "oak-spreading-b/2895932": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single wide spreading old live oak tree with a broad low canopy of dark green leaf clumps and thick twisting brown limbs, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2895932,
+    "studio_job": "st-1795135560950-40",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/oak-spreading-b/2895932-rgb.png",
+    "sha256": "5359dc8b63fc54647ca4bd0e29cb44c01cc0ff2d2981bc0276b12c9985ca438d",
+    "matte_sha256": "0db278d4cccdb3a0c49e488429fcb75995e816f5e5f8f6f5a7bd8a2421d55781",
+    "selected": false
+  },
+  "ocotillo-a/2320300": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single ocotillo plant: a fountain of tall thin spiny grey-green stems with small red flower tips, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2320300,
+    "studio_job": "st-1795136285350-109",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/ocotillo-a/2320300-rgb.png",
+    "sha256": "bd50535352f7405fcf5a4bfe5f65edda26359c073d61264911d4abc71c9cb1ea",
+    "matte_sha256": "009b9e850cedec8465687935534bbdbb2307a60ca5470f3e5c8e66988e326457",
+    "selected": false
+  },
+  "ocotillo-a/2320301": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single ocotillo plant: a fountain of tall thin spiny grey-green stems with small red flower tips, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2320301,
+    "studio_job": "st-1795136285350-109",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/ocotillo-a/2320301-rgb.png",
+    "sha256": "ecd3d5e63d54cef786419cd703f97feefd02dffe19916d94ed7619395a50d277",
+    "matte_sha256": "a62d9d3df5364f5e9de6668b5b5e88528a1a86fc653fded4f7ed21924a871825",
+    "selected": true,
+    "pick_reason": "fountain of spiny stems with red tips",
+    "source_sha256": "1a867791c802bd6feccb022f2d3385746c6fdb19e5ef259bc4b628247dda91b5",
+    "source": "art/sources/vegetation/ocotillo-a.png"
+  },
+  "ocotillo-a/2320302": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single ocotillo plant: a fountain of tall thin spiny grey-green stems with small red flower tips, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 2320302,
+    "studio_job": "st-1795136285350-109",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/ocotillo-a/2320302-rgb.png",
+    "sha256": "45b21fb848e72af6494e994b8dddd67d92d5a7681b5fa73b4844ef998199decc",
+    "matte_sha256": "09033054432b2d158546f003d068bf390aef61f2b3fff13d66e07b89e00214ed",
+    "selected": false
+  },
+  "palm-fan-a/7092470": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single very tall slender California fan palm tree with a thin straight trunk and a compact round head of green fan fronds, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7092470,
+    "studio_job": "st-1795135575746-48",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/palm-fan-a/7092470-rgb.png",
+    "sha256": "1d683180c8a18a27034395697728ac3a6e8a0d2a108cbc789c7e1d4edbc6bce5",
+    "matte_sha256": "8bdd7658445a1c9e881f95af9eb2bfbe5c8ac96e6a9d6a8c190138ec4359e895",
+    "selected": true,
+    "pick_reason": "tall thin trunk with compact head reads as fan palm",
+    "source_sha256": "21b15225e51110f504fd6c38eec3b3ed2ffddfe3077a8f16b9605861f161658f",
+    "source": "art/sources/vegetation/palm-fan-a.png"
+  },
+  "palm-fan-a/7092471": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single very tall slender California fan palm tree with a thin straight trunk and a compact round head of green fan fronds, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7092471,
+    "studio_job": "st-1795135575746-48",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/palm-fan-a/7092471-rgb.png",
+    "sha256": "dd5a258a250a4410763e2ae477c02a1b76ea1b0945fc556941e337df75961949",
+    "matte_sha256": "e05c0b68491b729df8e7b907b2abb1b2b66f204a44f2b3a3af33adafc01041a6",
+    "selected": false
+  },
+  "palm-fan-a/7092472": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single very tall slender California fan palm tree with a thin straight trunk and a compact round head of green fan fronds, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7092472,
+    "studio_job": "st-1795135575746-48",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/palm-fan-a/7092472-rgb.png",
+    "sha256": "2428b6157cbc07349f0b3a7451f17646ffe25ec1a0df0502da371bfae024fa50",
+    "matte_sha256": "eda0272d634fe4d572292a5857af0fac8b9de5281ebb8a25402a1fffba0db7ce",
+    "selected": false
+  },
+  "palm-sabal-a/8016530": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single cabbage palmetto palm tree with a rough criss-cross textured trunk and a full round crown of green fan fronds, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8016530,
+    "studio_job": "st-1795135577513-49",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/palm-sabal-a/8016530-rgb.png",
+    "sha256": "125facfaa0833a68ceb051fb8616d1712d46715e914d7237efab8822a0b329e1",
+    "matte_sha256": "93090137020d192c770139c9a6de6cb066dfc34604251f56b768206a121c5eb3",
+    "selected": false
+  },
+  "palm-sabal-a/8016531": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single cabbage palmetto palm tree with a rough criss-cross textured trunk and a full round crown of green fan fronds, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8016531,
+    "studio_job": "st-1795135577513-49",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/palm-sabal-a/8016531-rgb.png",
+    "sha256": "fe571580d2b1437f4c272943c95636c65d6080ed48a73941f6d0df3eb23d50c9",
+    "matte_sha256": "a7e64ade440e2a715b8e7f1bb0c238e5fe7df8c0263f05ce8f567f2fede3e74b",
+    "selected": true,
+    "pick_reason": "full round crown and criss-cross trunk",
+    "source_sha256": "f8381cda1fa028cda09c297ca6e7e52fdc6c9ccd62ab0f3f8670a0fe00c7e3ac",
+    "source": "art/sources/vegetation/palm-sabal-a.png"
+  },
+  "palm-sabal-a/8016532": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single cabbage palmetto palm tree with a rough criss-cross textured trunk and a full round crown of green fan fronds, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8016532,
+    "studio_job": "st-1795135577513-49",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/palm-sabal-a/8016532-rgb.png",
+    "sha256": "2ed4e745b8da72c79fa2f5bb30de6751401f1543211e79c22e12169edafaf576",
+    "matte_sha256": "c481fc1063775dc35c43b6124c4ede744a5928b095ac36fc87a4ba73a9972d86",
+    "selected": false
+  },
+  "palo-verde-a/4319140": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single palo verde desert tree with smooth green bark, many thin twisting branches and a light airy crown of tiny yellow-green leaves and yellow flowers, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4319140,
+    "studio_job": "st-1795136283582-108",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/palo-verde-a/4319140-rgb.png",
+    "sha256": "baf688d0cfe98a9307044068955f9cb0b9085ac16efa19a830bc3670a2eaffbd",
+    "matte_sha256": "de88a585214da7a41ac8131484043be03a5be0785f028af32a47ba6672a46014",
+    "selected": false
+  },
+  "palo-verde-a/4319141": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single palo verde desert tree with smooth green bark, many thin twisting branches and a light airy crown of tiny yellow-green leaves and yellow flowers, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4319141,
+    "studio_job": "st-1795136283582-108",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/palo-verde-a/4319141-rgb.png",
+    "sha256": "fd39d6f41c5b5cabba629a23ec652d036251a20c2b4f7f80ccaf7a52d0ca5a7e",
+    "matte_sha256": "92f7749017000e02eece84f504f71657772f1d03176d805a5789aeed0ce5c81b",
+    "selected": true,
+    "pick_reason": "green trunk and airy yellow crown",
+    "source_sha256": "729fac317016668f2719b378f89b140e29d5deeb822fb6697df4a6297af7b926",
+    "source": "art/sources/vegetation/palo-verde-a.png"
+  },
+  "palo-verde-a/4319142": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single palo verde desert tree with smooth green bark, many thin twisting branches and a light airy crown of tiny yellow-green leaves and yellow flowers, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 4319142,
+    "studio_job": "st-1795136283582-108",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/palo-verde-a/4319142-rgb.png",
+    "sha256": "6e15f898c99bf86e300af72150c3cda82ae305fbe5b37e586d12877fefeebcfc",
+    "matte_sha256": "054026792e33ecfebf04924d25ed718d0811ca368bb5cd5549a652209ada1cb8",
+    "selected": false
+  },
+  "pine-white-a/7773290": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall eastern white pine tree with layered horizontal tufts of soft blue-green needles and a tall reddish-brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7773290,
+    "studio_job": "st-1795135568345-44",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/pine-white-a/7773290-rgb.png",
+    "sha256": "09aeb7ee1a426ec0124878d76ac6b98c7e1550bdf50322e9b24f21c8ec2c1563",
+    "matte_sha256": "5faec73f8451d9d30972dc9eb08650f89d5b4494db66e9d0a61e508a3b0a45cc",
+    "selected": false
+  },
+  "pine-white-a/7773291": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall eastern white pine tree with layered horizontal tufts of soft blue-green needles and a tall reddish-brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7773291,
+    "studio_job": "st-1795135568345-44",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/pine-white-a/7773291-rgb.png",
+    "sha256": "e195e89ac43cd159223bcb2fda43c70f33d91337a8c9aa7bb3012e92d06b0698",
+    "matte_sha256": "5ae8e35803eaaf9c4ce9132739b4a3aef26c17bac5790986a08f34e836e97670",
+    "selected": true,
+    "pick_reason": "layered horizontal tufts read as white pine",
+    "source_sha256": "704b0dacde64427a92b12279fc4b1c8cd040e6ac5368453bf59876686d0845a3",
+    "source": "art/sources/vegetation/pine-white-a.png"
+  },
+  "pine-white-a/7773292": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall eastern white pine tree with layered horizontal tufts of soft blue-green needles and a tall reddish-brown trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7773292,
+    "studio_job": "st-1795135568345-44",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/pine-white-a/7773292-rgb.png",
+    "sha256": "33085fb7b2d5b384cfd3fed94dfe983d6c79a56ec17d15a68e2089cde33ce0a8",
+    "matte_sha256": "6cbcd4180b1740cc1376362185c3353a4e0ac3a0c604ff271bcb9ec1b12dd7ec",
+    "selected": false
+  },
+  "planter-flowers-a/6585220": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a rectangular concrete city planter box overflowing with red geraniums, purple petunias and trailing green ivy, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 6585220,
+    "studio_job": "st-1795136296188-114",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/planter-flowers-a/6585220-rgb.png",
+    "sha256": "b4acd46823dd82a9534e249f7b485c5a4878c64e27a2b652e06077f8cfa2ef84",
+    "matte_sha256": "38fbc39fd3a7ea3768ded0a8e5fbfdd77e3e0240a8bb563d244a7a606cc9f578",
+    "selected": false
+  },
+  "planter-flowers-a/6585221": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a rectangular concrete city planter box overflowing with red geraniums, purple petunias and trailing green ivy, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 6585221,
+    "studio_job": "st-1795136296188-114",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/planter-flowers-a/6585221-rgb.png",
+    "sha256": "f243349a538415cb9b1393c3721a54e626d85480a3263c7a9de26d72d17c9fca",
+    "matte_sha256": "5fd9cf7e8f6470480894f674f2dfa2456ca25edc27dd2acabb527bbc2ada0463",
+    "selected": true,
+    "pick_reason": "overflowing geraniums and petunias, clean box",
+    "source_sha256": "ea50a354ac70f6ced4886c7657f00e0850ddbb0023d05420e8d22e726f8dc55d",
+    "source": "art/sources/vegetation/planter-flowers-a.png"
+  },
+  "planter-flowers-a/6585222": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a rectangular concrete city planter box overflowing with red geraniums, purple petunias and trailing green ivy, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 6585222,
+    "studio_job": "st-1795136296188-114",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/planter-flowers-a/6585222-rgb.png",
+    "sha256": "3f1f1a55f836f3aebc50684cab765026f236ebfa68b4a933724f1c94126a2dc3",
+    "matte_sha256": "b81df78ceccf960a67200d100f9cce21590e89b5aceafa470010efd98194f5a8",
+    "selected": false
+  },
+  "poplar-windbreak-a/6669810": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight row of six tall narrow Lombardy poplar trees standing side by side as a farm windbreak, columnar dark green crowns, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 6669810,
+    "studio_job": "st-1795135579935-50",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/poplar-windbreak-a/6669810-rgb.png",
+    "sha256": "a7bfaf2be00a850d7d4a22374d6b34628167144e5c09b1bf15db43bbcd20e9ef",
+    "matte_sha256": "22bb88f9be9ed1f3d3c65d6a40fd9d2ec47f0d088a9b559a436ad9fd74b5f76d",
+    "selected": false
+  },
+  "poplar-windbreak-a/6669811": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight row of six tall narrow Lombardy poplar trees standing side by side as a farm windbreak, columnar dark green crowns, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 6669811,
+    "studio_job": "st-1795135579935-50",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/poplar-windbreak-a/6669811-rgb.png",
+    "sha256": "1dd78044437494cdcb3ca5fec80128f46b651466017a7e29db6afd4e6b195e3c",
+    "matte_sha256": "a3a7a787c94c1e76c412e4027b985b0d235d0f6018f4a9e87b495d418627ab6f",
+    "selected": true,
+    "pick_reason": "even dark green columns without yellow cast",
+    "source_sha256": "2405b52533104ca01e50676d8e911f1308c1abc9704ec0b5164a7d5c19aca834",
+    "source": "art/sources/vegetation/poplar-windbreak-a.png"
+  },
+  "poplar-windbreak-a/6669812": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a straight row of six tall narrow Lombardy poplar trees standing side by side as a farm windbreak, columnar dark green crowns, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 6669812,
+    "studio_job": "st-1795135579935-50",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/poplar-windbreak-a/6669812-rgb.png",
+    "sha256": "83e2811aaa9adbd5d9a8b1274e0bdf0865a7832d271fa834b2dabab25ee3301c",
+    "matte_sha256": "6bea6410001d810066fec1193239cf792863f3667bcf16e78d723573233dfadb",
+    "selected": false
+  },
+  "prickly-pear-a/1600400": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single prickly pear cactus clump of flat round green pads with a few magenta fruits, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1600400,
+    "studio_job": "st-1795136286858-110",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/prickly-pear-a/1600400-rgb.png",
+    "sha256": "a08d16f1c126f354351c8a604bd96ca0bfc4902838668c41ac5de9b32684f826",
+    "matte_sha256": "d461ec8e91b323f82cc35dd95c58c75b758660bb83f3787429115a636898608a",
+    "selected": false
+  },
+  "prickly-pear-a/1600401": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single prickly pear cactus clump of flat round green pads with a few magenta fruits, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1600401,
+    "studio_job": "st-1795136286858-110",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/prickly-pear-a/1600401-rgb.png",
+    "sha256": "79a0f1e991ac64021bd7688240c01a4575d1a4cb3b6aac82315f2f2fad1c630b",
+    "matte_sha256": "cbba3a438cfd71c48018a225f1e6a960c0d0db63353a2c1a1d32f3c296874783",
+    "selected": false
+  },
+  "prickly-pear-a/1600402": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single prickly pear cactus clump of flat round green pads with a few magenta fruits, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1600402,
+    "studio_job": "st-1795136286858-110",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/prickly-pear-a/1600402-rgb.png",
+    "sha256": "2059cf2209ac4477f8bea06b970e32441191ff1660df4477db6290549b2cf563",
+    "matte_sha256": "93326b82ae90f796b1313fa00999306750126ef0516b47cd22fc2ad530ac9ea1",
+    "selected": true,
+    "pick_reason": "upright pads with fruit, compact",
+    "source_sha256": "552a12e7769865717df548f2368dcb77ad98a914f23b2f1f5977b51b4a4c89f0",
+    "source": "art/sources/vegetation/prickly-pear-a.png"
+  },
+  "sagebrush-a/5604450": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide mound-shaped silver-grey-green sagebrush bush of many small twigs, growing straight out of the ground with no visible trunk, much wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 5604450,
+    "studio_job": "st-1795137613997-144",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/sagebrush-a/5604450-rgb.png",
+    "sha256": "5611721be5c114d4df7fe9a39d50fc488ecda06b2da2d249f9fbfafcf20eb6a2",
+    "matte_sha256": "f8a9c1845cf1e52cb59aa29aba3fd069a1ad061f4b5fe58ec7f87e5505ac8e13",
+    "selected": true,
+    "pick_reason": "low silver-grey mound reads as sagebrush",
+    "source_sha256": "7de2096e49f4daf943e1c85bd10583901eddc3d478e3c84b164e99aa232cb07c",
+    "source": "art/sources/vegetation/sagebrush-a.png"
+  },
+  "sagebrush-a/5604451": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide mound-shaped silver-grey-green sagebrush bush of many small twigs, growing straight out of the ground with no visible trunk, much wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 5604451,
+    "studio_job": "st-1795137613997-144",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/sagebrush-a/5604451-rgb.png",
+    "sha256": "244573a030204dd3ef7b25da9a569f21f76970ed60d074f1d307c27198b81a7b",
+    "matte_sha256": "7d46c6dfddbb4e15dcf8159aa86ec624ddadaf062f848b3601447dc18513f613",
+    "selected": false
+  },
+  "sagebrush-a/5604452": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide mound-shaped silver-grey-green sagebrush bush of many small twigs, growing straight out of the ground with no visible trunk, much wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 5604452,
+    "studio_job": "st-1795137613997-144",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/sagebrush-a/5604452-rgb.png",
+    "sha256": "76bafaad5eb648a446454947ebc3be848454cdde9feaf84d2020c36abe838b90",
+    "matte_sha256": "f040a219c131c93d1fa1bb2210ee7241a08d452b7886a7cc512b171eda47b4e5",
+    "selected": false
+  },
+  "saguaro-a/7373930": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall saguaro cactus with a thick ribbed green column trunk and two upturned arms, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7373930,
+    "studio_job": "st-1795136277462-105",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/saguaro-a/7373930-rgb.png",
+    "sha256": "a75b34d6404b08af1c8927f3b0e51481969610a6984106bb6b2dbe19f150d657",
+    "matte_sha256": "07a5963d5cab18a8624400b40554abac4dcfbafecf5279c71eb0cb8c7106e164",
+    "selected": true,
+    "pick_reason": "classic two-arm saguaro, clean ribs",
+    "source_sha256": "424224fd239705fa6e5e798c4ad0e85c753162b9e3b1ea5512a517465e7016bd",
+    "source": "art/sources/vegetation/saguaro-a.png"
+  },
+  "saguaro-a/7373931": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall saguaro cactus with a thick ribbed green column trunk and two upturned arms, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7373931,
+    "studio_job": "st-1795136277462-105",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/saguaro-a/7373931-rgb.png",
+    "sha256": "bf7fe215ae73d43d8d1d3a5b4bfbde4b659f095e73d33381a40170fa8f43bb84",
+    "matte_sha256": "4f83cda012d4dbc0fde14cacb2da332124a5fdc667746f57acd7b287425a90b4",
+    "selected": false
+  },
+  "saguaro-a/7373932": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single tall saguaro cactus with a thick ribbed green column trunk and two upturned arms, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7373932,
+    "studio_job": "st-1795136277462-105",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/saguaro-a/7373932-rgb.png",
+    "sha256": "e439e66205088868f77bd7f4728502c7841ec1e3b7fb5823b87972c6e28600d4",
+    "matte_sha256": "850f8823857c83924500b9020d21b4b6b9ed10af6f4a5010bcb0956ade7d1e43",
+    "selected": false
+  },
+  "saguaro-b/8045360": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single very tall old saguaro cactus with four curving arms of different heights, ribbed green trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8045360,
+    "studio_job": "st-1795136279030-106",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/saguaro-b/8045360-rgb.png",
+    "sha256": "8cbe917e547ec7800ab15135939a98aa061c2b88cdb777a61cd47ae8ce63a7a6",
+    "matte_sha256": "a3a3ffbbe7251ab38de930ff93e6409183e2421352f8a15f0a7028f07fc56b59",
+    "selected": false
+  },
+  "saguaro-b/8045361": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single very tall old saguaro cactus with four curving arms of different heights, ribbed green trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8045361,
+    "studio_job": "st-1795136279030-106",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/saguaro-b/8045361-rgb.png",
+    "sha256": "e66b1c8a1d818d151a6de019b45ae0ecedd2155b35619dfdfd8bc3e14105fdb2",
+    "matte_sha256": "6f593c38d64b2d3d80b41a80a476c15e075a00a9783a0824442631b3b0767bea",
+    "selected": true,
+    "pick_reason": "different arm layout from saguaro-a for variety",
+    "source_sha256": "a5e5e9712da6c1c96b7175932074c8ad701038db6b449037c23671c5cc0e5118",
+    "source": "art/sources/vegetation/saguaro-b.png"
+  },
+  "saguaro-b/8045362": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single very tall old saguaro cactus with four curving arms of different heights, ribbed green trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8045362,
+    "studio_job": "st-1795136279030-106",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/saguaro-b/8045362-rgb.png",
+    "sha256": "fb0d4039e91f343c2d70ab205c6b7edb3555436c710c9d85d4110ad90c003051",
+    "matte_sha256": "2152534901a29d645441be1bcd53369e3e0c035b1f342b5604747a36a5811ba1",
+    "selected": false
+  },
+  "shrub-round-a/8304160": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide mound-shaped green garden bush made of many small leaves, growing straight out of the ground with no visible trunk, much wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8304160,
+    "studio_job": "st-1795136362199-124",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/shrub-round-a/8304160-rgb.png",
+    "sha256": "7a9c92ff67dac79d73dca014ef5ce99740d4e683b125b29c5e5818b01253248d",
+    "matte_sha256": "dbcfc4b1c147beb13932f9b851f80900b910fb269f381046a4cba5224308925c",
+    "selected": true,
+    "pick_reason": "trunkless mound, deep green, no soil patch",
+    "source_sha256": "e91924613ab8f307a96d63f21c6ff82fe5047532d39c127ea23727e61fc34740",
+    "source": "art/sources/vegetation/shrub-round-a.png"
+  },
+  "shrub-round-a/8304161": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide mound-shaped green garden bush made of many small leaves, growing straight out of the ground with no visible trunk, much wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8304161,
+    "studio_job": "st-1795136362199-124",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/shrub-round-a/8304161-rgb.png",
+    "sha256": "0d7f50881b5bfabfb0be58cda0364cc868704a5bc064efb3e34145ca915d2485",
+    "matte_sha256": "0ef81a738cd1fb46d93e599fdb116bf85da824b142384997d8ffacaa7bc01bfa",
+    "selected": false
+  },
+  "shrub-round-a/8304162": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a low wide mound-shaped green garden bush made of many small leaves, growing straight out of the ground with no visible trunk, much wider than it is tall, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 8304162,
+    "studio_job": "st-1795136362199-124",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/shrub-round-a/8304162-rgb.png",
+    "sha256": "b8231c277c75671cf182451a7270efe3bc4955fe5d17d139f8a790fd67497d82",
+    "matte_sha256": "8b25f06a7053a14af92047052bea3d0b793aa7b9378ac62078a9c272364bc6af",
+    "selected": false
+  },
+  "spruce-conical-a/1315330": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single dense conical blue spruce fir tree with a pointed top and downswept dark green branches, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1315330,
+    "studio_job": "st-1795135570194-45",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/spruce-conical-a/1315330-rgb.png",
+    "sha256": "f07b31e91904023890a723e45609f9efa0b26ede671155709a9adb0542307263",
+    "matte_sha256": "7c3d38834f11f29a1bec9fae8f02ab5a918d7f8fa0b55cb44ea8e93df72d06da",
+    "selected": true,
+    "pick_reason": "cleanest conical silhouette, deep blue-green",
+    "source_sha256": "676fb80c9b1ee6025bd52f02b0e13926eeef206758da3aa94f4b0d37c2494c6c",
+    "source": "art/sources/vegetation/spruce-conical-a.png"
+  },
+  "spruce-conical-a/1315331": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single dense conical blue spruce fir tree with a pointed top and downswept dark green branches, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1315331,
+    "studio_job": "st-1795135570194-45",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/spruce-conical-a/1315331-rgb.png",
+    "sha256": "77b8ce12e61c307c904aa485a7c505d74e9e73bcbde0b5a3d463062e2bafd2d6",
+    "matte_sha256": "6ddb4970ad986b84bd0845f9bc396c3a48585e79b51981c980d476652d63ee36",
+    "selected": false
+  },
+  "spruce-conical-a/1315332": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single dense conical blue spruce fir tree with a pointed top and downswept dark green branches, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 1315332,
+    "studio_job": "st-1795135570194-45",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/spruce-conical-a/1315332-rgb.png",
+    "sha256": "2332214d4fe3ec050d52a304761be69e43c9f4034f52d2bfd88004b5ec6b4793",
+    "matte_sha256": "587e8ce71693243532f762bbd5a568874546dffe0cb1c63b11874521fff11c0f",
+    "selected": false
+  },
+  "street-tree-planter-a/942480": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single young honey locust street tree with a light rounded crown of small green leaves, growing from a square concrete sidewalk planter with a black iron tree guard, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 942480,
+    "studio_job": "st-1795136291917-113",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/street-tree-planter-a/942480-rgb.png",
+    "sha256": "8fa461fad9748d5f5eabacef7a14477f07a6e9dc79c965ae48bd7269f5cc10be",
+    "matte_sha256": "3dba3377bf79bb31cf34ff58c14539a8f43479836dcd93128727f7ccb7c056a6",
+    "selected": false
+  },
+  "street-tree-planter-a/942481": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single young honey locust street tree with a light rounded crown of small green leaves, growing from a square concrete sidewalk planter with a black iron tree guard, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 942481,
+    "studio_job": "st-1795136291917-113",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/street-tree-planter-a/942481-rgb.png",
+    "sha256": "3a5f5e755c817460abcabf058304d7d6542d6a2fafc5ce82982359c809c18c5e",
+    "matte_sha256": "2cefbebbe1e1a0b02c0db4b7959ee544833d98915871995566152cc12152fd5b",
+    "selected": true,
+    "pick_reason": "young tree with iron guard in planter, city-ready",
+    "source_sha256": "13785226a445c77560015e80f32a96c9cf2b3a18940356ac658b03104a252e6f",
+    "source": "art/sources/vegetation/street-tree-planter-a.png"
+  },
+  "street-tree-planter-a/942482": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single young honey locust street tree with a light rounded crown of small green leaves, growing from a square concrete sidewalk planter with a black iron tree guard, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 942482,
+    "studio_job": "st-1795136291917-113",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/street-tree-planter-a/942482-rgb.png",
+    "sha256": "66f2bf7cb9d5eca302d6d0cdd72d91f648ac3bd4aae4f71650e912513fe6310d",
+    "matte_sha256": "b657adbd3380b35e155774aec993b30a3922aa7457db87518437d10a6a242c9f",
+    "selected": false
+  },
+  "sumac-autumn-a/244350": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single staghorn sumac shrub in autumn with fiery red and orange pointed leaflets and dark red fruit cones, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 244350,
+    "studio_job": "st-1795135599006-60",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/sumac-autumn-a/244350-rgb.png",
+    "sha256": "ec4a9b06c80f06de9b8d33111087e9db32cfb66b6f87a8ec5b0123a2213a6b36",
+    "matte_sha256": "5d60530c4e33f475a467796de32328c8804cb3d1fbc0b81c2f6aad14b8bcd1a3",
+    "selected": false
+  },
+  "sumac-autumn-a/244351": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single staghorn sumac shrub in autumn with fiery red and orange pointed leaflets and dark red fruit cones, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 244351,
+    "studio_job": "st-1795135599006-60",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/sumac-autumn-a/244351-rgb.png",
+    "sha256": "b84a9f1f13f97bd01c5127dcd9ca7c2674e48a23d2c38509e8f09c45234cd983",
+    "matte_sha256": "81b354bf5c81a4501c7771649ff3037573020152ebb952f42fbba7b7c81d7d66",
+    "selected": true,
+    "pick_reason": "fiery leaflets and red fruit cones clearest",
+    "source_sha256": "f1f2c6a568b286ca0a987ecdd61a7a5c41825ab88cfe2ef778a9c9bf78af13da",
+    "source": "art/sources/vegetation/sumac-autumn-a.png"
+  },
+  "sumac-autumn-a/244352": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single staghorn sumac shrub in autumn with fiery red and orange pointed leaflets and dark red fruit cones, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 244352,
+    "studio_job": "st-1795135599006-60",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/sumac-autumn-a/244352-rgb.png",
+    "sha256": "ba0247a00a84e718d011a02772a3daf34cae5879b6016609bb33ac6b1d3c5c90",
+    "matte_sha256": "a283d9f6e1b5f51358c0434433b28ad343b980f3378328ef99d6955c5861b434",
+    "selected": false
+  },
+  "willow-weeping-a/7435110": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single weeping willow tree with long drooping curtains of light green leafy branches and a gnarled trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7435110,
+    "studio_job": "st-1795135582871-51",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/willow-weeping-a/7435110-rgb.png",
+    "sha256": "2e08fbf5f1bce0b8130fcbf8e605d557882ebb98e405c388442906af63db8b4c",
+    "matte_sha256": "45ce58bfd6afef629c277408d2716650ac613346fd41c36857efd3622f393d0f",
+    "selected": false
+  },
+  "willow-weeping-a/7435111": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single weeping willow tree with long drooping curtains of light green leafy branches and a gnarled trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7435111,
+    "studio_job": "st-1795135582871-51",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/willow-weeping-a/7435111-rgb.png",
+    "sha256": "8b4132c263f82a64796de123fbf25b7e17047b354341518e219505d3074e461f",
+    "matte_sha256": "cdcf303a26083a050b766efb557fe66222000bcb0ad3e75f9f46467b7930c522",
+    "selected": true,
+    "pick_reason": "clear drooping curtains, gnarled trunk",
+    "source_sha256": "b0e6645e6568df5270af3b4fc6af7ddf89ba402bd87b5eafadd594355cd5a718",
+    "source": "art/sources/vegetation/willow-weeping-a.png"
+  },
+  "willow-weeping-a/7435112": {
+    "workflow": "art/workflows/sprite-flux2-matte.json",
+    "models": [
+      "flux-2-klein-4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "qwen_3_4b.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "flux2-vae.safetensors (Comfy-Org/Flux-2-Klein-4B@5b3abca5c0dc, apache-2.0)",
+      "model.safetensors (ZhengPeng7/BiRefNet@e2bf8e4460fc, mit)"
+    ],
+    "prompt": "a single weeping willow tree with long drooping curtains of light green leafy branches and a gnarled trunk, hand-painted cartoon game sprite for a retro 16-bit racing game, soft painterly shading, softly diffused pixel-like edges, warm late-afternoon light from the upper left, the whole object centered with margin, isolated on a flat pure white background, no ground, no shadow",
+    "seed": 7435112,
+    "studio_job": "st-1795135582871-51",
+    "raw": "/home/forge/.cache/tillandsias-project/cannonball-art/raw/vegetation/willow-weeping-a/7435112-rgb.png",
+    "sha256": "1a31a9dc0fd77d6892250982fc0deafa86ba27edea054e2a3ec3dc4f9afdec6d",
+    "matte_sha256": "1f61dfb94e9377ee8014f76a6be44a593146019ef35ba57088520da1c4747fa9",
+    "selected": false
+  }
+}

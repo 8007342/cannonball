@@ -69,3 +69,35 @@ clipping; encoded levels are verified rather than assuming the target was met. `
 the original scores for occasional station surfing. Full mixes/MIDI are unchanged.
 The catalogue records those clips separately under `surf`; only tiny prepared
 fragments are prewarmed, never another full song solely for dial effects.
+
+## Radio programme (2026-11-20)
+
+The three studies above are now the fallback. The main soundtrack is a radio
+programme of wordless songs generated with ACE-Step 1.5 (XL turbo, Apache-2.0)
+from `art/music/radio-songs.json` through the committed workflow
+`art/music/workflows/acestep15-radio-song.json`: seven fictional stations
+(pop, rock/surf, metal, jazz/funk, latin, folk/country, synthwave/electronic),
+two seeds per song, a metric pick logged in `art/music/radio-renders.json`.
+Songs are joined by hard radio cuts: song, synthesized tuning buzz, a Kokoro
+presenter line (station ident, banter or a state-derived report), buzz, next
+song. Prompts name genre traits only; every take is requested instrumental
+(`[instrumental]` lyrics, "no vocals, no singing, wordless" tags), but a
+listening pass for stray vocalise is still pending.
+
+Mastering: two-pass EBU R128 loudnorm to -16 LUFS / -2 dBTP, 20 ms fade in,
+2.5 s fade out, MP3 192 kbps 48 kHz stereo; presenters mono 96 kbps after a
+radio-band chain; buzz -18 LUFS at 160 kbps. `tool/audio/radiokit verify`
+decodes every shipped file and records loudness, true peak, duration and
+bitrate in `radio-verification.json`. ACE-Step's raw 16-bit FLAC exports touch
+full scale (a few dozen clipped samples per take); clipping runs are a pick
+penalty and the -4 to -5 dB mastering gain leaves the encoded files well under
+the ceiling, but the clipped samples inside a take cannot be restored. The
+host refuses the unpinned `AudioAdjustVolume` node (see demon_attack's
+FORGE_DIAGNOSTICS), so pre-export attenuation is not available.
+
+Presenter voices for the programme use the same Kokoro v1.0 model files as the
+reports above (sha256 `beb0d184…df3a` for `kokoro-v1.0.onnx`, `bca610b8…7fbf7d`
+for `voices-v1.0.bin`), now read from
+`~/.cache/tillandsias-project/cannonball-audio/models/`. Stock voices
+`af_heart`, `am_fenrir`, `am_onyx`, `bm_george`, `em_alex` (Spanish), `af_nicole`,
+`am_puck`, `af_sarah`, `am_michael`; no cloning. See `art/music/README.md`.
