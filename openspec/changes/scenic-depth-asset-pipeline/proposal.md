@@ -40,3 +40,13 @@ budgeted (atlases <= 16 MB total, picked raw sources <= 60 MB) because the
 checkout lives on a small tmpfs. No native app, cloud, ranking or deployment
 change. Agent-picked art is review material, not final production acceptance;
 physical-phone review remains open.
+
+## Expanded scope (user request 2026-11-20)
+- Cars: richer Blender car pipeline; rework the S2000-inspired player car and fix
+  its rear-wheel steering artefact; add a playable, slightly faster white electric
+  roadster chosen via a key-card keychain; add unbranded inspired-by traffic cars
+  (hot hatch, sport sedan, pony coupe, electric roadster, ordinary cars).
+- Traffic: cruising-speed variety and near-top-speed racers that weave through
+  traffic, using a small locally trained lane-change policy with rule fallback.
+- Radio: ACE-Step instrumental songs across genres and a programme sequencer
+  (song -> tuning buzz -> interjection -> tuning buzz -> other song).

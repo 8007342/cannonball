@@ -22,3 +22,19 @@
 ## 4. Verification
 - [ ] 4.1 Local checks, browser review of all six levels, docs and provenance.
 - [ ] 4.2 Physical-phone and user moving review (open).
+
+## 5. Cars (user request 2026-11-20)
+- [ ] 5.1 Richer Blender car modelling pipeline (parametric bodies, front-axle steer pivot, pose set, identity-consistent paint).
+- [ ] 5.2 Rework S2000-inspired player atlas; fix rear-wheel steering artefact.
+- [ ] 5.3 Playable white electric roadster selected by a key-card keychain in the garage key box.
+- [ ] 5.4 Traffic car catalog: hot hatch, sport sedan, pony coupe, electric roadster and ordinary cars (unbranded, inspired-by).
+
+## 6. Traffic (user request 2026-11-20)
+- [ ] 6.1 Wide cruising-speed variety and a racer profile near player top speed on sporty models.
+- [ ] 6.2 Racers weave through traffic with safe margins.
+- [ ] 6.3 Locally trained small lane-change policy (atrapa-style bundle, Dart evaluator, rule fallback).
+
+## 7. Radio (user request 2026-11-20)
+- [ ] 7.1 ACE-Step instrumental songs, several per genre, 60–120 s, provenance and loudness verification.
+- [ ] 7.2 Tuning-buzz and interjection clips.
+- [ ] 7.3 Programme sequencer: song -> buzz -> interjection -> buzz -> other song, lazy loading.
