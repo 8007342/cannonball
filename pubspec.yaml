@@ -71,6 +71,7 @@ flutter:
     - assets/audio/music/
     - assets/scenic/
     - assets/scenic/road/
+    - assets/traffic/
   fonts:
     - family: Cannonball
       fonts:

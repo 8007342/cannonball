@@ -1,7 +1,12 @@
 import 'dart:math' as math;
 
+import 'traffic_policy/racer_observation.dart';
+import 'traffic_policy/racer_policy.dart';
+
 /// Driver habits are independent of the vehicle's body, paint and route.
-enum TrafficProfile { ordinary, cautious, brisk, pushy }
+/// Racers are rare, always on sporty models, and cruise near the player's top
+/// speed while weaving through gaps (see docs/research/traffic-racers.md).
+enum TrafficProfile { ordinary, cautious, brisk, pushy, racer }
 
 class TrafficCar {
   TrafficCar({
@@ -15,12 +20,22 @@ class TrafficCar {
     this.profile = TrafficProfile.ordinary,
     this.paintVariant = 0,
     this.usesSignals = true,
+    this.modelId,
+    double? racerCap,
   }) : currentSpeed = cruiseSpeed,
-       laneCenter = x;
+       laneCenter = x,
+       racerCap = racerCap ?? cruiseSpeed * 1.08,
+       _laneFrom = x;
 
   final int id, color, paintVariant;
   final bool truck, usesSignals;
   final TrafficProfile profile;
+
+  /// Sporty model id for racers (placeholder ids until the car catalog lands).
+  final String? modelId;
+
+  /// Racer speed ceiling (the player's top speed at spawn).
+  final double racerCap;
   double position, x, cruiseSpeed, changeAt;
   double currentSpeed, laneCenter;
   double? targetX;
@@ -32,14 +47,32 @@ class TrafficCar {
       _reactionUntil = 0,
       _reactionCooldown = 0;
   double _incidentCooldown = 0, _panicUntil = 0;
+  // Racer decision state.
+  double _decideAt = 0, _laneFrom, _brakeTo = 0;
+  double _boostUntil = -1, _boostSpeed = 0;
+  bool? _aheadOfPlayer;
+  int racerAction = racerKeep, passedByPlayer = 0, racerLaneChanges = 0;
   double get reactionOffset => _flinch;
-  bool get signaling => usesSignals && targetX != null && signalTime < 2;
+  bool get isRacer => profile == TrafficProfile.racer;
+
+  /// True while a racer chases after being passed by the player.
+  bool get boosting => _boosted;
+  bool _boosted = false;
+  bool get signaling =>
+      usesSignals &&
+      targetX != null &&
+      signalTime < (profile == TrafficProfile.racer ? .6 : 2);
 }
 
 /// Small, deterministic local policy inspired by Atrapa's bounded observation.
 /// Coordinates are arcade road units, not a calibrated traffic simulator.
 class ReactiveTraffic {
+  ReactiveTraffic({this.racerPolicy});
+
+  /// Learned racer lane-change classifier; null means rule fallback.
+  final RacerPolicy? racerPolicy;
   int reactions = 0, incidents = 0;
+  int racerDecisions = 0, policyDecisions = 0, maskedPolicyChoices = 0;
 
   static const lanes = [-.65, 0.0, .65];
 
@@ -56,6 +89,7 @@ class ReactiveTraffic {
     int? closedLane,
     double closureStart = double.infinity,
     double closureEnd = double.infinity,
+    double playerTopSpeed = 155,
   }) {
     // Decisions use one pre-step observation: actor iteration order cannot create
     // an instantaneous braking wave through every car in a single step.
@@ -64,6 +98,7 @@ class ReactiveTraffic {
       final car = cars[index];
       car.incidentSeconds = math.max(0, car.incidentSeconds - dt);
       final self = observed[index];
+      final racer = car.isRacer;
       final longitudinal = car.position - playerPosition;
       final lateral = car.x - playerX;
       final lateralApproach = playerLateralSpeed * lateral.sign > .3;
@@ -100,7 +135,35 @@ class ReactiveTraffic {
         // A straight-line hero is less confident in bends.
         desiredSpeed *= 1 - curve.abs().clamp(0, 1) * .26;
       }
-      var acceleration = ((desiredSpeed - self.speed) * .9).clamp(-20.0, 9.0);
+      if (racer) {
+        desiredSpeed = _racerCruise(car, time, playerPosition, playerSpeed);
+        desiredSpeed *= 1 - curve.abs().clamp(0, 1) * .12;
+      }
+      final nearClosure =
+          closedLane != null &&
+          self.position > closureStart - 400 &&
+          self.position < closureEnd + 100;
+      if (racer) {
+        desiredSpeed = _racerDecide(
+          car,
+          self,
+          observed,
+          desiredSpeed,
+          time,
+          dt,
+          playerPosition,
+          playerX,
+          playerSpeed,
+          closedLane,
+          closureStart,
+          closureEnd,
+          curve,
+        );
+      }
+      var acceleration = ((desiredSpeed - self.speed) * .9).clamp(
+        -20.0,
+        racer ? 18.0 : 9.0,
+      );
       var leaderGap = double.infinity;
       var leaderSpeed = desiredSpeed;
       for (final candidate in observed) {
@@ -123,6 +186,7 @@ class ReactiveTraffic {
       final headway = switch (car.profile) {
         TrafficProfile.cautious => 2.1,
         TrafficProfile.pushy => .9,
+        TrafficProfile.racer => .6,
         _ => 1.4,
       };
       final desiredGap = 25 + self.speed * distanceScale * headway;
@@ -133,18 +197,26 @@ class ReactiveTraffic {
           (leaderGap - desiredGap) * .17 - closing * 1.1,
         );
       }
-      final nearClosure =
-          closedLane != null &&
-          self.position > closureStart - 400 &&
-          self.position < closureEnd + 100;
       final blocked =
           nearClosure && (car.laneCenter - closedLane * .65).abs() < .28;
-      if (time >= car.changeAt && car.targetX == null) {
+      if (!racer && time >= car.changeAt && car.targetX == null) {
         final needsPass =
             leaderGap < desiredGap * 1.4 && leaderSpeed < desiredSpeed - 5;
-        if (blocked || needsPass) {
+        // Courtesy: a non-pushy driver moves over for a racer closing fast
+        // from behind, when an adjacent lane is clear.
+        final yieldToRacer =
+            car.profile != TrafficProfile.pushy &&
+            observed.any(
+              (o) =>
+                  o.racer &&
+                  (o.x - self.x).abs() < .31 &&
+                  o.position < self.position &&
+                  self.position - o.position < 140 &&
+                  o.speed - self.speed > 20,
+            );
+        if (blocked || needsPass || yieldToRacer) {
           double? best;
-          var bestRoom = leaderGap;
+          var bestRoom = yieldToRacer && !needsPass ? -1.0 : leaderGap;
           for (final lane in lanes) {
             if ((lane - car.laneCenter).abs() > .7 ||
                 (lane - car.laneCenter).abs() < .3) {
@@ -182,25 +254,27 @@ class ReactiveTraffic {
         // Persistent cooldown stops frantic lane hopping.
         car.changeAt = time + 3 + (car.id % 7) * .35;
       }
-      if (car.targetX case final target?) {
-        car.signalTime += dt;
-        final delay = car.usesSignals ? 1.25 : .65;
-        if (car.signalTime >= delay &&
-            _laneClear(
-              self,
-              target,
-              observed,
-              playerPosition,
-              playerX,
-              playerSpeed,
-            )) {
-          final difference = target - car.laneCenter;
-          car.laneCenter +=
-              difference.sign * math.min(difference.abs(), dt * .26);
-          if ((car.laneCenter - target).abs() < .005) {
-            car.laneCenter = target;
-            car.targetX = null;
-            car.changeAt = time + 5;
+      if (!racer) {
+        if (car.targetX case final target?) {
+          car.signalTime += dt;
+          final delay = car.usesSignals ? 1.25 : .65;
+          if (car.signalTime >= delay &&
+              _laneClear(
+                self,
+                target,
+                observed,
+                playerPosition,
+                playerX,
+                playerSpeed,
+              )) {
+            final difference = target - car.laneCenter;
+            car.laneCenter +=
+                difference.sign * math.min(difference.abs(), dt * .26);
+            if ((car.laneCenter - target).abs() < .005) {
+              car.laneCenter = target;
+              car.targetX = null;
+              car.changeAt = time + 5;
+            }
           }
         }
       }
@@ -209,11 +283,11 @@ class ReactiveTraffic {
       }
       if (time < car._panicUntil) acceleration = math.min(acceleration, -48);
       if (car.incidentSeconds > 0) acceleration = math.min(acceleration, -38);
-      acceleration = acceleration.clamp(-58, 10);
+      acceleration = acceleration.clamp(-58, racer ? 18 : 10);
       car.braking = acceleration < -3;
       car.currentSpeed = (self.speed + acceleration * dt).clamp(
         0,
-        desiredSpeed + 5,
+        (racer ? math.max(desiredSpeed, car.cruiseSpeed) : desiredSpeed) + 5,
       );
       car.position += car.currentSpeed * distanceScale * dt;
       if (blocked && car.position >= closureStart - 20) {
@@ -250,6 +324,135 @@ class ReactiveTraffic {
     }
   }
 
+  /// Cruise target, plus a hard chase after the player passes. Every third
+  /// pass (by id) the racer tries to re-pass; a flat-out player still wins.
+  double _racerCruise(
+    TrafficCar car,
+    double time,
+    double playerPosition,
+    double playerSpeed,
+  ) {
+    final ahead = car.position > playerPosition;
+    if (car._aheadOfPlayer == true && !ahead) {
+      car.passedByPlayer++;
+      final repass = (car.id + car.passedByPlayer) % 3 == 0;
+      car._boostUntil = time + (repass ? 7 : 4.5);
+      car._boostSpeed = math.min(
+        car.racerCap * (repass ? .99 : .97),
+        math.max(car.cruiseSpeed, playerSpeed + (repass ? 6 : 0)),
+      );
+    }
+    car._aheadOfPlayer = ahead;
+    car._boosted = time < car._boostUntil;
+    return car._boosted
+        ? math.max(car.cruiseSpeed, car._boostSpeed)
+        : car.cruiseSpeed;
+  }
+
+  /// Racer decision tick (every [racerDecisionInterval]) and continuous lane
+  /// motion. Returns the desired speed for this step.
+  double _racerDecide(
+    TrafficCar car,
+    _Observation self,
+    List<_Observation> observed,
+    double cruise,
+    double time,
+    double dt,
+    double playerPosition,
+    double playerX,
+    double playerSpeed,
+    int? closedLane,
+    double closureStart,
+    double closureEnd,
+    double curve,
+  ) {
+    RacerScene scene() => RacerScene(
+      z: self.position,
+      x: self.x,
+      laneCenter: car.laneCenter,
+      speed: self.speed,
+      cruise: cruise,
+      changing: car.targetX != null,
+      others: [
+        for (final o in observed)
+          if (o.id != self.id) RacerOther(o.position, o.x, o.speed, o.targetX),
+      ],
+      playerZ: playerPosition,
+      playerX: playerX,
+      playerSpeed: playerSpeed,
+      closedLane: closedLane == null ? null : closedLane + 1,
+      closureStart: closedLane == null ? 0 : closureStart,
+      closureEnd: closedLane == null ? 0 : closureEnd,
+      curve: curve,
+    );
+    RacerScene? current;
+    if (time + 1e-9 >= car._decideAt) {
+      car._decideAt = time + racerDecisionInterval;
+      final s = current = scene();
+      final mask = racerSafetyMask(s);
+      var action = ruleRacerAction(s, mask);
+      final policy = racerPolicy;
+      if (policy != null) {
+        try {
+          final observation = encodeRacerObservation(s);
+          action = policy.decide(observation, mask);
+          policyDecisions++;
+          if (policy.decide(observation, const [
+                true,
+                true,
+                true,
+                true,
+                true,
+              ]) !=
+              action) {
+            maskedPolicyChoices++;
+          }
+        } catch (_) {
+          // Evaluation failure keeps the deterministic rule decision.
+        }
+      }
+      racerDecisions++;
+      car.racerAction = action;
+      if ((action == racerLeft || action == racerRight) &&
+          car.targetX == null) {
+        final lane = racerNearestLane(car.laneCenter);
+        car._laneFrom = racerLanes[lane];
+        car.targetX = racerLanes[action == racerLeft ? lane - 1 : lane + 1];
+        car.signalTime = 0;
+        car.racerLaneChanges++;
+      }
+      if (action == racerBrake) car._brakeTo = math.max(0, self.speed - 12);
+    }
+    if (car.targetX case final target?) {
+      car.signalTime += dt;
+      if (car.signalTime >= (car.usesSignals ? .3 : 0)) {
+        final from = car._laneFrom;
+        final progress = (car.laneCenter - from).abs() / (target - from).abs();
+        // Abort back to the origin lane if the gap closes before mid-way;
+        // past mid-way the move commits (margins already include lookahead).
+        if (progress < .5 &&
+            !racerGapClear(current ?? scene(), racerNearestLane(target))) {
+          car.targetX = from;
+          car._laneFrom = target;
+        } else {
+          final difference = target - car.laneCenter;
+          car.laneCenter +=
+              difference.sign *
+              math.min(difference.abs(), dt * racerLateralRate);
+          if ((car.laneCenter - target).abs() < .005) {
+            car.laneCenter = target;
+            car.targetX = null;
+          }
+        }
+      }
+    }
+    return switch (car.racerAction) {
+      racerAccelerate => math.min(cruise + 6, car.racerCap),
+      racerBrake => car._brakeTo,
+      _ => cruise,
+    };
+  }
+
   bool _laneClear(
     _Observation self,
     double lane,
@@ -259,7 +462,10 @@ class ReactiveTraffic {
     double playerSpeed,
   ) {
     for (final car in cars) {
-      if (car.id == self.id || (car.x - lane).abs() > .33) continue;
+      if (car.id == self.id) continue;
+      // Drivers also respect a car already signalling into the same lane.
+      final merging = car.targetX != null && (car.targetX! - lane).abs() < .05;
+      if ((car.x - lane).abs() > .33 && !merging) continue;
       final gap = car.position - self.position;
       final required = gap < 0
           ? 45 + math.max(0, car.speed - self.speed) * 2
@@ -280,7 +486,11 @@ class _Observation {
     : id = car.id,
       position = car.position,
       x = car.x,
-      speed = car.currentSpeed;
+      speed = car.currentSpeed,
+      targetX = car.targetX,
+      racer = car.isRacer;
   final int id;
   final double position, x, speed;
+  final double? targetX;
+  final bool racer;
 }

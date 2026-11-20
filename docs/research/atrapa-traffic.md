@@ -77,3 +77,10 @@ its initial NY corridor at the existing 48–59% road interval. It uses actual
 controller closure flags, collision boundaries, radio advice and NPC merge/stop
 logic. Traffic is not spawned inside that restricted lane. Legacy runs keep
 their original seeded closure decisions unchanged.
+
+## Follow-up: racers and a learned lane-change classifier
+
+The rare `racer` profile, wider cruise-speed mix and the locally trained racer
+classifier (Rust trainer, `assets/traffic/racer-policy.json`, Dart evaluator
+behind a safety mask with rule fallback) are documented in
+[traffic-racers.md](traffic-racers.md).
