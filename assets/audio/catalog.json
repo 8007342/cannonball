@@ -542,8 +542,7 @@
     "rules": {
       "identEvery": 2,
       "recentLines": 8,
-      "recentSongs": 10,
-      "stayOnStation": 0.55
+      "recentSongs": 10
     },
     "songs": [
       {

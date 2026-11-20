@@ -75,7 +75,7 @@ test('an invalid or missing programme is not ready', () => {
   assert.equal(new RadioSequencer({stations: [], songs: [], buzz: []}).valid, false);
 });
 
-function harness({ready = 3} = {}) {
+function harness({ready = 3, single = false} = {}) {
   let time = 0, id = 0;
   const timers = new Map(), sources = [], fetched = [], spoken = [];
   const context = {currentTime: 0, sampleRate: 48000,
@@ -88,16 +88,21 @@ function harness({ready = 3} = {}) {
     },
     createMediaElementSource() { return {connect() {}, disconnect() {}}; },
   };
-  const listeners = {};
-  const element = {readyState: ready, src: '', played: 0, paused: true, currentTime: 0, loads: 0,
-    addEventListener(name, fn) { listeners[name] = fn; }, setAttribute() {},
-    play() { this.played++; this.paused = false; return Promise.resolve(); },
-    pause() { this.paused = true; }, load() { this.loads++; }};
+  const elements = [];
+  const makeElement = () => {
+    const element = {readyState: ready, src: '', played: 0, paused: true, currentTime: 0, loads: 0, duration: NaN,
+      listeners: {}, addEventListener(name, fn) { this.listeners[name] = fn; }, setAttribute() {},
+      play() { this.played++; this.paused = false; return Promise.resolve(); },
+      pause() { this.paused = true; }, load() { this.loads++; this.currentTime = 0; }};
+    elements.push(element);
+    return element;
+  };
+  const shared = single ? makeElement() : null;
   const options = {
     base: 'https://game.test/audio/',
     fetch: async url => { fetched.push(url); return {ok: true, arrayBuffer: async () => new ArrayBuffer(4)}; },
     loadCatalog: async () => ({programme: programme()}),
-    createAudio: () => element,
+    createAudio: () => shared || makeElement(),
     speak: (text, done) => spoken.push({text, done}),
     random: seeded(9),
     setTimeout: (fn, ms) => { const t = ++id; timers.set(t, {fn, at: time + ms}); return t; },
@@ -114,7 +119,11 @@ function harness({ready = 3} = {}) {
     time = end; context.currentTime = time / 1000;
   }
   const endClip = () => { const s = sources.filter(x => x.onended && !x.stopped && !x.loop).at(-1); s?.onended(); return s; };
-  return {p, element, sources, fetched, spoken, timers, advance, endClip, listeners, context};
+  return {p, elements, sources, fetched, spoken, timers, advance, endClip, context,
+    get element() { return p.element || elements[0]; },
+    get listeners() { return (p.element || elements[0]).listeners; },
+    /** Media clock: move the playing song to `seconds` and fire timeupdate. */
+    playTo(seconds) { const e = p.element; e.currentTime = seconds; e.listeners.timeupdate?.(); }};
 }
 
 test('radio turns on with buzz, a station line, buzz, then a streamed song', async () => {
@@ -125,8 +134,8 @@ test('radio turns on with buzz, a station line, buzz, then a streamed song', asy
   h.p.setPaused(false);
   assert.equal(h.p.play('City'), true);
   assert.equal(h.p.state, 'buzz-in');
-  assert.match(h.element.src, /music\/(pop|rock)-\d\.mp3$/, 'next song starts streaming during the break');
-  assert.ok(!h.fetched.some(url => url.includes(h.element.src.split('/').pop())), 'songs are never fetched whole');
+  assert.match(h.p.spare.src, /music\/(pop|rock)-\d\.mp3$/, 'first song starts streaming during the break');
+  assert.ok(!h.fetched.some(url => url.includes(h.p.spare.src.split('/').pop())), 'songs are never fetched whole');
   await flush();
   h.endClip();
   await flush();
@@ -154,22 +163,34 @@ test('song end cuts to a different song through buzz -> interjection -> buzz', a
   assert.notEqual(h.p.snapshot().title, first);
 });
 
-test('urgent reports cut in; non-urgent ones wait for the next break', async () => {
+test('urgent reports cut in and return to the same song position; others wait', async () => {
   const h = harness();
   await h.p.prepare(); h.p.setPaused(false); h.p.play('City'); await flush();
   h.endClip(); await flush(); h.endClip(); h.advance(1000);
   assert.equal(h.p.state, 'song');
+  const song = h.p.snapshot().songId, element = h.element, src = element.src;
+  h.playTo(31.5);
   h.p.interject('Light traffic.', 'City', false);
   assert.equal(h.p.state, 'song', 'banter-grade report does not interrupt');
   h.p.interject('Snow ahead.', 'Mountain', true);
   assert.equal(h.p.state, 'buzz-in');
+  assert.equal(element.paused, true, 'the stream is paused in place, not reloaded');
   h.endClip(); await flush();
   assert.equal(h.p.state, 'report');
-  assert.equal(h.spoken.at(-1).text, 'Snow ahead.');
+  assert.equal(h.spoken.at(-1).text, 'Snow ahead.', 'latest report wins');
   h.spoken.at(-1).done(); h.spoken.at(-1).done();
   assert.equal(h.p.state, 'buzz-out');
   h.advance(1000);
-  assert.equal(h.p.snapshot().station, 'rock', 'Mountain region picks a Mountain station');
+  assert.equal(h.p.state, 'song');
+  assert.equal(h.p.snapshot().songId, song, 'same song after the bulletin');
+  assert.equal(h.element, element); assert.equal(element.src, src);
+  assert.equal(element.currentTime, 31.5, 'same position after the bulletin');
+  assert.equal(element.paused, false);
+  assert.equal(h.p.snapshot().transitions, 1, 'a bulletin is not a song change');
+  // The region change is honoured only at the next natural break.
+  h.listeners.ended(); h.endClip(); await flush();
+  h.endClip(); h.advance(1000);
+  assert.ok(['rock'].includes(h.p.snapshot().station), 'Mountain region picks a Mountain station');
 });
 
 test('a stuck speech engine cannot hold the programme', async () => {
@@ -206,8 +227,8 @@ test('pause during a break resumes with buzz and the planned song', async () => 
   h.advance(5000);
   assert.equal(h.p.state, 'buzz-in');
   h.p.setPaused(false);
-  assert.equal(h.p.state, 'buzz-out');
-  h.advance(1000);
+  assert.equal(h.p.state, 'buzz-in', 'resumes the interrupted break');
+  h.endClip(); await flush(); h.endClip(); h.advance(1000);
   assert.equal(h.p.state, 'song');
 });
 
@@ -271,4 +292,153 @@ test('a region with one local station stays on it instead of wandering off', () 
     for (let i = 0; i < 6; i++) { const p = s.plan('Forest'); assert.equal(p.station, 'folk'); s.commit(p); }
     assert.notEqual(s.plan('Forest', {change: true}).station, 'folk', 'an explicit skip still changes station');
   }
+});
+
+test('cadence: a station visit plays one or two songs, then the dial moves', () => {
+  assert.equal(RadioSequencer.CADENCE, 2, 'single tunable constant (art/music/README.md)');
+  const catalog = JSON.parse(readFileSync(new URL('../assets/audio/catalog.json', import.meta.url)));
+  for (let seed = 1; seed < 40; seed++) {
+    const s = new RadioSequencer(catalog.programme, seeded(seed * 104729));
+    let run = 0, changes = 0, previous = null;
+    const played = [];
+    // Six levels' worth of regions, ~12 songs: one 15-minute demo, twice.
+    const regions = ['City', 'Forest', 'Forest', 'City', 'City', 'Mountain'];
+    for (let i = 0; i < 24; i++) {
+      const plan = s.plan(regions[Math.floor(i / 2) % regions.length]);
+      s.commit(plan);
+      run = plan.station === previous ? run + 1 : 1;
+      if (previous && plan.station !== previous) changes++;
+      previous = plan.station;
+      assert.ok(run <= 2, `seed ${seed}: ${run} songs in a row on ${plan.station}`);
+      assert.ok(!played.slice(-10).includes(plan.song.id), `seed ${seed}: ${plan.song.id} repeated`);
+      played.push(plan.song.id);
+    }
+    assert.ok(changes >= 11, `seed ${seed}: only ${changes} station changes in 24 songs`);
+  }
+});
+
+test('cadence 1 changes station at every break', () => {
+  const p = programme(); p.rules = {...p.rules, maxSongsPerStation: 1};
+  const s = new RadioSequencer(p, seeded(4));
+  let previous = null;
+  for (let i = 0; i < 20; i++) {
+    const plan = s.plan('City'); s.commit(plan);
+    if (previous) assert.notEqual(plan.station, previous);
+    previous = plan.station;
+  }
+});
+
+test('long songs fade into the buzz at a phrase boundary, never under 60 s', () => {
+  const s = new RadioSequencer(programme(), seeded(2));
+  assert.equal(s.playLength({duration: 90, bpm: 120}), 90, 'shipped lengths play in full');
+  assert.equal(s.playLength({duration: 240, bpm: 120}), 144, '9 x 8-bar phrases at 120 BPM');
+  const short = new RadioSequencer({...programme(), rules: {maxSongSeconds: 30}}, seeded(2));
+  assert.equal(short.playLength({duration: 240, bpm: 120}), 64, 'trim honours the 60 s floor');
+});
+
+async function onAir(h) {
+  await h.p.prepare(); h.p.unlock(); h.p.setPaused(false); h.p.play('City'); await flush();
+  h.endClip(); await flush(); h.endClip(); h.advance(1000);
+  assert.equal(h.p.state, 'song');
+}
+
+test('level-change traffic (region, play, pause/resume pair, queued report) never resets the song', async () => {
+  const h = harness();
+  await onAir(h);
+  const element = h.element, src = element.src, song = h.p.snapshot().songId, plays = element.played;
+  h.playTo(44);
+  for (const region of ['Forest', 'City', 'Mountain', 'Forest', 'City', 'Mountain']) {
+    // What the bridge does on every level advance, Q-Y select, chapter replay or restart.
+    h.p.setRegion(region); h.p.play(region);
+    h.p.setPaused(true); h.p.setPaused(false);
+    h.p.interject('Rain ahead. Give those brakes room!', region, false);
+    h.advance(250); h.playTo(element.currentTime + 2);
+  }
+  assert.equal(h.p.state, 'song');
+  assert.equal(h.element, element);
+  assert.equal(element.src, src, 'src unchanged across six level changes');
+  assert.equal(h.p.snapshot().songId, song);
+  assert.equal(element.paused, false);
+  assert.equal(element.played, plays, 'never restarted');
+  assert.equal(element.currentTime, 56, 'position kept advancing');
+  assert.equal(h.p.snapshot().transitions, 1);
+  // The queued report airs at the next natural break instead.
+  h.listeners.ended(); h.endClip(); await flush();
+  assert.equal(h.p.state, 'report');
+  assert.match(h.p.snapshot().caption, /Rain ahead/);
+});
+
+test('pause resumes the same song at the same position', async () => {
+  const h = harness();
+  await onAir(h);
+  const element = h.element, src = element.src;
+  h.playTo(40.2);
+  h.p.setPaused(true); h.advance(100);
+  assert.equal(element.paused, true);
+  h.advance(30000);
+  h.p.setPaused(false);
+  assert.equal(h.element, element); assert.equal(element.src, src);
+  assert.equal(element.currentTime, 40.2);
+  assert.equal(element.paused, false);
+  assert.equal(h.p.state, 'song');
+  assert.ok(h.p.snapshot().log.some(e => e.event === 'pause' && e.at === 40.2));
+});
+
+test('next song preloads on the spare element in the last 20 s: no gap at the break', async () => {
+  const h = harness();
+  await onAir(h);
+  const current = h.element, spare = h.p.spare;
+  assert.notEqual(current, spare, 'two alternating elements');
+  h.playTo(60);
+  assert.equal(h.p.snapshot().preloaded, null, 'nothing extra is buffered early');
+  h.playTo(71);
+  const next = h.p.snapshot().nextSong;
+  assert.match(spare.src, new RegExp(`${next}\\.mp3$`), 'next song buffering during the outro');
+  const loads = spare.loads;
+  assert.ok(h.p.snapshot().log.some(e => e.event === 'preload'));
+  h.listeners.ended();
+  assert.equal(spare.loads, loads, 'break reuses the preloaded stream');
+  assert.equal(current.paused, true);
+  h.endClip(); await flush(); h.endClip(); h.advance(1000);
+  assert.equal(h.p.state, 'song');
+  assert.equal(h.element, spare);
+  assert.equal(h.p.snapshot().songId, next);
+  assert.equal(h.p.spare, current, 'elements swap roles');
+});
+
+test('a long song fades out at its trim point and the break follows', async () => {
+  const h = harness();
+  await onAir(h);
+  const element = h.element;
+  element.duration = 240; h.p.sequencer.song.bpm = 120; // plays 144 s
+  h.playTo(125);
+  assert.ok(h.p.spare.src.endsWith('.mp3'), 'preload counts from the trim point');
+  h.playTo(143);
+  assert.equal(h.p.fading, true);
+  assert.equal(h.p.gains.get(element).gain.value, 0);
+  h.advance(1100);
+  assert.equal(h.p.state, 'buzz-in');
+  assert.ok(h.p.snapshot().log.some(e => e.event === 'trim' && e.at === 144));
+});
+
+test('a slow preload is covered by static, not silence', async () => {
+  const h = harness();
+  await onAir(h);
+  h.p.spare.readyState = 0;
+  h.playTo(80);
+  h.p.spare.readyState = 0; // network has not delivered yet
+  h.listeners.ended(); h.endClip(); await flush(); h.endClip(); h.advance(1000);
+  assert.equal(h.p.state, 'loading');
+  assert.ok(h.sources.some(s => s.loop && !s.stopped));
+  h.p.spare.readyState = 4; h.advance(300);
+  assert.equal(h.p.state, 'song');
+});
+
+test('one shared media element (no spare) still plays the programme', async () => {
+  const h = harness({single: true});
+  await onAir(h);
+  assert.equal(h.elements.length, 1);
+  h.listeners.ended(); h.endClip(); await flush(); h.endClip(); h.advance(1000);
+  assert.equal(h.p.state, 'song');
+  assert.equal(h.p.snapshot().transitions, 2);
 });

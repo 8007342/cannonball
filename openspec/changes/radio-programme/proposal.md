@@ -20,6 +20,10 @@ assets quickly; this project does not need its musical transitions.
   region/station-aware choice, no recent repeats, hard cuts masked by buzz,
   urgent state-derived reports cut in, others wait for the break, pause/mute,
   station skip, continuity across level changes, fallback to the old score.
+- One continuous soundtrack for the demo (garage gesture to completion; level
+  changes, replays and restarts never cut the song), a single station-cadence
+  constant (change roughly every 1-2 songs), next-song preload and bulletins
+  that return to the same song position.
 
 ## Capabilities
 ### Modified Capabilities

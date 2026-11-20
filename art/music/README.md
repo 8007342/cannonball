@@ -91,18 +91,44 @@ writes `assets/audio/radio-verification.json`.
 
 ## Runtime behaviour (web/radio_programme.js)
 
+**One continuous programme for the whole demo.** The radio comes on with the
+first gesture in the garage (taking the keys, any tap or key press; browsers
+refuse audio before a gesture) and stays on air through the departure, all six
+levels (automatic advance or Q–Y), chapter replays (1–8), Backspace restarts
+and the completion / "drive it again" screen. Those paths never stop, restart
+or re-roll the current song: the programme has its own audio bus and its own
+hold, separate from the gameplay pause that silences the engine. Only the
+listener's mute, station skip (**N** / radio button) and pause (**P**, hidden
+tab) affect it, and pause resumes the same song at the same position.
+
+- **Cadence — the one tunable:** `STATION_CADENCE` at the top of
+  `web/radio_programme.js` (default **2**). Every song ends in a programme
+  break, and each station visit plays 1..`STATION_CADENCE` songs (drawn at
+  random when the dial lands) before the programme tunes to another eligible
+  station, so it moves roughly every 1–2 songs. `1` changes station at every
+  break. Avoiding a recent repeat still wins over the cadence. A catalog may
+  override it with `rules.maxSongsPerStation`; the shipped catalog does not.
 - Stations carry genres and regions; the region (`City`, `Forest`,
-  `Mountain`) narrows the eligible stations. The programme stays on a station
-  with probability `rules.stayOnStation`, never replays one of the last
-  `rules.recentSongs` songs while an alternative exists, and announces every
-  station change with that station's ident.
-- Songs stream through one reused `<audio>` element (unlocked in the first
-  gesture, routed through the game's master gain). Only the next song is
-  loaded, during the break; buzz and presenter clips are small decoded buffers,
-  precached while the previous song plays.
-- Urgent reports (closure, worksite, snow, rain) cut in at once; other reports
-  wait for the next break and expire after 45 s.
-- Pause, mute and hidden tabs stop audio; a pause/resume pair inside one task
-  (a level change) does not interrupt the song. Press **N** or the radio
-  button to change station. A slow stream holds quiet static, repeated failures
+  `Mountain`) narrows the eligible stations at the next natural break only. The
+  programme never replays one of the last `rules.recentSongs` songs while an
+  alternative exists and announces every station change with that station's
+  ident.
+- Long songs: anything past `maxSongSeconds` (150 s) fades into the buzz at the
+  last 8-bar phrase boundary, never under 60 s. The shipped songs (73–98 s)
+  play in full.
+- No gaps: two reused `<audio>` elements alternate (both unlocked in the first
+  gesture). The next song starts buffering on the spare element during the
+  current song's last `preloadSeconds` (20 s), so the break reuses that
+  stream; all buzz clips are decoded when the radio first comes on and each
+  break's presenter clip is precached during the song. A stream that is still
+  not ready holds quiet looping static instead of silence; repeated failures
   fall back to the legacy prepared score / synthesized music.
+- Reports: level-start reports (weather, traffic) are queued for the next
+  natural break (latest wins, expire after 100 s). Urgent gameplay reports
+  that appear mid-level (a closure or worksite) cut in: the song pauses in
+  place, buzz → report → buzz, then the same song resumes at the same
+  position.
+- Debugging: `CannonballPlatform.audioSnapshot().programme` reports the
+  state, current song id, `position`, `src`, the preloaded next song, the
+  station run/cadence and a `log` of the last breaks, preloads, bulletins,
+  pauses and resumes.

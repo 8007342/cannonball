@@ -20,6 +20,7 @@ extension type _PlatformBridge(JSObject _) implements JSObject {
   external void garageCue(String cue);
   external void radioBreak(String text, String station, bool urgent);
   external bool radioSkip();
+  external void holdRadio(bool held);
   external String radioCaption();
   external void setMuted(bool muted);
   external void pause(bool paused);
@@ -115,6 +116,17 @@ class BrowserPlatform {
   }
 
   void pause(bool paused) => _bridge?.pause(paused);
+
+  /// Explicit listener pause of the radio programme (gameplay pauses, level
+  /// changes and restarts leave it on air). Release resumes the same song in
+  /// place.
+  void holdRadio(bool held) {
+    try {
+      _bridge?.holdRadio(held);
+    } catch (_) {
+      // An older cached bridge without holdRadio keeps its previous behaviour.
+    }
+  }
 
   Future<bool> requestLandscape() async {
     try {

@@ -1,9 +1,15 @@
+import 'package:flutter/foundation.dart';
+
 /// No-op services for Dart VM tests; the product itself targets browsers.
 class BrowserPlatform {
   BrowserPlatform._();
   static final BrowserPlatform instance = BrowserPlatform._();
 
   bool muted = false;
+
+  /// Audio calls made by the UI, for tests that check soundtrack continuity.
+  @visibleForTesting
+  final audioCalls = <String>[];
   bool get reducedMotion => false;
 
   void initialize({
@@ -15,25 +21,34 @@ class BrowserPlatform {
 
   Future<bool> enableTilt() async => false;
   void disableTilt() {}
-  Future<bool> beginAudio() async => false;
+  Future<bool> beginAudio() async {
+    audioCalls.add('beginAudio');
+    return false;
+  }
+
   void setAudioState({
     required double speed,
     required double intensity,
     required String region,
   }) {}
   void say(String text) {}
-  void setProofAudio(bool enabled) {}
+  void setProofAudio(bool enabled) => audioCalls.add('setProofAudio:$enabled');
   void garageCue(String cue) {}
   void radioBreak({
     required String text,
     required String station,
     bool urgent = true,
-  }) {}
-  bool radioSkip() => false;
+  }) => audioCalls.add('radioBreak:${urgent ? 'urgent' : 'queued'}');
+  bool radioSkip() {
+    audioCalls.add('radioSkip');
+    return false;
+  }
+
   String radioCaption() => '';
-  void pause(bool paused) {}
+  void pause(bool paused) => audioCalls.add('pause:$paused');
+  void holdRadio(bool held) => audioCalls.add('holdRadio:$held');
   Future<bool> requestLandscape() async => false;
-  void dispose() {}
+  void dispose() => audioCalls.add('dispose');
 
   void renderGoogleButton(
     Object element,

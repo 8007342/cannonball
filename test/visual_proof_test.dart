@@ -1,4 +1,5 @@
 import 'package:cannonball/game/race.dart';
+import 'package:cannonball/platform/browser_platform.dart';
 import 'package:cannonball/ui/wheel_control.dart';
 import 'package:cannonball/ui/visual_proof.dart';
 import 'package:flutter/material.dart';
@@ -283,4 +284,88 @@ void main() {
     expect(race.paused, isTrue);
     expect(tester.takeException(), isNull);
   });
+  testWidgets(
+    'one soundtrack: level changes, restarts and replay never stop the radio',
+    (tester) async {
+      final audio = BrowserPlatform.instance.audioCalls..clear();
+      final race = await mountProof(tester, sequence: true);
+      expect(audio.where((c) => c.startsWith('setProofAudio')), [
+        'setProofAudio:true',
+      ]);
+      // The first garage gesture (taking the keys) turns the radio on.
+      await tester.tap(find.byKey(const ValueKey('take-keys')));
+      await tester.pump();
+      expect(audio, containsAllInOrder(['beginAudio', 'holdRadio:false']));
+      await tester.tap(find.byTooltip('Skip departure'));
+      await tester.pump();
+      audio.clear();
+
+      Future<void> finishStage() async {
+        race.braking = true;
+        for (var i = 0; i < 485; i++) {
+          race.tick(.25);
+        }
+        await tester.pump();
+      }
+
+      await finishStage(); // automatic advance
+      expect(race.proofLevel.id, 'indiana');
+      for (final key in [
+        LogicalKeyboardKey.keyW,
+        LogicalKeyboardKey.keyE,
+        LogicalKeyboardKey.keyY,
+        LogicalKeyboardKey.keyQ,
+      ]) {
+        await tester.sendKeyEvent(key); // manual level select
+        await tester.pump();
+        race.tick(.25);
+        await tester.pump();
+      }
+      await tester.sendKeyEvent(LogicalKeyboardKey.digit3); // chapter replay
+      await tester.pump();
+      race.tick(.25);
+      await tester.sendKeyEvent(LogicalKeyboardKey.backspace); // restart
+      await tester.pump();
+      race.tick(.25);
+      await tester.pump();
+      for (var stage = 0; stage < 6; stage++) {
+        await finishStage();
+      }
+      expect(
+        find.text('Road trip complete. Six levels explored.'),
+        findsOneWidget,
+      );
+      await tester.tap(find.text('DRIVE IT AGAIN'));
+      await tester.pump();
+      race.tick(.25);
+      await tester.pump();
+      expect(race.proofLevel.id, 'hudson');
+
+      final cuts = audio.where(
+        (c) =>
+            c == 'holdRadio:true' ||
+            c.startsWith('setProofAudio') ||
+            c == 'radioBreak:urgent' ||
+            c == 'radioSkip' ||
+            c == 'dispose',
+      );
+      expect(cuts, isEmpty, reason: audio.join(', '));
+      final reports = audio.where((c) => c.startsWith('radioBreak'));
+      expect(reports.length, greaterThanOrEqualTo(10));
+      expect(reports, everyElement('radioBreak:queued'));
+
+      // Only an explicit pause holds the radio, and resume releases it.
+      audio.clear();
+      await tester.sendKeyEvent(LogicalKeyboardKey.keyP);
+      await tester.pump();
+      expect(audio, contains('holdRadio:true'));
+      await tester.tap(find.text('BACK TO THE ROAD'));
+      await tester.pump();
+      expect(
+        audio.lastWhere((c) => c.startsWith('holdRadio')),
+        'holdRadio:false',
+      );
+      expect(audio.where((c) => c.startsWith('setProofAudio')), isEmpty);
+    },
+  );
 }

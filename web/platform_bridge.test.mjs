@@ -71,11 +71,15 @@ function harness({prepared = false, radio = false} = {}) {
     };
   }
   vm.createContext(sandbox);
-  const media = {readyState: 4, src: '', paused: true, plays: 0, listeners: {},
-    addEventListener(name, fn) { this.listeners[name] = fn; }, setAttribute() {},
-    play() { this.plays++; this.paused = false; return Promise.resolve(); }, pause() { this.paused = true; }, load() {}};
+  const medias = [];
+  const makeMedia = () => {
+    const m = {readyState: 4, src: '', paused: true, plays: 0, currentTime: 0, listeners: {},
+      addEventListener(name, fn) { this.listeners[name] = fn; }, setAttribute() {},
+      play() { this.plays++; this.paused = false; return Promise.resolve(); }, pause() { this.paused = true; }, load() { this.currentTime = 0; }};
+    medias.push(m); return m;
+  };
   if (radio) {
-    sandbox.Audio = function () { return media; };
+    sandbox.Audio = function () { return makeMedia(); };
     audio.createBufferSource = () => { const n = {...node(), buffer: null}; bufferSources.push(n); return n; };
     audio.createBuffer = (ch, length, rate) => ({duration: length / rate, getChannelData: () => new Float32Array(length)});
     audio.sampleRate = 48000;
@@ -105,7 +109,9 @@ function harness({prepared = false, radio = false} = {}) {
     time = end;
     audio.currentTime = time / 1000;
   }
-  return {bridge, sandbox, media, bufferSources, math: sandbox.module.exports, tilt, statuses, hidden,
+  return {bridge, sandbox, medias, bufferSources,
+    /** The element on air (or the first one when nothing plays). */
+    get media() { return medias.find(m => !m.paused) || medias.find(m => m.src) || medias[0]; }, math: sandbox.module.exports, tilt, statuses, hidden,
     orientations, spoken, scripts, oscillatorNotes, audio, timers, advance, preparedReports, snippetCalls,
     get cancelled() { return cancelled; },
     emit(name, event = {}) { listeners.get(name)?.(event); docListeners.get(name)?.(event); }};
@@ -422,14 +428,30 @@ test('radio programme replaces the oscillator score and survives a level change'
   h.bridge.pause(true); h.bridge.pause(false); h.advance(200);
   assert.equal(h.media.paused, false);
   assert.equal(h.bridge.audioSnapshot().programme.state, 'song');
-  // Urgent report: hard cut, buzz, prepared/device speech, buzz, next song.
+  // Gameplay pause (garage, completion screen) leaves the radio on air.
+  h.bridge.pause(true); h.advance(500);
+  assert.equal(h.media.paused, false, 'gameplay pause does not stop the radio');
+  const playing = h.media, song = h.bridge.audioSnapshot().programme.songId;
+  playing.currentTime = 33;
+  // Urgent report: cut in, buzz, prepared/device speech, buzz, SAME song.
   h.bridge.radioBreak('Snow ahead!', 'Mountain', true);
-  assert.equal(h.media.paused, true);
+  assert.equal(playing.paused, true);
   end(); await flush();
   assert.equal(h.bridge.audioSnapshot().programme.state, 'report');
   assert.equal(h.preparedReports.at(-1).text, 'Snow ahead!');
   h.preparedReports.at(-1).complete(); h.advance(1000);
-  assert.equal(h.bridge.audioSnapshot().programme.station, 'rock');
+  assert.equal(h.bridge.audioSnapshot().programme.songId, song);
+  assert.equal(playing.paused, false); assert.equal(playing.currentTime, 33);
+  // Explicit listener pause holds the song in place; release resumes it.
+  h.bridge.holdRadio(true); h.advance(100);
+  assert.equal(playing.paused, true);
+  assert.equal(h.bridge.audioSnapshot().radioHold, true);
+  h.bridge.holdRadio(false);
+  assert.equal(playing.paused, false); assert.equal(playing.currentTime, 33);
+  // Re-enabling proof audio (a remount path) is idempotent: no reset.
+  h.bridge.setProofAudio(true);
+  assert.equal(h.bridge.audioSnapshot().programme.songId, song);
+  assert.equal(playing.paused, false);
   // Skip and mute.
   assert.equal(h.bridge.radioSkip(), true);
   h.bridge.setMuted(true);
